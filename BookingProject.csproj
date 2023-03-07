@@ -56,6 +56,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Model\Accommodation.cs" />
+    <Compile Include="Model\Enums\AccommodationType.cs" />
+    <Compile Include="Model\Images\AccommodationImages.cs" />
+    <Compile Include="Model\Location.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
