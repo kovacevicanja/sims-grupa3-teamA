@@ -10,7 +10,7 @@ using BookingProject.Model.Images;
 
 namespace BookingProject.Model
 {
-    internal class Accommodation : ISerializable
+    public class Accommodation : ISerializable
     {
 
         public int Id { get; set; }
@@ -21,7 +21,9 @@ namespace BookingProject.Model
         public int MinDays { get; set; }
         public int CancelationPeriod { get; set; }
         public List<AccommodationImages> Images { get; set; }
+
         public Accommodation() {
+            Location = new Location();
             Images = new List<AccommodationImages>();
         }
         public Accommodation(int id, string name, Location location, AccommodationType type, int maxGuestNumber, int minDays, int cancelationPeriod)
@@ -35,12 +37,15 @@ namespace BookingProject.Model
             CancelationPeriod = cancelationPeriod;
         }
 
+  
+
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);
             Name = values[1];
+            Location.Id = int.Parse(values[2]);
             AccommodationType accommodationType;
-            if (Enum.TryParse<AccommodationType>(values[2], out accommodationType))
+            if (Enum.TryParse<AccommodationType>(values[3], out accommodationType))
             {
                 Type = accommodationType;
             } else
@@ -48,9 +53,9 @@ namespace BookingProject.Model
                 Type = AccommodationType.APARTMENT;
                 System.Console.WriteLine("Doslo je do greske prilikom ucitavanja tipa smestaja");
             }
-            MaxGuestNumber = int.Parse(values[3]);
-            MinDays= int.Parse(values[4]);
-            CancelationPeriod= int.Parse(values[5]);
+            MaxGuestNumber = int.Parse(values[4]);
+            MinDays= int.Parse(values[5]);
+            CancelationPeriod= int.Parse(values[6]);
         }
 
         public string[] ToCSV()
@@ -59,6 +64,7 @@ namespace BookingProject.Model
             {
                 Id.ToString(),
                 Name,
+                Location.Id.ToString(),
                 Type.ToString(),
                 MaxGuestNumber.ToString(),
                 MinDays.ToString(),

@@ -55,12 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controller\AccommodationController.cs" />
+    <Compile Include="Controller\LocationController.cs" />
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="FileHandler\AccommodationHandler.cs" />
+    <Compile Include="FileHandler\LocationHandler.cs" />
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
     <Compile Include="Model\Images\AccommodationImages.cs" />
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Observer\IObserver.cs" />
+    <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
     <Compile Include="View\Guest1View.xaml.cs">
@@ -126,14 +132,14 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\Data\accommodations.csv" />
+    <None Include="Resources\Data\locations.csv" />
     <None Include="Resources\Data\users.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FileHandler\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\add.png" />
     <Resource Include="Resources\Images\delete.png" />

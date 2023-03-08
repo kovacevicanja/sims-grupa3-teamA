@@ -1,5 +1,9 @@
-﻿using System;
+﻿using BookingProject.Controller;
+using BookingProject.FileHandler;
+using BookingProject.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +23,16 @@ namespace BookingProject.View
     /// </summary>
     public partial class Guest1View : Window
     {
+        private AccommodationController _accommodationController;
+        private ObservableCollection<Accommodation> _accommodations;
         public Guest1View()
         {
             InitializeComponent();
+            this.DataContext = this;
+            _accommodationController = new AccommodationController();
+            _accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
+            AccommodationDataGrid.ItemsSource = _accommodations;
+
         }
 
         private void Button_Click_Search(object sender, RoutedEventArgs e)
