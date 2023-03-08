@@ -71,7 +71,8 @@ namespace BookingProject.View
                         MessageBox.Show("Ulogovan vlasnik!");
                     }
                     else if(IsSelectedGuest1){
-                        MessageBox.Show("Ulogovan gost1!");
+                        Guest1View guest1View = new Guest1View();
+                        guest1View.Show();
                     }else if(IsSelectedGuest2)
                     {
                         MessageBox.Show("Ulogovan gost2!");
