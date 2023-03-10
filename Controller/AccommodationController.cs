@@ -1,5 +1,6 @@
 ﻿using BookingProject.FileHandler;
 using BookingProject.Model;
+using BookingProject.Serializer;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace BookingProject.Controller
         private List<Accommodation> _accommodations;
 
         private LocationController _locationController;
+        private Serializer<Accommodation> serializer;
+        private readonly string fileName = "../../Data/accommodations.csv";
 
         public AccommodationController()
         {
@@ -36,6 +39,37 @@ namespace BookingProject.Controller
         public List<Accommodation> GetAll()
         {
             return _accommodations;
+        }
+
+        //public void Create(Accommodation accommodation)
+        //{
+        //    AddAccommodation(accommodation);
+        //}
+        public Accommodation AddAccommodation(Accommodation accommodation)
+        {
+            accommodation.Id = GenerateId();
+            _accommodations.Add(accommodation);
+            SaveAccommodation();
+            NotifyObservers();
+            return accommodation;
+        }
+
+        private void SaveAccommodation()
+        {
+            serializer.ToCSV(fileName, _accommodations);
+        }
+
+        private int GenerateId()
+        {
+            int maxId = 0;
+            foreach (Accommodation accommodation in _accommodations)
+            {
+                if (accommodation.Id > maxId)
+                {
+                    maxId = accommodation.Id;
+                }
+            }
+            return maxId + 1;
         }
 
         public Accommodation GetByID(int id)

@@ -19,14 +19,15 @@ namespace BookingProject.Model
         public AccommodationType Type { get; set; }
         public int MaxGuestNumber { get; set; }
         public int MinDays { get; set; }
-        public int CancelationPeriod { get; set; }
+        public int CancellationPeriod { get; set; }
         public List<AccommodationImages> Images { get; set; }
 
         public Accommodation() {
             Location = new Location();
             Images = new List<AccommodationImages>();
+            //CancelationPeriod = 1;
         }
-        public Accommodation(int id, string name, Location location, AccommodationType type, int maxGuestNumber, int minDays, int cancelationPeriod)
+        public Accommodation(int id, string name, Location location, AccommodationType type, int maxGuestNumber, int minDays, int cancellationPeriod)
         {
             Id = id;
             Name = name;
@@ -34,7 +35,7 @@ namespace BookingProject.Model
             Type = type;
             MaxGuestNumber = maxGuestNumber;
             MinDays = minDays;
-            CancelationPeriod = cancelationPeriod;
+            CancellationPeriod = cancellationPeriod;
         }
 
   
@@ -55,7 +56,7 @@ namespace BookingProject.Model
             }
             MaxGuestNumber = int.Parse(values[4]);
             MinDays= int.Parse(values[5]);
-            CancelationPeriod= int.Parse(values[6]);
+            CancellationPeriod= int.Parse(values[6]);
         }
 
         public string[] ToCSV()
@@ -68,7 +69,7 @@ namespace BookingProject.Model
                 Type.ToString(),
                 MaxGuestNumber.ToString(),
                 MinDays.ToString(),
-                CancelationPeriod.ToString(),
+                CancellationPeriod.ToString(),
             };
             return csvValues;
         }

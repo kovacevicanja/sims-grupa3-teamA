@@ -44,7 +44,7 @@
                     <DataGridTextColumn Header="Type" Width="60" Binding="{Binding Type}"></DataGridTextColumn>
                     <DataGridTextColumn Header="MaxNumOfGuests" Width="150" Binding="{Binding MaxGuestNumber}"></DataGridTextColumn>
                     <DataGridTextColumn Header="MinNumOfDaysForReservation" Width="200" Binding="{Binding MinDays}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Cancellation limit" Width="200" Binding="{Binding CancelationPeriod}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cancellation limit" Width="200" Binding="{Binding CancellationPeriod}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
             
