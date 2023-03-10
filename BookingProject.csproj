@@ -60,6 +60,10 @@
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
     <Compile Include="FileHandler\LocationHandler.cs" />
+<<<<<<< Updated upstream
+=======
+    <Compile Include="ConversionHelp\DateConversion.cs" />
+>>>>>>> Stashed changes
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
     <Compile Include="Model\Images\AccommodationImages.cs" />

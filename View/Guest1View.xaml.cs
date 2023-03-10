@@ -46,5 +46,10 @@ namespace BookingProject.View
             ReservationAccommodationView reservationAccommodationView = new ReservationAccommodationView();
             reservationAccommodationView.Show();
         }
+
+        private void Button_Click_Cancel_Search(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
