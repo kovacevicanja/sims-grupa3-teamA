@@ -10,7 +10,7 @@ using BookingProject.Serializer;
 
 namespace BookingProject.Model
 {
-    internal class Tour : ISerializable
+    public class Tour : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }

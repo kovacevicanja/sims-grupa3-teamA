@@ -9,7 +9,7 @@ using BookingProject.ConversionHelp;
 
 namespace BookingProject.Model
 {
-    internal class StartingDate : ISerializable
+    public class StartingDate : ISerializable
     {
         public int Id { get; set; }
 
