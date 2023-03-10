@@ -60,11 +60,6 @@
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
     <Compile Include="FileHandler\LocationHandler.cs" />
-    <Compile Include="Dao\DateDao.cs" />
-    <Compile Include="Dao\ImagesDao.cs" />
-    <Compile Include="Dao\KeyPointsDao.cs" />
-    <Compile Include="Dao\LocationDao.cs" />
-    <Compile Include="Dao\TourDao.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\KeyPoint.cs" />
