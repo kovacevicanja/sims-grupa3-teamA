@@ -56,16 +56,27 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Dao\DateDao.cs" />
+    <Compile Include="Dao\ImagesDao.cs" />
+    <Compile Include="Dao\KeyPointsDao.cs" />
+    <Compile Include="Dao\LocationDao.cs" />
+    <Compile Include="Dao\TourDao.cs" />
+    <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Model\Accommodation.cs" />
+    <Compile Include="Model\KeyPoint.cs" />
+    <Compile Include="Model\StartingDate.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
     <Compile Include="Model\Enums\LanguageEnum.cs" />
     <Compile Include="Model\Images\AccommodationImages.cs" />
     <Compile Include="Model\Images\TourImages.cs" />
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\Tour.cs" />
+    <Compile Include="Model\TourImage.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Serializer\ISerializable.cs" />
-    <Compile Include="Serializer\Serializer.cs" />
+    <Compile Include="Observer\IObserver.cs" />
+    <Compile Include="Observer\ISubject.cs" />
+    <Compile Include="Dao\Serializer\ISerializable.cs" />
+    <Compile Include="Dao\Serializer\Serializer.cs" />
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
     </Compile>
@@ -108,6 +119,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\Data\dates.csv" />
+    <None Include="Resources\Data\images.csv" />
+    <None Include="Resources\Data\keyPoints.csv" />
+    <None Include="Resources\Data\locations.csv" />
     <None Include="Resources\Data\users.csv" />
   </ItemGroup>
   <ItemGroup>

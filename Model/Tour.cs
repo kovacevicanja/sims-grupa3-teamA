@@ -6,39 +6,42 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingProject.Model.Images;
 using System.Xml.Linq;
+using BookingProject.Serializer;
 
 namespace BookingProject.Model
 {
-    internal class Tour
+    internal class Tour : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int LocationId { get; set; }
+
+        public Location Location { get; set; }
         public string Description { get; set; }
         public LanguageEnum Language { get; set; }
         public int MaxGuests { get; set; }
-        public List<string> KeyPoints { get; set; }
-        public DateTime StartingTime { get; set; }
+        public List<KeyPoint> KeyPoints { get; set; }
+        public List<StartingDate> StartingTime { get; set; }
         public double DurationInHours { get; set; }
-        public List<TourImages> Images { get; set; }
+        public List<TourImage> Images { get; set; }
 
         public Tour() { 
-        this.KeyPoints= new List<string>();
-        this.Images= new List<TourImages>();
+            KeyPoints = new List<KeyPoint>();
+            StartingTime = new List<StartingDate>();
+            Images = new List<TourImage>();
+
         }
 
-        public Tour(int id, string name, int locationId, string description, LanguageEnum language, int maxGuests, List<string> keyPoints, DateTime startingTime, double durationInHours, List<TourImages> images)
+        public Tour(int id, string name, int locationId, Location location, string description, LanguageEnum language, int maxGuests, List<KeyPoint> keyPoints, List<StartingDate> startingTime, double durationInHours, List<TourImage> images)
         {
-            Id= id;
+            Id = id;
             Name = name;
-            LocationId=locationId;
+            LocationId = locationId;
+            Location = location;
             Description = description;
             Language = language;
             MaxGuests = maxGuests;
-            KeyPoints = keyPoints;
-            StartingTime = startingTime;
             DurationInHours = durationInHours;
-            Images = images;
         }
 
         public void FromCSV(string[] values)
@@ -61,8 +64,7 @@ namespace BookingProject.Model
             }
 
             MaxGuests = int.Parse(values[5]);
-            StartingTime = DateTime.Parse(values[6]);
-            DurationInHours = int.Parse(values[7]);
+            DurationInHours = int.Parse(values[6]);
         }
 
         public string[] ToCSV()
@@ -75,7 +77,6 @@ namespace BookingProject.Model
                 Description,
                 Language.ToString(),
                 MaxGuests.ToString(),
-                StartingTime.ToString(),
                 DurationInHours.ToString(),
 
             };

@@ -1,29 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
-using BookingProject.Serializer;
 
 namespace BookingProject.Model
 {
-    internal class Location : ISerializable
+    internal class KeyPoint
     {
         public int Id { get; set; }
-        public string Country { get; set; }
-        public string City { get; set; }
 
-        public Location() { }
-        public Location(string country, string city)
+        public int Tourid { get; set; }
+        public string Point { get; set; }
+        public KeyPoint() { }
+
+        public KeyPoint(int id, int tourId, string point)
         {
-            Country = country;
-            City = city;
+            Id = id;
+            Tourid = tourId;
+            Point = point;
         }
+
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);
-            Country = values[1];
-            City = values[2];
+            Tourid = int.Parse(values[1]);
+            Point = values[2];
+
         }
 
         public string[] ToCSV()
@@ -31,10 +35,11 @@ namespace BookingProject.Model
             string[] csvValues =
             {
                 Id.ToString(),
-                Country,
-                City,
+                Tourid.ToString(),
+                Point,
             };
             return csvValues;
+
         }
     }
 }
