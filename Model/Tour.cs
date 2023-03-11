@@ -59,7 +59,7 @@ namespace BookingProject.Model
             }
             else
             {
-                languageEnum = LanguageEnum.English;
+                languageEnum = LanguageEnum.ENGLISH;
                 System.Console.WriteLine("Doslo je do greske prilikom ucitavanja jezika");
             }
 

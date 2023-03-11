@@ -3,6 +3,7 @@ using BookingProject.Model;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace BookingProject.Controller
             _locationController = new LocationController();
             _imageController = new ImageController();
             _keyPointController = new KeyPointController();
-            _startingDateController = new StartingDateController();        
+            _startingDateController = new StartingDateController();
             Load();
         }
 
@@ -77,7 +78,7 @@ namespace BookingProject.Controller
                 foreach (TourImage image in images)
                 {
 
-                    if(tour.Id == image.TourId)
+                    if (tour.Id == image.TourId)
                     {
                         tour.Images.Add(image);
                     }
@@ -145,5 +146,27 @@ namespace BookingProject.Controller
         {
             observers.Remove(observer);
         }
+
+
+        public ObservableCollection<Tour> Search(ObservableCollection<Tour> tourView, string city, string country, string duration, string choosenLanguage, string numOfGuest)
+        {
+            tourView.Clear();
+
+            foreach (Tour tour in _tours)
+            {
+                string languageEnum = tour.Language.ToString().ToLower();
+
+                if ((city.Equals("") || tour.Location.City.ToLower().Contains(city.ToLower()))
+                    && (country.Equals("") || tour.Location.Country.ToLower().Contains(country.ToLower()))
+                    && (duration.Equals("") || double.Parse(duration) == tour.DurationInHours)
+                    && (choosenLanguage.Equals("") || languageEnum.Equals(choosenLanguage.ToLower()))
+                    && (numOfGuest.Equals("") || int.Parse(numOfGuest) <= tour.MaxGuests))
+                {
+                    tourView.Add(tour);
+                }
+            }
+            return tourView;
+        }
     }
+
 }

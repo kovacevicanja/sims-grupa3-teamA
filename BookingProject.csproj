@@ -93,6 +93,9 @@
     <Compile Include="View\SearchAccommodationsView.xaml.cs">
       <DependentUpon>SearchAccommodationsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SecondGuestView.xaml.cs">
+      <DependentUpon>SecondGuestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SearchAccommodationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecondGuestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
