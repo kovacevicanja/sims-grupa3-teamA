@@ -16,6 +16,7 @@ namespace BookingProject.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public Location Location { get; set; }
+        public int IdLocation { get; set; }
         public AccommodationType Type { get; set; }
         public int MaxGuestNumber { get; set; }
         public int MinDays { get; set; }
@@ -25,17 +26,19 @@ namespace BookingProject.Model
         public Accommodation() {
             Location = new Location();
             Images = new List<AccommodationImages>();
-            //CancelationPeriod = 1;
+            CancellationPeriod = 1;
         }
-        public Accommodation(int id, string name, Location location, AccommodationType type, int maxGuestNumber, int minDays, int cancellationPeriod)
+        public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, int maxGuestNumber, int minDays, int cancellationPeriod, List<AccommodationImages> images)
         {
             Id = id;
             Name = name;
+            IdLocation = idLocation;
             Location = location;
             Type = type;
             MaxGuestNumber = maxGuestNumber;
             MinDays = minDays;
             CancellationPeriod = cancellationPeriod;
+            Images = images;
         }
 
   
@@ -44,7 +47,7 @@ namespace BookingProject.Model
         {
             Id = int.Parse(values[0]);
             Name = values[1];
-            Location.Id = int.Parse(values[2]);
+            IdLocation = int.Parse(values[2]);
             AccommodationType accommodationType;
             if (Enum.TryParse<AccommodationType>(values[3], out accommodationType))
             {

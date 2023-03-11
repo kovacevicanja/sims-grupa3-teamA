@@ -28,19 +28,22 @@ namespace BookingProject.View
         public ObservableCollection<AccommodationType> accommodationTypes { get; set; }
         public AccommodationType chosenType { get; set; }
         public AccommodationController AccommodationController { get; set; }
+        public LocationController LocationController { get; set; }
         
         public AddAccommodationView()
         {
             InitializeComponent();
             this.DataContext= this;
-            var app = Application.Current as App;
-            //AccommodationController = app.AccommodationControler;
             var types = Enum.GetValues(typeof(AccommodationType)).Cast<AccommodationType>();
             accommodationTypes = new ObservableCollection<AccommodationType>(types);
 
+            var app = Application.Current as App;
+            AccommodationController = app.AccommodationController;
+            LocationController = app.LocationController;
+
         }
         private string _accommodationName;
-        public string AccommodationName
+        public string Name
         {
             get => _accommodationName;
             set
@@ -55,7 +58,7 @@ namespace BookingProject.View
 
         private string _accommodationCity;
 
-        public string AccommodationCity
+        public string City
         {
             get => _accommodationCity;
             set
@@ -70,7 +73,7 @@ namespace BookingProject.View
 
         private string _accommodationCountry;
 
-        public string AccommodationCountry
+        public string Country
         {
             get => _accommodationCountry;
             set
@@ -84,7 +87,7 @@ namespace BookingProject.View
         }
 
         private int _accommodationType;
-        public int AccommodationType
+        public int TypeOfAccommodation
         {
             get => _accommodationType;
             set
@@ -111,7 +114,7 @@ namespace BookingProject.View
             }
         }
         private int _minNumberOfDays;
-        public int MinNumberOfDays
+        public int MinDays
         {
             get => _minNumberOfDays;
             set
@@ -145,17 +148,23 @@ namespace BookingProject.View
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
             Accommodation accommodation = new Accommodation();
-            accommodation.Name = AccommodationName;
-            accommodation.Location.City = AccommodationCity;
-            accommodation.Location.Country = AccommodationCountry;
+            accommodation.Name = Name;
             accommodation.Type = chosenType;
             accommodation.MaxGuestNumber = MaxGuestNumber;
-            accommodation.MinDays = MinNumberOfDays;
+            accommodation.MinDays = MinDays;
             accommodation.CancellationPeriod = CancellationPeriod;
+
+            Location location = new Location();
+            location.City = City;
+            location.Country = Country;
+
+            LocationController.Create(location);
+            accommodation.Location = location;
+            accommodation.IdLocation = location.Id;
 
             if (IsValid)
             {
-                AccommodationController.AddAccommodation(accommodation);
+                AccommodationController.Create(accommodation);
             }
         }
 
@@ -188,12 +197,12 @@ namespace BookingProject.View
                 }
                 else if (columnName == "City")
                 {
-                    if (string.IsNullOrEmpty(AccommodationCity))
+                    if (string.IsNullOrEmpty(City))
                         return "Morate uneti naziv predmeta!";
                 }
                 else if (columnName == "Country")
                 {
-                    if (string.IsNullOrEmpty(AccommodationCountry))
+                    if (string.IsNullOrEmpty(Country))
                         return "Morate uneti naziv predmeta!";
                 }
                 return null;

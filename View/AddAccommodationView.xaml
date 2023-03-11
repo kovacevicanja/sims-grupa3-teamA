@@ -6,6 +6,16 @@
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
         Title="AddAccommodationView" Height="450" Width="800">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <!-- Placeholder for the TextBox itself -->
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+            </StackPanel>
+
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="64*"/>
@@ -38,18 +48,32 @@
             <Label Grid.Row="4" Grid.Column="0" Height="30" >Maximum number of guests</Label>
             <Label Grid.Row="5" Grid.Column="0" Height="30" >Minimum number of days</Label>
             <Label Grid.Row="6" Grid.Column="0" Height="30" >Cancellation period</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="0" Grid.Column="1" 
+                     Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="1" Grid.Column="1" 
+                     Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Country, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="2" Grid.Column="1" 
+                     Text="{Binding Path=Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
-            <ComboBox  Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=AccomodationType}" HorizontalAlignment="Left" Width="270" Height="30"></ComboBox>
-            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=MaxGuestNumber, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=TypeOfAccommodation, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
-            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=MinDays, UpdateSourceTrigger=PropertyChanged}"
+            <ComboBox  Height="30" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=accommodationTypes}" SelectedItem="{Binding Path=chosenType, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+            <TextBox Grid.Row="4" Grid.Column="1" 
+                     Text="{Binding Path=MaxGuestNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
-            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=CancellationPeriod, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="5" Grid.Column="1" 
+                     Text="{Binding Path=MinDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                     Height="30"></TextBox>
+            <TextBox Grid.Row="6" Grid.Column="1" 
+                     Text="{Binding Path=CancellationPeriod, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
 
         </Grid>

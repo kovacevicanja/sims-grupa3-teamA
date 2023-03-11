@@ -20,8 +20,7 @@ namespace BookingProject.Controller
 
         private LocationController _locationController;
         private Serializer<Accommodation> serializer;
-        private readonly string fileName = "../../Data/accommodations.csv";
-
+        private readonly string fileName = "../../Resources/Data/accommodations.csv";
         public AccommodationController()
         {
             _accommodationHandler = new AccommodationHandler();
@@ -41,10 +40,10 @@ namespace BookingProject.Controller
             return _accommodations;
         }
 
-        //public void Create(Accommodation accommodation)
-        //{
-        //    AddAccommodation(accommodation);
-        //}
+        public void Create(Accommodation accommodation)
+        {
+            AddAccommodation(accommodation);
+        }
         public Accommodation AddAccommodation(Accommodation accommodation)
         {
             accommodation.Id = GenerateId();
@@ -82,7 +81,7 @@ namespace BookingProject.Controller
             _locationController.Load();
             foreach(Accommodation accommodation in _accommodations)
             {
-                Location location = _locationController.GetByID(accommodation.Location.Id);
+                Location location = _locationController.GetByID(accommodation.IdLocation);
                 accommodation.Location = location;
             }
         }

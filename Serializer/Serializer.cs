@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingProject.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -39,5 +40,10 @@ namespace BookingProject.Serializer
 
 			return objects;
 		}
-	}
+
+        internal void ToCSV(string fileName, List<Location> locations)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
