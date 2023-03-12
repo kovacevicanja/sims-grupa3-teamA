@@ -29,6 +29,17 @@ namespace BookingProject.Controller
             _dates = _startingDateHandler.Load();
         }
 
+        public void Create(StartingDate date)
+        {
+            _dates.Add(date);
+        }
+
+        public void Save()
+        {
+            _startingDateHandler.Save(_dates);
+        }
+
+
         public List<StartingDate> GetAll()
         {
             return _dates;

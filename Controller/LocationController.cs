@@ -29,6 +29,16 @@ namespace BookingProject.Controller
             _locations = _locationHandler.Load();
         }
 
+        public void Create(Location location)
+        {
+            _locations.Add(location);
+        }
+
+        public void Save()
+        {
+            _locationHandler.Save(_locations);
+        }
+
         public List<Location> GetAll()
         {
             return _locations;

@@ -29,6 +29,16 @@ namespace BookingProject.Controller
             _keyPoints = _keyPointHandler.Load();
         }
 
+        public void Create(KeyPoint keyPoint)
+        {
+            _keyPoints.Add(keyPoint);
+        }
+
+        public void Save()
+        {
+            _keyPointHandler.Save(_keyPoints);
+        }
+
         public List<KeyPoint> GetAll()
         {
             return _keyPoints;

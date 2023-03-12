@@ -96,6 +96,9 @@
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\TourCreationView.xaml.cs">
+      <DependentUpon>TourCreationView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SignInForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TourCreationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

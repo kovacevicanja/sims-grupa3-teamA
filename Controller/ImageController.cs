@@ -30,6 +30,16 @@ namespace BookingProject.Controller
             _images = _imageHandler.Load();
         }
 
+        public void Create(TourImage image) 
+        {
+            _images.Add(image);
+        }
+
+        public void Save()
+        {
+            _imageHandler.Save(_images);
+        }
+
         public List<TourImage> GetAll()
         {
             return _images;

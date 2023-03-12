@@ -45,6 +45,17 @@ namespace BookingProject.Controller
             TourKeyPointBind();
         }
 
+        public void Create(Tour tour)
+        {
+            _tours.Add(tour);
+        }
+
+        public void Save()
+        {
+            _tourHandler.Save(_tours);
+        }
+
+
         public List<Tour> GetAll()
         {
             return _tours;
