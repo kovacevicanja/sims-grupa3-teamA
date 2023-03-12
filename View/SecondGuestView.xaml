@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="Second Guest" Height="450" Width="800">
+        Title="Second Guest" Height="494" Width="1000">
 
-    <Grid>
+    <Grid Margin="0,0,0,13">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -16,31 +16,31 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="350"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="348"/>
+            <RowDefinition Height="22"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Label Width="112">City:</Label>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="73,12,242,18" Grid.RowSpan="2">
+            <Label Width="111">City:</Label>
             <Label Width="110">Country:</Label>
             <Label Width="113">Tour duration:</Label>
             <Label Width="105">Language:</Label>
             <Label Width="140">Number of guests:</Label>
         </StackPanel>
 
-        <StackPanel Grid.Row = "1" Orientation="Horizontal">
+        <StackPanel Grid.Row = "1" Orientation="Horizontal" Margin="73,0,54,0">
             <TextBox Width="100" Height="20" Margin="5" Text="{Binding Path = City}"></TextBox>
             <TextBox Width="100" Height="20" Margin="5" Text="{Binding Path = Country}"></TextBox>
             <TextBox Width="100" Height="20" Margin="5" Text="{Binding Path = Duration}"></TextBox>
             <ComboBox Width="100" Height="20" Margin="5" Name="languageComboBox" SelectedItem="{Binding Path = ChoosenLanguage}"></ComboBox>
             <TextBox Width="100" Height="20" Margin="5" Text="{Binding Path = NumOfGuests}"></TextBox>
             <Button Content="Search" IsCancel="True" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
-               Click="Button_Click_Search" Width="80"/>
+               Click="Button_Click_Search" Width="58"/>
             <Button Content="Cancel search" IsDefault="True" VerticalAlignment="Top" Margin="20, 5, 20, 5"
-              Click="Button_Click_Cancel_Search" Width="80" />
+              Click="Button_Click_Cancel_Search" Width="90" />
         </StackPanel>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Margin="0,0,-42,-16" Grid.RowSpan="2">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -50,21 +50,73 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-
-            <DataGrid Margin="90,12,90,16" SelectionMode="Single" AutoGenerateColumns="False" Name="TourDataGrid" IsReadOnly="True">
+            <DataGrid DockPanel.Dock="Bottom"
+                              ItemsSource="{Binding Path=Tours, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding Path=ChoosenTour, UpdateSourceTrigger=PropertyChanged}"
+                              Name="TourDataGrid"
+                              AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,50,6" RenderTransformOrigin="0.5,0.5">
+                <DataGrid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-0.126"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-0.998"/>
+                    </TransformGroup>
+                </DataGrid.RenderTransform>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="City" Width="100" Binding="{Binding Location.City}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Country" Width="100" Binding="{Binding Location.Country}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tour duration" Width="140" Binding="{Binding DurationInHours}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Language" Width="120" Binding="{Binding Language}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Number of guests" Width="150" Binding="{Binding MaxGuests}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tour name" Width="70" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="City" Width="70" Binding="{Binding Location.City}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Country" Width="70" Binding="{Binding Location.Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Description" Width="170" Binding="{Binding Description}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tour duration" Width="85" Binding="{Binding DurationInHours}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Key points">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding KeyPoints}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Point}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Language" Width="65" Binding="{Binding Language}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Starting time">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding StartingTime}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding StartingTime}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Number of possible guests" Width="155" Binding="{Binding MaxGuests}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Images" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding Images}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Url}" Width="80" Height="80" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
         </Grid>
 
-        <StackPanel Grid.Row="3">
-            <Button Width="120" IsDefault="True" Click="Button_Click_Book">Book tour</Button>
+        <StackPanel Grid.Row="3" Margin="0,41,0,-41">
+            <Button Width="120" IsDefault="True" Click="Button_Click_Book" Content="Book tour"/>
         </StackPanel>
     </Grid>
 </Window>

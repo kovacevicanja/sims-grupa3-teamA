@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Shapes;
 using BookingProject.Controller;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using Microsoft.VisualBasic.FileIO;
 
 namespace BookingProject.View
 {
@@ -30,7 +32,12 @@ namespace BookingProject.View
         public string Country { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
         public string ChoosenLanguage { get; set; } = string.Empty;
-        public string NumOfGuests { get; set; } = string.Empty; 
+        public string NumOfGuests { get; set; } = string.Empty;
+        public ObservableCollection<TourImage> ImageUrl { get; } //
+
+        public Tour ChoosenTour { get; set; }  
+
+       
 
         public SecondGuestView()
         {
@@ -41,6 +48,24 @@ namespace BookingProject.View
             TourDataGrid.ItemsSource = _tours;
 
             languageComboBox.ItemsSource = new List<string>() { "ENGLISH", "SERBIAN", "GERMAN" };
+
+            /*DataTable dt = new DataTable();
+            using (TextFieldParser parser = new TextFieldParser(".. / .. / Resources / Data / images.csv"))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(" ");
+                while (!parser.EndOfData)
+                {
+                    string[] fields = parser.ReadFields();
+                    if (fields != null && fields.Length > 0)
+                    {
+                        DataRow row = dt.NewRow();
+                        row["ImageUrl"] = fields[0];
+                        dt.Rows.Add(row);
+                    }
+                }
+            }*/
+
         }
 
         private void Button_Click_Search(object sender, RoutedEventArgs e)
@@ -52,13 +77,23 @@ namespace BookingProject.View
         private void Button_Click_Cancel_Search(object sender, RoutedEventArgs e)
         {
             this.Close();
-
         }
 
         private void Button_Click_Book(object sender, RoutedEventArgs e)
         {
+            if (ChoosenTour != null)
+            {
+                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour);
+                reservationTourView.Show();
+            }
 
         }
 
+        private void BookButton_Click(object sender, RoutedEventArgs e)
+        {
+                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour);
+                reservationTourView.Show();
+
+        }
     }
 }

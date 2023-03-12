@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BookingProject.Controller
 {
@@ -42,8 +43,8 @@ namespace BookingProject.Controller
             _tours = _tourHandler.Load();
             TourLocationBind();
             TourImageBind();
-            TourDateBind();
-            TourKeyPointBind();
+            TourDateBind(); 
+            TourKeyPointBind(); 
         }
 
         public List<Tour> GetAll()
@@ -86,6 +87,7 @@ namespace BookingProject.Controller
                 }
             }
         }
+
 
         public void TourKeyPointBind()
         {
@@ -156,16 +158,34 @@ namespace BookingProject.Controller
             {
                 string languageEnum = tour.Language.ToString().ToLower();
 
-                if ((city.Equals("") || tour.Location.City.ToLower().Contains(city.ToLower()))
+                bool isTour = (city.Equals("") || tour.Location.City.ToLower().Contains(city.ToLower()))
                     && (country.Equals("") || tour.Location.Country.ToLower().Contains(country.ToLower()))
                     && (duration.Equals("") || double.Parse(duration) == tour.DurationInHours)
                     && (choosenLanguage.Equals("") || languageEnum.Equals(choosenLanguage.ToLower()))
-                    && (numOfGuest.Equals("") || int.Parse(numOfGuest) <= tour.MaxGuests))
+                    && (numOfGuest.Equals("") || int.Parse(numOfGuest) <= tour.MaxGuests);
+
+                if (isTour)
                 {
                     tourView.Add(tour);
                 }
             }
             return tourView;
+        }
+
+        public ObservableCollection<Tour> TryToBook(ObservableCollection<Tour> tourReservation, Tour choosenTour, string numberOfGuest)
+        {
+            if (int.Parse(numberOfGuest) <= choosenTour.MaxGuests)
+            {
+                tourReservation.Add(choosenTour);
+                choosenTour.MaxGuests = choosenTour.MaxGuests - int.Parse(numberOfGuest); 
+            }
+            else
+            {
+                MessageBox.Show("You have exceeded the maximum number of guests per tour!");
+                //dalje ponudi mu neke slicne ture
+            }
+
+            return tourReservation;
         }
     }
 
