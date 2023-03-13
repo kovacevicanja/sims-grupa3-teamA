@@ -77,7 +77,6 @@
     <Compile Include="Model\Enums\AccommodationType.cs" />
     <Compile Include="Model\Images\AccommodationImage.cs" />
     <Compile Include="Model\Enums\LanguageEnum.cs" />
-    <Compile Include="Model\Images\AccommodationImages.cs" />
     <Compile Include="Model\Images\TourImages.cs" />
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\Tour.cs" />
@@ -164,20 +163,17 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\Data\accommodations.csv" />
-    <None Include="Resources\Data\locations.csv" />
     <None Include="Resources\Data\dates.csv" />
+    <None Include="Resources\Data\locations.csv" />
     <None Include="Resources\Data\tourImages.csv" />
     <None Include="Resources\Data\keyPoints.csv" />
-    <None Include="Resources\Data\locations.csv" />
     <None Include="Resources\Data\tours.csv" />
     <None Include="Resources\Data\users.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ConversionHelp\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\add.png" />
     <Resource Include="Resources\Images\delete.png" />
