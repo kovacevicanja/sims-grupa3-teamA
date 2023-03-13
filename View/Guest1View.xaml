@@ -14,18 +14,35 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="32"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row = "0" Orientation="Horizontal">
-            <Button Content="Search accommodations" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
-               Click="Button_Click_Search"/>
-            <Button Content="Book accommodation" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20, 5, 20, 5"
-              Click="Button_Click_Book" />
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Label Width="100">Name:</Label>
+            <Label Width="100">City:</Label>
+            <Label Width="100">State:</Label>
+            <Label Width="100">Type:</Label>
+            <Label Width="110">Number of guests:</Label>
+            <Label Width="200">Number of the days for reservation:</Label>
         </StackPanel>
 
-        <Grid Grid.Row="1">
+        <StackPanel Grid.Row = "1" Orientation="Horizontal">
+            <TextBox Width="90" Height="20" Margin="5" Text="{Binding Path = AccName}"></TextBox>
+            <TextBox Width="90" Height="20" Margin="5" Text="{Binding Path = City}"></TextBox>
+            <TextBox Width="90" Height="20" Margin="5" Text="{Binding Path = State}"></TextBox>
+            <ComboBox Width="90" Height="20" Margin="5" Name="ourComboBox" SelectedItem="{Binding Path = Type}"></ComboBox>
+            <TextBox Width="90" Height="20" Margin="5" Text="{Binding Path = NumberOfGuests}"></TextBox>
+            <TextBox Width="110" Height="20" Margin="5" Text="{Binding Path = MinNumDaysOfReservation}"></TextBox>
+            <Button Content="Search" IsCancel="True" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
+               Click="Button_Click_Search"/>
+            <Button Content="Cancel search" IsDefault="True" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20, 5, 20, 5"
+              Click="Button_Click_Cancel_Search" />
+        </StackPanel>
+
+        <Grid Grid.Row="2">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -45,11 +62,26 @@
                     <DataGridTextColumn Header="MaxNumOfGuests" Width="150" Binding="{Binding MaxGuestNumber}"></DataGridTextColumn>
                     <DataGridTextColumn Header="MinNumOfDaysForReservation" Width="200" Binding="{Binding MinDays}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Cancellation limit" Width="200" Binding="{Binding CancelationPeriod}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Images" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding Images}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Url}" Width="80" Height="80" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
             
         </Grid>
-        
-        
+
+        <StackPanel Grid.Row="3">
+            <Button Width="120" IsDefault="True" Click="Button_Click_Book">Book accommodation</Button>
+        </StackPanel>
     </Grid>
 </Window>

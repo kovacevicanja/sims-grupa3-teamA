@@ -59,6 +59,7 @@
     <Compile Include="Controller\LocationController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
+    <Compile Include="FileHandler\AccommodationImageHandler.cs" />
     <Compile Include="FileHandler\LocationHandler.cs" />
     <Compile Include="Dao\DateDao.cs" />
     <Compile Include="Dao\ImagesDao.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Model\KeyPoint.cs" />
     <Compile Include="Model\StartingDate.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
+    <Compile Include="Model\Images\AccommodationImage.cs" />
     <Compile Include="Model\Enums\LanguageEnum.cs" />
     <Compile Include="Model\Images\AccommodationImages.cs" />
     <Compile Include="Model\Images\TourImages.cs" />
@@ -155,7 +157,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ConversionHelp\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\add.png" />
     <Resource Include="Resources\Images\delete.png" />
