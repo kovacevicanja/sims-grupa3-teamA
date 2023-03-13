@@ -1,4 +1,5 @@
 ﻿using BookingProject.Model;
+using BookingProject.Model.Images;
 using BookingProject.Serializer;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace BookingProject.FileHandler
 {
-    public class ImageHandler
+    public class TourImageHandler
     {
-        private const string FilePath = "../../Resources/Data/images.csv";
+        private const string FilePath = "../../Resources/Data/tourImages.csv";
 
         private readonly Serializer<TourImage> _serializer;
 
         public List<TourImage> _images;
 
-        public ImageHandler()
+        public TourImageHandler()
         {
             _serializer = new Serializer<TourImage>();
             _images = Load();

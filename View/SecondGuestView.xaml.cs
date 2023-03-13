@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using BookingProject.Controller;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.Model.Images;
 using Microsoft.VisualBasic.FileIO;
 
 namespace BookingProject.View
@@ -48,23 +49,6 @@ namespace BookingProject.View
             TourDataGrid.ItemsSource = _tours;
 
             languageComboBox.ItemsSource = new List<string>() { "ENGLISH", "SERBIAN", "GERMAN" };
-
-            /*DataTable dt = new DataTable();
-            using (TextFieldParser parser = new TextFieldParser(".. / .. / Resources / Data / images.csv"))
-            {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(" ");
-                while (!parser.EndOfData)
-                {
-                    string[] fields = parser.ReadFields();
-                    if (fields != null && fields.Length > 0)
-                    {
-                        DataRow row = dt.NewRow();
-                        row["ImageUrl"] = fields[0];
-                        dt.Rows.Add(row);
-                    }
-                }
-            }*/
 
         }
 

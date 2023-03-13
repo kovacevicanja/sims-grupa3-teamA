@@ -1,5 +1,6 @@
 ﻿using BookingProject.FileHandler;
 using BookingProject.Model;
+using BookingProject.Model.Images;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -10,17 +11,17 @@ using System.Threading.Tasks;
 namespace BookingProject.Controller
 {
 
-    public class ImageController: ISubject
+    public class TourImageController: ISubject
     {
         private readonly List<IObserver> observers;
 
-        private readonly ImageHandler _imageHandler;
+        private readonly TourImageHandler _imageHandler;
 
         private List<TourImage> _images;
 
-        public ImageController()
+        public TourImageController()
         {
-            _imageHandler = new ImageHandler();
+            _imageHandler = new TourImageHandler();
             _images = new List<TourImage>();
             Load();
         }

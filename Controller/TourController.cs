@@ -1,5 +1,6 @@
 ﻿using BookingProject.FileHandler;
 using BookingProject.Model;
+using BookingProject.Model.Images;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace BookingProject.Controller
 
         private LocationController _locationController;
 
-        private ImageController _imageController;
+        private TourImageController _tourImageController;
 
         private KeyPointController _keyPointController;
 
@@ -32,7 +33,7 @@ namespace BookingProject.Controller
             _tourHandler = new TourHandler();
             _tours = new List<Tour>();
             _locationController = new LocationController();
-            _imageController = new ImageController();
+            _tourImageController = new TourImageController();
             _keyPointController = new KeyPointController();
             _startingDateController = new StartingDateController();
             Load();
@@ -71,7 +72,7 @@ namespace BookingProject.Controller
         {
 
             List<TourImage> images = new List<TourImage>();
-            ImageHandler imageHandler = new ImageHandler();
+            TourImageHandler imageHandler = new TourImageHandler();
             images = imageHandler.Load();
 
             foreach (Tour tour in _tours)
@@ -176,8 +177,8 @@ namespace BookingProject.Controller
         {
             if (int.Parse(numberOfGuest) <= choosenTour.MaxGuests)
             {
-                tourReservation.Add(choosenTour);
                 choosenTour.MaxGuests = choosenTour.MaxGuests - int.Parse(numberOfGuest); 
+                tourReservation.Add(choosenTour);
             }
             else
             {

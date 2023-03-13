@@ -69,7 +69,7 @@
                     <DataGridTextColumn Header="Country" Width="70" Binding="{Binding Location.Country}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Description" Width="170" Binding="{Binding Description}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tour duration" Width="85" Binding="{Binding DurationInHours}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Key points">
+                    <DataGridTemplateColumn Header="Key points" Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ItemsControl ItemsSource="{Binding KeyPoints}">
@@ -83,7 +83,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Language" Width="65" Binding="{Binding Language}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Starting time">
+                    <DataGridTemplateColumn Header="Starting time" Width="135">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ItemsControl ItemsSource="{Binding StartingTime}">
