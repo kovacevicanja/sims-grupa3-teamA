@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -56,28 +57,29 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\AccommodationController.cs" />
+    <Compile Include="Controller\TourImageController.cs" />
+    <Compile Include="Controller\KeyPointController.cs" />
     <Compile Include="Controller\LocationController.cs" />
+    <Compile Include="Controller\StartingDateController.cs" />
+    <Compile Include="Controller\TourController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
+    <Compile Include="FileHandler\TourImageHandler.cs" />
+    <Compile Include="FileHandler\KeyPointHandler.cs" />
     <Compile Include="FileHandler\AccommodationImageHandler.cs" />
     <Compile Include="FileHandler\LocationHandler.cs" />
-    <Compile Include="Dao\DateDao.cs" />
-    <Compile Include="Dao\ImagesDao.cs" />
-    <Compile Include="Dao\KeyPointsDao.cs" />
-    <Compile Include="Dao\LocationDao.cs" />
-    <Compile Include="Dao\TourDao.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
+    <Compile Include="FileHandler\StartingDateHandler.cs" />
+    <Compile Include="FileHandler\TourHandler.cs" />
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\KeyPoint.cs" />
     <Compile Include="Model\StartingDate.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
     <Compile Include="Model\Images\AccommodationImage.cs" />
     <Compile Include="Model\Enums\LanguageEnum.cs" />
-    <Compile Include="Model\Images\AccommodationImages.cs" />
     <Compile Include="Model\Images\TourImages.cs" />
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\Tour.cs" />
-    <Compile Include="Model\TourImage.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
@@ -89,8 +91,14 @@
     <Compile Include="View\ReservationAccommodationView.xaml.cs">
       <DependentUpon>ReservationAccommodationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ReservationTourView.xaml.cs">
+      <DependentUpon>ReservationTourView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SearchAccommodationsView.xaml.cs">
       <DependentUpon>SearchAccommodationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecondGuestView.xaml.cs">
+      <DependentUpon>SecondGuestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
@@ -115,7 +123,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ReservationTourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SearchAccommodationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecondGuestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,19 +163,17 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\Data\accommodations.csv" />
-    <None Include="Resources\Data\locations.csv" />
     <None Include="Resources\Data\dates.csv" />
-    <None Include="Resources\Data\images.csv" />
-    <None Include="Resources\Data\keyPoints.csv" />
     <None Include="Resources\Data\locations.csv" />
+    <None Include="Resources\Data\tourImages.csv" />
+    <None Include="Resources\Data\keyPoints.csv" />
+    <None Include="Resources\Data\tours.csv" />
     <None Include="Resources\Data\users.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ConversionHelp\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\add.png" />
     <Resource Include="Resources\Images\delete.png" />

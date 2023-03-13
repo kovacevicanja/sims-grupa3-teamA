@@ -75,7 +75,9 @@ namespace BookingProject.View
                         guest1View.Show();
                     }else if(IsSelectedGuest2)
                     {
-                        MessageBox.Show("Ulogovan gost2!");
+                        //MessageBox.Show("You have successfully logged in as second guest!");
+                        SecondGuestView secondGuestView = new SecondGuestView();
+                        secondGuestView.Show();
                     }else if (IsSelectedGuide)
                     {
                         MessageBox.Show("Ulogovan vodic!");

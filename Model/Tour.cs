@@ -10,7 +10,7 @@ using BookingProject.Serializer;
 
 namespace BookingProject.Model
 {
-    internal class Tour : ISerializable
+    public class Tour : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -59,7 +59,7 @@ namespace BookingProject.Model
             }
             else
             {
-                languageEnum = LanguageEnum.English;
+                languageEnum = LanguageEnum.ENGLISH;
                 System.Console.WriteLine("Doslo je do greske prilikom ucitavanja jezika");
             }
 
