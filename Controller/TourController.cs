@@ -20,7 +20,7 @@ namespace BookingProject.Controller
 
         private List<Tour> _tours;
 
-        private LocationController _locationController;
+        private TourLocationController _locationController;
 
         private TourImageController _tourImageController;
 
@@ -32,7 +32,7 @@ namespace BookingProject.Controller
         {
             _tourHandler = new TourHandler();
             _tours = new List<Tour>();
-            _locationController = new LocationController();
+            _locationController = new TourLocationController();
             _tourImageController = new TourImageController();
             _keyPointController = new KeyPointController();
             _startingDateController = new StartingDateController();
@@ -171,6 +171,17 @@ namespace BookingProject.Controller
                 }
             }
             return tourView;
+        }
+
+        public void ShowAll (ObservableCollection<Tour> tourView) 
+        {
+            tourView.Clear();
+
+            foreach (Tour tour in _tours)
+            {
+                tourView.Add(tour);
+            }
+
         }
 
         public ObservableCollection<Tour> TryToBook(ObservableCollection<Tour> tourReservation, Tour choosenTour, string numberOfGuest)

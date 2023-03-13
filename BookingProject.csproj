@@ -57,17 +57,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\AccommodationController.cs" />
+    <Compile Include="Controller\AccommodationLocationController.cs" />
     <Compile Include="Controller\TourImageController.cs" />
     <Compile Include="Controller\KeyPointController.cs" />
-    <Compile Include="Controller\LocationController.cs" />
+    <Compile Include="Controller\TourLocationController.cs" />
     <Compile Include="Controller\StartingDateController.cs" />
     <Compile Include="Controller\TourController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
+    <Compile Include="FileHandler\AccomodationLocationHandler.cs" />
     <Compile Include="FileHandler\TourImageHandler.cs" />
     <Compile Include="FileHandler\KeyPointHandler.cs" />
     <Compile Include="FileHandler\AccommodationImageHandler.cs" />
-    <Compile Include="FileHandler\LocationHandler.cs" />
+    <Compile Include="FileHandler\TourLocationHandler.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="FileHandler\StartingDateHandler.cs" />
     <Compile Include="FileHandler\TourHandler.cs" />
@@ -164,9 +166,10 @@
     </None>
     <None Include="Resources\Data\accommodations.csv" />
     <None Include="Resources\Data\dates.csv" />
-    <None Include="Resources\Data\locations.csv" />
+    <None Include="Resources\Data\accommodationLocations.csv" />
     <None Include="Resources\Data\tourImages.csv" />
     <None Include="Resources\Data\keyPoints.csv" />
+    <None Include="Resources\Data\tourLocations.csv" />
     <None Include="Resources\Data\tours.csv" />
     <None Include="Resources\Data\users.csv" />
   </ItemGroup>

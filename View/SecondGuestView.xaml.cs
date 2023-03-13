@@ -34,7 +34,6 @@ namespace BookingProject.View
         public string Duration { get; set; } = string.Empty;
         public string ChoosenLanguage { get; set; } = string.Empty;
         public string NumOfGuests { get; set; } = string.Empty;
-        public ObservableCollection<TourImage> ImageUrl { get; } //
 
         public Tour ChoosenTour { get; set; }  
 
@@ -56,6 +55,12 @@ namespace BookingProject.View
         {
             _tourController.Search(_tours, City, Country, Duration, ChoosenLanguage, NumOfGuests);
 
+        }
+
+        private void Button_Click_ShowAll(object sender, RoutedEventArgs e)
+        {
+
+            _tourController.ShowAll(_tours);
         }
 
         private void Button_Click_Cancel_Search(object sender, RoutedEventArgs e)

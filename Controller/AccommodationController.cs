@@ -16,16 +16,16 @@ namespace BookingProject.Controller
         private readonly List<IObserver> observers;
 
         private readonly AccommodationHandler _accommodationHandler;
-
+        
         private List<Accommodation> _accommodations;
 
-        private LocationController _locationController;
+        private AccommodationLocationController _locationController;
 
         public AccommodationController()
         {
             _accommodationHandler = new AccommodationHandler();
             _accommodations = new List<Accommodation>();
-            _locationController = new LocationController();
+            _locationController = new AccommodationLocationController();
             Load();
         }
 
