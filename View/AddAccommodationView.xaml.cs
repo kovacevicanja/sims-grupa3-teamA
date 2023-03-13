@@ -43,7 +43,9 @@ namespace BookingProject.View
 
         }
         private string _accommodationName;
-        public string Name
+
+
+        public string AccommodationName
         {
             get => _accommodationName;
             set
@@ -148,7 +150,7 @@ namespace BookingProject.View
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
             Accommodation accommodation = new Accommodation();
-            accommodation.Name = Name;
+            accommodation.AccommodationName = AccommodationName;
             accommodation.Type = chosenType;
             accommodation.MaxGuestNumber = MaxGuestNumber;
             accommodation.MinDays = MinDays;
@@ -157,6 +159,7 @@ namespace BookingProject.View
             Location location = new Location();
             location.City = City;
             location.Country = Country;
+            location.Id = LocationController.GenerateId();
 
             LocationController.Create(location);
             accommodation.Location = location;
@@ -190,25 +193,25 @@ namespace BookingProject.View
         {
             get
             {
-                if (columnName == "Name")
+                if (columnName == "AccommodationName")
                 {
-                    if (string.IsNullOrEmpty(Name))
-                        return "You must enter accommodation name";
+                    if (string.IsNullOrEmpty(AccommodationName))
+                        return "You must enter accommodation name!";
                 }
                 else if (columnName == "City")
                 {
                     if (string.IsNullOrEmpty(City))
-                        return "Morate uneti naziv predmeta!";
+                        return "You must enter accommodation city!";
                 }
                 else if (columnName == "Country")
                 {
                     if (string.IsNullOrEmpty(Country))
-                        return "Morate uneti naziv predmeta!";
+                        return "You must enter accommodation country!";
                 }
                 return null;
             }
         }
-        private readonly string[] _validatedProperties = { "Name", "City", "Country" };
+        private readonly string[] _validatedProperties = { "AccommodationName", "City", "Country" };
 
         public string Error => null;
     }

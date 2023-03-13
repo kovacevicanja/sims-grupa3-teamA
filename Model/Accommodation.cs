@@ -14,7 +14,7 @@ namespace BookingProject.Model
     {
 
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string AccommodationName { get; set; }
         public Location Location { get; set; }
         public int IdLocation { get; set; }
         public AccommodationType Type { get; set; }
@@ -24,14 +24,14 @@ namespace BookingProject.Model
         public List<AccommodationImages> Images { get; set; }
 
         public Accommodation() {
-            Location = new Location();
+            
             Images = new List<AccommodationImages>();
             CancellationPeriod = 1;
         }
         public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, int maxGuestNumber, int minDays, int cancellationPeriod, List<AccommodationImages> images)
         {
             Id = id;
-            Name = name;
+            AccommodationName = name;
             IdLocation = idLocation;
             Location = location;
             Type = type;
@@ -46,7 +46,7 @@ namespace BookingProject.Model
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);
-            Name = values[1];
+            AccommodationName = values[1];
             IdLocation = int.Parse(values[2]);
             AccommodationType accommodationType;
             if (Enum.TryParse<AccommodationType>(values[3], out accommodationType))
@@ -67,8 +67,8 @@ namespace BookingProject.Model
             string[] csvValues =
             {
                 Id.ToString(),
-                Name,
-                Location.Id.ToString(),
+                AccommodationName,
+                IdLocation.ToString(),
                 Type.ToString(),
                 MaxGuestNumber.ToString(),
                 MinDays.ToString(),

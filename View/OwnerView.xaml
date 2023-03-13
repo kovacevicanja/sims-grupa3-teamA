@@ -33,7 +33,7 @@
 
             <DataGrid Margin="16, 12, 16, 16" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Name" Width="100" Binding="{Binding AccommodationName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="City" Width="100" Binding="{Binding Location.City}"></DataGridTextColumn>
                     <DataGridTextColumn Header="State" Width="100" Binding="{Binding Location.Country}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Type" Width="100" Binding="{Binding Type}"></DataGridTextColumn>

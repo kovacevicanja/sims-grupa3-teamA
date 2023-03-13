@@ -18,11 +18,12 @@ namespace BookingProject.Controller
 
         private List<Accommodation> _accommodations;
 
-        private LocationController _locationController;
+        public LocationController _locationController;
         private Serializer<Accommodation> serializer;
         private readonly string fileName = "../../Resources/Data/accommodations.csv";
         public AccommodationController()
         {
+            serializer= new Serializer<Accommodation>();
             _accommodationHandler = new AccommodationHandler();
             _accommodations = new List<Accommodation>();
             _locationController = new LocationController();
@@ -55,7 +56,7 @@ namespace BookingProject.Controller
 
         private void SaveAccommodation()
         {
-            serializer.ToCSV(fileName, _accommodations);
+            _accommodationHandler.Save(_accommodations);
         }
 
         private int GenerateId()
@@ -88,7 +89,7 @@ namespace BookingProject.Controller
 
         public void NotifyObservers()
         {
-            foreach(var observer in observers)
+            foreach (var observer in observers)
             {
                 observer.Update();
             }

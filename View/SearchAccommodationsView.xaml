@@ -37,7 +37,7 @@
             <Label Grid.Row="3" Grid.Column="0" Height="30">Accommodation type:</Label>
             <Label Grid.Row="4" Grid.Column="0" Height="30">Number of guests:</Label>
             <Label Grid.Row="5" Grid.Column="0" Height="30">Number of days for the reservation:</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>

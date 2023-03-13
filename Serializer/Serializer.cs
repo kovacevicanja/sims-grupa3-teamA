@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BookingProject.Serializer
 {
@@ -41,9 +42,6 @@ namespace BookingProject.Serializer
 			return objects;
 		}
 
-        internal void ToCSV(string fileName, List<Location> locations)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

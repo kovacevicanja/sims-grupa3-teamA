@@ -13,36 +13,41 @@ namespace BookingProject.Controller
 {
     public class LocationController : ISubject
     {
-        private readonly List<IObserver> observers;
+        private readonly  List<IObserver> observers;
 
         private readonly LocationHandler _locationHandler;
 
         private List<Location> _locations;
-        private Serializer<Accommodation> serializer;
+        private Serializer<Location> serializer;
         private readonly string fileName = "../../Resources/Data/locations.csv";
 
         public LocationController()
         {
-            //serializer = new Serializer<Location>;
-             //observers = new List<IObserver>();
+            serializer = new Serializer<Location>();
+            observers = new List<IObserver>();
             _locationHandler = new LocationHandler();
             _locations = new List<Location>();
             Load();
         }
-        public void Create(Location location)
+        public Location Create(Location location)
         {
-            AddLocation(location);
-        }
-        public Location AddLocation(Location location)
-        {
+            //AddLocation(location);
             location.Id = GenerateId();
             _locations.Add(location);
             SaveLocation();
             NotifyObservers();
             return location;
         }
+        //public Location AddLocation(Location location)
+        //{
+        //    location.Id = GenerateId();
+        //    _locations.Add(location);
+        //    SaveLocation();
+        //    NotifyObservers();
+        //    return location;
+        //}
 
-        private int GenerateId()
+        public int GenerateId()
         {
             int maxId = 0;
             foreach (Location location in _locations)
@@ -56,12 +61,12 @@ namespace BookingProject.Controller
         }
         private void SaveLocation()
         {
-            serializer.ToCSV(fileName, _locations);
+            _locationHandler.Save(_locations);
         }
 
         public void Load()
         {
-            _locations = _locationHandler.Load();
+            _locations = _locationHandler.Load(); 
         }
 
         public List<Location> GetAll()

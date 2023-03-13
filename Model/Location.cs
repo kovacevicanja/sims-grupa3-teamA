@@ -14,16 +14,16 @@ namespace BookingProject.Model
         public string City { get; set; }
 
         public Location() { }
-        public Location(string country, string city)
-        {
-            Country = country;
-            City = city;
-        }
+        //public Location(string country, string city)
+        //{
+        //    Country = country;
+        //    City = city;
+        //}
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);
-            Country = values[1];
-            City = values[2];
+            City = values[1];
+            Country = values[2];
         }
 
         public string[] ToCSV()
@@ -31,8 +31,8 @@ namespace BookingProject.Model
             string[] csvValues =
             {
                 Id.ToString(),
-                Country,
                 City,
+                Country
             };
             return csvValues;
         }
