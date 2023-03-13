@@ -30,12 +30,12 @@
         </StackPanel>
 
         <StackPanel Grid.Row = "1" Orientation="Horizontal">
-            <TextBox Width="90" Height="20" Margin="5"></TextBox>
-            <TextBox Width="90" Height="20" Margin="5"></TextBox>
-            <TextBox Width="90" Height="20" Margin="5"></TextBox>
-            <ComboBox Width="90" Height="20" Margin="5"></ComboBox>
-            <TextBox Width="90" Height="20" Margin="5"></TextBox>
-            <TextBox Width="110" Height="20" Margin="5"></TextBox>
+            <TextBox Width="90" Height="20" Margin="5" Text="{Binding Path = AccName}"></TextBox>
+            <TextBox Width="90" Height="20" Margin="5" Text="{Binding Path = City}"></TextBox>
+            <TextBox Width="90" Height="20" Margin="5" Text="{Binding Path = State}"></TextBox>
+            <ComboBox Width="90" Height="20" Margin="5" Name="ourComboBox" SelectedItem="{Binding Path = Type}"></ComboBox>
+            <TextBox Width="90" Height="20" Margin="5" Text="{Binding Path = NumberOfGuests}"></TextBox>
+            <TextBox Width="110" Height="20" Margin="5" Text="{Binding Path = MinNumDaysOfReservation}"></TextBox>
             <Button Content="Search" IsCancel="True" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
                Click="Button_Click_Search"/>
             <Button Content="Cancel search" IsDefault="True" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20, 5, 20, 5"
@@ -53,7 +53,7 @@
             </Grid.RowDefinitions>
 
 
-            <DataGrid Margin="16, 12, 16, 16" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True" SelectionChanged="AccommodationDataGrid_SelectionChanged">
+            <DataGrid Margin="16, 12, 16, 16" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Width="60" Binding="{Binding Name}"></DataGridTextColumn>
                     <DataGridTextColumn Header="City" Width="60" Binding="{Binding Location.City}"></DataGridTextColumn>
@@ -62,6 +62,19 @@
                     <DataGridTextColumn Header="MaxNumOfGuests" Width="150" Binding="{Binding MaxGuestNumber}"></DataGridTextColumn>
                     <DataGridTextColumn Header="MinNumOfDaysForReservation" Width="200" Binding="{Binding MinDays}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Cancellation limit" Width="200" Binding="{Binding CancelationPeriod}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Images" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding Images}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Url}" Width="80" Height="80" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
             

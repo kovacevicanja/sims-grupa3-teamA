@@ -20,11 +20,11 @@ namespace BookingProject.Model
         public int MaxGuestNumber { get; set; }
         public int MinDays { get; set; }
         public int CancelationPeriod { get; set; }
-        public List<AccommodationImages> Images { get; set; }
+        public List<AccommodationImage> Images { get; set; }
 
         public Accommodation() {
             Location = new Location();
-            Images = new List<AccommodationImages>();
+            Images = new List<AccommodationImage>();
         }
         public Accommodation(int id, string name, Location location, AccommodationType type, int maxGuestNumber, int minDays, int cancelationPeriod)
         {

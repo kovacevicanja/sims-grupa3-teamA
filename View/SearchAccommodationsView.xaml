@@ -9,8 +9,7 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="64*"/>
-            <ColumnDefinition Width="8*"/>
+            
             <ColumnDefinition Width="473*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -18,43 +17,30 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="2" Height="300" Margin="28,25,121,25">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
+        <Grid Grid.Row="2">
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Height="30">Accommodation name:</Label>
-            <Label Grid.Row="1" Grid.Column="0" Height="30">Accommodation city:</Label>
-            <Label Grid.Row="2" Grid.Column="0" Height="30">Accommodation state:</Label>
-            <Label Grid.Row="3" Grid.Column="0" Height="30">Accommodation type:</Label>
-            <Label Grid.Row="4" Grid.Column="0" Height="30">Number of guests:</Label>
-            <Label Grid.Row="5" Grid.Column="0" Height="30">Number of days for the reservation:</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=State, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
-            <ComboBox  Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=AccomodationType}" HorizontalAlignment="Left" Width="270"></ComboBox>
-            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=NumberOfGuests, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=NumberOfDaysForTheReservation, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <DataGrid Margin="16, 12, 16, 16" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="60" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="City" Width="60" Binding="{Binding Location.City}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="State" Width="60" Binding="{Binding Location.Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Type" Width="60" Binding="{Binding Type}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MaxNumOfGuests" Width="150" Binding="{Binding MaxGuestNumber}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MinNumOfDaysForReservation" Width="200" Binding="{Binding MinDays}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cancellation limit" Width="200" Binding="{Binding CancelationPeriod}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
         </Grid>
-        <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Margin="121,0,0,0" >
-            <Button Content="Close" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
-              Click="Button_Click_Close" />
-            <Button Content="Search accommodations" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
-               Click="Button_Click_Search"/>
-        </WrapPanel>
 
 
     </Grid>

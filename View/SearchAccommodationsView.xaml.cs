@@ -1,5 +1,8 @@
-﻿using System;
+﻿using BookingProject.Controller;
+using BookingProject.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,19 +22,19 @@ namespace BookingProject.View
     /// </summary>
     public partial class SearchAccommodationsView : Window
     {
-        public SearchAccommodationsView()
+        private AccommodationController _accommodationController;
+        private ObservableCollection<Accommodation> _accommodations;
+        private ObservableCollection<Accommodation> _allAccommodations;
+        public SearchAccommodationsView(string accName, string city, string state, string type, string numOfGuests, string minNumOfDays)
         {
+
             InitializeComponent();
+            this.DataContext = this;
+            _accommodationController = new AccommodationController();
+            _allAccommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
+            _accommodations = new ObservableCollection<Accommodation>(_accommodationController.Search(_allAccommodations, accName, city, state, type, numOfGuests, minNumOfDays));
+            AccommodationDataGrid.ItemsSource = _accommodations;
         }
 
-        private void Button_Click_Search(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_Close(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
     }
 }
