@@ -5,25 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingProject.Serializer;
 
-namespace BookingProject.Model
+namespace BookingProject.Model.Images
 {
-    public class Location : ISerializable
+    public class TourImage : ISerializable
     {
         public int Id { get; set; }
-        public string Country { get; set; }
-        public string City { get; set; }
 
-        public Location() { }
-        public Location(string country, string city)
+        public int TourId { get; set; }
+        public string Url { get; set; }
+
+        public TourImage() { }
+
+        public TourImage(int id, string url, int tourId)
         {
-            Country = country;
-            City = city;
+            Id = id;
+            Url = url;
+            TourId = tourId;
         }
+
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);
-            City = values[1];
-            Country = values[2];
+            TourId = int.Parse(values[1]);
+            Url = values[2];
+
         }
 
         public string[] ToCSV()
@@ -31,10 +36,12 @@ namespace BookingProject.Model
             string[] csvValues =
             {
                 Id.ToString(),
-                Country,
-                City,
+                TourId.ToString(),
+                Url,
             };
             return csvValues;
         }
+
+
     }
 }
