@@ -57,12 +57,18 @@
     </ApplicationDefinition>
     <Compile Include="Controller\AccommodationController.cs" />
     <Compile Include="Controller\ImageController.cs" />
+    <Compile Include="Controller\KeyPointController.cs" />
     <Compile Include="Controller\LocationController.cs" />
+    <Compile Include="Controller\StartingDateController.cs" />
+    <Compile Include="Controller\TourController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
     <Compile Include="FileHandler\ImageHandler.cs" />
+    <Compile Include="FileHandler\KeyPointHandler.cs" />
     <Compile Include="FileHandler\LocationHandler.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
+    <Compile Include="FileHandler\StartingDateHandler.cs" />
+    <Compile Include="FileHandler\TourHandler.cs" />
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\AccommodationImage.cs" />
     <Compile Include="Model\KeyPoint.cs" />
@@ -169,6 +175,7 @@
     <None Include="Resources\Data\images.csv" />
     <None Include="Resources\Data\keyPoints.csv" />
     <None Include="Resources\Data\locations.csv" />
+    <None Include="Resources\Data\tours.csv" />
     <None Include="Resources\Data\users.csv" />
   </ItemGroup>
   <ItemGroup>

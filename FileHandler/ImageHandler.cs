@@ -12,22 +12,22 @@ namespace BookingProject.FileHandler
     {
         private const string FilePath = "../../Resources/Data/images.csv";
 
-        private readonly Serializer<AccommodationImage> _serializer;
+        private readonly Serializer<TourImage> _serializer;
 
-        public List<AccommodationImage> _images;
+        public List<TourImage> _images;
 
         public ImageHandler()
         {
-            _serializer = new Serializer<AccommodationImage>();
+            _serializer = new Serializer<TourImage>();
             _images = Load();
         }
 
-        public List<AccommodationImage> Load()
+        public List<TourImage> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
 
-        public void Save(List<AccommodationImage> images)
+        public void Save(List<TourImage> images)
         {
             _serializer.ToCSV(FilePath, images);
         }

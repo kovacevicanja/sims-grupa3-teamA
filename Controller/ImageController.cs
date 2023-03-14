@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 namespace BookingProject.Controller
 {
 
-    public class ImageController : ISubject
+    public class ImageController: ISubject
     {
         private readonly List<IObserver> observers;
 
         private readonly ImageHandler _imageHandler;
 
-        private List<AccommodationImage> _images;
+        private List<TourImage> _images;
 
         public ImageController()
         {
             _imageHandler = new ImageHandler();
-            _images = new List<AccommodationImage>();
+            _images = new List<TourImage>();
             Load();
         }
 
@@ -30,7 +30,7 @@ namespace BookingProject.Controller
             _images = _imageHandler.Load();
         }
 
-        public List<AccommodationImage> GetAll()
+        public List<TourImage> GetAll()
         {
             return _images;
         }
@@ -51,7 +51,7 @@ namespace BookingProject.Controller
             return oldImage;
         }
 
-        public AccommodationImage GetByID(int id)
+        public TourImage GetByID(int id)
         {
             return _images.Find(image => image.Id == id);
         }
@@ -75,3 +75,5 @@ namespace BookingProject.Controller
         }
     }
 }
+
+
