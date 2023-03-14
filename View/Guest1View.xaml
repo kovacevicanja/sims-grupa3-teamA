@@ -55,13 +55,13 @@
 
             <DataGrid Margin="16, 12, 16, 16" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Width="60" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Name" Width="60" Binding="{Binding AccommodationName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="City" Width="60" Binding="{Binding Location.City}"></DataGridTextColumn>
                     <DataGridTextColumn Header="State" Width="60" Binding="{Binding Location.Country}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Type" Width="60" Binding="{Binding Type}"></DataGridTextColumn>
                     <DataGridTextColumn Header="MaxNumOfGuests" Width="150" Binding="{Binding MaxGuestNumber}"></DataGridTextColumn>
                     <DataGridTextColumn Header="MinNumOfDaysForReservation" Width="200" Binding="{Binding MinDays}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Cancellation limit" Width="200" Binding="{Binding CancelationPeriod}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cancellation limit" Width="200" Binding="{Binding CancellationPeriod}"></DataGridTextColumn>
                     <DataGridTemplateColumn Header="Images" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

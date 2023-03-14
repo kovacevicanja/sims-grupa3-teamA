@@ -14,27 +14,30 @@ namespace BookingProject.Model
     {
 
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string AccommodationName { get; set; }
         public Location Location { get; set; }
+        public int IdLocation { get; set; }
         public AccommodationType Type { get; set; }
         public int MaxGuestNumber { get; set; }
         public int MinDays { get; set; }
-        public int CancelationPeriod { get; set; }
+        public int CancellationPeriod { get; set; }
         public List<AccommodationImage> Images { get; set; }
 
         public Accommodation() {
             Location = new Location();
             Images = new List<AccommodationImage>();
         }
-        public Accommodation(int id, string name, Location location, AccommodationType type, int maxGuestNumber, int minDays, int cancelationPeriod)
+        public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, int maxGuestNumber, int minDays, int cancellationPeriod, List<AccommodationImage> images)
         {
             Id = id;
-            Name = name;
+            AccommodationName = name;
+            IdLocation = idLocation;
             Location = location;
             Type = type;
             MaxGuestNumber = maxGuestNumber;
             MinDays = minDays;
-            CancelationPeriod = cancelationPeriod;
+            CancellationPeriod = cancellationPeriod;
+            Images = images;
         }
 
   
@@ -42,8 +45,8 @@ namespace BookingProject.Model
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);
-            Name = values[1];
-            Location.Id = int.Parse(values[2]);
+            AccommodationName = values[1];
+            IdLocation = int.Parse(values[2]);
             AccommodationType accommodationType;
             if (Enum.TryParse<AccommodationType>(values[3], out accommodationType))
             {
@@ -55,7 +58,7 @@ namespace BookingProject.Model
             }
             MaxGuestNumber = int.Parse(values[4]);
             MinDays= int.Parse(values[5]);
-            CancelationPeriod= int.Parse(values[6]);
+            CancellationPeriod= int.Parse(values[6]);
         }
 
         public string[] ToCSV()
@@ -63,12 +66,12 @@ namespace BookingProject.Model
             string[] csvValues =
             {
                 Id.ToString(),
-                Name,
-                Location.Id.ToString(),
+                AccommodationName,
+                IdLocation.ToString(),
                 Type.ToString(),
                 MaxGuestNumber.ToString(),
                 MinDays.ToString(),
-                CancelationPeriod.ToString(),
+                CancellationPeriod.ToString(),
             };
             return csvValues;
         }

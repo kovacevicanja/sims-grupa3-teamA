@@ -1,5 +1,4 @@
 ﻿using BookingProject.FileHandler;
-using BookingProject.Model;
 using BookingProject.Model.Images;
 using OisisiProjekat.Observer;
 using System;
@@ -10,19 +9,18 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Controller
 {
-
-    public class TourImageController: ISubject
+    public class AccommodationImageController
     {
         private readonly List<IObserver> observers;
 
-        private readonly TourImageHandler _imageHandler;
+        private readonly AccommodationImageHandler _imageHandler;
 
-        private List<TourImage> _images;
+        private List<AccommodationImage> _images;
 
-        public TourImageController()
+        public AccommodationImageController()
         {
-            _imageHandler = new TourImageHandler();
-            _images = new List<TourImage>();
+            _imageHandler = new AccommodationImageHandler();
+            _images = new List<AccommodationImage>();
             Load();
         }
 
@@ -31,17 +29,31 @@ namespace BookingProject.Controller
             _images = _imageHandler.Load();
         }
 
-        public List<TourImage> GetAll()
+        public List<AccommodationImage> GetAll()
         {
             return _images;
         }
+
+
+        public AccommodationImage UpdateImage(AccommodationImage image)
+        {
+            AccommodationImage oldImage = GetByID(image.Id);
+            if (oldImage == null) return null;
+
+            oldImage.Url = image.Url;
+            oldImage.AccommodationId = image.AccommodationId;
+
+            SaveImage();
+            NotifyObservers();
+            return oldImage;
+        }
+
         private void SaveImage()
         {
             _imageHandler.Save(_images);
         }
-       
 
-        public TourImage GetByID(int id)
+        public AccommodationImage GetByID(int id)
         {
             return _images.Find(image => image.Id == id);
         }
@@ -65,5 +77,3 @@ namespace BookingProject.Controller
         }
     }
 }
-
-

@@ -31,8 +31,8 @@ namespace BookingProject.Model
             string[] csvValues =
             {
                 Id.ToString(),
-                Country,
                 City,
+                Country
             };
             return csvValues;
         }

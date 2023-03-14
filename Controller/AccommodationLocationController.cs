@@ -39,6 +39,33 @@ namespace BookingProject.Controller
             return _locations.Find(location => location.Id == id);
         }
 
+        public Location Create(Location location)
+        {
+            location.Id = GenerateId();
+            _locations.Add(location);
+            SaveLocation();
+            NotifyObservers();
+            return location;
+        }
+
+        public int GenerateId()
+        {
+            int maxId = 0;
+            foreach (Location location in _locations)
+            {
+                if (location.Id > maxId)
+                {
+                    maxId = location.Id;
+                }
+            }
+            return maxId + 1;
+        }
+
+        private void SaveLocation()
+        {
+            _locationHandler.Save(_locations);
+        }
+
         public void NotifyObservers()
         {
             foreach (var observer in observers)
