@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingProject.Controller;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,21 @@ namespace BookingProject
     /// </summary>
     public partial class App : Application
     {
+        public LocationController LocationController { get;  set; }
+        public AccommodationController AccommodationController { get;  set; }
+        public ImageController ImageController { get; set; }
+
+        public App()
+        {
+
+            //TourController = new TourController();
+            AccommodationController= new AccommodationController();
+            LocationController = new LocationController();
+            ImageController = new ImageController();
+
+            AccommodationController._locationController = LocationController;
+            AccommodationController._imageController = ImageController;
+
+        }
     }
 }

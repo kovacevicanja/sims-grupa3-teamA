@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Serializer
 {
-	internal interface ISerializable
+	public interface ISerializable
 	{
 		string[] ToCSV();
 		void FromCSV(string[] values);

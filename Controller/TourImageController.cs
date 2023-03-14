@@ -35,6 +35,22 @@ namespace BookingProject.Controller
         {
             return _images;
         }
+        private void SaveImage()
+        {
+            _imageHandler.Save(_images);
+        }
+        public AccommodationImage UpdateImage(AccommodationImage image)
+        {
+            AccommodationImage oldImage = GetByID(image.Id);
+            if (oldImage == null) return null;
+
+            oldImage.Url = image.Url;
+            oldImage.AccommodationId = image.AccommodationId;
+
+            SaveImage();
+            NotifyObservers();
+            return oldImage;
+        }
 
         public TourImage GetByID(int id)
         {

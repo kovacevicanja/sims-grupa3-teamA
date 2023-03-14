@@ -1,0 +1,76 @@
+﻿<Window x:Class="BookingProject.View.OwnerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View"
+        mc:Ignorable="d"
+        Title="Owner" Height="450" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row = "0" Orientation="Horizontal">
+            <Button Content="Add accommodation" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
+               Click="Button_Click_Add"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <DataGrid ItemsSource ="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding Path = ChosenAccommodation, UpdateSourceTrigger=PropertyChanged}"
+                      Margin="16,12,16,104" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="100" Binding="{Binding AccommodationName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="City" Width="100" Binding="{Binding Location.City}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="State" Width="100" Binding="{Binding Location.Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Type" Width="100" Binding="{Binding Type}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MaxGuestNumber" Width="150" Binding="{Binding MaxGuestNumber}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MinReservationDays" Width="150" Binding="{Binding MinDays}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cancellation limit" Width="150" Binding="{Binding CancellationPeriod}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Images" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding Images}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid MaxWidth="200" Margin="10">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Image Source="{Binding Url}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+
+    </Grid>
+</Window>

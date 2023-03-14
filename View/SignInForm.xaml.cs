@@ -68,7 +68,8 @@ namespace BookingProject.View
                 {
                     if (IsSelectedOwner)
                     {
-                        MessageBox.Show("Ulogovan vlasnik!");
+                        OwnerView ownerView = new OwnerView();
+                        ownerView.Show();
                     }
                     else if(IsSelectedGuest1){
                         Guest1View guest1View = new Guest1View();
