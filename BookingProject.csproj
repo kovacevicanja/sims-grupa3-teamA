@@ -84,6 +84,15 @@
     <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
+    <Compile Include="View\EnterDate.xaml.cs">
+      <DependentUpon>EnterDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EnterImage.xaml.cs">
+      <DependentUpon>EnterImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EnterKeyPoint.xaml.cs">
+      <DependentUpon>EnterKeyPoint.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
     </Compile>
@@ -111,6 +120,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\EnterDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EnterImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EnterKeyPoint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Guest1View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

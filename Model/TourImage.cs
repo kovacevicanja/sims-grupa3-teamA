@@ -15,7 +15,10 @@ namespace BookingProject.Model
         public int TourId { get; set; } 
         public string Url { get; set; }
 
-        public TourImage() { }  
+        public TourImage()
+        {
+            TourId = -1;
+        }  
 
         public TourImage(int id, string url, int tourId)
         {

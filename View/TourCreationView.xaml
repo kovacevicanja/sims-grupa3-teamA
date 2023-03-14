@@ -56,12 +56,28 @@
             <ComboBox  Height="25" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding Path=ChosenLanguage, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
             <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=MaxGuests}"
 
+                     
+                     
 
                      Height="25"></TextBox>
+
+            <Button Grid.Row="6" Grid.Column="1" Content="Enter KeyPoints" IsDefault="True" Click="Button_Click_KeyPoint"
+                    
+                    Height="25"></Button>
+
+            <Button Grid.Row="7" Grid.Column="1" Content="Enter StartingTime" IsDefault="True" Click="Button_Click_StartingTime"
+                    
+                    Height="25"></Button>
+
+
             <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Path=Duration}"
                      
                      
                      Height="25"></TextBox>
+
+            <Button Grid.Row="9" Grid.Column="1" Content="Enter Images" IsDefault="True" Click="Button_Click_Image"
+                    
+                    Height="25"></Button>
 
 
 

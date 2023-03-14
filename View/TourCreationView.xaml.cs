@@ -192,5 +192,27 @@ namespace BookingProject.View
         {
             Close();
         }
+
+        private void Button_Click_StartingTime(object sender, RoutedEventArgs e)
+        {
+            EnterDate enterDate = new EnterDate();
+            enterDate.Show();
+
+        }
+
+        private void Button_Click_KeyPoint(object sender, RoutedEventArgs e)
+        {
+            EnterKeyPoint enterKeyPoint = new EnterKeyPoint();
+            enterKeyPoint.Show();
+
+
+        }
+
+        private void Button_Click_Image(object sender, RoutedEventArgs e)
+        {
+            EnterImage enterImage = new EnterImage();
+            enterImage.Show();
+
+        }
     }
 }
