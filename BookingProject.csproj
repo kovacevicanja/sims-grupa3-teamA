@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\AccommodationController.cs" />
+    <Compile Include="Controller\AccommodationImageController.cs" />
     <Compile Include="Controller\TourImageController.cs" />
     <Compile Include="Controller\KeyPointController.cs" />
     <Compile Include="Controller\LocationController.cs" />
