@@ -38,6 +38,8 @@
                Click="Button_Click_Search" Width="58"/>
             <Button Content="Cancel search" IsDefault="True" VerticalAlignment="Top" Margin="20, 5, 20, 5"
               Click="Button_Click_Cancel_Search" Width="90" />
+            <Button Content="Show all tours" IsDefault="True"
+                Click="Button_Click_ShowAll" Width="90" Height="19" />
         </StackPanel>
 
         <Grid Grid.Row="2" Margin="0,0,-42,-16" Grid.RowSpan="2">
@@ -89,7 +91,7 @@
                                 <ItemsControl ItemsSource="{Binding StartingTime}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding StartingTime}" />
+                                            <TextBlock Text="{Binding StartingDateTime}" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

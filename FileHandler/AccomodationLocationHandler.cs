@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace BookingProject.FileHandler
 {
-    public class LocationHandler
+    public class AccommodationLocationHandler
     {
-        private const string FilePath = "../../Resources/Data/locations.csv";
+        private const string FilePath = "../../Resources/Data/accommodationLocations.csv";
 
         private readonly Serializer<Location> _serializer;
 
         public List<Location> _locations;
 
-        public LocationHandler()
+        public AccommodationLocationHandler()
         {
             _serializer = new Serializer<Location>();
             _locations = Load();

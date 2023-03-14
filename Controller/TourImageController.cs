@@ -79,6 +79,11 @@ namespace BookingProject.Controller
         {
             return _images;
         }
+        private void SaveImage()
+        {
+            _imageHandler.Save(_images);
+        }
+       
 
         public TourImage GetByID(int id)
         {

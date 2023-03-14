@@ -30,9 +30,9 @@ namespace BookingProject.View
         public ObservableCollection<LanguageEnum> Languages { get; set; }
         public TourController TourController { get; set; }
 
-        public LocationController LocationController { get; set; }
+        public TourLocationController LocationController { get; set; }
         public KeyPointController KeyPointController { get; set; }
-        public StartingDateController StartingDateController { get; set; }
+        public TourStartingTimeController StartingDateController { get; set; }
         public TourImageController ImageController { get; set; }
 
         public LanguageEnum ChosenLanguage { get; set; }
@@ -172,11 +172,7 @@ namespace BookingProject.View
         }
 
 
-        private void Link()
-        {
 
-
-        }
 
 
 
@@ -215,9 +211,7 @@ namespace BookingProject.View
             StartingDateController.LinkToTour(tour.Id);
             StartingDateController.Save();
 
-            //kreiranje
-            TourController.Create(tour);
-            TourController.Save();
+
 
 
         }

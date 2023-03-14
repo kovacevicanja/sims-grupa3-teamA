@@ -57,33 +57,49 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\AccommodationController.cs" />
+    <Compile Include="Controller\AccommodationDateController.cs" />
+    <Compile Include="Controller\AccommodationLocationController.cs" />
+    <Compile Include="Controller\AccommodationImageController.cs" />
     <Compile Include="Controller\TourImageController.cs" />
     <Compile Include="Controller\KeyPointController.cs" />
-    <Compile Include="Controller\LocationController.cs" />
-    <Compile Include="Controller\StartingDateController.cs" />
+    <Compile Include="Controller\TourLocationController.cs" />
+    <Compile Include="Controller\TourReservationController.cs" />
+    <Compile Include="Controller\TourStartingTimeController.cs" />
     <Compile Include="Controller\TourController.cs" />
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
+    <Compile Include="FileHandler\AccomodationLocationHandler.cs" />
     <Compile Include="FileHandler\TourImageHandler.cs" />
     <Compile Include="FileHandler\KeyPointHandler.cs" />
-    <Compile Include="FileHandler\LocationHandler.cs" />
+    <Compile Include="FileHandler\AccommodationImageHandler.cs" />
+    <Compile Include="FileHandler\TourLocationHandler.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
-    <Compile Include="FileHandler\StartingDateHandler.cs" />
+    <Compile Include="FileHandler\TourReservationHandler.cs" />
+    <Compile Include="FileHandler\TourStartingTimeHandler.cs" />
     <Compile Include="FileHandler\TourHandler.cs" />
     <Compile Include="Model\Accommodation.cs" />
+    <Compile Include="Model\AccommodationDate.cs" />
     <Compile Include="Model\KeyPoint.cs" />
-    <Compile Include="Model\StartingDate.cs" />
+    <Compile Include="Model\TourDateTime.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
+    <Compile Include="Model\Images\AccommodationImage.cs" />
     <Compile Include="Model\Enums\LanguageEnum.cs" />
-    <Compile Include="Model\Images\AccommodationImages.cs" />
     <Compile Include="Model\Images\TourImages.cs" />
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\Tour.cs" />
+    <Compile Include="Model\TourReservation.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
+    <Compile Include="View\AddAccommodationView.xaml.cs">
+      <DependentUpon>AddAccommodationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPhotosToAccommodationView.xaml.cs">
+      <DependentUpon>AddPhotosToAccommodationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EnterDate.xaml.cs">
       <DependentUpon>EnterDate.xaml</DependentUpon>
     </Compile>
@@ -95,6 +111,9 @@
     </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnerView.xaml.cs">
+      <DependentUpon>OwnerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ReservationAccommodationView.xaml.cs">
       <DependentUpon>ReservationAccommodationView.xaml</DependentUpon>
@@ -126,6 +145,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddAccommodationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPhotosToAccommodationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EnterDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest1View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,12 +221,15 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\Data\accommodations.csv" />
-    <None Include="Resources\Data\locations.csv" />
-    <None Include="Resources\Data\dates.csv" />
+    <None Include="Resources\Data\accommodationDates.csv" />
+    <None Include="Resources\Data\accommodationLocations.csv" />
     <None Include="Resources\Data\tourImages.csv" />
     <None Include="Resources\Data\keyPoints.csv" />
-    <None Include="Resources\Data\locations.csv" />
+    <None Include="Resources\Data\tourLocations.csv" />
+    <None Include="Resources\Data\tourReservations.csv" />
     <None Include="Resources\Data\tours.csv" />
+    <None Include="Resources\Data\tourStartingTime.csv" />
+    <None Include="Resources\Data\tourTime.csv" />
     <None Include="Resources\Data\users.csv" />
   </ItemGroup>
   <ItemGroup>

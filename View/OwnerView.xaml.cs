@@ -1,5 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.Model.Images;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,23 +19,31 @@ using System.Windows.Shapes;
 namespace BookingProject.View
 {
     /// <summary>
-    /// Interaction logic for SearchAccommodationsView.xaml
+    /// Interaction logic for OwnerView.xaml
     /// </summary>
-    public partial class SearchAccommodationsView : Window
+    public partial class OwnerView : Window
     {
         private AccommodationController _accommodationController;
         private ObservableCollection<Accommodation> _accommodations;
-        private ObservableCollection<Accommodation> _allAccommodations;
-        public SearchAccommodationsView(string accName, string city, string state, string type, string numOfGuests, string minNumOfDays)
+        public Accommodation ChosenAccommodation { get; set; }
+        public AccommodationImage Image { get; set; }
+        public OwnerView()
         {
-
             InitializeComponent();
             this.DataContext = this;
             _accommodationController = new AccommodationController();
-            _allAccommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
-            _accommodations = new ObservableCollection<Accommodation>(_accommodationController.Search(_allAccommodations, accName, city, state, type, numOfGuests, minNumOfDays));
+            _accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
             AccommodationDataGrid.ItemsSource = _accommodations;
         }
-
+        private void Button_Click_Add(object sender, RoutedEventArgs e)
+        {
+            AddAccommodationView addAccommodationsView = new AddAccommodationView();
+            addAccommodationsView.Show();
+        }
+        private void Button_Click_Add_Photo(object sender, RoutedEventArgs e)
+        {
+            AddPhotosToAccommodationView addPhotosToAccommodationView = new AddPhotosToAccommodationView(ChosenAccommodation);
+            addPhotosToAccommodationView.Show();
+        }
     }
 }

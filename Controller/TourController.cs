@@ -20,22 +20,22 @@ namespace BookingProject.Controller
 
         private List<Tour> _tours;
 
-        private LocationController _locationController;
+        private TourLocationController _locationController;
 
         private TourImageController _tourImageController;
 
         private KeyPointController _keyPointController;
 
-        private StartingDateController _startingDateController;
+        private TourStartingTimeController _startingDateController;
 
         public TourController()
         {
             _tourHandler = new TourHandler();
             _tours = new List<Tour>();
-            _locationController = new LocationController();
+            _locationController = new TourLocationController();
             _tourImageController = new TourImageController();
             _keyPointController = new KeyPointController();
-            _startingDateController = new StartingDateController();
+            _startingDateController = new TourStartingTimeController();
             Load();
         }
 
@@ -139,13 +139,13 @@ namespace BookingProject.Controller
 
         public void TourDateBind()
         {
-            List<StartingDate> dates = new List<StartingDate>();
-            StartingDateHandler dateHandler = new StartingDateHandler();
+            List<TourDateTime> dates = new List<TourDateTime>();
+            TourStartingTimeHandler dateHandler = new TourStartingTimeHandler();
             dates = dateHandler.Load();
 
             foreach (Tour tour in _tours)
             {
-                foreach (StartingDate date in dates)
+                foreach (TourDateTime date in dates)
                 {
 
                     if (tour.Id == date.TourId)
@@ -200,6 +200,18 @@ namespace BookingProject.Controller
             return tourView;
         }
 
+        public void ShowAll (ObservableCollection<Tour> tourView) 
+        {
+            tourView.Clear();
+
+            foreach (Tour tour in _tours)
+            {
+                tourView.Add(tour);
+            }
+
+        }
+
+        /*
         public ObservableCollection<Tour> TryToBook(ObservableCollection<Tour> tourReservation, Tour choosenTour, string numberOfGuest)
         {
             if (int.Parse(numberOfGuest) <= choosenTour.MaxGuests)
@@ -215,6 +227,7 @@ namespace BookingProject.Controller
 
             return tourReservation;
         }
+        */
     }
 
 }

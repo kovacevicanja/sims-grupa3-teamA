@@ -16,18 +16,26 @@ namespace BookingProject
     public partial class App : Application
     {
         public TourController TourController { get; set; }
-        public LocationController LocationController { get; set; }
+        public TourLocationController LocationController { get; set; }
         public TourImageController ImageController { get; set; }
         public KeyPointController KeyPointController { get; set; }
-        public StartingDateController StartingDateController { get; set; }
+        public TourStartingTimeController StartingDateController { get; set; }
+
+        public AccommodationController AccommodationController { get; set; }
+        public AccommodationLocationController AccommodationLocationController { get; set; }
+        public AccommodationImageController AccommodationImageController { get; set; }
+       
         public App()
         {
 
             TourController = new TourController();
-            LocationController = new LocationController();
+            LocationController = new TourLocationController();
             ImageController = new TourImageController();
             KeyPointController = new KeyPointController();  
-            StartingDateController = new StartingDateController();  
+            StartingDateController = new TourStartingTimeController();  
+            AccommodationImageController= new AccommodationImageController();
+            AccommodationLocationController = new AccommodationLocationController();
+            AccommodationController = new AccommodationController();
         }
 
 

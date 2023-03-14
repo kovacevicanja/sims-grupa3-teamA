@@ -8,26 +8,26 @@ using System.Threading.Tasks;
 
 namespace BookingProject.FileHandler
 {
-    public class StartingDateHandler
+    public class TourStartingTimeHandler
     {
-        private const string FilePath = "../../Resources/Data/dates.csv";
+        private const string FilePath = "../../Resources/Data/tourStartingTime.csv";
 
-        private readonly Serializer<StartingDate> _serializer;
+        private readonly Serializer<TourDateTime> _serializer;
 
-        public List<StartingDate> _dates;
+        public List<TourDateTime> _dates;
 
-        public StartingDateHandler()
+        public TourStartingTimeHandler()
         {
-            _serializer = new Serializer<StartingDate>();
+            _serializer = new Serializer<TourDateTime>();
             _dates = Load();
         }
 
-        public List<StartingDate> Load()
+        public List<TourDateTime> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
 
-        public void Save(List<StartingDate> dates)
+        public void Save(List<TourDateTime> dates)
         {
             _serializer.ToCSV(FilePath, dates);
         }

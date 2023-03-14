@@ -26,7 +26,7 @@ namespace BookingProject.View
     {
 
 
-        public StartingDateController StartingDateController { get; set; }
+        public TourStartingTimeController StartingDateController { get; set; }
 
         public DateConversion DateConversion { get; set; }
 
@@ -70,8 +70,8 @@ namespace BookingProject.View
 
         private void Button_Click_Kreiraj(object sender, RoutedEventArgs e)
         {
-            StartingDate startingDate = new StartingDate();
-            startingDate.StartingTime = DateConversion.StringToDate(StartingDate);
+            TourDateTime startingDate = new TourDateTime();
+            startingDate.StartingDateTime = DateConversion.StringToDateTour(StartingDate);
             StartingDateController.Create(startingDate);
             StartingDateController.Save();
 

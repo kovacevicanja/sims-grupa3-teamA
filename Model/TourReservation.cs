@@ -1,40 +1,30 @@
-﻿using BookingProject.Serializer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using BookingProject.ConversionHelp;
+using BookingProject.Serializer;
 
 namespace BookingProject.Model
 {
-    public class StartingDate : ISerializable
+    internal class TourReservation : ISerializable
     {
         public int Id { get; set; }
-
-        public int TourId { get; set; } 
-        public DateTime StartingTime { get; set; }
-        
-        public StartingDate()
-        {
-            TourId = -1;
-        }
-
-        public StartingDate(int id, int tourId,  DateTime startingTime)
+        public int TourId { get; set; }
+        public int GuestsNumberPerReservation { get; set;  }
+        public TourReservation() { }
+        public TourReservation(int id, int tourId, int guestsNumberPerReservation)
         {
             Id = id;
             TourId = tourId;
-            StartingTime = startingTime;
+            GuestsNumberPerReservation = guestsNumberPerReservation;
         }
 
         public void FromCSV(string[] values)
-        {
+        { 
             Id = int.Parse(values[0]);
             TourId = int.Parse(values[1]);
-            StartingTime = DateConversion.StringToDate(values[2]);
-
-
+            GuestsNumberPerReservation = int.Parse(values[2]);
         }
 
         public string[] ToCSV()
@@ -43,13 +33,10 @@ namespace BookingProject.Model
             {
                 Id.ToString(),
                 TourId.ToString(),
-                DateConversion.DateToString(StartingTime),
+                GuestsNumberPerReservation.ToString()
             };
             return csvValues;
         }
-
-
-
 
     }
 }

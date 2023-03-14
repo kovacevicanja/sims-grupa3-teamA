@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Controller
 {
-    public class StartingDateController : ISubject
+    public class TourStartingTimeController : ISubject
     {
         private readonly List<IObserver> observers;
 
-        private readonly StartingDateHandler _startingDateHandler;
+        private readonly TourStartingTimeHandler _startingDateHandler;
 
-        private List<StartingDate> _dates;
+        private List<TourDateTime> _dates;
 
-        public StartingDateController()
+        public TourStartingTimeController()
         {
-            _startingDateHandler = new StartingDateHandler();
-            _dates = new List<StartingDate>();
+            _startingDateHandler = new TourStartingTimeHandler();
+            _dates = new List<TourDateTime>();
             Load();
         }
 
@@ -32,7 +32,7 @@ namespace BookingProject.Controller
         private int GenerateId()
         {
             int maxId = 0;
-            foreach (StartingDate date in _dates)
+            foreach (TourDateTime date in _dates)
             {
                 if (date.Id > maxId)
                 {
@@ -42,7 +42,7 @@ namespace BookingProject.Controller
             return maxId + 1;
         }
 
-        public void Create(StartingDate date)
+        public void Create(TourDateTime date)
         {
             date.Id= GenerateId();
             _dates.Add(date);
@@ -57,7 +57,7 @@ namespace BookingProject.Controller
         public void LinkToTour(int id)
         {
 
-            foreach (StartingDate startingDate in _dates)
+            foreach (TourDateTime startingDate in _dates)
             {
                 if (startingDate.TourId == -1)
                 {
@@ -74,12 +74,12 @@ namespace BookingProject.Controller
         }
 
 
-        public List<StartingDate> GetAll()
+        public List<TourDateTime> GetAll()
         {
             return _dates;
         }
 
-        public StartingDate GetByID(int id)
+        public TourDateTime GetByID(int id)
         {
             return _dates.Find(date => date.Id == id);
         }
