@@ -31,6 +31,50 @@ namespace BookingProject.Controller
             _images = _imageHandler.Load();
         }
 
+        private int GenerateId()
+        {
+            int maxId = 0;
+            foreach (TourImage image in _images)
+            {
+                if (image.Id > maxId)
+                {
+                    maxId = image.Id;
+                }
+            }
+            return maxId + 1;
+        }
+
+
+        public void Create(TourImage image) 
+        {
+            image.Id = GenerateId();
+            _images.Add(image);
+        }
+
+        public void Save()
+        {
+            _imageHandler.Save(_images);
+        }
+
+        public void LinkToTour(int id)
+        {
+
+            foreach (TourImage image in _images)
+            {
+                if (image.TourId == -1)
+                {
+                    image.TourId = id;
+                }
+
+            }
+        }
+
+        public void CleanUnused()
+        {
+            _images.RemoveAll(i => i.TourId == -1);
+
+        }
+
         public List<TourImage> GetAll()
         {
             return _images;

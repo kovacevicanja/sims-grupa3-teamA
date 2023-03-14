@@ -14,7 +14,10 @@ namespace BookingProject.Model
 
         public int TourId { get; set; }
         public string Point { get; set; }
-        public KeyPoint() { }
+        public KeyPoint() 
+        {
+            TourId = -1;
+        }
 
         public KeyPoint(int id, int tourId, string point)
         {

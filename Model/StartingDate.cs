@@ -16,7 +16,10 @@ namespace BookingProject.Model
         public int TourId { get; set; } 
         public DateTime StartingTime { get; set; }
         
-        public StartingDate() { }
+        public StartingDate()
+        {
+            TourId = -1;
+        }
 
         public StartingDate(int id, int tourId,  DateTime startingTime)
         {

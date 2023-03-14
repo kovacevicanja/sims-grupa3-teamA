@@ -29,6 +29,31 @@ namespace BookingProject.Controller
             _keyPoints = _keyPointHandler.Load();
         }
 
+
+        private int GenerateId()
+        {
+            int maxId = 0;
+            foreach (KeyPoint keyPoint in _keyPoints)
+            {
+                if (keyPoint.Id > maxId)
+                {
+                    maxId = keyPoint.Id;
+                }
+            }
+            return maxId + 1;
+        }
+
+        public void Create(KeyPoint keyPoint)
+        {
+            keyPoint.Id = GenerateId();
+            _keyPoints.Add(keyPoint);
+        }
+
+        public void Save()
+        {
+            _keyPointHandler.Save(_keyPoints);
+        }
+
         public List<KeyPoint> GetAll()
         {
             return _keyPoints;
@@ -38,6 +63,27 @@ namespace BookingProject.Controller
         {
             return _keyPoints.Find(keyPoint => keyPoint.Id == id);
         }
+
+        public void CleanUnused()
+        {
+            _keyPoints.RemoveAll(r => r.TourId == -1);   
+
+        }
+
+        public void LinkToTour(int id)
+        {
+
+            foreach(KeyPoint keyPoint in _keyPoints)
+            {
+                if (keyPoint.TourId == -1)
+                {
+                    keyPoint.TourId = id;
+                }
+
+            }
+        }
+
+
 
         public void NotifyObservers()
         {
