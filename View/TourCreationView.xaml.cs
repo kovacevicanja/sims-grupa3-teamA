@@ -33,7 +33,7 @@ namespace BookingProject.View
         public LocationController LocationController { get; set; }
         public KeyPointController KeyPointController { get; set; }
         public StartingDateController StartingDateController { get; set; }
-        public ImageController ImageController { get; set; }
+        public TourImageController ImageController { get; set; }
 
         public LanguageEnum ChosenLanguage { get; set; }
 

@@ -1,7 +1,7 @@
-0|Beograd|Srbija
-1|NoviSad|Srbija
-2|NoviSad|Srbija
-0|Bosnia|Sarajevo
+0|Srbija|Beograd
+1|Srbija|NoviSad
+2|Srbija|NoviSad
+0|Sarajevo|Bosnia
 0|xx|xx
 0|y|y
 0|x|x
@@ -16,3 +16,4 @@
 8|W|W
 9|y|y
 10|OHOHO|OHOHO
+11|X|X

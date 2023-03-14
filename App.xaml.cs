@@ -17,7 +17,7 @@ namespace BookingProject
     {
         public TourController TourController { get; set; }
         public LocationController LocationController { get; set; }
-        public ImageController ImageController { get; set; }
+        public TourImageController ImageController { get; set; }
         public KeyPointController KeyPointController { get; set; }
         public StartingDateController StartingDateController { get; set; }
         public App()
@@ -25,7 +25,7 @@ namespace BookingProject
 
             TourController = new TourController();
             LocationController = new LocationController();
-            ImageController = new ImageController();
+            ImageController = new TourImageController();
             KeyPointController = new KeyPointController();  
             StartingDateController = new StartingDateController();  
         }
