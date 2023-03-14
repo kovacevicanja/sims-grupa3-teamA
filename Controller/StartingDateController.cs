@@ -29,14 +29,48 @@ namespace BookingProject.Controller
             _dates = _startingDateHandler.Load();
         }
 
+        private int GenerateId()
+        {
+            int maxId = 0;
+            foreach (StartingDate date in _dates)
+            {
+                if (date.Id > maxId)
+                {
+                    maxId = date.Id;
+                }
+            }
+            return maxId + 1;
+        }
+
         public void Create(StartingDate date)
         {
+            date.Id= GenerateId();
             _dates.Add(date);
         }
 
         public void Save()
         {
             _startingDateHandler.Save(_dates);
+        }
+
+
+        public void LinkToTour(int id)
+        {
+
+            foreach (StartingDate startingDate in _dates)
+            {
+                if (startingDate.TourId == -1)
+                {
+                    startingDate.TourId = id;
+                }
+
+            }
+        }
+
+        public void CleanUnused()
+        {
+            _dates.RemoveAll (d => d.TourId == -1);
+
         }
 
 

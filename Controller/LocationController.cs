@@ -29,14 +29,28 @@ namespace BookingProject.Controller
             _locations = _locationHandler.Load();
         }
 
-        public void Create(Location location)
-        {
-            _locations.Add(location);
-        }
-
         public void Save()
         {
             _locationHandler.Save(_locations);
+        }
+
+        private int GenerateId()
+        {
+            int maxId = 0;
+            foreach (Location location in _locations)
+            {
+                if (location.Id > maxId)
+                {
+                    maxId = location.Id;
+                }
+            }
+            return maxId + 1;
+        }
+
+        public void Create(Location location)
+        {
+            location.Id = GenerateId();
+            _locations.Add(location);
         }
 
         public List<Location> GetAll()

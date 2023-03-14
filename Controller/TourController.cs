@@ -45,8 +45,24 @@ namespace BookingProject.Controller
             TourKeyPointBind();
         }
 
+
+
+        private int GenerateId()
+        {
+            int maxId = 0;
+            foreach (Tour tour in _tours)
+            {
+                if (tour.Id > maxId)
+                {
+                    maxId = tour.Id;
+                }
+            }
+            return maxId + 1;
+        }
+
         public void Create(Tour tour)
         {
+            tour.Id = GenerateId(); 
             _tours.Add(tour);
         }
 

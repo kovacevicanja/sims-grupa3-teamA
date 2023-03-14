@@ -1,4 +1,5 @@
 ﻿using BookingProject.Controller;
+using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using System;
@@ -30,6 +31,10 @@ namespace BookingProject.View
         public TourController TourController { get; set; }
 
         public LocationController LocationController { get; set; }
+        public KeyPointController KeyPointController { get; set; }
+        public StartingDateController StartingDateController { get; set; }
+        public ImageController ImageController { get; set; }
+
         public LanguageEnum ChosenLanguage { get; set; }
 
         public TourCreationView()
@@ -42,6 +47,9 @@ namespace BookingProject.View
             var app = Application.Current as App;
             TourController = app.TourController;
             LocationController = app.LocationController;
+            KeyPointController= app.KeyPointController;
+            ImageController = app.ImageController;
+            StartingDateController = app.StartingDateController;
         }
 
         public string this[string columnName] => throw new NotImplementedException();
@@ -164,6 +172,15 @@ namespace BookingProject.View
         }
 
 
+        private void Link()
+        {
+
+
+        }
+
+
+
+
         private void Button_Click_Kreiraj(object sender, RoutedEventArgs e)
         {
             Tour tour = new Tour();
@@ -177,11 +194,28 @@ namespace BookingProject.View
             location.City= City;
             location.Country= Country;
 
+
+            //uvezivanje sa lokacijom
             LocationController.Create(location);
             LocationController.Save();
-
             tour.LocationId = location.Id;
 
+            //kreiranje
+            TourController.Create(tour);
+            TourController.Save();
+
+
+            //uvezivanje sa ostalim pomocnim klasama
+            KeyPointController.LinkToTour(tour.Id);
+            KeyPointController.Save();
+
+            ImageController.LinkToTour(tour.Id);
+            ImageController.Save();
+
+            StartingDateController.LinkToTour(tour.Id);
+            StartingDateController.Save();
+
+            //kreiranje
             TourController.Create(tour);
             TourController.Save();
 
@@ -190,6 +224,18 @@ namespace BookingProject.View
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            KeyPointController.Load();
+            KeyPointController.CleanUnused();
+            KeyPointController.Save();
+
+            ImageController.Load();
+            ImageController.CleanUnused();
+            ImageController.Save();
+
+            StartingDateController.Load();
+            StartingDateController.CleanUnused();
+            StartingDateController.Save();
+
             Close();
         }
 
