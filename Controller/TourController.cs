@@ -26,7 +26,7 @@ namespace BookingProject.Controller
 
         private KeyPointController _keyPointController;
 
-        private StartingDateController _startingDateController;
+        private TourStartingTimeController _startingDateController;
 
         public TourController()
         {
@@ -35,7 +35,7 @@ namespace BookingProject.Controller
             _locationController = new TourLocationController();
             _tourImageController = new TourImageController();
             _keyPointController = new KeyPointController();
-            _startingDateController = new StartingDateController();
+            _startingDateController = new TourStartingTimeController();
             Load();
         }
 
@@ -112,13 +112,13 @@ namespace BookingProject.Controller
 
         public void TourDateBind()
         {
-            List<StartingDate> dates = new List<StartingDate>();
-            StartingDateHandler dateHandler = new StartingDateHandler();
+            List<TourDateTime> dates = new List<TourDateTime>();
+            TourStartingTimeHandler dateHandler = new TourStartingTimeHandler();
             dates = dateHandler.Load();
 
             foreach (Tour tour in _tours)
             {
-                foreach (StartingDate date in dates)
+                foreach (TourDateTime date in dates)
                 {
 
                     if (tour.Id == date.TourId)
@@ -184,6 +184,7 @@ namespace BookingProject.Controller
 
         }
 
+        /*
         public ObservableCollection<Tour> TryToBook(ObservableCollection<Tour> tourReservation, Tour choosenTour, string numberOfGuest)
         {
             if (int.Parse(numberOfGuest) <= choosenTour.MaxGuests)
@@ -199,6 +200,7 @@ namespace BookingProject.Controller
 
             return tourReservation;
         }
+        */
     }
 
 }

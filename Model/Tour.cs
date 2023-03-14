@@ -21,18 +21,18 @@ namespace BookingProject.Model
         public LanguageEnum Language { get; set; }
         public int MaxGuests { get; set; }
         public List<KeyPoint> KeyPoints { get; set; }
-        public List<StartingDate> StartingTime { get; set; }
+        public List<TourDateTime> StartingTime { get; set; }
         public double DurationInHours { get; set; }
         public List<TourImage> Images { get; set; }
 
         public Tour() { 
             KeyPoints = new List<KeyPoint>();
-            StartingTime = new List<StartingDate>();
+            StartingTime = new List<TourDateTime>();
             Images = new List<TourImage>();
 
         }
 
-        public Tour(int id, string name, int locationId, Location location, string description, LanguageEnum language, int maxGuests, List<KeyPoint> keyPoints, List<StartingDate> startingTime, double durationInHours, List<TourImage> images)
+        public Tour(int id, string name, int locationId, Location location, string description, LanguageEnum language, int maxGuests, List<KeyPoint> keyPoints, List<TourDateTime> startingTime, double durationInHours, List<TourImage> images)
         {
             Id = id;
             Name = name;

@@ -91,7 +91,7 @@
                                 <ItemsControl ItemsSource="{Binding StartingTime}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding StartingTime}" />
+                                            <TextBlock Text="{Binding StartingDateTime}" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
