@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,10 +26,14 @@ namespace BookingProject.View
     /// </summary>
     public partial class AddAccommodationView : Window, IDataErrorInfo
     {
+        public Accommodation accommodation { get; set; }
         public ObservableCollection<AccommodationType> accommodationTypes { get; set; }
         public AccommodationType chosenType { get; set; }
         public AccommodationController AccommodationController { get; set; }
         public LocationController LocationController { get; set; }
+        public ImageController ImageController { get; set; }
+        public ObservableCollection<AccommodationImage> Images { get; set; }
+        public AccommodationImage AccommodationImage { get; set; }
         
         public AddAccommodationView()
         {
@@ -42,6 +47,12 @@ namespace BookingProject.View
             LocationController = app.LocationController;
 
         }
+
+
+        
+
+
+
         private string _accommodationName;
 
 
@@ -141,6 +152,20 @@ namespace BookingProject.View
                 }
             }
         }
+        private string _url;
+
+        public string Url
+        {
+            get => _url;
+            set
+            {
+                if (value != _url)
+                {
+                    _url = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -164,6 +189,12 @@ namespace BookingProject.View
             LocationController.Create(location);
             accommodation.Location = location;
             accommodation.IdLocation = location.Id;
+
+            AccommodationImage accommodationImage= new AccommodationImage();
+            accommodationImage.Url= Url;
+            accommodationImage.Id = ImageController.GenerateId();
+
+            
 
             if (IsValid)
             {

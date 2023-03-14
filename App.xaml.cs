@@ -16,6 +16,7 @@ namespace BookingProject
     {
         public LocationController LocationController { get;  set; }
         public AccommodationController AccommodationController { get;  set; }
+        public ImageController ImageController { get; set; }
 
         public App()
         {
@@ -23,7 +24,11 @@ namespace BookingProject
             //TourController = new TourController();
             AccommodationController= new AccommodationController();
             LocationController = new LocationController();
+            ImageController = new ImageController();
+
             AccommodationController._locationController = LocationController;
+            AccommodationController._imageController = ImageController;
+
         }
     }
 }

@@ -24,6 +24,8 @@ namespace BookingProject.View
     {
         private AccommodationController _accommodationController;
         private ObservableCollection<Accommodation> _accommodations;
+        public Accommodation ChosenAccommodation { get; set; }
+        public AccommodationImage Image { get; set; }
         public OwnerView()
         {
             InitializeComponent();
@@ -36,6 +38,11 @@ namespace BookingProject.View
         {
             AddAccommodationView addAccommodationsView = new AddAccommodationView();
             addAccommodationsView.Show();
+        }
+        private void Button_Click_Add_Photo(object sender, RoutedEventArgs e)
+        {
+            AddPhotosToAccommodationView addPhotosToAccommodationView = new AddPhotosToAccommodationView(ChosenAccommodation);
+            addPhotosToAccommodationView.Show();
         }
     }
 }

@@ -19,14 +19,15 @@ namespace BookingProject.Controller
         private List<Accommodation> _accommodations;
 
         public LocationController _locationController;
+        public ImageController _imageController;
         private Serializer<Accommodation> serializer;
-        private readonly string fileName = "../../Resources/Data/accommodations.csv";
         public AccommodationController()
         {
             serializer= new Serializer<Accommodation>();
             _accommodationHandler = new AccommodationHandler();
             _accommodations = new List<Accommodation>();
             _locationController = new LocationController();
+            _imageController = new ImageController();
             Load();
         }
 
@@ -34,6 +35,44 @@ namespace BookingProject.Controller
         {
             _accommodations = _accommodationHandler.Load();
             AccommodationLocationBind();
+            AccommodationImageBind();
+        }
+
+        public Accommodation UpdateAccommodation(Accommodation accommodation)
+        {
+            Accommodation oldAccommodation = GetByID(accommodation.Id);
+            if (oldAccommodation == null) return null;
+
+            oldAccommodation.AccommodationName = accommodation.AccommodationName;
+            oldAccommodation.IdLocation = accommodation.IdLocation;
+            oldAccommodation.Type = accommodation.Type;
+            oldAccommodation.MaxGuestNumber= accommodation.MaxGuestNumber;
+            oldAccommodation.MinDays = accommodation.MinDays;
+            oldAccommodation.CancellationPeriod = accommodation.CancellationPeriod;
+
+            SaveAccommodation();
+            NotifyObservers();
+            return oldAccommodation;
+        }
+
+        public void AccommodationImageBind()
+        {
+            List<AccommodationImage> images = new List<AccommodationImage>();
+            ImageHandler imageHandler = new ImageHandler();
+            images = imageHandler.Load();
+
+            foreach (Accommodation accommodation in _accommodations)
+            {
+                foreach (AccommodationImage image in images)
+                {
+
+                    if (accommodation.Id == image.AccommodationId)
+                    {
+                        accommodation.Images.Add(image);
+                    }
+
+                }
+            }
         }
 
         public List<Accommodation> GetAll()
@@ -57,6 +96,13 @@ namespace BookingProject.Controller
         private void SaveAccommodation()
         {
             _accommodationHandler.Save(_accommodations);
+        }
+        public void AddImageToAccommodation(Accommodation accommodation, AccommodationImage image)
+        {
+            accommodation.Images.Add(image);
+            image.AccommodationId = accommodation.Id;
+            UpdateAccommodation(accommodation);
+            _imageController.UpdateImage(image);
         }
 
         private int GenerateId()

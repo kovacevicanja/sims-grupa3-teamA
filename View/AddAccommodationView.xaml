@@ -36,18 +36,20 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Height="30" >AccommodationName</Label>
+            <Label Grid.Row="0" Grid.Column="0" Height="30" >Name</Label>
             <Label Grid.Row="1" Grid.Column="0" Height="30" >City</Label>
             <Label Grid.Row="2" Grid.Column="0" Height="30" >Country</Label>
             <Label Grid.Row="3" Grid.Column="0" Height="30" >Type</Label>
             <Label Grid.Row="4" Grid.Column="0" Height="30" >Maximum number of guests</Label>
             <Label Grid.Row="5" Grid.Column="0" Height="30" >Minimum number of days</Label>
             <Label Grid.Row="6" Grid.Column="0" Height="30" >Cancellation period</Label>
+            <Label Grid.Row="7" Grid.Column="0" Height="30">Photo url</Label>
             <TextBox Grid.Row="0" Grid.Column="1" 
                      Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
@@ -75,14 +77,18 @@
                      Text="{Binding Path=CancellationPeriod, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
-
+            <TextBox Grid.Row="7" Grid.Column="1" 
+                     Text="{Binding Path=Url}" Height="30"></TextBox>
         </Grid>
-        <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="362,22,0,0" >
+        <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="15,22,0,0" Width="560" >
             <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
               Click="Button_Click_Cancel" />
             <Button Content="Add accommodation" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
                Click="Button_Click_Add"/>
+
+
         </WrapPanel>
+
 
     </Grid>
 </Window>

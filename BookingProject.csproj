@@ -56,12 +56,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\AccommodationController.cs" />
+    <Compile Include="Controller\ImageController.cs" />
     <Compile Include="Controller\LocationController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
+    <Compile Include="FileHandler\ImageHandler.cs" />
     <Compile Include="FileHandler\LocationHandler.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Model\Accommodation.cs" />
+    <Compile Include="Model\AccommodationImage.cs" />
     <Compile Include="Model\KeyPoint.cs" />
     <Compile Include="Model\StartingDate.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
@@ -78,6 +81,9 @@
     <Compile Include="Serializer\Serializer.cs" />
     <Compile Include="View\AddAccommodationView.xaml.cs">
       <DependentUpon>AddAccommodationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPhotosToAccommodationView.xaml.cs">
+      <DependentUpon>AddPhotosToAccommodationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
@@ -107,6 +113,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AddAccommodationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPhotosToAccommodationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

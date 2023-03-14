@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="Owner" Height="450" Width="800">
+        Title="Owner" Height="450" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -31,19 +31,46 @@
             </Grid.RowDefinitions>
 
 
-            <DataGrid Margin="16, 12, 16, 16" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
+            <DataGrid ItemsSource ="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding Path = ChosenAccommodation, UpdateSourceTrigger=PropertyChanged}"
+                      Margin="16,12,16,104" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Width="100" Binding="{Binding AccommodationName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="City" Width="100" Binding="{Binding Location.City}"></DataGridTextColumn>
                     <DataGridTextColumn Header="State" Width="100" Binding="{Binding Location.Country}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Type" Width="100" Binding="{Binding Type}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="MaxGuestNumber" Width="120" Binding="{Binding MaxGuestNumber}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="MinReservationDays" Width="130" Binding="{Binding MinDays}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Cancellation limit" Width="120" Binding="{Binding CancellationPeriod}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MaxGuestNumber" Width="150" Binding="{Binding MaxGuestNumber}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MinReservationDays" Width="150" Binding="{Binding MinDays}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cancellation limit" Width="150" Binding="{Binding CancellationPeriod}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Images" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding Images}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid MaxWidth="200" Margin="10">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Image Source="{Binding Url}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
         </Grid>
+
 
     </Grid>
 </Window>
