@@ -34,6 +34,25 @@ namespace BookingProject.Controller
             return _images;
         }
 
+
+        public AccommodationImage UpdateImage(AccommodationImage image)
+        {
+            AccommodationImage oldImage = GetByID(image.Id);
+            if (oldImage == null) return null;
+
+            oldImage.Url = image.Url;
+            oldImage.AccommodationId = image.AccommodationId;
+
+            SaveImage();
+            NotifyObservers();
+            return oldImage;
+        }
+
+        private void SaveImage()
+        {
+            _imageHandler.Save(_images);
+        }
+
         public AccommodationImage GetByID(int id)
         {
             return _images.Find(image => image.Id == id);

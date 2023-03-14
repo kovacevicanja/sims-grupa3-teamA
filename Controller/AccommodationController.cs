@@ -19,7 +19,9 @@ namespace BookingProject.Controller
         
         private List<Accommodation> _accommodations;
 
-        private AccommodationLocationController _locationController;
+        public AccommodationLocationController _locationController;
+
+        public AccommodationImageController _imageController;
 
         public AccommodationController()
         {
@@ -62,8 +64,8 @@ namespace BookingProject.Controller
         {
             accommodation.Images.Add(image);
             image.AccommodationId = accommodation.Id;
-            UpdateAccommodation(accommodation);
-            _imageController.UpdateImage(image);
+            //UpdateAccommodation(accommodation);
+            //_imageController.UpdateImage(image);
         }
 
         private int GenerateId()
@@ -89,7 +91,7 @@ namespace BookingProject.Controller
             _locationController.Load();
             foreach(Accommodation accommodation in _accommodations)
             {
-                Location location = _locationController.GetByID(accommodation.Location.Id);
+                Location location = _locationController.GetByID(accommodation.IdLocation);
                 accommodation.Location = location;
             }
         }
@@ -124,7 +126,7 @@ namespace BookingProject.Controller
 
                 bool isSearched = (city.Equals("") || accommodation.Location.City.ToLower().Contains(city.ToLower()))
                     && (state.Equals("") || accommodation.Location.Country.ToLower().Contains(state.ToLower()))
-                    && (name.Equals("") ||  accommodation.Name.ToLower().Contains(name.ToLower()))
+                    && (name.Equals("") ||  accommodation.AccommodationName.ToLower().Contains(name.ToLower()))
                     && (type.Equals("") || typeEnum.Equals(type.ToLower()))
                     && (numberOfGuests.Equals("") || int.Parse(numberOfGuests) <= accommodation.MaxGuestNumber)
                     && (minNumDaysOfReservation.Equals("") || int.Parse(minNumDaysOfReservation) >= accommodation.MinDays);

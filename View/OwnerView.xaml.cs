@@ -1,5 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.Model.Images;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

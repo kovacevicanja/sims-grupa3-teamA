@@ -75,7 +75,6 @@
     <Compile Include="FileHandler\StartingDateHandler.cs" />
     <Compile Include="FileHandler\TourHandler.cs" />
     <Compile Include="Model\Accommodation.cs" />
-    <Compile Include="Model\AccommodationImage.cs" />
     <Compile Include="Model\KeyPoint.cs" />
     <Compile Include="Model\StartingDate.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />

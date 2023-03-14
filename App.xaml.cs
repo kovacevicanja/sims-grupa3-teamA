@@ -14,17 +14,17 @@ namespace BookingProject
     /// </summary>
     public partial class App : Application
     {
-        public LocationController LocationController { get;  set; }
+        public AccommodationLocationController LocationController { get;  set; }
         public AccommodationController AccommodationController { get;  set; }
-        public ImageController ImageController { get; set; }
+        public AccommodationImageController ImageController { get; set; }
 
         public App()
         {
 
             //TourController = new TourController();
             AccommodationController= new AccommodationController();
-            LocationController = new LocationController();
-            ImageController = new ImageController();
+            LocationController = new AccommodationLocationController();
+            ImageController = new AccommodationImageController();
 
             AccommodationController._locationController = LocationController;
             AccommodationController._imageController = ImageController;

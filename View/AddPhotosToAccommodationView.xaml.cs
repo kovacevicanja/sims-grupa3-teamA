@@ -1,5 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.Model.Images;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,8 +25,8 @@ namespace BookingProject.View
     {
         public AccommodationController _accommodationControler;
         public Accommodation Accommodation { get; set; }
-        public ImageController _imageController;
-        public LocationController _locationController;
+        public AccommodationImageController _imageController;
+        public AccommodationLocationController _locationController;
         public String Url { get; set; }
         public AccommodationImage AccommodationImage { get; set; }
         public ObservableCollection<AccommodationImage> Images { get; set; }

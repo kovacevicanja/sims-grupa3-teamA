@@ -1,6 +1,7 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.Model.Images;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,8 +31,8 @@ namespace BookingProject.View
         public ObservableCollection<AccommodationType> accommodationTypes { get; set; }
         public AccommodationType chosenType { get; set; }
         public AccommodationController AccommodationController { get; set; }
-        public LocationController LocationController { get; set; }
-        public ImageController ImageController { get; set; }
+        public AccommodationLocationController LocationController { get; set; }
+        public AccommodationImageController ImageController { get; set; }
         public ObservableCollection<AccommodationImage> Images { get; set; }
         public AccommodationImage AccommodationImage { get; set; }
         
@@ -192,7 +193,7 @@ namespace BookingProject.View
 
             AccommodationImage accommodationImage= new AccommodationImage();
             accommodationImage.Url= Url;
-            accommodationImage.Id = ImageController.GenerateId();
+            //accommodationImage.Id = ImageController.GenerateId();
 
             
 
