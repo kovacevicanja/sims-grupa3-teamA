@@ -81,7 +81,8 @@ namespace BookingProject.View
                         secondGuestView.Show();
                     }else if (IsSelectedGuide)
                     {
-                        MessageBox.Show("Ulogovan vodic!");
+                        TourCreationView tourCreationView = new TourCreationView();
+                        tourCreationView.Show();
                     }
                     Close();
                 }
