@@ -31,6 +31,8 @@ namespace BookingProject.View
         private TourReservationController _tourReservationController;
         private ObservableCollection<TourReservation> _tourReservations;
 
+        public Tour ChoosenTour { get; set; }
+
         public ReservationTourView(Tour choosenTour)
         {
             InitializeComponent();
@@ -48,6 +50,10 @@ namespace BookingProject.View
 
         private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
         {
+            Tour choosenTour = ChoosenTour;
+
+            choosenTour.Name = Name;
+ 
             _tourReservationController.TryToBook(_tourReservations, Tour, NumberOfGuests); //i dalje je ovo null
 
         }

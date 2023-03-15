@@ -80,6 +80,7 @@
     <Compile Include="FileHandler\TourHandler.cs" />
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\AccommodationDate.cs" />
+    <Compile Include="Model\AccommodationReservation.cs" />
     <Compile Include="Model\KeyPoint.cs" />
     <Compile Include="Model\TourDateTime.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
