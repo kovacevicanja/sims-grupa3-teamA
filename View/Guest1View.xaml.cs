@@ -26,6 +26,8 @@ namespace BookingProject.View
     {
         private AccommodationController _accommodationController;
         private ObservableCollection<Accommodation> _accommodations;
+
+        private Accommodation selectedAccommodation;
         
         
 
@@ -50,8 +52,7 @@ namespace BookingProject.View
 
         private void Button_Click_Search(object sender, RoutedEventArgs e)
         {
-            SearchAccommodationsView searchAccommodationsView = new SearchAccommodationsView(AccName, City, State, Type, NumberOfGuests, MinNumDaysOfReservation);
-            searchAccommodationsView.Show();
+            _accommodationController.Search(_accommodations, AccName, City, State, Type, NumberOfGuests, MinNumDaysOfReservation);
         }
 
         private void Button_Click_Book(object sender, RoutedEventArgs e)
