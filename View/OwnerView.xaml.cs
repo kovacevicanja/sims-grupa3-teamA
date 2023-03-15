@@ -42,8 +42,8 @@ namespace BookingProject.View
         }
         private void Button_Click_Add_Photo(object sender, RoutedEventArgs e)
         {
-            AddPhotosToAccommodationView addPhotosToAccommodationView = new AddPhotosToAccommodationView(ChosenAccommodation);
-            addPhotosToAccommodationView.Show();
+            //AddPhotosToAccommodationView addPhotosToAccommodationView = new AddPhotosToAccommodationView(ChosenAccommodation);
+            //addPhotosToAccommodationView.Show();
         }
     }
 }

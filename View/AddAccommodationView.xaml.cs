@@ -46,7 +46,7 @@ namespace BookingProject.View
             var app = Application.Current as App;
             AccommodationController = app.AccommodationController;
             LocationController = app.AccommodationLocationController;
-
+            ImageController= app.AccommodationImageController;
         }
 
 
@@ -185,14 +185,22 @@ namespace BookingProject.View
             Location location = new Location();
             location.City = City;
             location.Country = Country;
-            location.Id = LocationController.GenerateId();
+            //location.Id = LocationController.GenerateId();
 
             LocationController.Create(location);
-            accommodation.Location = location;
+            LocationController.SaveLocation();
             accommodation.IdLocation = location.Id;
 
-            AccommodationImage accommodationImage= new AccommodationImage();
-            accommodationImage.Url= Url;
+            //accommodation.Location = location;
+            //accommodation.IdLocation = location.Id;
+            AccommodationController.Create(accommodation);
+            AccommodationController.SaveAccommodation();
+
+            ImageController.LinkToAccommodation(accommodation.Id);
+            ImageController.SaveImage();
+
+            //AccommodationImage accommodationImage= new AccommodationImage();
+            //accommodationImage.Url= Url;
             //accommodationImage.Id = ImageController.GenerateId();
 
             
@@ -205,7 +213,10 @@ namespace BookingProject.View
 
         private void Button_Click_Cancel(Object sender, RoutedEventArgs e)
         {
-            this.Close();
+            ImageController.Load();
+            ImageController.DeleteUnused();
+            ImageController.SaveImage();
+            Close();
         }
         public bool IsValid
         {
@@ -219,6 +230,11 @@ namespace BookingProject.View
 
                 return true;
             }
+        }
+        private void Button_Click_Add_Image(object sender, RoutedEventArgs e)
+        {
+            AddPhotosToAccommodationView addPhoto = new AddPhotosToAccommodationView();
+            addPhoto.Show();
         }
 
         public string this[string columnName]

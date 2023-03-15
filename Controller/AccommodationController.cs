@@ -19,15 +19,16 @@ namespace BookingProject.Controller
         
         private List<Accommodation> _accommodations;
 
-        public AccommodationLocationController _locationController;
+        private AccommodationLocationController _locationController;
 
-        public AccommodationImageController _imageController;
+        private AccommodationImageController _imageController;
 
         public AccommodationController()
         {
             _accommodationHandler = new AccommodationHandler();
             _accommodations = new List<Accommodation>();
             _locationController = new AccommodationLocationController();
+            _imageController = new AccommodationImageController();
             Load();
         }
 
@@ -45,18 +46,20 @@ namespace BookingProject.Controller
 
         public void Create(Accommodation accommodation)
         {
-            AddAccommodation(accommodation);
-        }
-        public Accommodation AddAccommodation(Accommodation accommodation)
-        {
+            //AddAccommodation(accommodation);
             accommodation.Id = GenerateId();
             _accommodations.Add(accommodation);
-            SaveAccommodation();
-            NotifyObservers();
-            return accommodation;
         }
+        //public Accommodation AddAccommodation(Accommodation accommodation)
+        //{
+        //    accommodation.Id = GenerateId();
+        //    _accommodations.Add(accommodation);
+        //    SaveAccommodation();
+        //    NotifyObservers();
+        //    return accommodation;
+        //}
 
-        private void SaveAccommodation()
+        public void SaveAccommodation()
         {
             _accommodationHandler.Save(_accommodations);
         }

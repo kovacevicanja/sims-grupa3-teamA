@@ -39,13 +39,15 @@ namespace BookingProject.Controller
             return _locations.Find(location => location.Id == id);
         }
 
-        public Location Create(Location location)
+        public void Create(Location location)
         {
+            //location.Id = GenerateId();
+            //_locations.Add(location);
+            //SaveLocation();
+            //NotifyObservers();
+            //return location;
             location.Id = GenerateId();
             _locations.Add(location);
-            SaveLocation();
-            NotifyObservers();
-            return location;
         }
 
         public int GenerateId()
@@ -61,7 +63,7 @@ namespace BookingProject.Controller
             return maxId + 1;
         }
 
-        private void SaveLocation()
+        public void SaveLocation()
         {
             _locationHandler.Save(_locations);
         }
