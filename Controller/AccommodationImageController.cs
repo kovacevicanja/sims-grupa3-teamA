@@ -33,22 +33,60 @@ namespace BookingProject.Controller
         {
             return _images;
         }
-
-
-        public AccommodationImage UpdateImage(AccommodationImage image)
+        private int GenerateId()
         {
-            AccommodationImage oldImage = GetByID(image.Id);
-            if (oldImage == null) return null;
-
-            oldImage.Url = image.Url;
-            oldImage.AccommodationId = image.AccommodationId;
-
-            SaveImage();
-            NotifyObservers();
-            return oldImage;
+            int maxId = 0;
+            foreach (AccommodationImage image in _images)
+            {
+                if (image.Id > maxId)
+                {
+                    maxId = image.Id;
+                }
+            }
+            return maxId + 1;
         }
 
-        private void SaveImage()
+        public void Create(AccommodationImage image)
+        {
+            image.Id = GenerateId();
+            _images.Add(image);
+        }
+
+
+
+        //public AccommodationImage UpdateImage(AccommodationImage image)
+        //{
+        //    AccommodationImage oldImage = GetByID(image.Id);
+        //    if (oldImage == null) return null;
+
+        //    oldImage.Url = image.Url;
+        //    oldImage.AccommodationId = image.AccommodationId;
+
+        //    SaveImage();
+        //    NotifyObservers();
+        //    return oldImage;
+        //}
+
+        public void LinkToAccommodation(int id)
+        {
+
+            foreach (AccommodationImage image in _images)
+            {
+                if (image.AccommodationId == -1)
+                {
+                    image.AccommodationId = id;
+                }
+
+            }
+        }
+
+        public void DeleteUnused()
+        {
+            _images.RemoveAll(i => i.AccommodationId == -1);
+
+        }
+
+        public void SaveImage()
         {
             _imageHandler.Save(_images);
         }

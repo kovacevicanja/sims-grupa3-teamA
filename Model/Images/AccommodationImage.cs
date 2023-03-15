@@ -14,7 +14,7 @@ namespace BookingProject.Model.Images
         public int AccommodationId { get; set; }
         public AccommodationImage()
         {
-            
+            AccommodationId = -1;
         }
 
         public AccommodationImage(int id, string url, int accommodationId)
