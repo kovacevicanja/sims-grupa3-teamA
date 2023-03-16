@@ -119,9 +119,9 @@ namespace BookingProject.Controller
             }
         }
 
-        public ObservableCollection<Accommodation> Search(ObservableCollection<Accommodation> accommodationsView, string name, string city, string state, string type, string numberOfGuests, string minNumDaysOfReservation)
+        public ObservableCollection<Accommodation> Search(ObservableCollection<Accommodation> _accommodationsView, string name, string city, string state, string type, string numberOfGuests, string minNumDaysOfReservation)
         {
-            accommodationsView.Clear();
+            _accommodationsView.Clear();
 
             foreach (Accommodation accommodation in _accommodations)
             {
@@ -136,10 +136,10 @@ namespace BookingProject.Controller
 
                 if (isSearched)
                 {
-                    accommodationsView.Add(accommodation);
+                    _accommodationsView.Add(accommodation);
                 }
             }
-            return accommodationsView;
+            return _accommodationsView;
 
         }
 

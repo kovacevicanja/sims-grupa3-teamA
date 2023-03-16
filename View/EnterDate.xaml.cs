@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace BookingProject.View
 {
@@ -37,13 +38,13 @@ namespace BookingProject.View
             this.DataContext = this;
 
             var app = Application.Current as App;
-            StartingDateController= app.StartingDateController;
+            StartingDateController = app.StartingDateController;
 
         }
 
-        public string this[string columnName] => throw new NotImplementedException();
+        // public string this[string columnName] => throw new NotImplementedException();
 
-        public string Error => throw new NotImplementedException();
+        // public string Error => throw new NotImplementedException();
 
         private string _startingDate;
 
@@ -81,6 +82,60 @@ namespace BookingProject.View
         {
             Close();
         }
+
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "StartingDate")
+                {
+                    if (!(DateTime.TryParse(StartingDate, out DateTime result)) || (StartingDate.Length != 19))
+                        return "Format dd/mm/yyyy hh:mm:ss";
+
+                }
+
+                return null;
+            }
+        }
+
+
+        private readonly string[] _validatedProperties = { "StartingDate" };
+
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var property in _validatedProperties)
+                {
+                    if (this[property] != null)
+                        return false;
+                }
+
+                if (DateTime.TryParse(StartingDate, out DateTime result) && StartingDate.Length == 19)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        private void Window_LayoutUpdated(object sender, System.EventArgs e)
+        {
+            if (IsValid)
+                CreateButton.IsEnabled = true;
+            else
+                CreateButton.IsEnabled = false;
+        }
+
+
+
+
+
+
     }
 
 }

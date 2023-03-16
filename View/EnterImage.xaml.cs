@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingProject.Model.Images;
+using System.Text.RegularExpressions;
 
 namespace BookingProject.View
 {
@@ -41,10 +42,6 @@ namespace BookingProject.View
             ImageController = app.ImageController;
 
         }
-
-        public string this[string columnName] => throw new NotImplementedException();
-
-        public string Error => throw new NotImplementedException();
 
         private string _url;
 
@@ -83,6 +80,52 @@ namespace BookingProject.View
         {
             Close();
         }
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "Url")
+                {
+                    if (string.IsNullOrEmpty(Url))
+                        return "Enter a valid url!";
+
+                }
+
+                return null;
+            }
+        }
+
+
+        private readonly string[] _validatedProperties = { "Url" };
+
+        Regex validateUrlRegex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
+
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var property in _validatedProperties)
+                {
+                    if (this[property] != null)
+                        return false;
+                }
+
+                return validateUrlRegex.IsMatch(Url);
+            }
+        }
+
+        private void Window_LayoutUpdated(object sender, System.EventArgs e)
+        {
+            if (IsValid)
+                CreateButton.IsEnabled = true;
+            else
+                CreateButton.IsEnabled = false;
+        }
+
+
     }
 
 }
