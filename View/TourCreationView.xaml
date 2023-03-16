@@ -5,7 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="TourCreationView" Height="620" Width="629">
+        Title="TourCreationView" Height="620" Width="629" LayoutUpdated="Window_LayoutUpdated">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <!-- Placeholder for the TextBox itself -->
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+            </StackPanel>
+
+        </ControlTemplate>
+    </Window.Resources>
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -39,56 +51,51 @@
             <Label Grid.Row="7" Grid.Column="0" Height="30" Content="StartingTime"></Label>
             <Label Grid.Row="8" Grid.Column="0" Height="30" Content="DurationInHours"></Label>
             <Label Grid.Row="9" Grid.Column="0" Height="30" Content="Images"></Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=TourName}"
-
-                     Height="25"></TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=City}"
-
-                     Height="25"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Country}"
-
-                     Height="25"></TextBox>
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Description}"
-
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=TourName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="25"></TextBox>
 
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                     Height="25"></TextBox>
+
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                     Height="25"></TextBox>
+
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                     Height="25"></TextBox>
 
             <ComboBox  Height="25" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding Path=ChosenLanguage, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
-            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=MaxGuests}"
 
-                     
-                     
-
+            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=MaxGuests, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"                  
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="25"></TextBox>
 
             <Button Grid.Row="6" Grid.Column="1" Content="Enter KeyPoints" IsDefault="True" Click="Button_Click_KeyPoint"
-                    
-                    Height="25"></Button>
+                     Height="25"></Button>
 
             <Button Grid.Row="7" Grid.Column="1" Content="Enter StartingTime" IsDefault="True" Click="Button_Click_StartingTime"
-                    
                     Height="25"></Button>
 
-
-            <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Path=Duration}"
-                     
-                     
+            <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Path=Duration, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"                    
                      Height="25"></TextBox>
 
-            <Button Grid.Row="9" Grid.Column="1" Content="Enter Images" IsDefault="True" Click="Button_Click_Image"
-                    
+            <Button Grid.Row="9" Grid.Column="1" Content="Enter Images" IsDefault="True" Click="Button_Click_Image"                   
                     Height="25"></Button>
 
 
 
         </Grid>
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center" >
-            
-            
-            
+
+
+
             <Button Content="Zatvori" IsCancel="True" Click="CancelButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"/>
-            <Button Content="Kreiraj" IsDefault="True" Click="Button_Click_Kreiraj"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5" />
+            <Button x:Name="CreateButton" Content="Kreiraj" IsDefault="True" Click="Button_Click_Kreiraj"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5" IsEnabled="False"/>
         </WrapPanel>
-        
+
     </Grid>
 </Window>
