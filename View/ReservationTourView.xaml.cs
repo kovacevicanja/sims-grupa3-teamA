@@ -24,11 +24,10 @@ namespace BookingProject.View
     /// </summary>
     public partial class ReservationTourView : Window
     {
-        public Tour Tour { get; set; }
-        private TourController _tourController; //
-        private ObservableCollection<Tour> _tours; //
-        public string NumberOfGuests { get; set; } = string.Empty;
+        public string EnteredGuests { get; set; } = string.Empty;
+
         private TourReservationController _tourReservationController;
+
         private ObservableCollection<TourReservation> _tourReservations;
 
         public Tour ChoosenTour { get; set; }
@@ -36,25 +35,23 @@ namespace BookingProject.View
         public ReservationTourView(Tour choosenTour)
         {
             InitializeComponent();
+            this.DataContext = this;
 
-            Tour = choosenTour;
+            ChoosenTour = choosenTour;
+            _tourReservationController = new TourReservationController();
+            _tourReservations = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
 
-           
+
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
-            
-
+            this.Close();
         }
 
         private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
-        {
-            Tour choosenTour = ChoosenTour;
-
-            choosenTour.Name = Name;
- 
-            _tourReservationController.TryToBook(_tourReservations, Tour, NumberOfGuests); //i dalje je ovo null
+        { 
+            _tourReservationController.TryToBook(ChoosenTour, EnteredGuests); 
 
         }
     }

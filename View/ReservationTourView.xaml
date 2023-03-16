@@ -27,7 +27,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Height="30">Number of guests:</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=NumberOfGuests, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=EnteredGuests}"
                      Height="30"></TextBox>
         </Grid>
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Margin="121,0,0,0" >
