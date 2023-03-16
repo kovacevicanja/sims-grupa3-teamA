@@ -121,6 +121,9 @@
     <Compile Include="View\ReservationAccommodationView.xaml.cs">
       <DependentUpon>ReservationAccommodationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ReservationTourOtherOffersView.xaml.cs">
+      <DependentUpon>ReservationTourOtherOffersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ReservationTourView.xaml.cs">
       <DependentUpon>ReservationTourView.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ReservationAccommodationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReservationTourOtherOffersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

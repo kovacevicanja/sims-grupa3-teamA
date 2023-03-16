@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using BookingProject.FileHandler;
 using BookingProject.Model;
+using BookingProject.View;
 using OisisiProjekat.Observer;
 
 namespace BookingProject.Controller
@@ -19,13 +20,21 @@ namespace BookingProject.Controller
 
         private List<TourReservation> _reservations;
 
-        private TourReservation tourReservation { get; set;  }
+        private TourReservation tourReservation { get; set; }
+
+        private List<Tour> _tours { get; set; }
+        private TourController _tourController{ get; set; }
+
 
         public TourReservationController()
         {
             _reservationHandler = new TourReservationHandler();
             _reservations = new List<TourReservation>();
             tourReservation = new TourReservation();
+
+            _tourController = new TourController();
+            _tours = new List<Tour>(_tourController.GetAll());
+
             Load();
         }
 
@@ -71,279 +80,78 @@ namespace BookingProject.Controller
             return _reservations.Max(s => s.Id) + 1;
 
         }
-        
-        /*
-        public int GenerateId()
-        {
-            int maxId = 0;
-            if (_reservations.Count() == 0)
-            {
-                return maxId;
-            }
-            else
-            {
-                foreach (TourReservation tourReservation in _reservations)
-                {
-                    if (tourReservation.Id > maxId)
-                    {
-                        maxId = tourReservation.Id;
-                    }
-                }
 
-                return maxId + 1;
-            }
-        }
-        */
+        //IDEJA DA NE BUDE BOOL FUNKCIJA NEGO VOID I DA SE LEPO SVE ISPISUJE
 
-        public void SaveTourReservation (TourReservation tourReservation)
+        public void SaveReservationToFile (Tour choosenTour, string numberOfGuests)
         {
-            Load();
-            foreach (TourReservation tr in _reservations)
-            {
-                if (tr.TourId == tourReservation.TourId)
-                {
-                    _reservations.Remove(tourReservation);
-                    _reservationHandler.Save(_reservations);
-                    _reservations.Add(tourReservation);
-                    _reservationHandler.Save(_reservations);
-                } 
-                else
-                {
-                    //tourReservation.Id = GenerateId();
-                    _reservations.Add(tourReservation);
-                    _reservationHandler.Save(_reservations);
-                }
-            }
-        }
-
-        /*public void SaveTourReservation(TourReservation tourReservation)
-        {
-            foreach(TourReservation tr in _reservations)
-            {
-                if(tourReservation.Id == tr.TourId)
-                {
-                    _reservations.Remove(tourReservation);
-                    _reservationHandler.Save(_reservations);
-                    _reservations.Add(tourReservation);
-                    _reservationHandler.Save(_reservations);
-                }
-                else
-                {
-                    _reservations.Add(tourReservation);
-                    _reservationHandler.Save(_reservations);
-                }
-            }
-        }*/
-
-       public void SaveSameTour (TourReservation tourReservation)
-        {
+            TourReservation reservation = new TourReservation(GenerateId(), choosenTour.Id, choosenTour.MaxGuests - int.Parse(numberOfGuests));
+            _reservations.Add(reservation);
             _reservationHandler.Save(_reservations);
         }
 
-
-
-        /*public bool TryToBook(Tour choosenTour, string numberOfGuest)
+        public void SaveSameReservationToFile (Tour choosenTour, TourReservation tourReservation, string numberOfGuests)
         {
-            if (_reservations.Count() == 0)
-            {
-                if (int.Parse(numberOfGuest) <= choosenTour.MaxGuests)
-                {
-                    //choosenTour.MaxGuests = choosenTour.MaxGuests - int.Parse(numberOfGuest);
-                    tourReservation.TourId = choosenTour.Id;
-                    tourReservation.GuestsNumberPerReservation = choosenTour.MaxGuests - int.Parse(numberOfGuest);
-                    tourReservation.Id = GenerateId();
-                    //tourReservationObservable.Add(tourReservation);
-                    //_reservations.Add(tourReservation);
-                    SaveTourReservation(tourReservation);
-                    return true;
-                }
-                else
-                {
-                    //MessageBox.Show("You have exceeded the maximum number of guests per tour!");
-                    return false;
-                }
-            }
-            else
-            {
-                foreach (TourReservation tourReservation in _reservations)
-                {
-
-                    if (choosenTour.Id == tourReservation.TourId)
-                    {
-                        if (int.Parse(numberOfGuest) <= tourReservation.GuestsNumberPerReservation)
-                        {
-                            tourReservation.GuestsNumberPerReservation = tourReservation.GuestsNumberPerReservation - int.Parse(numberOfGuest);
-                            //tourReservation.Id = GenerateId();
-                            SaveTourReservation(tourReservation);
-
-                            //tourReservationObservable.Add(tourReservation);
-                            //SaveTourReservation(tourReservation);
-                            return true;
-                        }
-                        else
-                        {
-                            //MessageBox.Show("You have exceeded the maximum number of guests per tour!");
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        if (int.Parse(numberOfGuest) <= choosenTour.MaxGuests)
-                        {
-                            //choosenTour.MaxGuests = choosenTour.MaxGuests - int.Parse(numberOfGuest);
-                            tourReservation.TourId = choosenTour.Id;
-                            tourReservation.GuestsNumberPerReservation = choosenTour.MaxGuests - int.Parse(numberOfGuest);
-                            tourReservation.Id = GenerateId();
-                            //tourReservationObservable.Add(tourReservation);
-                            SaveTourReservation(tourReservation);
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                            //MessageBox.Show("You have exceeded the maximum number of guests per tour!");
-                        }
-                    }
-                }
-                return false;
-            }
-
-           
-        } 
-
-        /*public ObservableCollection<TourReservation> TryToBook(ObservableCollection<TourReservation> tourReservationObservable, Tour choosenTour, string numberOfGuest)
-        {
-            if (tourReservationObservable.Count() == 0)
-            {
-                if (int.Parse(numberOfGuest) <= choosenTour.MaxGuests)
-                {
-                    //choosenTour.MaxGuests = choosenTour.MaxGuests - int.Parse(numberOfGuest);
-                    tourReservation.TourId = choosenTour.Id;
-                    tourReservation.GuestsNumberPerReservation = choosenTour.MaxGuests - int.Parse(numberOfGuest);
-                    tourReservation.Id = GenerateId();
-                    //tourReservationObservable.Add(tourReservation);
-                    //_reservations.Add(tourReservation);
-                    SaveTourReservation(tourReservation);
-                }
-                else
-                {
-                    MessageBox.Show("You have exceeded the maximum number of guests per tour!");
-                }
-            }
-            else
-            {
-                foreach (TourReservation tourReservation in _reservations)
-                {
-
-                    if (choosenTour.Id == tourReservation.TourId)
-                    {
-                        if (int.Parse(numberOfGuest) <= tourReservation.GuestsNumberPerReservation)
-                        {
-                            tourReservation.GuestsNumberPerReservation = tourReservation.GuestsNumberPerReservation - int.Parse(numberOfGuest);
-                            tourReservation.Id = GenerateId();
-                            SaveTourReservation(tourReservation);
-
-                             //tourReservationObservable.Add(tourReservation);
-                            //SaveTourReservation(tourReservation);
-                        }
-                        else
-                        {
-                            MessageBox.Show("You have exceeded the maximum number of guests per tour!");
-                        }
-                    }
-                    else
-                    {
-                        if (int.Parse(numberOfGuest) <= choosenTour.MaxGuests)
-                        {
-                            //choosenTour.MaxGuests = choosenTour.MaxGuests - int.Parse(numberOfGuest);
-                            tourReservation.TourId = choosenTour.Id;
-                            tourReservation.GuestsNumberPerReservation = choosenTour.MaxGuests - int.Parse(numberOfGuest);
-                            tourReservation.Id = GenerateId();
-                            //tourReservationObservable.Add(tourReservation);
-                            SaveTourReservation(tourReservation);
-                        }
-                        else
-                        {
-                            MessageBox.Show("You have exceeded the maximum number of guests per tour!");
-                        }
-                    }
-                 }
-            }
-
-            return tourReservationObservable;
-        }*/
-
+            _reservations.Remove(tourReservation);
+            TourReservation newReservation = new TourReservation(tourReservation.Id, choosenTour.Id, tourReservation.GuestsNumberPerReservation - int.Parse(numberOfGuests));
+            _reservations.Add(newReservation);
+            _reservationHandler.Save(_reservations);
+        }
+       
+        
         public bool BookingSuccess(Tour choosenTour, string numberOfGuests)
         {
             if (_reservations.Count() == 0)
             {
                 if (int.Parse(numberOfGuests) <= choosenTour.MaxGuests)
                 {
-                    TourReservation reservation = new TourReservation(GenerateId(), choosenTour.Id, choosenTour.MaxGuests - int.Parse(numberOfGuests));
-                    _reservations.Add(reservation);
-                    _reservationHandler.Save(_reservations);
+                    SaveReservationToFile(choosenTour, numberOfGuests);
                     return true;
 
                 }
                 else
                 {
-                    MessageBox.Show("Ima jos mesta za " + choosenTour.MaxGuests);
-                    return false;                    
-                    //ovde je slucaj kada ima mesta, ali smo promasili broj
+                    FreePlaceMessage(choosenTour.MaxGuests);
+                    return false;
                 }
-
             }
             else
             {
-                foreach(TourReservation tr in _reservations)
+                foreach(TourReservation tourReservation in _reservations)
                 {
-                    if(tr.TourId == choosenTour.Id)
+                    if(tourReservation.TourId == choosenTour.Id)
                     {
-                        if (int.Parse(numberOfGuests) <= tr.GuestsNumberPerReservation)
+                        if (int.Parse(numberOfGuests) <= tourReservation.GuestsNumberPerReservation)
                         {
-                            int idR = tr.Id;
-                            int gnpr = tr.GuestsNumberPerReservation;
-                            _reservations.Remove(tr);
-                            TourReservation newReservation = new TourReservation(idR, choosenTour.Id, gnpr - int.Parse(numberOfGuests));
-                            _reservations.Add(newReservation);
-                            _reservationHandler.Save(_reservations);
+                            SaveSameReservationToFile(choosenTour, tourReservation, numberOfGuests);
                             return true;
 
                         }
                         else
                         {
-                            if (tr.GuestsNumberPerReservation == 0)
+                            if (tourReservation.GuestsNumberPerReservation == 0)
                             {
-                                MessageBox.Show("Tura je skroz popunjena");
+                                FullyBookedTours(choosenTour);
                                 return false;
-                                //solucije za druge ture na istom mestu
-
                             }
                             else
                             {
-                                MessageBox.Show("Ima jos mesta za " + tr.GuestsNumberPerReservation);
+                                FreePlaceMessage(tourReservation.GuestsNumberPerReservation);
                                 return false;
-                                //promena broja ljudi pa da proba da rezervise
-                                //Gost može promeniti broj ljudi ili odustati od ture (odustati od kreiranje rezervacije).
                             }
                         }
                     }
                 }
                 if (int.Parse(numberOfGuests) <= choosenTour.MaxGuests)
                 {
-                     TourReservation reservation = new TourReservation(GenerateId(), choosenTour.Id, choosenTour.MaxGuests - int.Parse(numberOfGuests));
-                    _reservations.Add(reservation);
-                    _reservationHandler.Save(_reservations);
+                    SaveReservationToFile(choosenTour, numberOfGuests);
                     return true;
-
                 }
                 else
                 {
-                    MessageBox.Show("Ima jos mesta za " + choosenTour.MaxGuests);
+                    FreePlaceMessage(choosenTour.MaxGuests);
                     return false;
-                    //ovde je slucaj kada ima mesta, ali smo promasili broj
                 }
-
             }
         }
 
@@ -357,14 +165,7 @@ namespace BookingProject.Controller
             {
                 if (BookingSuccess(choosenTour, numberOfGuests))
                 {
-                    if (int.Parse(numberOfGuests) == 1)
-                    {
-                        MessageBox.Show("You have successfully booked a tour for " + numberOfGuests + " people");
-                    }
-                    else
-                    {
-                        MessageBox.Show("You have successfully booked a tour for " + numberOfGuests + " people");
-                    }
+                    SuccessfulReservationMessage(numberOfGuests);
                 }
                 /*
                 else
@@ -372,9 +173,56 @@ namespace BookingProject.Controller
                     MessageBox.Show("Unfortunately, it is not possible to make a reservation. The number of vacancies has been filled.");
                     //ovde treba ispitati da li je tura SKROZ POPUNJENA, ili ima mesta za jos neki odredjen broj ljudi 
                     //ponuditi druge ture na istom mestu
+                    //OVO VIDETI JOS U ZAVISNOSTI OD OPTIMIZACIJE
                 }
                 */
             }
+        }
+
+        public void FullyBookedTours (Tour choosenTour)
+        {
+            MessageBox.Show("The tour is fully booked. The system will offer you tours at the same location.");
+            ReservationTourOtherOffersView reservationTourOtherOffersView = new ReservationTourOtherOffersView(choosenTour);
+            reservationTourOtherOffersView.Show();
+        }
+
+        public void SuccessfulReservationMessage(string numberOfGuests)
+        {
+            if (int.Parse(numberOfGuests) == 1)
+            {
+                MessageBox.Show("You have successfully booked a tour for " + numberOfGuests + " person");
+            }
+            else
+            {
+                MessageBox.Show("You have successfully booked a tour for " + numberOfGuests + " people");
+            }
+        }
+
+        public void FreePlaceMessage (int maxGuests)
+        {
+            if (maxGuests == 1)
+            {
+                MessageBox.Show("There is space for " + maxGuests + " more person");
+            }
+            else
+            {
+                MessageBox.Show("There is space for " + maxGuests + " more people");
+            }
+        }
+
+        public List <Tour> GetFillteredTours (Location location, int choosenTourId)
+        {
+            List<Tour> filteredTours = new List<Tour>();
+
+            foreach (Tour tour in _tours)
+            {
+                if (tour.Location.City == location.City && tour.Location.Country == location.Country && choosenTourId != tour.Id)
+                {
+                    filteredTours.Add(tour);
+                } 
+            }
+
+            return filteredTours;
         }
     }
 }

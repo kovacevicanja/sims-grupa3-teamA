@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
         Title="ReservationTourView" Height="450" Width="800">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="64*"/>
@@ -18,7 +18,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="2" Height="300" Margin="28,25,121,25">
+        <Grid Grid.Row="0" Grid.Column="2" Margin="32,25,123,46">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
@@ -26,10 +26,11 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Height="30">Number of guests:</Label>
+            <Label Grid.Row="0" Grid.Column="0" Height="30" Grid.ColumnSpan="2" Margin="-1,15,272,255">Number of guests:</Label>
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=EnteredGuests}"
-                     Height="30"></TextBox>
+                     Height="30" Margin="0,15,-1,255"></TextBox>
         </Grid>
+
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Margin="121,0,0,0" >
             <Button Content="Close" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
               Click="Button_Click_Close" />

@@ -36,10 +36,7 @@ namespace BookingProject.View
         public string Duration { get; set; } = string.Empty;
         public string ChoosenLanguage { get; set; } = string.Empty;
         public string NumOfGuests { get; set; } = string.Empty;
-
         public Tour ChoosenTour { get; set; }  
-
-       
 
         public SecondGuestView()
         {
@@ -79,37 +76,12 @@ namespace BookingProject.View
             }
         }
 
-        /*
-        Student student = Student; //choosen student
+        private void Button_Click_Cancel(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
-        student.Ime = Ime;
-            student.Prezime = Prezime;
-            student.BrojIndeksa = BrojIndeksa;
-            Adresa adresa = new Adresa();
-        adresa.Drzava = Drzava;
-            adresa.Ulica = Ulica;
-            adresa.Broj = Broj;
-            adresa.Grad = Grad;
-
-            adresaController.Create(adresa);
-            student.IdAdresa = adresa.IdAdresa;
-
-            student.GodinaUpisa = GodinaUpisa;
-            student.DatumRodjenja = Datumi.StringUDatum(DatumRodjenja);
-            student.KontaktTelefon = KontaktTelefon;
-            student.EmailAdresa = EmailAdresa;
-            student.TrenutnaGodinaStudiranja = IzabranaGodinaStudiranja;
-            student.Status = IzabraniStatus;
-            student.ProsecnaOcena = ProsecnaOcena;
-
-            if (IsValid)
-            {
-                studentController.Update(student);
-
-            }
-        */
-
-    private void BookButton_Click(object sender, RoutedEventArgs e)
+        private void BookButton_Click(object sender, RoutedEventArgs e)
         {
                 ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour);
                 reservationTourView.Show();
