@@ -2,6 +2,7 @@
 using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.Model.Images;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -47,14 +48,14 @@ namespace BookingProject.View
             var app = Application.Current as App;
             TourController = app.TourController;
             LocationController = app.LocationController;
-            KeyPointController= app.KeyPointController;
+            KeyPointController = app.KeyPointController;
             ImageController = app.ImageController;
             StartingDateController = app.StartingDateController;
         }
 
-        public string this[string columnName] => throw new NotImplementedException();
+        //public string this[string columnName] => throw new NotImplementedException();
 
-        public string Error => throw new NotImplementedException();
+        // public string Error => throw new NotImplementedException();
 
         private string _tourName;
 
@@ -186,9 +187,9 @@ namespace BookingProject.View
             tour.DurationInHours = Duration;
             tour.Language = ChosenLanguage;
 
-            Location location= new Location();
-            location.City= City;
-            location.Country= Country;
+            Location location = new Location();
+            location.City = City;
+            location.Country = Country;
 
 
             //uvezivanje sa lokacijom
@@ -254,5 +255,184 @@ namespace BookingProject.View
             enterImage.Show();
 
         }
+
+
+        //private Regex _IndexRegex = new Regex("[A-Z]{2} [0-9]{1,3}/[0-9]{4}");
+
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "TourName")
+                {
+                    if (string.IsNullOrEmpty(TourName))
+                        return "You must enter a name!";
+
+                }
+                else if (columnName == "Description")
+                {
+                    if (string.IsNullOrEmpty(Description))
+                        return "You must enter a description!";
+                }
+                else if (columnName == "Country")
+                {
+                    if (string.IsNullOrEmpty(Country))
+                        return "You must enter a country!";
+                }
+                else if (columnName == "City")
+                {
+                    if (string.IsNullOrEmpty(City))
+                        return "You must enter a city!";
+                }
+
+                else if (columnName == "Duration")
+                {
+                    if (!validDuration())
+                        return "You must enter a number!";
+                }
+
+                else if (columnName == "MaxGuests")
+                {
+                    if (!validMaxGuests())
+                        return "You must enter a number!";
+                }
+
+                return null;
+            }
+        }
+
+        private readonly string[] _validatedProperties = { "TourName", "Description", "Country", "City", "Duration", "MaxGuests" };
+
+
+        /* public bool validDuration()
+         {
+
+             int number;
+             bool isNumeric = int.TryParse(_validatedProperties[4], out number);
+
+             if (!isNumeric || number == 0)
+             {
+                 return false;
+             }
+
+             return true;
+
+         }
+
+         public bool validMaxGuests()
+         {
+
+             int number;
+             bool isNumeric = int.TryParse(_validatedProperties[5], out number);
+
+             if (!isNumeric || number == 0)
+             {
+                 return false;
+             }
+
+             return true;
+
+         } */
+
+        public bool validDuration()
+        {
+
+            string testString = Duration.ToString();
+
+            if (string.IsNullOrEmpty(testString) || Duration == 0)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
+
+        public bool validMaxGuests()
+        {
+
+            string testString = MaxGuests.ToString();
+
+            if (string.IsNullOrEmpty(testString) || MaxGuests == 0)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
+
+        public bool validKeyPoint()
+        {
+            int keyPointNumber = 0;
+            KeyPointHandler keyPointHandler = new KeyPointHandler();
+            foreach (KeyPoint keyPoint in keyPointHandler._keyPoints)
+            {
+                if (keyPoint.TourId == -1)
+                {
+                    keyPointNumber++;
+                }
+            }
+
+            if (keyPointNumber < 2)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool validTourImage()
+        {
+            TourImageHandler tourImageHandler = new TourImageHandler();
+            foreach (TourImage tourImage in tourImageHandler._images)
+            {
+                if (tourImage.TourId == -1)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool validTourDateTime()
+        {
+
+            TourStartingTimeHandler tourStartingTimeHandler = new TourStartingTimeHandler();
+            foreach (TourDateTime tourDate in tourStartingTimeHandler._dates)
+            {
+                if (tourDate.TourId == -1)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var property in _validatedProperties)
+                {
+                    if (this[property] != null)
+                        return false;
+                }
+
+                return (validMaxGuests() && validDuration() && validKeyPoint() && validTourDateTime() && validTourImage());
+
+            }
+        }
+
+        private void Window_LayoutUpdated(object sender, System.EventArgs e)
+        {
+            if (IsValid)
+                CreateButton.IsEnabled = true;
+            else
+                CreateButton.IsEnabled = false;
+        }
+
     }
 }

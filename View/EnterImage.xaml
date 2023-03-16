@@ -5,7 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="EnterImage" Height="180" Width="500">
+        Title="EnterImage" Height="180" Width="500" LayoutUpdated="Window_LayoutUpdated">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <!-- Placeholder for the TextBox itself -->
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+            </StackPanel>
+
+        </ControlTemplate>
+    </Window.Resources>
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
@@ -17,11 +29,13 @@
 
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,2,0,0" Grid.RowSpan="2" >
             <Button Content="Zatvori" IsCancel="True" Click="CancelButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5" />
-            <Button Content="Kreiraj" IsDefault="True" Click="Button_Click_Kreiraj"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5" />
+            <Button x:Name="CreateButton" Content="Kreiraj" IsDefault="True" Click="Button_Click_Kreiraj"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5" IsEnabled="False"/>
         </WrapPanel>
         <Grid HorizontalAlignment="Center" Height="80" VerticalAlignment="Center" Width="480">
             <Label Content="ENTER IMAGE URL: " HorizontalAlignment="Left" Height="70" Margin="10,10,0,0" VerticalAlignment="Top" Width="230"/>
-            <TextBox HorizontalAlignment="Center" Height="70" Margin="245,10,0,0" TextWrapping="Wrap" Text="{Binding Path=Url}"  VerticalAlignment="Top" Width="235"/>
+            <TextBox HorizontalAlignment="Center" Height="70" Margin="245,10,0,0" TextWrapping="Wrap" Text="{Binding Path=Url, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  VerticalAlignment="Top" Width="235"
+            Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            </TextBox>
         </Grid>
 
 
