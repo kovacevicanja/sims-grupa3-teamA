@@ -30,10 +30,10 @@
             <Label Grid.Row="0" Grid.Column="0" Height="30">Initial date:</Label>
             <Label Grid.Row="1" Grid.Column="0" Height="30">End date:</Label>
             <Label Grid.Row="2" Grid.Column="0" Height="30">Number of days to stay:</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=InitialDate, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
+            <DatePicker Grid.Row="0" Grid.Column="1" SelectedDate="{Binding Path=InitialDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
+                     Height="30"></DatePicker>
+            <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
+                     Height="30"></DatePicker>
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=NumberOfDaysToState, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
             
