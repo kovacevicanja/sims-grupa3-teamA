@@ -118,6 +118,9 @@
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuestRateView.xaml.cs">
+      <DependentUpon>GuestRateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NotGradedView.xaml.cs">
       <DependentUpon>NotGradedView.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest1View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuestRateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
