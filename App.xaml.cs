@@ -24,7 +24,10 @@ namespace BookingProject
         public AccommodationController AccommodationController { get; set; }
         public AccommodationLocationController AccommodationLocationController { get; set; }
         public AccommodationImageController AccommodationImageController { get; set; }
-       
+        public GuestGradeController GuestGradeController { get; set; }
+
+        public AccommodationReservationController AccommodationReservationController { get; set; }
+
         public App()
         {
 
@@ -36,6 +39,14 @@ namespace BookingProject
             AccommodationImageController= new AccommodationImageController();
             AccommodationLocationController = new AccommodationLocationController();
             AccommodationController = new AccommodationController();
+            AccommodationReservationController = new AccommodationReservationController();
+            GuestGradeController = new GuestGradeController();
+            GuestGradeController._accommodationController = AccommodationReservationController;
+            AccommodationReservationController._guestGradeController= GuestGradeController;
+            AccommodationReservationController._accommodationController = AccommodationController;
+
+            AccommodationReservationController.Load();
+            GuestGradeController.Load();
         }
 
 

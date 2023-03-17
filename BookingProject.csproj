@@ -61,6 +61,7 @@
     <Compile Include="Controller\AccommodationLocationController.cs" />
     <Compile Include="Controller\AccommodationImageController.cs" />
     <Compile Include="Controller\AccommodationReservationController.cs" />
+    <Compile Include="Controller\GuestGradeController.cs" />
     <Compile Include="Controller\TourImageController.cs" />
     <Compile Include="Controller\KeyPointController.cs" />
     <Compile Include="Controller\TourLocationController.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="FileHandler\AccommodationHandler.cs" />
     <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
     <Compile Include="FileHandler\AccomodationLocationHandler.cs" />
+    <Compile Include="FileHandler\GuestGradeHandler.cs" />
     <Compile Include="FileHandler\TourImageHandler.cs" />
     <Compile Include="FileHandler\KeyPointHandler.cs" />
     <Compile Include="FileHandler\AccommodationImageHandler.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\AccommodationDate.cs" />
     <Compile Include="Model\AccommodationReservation.cs" />
+    <Compile Include="Model\GuestGrade.cs" />
     <Compile Include="Model\KeyPoint.cs" />
     <Compile Include="Model\TourDateTime.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
@@ -114,6 +117,9 @@
     </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NotGradedView.xaml.cs">
+      <DependentUpon>NotGradedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnerView.xaml.cs">
       <DependentUpon>OwnerView.xaml</DependentUpon>
@@ -172,6 +178,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\NotGradedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\OwnerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,6 +237,7 @@
     <None Include="Resources\Data\accommodations.csv" />
     <None Include="Resources\Data\accommodationDates.csv" />
     <None Include="Resources\Data\accommodationLocations.csv" />
+    <None Include="Resources\Data\guestGrades.csv" />
     <None Include="Resources\Data\tourImages.csv" />
     <None Include="Resources\Data\keyPoints.csv" />
     <None Include="Resources\Data\tourLocations.csv" />
@@ -235,6 +246,7 @@
     <None Include="Resources\Data\tourStartingTime.csv" />
     <None Include="Resources\Data\tourTime.csv" />
     <None Include="Resources\Data\users.csv" />
+    <None Include="Resources\Images\accommodationimages.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

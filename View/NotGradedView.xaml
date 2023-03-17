@@ -1,0 +1,20 @@
+﻿<Window x:Class="BookingProject.View.NotGradedView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View"
+        mc:Ignorable="d"
+        Title="NotGradedView" Height="450" Width="400">
+    <Grid>
+        <DataGrid ItemsSource ="{Binding Path=Reservations, UpdateSourceTrigger=PropertyChanged}"
+                     SelectedItem="SelectedReservation" Margin="16,12,16,104" SelectionMode="Single" AutoGenerateColumns="False" Name="ReservationsDataGrid" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Initial Date" Width="100" Binding="{Binding InitialDate}"></DataGridTextColumn>
+                <DataGridTextColumn Header="End Date" Width="100" Binding="{Binding EndDate}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button  Click="Button_Grade" Content="Grade" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60"/>
+    </Grid>
+</Window>

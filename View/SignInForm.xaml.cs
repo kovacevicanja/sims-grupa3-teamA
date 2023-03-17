@@ -68,12 +68,15 @@ namespace BookingProject.View
                 {
                     if (IsSelectedOwner)
                     {
-                        OwnerView ownerView = new OwnerView();
-                        ownerView.Show();
+                        //OwnerView ownerView = new OwnerView();
+                        //ownerView.Show();
+                        NotGradedView view = new NotGradedView();
+                        view.Show();
                     }
                     else if(IsSelectedGuest1){
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
+                        
                     }else if(IsSelectedGuest2)
                     {
                         //MessageBox.Show("You have successfully logged in as second guest!");

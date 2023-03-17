@@ -24,7 +24,7 @@ namespace BookingProject.View
     public partial class OwnerView : Window
     {
         private AccommodationController _accommodationController;
-        private ObservableCollection<Accommodation> _accommodations;
+        public ObservableCollection<Accommodation> Accommodations { get; set; }
         public Accommodation ChosenAccommodation { get; set; }
         public AccommodationImage Image { get; set; }
         public OwnerView()
@@ -32,8 +32,7 @@ namespace BookingProject.View
             InitializeComponent();
             this.DataContext = this;
             _accommodationController = new AccommodationController();
-            _accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
-            AccommodationDataGrid.ItemsSource = _accommodations;
+            Accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
         }
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {

@@ -14,17 +14,19 @@ namespace BookingProject.Controller
         private readonly List<IObserver> observers;
         private readonly AccommodationReservationHandler _accommodationReservationHandler;
         private List<AccommodationReservation> _accommodationReservations;
+        public AccommodationController _accommodationController { get; set; }
+        public GuestGradeController _guestGradeController { get; set; }
 
         public AccommodationReservationController()
         {
             _accommodationReservationHandler = new AccommodationReservationHandler();
             _accommodationReservations = new List<AccommodationReservation>();
-            Load();
         }
 
         public void Load()
         {
             _accommodationReservations = _accommodationReservationHandler.Load();
+            AccommodationReservationBind();
         }
 
         public List<AccommodationReservation> GetAll()
@@ -35,6 +37,16 @@ namespace BookingProject.Controller
         public void Save()
         {
             _accommodationReservationHandler.Save(_accommodationReservations);
+        }
+
+        public void AccommodationReservationBind()
+        {
+            _accommodationController.Load();
+            foreach (AccommodationReservation reservation in _accommodationReservations)
+            {
+                Accommodation accommodation = _accommodationController.GetByID(reservation.Accommodation.Id);
+                reservation.Accommodation = accommodation;
+            }
         }
 
 
@@ -106,6 +118,28 @@ namespace BookingProject.Controller
         public AccommodationReservation GetByID(int id)
         {
             return _accommodationReservations.Find(ar => ar.Id == id);
+        }
+
+        public List<AccommodationReservation> GetAllNotGradedReservations()
+        {
+            List<AccommodationReservation> reservations= new List<AccommodationReservation>();
+            foreach(AccommodationReservation reservation in _accommodationReservations)
+            {
+                if (IsReservationAvailable(reservation) == false)
+                {
+                    continue;
+                }
+                if (!(_guestGradeController.DoesReservationHaveGrade(reservation.Id)))
+                {
+                    reservations.Add(reservation);
+                }
+            }
+            return reservations;
+        }
+
+        private bool IsReservationAvailable(AccommodationReservation accommodationReservation)
+        {
+            return accommodationReservation.EndDate >= DateTime.Now && accommodationReservation.EndDate <= DateTime.Now.AddDays(5);
         }
 
 
