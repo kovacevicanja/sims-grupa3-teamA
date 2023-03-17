@@ -60,6 +60,7 @@
     <Compile Include="Controller\AccommodationDateController.cs" />
     <Compile Include="Controller\AccommodationLocationController.cs" />
     <Compile Include="Controller\AccommodationImageController.cs" />
+    <Compile Include="Controller\AccommodationReservationController.cs" />
     <Compile Include="Controller\TourImageController.cs" />
     <Compile Include="Controller\KeyPointController.cs" />
     <Compile Include="Controller\TourLocationController.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
+    <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
     <Compile Include="FileHandler\AccomodationLocationHandler.cs" />
     <Compile Include="FileHandler\TourImageHandler.cs" />
     <Compile Include="FileHandler\KeyPointHandler.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="FileHandler\TourHandler.cs" />
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\AccommodationDate.cs" />
+    <Compile Include="Model\AccommodationReservation.cs" />
     <Compile Include="Model\KeyPoint.cs" />
     <Compile Include="Model\TourDateTime.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
@@ -108,6 +111,9 @@
     </Compile>
     <Compile Include="View\EnterKeyPoint.xaml.cs">
       <DependentUpon>EnterKeyPoint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FindAvailableDatesForAccommodation.xaml.cs">
+      <DependentUpon>FindAvailableDatesForAccommodation.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
@@ -162,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EnterKeyPoint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FindAvailableDatesForAccommodation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +230,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\Data\accommodationReservations.csv" />
     <None Include="Resources\Data\accommodations.csv" />
     <None Include="Resources\Data\accommodationDates.csv" />
     <None Include="Resources\Data\accommodationLocations.csv" />

@@ -27,7 +27,7 @@ namespace BookingProject.View
         private AccommodationController _accommodationController;
         private ObservableCollection<Accommodation> _accommodations;
 
-        private Accommodation selectedAccommodation;
+        public Accommodation selectedAccommodation { get; set; }
         
         
 
@@ -57,7 +57,7 @@ namespace BookingProject.View
 
         private void Button_Click_Book(object sender, RoutedEventArgs e)
         {
-            ReservationAccommodationView reservationAccommodationView = new ReservationAccommodationView();
+            ReservationAccommodationView reservationAccommodationView = new ReservationAccommodationView(selectedAccommodation);
             reservationAccommodationView.Show();
         }
 

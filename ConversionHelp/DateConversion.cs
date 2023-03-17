@@ -27,7 +27,7 @@ namespace BookingProject.ConversionHelp
 
         public static string DateToStringAccommodation (DateTime date)
         {
-            return date.ToString("dd.MM.yyyy");
+            return date.ToString("dd.MM.yyyy.");
         }
 
         
