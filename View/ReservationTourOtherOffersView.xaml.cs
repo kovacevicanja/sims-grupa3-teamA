@@ -22,18 +22,16 @@ namespace BookingProject.View
     /// </summary>
     public partial class ReservationTourOtherOffersView : Window
     {
-        private TourController _tourController;
         private ObservableCollection<Tour> _tours; 
         private TourReservationController _tourReservationController; 
         public Tour ChoosenTour { get; set; } //ovo je stara odabrana tura
-
         public ReservationTourOtherOffersView(Tour choosenTour)
         {
             InitializeComponent();
             this.DataContext = this;
             ChoosenTour = choosenTour;
             _tourReservationController = new TourReservationController();
-            _tours = new ObservableCollection<Tour>(_tourReservationController.GetFillteredTours(choosenTour.Location, choosenTour.Id));
+            _tours = new ObservableCollection<Tour>(_tourReservationController.GetFilteredTours(choosenTour.Location, choosenTour.Id));
             TourDataGrid.ItemsSource = _tours;
         }
         private void Button_Click_Close(object sender, RoutedEventArgs e)
