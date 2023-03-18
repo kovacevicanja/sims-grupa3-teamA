@@ -74,6 +74,10 @@ namespace BookingProject.Controller
             _tourHandler.Save(_tours);
         }
 
+        public Tour GetLastTour()
+        {
+            return _tours.Last();
+        }
 
         public List<Tour> GetAll()
         {

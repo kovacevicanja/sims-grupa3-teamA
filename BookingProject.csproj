@@ -67,6 +67,7 @@
     <Compile Include="Controller\TourReservationController.cs" />
     <Compile Include="Controller\TourStartingTimeController.cs" />
     <Compile Include="Controller\TourController.cs" />
+    <Compile Include="Controller\TourTimeInstanceController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="FileHandler\TourReservationHandler.cs" />
     <Compile Include="FileHandler\TourStartingTimeHandler.cs" />
     <Compile Include="FileHandler\TourHandler.cs" />
+    <Compile Include="FileHandler\TourTimeInstanceHandler.cs" />
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\AccommodationDate.cs" />
     <Compile Include="Model\AccommodationReservation.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\Tour.cs" />
     <Compile Include="Model\TourReservation.cs" />
+    <Compile Include="Model\TourTimeInstance.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
@@ -250,6 +253,7 @@
     <None Include="Resources\Data\tours.csv" />
     <None Include="Resources\Data\tourStartingTime.csv" />
     <None Include="Resources\Data\tourTime.csv" />
+    <None Include="Resources\Data\tourTimeInstances.csv" />
     <None Include="Resources\Data\users.csv" />
   </ItemGroup>
   <ItemGroup>

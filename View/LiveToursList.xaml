@@ -53,15 +53,15 @@
                     </TransformGroup>
                 </DataGrid.RenderTransform>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Tour name" Width="70" Binding="{Binding Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="City" Width="70" Binding="{Binding Location.City}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Country" Width="70" Binding="{Binding Location.Country}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Description" Width="170" Binding="{Binding Description}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tour duration" Width="85" Binding="{Binding DurationInHours}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tour name" Width="70" Binding="{Binding Tour.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="City" Width="70" Binding="{Binding Tour.Location.City}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Country" Width="70" Binding="{Binding Tour.Location.Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Description" Width="170" Binding="{Binding Tour.Description}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tour duration" Width="85" Binding="{Binding Tour.DurationInHours}"></DataGridTextColumn>
                     <DataGridTemplateColumn Header="Key points" Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding KeyPoints}">
+                                <ItemsControl ItemsSource="{Binding Tour.KeyPoints}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Point}" />
@@ -71,25 +71,13 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Language" Width="65" Binding="{Binding Language}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Starting time" Width="135">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding StartingTime}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding StartingDateTime}" />
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Number of possible guests" Width="155" Binding="{Binding MaxGuests}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Language" Width="65" Binding="{Binding Tour.Language}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Starting time" Width="155" Binding="{Binding TourTime.StartingDateTime}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Number of possible guests" Width="155" Binding="{Binding Tour.MaxGuests}"></DataGridTextColumn>
                     <DataGridTemplateColumn Header="Images" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding Images}">
+                                <ItemsControl ItemsSource="{Binding Tour.Images}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Image Source="{Binding Url}" Width="80" Height="80" />

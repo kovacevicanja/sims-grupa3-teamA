@@ -22,8 +22,8 @@ namespace BookingProject.View
     public partial class LiveTourView : Window
     {
 
-        public Tour ChosenTour { get; set; }
-        public LiveTourView(Tour chosenTour)
+        public TourTimeInstance ChosenTour { get; set; }
+        public LiveTourView(TourTimeInstance chosenTour)
         {
             InitializeComponent();
             ChosenTour = chosenTour;

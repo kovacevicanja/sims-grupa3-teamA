@@ -28,16 +28,12 @@ namespace BookingProject.View
     /// </summary>
     public partial class LiveToursList : Window
     {
-        private TourController _tourController;
-        private ObservableCollection<Tour> _tours;
+        private TourTimeInstanceController _tourTimeInstanceController;
+        private TourStartingTimeController _tourStartingTimeController;
+        private ObservableCollection<TourTimeInstance> _instances;
 
-        public string City { get; set; } = string.Empty;
-        public string Country { get; set; } = string.Empty;
-        public string Duration { get; set; } = string.Empty;
-        public string ChoosenLanguage { get; set; } = string.Empty;
-        public string NumOfGuests { get; set; } = string.Empty;
 
-        public Tour ChosenTour { get; set; }
+        public TourTimeInstance ChosenTour { get; set; }
 
 
 
@@ -45,17 +41,18 @@ namespace BookingProject.View
         {
             InitializeComponent();
             this.DataContext = this;
-            _tourController = new TourController();
+            _tourTimeInstanceController = new TourTimeInstanceController();
+            _tourStartingTimeController = new TourStartingTimeController();
 
-            _tours = new ObservableCollection<Tour>(FilterTours(_tourController.GetAll()));
-            TourDataGrid.ItemsSource = _tours;
+            _instances = new ObservableCollection<TourTimeInstance>(FilterTours(_tourTimeInstanceController.GetAll()));
+            TourDataGrid.ItemsSource = _instances;
 
         }
 
-        public List<Tour> FilterTours(List<Tour> tours)
+        public List<TourTimeInstance> FilterTours(List<TourTimeInstance> tours)
         {
-            List<Tour> filteredTours= new List<Tour>();
-            foreach(Tour tour in tours)
+            List<TourTimeInstance> filteredTours= new List<TourTimeInstance>();
+            foreach(TourTimeInstance tour in tours)
             {
                 if (TodayCheck(tour))
                 {
@@ -65,16 +62,14 @@ namespace BookingProject.View
             return filteredTours;
         }
 
-        public bool TodayCheck(Tour tour)
+        public bool TodayCheck(TourTimeInstance tour)
         {
-            foreach(TourDateTime tourDate in tour.StartingTime)
-            {
+            TourDateTime tourDate = new TourDateTime();
+            tourDate = _tourStartingTimeController.GetByID(tour.DateId);
                 if(tourDate.StartingDateTime.Date == DateTime.Now.Date)
                 {
                     return true;
-                }
-            }
-
+                }  
             return false;
         }
 
@@ -103,89 +98,6 @@ namespace BookingProject.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string _name;
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                if (value != _name)
-                {
-                    _name = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private Location _location;
-        public Location Location
-        {
-            get => _location;
-            set
-            {
-                if (value != _location)
-                {
-                    _location = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private string _description;
-        public string Description
-        {
-            get => _description;
-            set
-            {
-                if (value != _description)
-                {
-                    _description = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private LanguageEnum _language;
-        public LanguageEnum Language
-        {
-            get => _language;
-            set
-            {
-                if (value != _language)
-                {
-                    _language = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private int _maxGuests;
-        public int MaxGuests
-        {
-            get => _maxGuests;
-            set
-            {
-                if (value != _maxGuests)
-                {
-                    _maxGuests = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private double _durationInHours;
-        public double DurationInHours
-        {
-            get => _durationInHours;
-            set
-            {
-                if (value != _durationInHours)
-                {
-                    _durationInHours = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
     }
 }
 
