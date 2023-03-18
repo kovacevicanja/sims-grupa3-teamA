@@ -19,6 +19,8 @@ namespace BookingProject.Model
         public Location Location { get; set; }
         public string Description { get; set; }
         public LanguageEnum Language { get; set; }
+
+        public TourState State { get; set; }
         public int MaxGuests { get; set; }
         public List<KeyPoint> KeyPoints { get; set; }
         public List<TourDateTime> StartingTime { get; set; }
@@ -29,10 +31,10 @@ namespace BookingProject.Model
             KeyPoints = new List<KeyPoint>();
             StartingTime = new List<TourDateTime>();
             Images = new List<TourImage>();
-           
+            State = TourState.CREATED;
         }
 
-        public Tour(int id, string name, int locationId, Location location, string description, LanguageEnum language, int maxGuests, List<KeyPoint> keyPoints, List<TourDateTime> startingTime, double durationInHours, List<TourImage> images)
+        public Tour(int id, string name, int locationId, Location location, string description, LanguageEnum language, TourState state, int maxGuests, List<KeyPoint> keyPoints, List<TourDateTime> startingTime, double durationInHours, List<TourImage> images)
         {
             Id = id;
             Name = name;
@@ -40,6 +42,7 @@ namespace BookingProject.Model
             Location = location;
             Description = description;
             Language = language;
+            State = state;
             MaxGuests = maxGuests;
             DurationInHours = durationInHours;
         }
@@ -65,6 +68,18 @@ namespace BookingProject.Model
 
             MaxGuests = int.Parse(values[5]);
             DurationInHours = int.Parse(values[6]);
+
+            TourState tourState;
+            if (Enum.TryParse<TourState>(values[7], out tourState))
+            {
+                State = tourState;
+            }
+            else
+            {
+                tourState = TourState.STARTED;
+                System.Console.WriteLine("Doslo je do greske prilikom ucitavanja stanja!");
+
+            }
         }
 
         public string[] ToCSV()
@@ -78,6 +93,7 @@ namespace BookingProject.Model
                 Language.ToString(),
                 MaxGuests.ToString(),
                 DurationInHours.ToString(),
+                State.ToString(),
 
             };
             return csvValues;

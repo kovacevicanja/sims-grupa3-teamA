@@ -83,6 +83,8 @@
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\AccommodationDate.cs" />
     <Compile Include="Model\AccommodationReservation.cs" />
+    <Compile Include="Model\Enums\KeyPointState.cs" />
+    <Compile Include="Model\Enums\TourState.cs" />
     <Compile Include="Model\KeyPoint.cs" />
     <Compile Include="Model\TourDateTime.cs" />
     <Compile Include="Model\Enums\AccommodationType.cs" />
@@ -114,6 +116,12 @@
     </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LiveToursList.xaml.cs">
+      <DependentUpon>LiveToursList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LiveTourView.xaml.cs">
+      <DependentUpon>LiveTourView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnerView.xaml.cs">
       <DependentUpon>OwnerView.xaml</DependentUpon>
@@ -169,6 +177,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest1View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LiveToursList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LiveTourView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

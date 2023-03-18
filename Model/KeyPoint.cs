@@ -1,4 +1,5 @@
-﻿using BookingProject.Serializer;
+﻿using BookingProject.Model.Enums;
+using BookingProject.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,12 @@ namespace BookingProject.Model
 
         public int TourId { get; set; }
         public string Point { get; set; }
+
+        public KeyPointState State { get; set; }
         public KeyPoint() 
         {
             TourId = -1;
+            State = KeyPointState.EMPTY;
         }
 
         public KeyPoint(int id, int tourId, string point)
@@ -24,6 +28,7 @@ namespace BookingProject.Model
             Id = id;
             TourId = tourId;
             Point = point;
+            State = KeyPointState.EMPTY;
         }
 
         public void FromCSV(string[] values)
@@ -31,6 +36,17 @@ namespace BookingProject.Model
             Id = int.Parse(values[0]);
             TourId = int.Parse(values[1]);
             Point = values[2];
+            KeyPointState keyPointState;
+            if (Enum.TryParse<KeyPointState>(values[3], out keyPointState))
+            {
+                State = keyPointState;
+            }
+            else
+            {
+                keyPointState = KeyPointState.EMPTY;
+                System.Console.WriteLine("Doslo je do greske prilikom ucitavanja stanja!");
+
+            }
 
         }
 
@@ -41,6 +57,7 @@ namespace BookingProject.Model
                 Id.ToString(),
                 TourId.ToString(),
                 Point,
+                State.ToString(),
             };
             return csvValues;
 

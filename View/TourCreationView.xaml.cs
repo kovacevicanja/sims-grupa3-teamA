@@ -230,8 +230,11 @@ namespace BookingProject.View
             StartingDateController.Load();
             StartingDateController.CleanUnused();
             StartingDateController.Save();
-
+                
+            LiveToursList liveTourList = new LiveToursList();
+            liveTourList.Show();
             Close();
+
         }
 
         private void Button_Click_StartingTime(object sender, RoutedEventArgs e)
