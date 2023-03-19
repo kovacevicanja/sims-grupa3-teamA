@@ -127,9 +127,6 @@
     <Compile Include="View\ReservationTourView.xaml.cs">
       <DependentUpon>ReservationTourView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SearchAccommodationsView.xaml.cs">
-      <DependentUpon>SearchAccommodationsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\SecondGuestView.xaml.cs">
       <DependentUpon>SecondGuestView.xaml</DependentUpon>
     </Compile>
@@ -188,10 +185,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ReservationTourView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SearchAccommodationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

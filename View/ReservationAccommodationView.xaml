@@ -22,6 +22,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -29,15 +30,16 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Height="30">Initial date:</Label>
             <Label Grid.Row="1" Grid.Column="0" Height="30">End date:</Label>
-            <Label Grid.Row="2" Grid.Column="0" Height="30">Number of days to stay:</Label>
+            <Label Grid.Row="2" Grid.Column="0" Height="30" >Number of guests:</Label>
             <DatePicker Grid.Row="0" Grid.Column="1" SelectedDate="{Binding Path=InitialDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
                      Height="30"></DatePicker>
             <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
                      Height="30"></DatePicker>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=NumberOfDaysToStay, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="20" Height="30" Width="250"  Text="{Binding Path=NumberOfGuests, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             
-        </Grid>
+
+        </Grid> 
+        
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Margin="121,0,0,0" >
             <Button Content="Close" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
               Click="Button_Click_Close" />

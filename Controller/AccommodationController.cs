@@ -119,22 +119,25 @@ namespace BookingProject.Controller
             }
         }
 
-        public ObservableCollection<Accommodation> Search(ObservableCollection<Accommodation> _accommodationsView, string name, string city, string state, string type, string numberOfGuests, string minNumDaysOfReservation)
+        public bool checkType(List<String> accommodationTypes, string accType)
+        {
+            return accommodationTypes == null || accommodationTypes.Count == 0 || accommodationTypes.Any(t => accType.Contains(t.ToLower()));
+        }
+
+        public ObservableCollection<Accommodation> Search(ObservableCollection<Accommodation> _accommodationsView, string name, string city, string state, List<string> types, string numberOfGuests, string minNumDaysOfReservation)
         {
             _accommodationsView.Clear();
 
             foreach (Accommodation accommodation in _accommodations)
             {
-                string typeEnum = accommodation.Type.ToString().ToLower();
+                bool accMatched = (string.IsNullOrEmpty(city) || accommodation.Location.City.ToLower().Contains(city.ToLower()))
+                    && (string.IsNullOrEmpty(state) || accommodation.Location.Country.ToLower().Contains(state.ToLower()))
+                    && (string.IsNullOrEmpty(name) ||  accommodation.AccommodationName.ToLower().Contains(name.ToLower()))
+                    && checkType(types, accommodation.Type.ToString().ToLower())
+                    && (string.IsNullOrEmpty(numberOfGuests) || int.Parse(numberOfGuests) <= accommodation.MaxGuestNumber)
+                    && (string.IsNullOrEmpty(minNumDaysOfReservation) || int.Parse(minNumDaysOfReservation) >= accommodation.MinDays);
 
-                bool isSearched = (city.Equals("") || accommodation.Location.City.ToLower().Contains(city.ToLower()))
-                    && (state.Equals("") || accommodation.Location.Country.ToLower().Contains(state.ToLower()))
-                    && (name.Equals("") ||  accommodation.AccommodationName.ToLower().Contains(name.ToLower()))
-                    && (type.Equals("") || typeEnum.Equals(type.ToLower()))
-                    && (numberOfGuests.Equals("") || int.Parse(numberOfGuests) <= accommodation.MaxGuestNumber)
-                    && (minNumDaysOfReservation.Equals("") || int.Parse(minNumDaysOfReservation) >= accommodation.MinDays);
-
-                if (isSearched)
+                if (accMatched)
                 {
                     _accommodationsView.Add(accommodation);
                 }
@@ -143,7 +146,8 @@ namespace BookingProject.Controller
 
         }
 
-        
+     
+
         public void NotifyObservers()
         {
             foreach(var observer in observers)

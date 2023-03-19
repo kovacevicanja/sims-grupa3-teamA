@@ -52,31 +52,30 @@ namespace BookingProject.Controller
             return maxId + 1;
         }
 
-        public bool isValidBook(Accommodation selectedAccommodation, DateTime initialDate, DateTime endDate, string numberOfDaysToStay)
+        public bool checkNumberOfGuests(Accommodation selectedAccommodation, string numberOfGuests)
         {
-            if(int.Parse(numberOfDaysToStay) < selectedAccommodation.MinDays || !checkDate(initialDate, endDate) || !checkAvailableDate(selectedAccommodation, initialDate, endDate, numberOfDaysToStay))
+            if(selectedAccommodation.MaxGuestNumber >= int.Parse(numberOfGuests))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool checkEnteredDates(DateTime initialDate, DateTime endDate)
+        {
+            if(initialDate.Month > endDate.Month || endDate.Year < initialDate.Year || !checkDays(initialDate, endDate) || !compareWithToday(initialDate))
             {
                 return false;
             }
             return true;
         }
 
-        public bool checkDate(DateTime initialDate, DateTime endDate)
-        {
-            if(initialDate.Month > endDate.Month || endDate.Year < initialDate.Year || !checkDays(initialDate, endDate) || !checkTodayDate(initialDate))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public bool checkTodayDate(DateTime initialDate)
+        public bool compareWithToday(DateTime initialDate)
         {
             DateTime today = DateTime.Now.Date;
             DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
             if (initialDate < todayMidnight)
             {
-                
                 return false;
             }
             return true;
@@ -94,29 +93,26 @@ namespace BookingProject.Controller
             return true;
         }
 
-        public bool checkAvailableDate(Accommodation selectedAccommodation, DateTime initialDate, DateTime endDate, string numberOfDaysToStay) 
+        public bool checkAvailableDate(Accommodation selectedAccommodation, DateTime initialDate, DateTime endDate, int numberOfDaysToStay, string numberOfGuests) 
         {
-            
+            List<DateTime> tryDates = makeListOfReservedDates(initialDate, endDate);
+            List<AccommodationReservation> reservations = getReservationsForAccommodation(selectedAccommodation);
+            return !isDateReserved(tryDates, reservations);
+        }
+
+        public List<AccommodationReservation> getReservationsForAccommodation(Accommodation accommodation)
+        {
+            List<AccommodationReservation> reservations = new List<AccommodationReservation>();
             foreach(AccommodationReservation reservation in _accommodationReservations)
             {
-                if(reservation.Accommodation.Id == selectedAccommodation.Id)
+                if(reservation.Accommodation.Id == accommodation.Id)
                 {
-                    List<DateTime> reservedDates = makeListOfReservedDates(reservation.InitialDate, reservation.EndDate);
-                    foreach (DateTime date in reservedDates)
-                    {
-                        if(initialDate == date || endDate == date)
-                        {
-                            return false;
-                        }
-                    }
+                    reservations.Add(reservation);
                 }
             }
-            AccommodationReservation accommodationReservation = new AccommodationReservation(GenerateId(), selectedAccommodation, initialDate, endDate, int.Parse(numberOfDaysToStay));
-            _accommodationReservations.Add(accommodationReservation);
-            Save();
-
-            return true;
+            return reservations;
         }
+       
 
         public List<DateTime> makeListOfReservedDates(DateTime initialDate, DateTime endDate)
         {
@@ -128,7 +124,26 @@ namespace BookingProject.Controller
             return reservedDates;
         }
 
-        public List<(DateTime, DateTime)> findAvailableDates(Accommodation selectedAccommodation, DateTime initialDate, DateTime endDate, string numberOfDaysToStay)
+        private bool isDateReserved(List<DateTime> tryDates, List<AccommodationReservation> reservations)
+        {
+            foreach (AccommodationReservation reservation in reservations)
+            {
+                List<DateTime> reservedDates = makeListOfReservedDates(reservation.InitialDate, reservation.EndDate);
+                foreach (DateTime date in reservedDates)
+                {
+                    foreach (DateTime tryDate in tryDates)
+                    {
+                        if (tryDate == date)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public List<(DateTime, DateTime)> findAvailableDates(Accommodation selectedAccommodation, DateTime initialDate, DateTime endDate, int numberOfDaysToStay)
         {
             List<(DateTime, DateTime)> availableDates = new List<(DateTime, DateTime)>();
             List<DateTime> takenDates = findTakenDates(selectedAccommodation);
@@ -137,7 +152,7 @@ namespace BookingProject.Controller
 
             for(DateTime date = initialDate; date <= takenDates[takenDates.Count - 1]; date = date.AddDays(1))
             {
-                List<DateTime> datesInRange = makeListOfReservedDates(date, date.AddDays(int.Parse(numberOfDaysToStay)));
+                List<DateTime> datesInRange = makeListOfReservedDates(date, date.AddDays(numberOfDaysToStay));
                 if(!ifDatesAreInTakenList(datesInRange, takenDates))
                 {
                     availableDates.Add((datesInRange[0], datesInRange[datesInRange.Count - 1]));
@@ -147,16 +162,16 @@ namespace BookingProject.Controller
 
             if(availableDates.Count() == 0)
             {
-                availableDates.Add((takenDates[takenDates.Count - 1].AddDays(1), takenDates[takenDates.Count - 1].AddDays(int.Parse(numberOfDaysToStay) + 1)));
+                availableDates.Add((takenDates[takenDates.Count - 1].AddDays(1), takenDates[takenDates.Count - 1].AddDays(numberOfDaysToStay + 1)));
             }
 
             DateTime today = DateTime.Now.Date; 
             DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
 
 
-            for (DateTime date = initialDate; (date.AddDays(-int.Parse(numberOfDaysToStay))) > todayMidnight; date = date.AddDays(-1))
+            for (DateTime date = initialDate; (date.AddDays(-numberOfDaysToStay)) > todayMidnight; date = date.AddDays(-1))
             {
-                List<DateTime> datesInRange = makeListOfReservedDates(date.AddDays(-int.Parse(numberOfDaysToStay)), date);
+                List<DateTime> datesInRange = makeListOfReservedDates(date.AddDays(-numberOfDaysToStay), date);
                 if(!ifDatesAreInTakenList(datesInRange, takenDates))
                 {
                     availableDates.Add((datesInRange[0], datesInRange[datesInRange.Count - 1]));
@@ -198,24 +213,16 @@ namespace BookingProject.Controller
             return takenDates;
         }
 
-        public bool checkNumberOfGuestsAndBook(Range selectedDates, string numberOfGuests, Accommodation selectedAccommodation)
+        public void bookAccommodation(DateTime initialDate, DateTime endDate, Accommodation selectedAccommodation)
         {
-            if(selectedAccommodation.MaxGuestNumber >= int.Parse(numberOfGuests))
-            {
-                AccommodationReservation reservation = new AccommodationReservation();
-                reservation.Id = GenerateId();
-                reservation.Accommodation.Id = selectedAccommodation.Id;
-                reservation.InitialDate = selectedDates.StartDate;
-                reservation.EndDate = selectedDates.EndDate;
-                reservation.DaysToStay = (selectedDates.EndDate - selectedDates.StartDate).Days;
-                _accommodationReservations.Add(reservation);
-                Save();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            AccommodationReservation reservation = new AccommodationReservation();
+            reservation.Id = GenerateId();
+            reservation.Accommodation.Id = selectedAccommodation.Id;
+            reservation.InitialDate = initialDate;
+            reservation.EndDate = endDate;
+            reservation.DaysToStay = (endDate - initialDate).Days;
+            _accommodationReservations.Add(reservation);
+            Save();
         }
 
         public AccommodationReservation GetByID(int id)
