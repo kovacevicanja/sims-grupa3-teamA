@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -112,7 +113,7 @@ namespace BookingProject.View
                 currentState();
                 if(_keyPoints.Last().State == KeyPointState.CURRENT) { IsValid= true; }
                 _keyPointController.Save();
-                GuestListView guestListView = new GuestListView(ChosenKeyPoint, ChosenTour);
+                GuestListView guestListView = new GuestListView(ChosenTour, ChosenKeyPoint);
                 guestListView.Show();
                 Close();
 

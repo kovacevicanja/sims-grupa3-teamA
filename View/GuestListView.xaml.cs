@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace BookingProject.View
 {
@@ -27,34 +28,60 @@ namespace BookingProject.View
     {
 
 
-        public KeyPoint ChosenKeyPoint { get; set; }
 
-        private TourTimeInstanceController _tourTimeInstanceController;
+
+        public bool IsValid { get; set; }
+        public TourGuest ChosenGuest { get; set; }
+
+        private TourGuestController _tourGuestController;
+        private ObservableCollection<TourGuest> _guests;
         private KeyPointController _keyPointController;
-        private ObservableCollection<KeyPoint> _keyPoints;
-        private TourTimeInstance ChosenTour { get; set; }
 
-        public GuestListView(KeyPoint chosenKeyPoint, TourTimeInstance chosenTour)
+
+        public KeyPoint ChosenKeyPoint { get; set; }
+        public TourTimeInstance ChosenTour { get; set; }
+
+        public GuestListView(TourTimeInstance chosenTour, KeyPoint chosenKeyPoint)
         {
             InitializeComponent();
             this.DataContext = this;
-            _tourTimeInstanceController = new TourTimeInstanceController();
+            _tourGuestController = new TourGuestController();
             _keyPointController = new KeyPointController();
             ChosenTour = chosenTour;
+            ChosenKeyPoint = chosenKeyPoint;
+            _guests = new ObservableCollection<TourGuest>(filterGuests(_tourGuestController.GetAll()));
+            GuestDataGrid.ItemsSource = _guests;
         }
+
+        public List<TourGuest> filterGuests(List<TourGuest> guests)
+        {
+            List<TourGuest> filteredGuests= new List<TourGuest>();
+            foreach(TourGuest guest in guests)
+            {
+                if (guest.TourInstanceId == ChosenTour.Id)
+                {
+                    filteredGuests.Add(guest);
+                }
+            }
+            return filteredGuests;
+        }
+
+
+
+
+
 
 
 
         private void Button_Click_Mark(object sender, RoutedEventArgs e)
         {
-            //           if (ChosenKeyPoint != null)
-            //         {
-            //              passedState();
-            //             currentState();
-            //              GuestListView guestListView = new GuestListView(ChosenKeyPoint);
-            //              guestListView.Show();
-            //
-            //   }
+            if (ChosenGuest != null)
+            {
+                GuestPreseanceCheck guestPreseanceCheck = new GuestPreseanceCheck(ChosenTour, ChosenKeyPoint, ChosenGuest);
+                guestPreseanceCheck.Show();
+                Close();
+            
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -21,10 +21,12 @@ namespace BookingProject
         public KeyPointController KeyPointController { get; set; }
         public TourStartingTimeController StartingDateController { get; set; }
 
+        public TourGuestController TourGuestController { get; set; }
         public TourTimeInstanceController TourTimeInstanceController { get; set; }
         public AccommodationController AccommodationController { get; set; }
         public AccommodationLocationController AccommodationLocationController { get; set; }
         public AccommodationImageController AccommodationImageController { get; set; }
+
        
         public App()
         {
@@ -38,6 +40,7 @@ namespace BookingProject
             AccommodationLocationController = new AccommodationLocationController();
             AccommodationController = new AccommodationController();
             TourTimeInstanceController = new TourTimeInstanceController();
+            TourGuestController = new TourGuestController();
         }
 
 
