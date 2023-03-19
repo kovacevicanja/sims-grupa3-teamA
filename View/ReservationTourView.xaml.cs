@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.ConversionHelp;
 
 namespace BookingProject.View
 {
@@ -26,11 +27,14 @@ namespace BookingProject.View
     {
         public string EnteredGuests { get; set; } = string.Empty;
 
+        public TourDateTime SelectedDate { get; set; } 
+
         private TourReservationController _tourReservationController;
 
         private ObservableCollection<TourReservation> _tourReservations;
 
         public Tour ChoosenTour { get; set; }
+
 
         public ReservationTourView(Tour choosenTour)
         {
@@ -40,8 +44,6 @@ namespace BookingProject.View
             ChoosenTour = choosenTour;
             _tourReservationController = new TourReservationController();
             _tourReservations = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
-
-
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
@@ -49,9 +51,10 @@ namespace BookingProject.View
             this.Close();
         }
 
+
         private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
-        { 
-            _tourReservationController.TryToBook(ChoosenTour, EnteredGuests); 
+        {
+            _tourReservationController.TryToBook(ChoosenTour, EnteredGuests, SelectedDate.StartingDateTime); 
 
         }
     }

@@ -47,7 +47,6 @@ namespace BookingProject.View
             TourDataGrid.ItemsSource = _tours;
 
             languageComboBox.ItemsSource = new List<string>() { "ENGLISH", "SERBIAN", "GERMAN" };
-
         }
 
         private void Button_Click_Search(object sender, RoutedEventArgs e)
@@ -177,5 +176,19 @@ namespace BookingProject.View
                 }
             }
         }
+
+        //
+        private List<DateTime> _startingTime; 
+
+        public List <DateTime> StartingTime
+        {
+            get => _startingTime;
+            set
+            {
+                _startingTime = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }
