@@ -23,6 +23,7 @@ namespace BookingProject.Controller
         {
             _imageHandler = new TourImageHandler();
             _images = new List<TourImage>();
+            observers = new List<IObserver>();
             Load();
         }
 
@@ -49,11 +50,13 @@ namespace BookingProject.Controller
         {
             image.Id = GenerateId();
             _images.Add(image);
+            NotifyObservers();
         }
 
         public void Save()
         {
             _imageHandler.Save(_images);
+            NotifyObservers();
         }
 
         public void LinkToTour(int id)
@@ -67,11 +70,13 @@ namespace BookingProject.Controller
                 }
 
             }
+            NotifyObservers();
         }
 
         public void CleanUnused()
         {
             _images.RemoveAll(i => i.TourId == -1);
+            NotifyObservers();
 
         }
 
@@ -79,12 +84,6 @@ namespace BookingProject.Controller
         {
             return _images;
         }
-        private void SaveImage()
-        {
-            _imageHandler.Save(_images);
-        }
-       
-
         public TourImage GetByID(int id)
         {
             return _images.Find(image => image.Id == id);

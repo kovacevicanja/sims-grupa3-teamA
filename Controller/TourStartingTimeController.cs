@@ -21,6 +21,7 @@ namespace BookingProject.Controller
         {
             _startingDateHandler = new TourStartingTimeHandler();
             _dates = new List<TourDateTime>();
+            observers = new List<IObserver>();
             Load();
         }
 
@@ -46,11 +47,13 @@ namespace BookingProject.Controller
         {
             date.Id= GenerateId();
             _dates.Add(date);
+            NotifyObservers();
         }
 
         public void Save()
         {
             _startingDateHandler.Save(_dates);
+            NotifyObservers();
         }
 
 
@@ -65,11 +68,13 @@ namespace BookingProject.Controller
                 }
 
             }
+            NotifyObservers();
         }
 
         public void CleanUnused()
         {
             _dates.RemoveAll (d => d.TourId == -1);
+            NotifyObservers();
 
         }
 

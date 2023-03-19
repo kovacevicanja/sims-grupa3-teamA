@@ -28,6 +28,7 @@ namespace BookingProject.Controller
             _tourInstances = new List<TourTimeInstance>();
             _tourController= new TourController();
             _startingDateController = new TourStartingTimeController();
+            observers = new List<IObserver>();
             Load();
         }
 
@@ -57,11 +58,13 @@ namespace BookingProject.Controller
         {
             instance.Id = GenerateId();
             _tourInstances.Add(instance);
+            NotifyObservers();
         }
 
         public void Save()
         {
             _tourInstanceHandler.Save(_tourInstances);
+            NotifyObservers();
         }
 
 

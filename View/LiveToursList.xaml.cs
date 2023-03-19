@@ -49,6 +49,23 @@ namespace BookingProject.View
 
         }
 
+        private TourState _state;
+        public TourState State
+        {
+                get => _state;
+                set
+            {
+                    if (value != _state)
+                    {
+                        _state = value;
+                        OnPropertyChanged();
+                    }
+                }
+            }
+
+
+
+
         public List<TourTimeInstance> FilterTours(List<TourTimeInstance> tours)
         {
             List<TourTimeInstance> filteredTours= new List<TourTimeInstance>();
@@ -66,7 +83,7 @@ namespace BookingProject.View
         {
             TourDateTime tourDate = new TourDateTime();
             tourDate = _tourStartingTimeController.GetByID(tour.DateId);
-                if(tourDate.StartingDateTime.Date == DateTime.Now.Date)
+                if(tourDate.StartingDateTime.Date == DateTime.Now.Date && tour.State!=TourState.COMPLETED && tour.State!=TourState.CANCELLED)
                 {
                     return true;
                 }  
@@ -89,6 +106,7 @@ namespace BookingProject.View
             {
                 LiveTourView liveTourView = new LiveTourView(ChosenTour);
                 liveTourView.Show();
+                Close();
             }
         }
 

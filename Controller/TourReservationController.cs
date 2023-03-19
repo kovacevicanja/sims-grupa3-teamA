@@ -26,6 +26,7 @@ namespace BookingProject.Controller
             _reservationHandler = new TourReservationHandler();
             _reservations = new List<TourReservation>();
             tourReservation = new TourReservation();
+            observers= new List<IObserver>();
             Load();
         }
 
