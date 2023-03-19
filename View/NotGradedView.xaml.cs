@@ -38,6 +38,13 @@ namespace BookingProject.View
             _accommodationController.Load();
             Reservations = new ObservableCollection<AccommodationReservation>(_accommodationController.GetAllNotGradedReservations());
         }
+        private void selectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedItem = SelectedReservation;
+            var window2 = new GuestRateView(selectedItem);
+            window2.SelectedObject = selectedItem;
+            window2.Show();
+        }
         private void Button_Grade(object sender, RoutedEventArgs e)
         {
             //if(SelectedReservation != null)

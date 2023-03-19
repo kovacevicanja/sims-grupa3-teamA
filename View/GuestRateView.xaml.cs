@@ -28,6 +28,7 @@ namespace BookingProject.View
     {
         public GuestGradeController GradeController { get; set; }
         public ObservableCollection<GuestGrade> Grades { get; set; }
+        public object SelectedObject { get; set; }
         //private AccommodationReservation _selectedReservation;
         public GuestRateView(AccommodationReservation selectedReservation)
         {
@@ -147,28 +148,10 @@ namespace BookingProject.View
             grade.Decency = Decency;
             grade.Noisiness = Noisiness;
             grade.Comment = Comment;
-            //grade.AccommodationReservation = SelectedReservation;
-
-            //Location location = new Location();
-            //location.City = City;
-            //location.Country = Country;
-            ////location.Id = LocationController.GenerateId();
+            grade.Id = GradeController.GenerateId();
 
             GradeController.Create(grade);
             GradeController.SaveGrade();
-            //accommodation.IdLocation = location.Id;
-
-            //accommodation.Location = location;
-            //accommodation.IdLocation = location.Id;
-            //AccommodationController.Create(accommodation);
-            //AccommodationController.SaveAccommodation();
-
-            //ImageController.LinkToAccommodation(accommodation.Id);
-            //ImageController.SaveImage();
-
-            //AccommodationImage accommodationImage= new AccommodationImage();
-            //accommodationImage.Url= Url;
-            //accommodationImage.Id = ImageController.GenerateId();
 
 
 
