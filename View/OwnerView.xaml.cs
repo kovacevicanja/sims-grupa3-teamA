@@ -25,8 +25,6 @@ namespace BookingProject.View
     {
         private AccommodationController _accommodationController;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
-        //public Accommodation ChosenAccommodation { get; set; }
-        //public AccommodationImage Image { get; set; }
         public OwnerView()
         {
             InitializeComponent();

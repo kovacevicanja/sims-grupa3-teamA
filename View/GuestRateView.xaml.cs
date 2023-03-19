@@ -92,7 +92,6 @@ namespace BookingProject.View
         }
 
 
-        //private AccommodationReservation _selectedReservation;
         public AccommodationReservation SelectedReservation
         {
             get { return _selectedReservation; }
@@ -200,7 +199,6 @@ namespace BookingProject.View
             grade.Noisiness = chosenNoisiness;
             grade.Comment = Comment;
             grade.Id = GradeController.GenerateId();
-            //grade.Id = GradeController.GenerateId();
             grade.AccommodationReservation.Id = _selectedReservation.Id;
 
             GradeController.Create(grade);

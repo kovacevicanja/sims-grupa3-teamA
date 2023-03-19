@@ -41,11 +41,6 @@ namespace BookingProject.Controller
 
         public void Create(Location location)
         {
-            //location.Id = GenerateId();
-            //_locations.Add(location);
-            //SaveLocation();
-            //NotifyObservers();
-            //return location;
             location.Id = GenerateId();
             _locations.Add(location);
         }

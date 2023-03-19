@@ -26,28 +26,15 @@ namespace BookingProject.View
     /// </summary>
     public partial class AddPhotosToAccommodationView : Window
     {
-       // public AccommodationController _accommodationControler;
-        //public Accommodation Accommodation { get; set; }
         public AccommodationImageController _imageController;
-        //public AccommodationLocationController _locationController;
-        //public String Url { get; set; }
-        //public AccommodationImage AccommodationImage { get; set; }
-        //public ObservableCollection<AccommodationImage> Images { get; set; }
 
 
         public AddPhotosToAccommodationView()
         {
             InitializeComponent();
-            //Accommodation = accommodation;
             var app = Application.Current as App;
             this.DataContext = this;
             _imageController = app.AccommodationImageController;
-            //this._accommodationControler = app.AccommodationController;
-            //this._locationController= app.AccommodationLocationController;
-            //this._imageController = app.AccommodationImageController;
-
-            //Accommodation = accommodation;
-            //List<AccommodationImage> images = new List<AccommodationImage>();
 
         }
         private string _url;
@@ -72,8 +59,6 @@ namespace BookingProject.View
 
         public void Button_Click_Add(object sender, RoutedEventArgs e)
         {
-            //_accommodationControler.AddImageToAccommodation(Accommodation, AccommodationImage);
-            //this.Close();
             AccommodationImage image = new AccommodationImage();
             image.Url = Url;
             _imageController.Create(image);

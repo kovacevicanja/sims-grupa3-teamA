@@ -24,7 +24,6 @@ namespace BookingProject.Model
         public List<AccommodationImage> Images { get; set; }
 
         public Accommodation() {
-            //Location = new Location();
             Images = new List<AccommodationImage>();
         }
         public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, int maxGuestNumber, int minDays, int cancellationPeriod, List<AccommodationImage> images)

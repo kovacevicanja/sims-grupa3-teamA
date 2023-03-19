@@ -53,20 +53,6 @@ namespace BookingProject.Controller
         }
 
 
-
-        //public AccommodationImage UpdateImage(AccommodationImage image)
-        //{
-        //    AccommodationImage oldImage = GetByID(image.Id);
-        //    if (oldImage == null) return null;
-
-        //    oldImage.Url = image.Url;
-        //    oldImage.AccommodationId = image.AccommodationId;
-
-        //    SaveImage();
-        //    NotifyObservers();
-        //    return oldImage;
-        //}
-
         public void LinkToAccommodation(int id)
         {
 

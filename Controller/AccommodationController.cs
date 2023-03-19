@@ -46,19 +46,10 @@ namespace BookingProject.Controller
 
         public void Create(Accommodation accommodation)
         {
-            //AddAccommodation(accommodation);
             accommodation.Id = GenerateId();
             _accommodations.Add(accommodation);
         }
-        //public Accommodation AddAccommodation(Accommodation accommodation)
-        //{
-        //    accommodation.Id = GenerateId();
-        //    _accommodations.Add(accommodation);
-        //    SaveAccommodation();
-        //    NotifyObservers();
-        //    return accommodation;
-        //}
-
+        
         public void SaveAccommodation()
         {
             _accommodationHandler.Save(_accommodations);
@@ -67,8 +58,6 @@ namespace BookingProject.Controller
         {
             accommodation.Images.Add(image);
             image.AccommodationId = accommodation.Id;
-            //UpdateAccommodation(accommodation);
-            //_imageController.UpdateImage(image);
         }
 
         private int GenerateId()
