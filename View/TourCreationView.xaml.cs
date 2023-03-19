@@ -30,7 +30,7 @@ namespace BookingProject.View
 
         public ObservableCollection<LanguageEnum> Languages { get; set; }
         public TourController TourController { get; set; }
-
+        public TourTimeInstanceController TourTimeInstanceController { get; set; }
         public TourLocationController LocationController { get; set; }
         public KeyPointController KeyPointController { get; set; }
         public TourStartingTimeController StartingDateController { get; set; }
@@ -51,6 +51,7 @@ namespace BookingProject.View
             KeyPointController = app.KeyPointController;
             ImageController = app.ImageController;
             StartingDateController = app.StartingDateController;
+            TourTimeInstanceController = app.TourTimeInstanceController;
         }
 
         //public string this[string columnName] => throw new NotImplementedException();
@@ -212,10 +213,35 @@ namespace BookingProject.View
             StartingDateController.LinkToTour(tour.Id);
             StartingDateController.Save();
 
-
+            //prave se instance
+            saveInstance();
 
 
         }
+
+
+        public void saveInstance()
+        {
+            StartingDateController.Load();
+            TourController.Load();
+            makeTimeInstances(TourController.GetLastTour());
+        }
+
+        //use of this function is necessary if a tour has multiple dates   
+        public void makeTimeInstances(Tour tour)
+        {
+            foreach(TourDateTime time in tour.StartingTime)
+            {
+                TourTimeInstance instance= new TourTimeInstance();
+                instance.TourId = tour.Id;
+                instance.DateId = time.Id;
+                TourTimeInstanceController.Create(instance);
+                TourTimeInstanceController.Save();
+            }
+
+        }
+
+
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -230,8 +256,11 @@ namespace BookingProject.View
             StartingDateController.Load();
             StartingDateController.CleanUnused();
             StartingDateController.Save();
-
+                
+            LiveToursList liveTourList = new LiveToursList();
+            liveTourList.Show();
             Close();
+
         }
 
         private void Button_Click_StartingTime(object sender, RoutedEventArgs e)
@@ -305,36 +334,6 @@ namespace BookingProject.View
 
         private readonly string[] _validatedProperties = { "TourName", "Description", "Country", "City", "Duration", "MaxGuests" };
 
-
-        /* public bool validDuration()
-         {
-
-             int number;
-             bool isNumeric = int.TryParse(_validatedProperties[4], out number);
-
-             if (!isNumeric || number == 0)
-             {
-                 return false;
-             }
-
-             return true;
-
-         }
-
-         public bool validMaxGuests()
-         {
-
-             int number;
-             bool isNumeric = int.TryParse(_validatedProperties[5], out number);
-
-             if (!isNumeric || number == 0)
-             {
-                 return false;
-             }
-
-             return true;
-
-         } */
 
         public bool validDuration()
         {

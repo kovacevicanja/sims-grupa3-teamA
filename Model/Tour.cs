@@ -29,7 +29,6 @@ namespace BookingProject.Model
             KeyPoints = new List<KeyPoint>();
             StartingTime = new List<TourDateTime>();
             Images = new List<TourImage>();
-           
         }
 
         public Tour(int id, string name, int locationId, Location location, string description, LanguageEnum language, int maxGuests, List<KeyPoint> keyPoints, List<TourDateTime> startingTime, double durationInHours, List<TourImage> images)
@@ -65,6 +64,7 @@ namespace BookingProject.Model
 
             MaxGuests = int.Parse(values[5]);
             DurationInHours = int.Parse(values[6]);
+
         }
 
         public string[] ToCSV()

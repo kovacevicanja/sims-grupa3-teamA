@@ -1,53 +1,56 @@
 ﻿using BookingProject.Model.Enums;
-using BookingProject.Serializer;
+using BookingProject.Model.Images;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using BookingProject.Serializer;
 
 namespace BookingProject.Model
 {
-    public class KeyPoint : ISerializable
+    public class TourTimeInstance : ISerializable
     {
         public int Id { get; set; }
-
         public int TourId { get; set; }
-        public string Point { get; set; }
 
-        public KeyPointState State { get; set; }
-        public KeyPoint() 
+        public int DateId { get; set; }
+        public TourState State { get; set; }     
+        public Tour Tour { get; set; }
+        public TourDateTime TourTime { get; set; }
+
+        public TourTimeInstance()
         {
-            TourId = -1;
-            State = KeyPointState.EMPTY;
+            State = TourState.CREATED;
         }
 
-        public KeyPoint(int id, int tourId, string point)
+        public TourTimeInstance(int id, int tourId, TourState state, int dateId)
         {
             Id = id;
             TourId = tourId;
-            Point = point;
-            State = KeyPointState.EMPTY;
+            State = state;
+            DateId = dateId;
         }
 
         public void FromCSV(string[] values)
         {
+
+
             Id = int.Parse(values[0]);
-            TourId = int.Parse(values[1]);
-            Point = values[2];
-            KeyPointState keyPointState;
-            if (Enum.TryParse<KeyPointState>(values[3], out keyPointState))
+            TourId= int.Parse(values[1]);
+            DateId= int.Parse(values[2]);
+
+            TourState tourState;
+            if (Enum.TryParse<TourState>(values[3], out tourState))
             {
-                State = keyPointState;
+                State = tourState;
             }
             else
             {
-                keyPointState = KeyPointState.EMPTY;
+                tourState = TourState.STARTED;
                 System.Console.WriteLine("Doslo je do greske prilikom ucitavanja stanja!");
 
             }
-
         }
 
         public string[] ToCSV()
@@ -56,11 +59,12 @@ namespace BookingProject.Model
             {
                 Id.ToString(),
                 TourId.ToString(),
-                Point,
+                DateId.ToString(),
                 State.ToString(),
+
             };
             return csvValues;
-
         }
+
     }
 }

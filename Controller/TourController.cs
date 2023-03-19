@@ -36,6 +36,7 @@ namespace BookingProject.Controller
             _tourImageController = new TourImageController();
             _keyPointController = new KeyPointController();
             _startingDateController = new TourStartingTimeController();
+            observers = new List<IObserver>();
             Load();
         }
 
@@ -67,13 +68,19 @@ namespace BookingProject.Controller
         {
             tour.Id = GenerateId(); 
             _tours.Add(tour);
+            NotifyObservers();
         }
 
         public void Save()
         {
             _tourHandler.Save(_tours);
+            NotifyObservers();
         }
 
+        public Tour GetLastTour()
+        {
+            return _tours.Last();
+        }
 
         public List<Tour> GetAll()
         {
@@ -93,6 +100,7 @@ namespace BookingProject.Controller
                 Location location = _locationController.GetByID(tour.LocationId);
                 tour.Location = location;
             }
+            NotifyObservers();
         }
 
         public void TourImageBind()
@@ -114,6 +122,7 @@ namespace BookingProject.Controller
 
                 }
             }
+            NotifyObservers();
         }
 
 
@@ -135,6 +144,7 @@ namespace BookingProject.Controller
 
                 }
             }
+            NotifyObservers();
         }
 
         public void TourDateBind()
@@ -155,6 +165,7 @@ namespace BookingProject.Controller
 
                 }
             }
+            NotifyObservers();
         }
 
 

@@ -88,8 +88,8 @@ namespace BookingProject.View
                         secondGuestView.Show();
                     }else if (IsSelectedGuide)
                     {
-                        TourCreationView tourCreationView = new TourCreationView();
-                        tourCreationView.Show();
+                        LiveToursList liveToursList= new LiveToursList();
+                        liveToursList.Show();
                     }
                     Close();
                 }
