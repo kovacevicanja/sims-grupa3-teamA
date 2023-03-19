@@ -25,8 +25,8 @@ namespace BookingProject.View
     {
         private AccommodationController _accommodationController;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
-        public Accommodation ChosenAccommodation { get; set; }
-        public AccommodationImage Image { get; set; }
+        //public Accommodation ChosenAccommodation { get; set; }
+        //public AccommodationImage Image { get; set; }
         public OwnerView()
         {
             InitializeComponent();
@@ -39,10 +39,10 @@ namespace BookingProject.View
             AddAccommodationView addAccommodationsView = new AddAccommodationView();
             addAccommodationsView.Show();
         }
-        private void Button_Click_Add_Photo(object sender, RoutedEventArgs e)
+        private void Button_Click_Rate(object sender, RoutedEventArgs e)
         {
-            //AddPhotosToAccommodationView addPhotosToAccommodationView = new AddPhotosToAccommodationView(ChosenAccommodation);
-            //addPhotosToAccommodationView.Show();
+            NotGradedView view = new NotGradedView();
+            view.Show();
         }
     }
 }

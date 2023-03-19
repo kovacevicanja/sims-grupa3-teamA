@@ -19,6 +19,8 @@
         <StackPanel Grid.Row = "0" Orientation="Horizontal">
             <Button Content="Add accommodation" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
                Click="Button_Click_Add"/>
+            <Button Content="Rate Guests" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
+               Click="Button_Click_Rate"/>
         </StackPanel>
         <Grid Grid.Row="1">
 
@@ -32,7 +34,6 @@
 
 
             <DataGrid ItemsSource ="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{Binding Path = ChosenAccommodation, UpdateSourceTrigger=PropertyChanged}"
                       Margin="16,12,16,104" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Width="100" Binding="{Binding AccommodationName}"></DataGridTextColumn>
@@ -53,7 +54,7 @@
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid MaxWidth="400" Margin="10">
+                                            <Grid MaxWidth="200" Margin="10">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition/>
                                                     <RowDefinition Height="Auto"/>

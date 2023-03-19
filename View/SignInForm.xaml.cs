@@ -68,10 +68,11 @@ namespace BookingProject.View
                 {
                     if (IsSelectedOwner)
                     {
-                        //OwnerView ownerView = new OwnerView();
-                        //ownerView.Show();
-                        NotGradedView view = new NotGradedView();
-                        view.Show();
+                        OwnerView ownerView = new OwnerView();
+                        ownerView.Show();
+                        NotGradedView not_view = new NotGradedView();
+                        int row_num = not_view.RowNum();
+                        MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
                     }
                     else if(IsSelectedGuest1){
                         Guest1View guest1View = new Guest1View();

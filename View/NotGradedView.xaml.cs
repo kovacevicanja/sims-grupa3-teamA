@@ -42,9 +42,13 @@ namespace BookingProject.View
         {
             //if(SelectedReservation != null)
             //{
-                GuestRateView view = new GuestRateView();
+                GuestRateView view = new GuestRateView(SelectedReservation);
                 view.Show();
             //}
+        }
+        public int RowNum()
+        {
+            return Reservations.Count;
         }
     }
 }

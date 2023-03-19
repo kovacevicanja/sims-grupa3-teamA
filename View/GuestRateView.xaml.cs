@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,13 +28,23 @@ namespace BookingProject.View
     {
         public GuestGradeController GradeController { get; set; }
         public ObservableCollection<GuestGrade> Grades { get; set; }
-        public GuestRateView()
+        //private AccommodationReservation _selectedReservation;
+        public GuestRateView(AccommodationReservation selectedReservation)
         {
             InitializeComponent();
             this.DataContext = this;
 
             var app = Application.Current as App;
             GradeController = app.GuestGradeController;
+            _selectedReservation = new AccommodationReservation();
+            _selectedReservation = selectedReservation;
+        }
+
+        private AccommodationReservation _selectedReservation;
+        public AccommodationReservation SelectedReservation
+        {
+            get { return _selectedReservation; }
+            set { _selectedReservation = value; OnPropertyChanged(); }
         }
 
         private int _cleanliness;
@@ -136,6 +147,7 @@ namespace BookingProject.View
             grade.Decency = Decency;
             grade.Noisiness = Noisiness;
             grade.Comment = Comment;
+            //grade.AccommodationReservation = SelectedReservation;
 
             //Location location = new Location();
             //location.City = City;
