@@ -72,7 +72,10 @@ namespace BookingProject.View
                         ownerView.Show();
                         NotGradedView not_view = new NotGradedView();
                         int row_num = not_view.RowNum();
-                        MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
+                        if(row_num > 0)
+                        {
+                            MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
+                        }
                     }
                     else if(IsSelectedGuest1){
                         Guest1View guest1View = new Guest1View();

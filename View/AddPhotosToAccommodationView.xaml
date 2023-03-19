@@ -33,7 +33,7 @@
             </WrapPanel>
             <WrapPanel Grid.Row = "0" Grid.Column="3" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="72" >
                 <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-              Click="Button_Click_Add" Height="50" Width="92" />
+              Click="CancelButton_Click" Height="50" Width="92" />
             </WrapPanel>
         </Grid>
 

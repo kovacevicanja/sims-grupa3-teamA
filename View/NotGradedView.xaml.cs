@@ -47,11 +47,15 @@ namespace BookingProject.View
         }
         private void Button_Grade(object sender, RoutedEventArgs e)
         {
-            //if(SelectedReservation != null)
-            //{
+            if(SelectedReservation != null)
+            {
                 GuestRateView view = new GuestRateView(SelectedReservation);
                 view.Show();
-            //}
+            }
+        }
+        private void Button_Cancel(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
         public int RowNum()
         {

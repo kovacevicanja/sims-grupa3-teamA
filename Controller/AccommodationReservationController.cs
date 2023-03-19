@@ -139,7 +139,7 @@ namespace BookingProject.Controller
 
         private bool IsReservationAvailable(AccommodationReservation accommodationReservation)
         {
-            return accommodationReservation.EndDate >= DateTime.Now && accommodationReservation.EndDate <= DateTime.Now.AddDays(5);
+            return accommodationReservation.EndDate <= DateTime.Now && accommodationReservation.EndDate.AddDays(5) >= DateTime.Now;
         }
 
 

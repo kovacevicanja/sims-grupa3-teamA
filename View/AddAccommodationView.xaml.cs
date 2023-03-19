@@ -209,6 +209,7 @@ namespace BookingProject.View
             {
                 AccommodationController.Create(accommodation);
             }
+            this.Close();
         }
 
         private void Button_Click_Cancel(Object sender, RoutedEventArgs e)
@@ -216,7 +217,7 @@ namespace BookingProject.View
             ImageController.Load();
             ImageController.DeleteUnused();
             ImageController.SaveImage();
-            Close();
+            this.Close();
         }
         public bool IsValid
         {

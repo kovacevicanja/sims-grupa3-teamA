@@ -44,5 +44,13 @@ namespace BookingProject.View
             NotGradedView view = new NotGradedView();
             view.Show();
         }
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
