@@ -100,7 +100,7 @@ namespace BookingProject.View
             {
                 MessageBox.Show("Unsuccessfully reserved accommmodation!");
                 List<(DateTime, DateTime)> ranges = accommodationReservationController.findAvailableDates(_selectedAccommodation, InitialDate, EndDate, NumberOfDaysToStay);
-                FindAvailableDatesForAccommodation findAvailableDatesForAccommodation = new FindAvailableDatesForAccommodation(ranges);
+                FindAvailableDatesForAccommodation findAvailableDatesForAccommodation = new FindAvailableDatesForAccommodation(ranges, _selectedAccommodation);
                 findAvailableDatesForAccommodation.Show();
             }
         }

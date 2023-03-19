@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BookingProject.View.FindAvailableDatesForAccommodation;
 
 namespace BookingProject.Controller
 {
@@ -195,6 +196,26 @@ namespace BookingProject.Controller
             }
 
             return takenDates;
+        }
+
+        public bool checkNumberOfGuestsAndBook(Range selectedDates, string numberOfGuests, Accommodation selectedAccommodation)
+        {
+            if(selectedAccommodation.MaxGuestNumber >= int.Parse(numberOfGuests))
+            {
+                AccommodationReservation reservation = new AccommodationReservation();
+                reservation.Id = GenerateId();
+                reservation.Accommodation.Id = selectedAccommodation.Id;
+                reservation.InitialDate = selectedDates.StartDate;
+                reservation.EndDate = selectedDates.EndDate;
+                reservation.DaysToStay = (selectedDates.EndDate - selectedDates.StartDate).Days;
+                _accommodationReservations.Add(reservation);
+                Save();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public AccommodationReservation GetByID(int id)

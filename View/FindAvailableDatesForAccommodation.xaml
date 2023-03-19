@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
         Title="FindAvailableDatesForAccommodation" Height="450" Width="800">
-    <Grid Background="AliceBlue">
-        <Label FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">Sugestion for other dates:</Label>
-        <DataGrid ItemsSource="{Binding Ranges}" AutoGenerateColumns="False" CanUserAddRows="False" Width="500" Height="300">
+    <Grid>
+        <Label FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">Other available dates for accommodation</Label>
+        <DataGrid ItemsSource="{Binding Ranges}" AutoGenerateColumns="False" CanUserAddRows="False" Width="500" Height="300" SelectionMode="Single" SelectedItem="{Binding selectedDates, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate, StringFormat={}{0:dd/MM/yyyy}}" Width="*" />
                 <DataGridTextColumn Header="End Date" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}" Width="*" />
@@ -16,8 +16,10 @@
         </DataGrid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-            <Button Width="80" Height="30"  Margin="20">Reserve</Button>
-            <Button Width="80" Height="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20">Cancle</Button>
+            <Label Margin="20">Number of guests: </Label>
+            <TextBox Margin="20" Width="200" Text="{Binding Path=NumberOfGuests, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Width="200" Height="30"  Margin="20" Click="Button_Click_Book">Try to book accommodation</Button>
+            
         </StackPanel>
     </Grid>
 </Window>
