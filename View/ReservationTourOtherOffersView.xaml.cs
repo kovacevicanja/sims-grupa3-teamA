@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,45 +14,35 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingProject.Controller;
 using BookingProject.Model;
-using BookingProject.ConversionHelp;
 
 namespace BookingProject.View
 {
     /// <summary>
-    /// Interaction logic for ReservationTourView.xaml
+    /// Interaction logic for ReservationTourOtherOffersView.xaml
     /// </summary>
-    public partial class ReservationTourView : Window
+    public partial class ReservationTourOtherOffersView : Window
     {
-        public string EnteredGuests { get; set; } = string.Empty;
-
-        public TourDateTime SelectedDate { get; set; } 
-
-        private TourReservationController _tourReservationController;
-
-        private ObservableCollection<TourReservation> _tourReservations;
-
-        public Tour ChoosenTour { get; set; }
-
-
-        public ReservationTourView(Tour choosenTour)
+        private ObservableCollection<Tour> _tours; 
+        private TourReservationController _tourReservationController; 
+        public Tour ChoosenTour { get; set; } //ovo je stara odabrana tura
+        public ReservationTourOtherOffersView(Tour choosenTour, DateTime selectedDate)
         {
             InitializeComponent();
             this.DataContext = this;
-
             ChoosenTour = choosenTour;
             _tourReservationController = new TourReservationController();
-            _tourReservations = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
+            _tours = new ObservableCollection<Tour>(_tourReservationController.GetFilteredTours(choosenTour.Location, selectedDate));
+            TourDataGrid.ItemsSource = _tours;
         }
-
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-
         private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
         {
-            _tourReservationController.TryToBook(ChoosenTour, EnteredGuests, SelectedDate.StartingDateTime); 
+            ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour);
+            reservationTourView.Show();
 
         }
     }

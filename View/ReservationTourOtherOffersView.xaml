@@ -1,48 +1,13 @@
-﻿<Window x:Class="BookingProject.View.SecondGuestView"
+﻿<Window x:Class="BookingProject.View.ReservationTourOtherOffersView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="Second Guest" Height="494" Width="1000">
-
-    <Grid Margin="0,0,0,13">
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="348"/>
-            <RowDefinition Height="22"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="73,12,242,18" Grid.RowSpan="2">
-            <Label Width="111">City:</Label>
-            <Label Width="110">Country:</Label>
-            <Label Width="113">Tour duration:</Label>
-            <Label Width="105">Language:</Label>
-            <Label Width="140">Number of guests:</Label>
-        </StackPanel>
-
-        <StackPanel Grid.Row = "1" Orientation="Horizontal" Margin="73,0,54,0">
-            <TextBox Width="100" Height="20" Margin="5" Text="{Binding Path = City}"></TextBox>
-            <TextBox Width="100" Height="20" Margin="5" Text="{Binding Path = Country}"></TextBox>
-            <TextBox Width="100" Height="20" Margin="5" Text="{Binding Path = Duration}"></TextBox>
-            <ComboBox Width="100" Height="20" Margin="5" Name="languageComboBox" SelectedItem="{Binding Path = ChoosenLanguage}"></ComboBox>
-            <TextBox Width="100" Height="20" Margin="5" Text="{Binding Path = NumOfGuests}"></TextBox>
-            <Button Content="Search" IsCancel="True" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
-               Click="Button_Click_Search" Width="58"/>
-            <Button Content="Cancel search" IsDefault="True" VerticalAlignment="Top" Margin="20, 5, 20, 5"
-              Click="Button_Click_Cancel_Search" Width="90" />
-            <Button Content="Show all tours" IsDefault="True"
-                Click="Button_Click_ShowAll" Width="90" Height="19" />
-        </StackPanel>
-
-        <Grid Grid.Row="2" Margin="0,0,-42,-16" Grid.RowSpan="2">
+        Title="ReservationTourOtherOffersView" Height="480" Width="1200">
+    <Grid Margin="0,0,0,-6">
+        <Grid Grid.Row="2" Margin="0,0,-38,66" Grid.RowSpan="2">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -53,10 +18,10 @@
             </Grid.RowDefinitions>
 
             <DataGrid DockPanel.Dock="Bottom"
-                              ItemsSource="{Binding Path=Tours, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding Path=ChoosenTour, UpdateSourceTrigger=PropertyChanged}"
-                              Name="TourDataGrid"
-                              AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,50,6" RenderTransformOrigin="0.5,0.5">
+                                  ItemsSource="{Binding Path=Tours, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding Path=ChoosenTour, UpdateSourceTrigger=PropertyChanged}"
+                                  Name="TourDataGrid"
+                                  AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,50,6" RenderTransformOrigin="0.5,0.5">
                 <DataGrid.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -114,14 +79,17 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-
         </Grid>
 
-        <StackPanel Grid.Row="3" Margin="316,35,490,-35">
-            <Button Width="120" IsDefault="True" Click="Button_Click_Book" Content="Book tour"/>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Margin="521,35,285,-35">
-            <Button Width="120" IsDefault="True" Click="Button_Click_Cancel" Content="Cancel"/>
-        </StackPanel>
+        <WrapPanel FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="475,417,0,0" >
+            <Button Content="Close" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
+                      Click="Button_Click_Close" />
+            <Button Content="Try to book tour" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
+                       Click="Button_Click_TryToBook"/>
+        </WrapPanel>
+
     </Grid>
+
+
+
 </Window>
