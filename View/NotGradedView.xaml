@@ -8,7 +8,7 @@
         Title="NotGradedView" Height="450" Width="400">
     <Grid>
         <DataGrid ItemsSource ="{Binding Path=Reservations, UpdateSourceTrigger=PropertyChanged}"
-                     SelectedItem="SelectedReservation" Margin="16,12,16,104" SelectionMode="Single" AutoGenerateColumns="False" Name="ReservationsDataGrid" IsReadOnly="True">
+                     SelectedItem="{Binding SelectedReservation}" Margin="16,12,16,104" SelectionMode="Single" AutoGenerateColumns="False" Name="ReservationsDataGrid" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Initial Date" Width="100" Binding="{Binding InitialDate}"></DataGridTextColumn>

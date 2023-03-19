@@ -29,7 +29,7 @@ namespace BookingProject.View
         public GuestGradeController GradeController { get; set; }
         public ObservableCollection<GuestGrade> Grades { get; set; }
         public object SelectedObject { get; set; }
-        //private AccommodationReservation _selectedReservation;
+        private AccommodationReservation _selectedReservation;
         public GuestRateView(AccommodationReservation selectedReservation)
         {
             InitializeComponent();
@@ -41,7 +41,8 @@ namespace BookingProject.View
             _selectedReservation = selectedReservation;
         }
 
-        private AccommodationReservation _selectedReservation;
+
+        //private AccommodationReservation _selectedReservation;
         public AccommodationReservation SelectedReservation
         {
             get { return _selectedReservation; }
@@ -149,6 +150,8 @@ namespace BookingProject.View
             grade.Noisiness = Noisiness;
             grade.Comment = Comment;
             grade.Id = GradeController.GenerateId();
+            //grade.Id = GradeController.GenerateId();
+            grade.AccommodationReservation.Id = _selectedReservation.Id;
 
             GradeController.Create(grade);
             GradeController.SaveGrade();
@@ -156,7 +159,7 @@ namespace BookingProject.View
 
 
             
-                GradeController.Create(grade);
+            this.Close();
             
         }
        
