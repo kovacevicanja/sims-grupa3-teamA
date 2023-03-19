@@ -73,32 +73,51 @@ namespace BookingProject.View
             }
         }
 
-        public string _numberOfDaysToState;
-        public string NumberOfDaysToState
+        public string _numberOfGuests;
+        public string NumberOfGuests
         {
-            get => _numberOfDaysToState;
+            get => _numberOfGuests;
             set
             {
-                if(_numberOfDaysToState != value)
+                if (_numberOfGuests != value)
                 {
-                    _numberOfDaysToState = value;
+                    _numberOfGuests = value;
                     OnPropertyChanged();
                 }
             }
 
         }
 
+
+
         private void Button_Click_Book(object sender, RoutedEventArgs e)
         {
-            
+            int NumberOfDaysToStay = (EndDate - InitialDate).Days;
 
-            if (accommodationReservationController.isValidBook(_selectedAccommodation, InitialDate, EndDate, NumberOfDaysToState))
+            if (!accommodationReservationController.checkEnteredDates(InitialDate, EndDate))
             {
-                MessageBox.Show("Successfully reserved accommodation!");
+                MessageBox.Show("You didn't enter valid date!");
+                this.Close();
+            }else if (!accommodationReservationController.checkNumberOfGuests(_selectedAccommodation, NumberOfGuests))
+            {
+                MessageBox.Show("Maximum number of guests in this accommodation is " + _selectedAccommodation.MaxGuestNumber + " !");
+                this.Close();
+            }else if(_selectedAccommodation.MinDays > NumberOfDaysToStay)
+            {
+                MessageBox.Show("this accommodation requires a minimum stay of " + _selectedAccommodation.MinDays +" days!");
+                this.Close();
+            }else if (accommodationReservationController.checkAvailableDate(_selectedAccommodation, InitialDate, EndDate, NumberOfDaysToStay, NumberOfGuests))
+            {
+                accommodationReservationController.bookAccommodation(InitialDate, EndDate, _selectedAccommodation);
+                MessageBox.Show("Successfully reserved this accommodation!");
+
             }
             else
-            {
-                MessageBox.Show("Unsuccessfully reserved accommmodation!");
+            {       
+                    MessageBox.Show("This accommodation is not available in this range of dates!");
+                    List<(DateTime, DateTime)> ranges = accommodationReservationController.findAvailableDates(_selectedAccommodation, InitialDate, EndDate, NumberOfDaysToStay);
+                    FindAvailableDatesForAccommodation findAvailableDatesForAccommodation = new FindAvailableDatesForAccommodation(ranges, _selectedAccommodation);
+                    findAvailableDatesForAccommodation.Show();
             }
         }
 

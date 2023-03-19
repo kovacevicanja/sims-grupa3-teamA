@@ -115,6 +115,9 @@
     <Compile Include="View\EnterKeyPoint.xaml.cs">
       <DependentUpon>EnterKeyPoint.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FindAvailableDatesForAccommodation.xaml.cs">
+      <DependentUpon>FindAvailableDatesForAccommodation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
     </Compile>
@@ -132,9 +135,6 @@
     </Compile>
     <Compile Include="View\ReservationTourView.xaml.cs">
       <DependentUpon>ReservationTourView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SearchAccommodationsView.xaml.cs">
-      <DependentUpon>SearchAccommodationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SecondGuestView.xaml.cs">
       <DependentUpon>SecondGuestView.xaml</DependentUpon>
@@ -177,6 +177,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\FindAvailableDatesForAccommodation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Guest1View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,10 +202,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ReservationTourView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SearchAccommodationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
