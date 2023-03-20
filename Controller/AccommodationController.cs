@@ -108,7 +108,7 @@ namespace BookingProject.Controller
             }
         }
 
-        public bool checkType(List<String> accommodationTypes, string accType)
+        public bool CheckType(List<String> accommodationTypes, string accType)
         {
             return accommodationTypes == null || accommodationTypes.Count == 0 || accommodationTypes.Any(t => accType.Contains(t.ToLower()));
         }
@@ -159,7 +159,7 @@ namespace BookingProject.Controller
 
         public bool TypeMatched(Accommodation accommodation, List<string> types)
         {
-            if (checkType(types, accommodation.Type.ToString().ToLower())) { return true; }
+            if (CheckType(types, accommodation.Type.ToString().ToLower())) { return true; }
             else { return false; }
         }
 

@@ -51,31 +51,31 @@
                      Text="{Binding Path=Cleanliness, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
-            <ComboBox  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path=cleanliness_option}" HorizontalAlignment="Center" Width="272" Height="30"  SelectedItem="{Binding Path=chosenCleanliness, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
+            <ComboBox  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path=CleanlinessOption}" HorizontalAlignment="Center" Width="272" Height="30"  SelectedItem="{Binding Path=ChosenCleanliness, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
 
             <TextBox Grid.Row="1" Grid.Column="1" 
                      Text="{Binding Path=Communication, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
-            <ComboBox  Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=communication_option}" HorizontalAlignment="Center" Width="272" Height="30"  SelectedItem="{Binding Path=chosenCommunication, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
+            <ComboBox  Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=CommunicationOption}" HorizontalAlignment="Center" Width="272" Height="30"  SelectedItem="{Binding Path=ChosenCommunication, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
            
             <TextBox Grid.Row="2" Grid.Column="1" 
                      Text="{Binding Path=ObservanceOfRules, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
-            <ComboBox  Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Path=observance_option}" HorizontalAlignment="Center" Width="270" Height="30"  SelectedItem="{Binding Path=chosenObservance, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
+            <ComboBox  Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Path=ObservanceOption}" HorizontalAlignment="Center" Width="270" Height="30"  SelectedItem="{Binding Path=ChosenObservance, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
             
             <TextBox Grid.Row="3" Grid.Column="1" 
                      Text="{Binding Path=Decency, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
-            <ComboBox  Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=decency_option}" HorizontalAlignment="Center" Width="272" Height="30"  SelectedItem="{Binding Path=chosenDecency, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
+            <ComboBox  Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=DecencyOption}" HorizontalAlignment="Center" Width="272" Height="30"  SelectedItem="{Binding Path=ChosenDecency, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
             
             <TextBox Grid.Row="4" Grid.Column="1" 
                      Text="{Binding Path=Noisiness, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
-            <ComboBox  Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Path=noisiness_option}" HorizontalAlignment="Center" Width="272" Height="30"  SelectedItem="{Binding Path=chosenNoisiness, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
+            <ComboBox  Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Path=NoisinessOption}" HorizontalAlignment="Center" Width="272" Height="30"  SelectedItem="{Binding Path=ChosenNoisiness, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
             
             <TextBox Grid.Row="5" Grid.Column="1" 
                      Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
