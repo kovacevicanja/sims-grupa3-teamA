@@ -45,8 +45,8 @@ namespace BookingProject.Controller
             _tours = _tourHandler.Load();
             TourLocationBind();
             TourImageBind();
-            TourDateBind(); 
-            TourKeyPointBind(); 
+            TourDateBind();
+            TourKeyPointBind();
         }
 
         private int GenerateId()
@@ -64,7 +64,7 @@ namespace BookingProject.Controller
 
         public void Create(Tour tour)
         {
-            tour.Id = GenerateId(); 
+            tour.Id = GenerateId();
             _tours.Add(tour);
             NotifyObservers();
         }
@@ -101,12 +101,12 @@ namespace BookingProject.Controller
             NotifyObservers();
         }
         //TourImage bind
-        public List <TourImage> LoadImages ()
+        public List<TourImage> LoadImages()
         {
             TourImageHandler tourImageHandler = new TourImageHandler();
             return tourImageHandler.Load();
         }
-        public void AddImagesToTour (Tour tour, List <TourImage> images)
+        public void AddImagesToTour(Tour tour, List<TourImage> images)
         {
             foreach (TourImage image in images)
             {
@@ -117,7 +117,7 @@ namespace BookingProject.Controller
 
             }
         }
-        public void BindTourImage (List<TourImage> images)
+        public void BindTourImage(List<TourImage> images)
         {
             foreach (Tour tour in _tours)
             {
@@ -131,7 +131,7 @@ namespace BookingProject.Controller
         }
         //
         //TourKeyPoint bind
-        public List <KeyPoint> LoadKeyPoints()
+        public List<KeyPoint> LoadKeyPoints()
         {
             KeyPointHandler keyPointHandler = new KeyPointHandler();
             return keyPointHandler.Load();
@@ -148,7 +148,7 @@ namespace BookingProject.Controller
             }
         }
 
-        public void BindTourKeyPoint (List <KeyPoint> keyPoints)
+        public void BindTourKeyPoint(List<KeyPoint> keyPoints)
         {
             foreach (Tour tour in _tours)
             {
@@ -208,32 +208,57 @@ namespace BookingProject.Controller
         {
             observers.Remove(observer);
         }
+        public bool WantedTour(Tour tour, string city, string country, string duration, string choosenLanguage, string numOfGuests)
+        {
+            if (RequestedCity(tour, city) 
+                && RequestedCountry(tour, country) 
+                && RequestedDuration(tour, duration) 
+                && RequestedLanguage(tour, choosenLanguage) 
+                && RequestedNumOfGuests(tour, numOfGuests)) { return true; }
+            else { return false; } 
+        }
 
-        public bool WantedTour (Tour tour, string city, string country, string duration, string choosenLanguage, string numOfGuest)
+        public bool RequestedCity (Tour tour, string city)
+        {
+            if (city.Equals("") || tour.Location.City.ToLower().Contains(city.ToLower())) { return true; }
+            else { return false; }
+        }
+
+        public bool RequestedCountry(Tour tour, string country)
+        {
+            if (country.Equals("") || tour.Location.Country.ToLower().Contains(country.ToLower())) { return true; }
+            else { return false; }
+        }
+
+
+        public bool RequestedDuration(Tour tour, string duration)
+        {
+            if (duration.Equals("") || double.Parse(duration) == tour.DurationInHours) { return true; }
+            else { return false; }
+        }
+
+        public bool RequestedLanguage(Tour tour, string choosenLanguage)
         {
             string languageEnum = tour.Language.ToString().ToLower();
 
-            if ((city.Equals("") || tour.Location.City.ToLower().Contains(city.ToLower()))
-                    && (country.Equals("") || tour.Location.Country.ToLower().Contains(country.ToLower()))
-                    && (duration.Equals("") || double.Parse(duration) == tour.DurationInHours)
-                    && (choosenLanguage.Equals("") || languageEnum.Equals(choosenLanguage.ToLower()))
-                    && (numOfGuest.Equals("") || int.Parse(numOfGuest) <= tour.MaxGuests))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            if (choosenLanguage.Equals("") || languageEnum.Equals(choosenLanguage.ToLower())) { return true; }
+            else { return false; }
         }
 
-        public ObservableCollection<Tour> Search(ObservableCollection<Tour> tourView, string city, string country, string duration, string choosenLanguage, string numOfGuest)
+        public bool RequestedNumOfGuests(Tour tour, string numOfGuests)
+        {
+            if (numOfGuests.Equals("") || int.Parse(numOfGuests) <= tour.MaxGuests) { return true; }
+            else { return false; }
+        }
+
+
+        public ObservableCollection<Tour> Search(ObservableCollection<Tour> tourView, string city, string country, string duration, string choosenLanguage, string numOfGuests)
         {
             tourView.Clear();
 
             foreach (Tour tour in _tours)
             {
-                if (WantedTour(tour, city, country, duration, choosenLanguage, numOfGuest))
+                if (WantedTour(tour, city, country, duration, choosenLanguage, numOfGuests))
                 {
                     tourView.Add(tour);
                 }

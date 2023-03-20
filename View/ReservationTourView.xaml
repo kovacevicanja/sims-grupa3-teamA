@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="ReservationTourView" Height="450" Width="800">
-    <Grid>
+        Title="ReservationTourView" Height="457" Width="639">
+    <Grid Margin="34,10,132,6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="64*"/>
             <ColumnDefinition Width="8*"/>
@@ -17,25 +17,24 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="2" Margin="32,25,123,46">
+        <Grid Grid.Row="0" Grid.Column="2" Margin="10,25,22,10">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="202*"></ColumnDefinition>
+                <ColumnDefinition Width="233*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Height="30" Grid.ColumnSpan="2" Margin="-1,15,272,255">Number of guests:</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=EnteredGuests}"
-                     Height="30" Margin="0,15,-1,255"></TextBox>
-            <Label Grid.Row="0" Grid.Column="0" Height="30" Margin="-1,77,3,193">Select the date and time:</Label>
+            <Label Grid.Row="0" Grid.Column="0" Margin="-1,18,49,258">Number of guests:</Label>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=EnteredGuests}" Margin="15,26,142,266"/>
+            <Label Grid.Row="0" Grid.Column="0" Margin="-1,80,10,196">Select the date and time:</Label>
             <ComboBox x:Name="TourDatesComboBox"
               ItemsSource="{Binding ChoosenTour.StartingTime}"
               SelectedItem="{Binding SelectedDate}"
-              DisplayMemberPath="StartingDateTime" Margin="269,70,-1,186" Grid.ColumnSpan="2"/>
+              DisplayMemberPath="StartingDateTime" Margin="16,81,16,203" Grid.Column="1"/>
         </Grid>
 
-        <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Margin="121,0,0,0" >
+        <WrapPanel FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="86,4,0,0" Grid.Row="1" >
             <Button Content="Close" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
               Click="Button_Click_Close" />
             <Button Content="Try to book tour" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"

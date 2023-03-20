@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="Second Guest" Height="494" Width="1000">
+        Title="Second Guest" Height="494" Width="1115">
 
     <Grid Margin="0,0,0,13">
 
@@ -16,8 +16,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="348"/>
-            <RowDefinition Height="22"/>
+            <RowDefinition Height="338"/>
+            <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="73,12,242,18" Grid.RowSpan="2">
@@ -42,7 +42,7 @@
                 Click="Button_Click_ShowAll" Width="90" Height="19" />
         </StackPanel>
 
-        <Grid Grid.Row="2" Margin="0,0,-42,-16" Grid.RowSpan="2">
+        <Grid Grid.Row="2" Margin="0,0,10,0">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -56,7 +56,7 @@
                               ItemsSource="{Binding Path=Tours, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding Path=ChoosenTour, UpdateSourceTrigger=PropertyChanged}"
                               Name="TourDataGrid"
-                              AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,50,6" RenderTransformOrigin="0.5,0.5">
+                              AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,6,12" RenderTransformOrigin="0.5,0.5">
                 <DataGrid.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -117,10 +117,10 @@
 
         </Grid>
 
-        <StackPanel Grid.Row="3" Margin="316,35,490,-35">
+        <StackPanel Grid.Row="3" Margin="318,10,488,-10">
             <Button Width="120" IsDefault="True" Click="Button_Click_Book" Content="Book tour"/>
         </StackPanel>
-        <StackPanel Grid.Row="3" Margin="521,35,285,-35">
+        <StackPanel Grid.Row="3" Margin="533,10,273,-10">
             <Button Width="120" IsDefault="True" Click="Button_Click_Cancel" Content="Cancel"/>
         </StackPanel>
     </Grid>

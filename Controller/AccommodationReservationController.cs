@@ -168,6 +168,7 @@ namespace BookingProject.Controller
             return reservedDates;
         }
 
+        /*
         private bool isDateReserved(List<DateTime> tryDates, List<AccommodationReservation> reservations)
         {
             foreach (AccommodationReservation reservation in reservations)
@@ -182,6 +183,20 @@ namespace BookingProject.Controller
                             return true;
                         }
                     }
+                }
+            }
+            return false;
+        }
+        */
+
+        private bool isDateReserved(List<DateTime> tryDates, List<AccommodationReservation> reservations)
+        {
+            foreach (AccommodationReservation reservation in reservations)
+            {
+                List<DateTime> reservedDates = makeListOfReservedDates(reservation.InitialDate, reservation.EndDate);
+                if (ifDatesAreInTakenList(tryDates, reservedDates))
+                {
+                    return true;
                 }
             }
             return false;

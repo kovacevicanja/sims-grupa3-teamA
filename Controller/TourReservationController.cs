@@ -93,62 +93,68 @@ namespace BookingProject.Controller
             _reservations.Add(newReservation);
             _reservationHandler.Save(_reservations);
         }
-        
+
         public bool BookingSuccess(Tour choosenTour, string numberOfGuests, DateTime selectedDate)
         {
             if (_reservations.Count() == 0)
             {
-                if (int.Parse(numberOfGuests) <= choosenTour.MaxGuests)
-                {
-                    SaveReservationToFile(choosenTour, numberOfGuests, selectedDate);
-                    return true;
-
-                }
-                else
-                {
-                    FreePlaceMessage(choosenTour.MaxGuests);
-                    return false;
-                }
+                if (TryReservation(choosenTour, numberOfGuests, selectedDate)) { return true; }
+                else { return false; }
             }
-            else
+            else 
             {
-                foreach (TourReservation tourReservation in _reservations)
-                {
-                    if (tourReservation.TourId == choosenTour.Id && tourReservation.ReservationStartingTime == selectedDate)
-                    {
-                        if (int.Parse(numberOfGuests) <= tourReservation.GuestsNumberPerReservation)
-                        {
-                            SaveSameReservationToFile(choosenTour, tourReservation, numberOfGuests, selectedDate);
-                            return true;
+                if (GoThroughReservations(choosenTour, numberOfGuests, selectedDate)) { return true; }
+                else { return false; }
+            }
+       }
 
+        public bool GoThroughReservations(Tour choosenTour, string numberOfGuests, DateTime selectedDate)
+        {
+            foreach (TourReservation tourReservation in _reservations)
+            {
+                if (tourReservation.TourId == choosenTour.Id && tourReservation.ReservationStartingTime == selectedDate)
+                {
+                    if (int.Parse(numberOfGuests) <= tourReservation.GuestsNumberPerReservation)
+                    {
+                        SaveSameReservationToFile(choosenTour, tourReservation, numberOfGuests, selectedDate);
+                        return true;
+
+                    }
+                    else
+                    {
+                        if (tourReservation.GuestsNumberPerReservation == 0)
+                        {
+                            FullyBookedTours(choosenTour, selectedDate);
+                            return false;
                         }
                         else
                         {
-                            if (tourReservation.GuestsNumberPerReservation == 0)
-                            {
-                                FullyBookedTours(choosenTour, selectedDate);
-                                return false;
-                            }
-                            else
-                            {
-                                FreePlaceMessage(tourReservation.GuestsNumberPerReservation);
-                                return false;
-                            }
+                            FreePlaceMessage(tourReservation.GuestsNumberPerReservation);
+                            return false;
                         }
                     }
                 }
-                if (int.Parse(numberOfGuests) <= choosenTour.MaxGuests)
-                {
-                    SaveReservationToFile(choosenTour, numberOfGuests, selectedDate);
-                    return true;
-                }
-                else
-                {
-                    FreePlaceMessage(choosenTour.MaxGuests);
-                    return false;
-                }
+            }
+            if (TryReservation(choosenTour, numberOfGuests, selectedDate)) { return true; }
+            else { return false; }
+           
+        }
+
+        public bool TryReservation (Tour choosenTour, string numberOfGuests, DateTime selectedDate)
+        {
+            if (int.Parse(numberOfGuests) <= choosenTour.MaxGuests)
+            {
+                SaveReservationToFile(choosenTour, numberOfGuests, selectedDate);
+                return true;
+
+            }
+            else
+            {
+                FreePlaceMessage(choosenTour.MaxGuests);
+                return false;
             }
         }
+
 
         public void TryToBook(Tour choosenTour, string numberOfGuests, DateTime selectedDate)
         {
@@ -208,36 +214,46 @@ namespace BookingProject.Controller
 
             return filteredTours;
         }
+
         private List<Tour> FilterToursByDate(DateTime selectedDate)
         {
             List<Tour> filteredTours = new List<Tour>();
 
             foreach (Tour tour in _tours)
             {
-                List<TourDateTime> startingTimeCopy = tour.StartingTime.ToList();
-
-                foreach (TourDateTime tdt in startingTimeCopy)
-                {
-                    if (tdt.StartingDateTime == selectedDate)
-                    {
-                        tour.StartingTime.Remove(tdt);
-                    }
-                    else
-                    {
-                        foreach (TourReservation tourReservation in _reservations)
-                        {
-                            if (tourReservation.GuestsNumberPerReservation == 0 && tourReservation.ReservationStartingTime == tdt.StartingDateTime)
-                            {
-                                tour.StartingTime.Remove(tdt);
-                            }
-                        }
-                    }
-                }
+                GoThroughTourDates(tour, selectedDate);
             }
 
             return filteredTours;
-        } 
+        }
 
+        public void GoThroughTourDates (Tour tour, DateTime selectedDate)
+        {
+            List<TourDateTime> startingTimeCopy = tour.StartingTime.ToList();
+
+            foreach (TourDateTime tdt in startingTimeCopy)
+            {
+                if (tdt.StartingDateTime == selectedDate)
+                {
+                    tour.StartingTime.Remove(tdt);
+                }
+                else
+                {
+                    GoThroughBookedToursDates(tour, selectedDate, tdt);
+                }
+            }
+        }
+
+        public void GoThroughBookedToursDates(Tour tour, DateTime selectedDate, TourDateTime tdt)
+        {
+            foreach (TourReservation tourReservation in _reservations)
+            {
+                if (tourReservation.GuestsNumberPerReservation == 0 && tourReservation.ReservationStartingTime == tdt.StartingDateTime)
+                {
+                    tour.StartingTime.Remove(tdt);
+                }
+            }
+        }
         private List<Tour> FilterToursByLocation(List <Tour> filteredTours, Location location, DateTime selectedDate) 
         {
             List<Tour> filteredToursCopy = new List<Tour>(filteredTours);

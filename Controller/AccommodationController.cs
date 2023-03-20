@@ -16,7 +16,7 @@ namespace BookingProject.Controller
         private readonly List<IObserver> observers;
 
         private readonly AccommodationHandler _accommodationHandler;
-        
+
         private List<Accommodation> _accommodations;
 
         private AccommodationLocationController _locationController;
@@ -49,7 +49,7 @@ namespace BookingProject.Controller
             accommodation.Id = GenerateId();
             _accommodations.Add(accommodation);
         }
-        
+
         public void SaveAccommodation()
         {
             _accommodationHandler.Save(_accommodations);
@@ -81,7 +81,7 @@ namespace BookingProject.Controller
         public void AccommodationLocationBind()
         {
             _locationController.Load();
-            foreach(Accommodation accommodation in _accommodations)
+            foreach (Accommodation accommodation in _accommodations)
             {
                 Location location = _locationController.GetByID(accommodation.IdLocation);
                 accommodation.Location = location;
@@ -119,14 +119,7 @@ namespace BookingProject.Controller
 
             foreach (Accommodation accommodation in _accommodations)
             {
-                bool accMatched = (string.IsNullOrEmpty(city) || accommodation.Location.City.ToLower().Contains(city.ToLower()))
-                    && (string.IsNullOrEmpty(state) || accommodation.Location.Country.ToLower().Contains(state.ToLower()))
-                    && (string.IsNullOrEmpty(name) ||  accommodation.AccommodationName.ToLower().Contains(name.ToLower()))
-                    && checkType(types, accommodation.Type.ToString().ToLower())
-                    && (string.IsNullOrEmpty(numberOfGuests) || int.Parse(numberOfGuests) <= accommodation.MaxGuestNumber)
-                    && (string.IsNullOrEmpty(minNumDaysOfReservation) || int.Parse(minNumDaysOfReservation) >= accommodation.MinDays);
-
-                if (accMatched)
+                if (AccMatched(accommodation, name, city, state, types, numberOfGuests, minNumDaysOfReservation))
                 {
                     _accommodationsView.Add(accommodation);
                 }
@@ -135,7 +128,52 @@ namespace BookingProject.Controller
 
         }
 
-     
+        public bool AccMatched(Accommodation accommodation, string name, string city, string state, List<string> types, string numberOfGuests, string minNumDaysOfReservation)
+        {
+            if (CityMatched(accommodation, city)
+                && CountryMatched(accommodation, state)
+                && NameMatched(accommodation, name)
+                && TypeMatched(accommodation, types)
+                && NumberOfGuestsMatched(accommodation, numberOfGuests)
+                && MinNumDaysOfReservationOfGuestsMatched(accommodation, minNumDaysOfReservation)) { return true; }
+            else { return false; }
+        }
+
+        public bool CityMatched(Accommodation accommodation, string city)
+        {
+            if (string.IsNullOrEmpty(city) || accommodation.Location.City.ToLower().Contains(city.ToLower())) { return true; }
+            else { return false; }
+        }
+
+        public bool CountryMatched(Accommodation accommodation, string state)
+        {
+            if (string.IsNullOrEmpty(state) || accommodation.Location.Country.ToLower().Contains(state.ToLower())) { return true; }
+            else { return false; }
+        }
+
+        public bool NameMatched(Accommodation accommodation, string name)
+        {
+            if (string.IsNullOrEmpty(name) || accommodation.AccommodationName.ToLower().Contains(name.ToLower())) { return true; }
+            else { return false; }
+        }
+
+        public bool TypeMatched(Accommodation accommodation, List<string> types)
+        {
+            if (checkType(types, accommodation.Type.ToString().ToLower())) { return true; }
+            else { return false; }
+        }
+
+        public bool NumberOfGuestsMatched(Accommodation accommodation, string numberOfGuests)
+        {
+            if ((string.IsNullOrEmpty(numberOfGuests) || int.Parse(numberOfGuests) <= accommodation.MaxGuestNumber)) { return true; }
+            else { return false; }
+        }
+        public bool MinNumDaysOfReservationOfGuestsMatched(Accommodation accommodation, string minNumDaysOfReservation)
+        {
+            if (string.IsNullOrEmpty(minNumDaysOfReservation) || int.Parse(minNumDaysOfReservation) >= accommodation.MinDays) { return true; }
+            else { return false; }
+        }
+
 
         public void NotifyObservers()
         {
