@@ -32,16 +32,16 @@ namespace BookingProject.View
         private AccommodationReservation _selectedReservation;
 
 
-        public ObservableCollection<int> cleanliness_option { get; set; }
-        public int chosenCleanliness { get; set; }
-        public ObservableCollection<int> communication_option { get; set; }
-        public int chosenCommunication { get; set; }
-        public ObservableCollection<int> observance_option { get; set; }
-        public int chosenObservance { get; set; }
-        public ObservableCollection<int> decency_option { get; set; }
-        public int chosenDecency { get; set; }
-        public ObservableCollection<int> noisiness_option { get; set; }
-        public int chosenNoisiness { get; set; }
+        public ObservableCollection<int> CleanlinessOption { get; set; }
+        public int ChosenCleanliness { get; set; }
+        public ObservableCollection<int> CommunicationOption { get; set; }
+        public int ChosenCommunication { get; set; }
+        public ObservableCollection<int> ObservanceOption { get; set; }
+        public int ChosenObservance { get; set; }
+        public ObservableCollection<int> DecencyOption { get; set; }
+        public int ChosenDecency { get; set; }
+        public ObservableCollection<int> NoisinessOption { get; set; }
+        public int ChosenNoisiness { get; set; }
 
 
 
@@ -55,40 +55,40 @@ namespace BookingProject.View
             GradeController = app.GuestGradeController;
             _selectedReservation = new AccommodationReservation();
             _selectedReservation = selectedReservation;
-            cleanliness_option = new ObservableCollection<int>();
-            cleanliness_option.Add(1);
-            cleanliness_option.Add(2);
-            cleanliness_option.Add(3);
-            cleanliness_option.Add(4);
-            cleanliness_option.Add(5);
+            CleanlinessOption = new ObservableCollection<int>();
+            CleanlinessOption.Add(1);
+            CleanlinessOption.Add(2);
+            CleanlinessOption.Add(3);
+            CleanlinessOption.Add(4);
+            CleanlinessOption.Add(5);
 
-            communication_option = new ObservableCollection<int>();
-            communication_option.Add(1);
-            communication_option.Add(2);
-            communication_option.Add(3);
-            communication_option.Add(4);
-            communication_option.Add(5);
+            CommunicationOption = new ObservableCollection<int>();
+            CommunicationOption.Add(1);
+            CommunicationOption.Add(2);
+            CommunicationOption.Add(3);
+            CommunicationOption.Add(4);
+            CommunicationOption.Add(5);
 
-            observance_option = new ObservableCollection<int>();
-            observance_option.Add(1);
-            observance_option.Add(2);
-            observance_option.Add(3);
-            observance_option.Add(4);
-            observance_option.Add(5);
+            ObservanceOption = new ObservableCollection<int>();
+            ObservanceOption.Add(1);
+            ObservanceOption.Add(2);
+            ObservanceOption.Add(3);
+            ObservanceOption.Add(4);
+            ObservanceOption.Add(5);
 
-            decency_option = new ObservableCollection<int>();
-            decency_option.Add(1);
-            decency_option.Add(2);
-            decency_option.Add(3);
-            decency_option.Add(4);
-            decency_option.Add(5);
+            DecencyOption = new ObservableCollection<int>();
+            DecencyOption.Add(1);
+            DecencyOption.Add(2);
+            DecencyOption.Add(3);
+            DecencyOption.Add(4);
+            DecencyOption.Add(5);
 
-            noisiness_option = new ObservableCollection<int>();
-            noisiness_option.Add(1);
-            noisiness_option.Add(2);
-            noisiness_option.Add(3);
-            noisiness_option.Add(4);
-            noisiness_option.Add(5);
+            NoisinessOption = new ObservableCollection<int>();
+            NoisinessOption.Add(1);
+            NoisinessOption.Add(2);
+            NoisinessOption.Add(3);
+            NoisinessOption.Add(4);
+            NoisinessOption.Add(5);
         }
 
 
@@ -192,11 +192,11 @@ namespace BookingProject.View
         private void Button_Click_Rate(object sender, RoutedEventArgs e)
         {
             GuestGrade grade = new GuestGrade();
-            grade.Cleanliness = chosenCleanliness;
-            grade.Communication = chosenCommunication;
-            grade.ObservanceOfRules = chosenObservance;
-            grade.Decency = chosenDecency;
-            grade.Noisiness = chosenNoisiness;
+            grade.Cleanliness = ChosenCleanliness;
+            grade.Communication = ChosenCommunication;
+            grade.ObservanceOfRules = ChosenObservance;
+            grade.Decency = ChosenDecency;
+            grade.Noisiness = ChosenNoisiness;
             grade.Comment = Comment;
             grade.Id = GradeController.GenerateId();
             grade.AccommodationReservation.Id = _selectedReservation.Id;

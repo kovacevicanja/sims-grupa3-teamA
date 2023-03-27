@@ -36,6 +36,7 @@ namespace BookingProject.Controller
             _tourImageController = new TourImageController();
             _keyPointController = new KeyPointController();
             _startingDateController = new TourStartingTimeController();
+            observers = new List<IObserver>();
             Load();
         }
 
@@ -44,11 +45,9 @@ namespace BookingProject.Controller
             _tours = _tourHandler.Load();
             TourLocationBind();
             TourImageBind();
-            TourDateBind(); 
-            TourKeyPointBind(); 
+            TourDateBind();
+            TourKeyPointBind();
         }
-
-
 
         private int GenerateId()
         {
@@ -65,15 +64,21 @@ namespace BookingProject.Controller
 
         public void Create(Tour tour)
         {
-            tour.Id = GenerateId(); 
+            tour.Id = GenerateId();
             _tours.Add(tour);
+            NotifyObservers();
         }
 
         public void Save()
         {
             _tourHandler.Save(_tours);
+            NotifyObservers();
         }
 
+        public Tour GetLastTour()
+        {
+            return _tours.Last();
+        }
 
         public List<Tour> GetAll()
         {
@@ -93,72 +98,100 @@ namespace BookingProject.Controller
                 Location location = _locationController.GetByID(tour.LocationId);
                 tour.Location = location;
             }
+            NotifyObservers();
         }
-
-        public void TourImageBind()
+        //TourImage bind
+        public List<TourImage> LoadImages()
         {
+            TourImageHandler tourImageHandler = new TourImageHandler();
+            return tourImageHandler.Load();
+        }
+        public void AddImagesToTour(Tour tour, List<TourImage> images)
+        {
+            foreach (TourImage image in images)
+            {
+                if (tour.Id == image.TourId)
+                {
+                    tour.Images.Add(image);
+                }
 
-            List<TourImage> images = new List<TourImage>();
-            TourImageHandler imageHandler = new TourImageHandler();
-            images = imageHandler.Load();
-
+            }
+        }
+        public void BindTourImage(List<TourImage> images)
+        {
             foreach (Tour tour in _tours)
             {
-                foreach (TourImage image in images)
+                AddImagesToTour(tour, images);
+            }
+        }
+        public void TourImageBind()
+        {
+            List<TourImage> images = LoadImages();
+            BindTourImage(images);
+        }
+        //
+        //TourKeyPoint bind
+        public List<KeyPoint> LoadKeyPoints()
+        {
+            KeyPointHandler keyPointHandler = new KeyPointHandler();
+            return keyPointHandler.Load();
+        }
+
+        public void AddKeyPointToTour(Tour tour, List<KeyPoint> keyPoints)
+        {
+            foreach (KeyPoint keyPoint in keyPoints)
+            {
+                if (tour.Id == keyPoint.TourId)
                 {
-
-                    if (tour.Id == image.TourId)
-                    {
-                        tour.Images.Add(image);
-                    }
-
+                    tour.KeyPoints.Add(keyPoint);
                 }
             }
         }
 
+        public void BindTourKeyPoint(List<KeyPoint> keyPoints)
+        {
+            foreach (Tour tour in _tours)
+            {
+                AddKeyPointToTour(tour, keyPoints);
+            }
+            NotifyObservers();
+        }
 
         public void TourKeyPointBind()
         {
-            List<KeyPoint> keyPoints = new List<KeyPoint>();
-            KeyPointHandler keyPointHandler = new KeyPointHandler();
-            keyPoints = keyPointHandler.Load();
-
-            foreach (Tour tour in _tours)
+            List<KeyPoint> keyPoints = LoadKeyPoints();
+            BindTourKeyPoint(keyPoints);
+        }
+        //
+        //TourDate bind
+        public void AddStartingTimesToTour(Tour tour, List<TourDateTime> dates)
+        {
+            foreach (TourDateTime date in dates)
             {
-                foreach (KeyPoint keyPoint in keyPoints)
+                if (tour.Id == date.TourId)
                 {
-
-                    if (tour.Id == keyPoint.TourId)
-                    {
-                        tour.KeyPoints.Add(keyPoint);
-                    }
-
+                    tour.StartingTime.Add(date);
                 }
             }
         }
-
+        public void BindTourStartingTimes(List<TourDateTime> dates)
+        {
+            foreach (Tour tour in _tours)
+            {
+                AddStartingTimesToTour(tour, dates);
+            }
+        }
+        public List<TourDateTime> LoadTourStartingTimes()
+        {
+            TourStartingTimeHandler dateHandler = new TourStartingTimeHandler();
+            return dateHandler.Load();
+        }
         public void TourDateBind()
         {
-            List<TourDateTime> dates = new List<TourDateTime>();
-            TourStartingTimeHandler dateHandler = new TourStartingTimeHandler();
-            dates = dateHandler.Load();
-
-            foreach (Tour tour in _tours)
-            {
-                foreach (TourDateTime date in dates)
-                {
-
-                    if (tour.Id == date.TourId)
-                    {
-                        tour.StartingTime.Add(date);
-                    }
-
-                }
-            }
+            List<TourDateTime> dates = LoadTourStartingTimes();
+            BindTourStartingTimes(dates);
         }
-
-
-
+        //
         public void NotifyObservers()
         {
             foreach (var observer in observers)
@@ -166,7 +199,6 @@ namespace BookingProject.Controller
                 observer.Update();
             }
         }
-
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
@@ -176,23 +208,57 @@ namespace BookingProject.Controller
         {
             observers.Remove(observer);
         }
+        public bool WantedTour(Tour tour, string city, string country, string duration, string choosenLanguage, string numOfGuests)
+        {
+            if (RequestedCity(tour, city) 
+                && RequestedCountry(tour, country) 
+                && RequestedDuration(tour, duration) 
+                && RequestedLanguage(tour, choosenLanguage) 
+                && RequestedNumOfGuests(tour, numOfGuests)) { return true; }
+            else { return false; } 
+        }
+
+        public bool RequestedCity (Tour tour, string city)
+        {
+            if (city.Equals("") || tour.Location.City.ToLower().Contains(city.ToLower())) { return true; }
+            else { return false; }
+        }
+
+        public bool RequestedCountry(Tour tour, string country)
+        {
+            if (country.Equals("") || tour.Location.Country.ToLower().Contains(country.ToLower())) { return true; }
+            else { return false; }
+        }
 
 
-        public ObservableCollection<Tour> Search(ObservableCollection<Tour> tourView, string city, string country, string duration, string choosenLanguage, string numOfGuest)
+        public bool RequestedDuration(Tour tour, string duration)
+        {
+            if (duration.Equals("") || double.Parse(duration) == tour.DurationInHours) { return true; }
+            else { return false; }
+        }
+
+        public bool RequestedLanguage(Tour tour, string choosenLanguage)
+        {
+            string languageEnum = tour.Language.ToString().ToLower();
+
+            if (choosenLanguage.Equals("") || languageEnum.Equals(choosenLanguage.ToLower())) { return true; }
+            else { return false; }
+        }
+
+        public bool RequestedNumOfGuests(Tour tour, string numOfGuests)
+        {
+            if (numOfGuests.Equals("") || int.Parse(numOfGuests) <= tour.MaxGuests) { return true; }
+            else { return false; }
+        }
+
+
+        public ObservableCollection<Tour> Search(ObservableCollection<Tour> tourView, string city, string country, string duration, string choosenLanguage, string numOfGuests)
         {
             tourView.Clear();
 
             foreach (Tour tour in _tours)
             {
-                string languageEnum = tour.Language.ToString().ToLower();
-
-                bool isTour = (city.Equals("") || tour.Location.City.ToLower().Contains(city.ToLower()))
-                    && (country.Equals("") || tour.Location.Country.ToLower().Contains(country.ToLower()))
-                    && (duration.Equals("") || double.Parse(duration) == tour.DurationInHours)
-                    && (choosenLanguage.Equals("") || languageEnum.Equals(choosenLanguage.ToLower()))
-                    && (numOfGuest.Equals("") || int.Parse(numOfGuest) <= tour.MaxGuests);
-
-                if (isTour)
+                if (WantedTour(tour, city, country, duration, choosenLanguage, numOfGuests))
                 {
                     tourView.Add(tour);
                 }
@@ -200,7 +266,7 @@ namespace BookingProject.Controller
             return tourView;
         }
 
-        public void ShowAll (ObservableCollection<Tour> tourView) 
+        public void ShowAll(ObservableCollection<Tour> tourView)
         {
             tourView.Clear();
 
@@ -208,26 +274,6 @@ namespace BookingProject.Controller
             {
                 tourView.Add(tour);
             }
-
         }
-
-        /*
-        public ObservableCollection<Tour> TryToBook(ObservableCollection<Tour> tourReservation, Tour choosenTour, string numberOfGuest)
-        {
-            if (int.Parse(numberOfGuest) <= choosenTour.MaxGuests)
-            {
-                choosenTour.MaxGuests = choosenTour.MaxGuests - int.Parse(numberOfGuest); 
-                tourReservation.Add(choosenTour);
-            }
-            else
-            {
-                MessageBox.Show("You have exceeded the maximum number of guests per tour!");
-                //dalje ponudi mu neke slicne ture
-            }
-
-            return tourReservation;
-        }
-        */
     }
-
 }

@@ -23,17 +23,19 @@ namespace BookingProject.Controller
         {
             _locationHandler = new TourLocationHandler();
             _locations = new List<Location>();
+            observers = new List<IObserver>();
             Load();
         }
 
         public void Load()
         {
-            _locations = _locationHandler.Load(); 
+            _locations = _locationHandler.Load();
         }
 
         public void Save()
         {
             _locationHandler.Save(_locations);
+            NotifyObservers();
         }
 
         private int GenerateId()
@@ -53,6 +55,7 @@ namespace BookingProject.Controller
         {
             location.Id = GenerateId();
             _locations.Add(location);
+            NotifyObservers();
         }
 
         public List<Location> GetAll()

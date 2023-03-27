@@ -1,5 +1,6 @@
 ﻿using BookingProject.FileHandler;
 using BookingProject.Model;
+using BookingProject.View;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace BookingProject.Controller
         {
             _keyPointHandler = new KeyPointHandler();
             _keyPoints = new List<KeyPoint>();
+            observers = new List<IObserver>();
             Load();
         }
 
@@ -47,11 +49,13 @@ namespace BookingProject.Controller
         {
             keyPoint.Id = GenerateId();
             _keyPoints.Add(keyPoint);
+            NotifyObservers();
         }
 
         public void Save()
         {
             _keyPointHandler.Save(_keyPoints);
+            NotifyObservers();
         }
 
         public List<KeyPoint> GetAll()
@@ -66,8 +70,8 @@ namespace BookingProject.Controller
 
         public void CleanUnused()
         {
-            _keyPoints.RemoveAll(r => r.TourId == -1);   
-
+            _keyPoints.RemoveAll(r => r.TourId == -1);
+            NotifyObservers();
         }
 
         public void LinkToTour(int id)
@@ -81,6 +85,7 @@ namespace BookingProject.Controller
                 }
 
             }
+            NotifyObservers();
         }
 
 
@@ -101,6 +106,11 @@ namespace BookingProject.Controller
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);
+        }
+
+        internal void Subscribe(LiveTourView liveTourView)
+        {
+            throw new NotImplementedException();
         }
     }
 }

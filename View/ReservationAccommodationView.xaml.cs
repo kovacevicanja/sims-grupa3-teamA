@@ -94,11 +94,11 @@ namespace BookingProject.View
         {
             int NumberOfDaysToStay = (EndDate - InitialDate).Days;
 
-            if (!accommodationReservationController.checkEnteredDates(InitialDate, EndDate))
+            if (!accommodationReservationController.CheckEnteredDates(InitialDate, EndDate))
             {
                 MessageBox.Show("You didn't enter valid date!");
                 this.Close();
-            }else if (!accommodationReservationController.checkNumberOfGuests(_selectedAccommodation, NumberOfGuests))
+            }else if (!accommodationReservationController.CheckNumberOfGuests(_selectedAccommodation, NumberOfGuests))
             {
                 MessageBox.Show("Maximum number of guests in this accommodation is " + _selectedAccommodation.MaxGuestNumber + " !");
                 this.Close();
@@ -106,16 +106,16 @@ namespace BookingProject.View
             {
                 MessageBox.Show("this accommodation requires a minimum stay of " + _selectedAccommodation.MinDays +" days!");
                 this.Close();
-            }else if (accommodationReservationController.checkAvailableDate(_selectedAccommodation, InitialDate, EndDate, NumberOfDaysToStay, NumberOfGuests))
+            }else if (accommodationReservationController.CheckAvailableDate(_selectedAccommodation, InitialDate, EndDate, NumberOfDaysToStay, NumberOfGuests))
             {
-                accommodationReservationController.bookAccommodation(InitialDate, EndDate, _selectedAccommodation);
+                accommodationReservationController.BookAccommodation(InitialDate, EndDate, _selectedAccommodation);
                 MessageBox.Show("Successfully reserved this accommodation!");
 
             }
             else
             {       
                     MessageBox.Show("This accommodation is not available in this range of dates!");
-                    List<(DateTime, DateTime)> ranges = accommodationReservationController.findAvailableDates(_selectedAccommodation, InitialDate, EndDate, NumberOfDaysToStay);
+                    List<(DateTime, DateTime)> ranges = accommodationReservationController.FindAvailableDates(_selectedAccommodation, InitialDate, EndDate, NumberOfDaysToStay);
                     FindAvailableDatesForAccommodation findAvailableDatesForAccommodation = new FindAvailableDatesForAccommodation(ranges, _selectedAccommodation);
                     findAvailableDatesForAccommodation.Show();
             }

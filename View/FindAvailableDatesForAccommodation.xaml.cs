@@ -73,13 +73,13 @@ namespace BookingProject.View
 
         private void Button_Click_Book(object sender, RoutedEventArgs e)
         {
-            if(!accommodationReservationController.checkNumberOfGuests(_selectedAccommodation, NumberOfGuests))
+            if(!accommodationReservationController.CheckNumberOfGuests(_selectedAccommodation, NumberOfGuests))
             {
                 MessageBox.Show("Maximum number of guests in this accommodation is " + _selectedAccommodation.MaxGuestNumber + " !");
                 this.Close();
             }else 
             {
-                accommodationReservationController.bookAccommodation(selectedDates.StartDate, selectedDates.EndDate, _selectedAccommodation);
+                accommodationReservationController.BookAccommodation(selectedDates.StartDate, selectedDates.EndDate, _selectedAccommodation);
                 MessageBox.Show("Successfully reserved accommodation!");
             }
            

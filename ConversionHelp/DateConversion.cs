@@ -12,7 +12,8 @@ namespace BookingProject.ConversionHelp
 
         public static DateTime StringToDateTour(string date)
         {
-            return DateTime.ParseExact(date, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(date, "dd/MM/yyyy HH:mm:ss", null);
+            //CultureInfo.InvariantCulture
         }
 
         public static DateTime StringToDateAccommodation (string date)
