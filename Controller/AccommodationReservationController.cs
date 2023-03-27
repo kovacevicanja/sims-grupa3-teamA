@@ -173,15 +173,9 @@ namespace BookingProject.Controller
             foreach (AccommodationReservation reservation in reservations)
             {
                 List<DateTime> reservedDates = makeListOfReservedDates(reservation.InitialDate, reservation.EndDate);
-                foreach (DateTime date in reservedDates)
+                if(ifDatesAreInTakenList(tryDates, reservedDates))
                 {
-                    foreach (DateTime tryDate in tryDates)
-                    {
-                        if (tryDate == date)
-                        {
-                            return true;
-                        }
-                    }
+                    return true;
                 }
             }
             return false;
