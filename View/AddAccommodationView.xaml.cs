@@ -49,13 +49,7 @@ namespace BookingProject.View
             ImageController= app.AccommodationImageController;
         }
 
-
-        
-
-
-
         private string _accommodationName;
-
 
         public string AccommodationName
         {

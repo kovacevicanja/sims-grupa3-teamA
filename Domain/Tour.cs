@@ -15,7 +15,6 @@ namespace BookingProject.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public int LocationId { get; set; }
-
         public Location Location { get; set; }
         public string Description { get; set; }
         public LanguageEnum Language { get; set; }
@@ -24,6 +23,7 @@ namespace BookingProject.Model
         public List<TourDateTime> StartingTime { get; set; }
         public double DurationInHours { get; set; }
         public List<TourImage> Images { get; set; }
+        public List<Guest2> TourGuests { get; set; }
 
         public Tour() { 
             KeyPoints = new List<KeyPoint>();
@@ -45,8 +45,6 @@ namespace BookingProject.Model
 
         public void FromCSV(string[] values)
         {
-
-
             Id = int.Parse(values[0]);
             Name = values[1];
             LocationId = int.Parse(values[2]);
@@ -59,12 +57,11 @@ namespace BookingProject.Model
             else
             {
                 languageEnum = LanguageEnum.ENGLISH;
-                System.Console.WriteLine("Doslo je do greske prilikom ucitavanja jezika");
+                System.Console.WriteLine("An error occurred while loading the language");
             }
 
             MaxGuests = int.Parse(values[5]);
             DurationInHours = int.Parse(values[6]);
-
         }
 
         public string[] ToCSV()
@@ -82,7 +79,5 @@ namespace BookingProject.Model
             };
             return csvValues;
         }
-
-
     }
 }

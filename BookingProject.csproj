@@ -56,25 +56,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controller\AccommodationController.cs" />
-    <Compile Include="Controller\AccommodationDateController.cs" />
-    <Compile Include="Controller\AccommodationLocationController.cs" />
-    <Compile Include="Controller\AccommodationImageController.cs" />
-    <Compile Include="Controller\AccommodationReservationController.cs" />
-    <Compile Include="Controller\TourGuestController.cs" />
-    <Compile Include="Controller\GuestGradeController.cs" />
-    <Compile Include="Controller\TourImageController.cs" />
-    <Compile Include="Controller\KeyPointController.cs" />
-    <Compile Include="Controller\TourLocationController.cs" />
-    <Compile Include="Controller\TourReservationController.cs" />
-    <Compile Include="Controller\TourStartingTimeController.cs" />
-    <Compile Include="Controller\TourController.cs" />
-    <Compile Include="Controller\TourTimeInstanceController.cs" />
-    <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Controllers\AccommodationController.cs" />
+    <Compile Include="Controllers\AccommodationDateController.cs" />
+    <Compile Include="Controllers\AccommodationLocationController.cs" />
+    <Compile Include="Controllers\AccommodationImageController.cs" />
+    <Compile Include="Controllers\AccommodationReservationController.cs" />
+    <Compile Include="Controllers\Guest2Controller.cs" />
+    <Compile Include="Controllers\TourGuestController.cs" />
+    <Compile Include="Controllers\GuestGradeController.cs" />
+    <Compile Include="Controllers\TourImageController.cs" />
+    <Compile Include="Controllers\KeyPointController.cs" />
+    <Compile Include="Controllers\TourLocationController.cs" />
+    <Compile Include="Controllers\TourReservationController.cs" />
+    <Compile Include="Controllers\ToursGuestsController.cs" />
+    <Compile Include="Controllers\TourStartingTimeController.cs" />
+    <Compile Include="Controllers\TourController.cs" />
+    <Compile Include="Controllers\TourTimeInstanceController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Domain\ToursGuests.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
     <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
     <Compile Include="FileHandler\AccomodationLocationHandler.cs" />
+    <Compile Include="FileHandler\Guest2Handler.cs" />
     <Compile Include="FileHandler\TourGuestHandler.cs" />
     <Compile Include="FileHandler\GuestGradeHandler.cs" />
     <Compile Include="FileHandler\TourImageHandler.cs" />
@@ -83,27 +87,31 @@
     <Compile Include="FileHandler\TourLocationHandler.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="FileHandler\TourReservationHandler.cs" />
+    <Compile Include="FileHandler\ToursGuestsHandler.cs" />
     <Compile Include="FileHandler\TourStartingTimeHandler.cs" />
     <Compile Include="FileHandler\TourHandler.cs" />
     <Compile Include="FileHandler\TourTimeInstanceHandler.cs" />
-    <Compile Include="Model\Accommodation.cs" />
-    <Compile Include="Model\AccommodationDate.cs" />
-    <Compile Include="Model\AccommodationReservation.cs" />
-    <Compile Include="Model\Enums\KeyPointState.cs" />
-    <Compile Include="Model\Enums\TourState.cs" />
-    <Compile Include="Model\GuestGrade.cs" />
-    <Compile Include="Model\KeyPoint.cs" />
-    <Compile Include="Model\TourDateTime.cs" />
-    <Compile Include="Model\Enums\AccommodationType.cs" />
-    <Compile Include="Model\Images\AccommodationImage.cs" />
-    <Compile Include="Model\Enums\LanguageEnum.cs" />
-    <Compile Include="Model\Images\TourImages.cs" />
-    <Compile Include="Model\Location.cs" />
-    <Compile Include="Model\Tour.cs" />
-    <Compile Include="Model\TourGuest.cs" />
-    <Compile Include="Model\TourReservation.cs" />
-    <Compile Include="Model\TourTimeInstance.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Domain\Accommodation.cs" />
+    <Compile Include="Domain\AccommodationDate.cs" />
+    <Compile Include="Domain\AccommodationReservation.cs" />
+    <Compile Include="Domain\Enums\GenderOption.cs" />
+    <Compile Include="Domain\Enums\KeyPointState.cs" />
+    <Compile Include="Domain\Enums\TourState.cs" />
+    <Compile Include="Domain\Enums\UserType.cs" />
+    <Compile Include="Domain\Guest2.cs" />
+    <Compile Include="Domain\GuestGrade.cs" />
+    <Compile Include="Domain\KeyPoint.cs" />
+    <Compile Include="Domain\TourDateTime.cs" />
+    <Compile Include="Domain\Enums\AccommodationType.cs" />
+    <Compile Include="Domain\Images\AccommodationImage.cs" />
+    <Compile Include="Domain\Enums\LanguageEnum.cs" />
+    <Compile Include="Domain\Images\TourImages.cs" />
+    <Compile Include="Domain\Location.cs" />
+    <Compile Include="Domain\Tour.cs" />
+    <Compile Include="Domain\TourGuest.cs" />
+    <Compile Include="Domain\TourReservation.cs" />
+    <Compile Include="Domain\TourTimeInstance.cs" />
+    <Compile Include="Domain\User.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
@@ -158,6 +166,12 @@
     </Compile>
     <Compile Include="View\ReservationTourView.xaml.cs">
       <DependentUpon>ReservationTourView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecondGuestMyTours.xaml.cs">
+      <DependentUpon>SecondGuestMyTours.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecondGuestProfile.xaml.cs">
+      <DependentUpon>SecondGuestProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SecondGuestView.xaml.cs">
       <DependentUpon>SecondGuestView.xaml</DependentUpon>
@@ -245,6 +259,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ReservationTourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecondGuestMyTours.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecondGuestProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
