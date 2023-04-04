@@ -73,6 +73,8 @@
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Controllers\TourTimeInstanceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Domain\Enums\GuideType.cs" />
+    <Compile Include="Domain\Guide.cs" />
     <Compile Include="Domain\ToursGuests.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
@@ -142,6 +144,12 @@
     </Compile>
     <Compile Include="View\GuestPreseanceCheck.xaml.cs">
       <DependentUpon>GuestPreseanceCheck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\GuideHomeWindow.xaml.cs">
+      <DependentUpon>GuideHomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\TourCancellationWindow.xaml.cs">
+      <DependentUpon>TourCancellationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LiveToursList.xaml.cs">
       <DependentUpon>LiveToursList.xaml</DependentUpon>
@@ -227,6 +235,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GuestPreseanceCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\GuideHomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\TourCancellationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -325,12 +341,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\super.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\add.png" />
     <Resource Include="Resources\Images\delete.png" />
     <Resource Include="Resources\Images\edit.png" />
     <Resource Include="Resources\Images\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\guide.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
