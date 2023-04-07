@@ -16,10 +16,12 @@ namespace BookingProject.Model
         public DateTime EndDate { get; set; }
         public int DaysToStay { get; set; }
        
+        public User User { get; set; }
 
         public AccommodationReservation()
         {
             Accommodation = new Accommodation();
+            User = new User();
         }
 
         public AccommodationReservation(int id, Accommodation ac, DateTime iDate, DateTime endD, int dts)
@@ -38,6 +40,7 @@ namespace BookingProject.Model
             InitialDate = DateConversion.StringToDateAccommodation(values[2]);
             EndDate = DateConversion.StringToDateAccommodation(values[3]);
             DaysToStay = int.Parse(values[4]);
+            User.Id = int.Parse(values[5]);
         }
 
         public string[] ToCSV()
@@ -48,7 +51,8 @@ namespace BookingProject.Model
                 Accommodation.Id.ToString(),
                 DateConversion.DateToStringAccommodation(InitialDate),
                 DateConversion.DateToStringAccommodation(EndDate),
-                DaysToStay.ToString()
+                DaysToStay.ToString(),
+                User.Id.ToString(),
             };
             return csvValues;
         }

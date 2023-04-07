@@ -66,14 +66,16 @@ namespace BookingProject.View
                 {
                     if (IsSelectedOwner)
                     {
-                        OwnerView ownerView = new OwnerView();
-                        ownerView.Show();
-                        NotGradedView not_view = new NotGradedView();
-                        int row_num = not_view.RowNum();
-                        if(row_num > 0)
-                        {
-                            MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
-                        }
+                        //OwnerView ownerView = new OwnerView();
+                        //ownerView.Show();
+                        //NotGradedView not_view = new NotGradedView();
+                        //int row_num = not_view.RowNum();
+                        //if(row_num > 0)
+                        //{
+                        //    MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
+                        //}
+                        OwnersRequestView view = new OwnersRequestView();
+                        view.Show();
                     }
                     else if(IsSelectedGuest1){
                         Guest1View guest1View = new Guest1View();

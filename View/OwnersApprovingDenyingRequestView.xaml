@@ -1,0 +1,88 @@
+﻿<Window x:Class="BookingProject.View.OwnersApprovingDenyingRequestView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View"
+        mc:Ignorable="d"
+        Title="OwnersApprovingDenyingRequestView" Height="450" Width="800">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <!-- Placeholder for the TextBox itself -->
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+            </StackPanel>
+
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="64*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="473*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="2" Height="300" Margin="28,25,121,25">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Height="30" >Accommodation Name</Label>
+            <Label Grid.Row="1" Grid.Column="0" Height="30" >Guest Name</Label>
+            <Label Grid.Row="2" Grid.Column="0" Height="30" >Wanted Start Date</Label>
+            <Label Grid.Row="3" Grid.Column="0" Height="30" >Wanted End Date</Label>
+            <Label Grid.Row="4" Grid.Column="0" Height="30" >Current Start Date</Label>
+            <Label Grid.Row="5" Grid.Column="0" Height="30" >Current End Date</Label>
+            <Label Grid.Row="6" Grid.Column="0" Height="30" >Comment</Label>
+            <Label Grid.Row="7" Grid.Column="0" Height="30" >Availability</Label>
+            <TextBox Grid.Row="0" Grid.Column="1" 
+                     Text="{Binding Path=SelectedMovingRequest.Reservation.Accommodation.AccommodationName}"
+                     Height="30" IsEnabled="False"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" 
+                     Text="{Binding Path=SelectedMovingRequest.Reservation.User.Username}"
+                     Height="30" IsEnabled="False"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" 
+                     Text="{Binding Path=SelectedMovingRequest.NewStart}"
+                     Height="30" IsEnabled="False"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="1" 
+                     Text="{Binding Path=SelectedMovingRequest.NewEnd}"
+                     Height="30" IsEnabled="False"></TextBox>
+            <TextBox Grid.Row="4" Grid.Column="1" 
+                     Text="{Binding Path=SelectedMovingRequest.Reservation.InitialDate}"
+                     Height="30" IsEnabled="False"></TextBox>
+            <TextBox Grid.Row="5" Grid.Column="1" 
+                     Text="{Binding Path=SelectedMovingRequest.Reservation.EndDate}"
+                     Height="30" IsEnabled="False"></TextBox>
+            <TextBox Grid.Row="6" Grid.Column="1" 
+                     Text="{Binding Path=SelectedMovingRequest.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                     Height="30"></TextBox>
+            <TextBox Grid.Row="7" Grid.Column="1" 
+                     Text="{Binding Path=Availability}"
+                     Height="30" IsEnabled="False"></TextBox>
+        </Grid>
+        <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="15,22,0,0" Width="560" >
+            <Button Content="Accept" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
+              Click="Button_Click_Accept" />
+            <Button Content="Decline" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
+               Click="Button_Click_Decline"/>
+
+
+        </WrapPanel>
+    </Grid>
+</Window>

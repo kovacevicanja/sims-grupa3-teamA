@@ -1,0 +1,21 @@
+﻿<Window x:Class="BookingProject.View.OwnersRequestView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View"
+        mc:Ignorable="d"
+        Title="OwnersRequestView" Height="450" Width="800">
+    <Grid>
+        <DataGrid ItemsSource ="{Binding Path=Requests, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedMovingRequest}"
+                      Margin="16,12,16,104" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Accommodation" Width="100" Binding="{Binding Reservation.Accommodation.AccommodationName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Guest Name" Width="100" Binding="{Binding Reservation.User.Username}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Wanted Start Date" Width="100" Binding="{Binding NewStart}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Wanted End Date" Width="100" Binding="{Binding NewEnd}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button  Click="Button_Click_View" Content="View" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
+    </Grid>
+</Window>

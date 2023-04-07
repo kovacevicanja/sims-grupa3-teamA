@@ -1,4 +1,5 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.Domain;
+using BookingProject.FileHandler;
 using BookingProject.Model;
 using OisisiProjekat.Observer;
 using System;
@@ -17,12 +18,14 @@ namespace BookingProject.Controller
         private List<AccommodationReservation> _accommodationReservations;
         public AccommodationController _accommodationController { get; set; }
         public GuestGradeController _guestGradeController { get; set; }
+        public UserController _userController { get; set; }
 
         public AccommodationReservationController()
         {
             _accommodationReservationHandler = new AccommodationReservationHandler();
             _accommodationReservations = new List<AccommodationReservation>();
             _accommodationController = new AccommodationController();
+            _userController = new UserController();
             
            Load();
         }
@@ -31,6 +34,7 @@ namespace BookingProject.Controller
         {
             _accommodationReservations = _accommodationReservationHandler.Load();
             AccommodationReservationBind();
+            ReservationUserBind();
         }
 
         public List<AccommodationReservation> GetAll()
@@ -50,6 +54,16 @@ namespace BookingProject.Controller
             {
                 Accommodation accommodation = _accommodationController.GetByID(reservation.Accommodation.Id);
                 reservation.Accommodation = accommodation;
+            }
+        }
+
+        public void ReservationUserBind()
+        {
+            
+            foreach (AccommodationReservation reservation in _accommodationReservations)
+            {
+                User user = _userController.GetByID(reservation.User.Id);
+                reservation.User = user;
             }
         }
 
@@ -276,6 +290,31 @@ namespace BookingProject.Controller
             reservation.DaysToStay = (endDate - initialDate).Days;
             _accommodationReservations.Add(reservation);
             Save();
+        }
+
+        public bool DatesOverlaps(DateTime start1, DateTime end1, DateTime start2, DateTime end2)
+        {
+            return start1 < end2 && end1 > start2;
+        }
+
+        private void RemoveCurrentReservation(List<AccommodationReservation> allReservations, ReservationMovingRequest request)
+        {
+            allReservations.Remove(allReservations.Single(res => res.Id == request.Reservation.Id));
+        }
+
+
+        public bool IsAvailableToMove(ReservationMovingRequest request)
+        {
+            List<AccommodationReservation> allReservations = _accommodationReservations.ToList();
+            RemoveCurrentReservation(allReservations, request);
+            foreach(var reservation in allReservations)
+            {
+                if (DatesOverlaps(reservation.InitialDate, reservation.EndDate, request.NewStart, request.NewEnd))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         

@@ -62,6 +62,7 @@
     <Compile Include="Controllers\AccommodationImageController.cs" />
     <Compile Include="Controllers\AccommodationReservationController.cs" />
     <Compile Include="Controllers\Guest2Controller.cs" />
+    <Compile Include="Controllers\ReservationMovingRequestController.cs" />
     <Compile Include="Controllers\TourGuestController.cs" />
     <Compile Include="Controllers\GuestGradeController.cs" />
     <Compile Include="Controllers\TourImageController.cs" />
@@ -74,13 +75,16 @@
     <Compile Include="Controllers\TourTimeInstanceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Domain\Enums\GuideType.cs" />
+    <Compile Include="Domain\Enums\RequestStatus.cs" />
     <Compile Include="Domain\Guide.cs" />
+    <Compile Include="Domain\ReservationMovingRequest.cs" />
     <Compile Include="Domain\ToursGuests.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
     <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
     <Compile Include="FileHandler\AccomodationLocationHandler.cs" />
     <Compile Include="FileHandler\Guest2Handler.cs" />
+    <Compile Include="FileHandler\ReservationMovingRequestHandler.cs" />
     <Compile Include="FileHandler\TourGuestHandler.cs" />
     <Compile Include="FileHandler\GuestGradeHandler.cs" />
     <Compile Include="FileHandler\TourImageHandler.cs" />
@@ -162,6 +166,12 @@
     </Compile>
     <Compile Include="View\NotGradedView.xaml.cs">
       <DependentUpon>NotGradedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersApprovingDenyingRequestView.xaml.cs">
+      <DependentUpon>OwnersApprovingDenyingRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersRequestView.xaml.cs">
+      <DependentUpon>OwnersRequestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnerView.xaml.cs">
       <DependentUpon>OwnerView.xaml</DependentUpon>
@@ -262,6 +272,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\OwnersApprovingDenyingRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\OwnerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -325,6 +343,7 @@
     <None Include="Resources\Data\accommodations.csv" />
     <None Include="Resources\Data\accommodationDates.csv" />
     <None Include="Resources\Data\accommodationLocations.csv" />
+    <None Include="Resources\Data\movingRequests.csv" />
     <None Include="Resources\Data\tourGuests.csv" />
     <None Include="Resources\Data\guestGrades.csv" />
     <None Include="Resources\Data\tourImages.csv" />
