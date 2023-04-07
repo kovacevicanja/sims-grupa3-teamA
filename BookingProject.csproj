@@ -73,9 +73,12 @@
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Controllers\TourTimeInstanceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="Domain\Enums\GuideType.cs" />
+    <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Guide.cs" />
     <Compile Include="Domain\ToursGuests.cs" />
+    <Compile Include="Domain\Voucher.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
     <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
@@ -114,6 +117,7 @@
     <Compile Include="Domain\TourReservation.cs" />
     <Compile Include="Domain\TourTimeInstance.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="FileHandler\VoucherHandler.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
@@ -343,6 +347,7 @@
     <None Include="Resources\Data\tourTime.csv" />
     <None Include="Resources\Data\tourTimeInstances.csv" />
     <None Include="Resources\Data\users.csv" />
+    <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Images\accommodationimages.csv" />
   </ItemGroup>
   <ItemGroup>

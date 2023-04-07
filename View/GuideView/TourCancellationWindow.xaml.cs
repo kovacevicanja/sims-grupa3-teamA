@@ -1,9 +1,12 @@
 ﻿using BookingProject.Controller;
+using BookingProject.Controllers;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,18 +26,35 @@ namespace BookingProject.View.GuideView
     public partial class TourCancellationWindow : Window
     {
         private TourTimeInstanceController _tourTimeInstanceController;
+        private VoucherController _voucherController;
+        private TourReservationController _tourReservationController;
         public TourTimeInstance ChosenTour;
         public TourCancellationWindow(TourTimeInstance chosenTour)
         {
             InitializeComponent();
             _tourTimeInstanceController = new TourTimeInstanceController();
+            _voucherController = new VoucherController();
+            _tourReservationController= new TourReservationController();
             ChosenTour = chosenTour;
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        /*
+        public void SendVouchers()
         {
-
+            foreach(TourReservation reservation in _tourReservationController.GetAll())
+            {
+                if (reservation.TourId == ChosenTour.Id)
+                {
+                    Voucher voucher = new Voucher();
+                    voucher.UserId = reservation.UserId;
+                    voucher.StartDate = DateTime.Now;
+                    voucher.EndDate=DateTime.Now.AddDays(7);
+                    _voucherController.Create(voucher);
+                }
+            }
+            _voucherController.Save();
         }
+        */
+
         private void No_Click(object sender, RoutedEventArgs e)
         {
             MyToursWindow myToursWindow = new MyToursWindow();
@@ -47,6 +67,7 @@ namespace BookingProject.View.GuideView
         {
             _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.CANCELLED;
             _tourTimeInstanceController.Save();
+            //SendVouchers();
             MyToursWindow myToursWindow = new MyToursWindow();
             myToursWindow.Show();
             Close();
