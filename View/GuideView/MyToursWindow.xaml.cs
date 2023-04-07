@@ -37,11 +37,22 @@ namespace BookingProject.View.GuideView
             _tourTimeInstanceController = new TourTimeInstanceController();
             _tourStartingTimeController = new TourStartingTimeController();
 
-            _instances = new ObservableCollection<TourTimeInstance>(_tourTimeInstanceController.GetAll());
+            _instances = new ObservableCollection<TourTimeInstance>(FilterTours(_tourTimeInstanceController.GetAll()));
             TourDataGrid.ItemsSource = _instances;
         }
 
-
+        public List<TourTimeInstance> FilterTours(List<TourTimeInstance> tours)
+        {
+            List<TourTimeInstance> filteredTours = new List<TourTimeInstance>();
+            foreach (TourTimeInstance tour in tours)
+            {
+                if (tour.State!=TourState.CANCELLED)
+                {
+                    filteredTours.Add(tour);
+                }
+            }
+            return filteredTours;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -59,12 +70,35 @@ namespace BookingProject.View.GuideView
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
         {
 
+            if (ChosenTour != null && IsNotLate(ChosenTour))
+            {
+                TourCancellationWindow tourCancellationWindow = new TourCancellationWindow(ChosenTour);
+                tourCancellationWindow.Show();
+                Close();
+            }
+
+
+        }
+
+        private bool IsNotLate(TourTimeInstance tour)
+        {
+            TourDateTime tourDate = new TourDateTime();
+            tourDate = _tourStartingTimeController.GetByID(tour.DateId);
+            TimeSpan ts = tourDate.StartingDateTime - DateTime.Now;
+            if (ts> TimeSpan.FromHours(48))
+            {
+                return true;
+            }
+
+
+            return false;
         }
 
         private void Button_Click_Create(object sender, RoutedEventArgs e)
         {
             TourCreationWindow tourCreationWindow = new TourCreationWindow();
             tourCreationWindow.Show();
+            Close();
         }
     }
 }
