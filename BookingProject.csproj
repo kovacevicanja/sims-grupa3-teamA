@@ -148,6 +148,9 @@
     <Compile Include="View\GuideView\GuideHomeWindow.xaml.cs">
       <DependentUpon>GuideHomeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\MyToursWindow.xaml.cs">
+      <DependentUpon>MyToursWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\TourCancellationWindow.xaml.cs">
       <DependentUpon>TourCancellationWindow.xaml</DependentUpon>
     </Compile>
@@ -187,8 +190,8 @@
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TourCreationView.xaml.cs">
-      <DependentUpon>TourCreationView.xaml</DependentUpon>
+    <Compile Include="View\GuideView\TourCreationWindow.xaml.cs">
+      <DependentUpon>TourCreationWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -239,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GuideView\GuideHomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\MyToursWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -294,7 +301,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TourCreationView.xaml">
+    <Page Include="View\GuideView\TourCreationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -352,6 +359,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\guide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -88,8 +89,9 @@ namespace BookingProject.View
                         secondGuestProfile.Show();
                     }else if (IsSelectedGuide)
                     {
-                        LiveToursList liveToursList= new LiveToursList();
-                        liveToursList.Show();
+
+                        GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
+                        guideHomeWindow.Show();
                     }
                     Close();
                 }

@@ -10,7 +10,7 @@
         Title="TourCancellationWindow" Height="450" Width="800">
     <Grid>
         <Rectangle Stroke="Black" Margin="59,101,59,136"/>
-        <Label Content="Are you sure?" FontSize="50" FontWeight="Bold" Margin="225,150,139,154"/>
+        <Label Content="Are you sure you want&#xD;&#xA; to cancel this tour?" HorizontalAlignment="Center"  FontSize="45" FontWeight="Bold" Margin="0,134,0,169"/>
         <Button Content="Yes(Y)" FontSize="30" FontWeight="Bold" Margin="90,330,434,29" Click="Button_Click"/>
         <Button Content="No(N)" FontSize ="30" FontWeight="Bold" Margin="425,330,89,29" Click="Button_Click_1"/>
 

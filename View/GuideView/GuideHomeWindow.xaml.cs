@@ -31,7 +31,16 @@ namespace BookingProject.View.GuideView
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            MyToursWindow myToursWindow= new MyToursWindow();
+            myToursWindow.Show();
+            Close();
+        }
 
+        private void Button_Click_Logout(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            Close();
         }
     }
 }
