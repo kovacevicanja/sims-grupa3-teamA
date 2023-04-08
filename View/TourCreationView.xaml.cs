@@ -387,7 +387,7 @@ namespace BookingProject.View
             TourImageHandler tourImageHandler = new TourImageHandler();
             foreach (TourImage tourImage in tourImageHandler._images)
             {
-                if (tourImage.TourId == -1)
+                if (tourImage.Tour.Id == -1)
                 {
                     return true;
                 }

@@ -19,6 +19,8 @@ namespace BookingProject.Controllers
 
         private List<Guest2> _guests2;
 
+        private ToursGuestsController _toursGuestsController;
+
         public Guest2Controller()
         {
             _guest2Handler = new Guest2Handler();

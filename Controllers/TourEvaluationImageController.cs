@@ -1,4 +1,6 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.Controllers;
+using BookingProject.Domain;
+using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using OisisiProjekat.Observer;
@@ -11,31 +13,35 @@ using System.Threading.Tasks;
 namespace BookingProject.Controller
 {
 
-    public class TourImageController: ISubject
+    public class TourEvaluationImageController: ISubject
     {
         private readonly List<IObserver> observers;
 
-        private readonly TourImageHandler _imageHandler;
+        private readonly TourEvaluationImageHandler _imageHandler;
 
-        private List<TourImage> _images;
+        private List<TourEvaluationImage> _images;
 
-        public TourImageController()
+        private TourEvaluationController _tourEvaluationController;
+
+        public TourEvaluationImageController()
         {
-            _imageHandler = new TourImageHandler();
-            _images = new List<TourImage>();
+            _imageHandler = new TourEvaluationImageHandler();
+            _images = new List<TourEvaluationImage>();
             observers = new List<IObserver>();
+            _tourEvaluationController = new TourEvaluationController();
             Load();
         }
 
         public void Load()
         {
             _images = _imageHandler.Load();
+            TourEvaluationBind();
         }
 
         private int GenerateId()
         {
             int maxId = 0;
-            foreach (TourImage image in _images)
+            foreach (TourEvaluationImage image in _images)
             {
                 if (image.Id > maxId)
                 {
@@ -44,9 +50,7 @@ namespace BookingProject.Controller
             }
             return maxId + 1;
         }
-
-
-        public void Create(TourImage image) 
+        public void Create(TourEvaluationImage image) 
         {
             image.Id = GenerateId();
             _images.Add(image);
@@ -59,32 +63,21 @@ namespace BookingProject.Controller
             NotifyObservers();
         }
 
-        public void LinkToTour(int id)
+        public void TourEvaluationBind()
         {
-
-            foreach (TourImage image in _images)
+            _tourEvaluationController.Load();
+            foreach (TourEvaluationImage image in _images)
             {
-                if (image.Tour.Id == -1)
-                {
-                    image.Tour.Id = id;
-                }
-
+                TourEvaluation tourEvaluation = _tourEvaluationController.GetByID(image.TourEvaluation.Id);
+                image.TourEvaluation = tourEvaluation;
             }
             NotifyObservers();
         }
-
-        public void CleanUnused()
-        {
-            _images.RemoveAll(i => i.Tour.Id == -1);
-            NotifyObservers();
-
-        }
-
-        public List<TourImage> GetAll()
+        public List<TourEvaluationImage> GetAll()
         {
             return _images;
         }
-        public TourImage GetByID(int id)
+        public TourEvaluationImage GetByID(int id)
         {
             return _images.Find(image => image.Id == id);
         }

@@ -15,13 +15,10 @@ namespace BookingProject.Model
         public DateTime InitialDate { get; set; }
         public DateTime EndDate { get; set; }
         public int DaysToStay { get; set; }
-       
-
         public AccommodationReservation()
         {
             Accommodation = new Accommodation();
         }
-
         public AccommodationReservation(int id, Accommodation ac, DateTime iDate, DateTime endD, int dts)
         {
             Id = id;
@@ -30,7 +27,6 @@ namespace BookingProject.Model
             EndDate = endD;
             DaysToStay = dts;
         }
-
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);

@@ -8,27 +8,27 @@ using BookingProject.Serializer;
 
 namespace BookingProject.Model.Images
 {
-    public class TourImage : ISerializable
+    public class TourEvaluationImage : ISerializable
     {
         public int Id { get; set; }
-        public Tour Tour { get; set; }
+        public TourEvaluation TourEvaluation { get; set; }
         public string Url { get; set; }
 
-        public TourImage() {
-            Tour = new Tour();
+        public TourEvaluationImage() {
+            TourEvaluation = new TourEvaluation();
         }
 
-        public TourImage(int id, string url, Tour tour)
+        public TourEvaluationImage(int id, string url, TourEvaluation tour)
         {
             Id = id;
             Url = url;
-            Tour = tour;
+            TourEvaluation = tour;
         }
 
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);
-            Tour.Id = int.Parse(values[1]);
+            TourEvaluation.Id = int.Parse(values[1]);
             Url = values[2];
 
         }
@@ -38,12 +38,10 @@ namespace BookingProject.Model.Images
             string[] csvValues =
             {
                 Id.ToString(),
-                Tour.Id.ToString(),
+                TourEvaluation.Id.ToString(),
                 Url,
             };
             return csvValues;
         }
-
-
     }
 }

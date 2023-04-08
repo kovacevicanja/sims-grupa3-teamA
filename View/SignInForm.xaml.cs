@@ -84,7 +84,7 @@ namespace BookingProject.View
                         //MessageBox.Show("You have successfully logged in as second guest!");
                         //SecondGuestView secondGuestView = new SecondGuestView();
                         //secondGuestView.Show();
-                        SecondGuestProfile secondGuestProfile = new SecondGuestProfile();
+                        SecondGuestProfile secondGuestProfile = new SecondGuestProfile(user.Id);
                         secondGuestProfile.Show();
                     }else if (IsSelectedGuide)
                     {

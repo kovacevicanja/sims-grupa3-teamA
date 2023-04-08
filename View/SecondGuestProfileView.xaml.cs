@@ -23,21 +23,25 @@ namespace BookingProject.View
     /// </summary>
     public partial class SecondGuestProfile : Window
     {
-        public SecondGuestProfile()
+        private int GuestId { get; set; }
+        private Guest2Controller Guest2Controller { get; set; } 
+        public SecondGuestProfile(int idGuest)
         {
             InitializeComponent();
             this.DataContext = this;
+            this.GuestId = idGuest;
+            Guest2Controller = new Guest2Controller();   
         }
 
         private void Button_Click_MyTours(object sender, RoutedEventArgs e)
         {
-            SecondGuestMyTours secondGuestMyTours = new SecondGuestMyTours();
+            SecondGuestMyTours secondGuestMyTours = new SecondGuestMyTours(Guest2Controller.GetByID(GuestId));
             secondGuestMyTours.Show();
         }
 
         private void Button_Click_SecondGuestView(object sender, RoutedEventArgs e)
         {
-            SecondGuestView secondGuestView = new SecondGuestView();
+            SecondGuestView secondGuestView = new SecondGuestView(Guest2Controller.GetByID(GuestId));
             secondGuestView.Show();
         }
     }

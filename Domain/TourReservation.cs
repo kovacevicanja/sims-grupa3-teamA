@@ -8,27 +8,42 @@ using BookingProject.Serializer;
 
 namespace BookingProject.Model
 {
-    internal class TourReservation : ISerializable
+    public class TourReservation : ISerializable
     {
         public int Id { get; set; }
-        public int TourId { get; set; }
+        public Tour Tour { get; set; }
         public int GuestsNumberPerReservation { get; set;  }
         public DateTime ReservationStartingTime { get; set; }
-        public TourReservation() { }
-        public TourReservation(int id, int tourId, int guestsNumberPerReservation, DateTime reservationStartingTime)
+        //public List <Guest2> Guests { get; set; }
+        public Guest2 Guest { get; set; }   
+
+        //id gosta koji je rez turu 
+        //prolaxim kroz rez
+        //trazim taj id gosta u svakoj rez i svaku tu rez stavim u neku listu mytours
+        //i onda samo to prikazem u wpfu
+        //ili alternativa prodjem sve i samo zalepim taj komad za turu
+        public TourReservation() 
+        {
+            Tour = new Tour();
+            //Guests = new List<Guest2>();    
+            Guest = new Guest2();
+        }
+        public TourReservation(int id, Tour tour, int guestsNumberPerReservation, DateTime reservationStartingTime, Guest2 guest)
         {
             Id = id;
-            TourId = tourId;
+            Tour = tour;
             GuestsNumberPerReservation = guestsNumberPerReservation;
             ReservationStartingTime = reservationStartingTime;
+            Guest = guest;
         }
 
         public void FromCSV(string[] values)
         { 
             Id = int.Parse(values[0]);
-            TourId = int.Parse(values[1]);
+            Tour.Id = int.Parse(values[1]);
             GuestsNumberPerReservation = int.Parse(values[2]);
             ReservationStartingTime = DateConversion.StringToDateTour(values[3]);
+            Guest.Id = int.Parse(values[4]);
         }
 
         public string[] ToCSV()
@@ -36,9 +51,10 @@ namespace BookingProject.Model
             string[] csvValues =
             {
                 Id.ToString(),
-                TourId.ToString(),
+                Tour.Id.ToString(),
                 GuestsNumberPerReservation.ToString(),
-                DateConversion.DateToStringTour(ReservationStartingTime)
+                DateConversion.DateToStringTour(ReservationStartingTime),
+                Guest.Id.ToString()
             };
             return csvValues;
         }

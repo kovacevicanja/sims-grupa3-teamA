@@ -38,13 +38,17 @@ namespace BookingProject.View
         public string NumOfGuests { get; set; } = string.Empty;
         public Tour ChoosenTour { get; set; }  
 
-        public SecondGuestView()
+        public Guest2 Guest { get; set; }   
+
+        public SecondGuestView(Guest2 guest)
         {
             InitializeComponent();
             this.DataContext = this;
             _tourController = new TourController();
             _tours = new ObservableCollection<Tour>(_tourController.GetAll());
             TourDataGrid.ItemsSource = _tours;
+
+            Guest = guest;
 
             languageComboBox.ItemsSource = new List<string>() { "ENGLISH", "SERBIAN", "GERMAN" };
         }
@@ -70,7 +74,7 @@ namespace BookingProject.View
         {
             if (ChoosenTour != null)
             {
-                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour);
+                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour, Guest);
                 reservationTourView.Show();
             }
         }
@@ -82,7 +86,7 @@ namespace BookingProject.View
 
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
-                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour);
+                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour, Guest);
                 reservationTourView.Show();
 
         }

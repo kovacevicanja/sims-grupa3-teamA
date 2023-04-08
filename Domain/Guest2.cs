@@ -16,9 +16,11 @@ namespace BookingProject.Model
         public string Surname { get; set; }
         public string Email { get; set; }
         public GenderOption Gender { get; set; }
-        public List<Tour> MyTours { get; set; }
-        public Guest2() { }
-
+        public List<TourReservation> MyTours { get; set; }
+        public Guest2() : base()
+        { 
+            MyTours = new List<TourReservation>();
+        }
         public Guest2 (string name, string surname, string email, GenderOption gender)
         {
             Name = name;
@@ -29,12 +31,14 @@ namespace BookingProject.Model
 
         public override string[] ToCSV()
         {
+            String[] result = base.ToCSV();
             string[] csvValues = { Name, Surname, Email, Gender.ToString() };
             return csvValues;
         }
 
         public override void FromCSV(string[] values)
         {
+            base.FromCSV(values);
             Name = values[4];
             Surname = values[5];
             Email = values[6];

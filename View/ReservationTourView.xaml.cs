@@ -35,8 +35,10 @@ namespace BookingProject.View
 
         public Tour ChoosenTour { get; set; }
 
+        public Guest2 Guest { get; set; }
 
-        public ReservationTourView(Tour choosenTour)
+
+        public ReservationTourView(Tour choosenTour, Guest2 guest)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -44,6 +46,7 @@ namespace BookingProject.View
             ChoosenTour = choosenTour;
             _tourReservationController = new TourReservationController();
             _tourReservations = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
+            Guest = guest;  
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
@@ -54,7 +57,7 @@ namespace BookingProject.View
 
         private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
         {
-            _tourReservationController.TryToBook(ChoosenTour, EnteredGuests, SelectedDate.StartingDateTime); 
+            _tourReservationController.TryToBook(ChoosenTour, EnteredGuests, SelectedDate.StartingDateTime, Guest); 
 
         }
     }
