@@ -1,5 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.Model.Enums;
 using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,8 @@ namespace BookingProject.View
         {
             InitializeComponent();
             DataContext = this;
-            _controller = new UserController();
+            var app = Application.Current as App;
+            _controller = app.UserController;
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
@@ -65,8 +67,9 @@ namespace BookingProject.View
             {
                 if (user.Password == txtPassword.Password)
                 {
-                    if (IsSelectedOwner)
+                    if (user.UserType==UserType.OWNER)
                     {
+                        _controller.GetByUsername(Username).IsLoggedIn = true;
                         OwnerView ownerView = new OwnerView();
                         ownerView.Show();
                         NotGradedView not_view = new NotGradedView();
@@ -76,20 +79,22 @@ namespace BookingProject.View
                             MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
                         }
                     }
-                    else if(IsSelectedGuest1){
+                    else if(user.UserType == UserType.GUEST1){
+                        _controller.GetByUsername(Username).IsLoggedIn = true;
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
                         
-                    }else if(IsSelectedGuest2)
+                    }else if(user.UserType == UserType.GUEST2)
                     {
                         //MessageBox.Show("You have successfully logged in as second guest!");
                         //SecondGuestView secondGuestView = new SecondGuestView();
                         //secondGuestView.Show();
+                        _controller.GetByUsername(Username).IsLoggedIn = true;
                         SecondGuestProfile secondGuestProfile = new SecondGuestProfile();
                         secondGuestProfile.Show();
-                    }else if (IsSelectedGuide)
+                    }else if (user.UserType == UserType.GUIDE)
                     {
-
+                        _controller.GetByUsername(Username).IsLoggedIn = true;
                         GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
                         guideHomeWindow.Show();
                     }
