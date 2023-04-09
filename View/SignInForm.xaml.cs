@@ -1,5 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,9 +24,7 @@ namespace BookingProject.View
     /// </summary>
     public partial class SignInForm : Window
     {
-
         private readonly UserController _controller;
-
         public bool IsSelectedOwner { get; set; }
         public bool IsSelectedGuest1 { get; set; }
         public bool IsSelectedGuest2 { get; set; }
@@ -84,12 +83,15 @@ namespace BookingProject.View
                     }else if(IsSelectedGuest2)
                     {
                         //MessageBox.Show("You have successfully logged in as second guest!");
-                        SecondGuestView secondGuestView = new SecondGuestView();
-                        secondGuestView.Show();
+                        //SecondGuestView secondGuestView = new SecondGuestView();
+                        //secondGuestView.Show();
+                        SecondGuestProfile secondGuestProfile = new SecondGuestProfile();
+                        secondGuestProfile.Show();
                     }else if (IsSelectedGuide)
                     {
-                        LiveToursList liveToursList= new LiveToursList();
-                        liveToursList.Show();
+
+                        GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
+                        guideHomeWindow.Show();
                     }
                     Close();
                 }
@@ -102,7 +104,6 @@ namespace BookingProject.View
             {
                 MessageBox.Show("Wrong username!");
             }
-
         }
     }
 }

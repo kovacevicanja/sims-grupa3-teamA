@@ -251,7 +251,6 @@ namespace BookingProject.Controller
             else { return false; }
         }
 
-
         public ObservableCollection<Tour> Search(ObservableCollection<Tour> tourView, string city, string country, string duration, string choosenLanguage, string numOfGuests)
         {
             tourView.Clear();

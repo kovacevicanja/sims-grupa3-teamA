@@ -1,0 +1,43 @@
+﻿<Window 
+        WindowStartupLocation="CenterScreen"
+        x:Class="BookingProject.View.GuideView.GuideHomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View.GuideView"
+        mc:Ignorable="d"
+        Title="GuideHomeWindow" Height="832" Width="1239">
+    <Grid Margin="0,10,0,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="183*"/>
+
+            <ColumnDefinition Width="230*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="123,79,33,17" Grid.Column="1" >
+            <Button Content="My Tours (1)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click_1"/>
+            <Button Content="Tour Statistics (2)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click"/>
+            <Button Content="Live View (3)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click"/>
+            <Button Content="Requests (4)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click"/>
+            <Button Content="Request Statistics (5)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click"/>
+        </StackPanel>
+        <Border BorderBrush="Black" BorderThickness="5" Margin="96,72,10,0" Grid.Column="1"/>
+        <Label Content="Guide Options" FontWeight="Bold" FontSize="24" Margin="140,14,367,685" Grid.Column="1"/>
+        <WrapPanel Margin="29,110,10,444">
+            <Button Content="Language (L)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Click="Button_Click_1"/>
+            <Button Content="Mode (M)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Click="Button_Click_1"/>
+            <Button Content="Create Report (P)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Click="Button_Click_1"/>
+            <Button Content="Suggestion (S)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Click="Button_Click_1"/>
+        </WrapPanel>
+        <Border BorderBrush="Black" BorderThickness="5" Margin="10,72,0,430"/>
+        <Label Content="Extra Options" FontWeight="Bold" FontSize="24" Margin="29,13,337,686"/>
+        <Button Content="Resign (0)" Margin="160,723,177,0" FontSize="20" FontWeight="Bold" Click="Button_Click_1" Height="43" VerticalAlignment="Top"/>
+        <Button Content="Logout (Esc)" Margin="160,661,177,0" FontSize="20" FontWeight="Bold" Click="Button_Click_Logout" VerticalAlignment="Top" Height="43"/>
+        <Image Source="../../Resources/Images/guide.png" Margin="14,398,275,242"/>
+        <Image Source="../../Resources/Images/super.png" Margin="80,524,334,166"/>
+        <Label Content="Name:" FontWeight="Bold" FontSize="24" Margin="285,398,137,302"/>
+        <Label Content="Rating:" FontWeight="Bold" FontSize="24" Margin="284,463,139,241"/>
+        <Label Content="User profile" FontWeight="Bold" FontSize="24" Margin="68,360,323,359"/>
+
+    </Grid>
+</Window>

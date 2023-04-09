@@ -93,8 +93,8 @@ namespace BookingProject.View
         private void Button_Click_Create(object sender, RoutedEventArgs e)
         {
 
-            TourCreationView tourCreationView = new TourCreationView();
-            tourCreationView.Show();
+            TourCreationWindow tourCreationWindow = new TourCreationWindow();
+            tourCreationWindow.Show();
             Close();
         }
 
