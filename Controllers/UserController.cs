@@ -1,4 +1,5 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.Domain;
+using BookingProject.Model;
 using BookingProject.Serializer;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace BookingProject.Controller
 
         private readonly Serializer<User> _serializer;
 
-        private List<User> _users;
+        public List<User> _users;
 
         public UserController()
         {
@@ -26,6 +27,24 @@ namespace BookingProject.Controller
         {
             _users = _serializer.FromCSV(FilePath);
             return _users.FirstOrDefault(u => u.Username == username);
+        }
+
+        public void Save()
+        {
+            _serializer.ToCSV(FilePath, _users);
+        }
+
+        public User GetLoggedUser()
+        {
+            foreach(User user in _users)
+            {
+                if (user.IsLoggedIn == true)
+                {
+                    return user;
+                }
+            }
+
+            return _users.FirstOrDefault(u => u.IsLoggedIn == true);
         }
 
 
