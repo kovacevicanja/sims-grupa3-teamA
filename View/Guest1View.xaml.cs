@@ -137,7 +137,10 @@ namespace BookingProject.View
             this.Close();
         }
 
-       
-        
+        private void Button_Click_Res(object sender, RoutedEventArgs e)
+        {
+            Guest1Reservations g1r = new Guest1Reservations();
+            g1r.Show();
+        }
     }
 }

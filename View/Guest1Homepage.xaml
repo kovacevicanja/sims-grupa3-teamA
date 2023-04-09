@@ -1,0 +1,81 @@
+﻿<Window x:Class="BookingProject.View.Guest1Homepage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View"
+        mc:Ignorable="d"
+        Title="Guest1Homepage" Height="450" Width="800">
+  
+        <DockPanel LastChildFill="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="80*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Button>
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
+                            <TextBlock Text="Homepage" Margin="5,5,0,0" FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Button.Content>
+                    </Button>
+                    <Button>
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/acc.png"/>
+                                <TextBlock Text="Accommodations" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button>
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/bedroom.png"/>
+                                <TextBlock Text="My reservations" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button>
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image  Width="27" Height="27" Margin="0" Source="/View/ImagesGuest1/reviews.png"/>
+                                <TextBlock Text="My reviews" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button>
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image  Width="27" Height="27" Margin="0" Source="/View/ImagesGuest1/createforum.png"/>
+                                <TextBlock Text="Create forum" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button>
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/quicksearch.png"/>
+                                <TextBlock Text="Quick search" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button>
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image  Width="25" Height="25" Margin="0" Source="/View/ImagesGuest1/help2.png"/>
+                                <TextBlock Text="Help" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                <Label Height="150"></Label>
+                </StackPanel>
+                <Border Grid.Column="1" Background="White">
+                    <!-- Content will be displayed here -->
+                </Border>
+            </Grid>
+        </DockPanel>
+ 
+</Window>

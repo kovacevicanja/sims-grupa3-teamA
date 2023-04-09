@@ -60,6 +60,7 @@
     <Compile Include="Controller\AccommodationDateController.cs" />
     <Compile Include="Controller\AccommodationLocationController.cs" />
     <Compile Include="Controller\AccommodationImageController.cs" />
+    <Compile Include="Controller\AccommodationOwnerGradeController.cs" />
     <Compile Include="Controller\AccommodationReservationController.cs" />
     <Compile Include="Controller\TourGuestController.cs" />
     <Compile Include="Controller\GuestGradeController.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
+    <Compile Include="FileHandler\AccommodationOwnerGradeHandler.cs" />
     <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
     <Compile Include="FileHandler\AccomodationLocationHandler.cs" />
     <Compile Include="FileHandler\TourGuestHandler.cs" />
@@ -88,9 +90,11 @@
     <Compile Include="FileHandler\TourTimeInstanceHandler.cs" />
     <Compile Include="Model\Accommodation.cs" />
     <Compile Include="Model\AccommodationDate.cs" />
+    <Compile Include="Model\AccommodationOwnerGrade.cs" />
     <Compile Include="Model\AccommodationReservation.cs" />
     <Compile Include="Model\Enums\KeyPointState.cs" />
     <Compile Include="Model\Enums\TourState.cs" />
+    <Compile Include="Model\Enums\UserType.cs" />
     <Compile Include="Model\GuestGrade.cs" />
     <Compile Include="Model\KeyPoint.cs" />
     <Compile Include="Model\TourDateTime.cs" />
@@ -108,6 +112,9 @@
     <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
+    <Compile Include="View\AccommodationOwnerReview.xaml.cs">
+      <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddAccommodationView.xaml.cs">
       <DependentUpon>AddAccommodationView.xaml</DependentUpon>
     </Compile>
@@ -125,6 +132,12 @@
     </Compile>
     <Compile Include="View\FindAvailableDatesForAccommodation.xaml.cs">
       <DependentUpon>FindAvailableDatesForAccommodation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1Homepage.xaml.cs">
+      <DependentUpon>Guest1Homepage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1Reservations.xaml.cs">
+      <DependentUpon>Guest1Reservations.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
@@ -180,6 +193,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AccommodationOwnerReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddAccommodationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +218,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FindAvailableDatesForAccommodation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1Homepage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1Reservations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -283,6 +308,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\Data\accommodationOwnerGrades.csv" />
     <None Include="Resources\Data\accommodationReservations.csv" />
     <None Include="Resources\Data\accommodations.csv" />
     <None Include="Resources\Data\accommodationDates.csv" />
@@ -299,16 +325,48 @@
     <None Include="Resources\Data\tourTimeInstances.csv" />
     <None Include="Resources\Data\users.csv" />
     <None Include="Resources\Images\accommodationimages.csv" />
+    <None Include="View\very-popular-thread_318-10286.avif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\add.png" />
     <Resource Include="Resources\Images\delete.png" />
     <Resource Include="Resources\Images\edit.png" />
     <Resource Include="Resources\Images\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\bed.jpg" />
+    <Resource Include="View\ImagesGuest1\createforum.png" />
+    <Resource Include="View\ImagesGuest1\foorumm.png" />
+    <Resource Include="View\ImagesGuest1\forumcici.png" />
+    <Resource Include="View\ImagesGuest1\homepage.png" />
+    <Resource Include="View\ImagesGuest1\images.png" />
+    <Resource Include="View\ImagesGuest1\logout.jpg" />
+    <Resource Include="View\ImagesGuest1\quicksearch.png" />
+    <Resource Include="View\ImagesGuest1\reservation.png" />
+    <Resource Include="View\ImagesGuest1\reviews.png" />
+    <Resource Include="View\ImagesGuest1\right.png" />
+    <Resource Include="View\ImagesGuest1\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\acc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\res.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\help2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\ress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\bedroom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
