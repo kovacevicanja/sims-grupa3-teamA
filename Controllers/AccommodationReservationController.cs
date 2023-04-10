@@ -1,4 +1,6 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.Controllers;
+using BookingProject.Domain;
+using BookingProject.FileHandler;
 using BookingProject.Model;
 using OisisiProjekat.Observer;
 using System;
@@ -19,6 +21,7 @@ namespace BookingProject.Controller
         public AccommodationController _accommodationController { get; set; }
         public GuestGradeController _guestGradeController { get; set; }
         public UserController _userController { get; set; }
+        public NotificationController _notificationController { get; set; }
 
         public AccommodationReservationController()
         {
@@ -26,6 +29,7 @@ namespace BookingProject.Controller
             _accommodationReservations = new List<AccommodationReservation>();
             _accommodationController = new AccommodationController();
             _userController = new UserController();
+            _notificationController = new NotificationController();
             Load();
         }
 
@@ -312,13 +316,14 @@ namespace BookingProject.Controller
             DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
             if(todayMidnight.AddDays(accommodationReservation.Accommodation.CancellationPeriod) <= accommodationReservation.EndDate)
             {
-                deleteReservationFromCSV(accommodationReservation);
+                DeleteReservationFromCSV(accommodationReservation);
+                SendNotification(accommodationReservation);
                 return true;
             }
             return false;
         }
 
-        public void deleteReservationFromCSV(AccommodationReservation accommmodationReservation)
+        public void DeleteReservationFromCSV(AccommodationReservation accommmodationReservation)
         {
             string[] lines = File.ReadAllLines("../../Resources/Data/accommodationReservations.csv");
             int rowIndex = Array.FindIndex(lines, line => line.StartsWith(accommmodationReservation.Id + "|"));
@@ -333,6 +338,63 @@ namespace BookingProject.Controller
                 // Write the modified lines back to the file
                 File.WriteAllLines("../../Resources/Data/accommodationReservations.csv", lines);
             }
+        }
+
+        public void SendNotification(AccommodationReservation accommodationReservation)
+        {
+            Notification notification = new Notification();
+            notification.Id = _notificationController.GenerateId();
+            notification.UserId = accommodationReservation.Accommodation.Owner.Id;
+            notification.Text = "Reservation for your accommodation " + accommodationReservation.Accommodation.AccommodationName + " was cancelled!";
+            notification.Read = false;
+            _notificationController.Create(notification);
+            _notificationController.Save();
+        }
+
+        public List<string> GetOwnerNotifications(User owner)
+        {
+            List<string> notificationsForOwner = new List<string>();
+            List<Notification> _notifications = _notificationController.GetAll();
+
+            for(int i = 0; i < _notifications.Count; i++)
+            {
+                if(_notifications[i].UserId == owner.Id && _notifications[i].Read == false)
+                {
+                    notificationsForOwner.Add(_notifications[i].Text);
+                    DeleteNotificationFromCSV(_notifications[i]);
+                    WriteNotificationAgain(_notifications[i]);
+                }
+            }
+
+            return notificationsForOwner;
+        }
+
+        public void DeleteNotificationFromCSV(Notification notification)
+        {
+            string[] lines = File.ReadAllLines("../../Resources/Data/notifications.csv");
+            int rowIndex = Array.FindIndex(lines, line => line.StartsWith(notification.Id + "|"));
+
+            if (rowIndex >= 0)
+            {
+                // Remove the row at the specified index
+                List<string> linesList = new List<string>(lines);
+                linesList.RemoveAt(rowIndex);
+                lines = linesList.ToArray();
+
+                // Write the modified lines back to the file
+                File.WriteAllLines("../../Resources/Data/notifications.csv", lines);
+            }
+        }
+
+        public void WriteNotificationAgain(Notification n)
+        {
+            Notification notification = new Notification();
+            notification.Id = n.Id;
+            notification.UserId = n.UserId;
+            notification.Text = n.Text;
+            notification.Read = true;
+            _notificationController.Create(notification);
+            _notificationController.Save();
         }
 
         public void NotifyObservers()

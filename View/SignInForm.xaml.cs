@@ -26,6 +26,7 @@ namespace BookingProject.View
     public partial class SignInForm : Window
     {
         private readonly UserController _controller;
+        private readonly AccommodationReservationController _accResController;
         public bool IsSelectedOwner { get; set; }
         public bool IsSelectedGuest1 { get; set; }
         public bool IsSelectedGuest2 { get; set; }
@@ -58,6 +59,7 @@ namespace BookingProject.View
             DataContext = this;
             var app = Application.Current as App;
             _controller = app.UserController;
+            _accResController = new AccommodationReservationController();
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
@@ -69,9 +71,16 @@ namespace BookingProject.View
                 {
                     if (user.UserType==UserType.OWNER)
                     {
-                        _controller.GetByUsername(Username).IsLoggedIn = true;
+                        User owner = _controller.GetByUsername(Username);
+                        owner.IsLoggedIn = true;
+                        _controller.Save();
                         OwnerView ownerView = new OwnerView();
                         ownerView.Show();
+                        List<string> notifications = _accResController.GetOwnerNotifications(owner); 
+                        foreach(String notification in notifications)
+                        {
+                            MessageBox.Show(notification);
+                        }
                         NotGradedView not_view = new NotGradedView();
                         int row_num = not_view.RowNum();
                         if(row_num > 0)
