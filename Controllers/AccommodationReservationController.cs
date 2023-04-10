@@ -351,18 +351,16 @@ namespace BookingProject.Controller
             _notificationController.Save();
         }
 
-        public List<string> GetOwnerNotifications(User owner)
+        public List<Notification> GetOwnerNotifications(User owner)
         {
-            List<string> notificationsForOwner = new List<string>();
+            List<Notification> notificationsForOwner = new List<Notification>();
             List<Notification> _notifications = _notificationController.GetAll();
 
-            for(int i = 0; i < _notifications.Count; i++)
+            foreach(Notification notification in _notifications)
             {
-                if(_notifications[i].UserId == owner.Id && _notifications[i].Read == false)
+                if(notification.UserId == owner.Id && notification.Read == false)
                 {
-                    notificationsForOwner.Add(_notifications[i].Text);
-                    DeleteNotificationFromCSV(_notifications[i]);
-                    WriteNotificationAgain(_notifications[i]);
+                    notificationsForOwner.Add(notification);
                 }
             }
 
@@ -371,25 +369,14 @@ namespace BookingProject.Controller
 
         public void DeleteNotificationFromCSV(Notification notification)
         {
-            string[] lines = File.ReadAllLines("../../Resources/Data/notifications.csv");
-            int rowIndex = Array.FindIndex(lines, line => line.StartsWith(notification.Id + "|"));
-
-            if (rowIndex >= 0)
-            {
-                // Remove the row at the specified index
-                List<string> linesList = new List<string>(lines);
-                linesList.RemoveAt(rowIndex);
-                lines = linesList.ToArray();
-
-                // Write the modified lines back to the file
-                File.WriteAllLines("../../Resources/Data/notifications.csv", lines);
-            }
+            List<Notification> _notifications = _notificationController.GetAll();
+            _notifications.RemoveAll(n => n.Id == notification.Id);
+            _notificationController.Save();
         }
 
         public void WriteNotificationAgain(Notification n)
         {
             Notification notification = new Notification();
-            notification.Id = n.Id;
             notification.UserId = n.UserId;
             notification.Text = n.Text;
             notification.Read = true;

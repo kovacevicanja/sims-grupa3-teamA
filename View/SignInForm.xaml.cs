@@ -1,4 +1,5 @@
 ﻿using BookingProject.Controller;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.View.GuideView;
@@ -76,10 +77,17 @@ namespace BookingProject.View
                         _controller.Save();
                         OwnerView ownerView = new OwnerView();
                         ownerView.Show();
-                        List<string> notifications = _accResController.GetOwnerNotifications(owner); 
-                        foreach(String notification in notifications)
+                        List<Notification> notifications = _accResController.GetOwnerNotifications(owner);
+                        List<Notification> notificationsCopy = new List<Notification>();
+                        foreach(Notification notification in notifications)
                         {
-                            MessageBox.Show(notification);
+                            MessageBox.Show(notification.Text);
+                            notificationsCopy.Add(notification);
+                            _accResController.DeleteNotificationFromCSV(notification);
+                        }
+                        foreach(Notification notification1 in notificationsCopy)
+                        {
+                            _accResController.WriteNotificationAgain(notification1);
                         }
                         NotGradedView not_view = new NotGradedView();
                         int row_num = not_view.RowNum();
