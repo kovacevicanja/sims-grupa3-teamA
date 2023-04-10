@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Guest1Reservations" Height="450" Width="800">
 
-    <DockPanel LastChildFill="True">
+    <DockPanel LastChildFill="True" Background="Beige">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*" />
@@ -72,26 +72,27 @@
                 </Button>
                 <Label Height="150"></Label>
             </StackPanel>
-            <Border Grid.Column="1" Background="White">
+            <Border Grid.Column="1" Background="Beige">
                 <StackPanel>
                     <Label FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">My reservations</Label>
-                    <DataGrid SelectionMode="Single"  SelectedItem="{Binding SelectedReservation}" AutoGenerateColumns="False" IsReadOnly="True" Margin="20 10 20 20" Name="ReservationsDataGrid">
+                    <DataGrid SelectionMode="Single"  SelectedItem="{Binding SelectedReservation}" AutoGenerateColumns="False" IsReadOnly="True" Margin="20 10 20 20" Name="ReservationsDataGrid" FontSize="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Accommodation name" Width="150" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="State" Width="60" Binding="{Binding Accommodation.Location.Country}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="City" Width="60" Binding="{Binding Accommodation.Location.City}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Start date" Width="80" Binding="{Binding InitialDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="End date" Width="80" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Number of days to stay" Width="150" Binding="{Binding DaysToStay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Accommodation name" Width="120" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="State" Width="50" Binding="{Binding Accommodation.Location.Country}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="City" Width="50" Binding="{Binding Accommodation.Location.City}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Start date" Width="70" Binding="{Binding InitialDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="End date" Width="70" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Number of days to stay" Width="120" Binding="{Binding DaysToStay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Owner username" Width="100" Binding="{Binding Accommodation.Owner.Username}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <WrapPanel VerticalAlignment="Bottom">
-                        <Button Width="60" IsDefault="True" Margin="20 15 15 15">Reschedule</Button>
-                        <Button Width="60" IsDefault="True" Margin="15">Cancel</Button>
+                        <Button Width="80" IsDefault="True" Margin="20 15 15 15">Reschedule</Button>
+                        <Button Width="60" IsDefault="True" Margin="15" Click="Button_Click_Cancel">Cancel</Button>
                         <Button Width="60" IsDefault="True" Margin="15" Click="Button_Click_Review">Review</Button>
-                        <Button Width="60" IsDefault="True" Margin="15">See requests</Button>
-                        <Button Width="60" IsDefault="True" Margin="15">View tutorial</Button>
-                        <Button Width="60" IsDefault="True" Margin="15 15 15 20">Homepage</Button>
+                        <Button Width="80" IsDefault="True" Margin="15">See requests</Button>
+                        <Button Width="80" IsDefault="True" Margin="15">View tutorial</Button>
+                        <Button Width="70" IsDefault="True" Margin="15 15 15 20">Homepage</Button>
                     </WrapPanel>
                 </StackPanel>
                 

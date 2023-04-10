@@ -20,7 +20,7 @@ namespace BookingProject.Controller
         public UserController()
         {
             _serializer = new Serializer<User>();
-            _users = _serializer.FromCSV(FilePath);
+            _users = Load();
         }
 
         public User GetByUsername(string username)
@@ -29,9 +29,19 @@ namespace BookingProject.Controller
             return _users.FirstOrDefault(u => u.Username == username);
         }
 
+        public List<User> Load()
+        {
+            return _serializer.FromCSV(FilePath);
+        }
+
         public void Save()
         {
             _serializer.ToCSV(FilePath, _users);
+        }
+
+        public User GetByID(int id)
+        {
+            return _users.Find(u => u.Id == id);
         }
 
         public User GetLoggedUser()

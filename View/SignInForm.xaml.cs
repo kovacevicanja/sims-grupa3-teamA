@@ -80,7 +80,9 @@ namespace BookingProject.View
                         }
                     }
                     else if(user.UserType == UserType.GUEST1){
-                        _controller.GetByUsername(Username).IsLoggedIn = true;
+                        User guest1 = _controller.GetByUsername(Username);
+                        guest1.IsLoggedIn = true;
+                        _controller.Save();
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
                         
