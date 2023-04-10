@@ -15,7 +15,7 @@ namespace BookingProject.Model
         public int GuestsNumberPerReservation { get; set;  }
         public DateTime ReservationStartingTime { get; set; }
         //public List <Guest2> Guests { get; set; }
-        public Guest2 Guest { get; set; }   
+        public User Guest { get; set; }   
 
         //id gosta koji je rez turu 
         //prolaxim kroz rez
@@ -25,9 +25,9 @@ namespace BookingProject.Model
         public TourReservation() 
         {
             Tour = new Tour();
-            Guest = new Guest2();
+            Guest = new User();
         }
-        public TourReservation(int id, Tour tour, int guestsNumberPerReservation, DateTime reservationStartingTime, Guest2 guest)
+        public TourReservation(int id, Tour tour, int guestsNumberPerReservation, DateTime reservationStartingTime, User guest)
         {
             Id = id;
             Tour = tour;

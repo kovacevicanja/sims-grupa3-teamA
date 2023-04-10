@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingProject.Controller;
+using BookingProject.Controllers;
 using BookingProject.Model;
 
 namespace BookingProject.View
@@ -22,10 +23,11 @@ namespace BookingProject.View
     /// </summary>
     public partial class ReservationTourOtherOffersView : Window
     {
-        private ObservableCollection<Tour> _tours; 
-        private TourReservationController _tourReservationController; 
+        private ObservableCollection<Tour> _tours;
+        private TourReservationController _tourReservationController;
         public Tour ChoosenTour { get; set; } //ovo je stara odabrana tura
-        public Guest2 Guest { get; set; }   
+        public Guest2 Guest { get; set; }
+        public int GuestId { get; set; }
         public ReservationTourOtherOffersView(Tour choosenTour, DateTime selectedDate, int guestId)
         {
             InitializeComponent();
@@ -36,6 +38,7 @@ namespace BookingProject.View
             TourDataGrid.ItemsSource = _tours;
             Guest = new Guest2();
             Guest.Id = guestId;
+            GuestId = guestId;
         }
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
@@ -44,7 +47,7 @@ namespace BookingProject.View
 
         private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
         {
-            ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour, Guest.Id);
+            ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour, GuestId);
             reservationTourView.Show();
 
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingProject.Domain;
 using BookingProject.Model.Enums;
 using BookingProject.Serializer;
 
@@ -15,19 +16,24 @@ namespace BookingProject.Model
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public User() { }
+        public string Name;
 
-        public User (int id, string username, string password, UserType userType)
+        public string Surname;
+        public int Age { get; set; }
+        public bool IsSuper { get; set; }
+        public bool IsLoggedIn { get; set; }
+        public List<Voucher> Vouchers { get; set; }
+        public List<TourReservation> MyTours { get; set; }
+
+        public User()
         {
-            Id = id;
-            Username = username;
-            Password = password;
-            UserType = userType;    
+            Vouchers = new List<Voucher>();
+            MyTours = new List<TourReservation>();
         }
 
         public virtual string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), UserType.ToString(), Username, Password };
+            string[] csvValues = { Id.ToString(), UserType.ToString(), Username, Password, Name, Surname, Age.ToString(), IsSuper.ToString(), IsLoggedIn.ToString() };
             return csvValues;
         }
 
@@ -38,15 +44,21 @@ namespace BookingProject.Model
             Password = values[3];
 
             UserType userType;
-            if (Enum.TryParse<UserType>(values[1], out userType)) 
+            if (Enum.TryParse<UserType>(values[1], out userType))
             {
                 UserType = userType;
             }
             else
             {
                 userType = UserType.OWNER;
-                System.Console.WriteLine("An error occurred while loading the user type");               
+                System.Console.WriteLine("An error occurred while loading the user type");
             }
-        }  
+
+            Name = values[4];
+            Surname = values[5];
+            Age = int.Parse(values[6]);
+            IsSuper = bool.Parse(values[7]);
+            IsLoggedIn = bool.Parse(values[8]);
+        }
     }
 }

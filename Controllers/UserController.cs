@@ -89,5 +89,17 @@ namespace BookingProject.Controller
         {
             observers.Remove(observer);
         }
+        public User GetLoggedUser()
+        {
+            foreach (User user in _users)
+            {
+                if (user.IsLoggedIn == true)
+                {
+                    return user;
+                }
+            }
+
+            return _users.FirstOrDefault(u => u.IsLoggedIn == true);
+        }
     }
 }

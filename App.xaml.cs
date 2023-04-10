@@ -39,6 +39,9 @@ namespace BookingProject
         //
         public TourEvaluationController TourEvaluationController { get; set; }
 
+        //
+        public UserController UserController { get; set; }
+
         public App()
         {
             TourController = new TourController(); //
@@ -71,6 +74,8 @@ namespace BookingProject
 
             TourEvaluationController.Load();
             TourReservationController.Load(); //
+                                              //
+            UserController = new UserController();
 
         }
 
