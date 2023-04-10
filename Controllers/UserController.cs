@@ -1,4 +1,5 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.Domain;
+using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Serializer;
 using OisisiProjekat.Observer;

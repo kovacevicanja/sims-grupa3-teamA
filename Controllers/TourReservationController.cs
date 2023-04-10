@@ -130,11 +130,27 @@ namespace BookingProject.Controller
             }
         }
 
+        public List<TourReservation> GetUserTours(int guestId)
+        {
+            List<TourReservation> guestsTours = new List<TourReservation>();
+            foreach (TourReservation tr in _reservations)
+            {
+                if (tr.Guest.Id == guestId)
+                {
+                    guestsTours.Add(tr);
+                }
+            }
+            return guestsTours;
+        }
+
         public void SaveReservationToFile(Tour choosenTour, string numberOfGuests, DateTime selectedDate, User guest)
         {
             //_guests.Add(guest);
 
             TourReservation reservation = new TourReservation(GenerateId(), choosenTour, choosenTour.MaxGuests - int.Parse(numberOfGuests), selectedDate, guest);
+
+            guest.MyTours = GetUserTours(guest.Id);
+            
             ReservationGuestBind(guest.Id); //ovde bindujem
             guest.MyTours.Add(reservation);
             _reservations.Add(reservation);

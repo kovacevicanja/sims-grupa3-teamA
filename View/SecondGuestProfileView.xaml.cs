@@ -26,13 +26,17 @@ namespace BookingProject.View
         private int GuestId { get; set; }
         private Guest2Controller Guest2Controller { get; set; } 
         public Guest2 Guest { get; set; }
+        public UserController UserController { get; set; }  
+        public User User { get; set; }  
         public SecondGuestProfile(int idGuest)
         {
             InitializeComponent();
             this.DataContext = this;
            
             this.GuestId = idGuest;
-            Guest2Controller = new Guest2Controller();
+            //Guest2Controller = new Guest2Controller();
+            UserController = new UserController();
+            User = new User();
         }
 
         private void Button_Click_MyTours(object sender, RoutedEventArgs e)
@@ -51,6 +55,14 @@ namespace BookingProject.View
         {
             SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(GuestId);
             secondGuestMyVouchers.ShowDialog();
+        }
+
+        private void Button_Click_LogOut(object sender, RoutedEventArgs e)
+        {
+            User.Id = GuestId;
+            User.IsLoggedIn = false;
+            SignInForm signInForm = new SignInForm();
+            signInForm.ShowDialog();
         }
     }
 }

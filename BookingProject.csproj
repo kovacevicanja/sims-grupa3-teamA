@@ -81,7 +81,6 @@
     <Compile Include="Domain\Enums\GuideType.cs" />
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Guide.cs" />
-    <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Images\TourEvaluationImage.cs" />
     <Compile Include="Domain\TourEvaluation.cs" />
@@ -394,13 +393,12 @@
     <None Include="Resources\Data\tourEvaluation.csv" />
     <None Include="Resources\Data\tours.csv" />
     <None Include="Resources\Data\tourStartingTime.csv" />
+    <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Data\tourTime.csv" />
     <None Include="Resources\Data\tourTimeInstances.csv" />
     <None Include="Resources\Data\toursGuests.csv" />
     <None Include="Resources\Data\guest2.csv" />
-    <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Data\users.csv" />
-    <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Images\accommodationimages.csv" />
     <None Include="View\very-popular-thread_318-10286.avif" />
   </ItemGroup>

@@ -90,8 +90,6 @@ namespace BookingProject.View
                         //SecondGuestView secondGuestView = new SecondGuestView();
                         //secondGuestView.Show();
                         _controller.GetByUsername(Username).IsLoggedIn = true;
-                        SecondGuestProfile secondGuestProfile = new SecondGuestProfile();
-                        _controller.GetByUsername(Username).IsLoggedIn = true;
                         User userGuest = _controller.GetByUsername(Username);
                         SecondGuestProfile secondGuestProfile = new SecondGuestProfile(userGuest.Id);
                         secondGuestProfile.Show();

@@ -83,7 +83,8 @@ namespace BookingProject.View
 
             //
             _tourReservationController = new TourReservationController();
-            _toursReservation = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
+            //_toursReservation = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
+            _toursReservation = new ObservableCollection<TourReservation>(_tourReservationController.GetUserTours(guestId));
             //_tourReservationController.ReservationGuestBind(guestId);
             MyToursDataGrid.ItemsSource = _toursReservation;
             //
