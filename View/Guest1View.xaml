@@ -84,8 +84,9 @@
             
         </Grid>
 
-        <StackPanel Grid.Row="3">
-            <Button Width="120" IsDefault="True" Click="Button_Click_Book">Book accommodation</Button>
-        </StackPanel>
+        <WrapPanel Grid.Row="3">
+            <Button Width="120" IsDefault="True" Click="Button_Click_Book" Margin="20 0 20 0">Book accommodation</Button>
+            <Button Content="My reservations" Click="Button_Click_Res"></Button>
+        </WrapPanel>
     </Grid>
 </Window>

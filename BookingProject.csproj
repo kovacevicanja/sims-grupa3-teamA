@@ -60,6 +60,7 @@
     <Compile Include="Controllers\AccommodationDateController.cs" />
     <Compile Include="Controllers\AccommodationLocationController.cs" />
     <Compile Include="Controllers\AccommodationImageController.cs" />
+    <Compile Include="Controllers\AccommodationOwnerGradeController.cs" />
     <Compile Include="Controllers\AccommodationReservationController.cs" />
     <Compile Include="Controllers\Guest2Controller.cs" />
     <Compile Include="Controllers\TourEvaluationController.cs" />
@@ -76,6 +77,11 @@
     <Compile Include="Controllers\TourTimeInstanceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
+    <Compile Include="Domain\AccommodationOwnerGrade.cs" />
+    <Compile Include="Domain\Enums\GuideType.cs" />
+    <Compile Include="Domain\Enums\VoucherState.cs" />
+    <Compile Include="Domain\Guide.cs" />
+    <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Images\TourEvaluationImage.cs" />
     <Compile Include="Domain\TourEvaluation.cs" />
@@ -83,6 +89,7 @@
     <Compile Include="Domain\Voucher.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
+    <Compile Include="FileHandler\AccommodationOwnerGradeHandler.cs" />
     <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
     <Compile Include="FileHandler\AccomodationLocationHandler.cs" />
     <Compile Include="FileHandler\Guest2Handler.cs" />
@@ -127,6 +134,9 @@
     <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
+    <Compile Include="View\AccommodationOwnerReview.xaml.cs">
+      <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddAccommodationView.xaml.cs">
       <DependentUpon>AddAccommodationView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +155,12 @@
     <Compile Include="View\FindAvailableDatesForAccommodation.xaml.cs">
       <DependentUpon>FindAvailableDatesForAccommodation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Guest1Homepage.xaml.cs">
+      <DependentUpon>Guest1Homepage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1Reservations.xaml.cs">
+      <DependentUpon>Guest1Reservations.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
     </Compile>
@@ -153,6 +169,15 @@
     </Compile>
     <Compile Include="View\GuestPreseanceCheck.xaml.cs">
       <DependentUpon>GuestPreseanceCheck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\GuideHomeWindow.xaml.cs">
+      <DependentUpon>GuideHomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\MyToursWindow.xaml.cs">
+      <DependentUpon>MyToursWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\TourCancellationWindow.xaml.cs">
+      <DependentUpon>TourCancellationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LiveToursList.xaml.cs">
       <DependentUpon>LiveToursList.xaml</DependentUpon>
@@ -193,8 +218,8 @@
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TourCreationView.xaml.cs">
-      <DependentUpon>TourCreationView.xaml</DependentUpon>
+    <Compile Include="View\GuideView\TourCreationWindow.xaml.cs">
+      <DependentUpon>TourCreationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ToursAndGuidesEvaluationView.xaml.cs">
       <DependentUpon>ToursAndGuidesEvaluationView.xaml</DependentUpon>
@@ -211,6 +236,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AccommodationOwnerReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddAccommodationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -235,6 +264,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Guest1Homepage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1Reservations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Guest1View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,6 +281,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GuestPreseanceCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\GuideHomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\MyToursWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\TourCancellationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -299,7 +348,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TourCreationView.xaml">
+    <Page Include="View\GuideView\TourCreationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -331,6 +380,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\Data\tourEvaluationImages.csv" />
+    <None Include="Resources\Data\accommodationOwnerGrades.csv" />
     <None Include="Resources\Data\accommodationReservations.csv" />
     <None Include="Resources\Data\accommodations.csv" />
     <None Include="Resources\Data\accommodationDates.csv" />
@@ -350,7 +400,9 @@
     <None Include="Resources\Data\guest2.csv" />
     <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Data\users.csv" />
+    <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Images\accommodationimages.csv" />
+    <None Include="View\very-popular-thread_318-10286.avif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -360,10 +412,51 @@
     <Resource Include="View\ToursImages\tour.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\super.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\Images\add.png" />
     <Resource Include="Resources\Images\delete.png" />
     <Resource Include="Resources\Images\edit.png" />
     <Resource Include="Resources\Images\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\bed.jpg" />
+    <Resource Include="View\ImagesGuest1\createforum.png" />
+    <Resource Include="View\ImagesGuest1\foorumm.png" />
+    <Resource Include="View\ImagesGuest1\forumcici.png" />
+    <Resource Include="View\ImagesGuest1\homepage.png" />
+    <Resource Include="View\ImagesGuest1\images.png" />
+    <Resource Include="View\ImagesGuest1\logout.jpg" />
+    <Resource Include="View\ImagesGuest1\quicksearch.png" />
+    <Resource Include="View\ImagesGuest1\reservation.png" />
+    <Resource Include="View\ImagesGuest1\reviews.png" />
+    <Resource Include="View\ImagesGuest1\right.png" />
+    <Resource Include="View\ImagesGuest1\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\acc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\res.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\help2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\ress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesGuest1\bedroom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\guide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\ToursImages\1.png" />

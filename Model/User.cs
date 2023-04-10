@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookingProject.Domain;
 using BookingProject.Model.Enums;
 using BookingProject.Serializer;
 
@@ -16,30 +15,22 @@ namespace BookingProject.Model
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public string Name;
+        public User() { }
 
-        public string Surname;
-        public int Age { get; set; }
-        public bool IsSuper { get; set; }
-        public bool IsLoggedIn { get; set; }
-        public List<Voucher> Vouchers { get; set; }
-        public List<TourReservation> MyTours { get; set; }
-
-        public User()
+        public User(string username, string password, UserType userType)
         {
-            Vouchers = new List<Voucher>();
-            MyTours = new List<TourReservation>();
+            Username = username;
+            Password = password;
+            UserType = userType;
         }
 
-
-
-        public virtual string[] ToCSV()
+        public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), UserType.ToString(), Username, Password, Name, Surname, Age.ToString(), IsSuper.ToString(), IsLoggedIn.ToString() };
+            string[] csvValues = { Id.ToString(), UserType.ToString(), Username, Password };
             return csvValues;
         }
 
-        public virtual void FromCSV(string[] values)
+        public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
             Username = values[2];
@@ -55,12 +46,8 @@ namespace BookingProject.Model
                 userType = UserType.OWNER;
                 System.Console.WriteLine("An error occurred while loading the user type");
             }
-
-            Name = values[4];
-            Surname = values[5];
-            Age = int.Parse(values[6]);
-            IsSuper = bool.Parse(values[7]);
-            IsLoggedIn = bool.Parse(values[8]);
         }
+
+        
     }
 }

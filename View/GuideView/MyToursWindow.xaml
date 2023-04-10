@@ -1,0 +1,99 @@
+﻿<Window 
+        WindowStartupLocation="CenterScreen"
+        x:Class="BookingProject.View.GuideView.MyToursWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View.GuideView"
+        mc:Ignorable="d"
+        Title="MyToursWindow" Height="515" Width="1105">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="312"/>
+            <RowDefinition Height="22"/>
+        </Grid.RowDefinitions>
+
+
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="829*"/>
+                <ColumnDefinition Width="313*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <DataGrid
+                              ItemsSource="{Binding Path=Tours, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding Path=ChosenTour, UpdateSourceTrigger=PropertyChanged}"
+                              Name="TourDataGrid"
+                              AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,5,1" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                <DataGrid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-0.126"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-0.998"/>
+                    </TransformGroup>
+                </DataGrid.RenderTransform>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tour name" Width="70" Binding="{Binding Tour.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="City" Width="70" Binding="{Binding Tour.Location.City}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Country" Width="70" Binding="{Binding Tour.Location.Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Description" Width="170" Binding="{Binding Tour.Description}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tour duration" Width="85" Binding="{Binding Tour.DurationInHours}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Key points" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding Tour.KeyPoints}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Point}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Language" Width="65" Binding="{Binding Tour.Language}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Starting time" Width="155" Binding="{Binding TourTime.StartingDateTime}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Number of possible guests" Width="155" Binding="{Binding Tour.MaxGuests}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Images" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding Tour.Images}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Url}" Width="80" Height="80" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+        <WrapPanel Grid.Row="2" Margin="20,41,5,-85">
+            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Click="Button_Click_Create" Content="Create New Tour &#xa;          (Ins)" Height="46"/>
+            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Click="Button_Click_Cancel" Content="Cancel Selected Tour &#xa;             (Del)" Height="46"/>
+            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Click="Button_Click_Close" Content="Close &#xa; (Esc)" Height="46"/>
+        </WrapPanel>
+        <Label Content="My Tours" FontWeight="Bold" FontSize="26"  Margin="10,0,816,0"/>
+        <Label Content="Options" FontWeight="Bold" FontSize="26"  Margin="30,308,816,-14" Grid.Row="1" Grid.RowSpan="2"/>
+    </Grid>
+</Window>
+

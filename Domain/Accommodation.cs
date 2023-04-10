@@ -22,6 +22,8 @@ namespace BookingProject.Model
         public int MinDays { get; set; }
         public int CancellationPeriod { get; set; }
         public List<AccommodationImage> Images { get; set; }
+        public User Owner { get; set; }
+
         public Accommodation() {
             Images = new List<AccommodationImage>();
         }

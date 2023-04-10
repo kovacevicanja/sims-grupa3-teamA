@@ -3,6 +3,7 @@ using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Model.Images;
+using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,7 +26,7 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for TourCreationView.xaml
     /// </summary>
-    public partial class TourCreationView : Window, IDataErrorInfo
+    public partial class TourCreationWindow : Window, IDataErrorInfo
     {
 
         public ObservableCollection<LanguageEnum> Languages { get; set; }
@@ -38,7 +39,7 @@ namespace BookingProject.View
 
         public LanguageEnum ChosenLanguage { get; set; }
 
-        public TourCreationView()
+        public TourCreationWindow()
         {
             InitializeComponent();
             this.DataContext = this;
@@ -257,8 +258,8 @@ namespace BookingProject.View
             StartingDateController.CleanUnused();
             StartingDateController.Save();
                 
-            LiveToursList liveTourList = new LiveToursList();
-            liveTourList.Show();
+            MyToursWindow myToursWindow = new MyToursWindow();
+            myToursWindow.Show();
             Close();
 
         }

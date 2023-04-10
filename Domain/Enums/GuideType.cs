@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingProject.Domain.Enums
+namespace BookingProject.Model.Enums
 {
-    public enum VoucherState
+    public enum GuideType
     {
-        CREATED,
-        USED,
-        INVALID,
-        EXPIRED
+        NORMAL, SUPER
     }
 }

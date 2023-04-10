@@ -16,7 +16,7 @@ namespace BookingProject.Controller
 
         private readonly UserHandler _userHandler;
 
-        private List<User> _users;
+        public List<User> _users;
 
         public UserController()
         {

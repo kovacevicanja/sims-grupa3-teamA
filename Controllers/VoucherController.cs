@@ -16,7 +16,9 @@ namespace BookingProject.Controllers
     public class VoucherController
     {
         private readonly List<IObserver> observers;
+
         private readonly VoucherHandler _voucherHandler;
+
         private List<Voucher> _vouchers;
         private Guest2Controller _guest2Controller;
         private UserController _userController;
@@ -30,12 +32,13 @@ namespace BookingProject.Controllers
             //Guest = new Guest2();   
             Load();
         }
+
         public void Load()
         {
             _vouchers = _voucherHandler.Load();
             //GuestVoucherBind();
         }
-        
+
         public void GuestVoucherBind(int id)
         {
             _guest2Controller.Load();
@@ -46,11 +49,11 @@ namespace BookingProject.Controllers
                 if (voucher.Guest.Id == -1)
                 {
                     voucher.Guest.Id = id;
-                }
+        }
             }
             NotifyObservers();
         }
-        
+
         public int GenerateId()
         {
             int maxId = 0;
@@ -76,6 +79,8 @@ namespace BookingProject.Controllers
             _voucherHandler.Save(_vouchers);
             NotifyObservers();
         }
+
+
         public List<Voucher> GetAll()
         {
             return _vouchers;
@@ -109,6 +114,7 @@ namespace BookingProject.Controllers
         {
             return _vouchers.Find(voucher => voucher.Id == id);
         }
+
         public void NotifyObservers()
         {
             foreach (var observer in observers)
@@ -116,13 +122,16 @@ namespace BookingProject.Controllers
                 observer.Update();
             }
         }
+
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
         }
+
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);
         }
+
     }
 }
