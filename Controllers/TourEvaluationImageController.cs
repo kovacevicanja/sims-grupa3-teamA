@@ -35,7 +35,7 @@ namespace BookingProject.Controller
         public void Load()
         {
             _images = _imageHandler.Load();
-            TourEvaluationBind();
+            //TourEvaluationBind(); 
         }
 
         private int GenerateId()

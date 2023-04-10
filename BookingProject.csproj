@@ -75,9 +75,12 @@
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Controllers\TourTimeInstanceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VoucherController.cs" />
+    <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Images\TourEvaluationImage.cs" />
     <Compile Include="Domain\TourEvaluation.cs" />
     <Compile Include="Domain\ToursGuests.cs" />
+    <Compile Include="Domain\Voucher.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
     <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
@@ -118,6 +121,8 @@
     <Compile Include="Domain\TourReservation.cs" />
     <Compile Include="Domain\TourTimeInstance.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="FileHandler\UserHandler.cs" />
+    <Compile Include="FileHandler\VoucherHandler.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
@@ -175,6 +180,9 @@
     </Compile>
     <Compile Include="View\SecondGuestMyToursView.xaml.cs">
       <DependentUpon>SecondGuestMyToursView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecondGuestMyVouchersView.xaml.cs">
+      <DependentUpon>SecondGuestMyVouchersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SecondGuestProfileView.xaml.cs">
       <DependentUpon>SecondGuestProfileView.xaml</DependentUpon>
@@ -275,6 +283,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SecondGuestMyVouchersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SecondGuestProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -336,6 +348,7 @@
     <None Include="Resources\Data\tourTimeInstances.csv" />
     <None Include="Resources\Data\toursGuests.csv" />
     <None Include="Resources\Data\guest2.csv" />
+    <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Data\users.csv" />
     <None Include="Resources\Images\accommodationimages.csv" />
   </ItemGroup>
@@ -344,6 +357,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\ToursImages\6.png" />
+    <Resource Include="View\ToursImages\tour.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\add.png" />
@@ -374,6 +388,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\ToursImages\10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ToursImages\NumberOfGuests.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ToursImages\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ToursImages\calendar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ToursImages\gosti2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

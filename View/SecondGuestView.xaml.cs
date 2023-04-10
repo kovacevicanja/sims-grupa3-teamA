@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingProject.Controller;
+using BookingProject.Controllers;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Model.Images;
@@ -36,11 +37,13 @@ namespace BookingProject.View
         public string Duration { get; set; } = string.Empty;
         public string ChoosenLanguage { get; set; } = string.Empty;
         public string NumOfGuests { get; set; } = string.Empty;
-        public Tour ChoosenTour { get; set; }  
+        public Tour ChoosenTour { get; set; }
+        public Guest2Controller Guest2Controller { get; set; }
 
         public Guest2 Guest { get; set; }   
+        public int GuestId { get; set; }
 
-        public SecondGuestView(Guest2 guest)
+        public SecondGuestView(int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -48,7 +51,13 @@ namespace BookingProject.View
             _tours = new ObservableCollection<Tour>(_tourController.GetAll());
             TourDataGrid.ItemsSource = _tours;
 
-            Guest = guest;
+            Guest2Controller = new Guest2Controller();
+
+            //Guest = new Guest2();
+            //Guest = guest;
+            //Guest.Id = guestId;
+            //Guest = Guest2Controller.GetByID(guestId);
+            GuestId = guestId;
 
             languageComboBox.ItemsSource = new List<string>() { "ENGLISH", "SERBIAN", "GERMAN" };
         }
@@ -74,7 +83,7 @@ namespace BookingProject.View
         {
             if (ChoosenTour != null)
             {
-                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour, Guest);
+                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour, GuestId);
                 reservationTourView.Show();
             }
         }
@@ -82,13 +91,6 @@ namespace BookingProject.View
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void BookButton_Click(object sender, RoutedEventArgs e)
-        {
-                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour, Guest);
-                reservationTourView.Show();
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

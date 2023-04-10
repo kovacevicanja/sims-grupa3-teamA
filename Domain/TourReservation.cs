@@ -25,7 +25,6 @@ namespace BookingProject.Model
         public TourReservation() 
         {
             Tour = new Tour();
-            //Guests = new List<Guest2>();    
             Guest = new Guest2();
         }
         public TourReservation(int id, Tour tour, int guestsNumberPerReservation, DateTime reservationStartingTime, Guest2 guest)

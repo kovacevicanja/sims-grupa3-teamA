@@ -17,8 +17,9 @@ namespace BookingProject.Model
 
         public User() { }
 
-        public User(string username, string password, UserType userType)
+        public User (int id, string username, string password, UserType userType)
         {
+            Id = id;
             Username = username;
             Password = password;
             UserType = userType;    
@@ -29,7 +30,6 @@ namespace BookingProject.Model
             string[] csvValues = { Id.ToString(), UserType.ToString(), Username, Password };
             return csvValues;
         }
-
 
         public virtual void FromCSV(string[] values)
         {

@@ -25,24 +25,32 @@ namespace BookingProject.View
     {
         private int GuestId { get; set; }
         private Guest2Controller Guest2Controller { get; set; } 
+        public Guest2 Guest { get; set; }
         public SecondGuestProfile(int idGuest)
         {
             InitializeComponent();
             this.DataContext = this;
+           
             this.GuestId = idGuest;
-            Guest2Controller = new Guest2Controller();   
+            Guest2Controller = new Guest2Controller();
         }
 
         private void Button_Click_MyTours(object sender, RoutedEventArgs e)
         {
-            SecondGuestMyTours secondGuestMyTours = new SecondGuestMyTours(Guest2Controller.GetByID(GuestId));
+            SecondGuestMyTours secondGuestMyTours = new SecondGuestMyTours(GuestId);
             secondGuestMyTours.Show();
         }
 
         private void Button_Click_SecondGuestView(object sender, RoutedEventArgs e)
         {
-            SecondGuestView secondGuestView = new SecondGuestView(Guest2Controller.GetByID(GuestId));
+            SecondGuestView secondGuestView = new SecondGuestView(GuestId);
             secondGuestView.Show();
+        }
+
+        private void Button_Click_MyVouchers (object sender, RoutedEventArgs e)
+        {
+            SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(GuestId);
+            secondGuestMyVouchers.ShowDialog();
         }
     }
 }

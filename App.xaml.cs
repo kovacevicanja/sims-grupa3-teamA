@@ -70,6 +70,8 @@ namespace BookingProject
             GuestGradeController.Load();
 
             TourEvaluationController.Load();
+            TourReservationController.Load(); //
+
         }
 
 

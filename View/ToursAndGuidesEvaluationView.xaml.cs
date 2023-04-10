@@ -41,6 +41,7 @@ namespace BookingProject.View
         public List <TourEvaluationImage> Images { get; set; }
         public TourEvaluationImageController TourEvaluationImageController { get; set; }
         public TourReservation ChosenReservation { get; set; }
+        public TourReservationController TourReservationController { get; set; }
         public ToursAndGuidesEvaluationView(TourReservation chosenReservation)
         {
             InitializeComponent();
@@ -58,6 +59,8 @@ namespace BookingProject.View
             GuideKnowledgeOption = new ObservableCollection<int>();
             GuideLanguageOption = new ObservableCollection<int>();
             TourInterestignessOption = new ObservableCollection<int>();
+
+            TourReservationController = new TourReservationController();
 
             for (int i = 1; i <= 5; i++)
             {
@@ -151,7 +154,7 @@ namespace BookingProject.View
             TourEvaluationImageController.Create(TourImage);
             TourEvaluationImageController.Save();
 
-            MessageBox.Show("You have successfully added a picture, if you want you can add more.");
+            TourReservationController.ShowCustomMessageBox("You have successfully added a picture, if you want you can add more.");
             TourImageTextBox.Clear();
         }
         private void Button_Click_Rate(object sender, RoutedEventArgs e)

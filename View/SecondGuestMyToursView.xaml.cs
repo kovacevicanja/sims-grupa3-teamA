@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -54,17 +55,24 @@ namespace BookingProject.View
         private TourReservationController _tourReservationController; //
         private ObservableCollection<TourReservation> _toursReservation; //
 
-        public SecondGuestMyTours(Guest2 guest)
+        public int GuestId { get; set; }
+
+        public SecondGuestMyTours(int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
 
             _reservationHandler = new TourReservationHandler();
+            //Guest = guest;
+
+            GuestId = guestId;
 
             TourReservationController = new TourReservationController();
             _reservations = new ObservableCollection<TourReservation>(TourReservationController.GetAll());
 
-            //_guest2Controller = new Guest2Controller();
+            //TourReservationController.ReservationGuestBind(guest.Id);
+
+            _guest2Controller = new Guest2Controller();
             //_guests2 = new ObservableCollection<Guest2>(_guest2Controller.GetAll());
             //MyToursDataGrid.ItemsSource = _guests2;
             tourGuestsGrid = new List<Object>();
@@ -76,13 +84,14 @@ namespace BookingProject.View
             //
             _tourReservationController = new TourReservationController();
             _toursReservation = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
+            //_tourReservationController.ReservationGuestBind(guestId);
             MyToursDataGrid.ItemsSource = _toursReservation;
             //
 
 
             //MyToursDataGrid.ItemsSource = tourCollection;
 
-            Guest = guest;
+            //Guest = _guest2Controller.GetByID(guestId);
 
             //_tourController = new TourController();
             //_tourController.Load();
@@ -106,7 +115,7 @@ namespace BookingProject.View
 
 
             //fillDataGrid(_toursGuests);
-            fillDataGrid();
+            //fillDataGrid();
             //MyToursDataGrid.ItemsSource = tourGuestsGrid;
 
             //MyToursWpf = new ObservableCollection<Tour>(guest.MyTours);
@@ -137,7 +146,6 @@ namespace BookingProject.View
         */
         private void Button_Rate(object sender, RoutedEventArgs e)
         {
-
             if (ChoosenReservation != null)
             {
                 ToursAndGuidesEvaluationView toursAndGuidesEvaluationView = new ToursAndGuidesEvaluationView(ChoosenReservation);
@@ -163,7 +171,7 @@ namespace BookingProject.View
             }
         }*/
 
-        private void fillDataGrid()
+        /*private void fillDataGrid()
         {
             //List<TourReservation> reservationsFromFile = _reservationHandler.Load();
             //TourReservationController.Load();
@@ -183,6 +191,7 @@ namespace BookingProject.View
                 }
             }*/
 
+            /*
             if (_reservations.Count == 0)
             {
                 MessageBox.Show("nemate ni jednu rezervaciju");
@@ -215,7 +224,7 @@ namespace BookingProject.View
                     TourImages = tour.Tour.Images
                 });
             }
-        }
+            */
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
