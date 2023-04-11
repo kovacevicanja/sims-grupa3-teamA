@@ -53,10 +53,9 @@ namespace BookingProject.Model
                 Tour.Id.ToString(),
                 GuestsNumberPerReservation.ToString(),
                 DateConversion.DateToStringTour(ReservationStartingTime),
-                Guest.Id.ToString()
+                Guest.Id.ToString(),
             };
             return csvValues;
         }
-
     }
 }

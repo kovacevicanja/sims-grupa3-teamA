@@ -36,8 +36,11 @@ namespace BookingProject.View
         public List<Voucher> _vouchersList { get; set; }
         public Guest2 Guest { get; set; }
         public Voucher ChosenVoucher { get; set; }
-        public TourReservationController TourReservationController { get; set; }    
-        public Guest2Controller Guest2Controller { get; set; }   
+        public TourReservationController TourReservationController { get; set; }
+        public TourReservationHandler TourReservationHandler { get; set; }
+        public Guest2Controller Guest2Controller { get; set; }
+
+        public int ReservationId { get; set; }  
 
         public SecondGuestMyVouchersView(int guestId)
         {
@@ -47,6 +50,8 @@ namespace BookingProject.View
             ChosenVoucher = new Voucher();
 
             TourReservationController = new TourReservationController();
+            TourReservationHandler = new TourReservationHandler();
+            //ReservationId = reservationId;
             _voucherHandler = new VoucherHandler();
             VoucherController = new VoucherController();
 
@@ -73,8 +78,25 @@ namespace BookingProject.View
             {
                 _vouchersList = VoucherController.GetAll();
                 TourReservationController.ShowCustomMessageBox("You have successfully used your voucher to book this tour.");
-                _vouchersList.Remove(ChosenVoucher);
+                //_vouchersList.Remove(ChosenVoucher);
+                ChosenVoucher.State = VoucherState.USED;
                 _voucherHandler.Save(_vouchersList);
+
+                /*
+                List<TourReservation> tourReservations = new List<TourReservation>();
+                tourReservations = TourReservationHandler.Load();
+
+                foreach (TourReservation tr in tourReservations)
+                {
+                    if (tr.Id == ReservationId)
+                    {
+                        tr.UsedVoucher = true;
+                    }
+                }
+
+                TourReservationHandler.Save(tourReservations);
+                */
+
                 this.Close();
             }
         }

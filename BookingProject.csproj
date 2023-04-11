@@ -136,6 +136,9 @@
     <Compile Include="View\AccommodationOwnerReview.xaml.cs">
       <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ActiveToursView.xaml.cs">
+      <DependentUpon>ActiveToursView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddAccommodationView.xaml.cs">
       <DependentUpon>AddAccommodationView.xaml</DependentUpon>
     </Compile>
@@ -187,6 +190,9 @@
     <Compile Include="View\GuestRateView.xaml.cs">
       <DependentUpon>GuestRateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MonitoringActiveToursView.xaml.cs">
+      <DependentUpon>MonitoringActiveToursView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NotGradedView.xaml.cs">
       <DependentUpon>NotGradedView.xaml</DependentUpon>
     </Compile>
@@ -236,6 +242,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AccommodationOwnerReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ActiveToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GuestRateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MonitoringActiveToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
