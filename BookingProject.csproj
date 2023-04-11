@@ -492,5 +492,8 @@
   <ItemGroup>
     <Resource Include="View\ToursImages\gosti2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ToursImages\logOut.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

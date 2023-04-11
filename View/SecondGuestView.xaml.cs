@@ -42,6 +42,7 @@ namespace BookingProject.View
 
         public Guest2 Guest { get; set; }   
         public int GuestId { get; set; }
+        public User User { get; set; }  
 
         public SecondGuestView(int guestId)
         {
@@ -58,6 +59,7 @@ namespace BookingProject.View
             //Guest.Id = guestId;
             //Guest = Guest2Controller.GetByID(guestId);
             GuestId = guestId;
+            User = new User();
 
             languageComboBox.ItemsSource = new List<string>() { "ENGLISH", "SERBIAN", "GERMAN" };
         }
@@ -194,6 +196,13 @@ namespace BookingProject.View
                 _startingTime = value;
                 OnPropertyChanged();
             }
+        }
+        private void Button_Click_LogOut(object sender, RoutedEventArgs e)
+        {
+            User.Id = GuestId;
+            User.IsLoggedIn = false;
+            SignInForm signInForm = new SignInForm();
+            signInForm.ShowDialog();
         }
 
     }

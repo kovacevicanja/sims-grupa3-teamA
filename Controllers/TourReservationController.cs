@@ -33,6 +33,8 @@ namespace BookingProject.Controller
         private Guest2Controller _guest2Controller { get; set; }
         public VoucherController VoucherController { get; set; }
         public Guest2 Guest { get; set; }
+
+        public TourTimeInstanceController TourTimeInstanceController { get; set; } //
         public TourReservationController()
         {
             _reservationHandler = new TourReservationHandler();
@@ -50,6 +52,8 @@ namespace BookingProject.Controller
             _guests = new List<Guest2>(_guest2Controller.GetAll());//
 
             VoucherController = new VoucherController();
+
+            TourTimeInstanceController = new TourTimeInstanceController(); //
 
             observers = new List<IObserver>();
 

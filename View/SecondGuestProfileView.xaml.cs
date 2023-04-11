@@ -59,6 +59,7 @@ namespace BookingProject.View
 
         private void Button_Click_LogOut(object sender, RoutedEventArgs e)
         {
+            UserController.GetByID(GuestId);
             User.Id = GuestId;
             User.IsLoggedIn = false;
             SignInForm signInForm = new SignInForm();
