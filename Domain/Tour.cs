@@ -26,6 +26,7 @@ namespace BookingProject.Model
         //public List<Guest2> TourGuests { get; set; } = new List<Guest2>();  
 
         //u turi id vodica
+        public int GuideId { get; set; }
 
         public Tour() { 
             KeyPoints = new List<KeyPoint>();
@@ -34,7 +35,7 @@ namespace BookingProject.Model
             //TourGuests = new List<Guest2>();
         }
 
-        public Tour(int id, string name, int locationId, Location location, string description, LanguageEnum language, int maxGuests, List<KeyPoint> keyPoints, List<TourDateTime> startingTime, double durationInHours, List<TourImage> images)
+        public Tour(int id, string name, int locationId, Location location, string description, LanguageEnum language, int maxGuests, List<KeyPoint> keyPoints, List<TourDateTime> startingTime, double durationInHours, List<TourImage> images, int guideId)
         {
             Id = id;
             Name = name;
@@ -44,6 +45,7 @@ namespace BookingProject.Model
             Language = language;
             MaxGuests = maxGuests;
             DurationInHours = durationInHours;
+            GuideId = guideId;
         }
 
         public void FromCSV(string[] values)
@@ -65,6 +67,7 @@ namespace BookingProject.Model
 
             MaxGuests = int.Parse(values[5]);
             DurationInHours = int.Parse(values[6]);
+            GuideId= int.Parse(values[7]);
         }
 
         public string[] ToCSV()
@@ -78,6 +81,7 @@ namespace BookingProject.Model
                 Language.ToString(),
                 MaxGuests.ToString(),
                 DurationInHours.ToString(),
+                GuideId.ToString(),
 
             };
             return csvValues;

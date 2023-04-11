@@ -16,6 +16,7 @@ namespace BookingProject.Model.Images
 
         public TourImage() {
             Tour = new Tour();
+            Tour.Id = -1;
         }
 
         public TourImage(int id, string url, Tour tour)

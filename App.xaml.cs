@@ -1,6 +1,7 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.FileHandler;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -42,6 +43,8 @@ namespace BookingProject
         //
         public UserController UserController { get; set; }
 
+        public TourPresenceController TourPresenceController { get; set; }
+
         public App()
         {
             TourController = new TourController(); //
@@ -57,6 +60,7 @@ namespace BookingProject
             AccommodationReservationController = new AccommodationReservationController();
             GuestGradeController = new GuestGradeController();
             TourEvaluationController = new TourEvaluationController();
+            TourPresenceController= new TourPresenceController();
 
             GuestGradeController._accommodationController = AccommodationReservationController;
             AccommodationReservationController._guestGradeController= GuestGradeController;

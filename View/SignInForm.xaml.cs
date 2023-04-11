@@ -96,6 +96,7 @@ namespace BookingProject.View
                     }else if (user.UserType == UserType.GUIDE)
                     {
                         _controller.GetByUsername(Username).IsLoggedIn = true;
+                        _controller.Save();
                         GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
                         guideHomeWindow.Show();
                     }
