@@ -16,8 +16,8 @@
         </Grid.ColumnDefinitions>
         <StackPanel Margin="123,79,33,17" Grid.Column="1" >
             <Button Content="My Tours (1)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click_1"/>
-            <Button Content="Tour Statistics (2)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click"/>
-            <Button Content="Live View (3)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click"/>
+            <Button Content="Tour Statistics (2)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click_2"/>
+            <Button Content="Live View (3)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click_3"/>
             <Button Content="Requests (4)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click"/>
             <Button Content="Request Statistics (5)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Click="Button_Click"/>
         </StackPanel>

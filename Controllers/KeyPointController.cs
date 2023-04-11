@@ -1,5 +1,6 @@
 ﻿using BookingProject.FileHandler;
 using BookingProject.Model;
+using BookingProject.Model.Enums;
 using BookingProject.View;
 using OisisiProjekat.Observer;
 using System;
@@ -88,7 +89,29 @@ namespace BookingProject.Controller
             NotifyObservers();
         }
 
+        public KeyPoint GetCurrentKeyPoint()
+        {
+            foreach(KeyPoint keyPoint in _keyPoints)
+            {
+                if (keyPoint.State == KeyPointState.CURRENT)
+                {
+                    return keyPoint;
+                }
+            }
+            return GetPassedKeyPoint();
+        }
 
+        public KeyPoint GetPassedKeyPoint()
+        {
+            foreach (KeyPoint keyPoint in _keyPoints)
+            {
+                if (keyPoint.State == KeyPointState.PASSED)
+                {
+                    return keyPoint;
+                }
+            }
+            return null;
+        }
 
         public void NotifyObservers()
         {
@@ -108,10 +131,6 @@ namespace BookingProject.Controller
             observers.Remove(observer);
         }
 
-        internal void Subscribe(LiveTourView liveTourView)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

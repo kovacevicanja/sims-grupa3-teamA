@@ -55,5 +55,19 @@ namespace BookingProject.View.GuideView
             signInForm.Show();
             Close();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow();
+            tourStatisticsWindow.Show();
+            Close();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            LiveToursList liveTourList= new LiveToursList();
+            liveTourList.Show();
+            Close(); 
+        }
     }
 }

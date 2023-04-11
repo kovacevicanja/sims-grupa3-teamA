@@ -16,12 +16,14 @@ namespace BookingProject.Model
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public string Name;
+        public string Name { get; set; }
 
-        public string Surname;
+        public string Surname { get; set; }
         public int Age { get; set; }
         public bool IsSuper { get; set; }
         public bool IsLoggedIn { get; set; }
+
+        public bool IsPresent { get; set; }
         public List<Voucher> Vouchers { get; set; }
         public List<TourReservation> MyTours { get; set; }
 
@@ -35,7 +37,7 @@ namespace BookingProject.Model
 
         public virtual string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), UserType.ToString(), Username, Password, Name, Surname, Age.ToString(), IsSuper.ToString(), IsLoggedIn.ToString() };
+            string[] csvValues = { Id.ToString(), UserType.ToString(), Username, Password, Name, Surname, Age.ToString(), IsSuper.ToString(), IsLoggedIn.ToString(), IsPresent.ToString() };
             return csvValues;
         }
 
@@ -61,6 +63,7 @@ namespace BookingProject.Model
             Age = int.Parse(values[6]);
             IsSuper = bool.Parse(values[7]);
             IsLoggedIn = bool.Parse(values[8]);
+            IsPresent= bool.Parse(values[9]);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BookingProject.Controller;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using System;
@@ -19,7 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace BookingProject.View
+namespace BookingProject.View.GuideView
 {
     /// <summary>
     /// Interaction logic for LiveTourView.xaml
@@ -35,18 +36,25 @@ namespace BookingProject.View
 
         private TourTimeInstanceController _tourTimeInstanceController;
         private KeyPointController _keyPointController;
+        private UserController _userControler;
         private ObservableCollection<KeyPoint> _keyPoints;
+        private TourPresenceController _tourPresenceController;
         public LiveTourView(TourTimeInstance chosenTour)
         {
             InitializeComponent();
             this.DataContext = this;
             var app = Application.Current as App;
             _tourTimeInstanceController = app.TourTimeInstanceController;
-            _keyPointController = new KeyPointController();
+            _tourPresenceController= app.TourPresenceController;
+            _keyPointController = app.KeyPointController;
+            _userControler = app.UserController;
             _keyPoints = new ObservableCollection<KeyPoint>(chosenTour.Tour.KeyPoints);
-            initState();
+            InitState();
             KeyPointDataGrid.ItemsSource = _keyPoints;
             ChosenTour= chosenTour;
+            TourStarting();
+            SaveStates();
+            SavePresence();
             if (_keyPoints.Last().State == KeyPointState.CURRENT) 
             { 
             IsValid = true;
@@ -57,9 +65,7 @@ namespace BookingProject.View
             }
         }
 
-
-
-        public void initState()
+        public void InitState()
         {
             bool initState = true;
             foreach (KeyPoint keyPoint in _keyPoints)
@@ -75,10 +81,10 @@ namespace BookingProject.View
             {
                 _keyPoints[0].State = KeyPointState.CURRENT;
             }
-
+            _keyPointController.Save();
         }
 
-        public void currentState()
+        public void CurrentState()
         {
             foreach(KeyPoint keyPoint in _keyPoints) 
             {
@@ -88,9 +94,10 @@ namespace BookingProject.View
                 }
             
             }
+            _keyPointController.Save();
         }
 
-        public void passedState()
+        public void PassedState()
         {
             foreach (KeyPoint keyPoint in _keyPoints)
             {
@@ -100,7 +107,7 @@ namespace BookingProject.View
                 }
 
             }
-
+            _keyPointController.Save();
 
         }
 
@@ -109,8 +116,8 @@ namespace BookingProject.View
         {
             if (ChosenKeyPoint != null)
             {
-                passedState();
-                currentState();
+                PassedState();
+                CurrentState();
                 if(_keyPoints.Last().State == KeyPointState.CURRENT) { IsValid= true; }
                 _keyPointController.Save();
                 GuestListView guestListView = new GuestListView(ChosenTour, ChosenKeyPoint);
@@ -126,36 +133,93 @@ namespace BookingProject.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public void SaveStates()
+        {
+            foreach(KeyPoint keyPoint in _keyPoints)
+            {
+                _keyPointController.GetByID(keyPoint.Id).State = keyPoint.State;
+            }
+            _keyPointController.Save();
+
+        }
+
+        public void RevertStates()
+        {
+            foreach (KeyPoint keyPoint in _keyPoints)
+            {
+                _keyPointController.GetByID(keyPoint.Id).State = KeyPointState.EMPTY;
+            }
+            _keyPointController.Save();
+
+        }
+
+        public void RevertUsers()
+        {
+            foreach (User user in _userControler.GetAll())
+            {
+                _userControler.GetByID(user.Id).IsPresent = false;
+            }
+            _keyPointController.Save();
+
+        }
+
         private void Button_Click_Cancell(object sender, RoutedEventArgs e)
         {
-            _keyPointController.Save();
+            SaveStates();
             LiveToursList liveTourList = new LiveToursList();
-            tourCancellation();
             liveTourList.Show();
             Close();
 
         }
 
-        public void tourEnding()
+        public void TourEnding()
         {
             _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.COMPLETED;
             _tourTimeInstanceController.Save();
 
         }
 
-        public void tourCancellation()
+        public void TourStarting()
         {
-            _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.CANCELLED;
+            _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.STARTED;
             _tourTimeInstanceController.Save();
 
         }
 
+        public bool PresenceCheck(TourPresence presence)
+        {
+            if(_userControler.GetByID(presence.UserId).IsPresent && (presence.KeyPointId== -1))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        public void SavePresence()
+        {
+            foreach(TourPresence presence in _tourPresenceController.GetAll())
+            {
+                if (PresenceCheck(presence) && _keyPointController.GetCurrentKeyPoint()!=null)
+                {
+                    _tourPresenceController.GetByID(presence.Id).KeyPointId = _keyPointController.GetCurrentKeyPoint().Id;
+                }
+
+
+            }
+
+            _tourPresenceController.Save();
+
+        }
+
+
 
         private void Button_Click_End(object sender, RoutedEventArgs e)
         {
-            _keyPointController.Save();
+            TourEnding();
+            RevertStates();
+            RevertUsers();
             LiveToursList liveTourList = new LiveToursList();
-            tourEnding();
             liveTourList.Show();
             Close();
         }

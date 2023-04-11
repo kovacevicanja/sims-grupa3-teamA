@@ -37,6 +37,8 @@ namespace BookingProject.View
         public TourStartingTimeController StartingDateController { get; set; }
         public TourImageController ImageController { get; set; }
 
+        public UserController UserController { get; set; }
+
         public LanguageEnum ChosenLanguage { get; set; }
 
         public TourCreationWindow()
@@ -53,6 +55,7 @@ namespace BookingProject.View
             ImageController = app.ImageController;
             StartingDateController = app.StartingDateController;
             TourTimeInstanceController = app.TourTimeInstanceController;
+            UserController = app.UserController;
         }
 
         //public string this[string columnName] => throw new NotImplementedException();
@@ -188,6 +191,7 @@ namespace BookingProject.View
             tour.MaxGuests = MaxGuests;
             tour.DurationInHours = Duration;
             tour.Language = ChosenLanguage;
+            tour.GuideId = UserController.GetLoggedUser().Id;
 
             Location location = new Location();
             location.City = City;

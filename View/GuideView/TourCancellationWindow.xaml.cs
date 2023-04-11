@@ -37,15 +37,15 @@ namespace BookingProject.View.GuideView
             _tourReservationController= new TourReservationController();
             ChosenTour = chosenTour;
         }
-        /*
+        
         public void SendVouchers()
         {
             foreach(TourReservation reservation in _tourReservationController.GetAll())
             {
-                if (reservation.TourId == ChosenTour.Id)
+                if (reservation.Tour.Id == ChosenTour.Id)
                 {
                     Voucher voucher = new Voucher();
-                    voucher.UserId = reservation.UserId;
+                    voucher.Guest.Id = reservation.Guest.Id;
                     voucher.StartDate = DateTime.Now;
                     voucher.EndDate=DateTime.Now.AddDays(7);
                     _voucherController.Create(voucher);
@@ -53,7 +53,7 @@ namespace BookingProject.View.GuideView
             }
             _voucherController.Save();
         }
-        */
+        
 
         private void No_Click(object sender, RoutedEventArgs e)
         {
@@ -67,7 +67,7 @@ namespace BookingProject.View.GuideView
         {
             _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.CANCELLED;
             _tourTimeInstanceController.Save();
-            //SendVouchers();
+            SendVouchers();
             MyToursWindow myToursWindow = new MyToursWindow();
             myToursWindow.Show();
             Close();
