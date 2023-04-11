@@ -17,7 +17,7 @@ namespace BookingProject
     /// </summary>
     public partial class App : Application
     {
-        public TourController TourController { get; set; }
+        public TourController TourController{ get; set; }
         public TourLocationController LocationController { get; set; }
         public TourImageController ImageController { get; set; }
         public KeyPointController KeyPointController { get; set; }

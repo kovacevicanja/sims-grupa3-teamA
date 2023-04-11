@@ -18,7 +18,6 @@ namespace BookingProject.Domain
         public int Id { get; set; }
         public Guest2 Guest { get; set; }
         public DateTime StartDate { get; set; }
-
         public DateTime EndDate { get; set; }
         public VoucherState State { get; set; }
 

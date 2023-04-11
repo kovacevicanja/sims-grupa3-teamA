@@ -103,7 +103,7 @@ namespace BookingProject.Controllers
             List<Voucher> guestsVouchers = new List<Voucher>();
             foreach (Voucher voucher in _vouchers)
             {
-                if (voucher.Guest.Id == guestId)
+                if (voucher.Guest.Id == guestId && voucher.State.ToString() != "USED")
                 {
                     guestsVouchers.Add(voucher);
                 }

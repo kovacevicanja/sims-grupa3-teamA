@@ -1,5 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
+using BookingProject.FileHandler;
 using BookingProject.Model;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,8 @@ namespace BookingProject.View
         public Guest2 Guest { get; set; }
         public UserController UserController { get; set; }  
         public User User { get; set; }  
+        public TourReservationController TourReservationController { get; set; }
+        public TourReservationHandler TourReservationHandler { get; set; }
         public SecondGuestProfile(int idGuest)
         {
             InitializeComponent();
@@ -37,6 +40,8 @@ namespace BookingProject.View
             //Guest2Controller = new Guest2Controller();
             UserController = new UserController();
             User = new User();
+            TourReservationController = new TourReservationController();
+            TourReservationHandler = new TourReservationHandler();
         }
 
         private void Button_Click_MyTours(object sender, RoutedEventArgs e)
@@ -64,6 +69,37 @@ namespace BookingProject.View
             User.IsLoggedIn = false;
             SignInForm signInForm = new SignInForm();
             signInForm.ShowDialog();
+        }
+        private void Button_Click_MonitoringActiveTours(object sender, RoutedEventArgs e)
+        {
+            //prolazim kroz listu trenutno aktivnih tura
+            List<TourReservation> tourReservations = new List<TourReservation>();
+            tourReservations = TourReservationHandler.Load();
+            int flag = 0;
+            List<TourReservation> activeTours = new List<TourReservation>(); 
+            List<int> activeToursIds = new List<int>();
+
+            foreach (TourReservation tr in tourReservations)
+            {
+                if (GuestId == tr.Guest.Id && tr.ReservationStartingTime.Date == DateTime.Now.Date)
+                {
+                    flag = 1;
+                    //MonitoringActiveToursView monitoringActiveTours = new MonitoringActiveToursView(tr);
+                    //monitoringActiveTours.ShowDialog();
+                    //prenosim rez ture koja je trenutno aktivna za tog gosta
+                    activeTours.Add(tr);
+                    activeToursIds.Add(tr.Tour.Id);
+                }
+            }
+            if (flag != 1)
+            {
+                MessageBox.Show("There are currently no active tours that you can follow.");
+            }
+            else
+            {
+                ActiveToursView activeToursView = new ActiveToursView(activeToursIds);
+                activeToursView.ShowDialog();
+            }
         }
     }
 }

@@ -100,6 +100,20 @@ namespace BookingProject.Controller
             }
             return GetPassedKeyPoint();
         }
+        public List<KeyPoint> GetToursKeyPoints(int id)
+        {
+            List <KeyPoint> tourKeyPoints = new List<KeyPoint>();  
+
+            foreach (KeyPoint kp in _keyPoints)
+            {
+                if (kp.TourId == id)
+                {
+                    tourKeyPoints.Add(kp);
+                }
+            }
+            return tourKeyPoints;
+        }
+
 
         public KeyPoint GetPassedKeyPoint()
         {
