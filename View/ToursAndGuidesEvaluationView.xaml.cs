@@ -40,16 +40,16 @@ namespace BookingProject.View
         public TourEvaluation tourEvaluation { get; set; }
         public List <TourEvaluationImage> Images { get; set; }
         public TourEvaluationImageController TourEvaluationImageController { get; set; }
-        public TourReservation ChosenReservation { get; set; }
+        public Tour ChosenTour { get; set; }
         public TourReservationController TourReservationController { get; set; }
-        public ToursAndGuidesEvaluationView(TourReservation chosenReservation)
+        public ToursAndGuidesEvaluationView(Tour chosenTour)
         {
             InitializeComponent();
             this.DataContext = this;
             var app = Application.Current as App;
 
             TourEvaluationController = new TourEvaluationController();
-            ChosenReservation = chosenReservation;
+            ChosenTour = chosenTour;
 
             tourEvaluation = new TourEvaluation();
 
@@ -164,7 +164,7 @@ namespace BookingProject.View
             tourEvaluation.TourInterestigness = ChosenInterestigness;
             tourEvaluation.AdditionalComment = AdditionalComment;
 
-            tourEvaluation.TourReservation.Id = ChosenReservation.Id;
+            tourEvaluation.Tour.Id = ChosenTour.Id;
 
             TourEvaluationController.Create(tourEvaluation);
             TourEvaluationController.SaveEvaluation();

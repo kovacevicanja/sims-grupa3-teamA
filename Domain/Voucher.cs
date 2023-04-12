@@ -16,7 +16,7 @@ namespace BookingProject.Domain
     public class Voucher : ISerializable
     {
         public int Id { get; set; }
-        public Guest2 Guest { get; set; }
+        public User Guest { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public VoucherState State { get; set; }
@@ -24,10 +24,10 @@ namespace BookingProject.Domain
         public Voucher()
         {
             State = VoucherState.CREATED;
-            Guest = new Guest2();
+            Guest = new User();
         }
 
-        public Voucher(int id, Guest2 guest, DateTime startDate, DateTime endDate, VoucherState state)
+        public Voucher(int id, User guest, DateTime startDate, DateTime endDate, VoucherState state)
         {
             Id = id;
             Guest = guest;
@@ -38,8 +38,6 @@ namespace BookingProject.Domain
 
         public void FromCSV(string[] values)
         {
-
-
             Id = int.Parse(values[0]);
             Guest.Id = int.Parse(values[1]);
             StartDate = DateConversion.StringToDateTour(values[2]);

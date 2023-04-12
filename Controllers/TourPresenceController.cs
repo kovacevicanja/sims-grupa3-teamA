@@ -21,6 +21,8 @@ namespace BookingProject.Controller
         public NotificationController _notificationController { get; set; }
 
         private List<TourPresence> _presences;
+        private TourTimeInstanceHandler _timeInstanceHandler { get; set; }
+        public TourController TourController {get; set;}
 
         public TourPresenceController()
         {
@@ -28,6 +30,8 @@ namespace BookingProject.Controller
             _presences = new List<TourPresence>();
             observers = new List<IObserver>();
             _notificationController = new NotificationController();
+            _timeInstanceHandler = new TourTimeInstanceHandler();
+            TourController = new TourController();
             Load();
         }
 
@@ -99,6 +103,37 @@ namespace BookingProject.Controller
             }
 
             return notificationsForGuest;
+        }
+
+        public List<Tour> FindAttendedTours (User guest)
+        {
+            List <int> tourInstanceIds = new List<int>();
+            List<TourReservation> attendedTours = new List<TourReservation>();
+            List<TourTimeInstance> tourTimeInstances = _timeInstanceHandler.Load();
+            List <Tour> tours = new List<Tour>();
+            List<Tour> potentialTours = new List<Tour>();
+
+            foreach (TourPresence tp in _presences)
+            {
+                if (tp.UserId == guest.Id && tp.KeyPointId != -1)
+                {
+                    tourInstanceIds.Add(tp.TourId);
+                }
+            }
+
+            foreach (TourTimeInstance tti in tourTimeInstances)
+            {
+                foreach (int id in tourInstanceIds)
+                {
+                    if (id == tti.Id)
+                    {
+                        Tour tour = new Tour();
+                        tour = TourController.GetByID(tti.TourId);
+                        tours.Add(tour);
+                    }
+                }
+            }
+            return tours.Distinct().ToList();
         }
 
         public void DeleteNotificationFromCSV(Notification notification)

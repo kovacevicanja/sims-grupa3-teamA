@@ -27,7 +27,7 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for SecondGuestMyTours.xaml
     /// </summary>
-    public partial class SecondGuestMyTours : Window, INotifyPropertyChanged
+    public partial class SecondGuestMyReservations : Window, INotifyPropertyChanged
     {
         private Guest2Controller _guest2Controller;
         private ToursGuestsController _toursGuestsController;
@@ -57,7 +57,7 @@ namespace BookingProject.View
 
         public int GuestId { get; set; }
 
-        public SecondGuestMyTours(int guestId)
+        public SecondGuestMyReservations(int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -84,7 +84,7 @@ namespace BookingProject.View
             //
             _tourReservationController = new TourReservationController();
             //_toursReservation = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
-            _toursReservation = new ObservableCollection<TourReservation>(_tourReservationController.GetUserTours(guestId));
+            _toursReservation = new ObservableCollection<TourReservation>(_tourReservationController.GetUserReservations(guestId));
             //_tourReservationController.ReservationGuestBind(guestId);
             MyToursDataGrid.ItemsSource = _toursReservation;
             //
@@ -147,12 +147,7 @@ namespace BookingProject.View
         */
         private void Button_Rate(object sender, RoutedEventArgs e)
         {
-            if (ChoosenReservation != null)
-            {
-                ToursAndGuidesEvaluationView toursAndGuidesEvaluationView = new ToursAndGuidesEvaluationView(ChoosenReservation);
-                toursAndGuidesEvaluationView.Show();
-            }
-
+            //
         }
 
         /*public void SetToursAndGuests()

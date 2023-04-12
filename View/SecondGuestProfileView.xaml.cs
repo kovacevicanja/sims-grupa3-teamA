@@ -25,17 +25,17 @@ namespace BookingProject.View
     public partial class SecondGuestProfile : Window
     {
         private int GuestId { get; set; }
-        private Guest2Controller Guest2Controller { get; set; } 
+        private Guest2Controller Guest2Controller { get; set; }
         public Guest2 Guest { get; set; }
-        public UserController UserController { get; set; }  
-        public User User { get; set; }  
+        public UserController UserController { get; set; }
+        public User User { get; set; }
         public TourReservationController TourReservationController { get; set; }
         public TourReservationHandler TourReservationHandler { get; set; }
         public SecondGuestProfile(int idGuest)
         {
             InitializeComponent();
             this.DataContext = this;
-           
+
             this.GuestId = idGuest;
             //Guest2Controller = new Guest2Controller();
             UserController = new UserController();
@@ -43,11 +43,15 @@ namespace BookingProject.View
             TourReservationController = new TourReservationController();
             TourReservationHandler = new TourReservationHandler();
         }
-
-        private void Button_Click_MyTours(object sender, RoutedEventArgs e)
+        private void Button_Click_MyAttendedTours(object sender, RoutedEventArgs e)
         {
-            SecondGuestMyTours secondGuestMyTours = new SecondGuestMyTours(GuestId);
-            secondGuestMyTours.Show();
+            SecondGuestMyAttendedTours secondGuestMyAttendedTours = new SecondGuestMyAttendedTours(GuestId);
+            secondGuestMyAttendedTours.Show();
+        }
+        private void Button_Click_MyReservations(object sender, RoutedEventArgs e)
+        {
+            SecondGuestMyReservations secondGuestMyReservations = new SecondGuestMyReservations(GuestId);
+            secondGuestMyReservations.Show();
         }
 
         private void Button_Click_SecondGuestView(object sender, RoutedEventArgs e)

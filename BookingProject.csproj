@@ -184,6 +184,9 @@
     <Compile Include="View\GuideView\MyToursWindow.xaml.cs">
       <DependentUpon>MyToursWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SecondGuestMyReservationsView.xaml.cs">
+      <DependentUpon>SecondGuestMyReservationsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\TourCancellationWindow.xaml.cs">
       <DependentUpon>TourCancellationWindow.xaml</DependentUpon>
     </Compile>
@@ -217,8 +220,8 @@
     <Compile Include="View\ReservationTourView.xaml.cs">
       <DependentUpon>ReservationTourView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SecondGuestMyToursView.xaml.cs">
-      <DependentUpon>SecondGuestMyToursView.xaml</DependentUpon>
+    <Compile Include="View\SecondGuestMyAttendedTours.xaml.cs">
+      <DependentUpon>SecondGuestMyAttendedTours.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SecondGuestMyVouchersView.xaml.cs">
       <DependentUpon>SecondGuestMyVouchersView.xaml</DependentUpon>
@@ -310,6 +313,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SecondGuestMyReservationsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\GuideView\TourCancellationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -354,7 +361,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SecondGuestMyToursView.xaml">
+    <Page Include="View\SecondGuestMyAttendedTours.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,7 +19,7 @@ namespace BookingProject.Controllers
         private readonly TourEvaluationHandler _tourEvaluationHandler;
 
         private List<TourEvaluation> _tourEvaluations; 
-        private TourReservationController _tourReservationController { get; set; }
+        private TourController _tourController { get; set; }
 
         private List<TourEvaluationImage> _images { get; set; }
 
@@ -28,7 +28,7 @@ namespace BookingProject.Controllers
         {
             _tourEvaluationHandler = new TourEvaluationHandler();
             _tourEvaluations = new List<TourEvaluation>();
-            _tourReservationController = new TourReservationController();
+            _tourController = new TourController();
             _images = new List<TourEvaluationImage>();
             Load();
         }
@@ -36,17 +36,17 @@ namespace BookingProject.Controllers
         public void Load()
         {
             _tourEvaluations = _tourEvaluationHandler.Load();
-            BindTourEvaluationToReservation();
+            BindTourEvaluationToTour();
             TourEvaluationImagesBind();
         }
 
-        public void BindTourEvaluationToReservation()
+        public void BindTourEvaluationToTour()
         {
-            _tourReservationController.Load();
+            _tourController.Load();
             foreach (TourEvaluation evaluation in _tourEvaluations)
             {
-                TourReservation tourReservation = _tourReservationController.GetByID(evaluation.TourReservation.Id);
-                evaluation.TourReservation = tourReservation;
+                Tour tour = _tourController.GetByID(evaluation.Tour.Id);
+                evaluation.Tour = tour;
             }
         }
 

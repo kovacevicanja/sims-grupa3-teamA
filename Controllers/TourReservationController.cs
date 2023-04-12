@@ -134,7 +134,7 @@ namespace BookingProject.Controller
             }
         }
 
-        public List<TourReservation> GetUserTours(int guestId)
+        public List<TourReservation> GetUserReservations(int guestId)
         {
             List<TourReservation> guestsTours = new List<TourReservation>();
             foreach (TourReservation tr in _reservations)
@@ -153,7 +153,7 @@ namespace BookingProject.Controller
 
             TourReservation reservation = new TourReservation(GenerateId(), choosenTour, choosenTour.MaxGuests - int.Parse(numberOfGuests), selectedDate, guest);
 
-            guest.MyTours = GetUserTours(guest.Id);
+            guest.MyTours = GetUserReservations(guest.Id);
             
             ReservationGuestBind(guest.Id); //ovde bindujem
             guest.MyTours.Add(reservation);
