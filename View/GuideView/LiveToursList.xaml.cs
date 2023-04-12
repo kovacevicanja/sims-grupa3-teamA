@@ -21,7 +21,7 @@ using BookingProject.Model.Enums;
 using BookingProject.Model.Images;
 using Microsoft.VisualBasic.FileIO;
 
-namespace BookingProject.View
+namespace BookingProject.View.GuideView
 {
     /// <summary>
     /// Interaction logic for SecondGuestView.xaml
@@ -69,8 +69,16 @@ namespace BookingProject.View
         public List<TourTimeInstance> FilterTours(List<TourTimeInstance> tours)
         {
             List<TourTimeInstance> filteredTours= new List<TourTimeInstance>();
-            foreach(TourTimeInstance tour in tours)
+            List<TourTimeInstance> exceptionFilteredTours = new List<TourTimeInstance>();
+            foreach (TourTimeInstance tour in tours)
             {
+                if (tour.State==TourState.STARTED)
+                {
+                    exceptionFilteredTours.Add(tour);
+                    return exceptionFilteredTours;
+                }
+
+
                 if (TodayCheck(tour))
                 {
                     filteredTours.Add(tour);
@@ -83,6 +91,10 @@ namespace BookingProject.View
         {
             TourDateTime tourDate = new TourDateTime();
             tourDate = _tourStartingTimeController.GetByID(tour.DateId);
+                if (tourDate == null)
+                {
+                    return false;
+                }
                 if(tourDate.StartingDateTime.Date == DateTime.Now.Date && tour.State!=TourState.COMPLETED && tour.State!=TourState.CANCELLED)
                 {
                     return true;
@@ -108,6 +120,12 @@ namespace BookingProject.View
                 liveTourView.Show();
                 Close();
             }
+        }
+
+        private void Button_Click_Home (object sender, RoutedEventArgs e)
+        {
+            GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
+            guideHomeWindow.Show();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

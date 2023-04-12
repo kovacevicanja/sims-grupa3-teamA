@@ -5,7 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="ReservationTourView" Height="457" Width="639">
+        Title="ReservationTourView" Height="552" Width="1024">
+
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="BoldAndLargeTextBoxStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+
     <Grid Margin="34,10,132,6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="64*"/>
@@ -17,28 +37,47 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
+        <Grid>
+            <Label Margin="36,10,-340,304" Foreground="Black" FontSize="36">Make your reservation</Label>
+        </Grid>
+        <Image Source="ToursImages/tour.png" Margin="363,178,-158,-19" RenderTransformOrigin="0.876,-0.176" Grid.Column="2" Grid.RowSpan="2" />
+
+        <Grid Grid.ColumnSpan="3" Margin="23,-10,735,10">
+            <Image Source="ToursImages/gosti2.png" Margin="-21,79,-41,163" RenderTransformOrigin="0.876,-0.176" />
+            <Image Source="ToursImages/calendar2.png" Margin="28,187,0,102" RenderTransformOrigin="0.876,-0.176" />
+        </Grid>
         <Grid Grid.Row="0" Grid.Column="2" Margin="10,25,22,10">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="202*"></ColumnDefinition>
-                <ColumnDefinition Width="233*"></ColumnDefinition>
+                <ColumnDefinition Width="202*"/>
+                <ColumnDefinition Width="233*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Margin="-1,18,49,258">Number of guests:</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=EnteredGuests}" Margin="15,26,142,266"/>
-            <Label Grid.Row="0" Grid.Column="0" Margin="-1,80,10,196">Select the date and time:</Label>
-            <ComboBox x:Name="TourDatesComboBox"
+            <Label Grid.Row="0" Grid.Column="0" Margin="-1,82,357,195" Content="Enter the number of guests:" Grid.ColumnSpan="2"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Grid.Row="0" Text="{Binding EnteredGuests}" Margin="0,88,328,219" Grid.Column="1" RenderTransformOrigin="0.486,0.596"/>
+            <Label Grid.Row="0" Grid.Column="0" Margin="-1,176,10,100" Content="Select the date and time:"/>
+            <ComboBox x:Name="TourDatesComboBox" Background="LightBlue"
               ItemsSource="{Binding ChoosenTour.StartingTime}"
               SelectedItem="{Binding SelectedDate}"
-              DisplayMemberPath="StartingDateTime" Margin="16,81,16,203" Grid.Column="1"/>
+              DisplayMemberPath="StartingDateTime" Margin="299,187,137,126" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+                <ComboBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0"/>
+                    </TransformGroup>
+                </ComboBox.RenderTransform>
+            </ComboBox>
         </Grid>
 
-        <WrapPanel FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="86,4,0,0" Grid.Row="1" >
-            <Button Content="Close" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
-              Click="Button_Click_Close" />
-            <Button Content="Try to book tour" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
-               Click="Button_Click_TryToBook"/>
-        </WrapPanel>
+        <Grid FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="0,22,0,0" Grid.Row="1" Width="565" Height="65" Grid.ColumnSpan="2" >
+            <Button Content="Close" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightBlue"
+              Click="Button_Click_Close" Height="46" Width="104" Margin="56,0,0,0" RenderTransformOrigin="0.873,0.658" />
+            <Button Content="Book tour" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightBlue"
+               Click="Button_Click_TryToBook" Height="46" Width="228" Margin="282,0,0,0"/>
+        </Grid>
+        <Grid/>
     </Grid>
 </Window>

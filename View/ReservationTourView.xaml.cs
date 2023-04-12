@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using BookingProject.Controller;
 using BookingProject.Model;
 using BookingProject.ConversionHelp;
+using BookingProject.Controllers;
 
 namespace BookingProject.View
 {
@@ -26,17 +27,17 @@ namespace BookingProject.View
     public partial class ReservationTourView : Window
     {
         public string EnteredGuests { get; set; } = string.Empty;
-
-        public TourDateTime SelectedDate { get; set; } 
-
+        public TourDateTime SelectedDate { get; set; }
         private TourReservationController _tourReservationController;
-
         private ObservableCollection<TourReservation> _tourReservations;
-
         public Tour ChoosenTour { get; set; }
+        public Guest2 Guest { get; set; }
+        public int GuestId { get; set; }
+        public Guest2Controller Guest2Controller { get; set; }
+        public User User { get; set; }
+        public UserController UserController { get; set; }
 
-
-        public ReservationTourView(Tour choosenTour)
+        public ReservationTourView(Tour choosenTour, int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -44,18 +45,25 @@ namespace BookingProject.View
             ChoosenTour = choosenTour;
             _tourReservationController = new TourReservationController();
             _tourReservations = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
+            GuestId = guestId;
+            Guest2Controller = new Guest2Controller();
+            Guest = new Guest2();
+            Guest.Id = GuestId;
+            //Guest = Guest2Controller.GetByID(GuestId);
+            UserController = new UserController();
+            User = new User();
+            User.Id = GuestId;
+            //User = UserController.GetByID(GuestId);
+
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
-
         private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
         {
-            _tourReservationController.TryToBook(ChoosenTour, EnteredGuests, SelectedDate.StartingDateTime); 
-
+            _tourReservationController.TryToBook(ChoosenTour, EnteredGuests, SelectedDate.StartingDateTime, User);
         }
     }
 }

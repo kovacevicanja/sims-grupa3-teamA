@@ -39,8 +39,6 @@ namespace BookingProject.Controller
             InstanceDateBind();
         }
 
-
-
         private int GenerateId()
         {
             int maxId = 0;
@@ -115,11 +113,6 @@ namespace BookingProject.Controller
                 tourTimeInstance.TourTime = tourTime;
             }
         }
-
-
-
-
-
 
     }
 }

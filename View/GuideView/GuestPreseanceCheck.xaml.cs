@@ -1,4 +1,5 @@
 ﻿using BookingProject.Controller;
+using BookingProject.Domain;
 using BookingProject.Model;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace BookingProject.View
+namespace BookingProject.View.GuideView
 {
     /// <summary>
     /// Interaction logic for GuestPreseanceCheck.xaml
@@ -26,34 +27,45 @@ namespace BookingProject.View
 
         public TourTimeInstance ChosenTour;
 
-        public TourGuest ChosenGuest;
+        public User ChosenGuest;
 
-        public TourGuestController _tourGuestController;
+        public UserController _userController;
 
-        public GuestPreseanceCheck(TourTimeInstance chosenTour, KeyPoint chosenKeyPoint, TourGuest chosenGuest)
+        public TourPresenceController _tourPresenceController;
+
+        public GuestPreseanceCheck(TourTimeInstance chosenTour, KeyPoint chosenKeyPoint, User chosenGuest)
         {
             InitializeComponent();
             var app = Application.Current as App;
             ChosenKeyPoint = chosenKeyPoint;
             ChosenTour = chosenTour;
             ChosenGuest = chosenGuest;
-            _tourGuestController= app.TourGuestController;
+            //_userController= app.UserController;
+            _tourPresenceController= app.TourPresenceController;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-
-            GuestListView guestListView = new GuestListView(ChosenTour, ChosenKeyPoint);
-            guestListView.Show();
             Close();
         }
 
-        private void Button_Click_Kreiraj(object sender, RoutedEventArgs e)
+      /*  private void turnTrue()
         {
-            _tourGuestController.GetByID(ChosenGuest.Id).KeyPointId=ChosenKeyPoint.Id;
-            _tourGuestController.Save();
-            GuestListView guestListView = new GuestListView(ChosenTour, ChosenKeyPoint);
-            guestListView.Show();
+            _userController.GetByID(ChosenGuest.Id).IsPresent= true;
+            _userController.Save();
+
+        }
+      */
+
+        private void Button_Click_Ask(object sender, RoutedEventArgs e)
+        {
+            TourPresence tourPresence= new TourPresence();
+            tourPresence.TourId = ChosenTour.Id; 
+            tourPresence.UserId = ChosenGuest.Id;
+            _tourPresenceController.Create(tourPresence);
+            _tourPresenceController.Save();
+            //turnTrue();
+            _tourPresenceController.SendNotification(ChosenGuest);
             Close();
         }
     }

@@ -19,16 +19,23 @@ namespace BookingProject.Controllers
         private List<ToursGuests> _toursGuests;
         public TourController TourController { get; set; }
         public Guest2Controller GuestController { get; set; }
+
+        public TourReservationController TourReservationController { get; set; }
         public ToursGuestsController()
         {
             _toursGuestsHandler = new ToursGuestsHandler();
             _toursGuests = new List<ToursGuests>();
             observers = new List<IObserver>();
+            TourController =  new TourController();
+            GuestController = new Guest2Controller();  
+            TourReservationController = new TourReservationController();
             Load();
         }
         public void Load()
         {
             _toursGuests = _toursGuestsHandler.Load();
+            //BindToursAndGuests();
+            //SetToursAndGuests();
         }
         private int GenerateId()
         {
@@ -79,22 +86,43 @@ namespace BookingProject.Controllers
 
         //bind Tours and Guests
 
+        /*
         public void BindToursAndGuests()
         {
+            TourReservation tour = new  TourReservation();
+            Guest2 guest = new Guest2();
             foreach (ToursGuests toursGuests in _toursGuests)
             {
-                Tour tour = TourController.GetByID(toursGuests.Tour.Id);
-                Guest2 guest = GuestController.GetByID(toursGuests.Guest.Id);
+                tour = TourReservationController.GetByID(toursGuests.TourReservation.Tour.Id);
+                guest = GuestController.GetByID(toursGuests.Guest.Id);
                 if (tour == null || guest == null)
                 {
                     System.Console.WriteLine("Error when loading the connection between the tour and the guest");
                 }
                 else
                 {
-                    tour.TourGuests.Add(guest);
-                    guest.MyTours.Add(tour);   
+                    tour.Guests.Add(guest);
+                    guest.MyTours.Add(tour);
                 }
             }
         }
+
+        public void SetToursAndGuests()
+        {
+                TourReservationController.Load();
+                foreach (ToursGuests tg in _toursGuests)
+                {
+                    TourReservation tour = TourReservationController.GetByID(tg.TourReservation.Id);
+                    tg.TourReservation = tour;
+                }
+
+                GuestController.Load();
+                foreach (ToursGuests tg in _toursGuests)
+                {
+                    Guest2 guest = GuestController.GetByID(tg.Guest.Id);
+                    tg.Guest = guest;
+                }
+        }
+        */
     }
 }

@@ -16,22 +16,21 @@ namespace BookingProject.Domain
     public class Voucher : ISerializable
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
-
+        public Guest2 Guest { get; set; }
         public DateTime StartDate { get; set; }
-
         public DateTime EndDate { get; set; }
         public VoucherState State { get; set; }
 
         public Voucher()
         {
             State = VoucherState.CREATED;
+            Guest = new Guest2();
         }
 
-        public Voucher(int id, int userId, DateTime startDate, DateTime endDate, VoucherState state)
+        public Voucher(int id, Guest2 guest, DateTime startDate, DateTime endDate, VoucherState state)
         {
             Id = id;
-            UserId = userId;
+            Guest = guest;
             StartDate = startDate;
             EndDate = endDate;
             State = state;
@@ -42,7 +41,7 @@ namespace BookingProject.Domain
 
 
             Id = int.Parse(values[0]);
-            UserId = int.Parse(values[1]);
+            Guest.Id = int.Parse(values[1]);
             StartDate = DateConversion.StringToDateTour(values[2]);
             EndDate = DateConversion.StringToDateTour(values[3]);
 
@@ -55,8 +54,7 @@ namespace BookingProject.Domain
             else
             {
                 voucherState = VoucherState.CREATED;
-                System.Console.WriteLine("Doslo je do greske prilikom ucitavanja stanja!");
-
+                System.Console.WriteLine("An error occurred while loading the state!");
             }
         }
 
@@ -65,7 +63,7 @@ namespace BookingProject.Domain
             string[] csvValues =
             {
                 Id.ToString(),
-                UserId.ToString(),
+                Guest.Id.ToString(),
                 StartDate.ToString(),
                 EndDate.ToString(),
                 State.ToString(),

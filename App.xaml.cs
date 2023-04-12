@@ -1,5 +1,7 @@
 ﻿using BookingProject.Controller;
+using BookingProject.Controllers;
 using BookingProject.FileHandler;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,7 +17,7 @@ namespace BookingProject
     /// </summary>
     public partial class App : Application
     {
-        public TourController TourController { get; set; }
+        public TourController TourController{ get; set; }
         public TourLocationController LocationController { get; set; }
         public TourImageController ImageController { get; set; }
         public KeyPointController KeyPointController { get; set; }
@@ -30,12 +32,22 @@ namespace BookingProject
 
         public AccommodationReservationController AccommodationReservationController { get; set; }
 
+        //
+        public Guest2Controller Guest2Controller { get; set; } 
+        public ToursGuestsController ToursGuestsController { get; set; }
+
+        public TourReservationController TourReservationController { get; set; }
+        //
+        public TourEvaluationController TourEvaluationController { get; set; }
+
+        //
         public UserController UserController { get; set; }
+
+        public TourPresenceController TourPresenceController { get; set; }
 
         public App()
         {
-
-            TourController = new TourController();
+            TourController = new TourController(); //
             LocationController = new TourLocationController();
             ImageController = new TourImageController();
             KeyPointController = new KeyPointController();  
@@ -47,14 +59,29 @@ namespace BookingProject
             TourGuestController = new TourGuestController();
             AccommodationReservationController = new AccommodationReservationController();
             GuestGradeController = new GuestGradeController();
+            TourEvaluationController = new TourEvaluationController();
+            TourPresenceController= new TourPresenceController();
+
             GuestGradeController._accommodationController = AccommodationReservationController;
             AccommodationReservationController._guestGradeController= GuestGradeController;
             AccommodationReservationController._accommodationController = AccommodationController;
 
-            UserController = new UserController();
+            //
+            Guest2Controller = new Guest2Controller();
+            ToursGuestsController = new ToursGuestsController();
+            TourReservationController = new TourReservationController();
+
+            //
 
             AccommodationReservationController.Load();
             GuestGradeController.Load();
+
+            TourEvaluationController.Load();
+            TourReservationController.Load(); //
+                                              //
+            UserController = new UserController();
+
+
         }
 
 

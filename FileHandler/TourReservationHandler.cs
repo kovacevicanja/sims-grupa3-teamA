@@ -8,7 +8,7 @@ using BookingProject.Serializer;
 
 namespace BookingProject.FileHandler
 {
-    internal class TourReservationHandler
+    public class TourReservationHandler
     {
         private const string FilePath = "../../Resources/Data/tourReservations.csv";
 

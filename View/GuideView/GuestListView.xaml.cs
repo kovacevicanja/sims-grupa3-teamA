@@ -19,23 +19,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
 
-namespace BookingProject.View
+namespace BookingProject.View.GuideView
 {
     /// <summary>
     /// Interaction logic for GuestListView.xaml
     /// </summary>
     public partial class GuestListView : Window
     {
-
-
-
-
         public bool IsValid { get; set; }
-        public TourGuest ChosenGuest { get; set; }
+        public User ChosenGuest { get; set; }
 
-        private TourGuestController _tourGuestController;
-        private ObservableCollection<TourGuest> _guests;
+        private UserController _userController;
+        private ObservableCollection<User> _guests;
         private KeyPointController _keyPointController;
+        private TourReservationController _tourReservationController;
 
 
         public KeyPoint ChosenKeyPoint { get; set; }
@@ -45,33 +42,28 @@ namespace BookingProject.View
         {
             InitializeComponent();
             this.DataContext = this;
-            _tourGuestController = new TourGuestController();
+            _userController = new UserController();
             _keyPointController = new KeyPointController();
+            _tourReservationController= new TourReservationController();
             ChosenTour = chosenTour;
             ChosenKeyPoint = chosenKeyPoint;
-            _guests = new ObservableCollection<TourGuest>(filterGuests(_tourGuestController.GetAll()));
+            _guests = new ObservableCollection<User>(filterGuests(_tourReservationController.GetAll()));
             GuestDataGrid.ItemsSource = _guests;
         }
 
-        public List<TourGuest> filterGuests(List<TourGuest> guests)
+        public List<User> filterGuests(List<TourReservation> reservations)
         {
-            List<TourGuest> filteredGuests= new List<TourGuest>();
-            foreach(TourGuest guest in guests)
+            List<User> users= new List<User>();
+           
+            foreach(TourReservation reservation in reservations)
             {
-                if (guest.TourInstanceId == ChosenTour.Id)
+                if (reservation.Tour.Id == ChosenTour.TourId)
                 {
-                    filteredGuests.Add(guest);
+                    users.Add(_userController.GetByID(reservation.Guest.Id));
                 }
             }
-            return filteredGuests;
-        }
-
-
-
-
-
-
-
+            return users;
+        } 
 
         private void Button_Click_Mark(object sender, RoutedEventArgs e)
         {
@@ -79,11 +71,9 @@ namespace BookingProject.View
             {
                 GuestPreseanceCheck guestPreseanceCheck = new GuestPreseanceCheck(ChosenTour, ChosenKeyPoint, ChosenGuest);
                 guestPreseanceCheck.Show();
-                Close();
             
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
