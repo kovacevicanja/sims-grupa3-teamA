@@ -116,7 +116,7 @@ namespace BookingProject.View
 
                         foreach (Notification notification in notifications)
                         {
-                            MessageBox.Show(notification.Text);
+                            ShowCustomMessageBoxNotification(notification.Text);
                             notificationsCopy.Add(notification);
                             _tourPresenceController.GetGuestNotifications(userGuest);
                         }
@@ -144,5 +144,82 @@ namespace BookingProject.View
                 MessageBox.Show("Wrong username!");
             }
         }
+
+        public void ShowCustomMessageBoxNotification(string messageText)
+        {
+            Window customMessageBox = new Window
+            {
+                Title = "Message",
+                FontWeight = FontWeights.Bold,
+                Height = 200,
+                Width = 300,
+                WindowStyle = WindowStyle.ThreeDBorderWindow,
+                ResizeMode = ResizeMode.NoResize,
+                Background = Brushes.LightBlue,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+
+            TextBlock message = new TextBlock
+            {
+                Text = messageText,
+                FontSize = 18,
+                FontWeight = FontWeights.Bold,
+                TextAlignment = TextAlignment.Center,
+                TextWrapping = TextWrapping.Wrap,
+                Margin = new Thickness(20, 20, 20, 0)
+            };
+
+            Button yesButton = new Button
+            {
+                Content = "Yes",
+                Width = 80,
+                Height = 30,
+                Margin = new Thickness(0, 10, 20, 0),
+                FontWeight = FontWeights.Bold,
+                HorizontalAlignment = HorizontalAlignment.Right
+            };
+            yesButton.Click += (o, args) =>
+            {
+                // Perform action for 'Yes' button
+                MessageBox.Show("Action for 'Yes' button clicked!");
+                customMessageBox.Close();
+            };
+
+            Button noButton = new Button
+            {
+                Content = "No",
+                Width = 80,
+                Height = 30,
+                Margin = new Thickness(20, 10, 0, 0),
+                FontWeight = FontWeights.Bold,
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+            noButton.Click += (o, args) =>
+            {
+                // Perform action for 'No' button
+                MessageBox.Show("Action for 'No' button clicked!");
+                customMessageBox.Close();
+            };
+
+            StackPanel stackPanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+            stackPanel.Children.Add(noButton);
+            stackPanel.Children.Add(yesButton);
+
+            StackPanel mainStackPanel = new StackPanel
+            {
+                Orientation = Orientation.Vertical,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+            mainStackPanel.Children.Add(message);
+            mainStackPanel.Children.Add(stackPanel);
+
+            customMessageBox.Content = mainStackPanel;
+            customMessageBox.ShowDialog();
+        }
     }
-}
