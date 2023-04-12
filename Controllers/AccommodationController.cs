@@ -23,12 +23,15 @@ namespace BookingProject.Controller
 
         private AccommodationImageController _imageController;
 
+        private UserController _userController;
+
         public AccommodationController()
         {
             _accommodationHandler = new AccommodationHandler();
             _accommodations = new List<Accommodation>();
             _locationController = new AccommodationLocationController();
             _imageController = new AccommodationImageController();
+            _userController = new UserController();
             Load();
         }
 
@@ -37,6 +40,7 @@ namespace BookingProject.Controller
             _accommodations = _accommodationHandler.Load();
             AccommodationLocationBind();
             AccommodationImagesBind();
+            AccommodationOwnerBind();
         }
 
         public List<Accommodation> GetAll()
@@ -105,6 +109,16 @@ namespace BookingProject.Controller
                     }
 
                 }
+            }
+        }
+
+        public void AccommodationOwnerBind()
+        {
+            _userController.Load();
+            foreach(Accommodation accommodation in _accommodations)
+            {
+                User owner = _userController.GetByID(accommodation.Owner.Id);
+                accommodation.Owner = owner;
             }
         }
 
