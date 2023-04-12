@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingProject.Serializer;
-
+using BookingProject.Domain.Images;
 
 namespace BookingProject.Model
 {
@@ -17,10 +17,12 @@ namespace BookingProject.Model
         public int OwnerCorectness { get; set; }
         public string AdditionalComment { get; set; }
         public string Reccommendation { get; set; }
+        public List<AccommodationGuestImage> guestImages;
 
         public AccommodationOwnerGrade()
         {
             Accommodation = new Accommodation();
+            guestImages = new List<AccommodationGuestImage>();
 
         }
 

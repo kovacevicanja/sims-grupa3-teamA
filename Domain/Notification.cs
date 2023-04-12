@@ -14,8 +14,7 @@ namespace BookingProject.Domain
         public string Text { get; set; }
         public bool Read { get; set; }
 
-        public Notification() { }
-
+        public Notification () { }
         public Notification(int id, int userId, string text, bool read)
         {
             Id = id;

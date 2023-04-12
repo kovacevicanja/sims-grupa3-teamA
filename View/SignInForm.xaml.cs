@@ -1,4 +1,4 @@
-﻿using BookingProject.Controller;
+using BookingProject.Domain;
 using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.FileHandler;
@@ -29,6 +29,7 @@ namespace BookingProject.View
     public partial class SignInForm : Window
     {
         private readonly UserController _controller;
+        private readonly AccommodationReservationController _accResController;
         public bool IsSelectedOwner { get; set; }
         public bool IsSelectedGuest1 { get; set; }
         public bool IsSelectedGuest2 { get; set; }
@@ -63,6 +64,7 @@ namespace BookingProject.View
             DataContext = this;
             var app = Application.Current as App;
             _controller = app.UserController;
+            _accResController = new AccommodationReservationController();
             _tourPresenceController = app.TourPresenceController;
             NotificationController = new NotificationController();
         }
@@ -76,9 +78,23 @@ namespace BookingProject.View
                 {
                     if (user.UserType==UserType.OWNER)
                     {
-                        _controller.GetByUsername(Username).IsLoggedIn = true;
+                        User owner = _controller.GetByUsername(Username);
+                        owner.IsLoggedIn = true;
+                        _controller.Save();
                         OwnerView ownerView = new OwnerView();
                         ownerView.Show();
+                        List<Notification> notifications = _accResController.GetOwnerNotifications(owner);
+                        List<Notification> notificationsCopy = new List<Notification>();
+                        foreach(Notification notification in notifications)
+                        {
+                            MessageBox.Show(notification.Text);
+                            notificationsCopy.Add(notification);
+                            _accResController.DeleteNotificationFromCSV(notification);
+                        }
+                        foreach(Notification notification1 in notificationsCopy)
+                        {
+                            _accResController.WriteNotificationAgain(notification1);
+                        }
                         NotGradedView not_view = new NotGradedView();
                         int row_num = not_view.RowNum();
                         if (row_num > 0)
@@ -87,7 +103,9 @@ namespace BookingProject.View
                         }
                     }
                     else if(user.UserType == UserType.GUEST1){
-                        _controller.GetByUsername(Username).IsLoggedIn = true;
+                        User guest1 = _controller.GetByUsername(Username);
+                        guest1.IsLoggedIn = true;
+                        _controller.Save();
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
                         

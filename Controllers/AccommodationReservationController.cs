@@ -1,8 +1,11 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.Controllers;
+using BookingProject.Domain;
+using BookingProject.FileHandler;
 using BookingProject.Model;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,14 +20,17 @@ namespace BookingProject.Controller
         private List<AccommodationReservation> _accommodationReservations;
         public AccommodationController _accommodationController { get; set; }
         public GuestGradeController _guestGradeController { get; set; }
+        public UserController _userController { get; set; }
+        public NotificationController _notificationController { get; set; }
 
         public AccommodationReservationController()
         {
             _accommodationReservationHandler = new AccommodationReservationHandler();
             _accommodationReservations = new List<AccommodationReservation>();
             _accommodationController = new AccommodationController();
-            
-           Load();
+            _userController = new UserController();
+            _notificationController = new NotificationController();
+            Load();
         }
 
         public void Load()
@@ -41,6 +47,21 @@ namespace BookingProject.Controller
         public void Save()
         {
             _accommodationReservationHandler.Save(_accommodationReservations);
+        }
+
+        public List<AccommodationReservation> getReservationsForGuest(User loggedInUser)
+        {
+            List<AccommodationReservation> _accResForGuest = new List<AccommodationReservation>();
+
+            foreach(AccommodationReservation reservation in _accommodationReservations)
+            {
+                if(reservation.Guest.Id == loggedInUser.Id)
+                {
+                    _accResForGuest.Add(reservation);
+                }
+            }
+
+            return _accResForGuest;
         }
 
         public void AccommodationReservationBind()
@@ -274,8 +295,90 @@ namespace BookingProject.Controller
             Save();
         }
 
-        
+        public bool PermissionToRate(AccommodationReservation accommodationReservation)
+        {
+            DateTime today = DateTime.Now.Date;
+            DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
+            if (accommodationReservation.EndDate < todayMidnight && todayMidnight <= accommodationReservation.EndDate.AddDays(5))
+            {
+                return true;
+            }
+            return false;
+        }
 
+        public bool PermissionToCancel(AccommodationReservation accommodationReservation)
+        {
+            DateTime today = DateTime.Now.Date;
+            DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
+            if(todayMidnight.AddDays(accommodationReservation.Accommodation.CancellationPeriod) <= accommodationReservation.EndDate)
+            {
+                DeleteReservationFromCSV(accommodationReservation);
+                SendNotification(accommodationReservation);
+                return true;
+            }
+            return false;
+        }
+
+        public void DeleteReservationFromCSV(AccommodationReservation accommmodationReservation)
+        {
+            string[] lines = File.ReadAllLines("../../Resources/Data/accommodationReservations.csv");
+            int rowIndex = Array.FindIndex(lines, line => line.StartsWith(accommmodationReservation.Id + "|"));
+
+            if (rowIndex >= 0)
+            {
+                // Remove the row at the specified index
+                List<string> linesList = new List<string>(lines);
+                linesList.RemoveAt(rowIndex);
+                lines = linesList.ToArray();
+
+                // Write the modified lines back to the file
+                File.WriteAllLines("../../Resources/Data/accommodationReservations.csv", lines);
+            }
+        }
+
+        public void SendNotification(AccommodationReservation accommodationReservation)
+        {
+            Notification notification = new Notification();
+            notification.Id = _notificationController.GenerateId();
+            notification.UserId = accommodationReservation.Accommodation.Owner.Id;
+            notification.Text = "Reservation for your accommodation " + accommodationReservation.Accommodation.AccommodationName + " was cancelled!";
+            notification.Read = false;
+            _notificationController.Create(notification);
+            _notificationController.Save();
+        }
+
+        public List<Notification> GetOwnerNotifications(User owner)
+        {
+            List<Notification> notificationsForOwner = new List<Notification>();
+            List<Notification> _notifications = _notificationController.GetAll();
+
+            foreach(Notification notification in _notifications)
+            {
+                if(notification.UserId == owner.Id && notification.Read == false)
+                {
+                    notificationsForOwner.Add(notification);
+                }
+            }
+
+            return notificationsForOwner;
+        }
+
+        public void DeleteNotificationFromCSV(Notification notification)
+        {
+            List<Notification> _notifications = _notificationController.GetAll();
+            _notifications.RemoveAll(n => n.Id == notification.Id);
+            _notificationController.Save();
+        }
+
+        public void WriteNotificationAgain(Notification n)
+        {
+            Notification notification = new Notification();
+            notification.UserId = n.UserId;
+            notification.Text = n.Text;
+            notification.Read = true;
+            _notificationController.Create(notification);
+            _notificationController.Save();
+        }
 
         public void NotifyObservers()
         {
