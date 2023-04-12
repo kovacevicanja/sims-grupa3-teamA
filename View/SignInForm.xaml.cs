@@ -21,6 +21,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BookingProject.Controller;
 
 namespace BookingProject.View
 {
@@ -79,7 +80,7 @@ namespace BookingProject.View
                 {
                     if (user.UserType == UserType.OWNER)
                     {
-                        User owner = _controller.GetByUsername(Username);
+                        Model.User owner = _controller.GetByUsername(Username);
                         owner.IsLoggedIn = true;
                         _controller.Save();
                         OwnerView ownerView = new OwnerView();
@@ -104,7 +105,7 @@ namespace BookingProject.View
                         }
                     }
                     else if(user.UserType == UserType.GUEST1){
-                        User guest1 = _controller.GetByUsername(Username);
+                        Model.User guest1 = _controller.GetByUsername(Username);
                         guest1.IsLoggedIn = true;
                         _controller.Save();
                         Guest1View guest1View = new Guest1View();
