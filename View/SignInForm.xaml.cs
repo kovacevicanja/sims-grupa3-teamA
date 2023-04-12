@@ -1,4 +1,7 @@
 ﻿using BookingProject.Controller;
+using BookingProject.Controllers;
+using BookingProject.Domain;
+using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.View.GuideView;
@@ -30,6 +33,8 @@ namespace BookingProject.View
         public bool IsSelectedGuest1 { get; set; }
         public bool IsSelectedGuest2 { get; set; }
         public bool IsSelectedGuide { get; set; }
+        private TourPresenceController _tourPresenceController { get; set; }
+        public NotificationController NotificationController { get; set; }
 
         private string _username;
         public string Username
@@ -58,6 +63,8 @@ namespace BookingProject.View
             DataContext = this;
             var app = Application.Current as App;
             _controller = app.UserController;
+            _tourPresenceController = app.TourPresenceController;
+            NotificationController = new NotificationController();
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
@@ -86,14 +93,39 @@ namespace BookingProject.View
                         
                     }else if(user.UserType == UserType.GUEST2)
                     {
-                        //MessageBox.Show("You have successfully logged in as second guest!");
-                        //SecondGuestView secondGuestView = new SecondGuestView();
-                        //secondGuestView.Show();
                         _controller.GetByUsername(Username).IsLoggedIn = true;
                         User userGuest = _controller.GetByUsername(Username);
+                        _controller.Save();
                         SecondGuestProfile secondGuestProfile = new SecondGuestProfile(userGuest.Id);
                         secondGuestProfile.Show();
-                    }else if (user.UserType == UserType.GUIDE)
+                        List<Notification> notifications = _tourPresenceController.GetGuestNotifications(userGuest);
+                        List<Notification> notificationsCopy = new List<Notification>();
+
+                        foreach (Notification n in notifications)
+                        {
+                            if (n.UserId == user.Id)
+                            {
+                                _controller.GetByID(user.Id).IsPresent = true; //dodaj dugme za sredjivanje
+                                _controller.Save();
+                                NotificationController.GetByID(n.Id).Read = true;
+                                NotificationController.Save();
+                            }
+                        }
+
+                        notifications = _tourPresenceController.GetGuestNotifications(userGuest);
+
+                        foreach (Notification notification in notifications)
+                        {
+                            MessageBox.Show(notification.Text);
+                            notificationsCopy.Add(notification);
+                            _tourPresenceController.GetGuestNotifications(userGuest);
+                        }
+                        foreach (Notification notification1 in notificationsCopy)
+                        {
+                            _tourPresenceController.GetGuestNotifications(userGuest);
+                        }
+                    }
+                    else if (user.UserType == UserType.GUIDE)
                     {
                         _controller.GetByUsername(Username).IsLoggedIn = true;
                         _controller.Save();

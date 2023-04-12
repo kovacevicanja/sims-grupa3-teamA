@@ -28,8 +28,6 @@ namespace BookingProject.View.GuideView
     /// 
     public partial class LiveTourView : Window
     {
-
-
         public bool IsValid { get; set; }
         public KeyPoint ChosenKeyPoint { get; set; }
         public TourTimeInstance ChosenTour { get; set; }
@@ -159,8 +157,7 @@ namespace BookingProject.View.GuideView
             {
                 _userControler.GetByID(user.Id).IsPresent = false;
             }
-            _keyPointController.Save();
-
+            _userControler.Save();
         }
 
         private void Button_Click_Cancell(object sender, RoutedEventArgs e)

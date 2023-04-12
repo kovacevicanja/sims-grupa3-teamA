@@ -26,10 +26,6 @@ namespace BookingProject.View.GuideView
     /// </summary>
     public partial class GuestListView : Window
     {
-
-
-
-
         public bool IsValid { get; set; }
         public User ChosenGuest { get; set; }
 
@@ -58,11 +54,12 @@ namespace BookingProject.View.GuideView
         public List<User> filterGuests(List<TourReservation> reservations)
         {
             List<User> users= new List<User>();
+           
             foreach(TourReservation reservation in reservations)
             {
-                if (reservation.Tour.Id == ChosenTour.Id)
+                if (reservation.Tour.Id == ChosenTour.TourId)
                 {
-                    users.Add(reservation.Guest);
+                    users.Add(_userController.GetByID(reservation.Guest.Id));
                 }
             }
             return users;

@@ -40,7 +40,7 @@ namespace BookingProject.View.GuideView
             ChosenKeyPoint = chosenKeyPoint;
             ChosenTour = chosenTour;
             ChosenGuest = chosenGuest;
-            _userController= app.UserController;
+            //_userController= app.UserController;
             _tourPresenceController= app.TourPresenceController;
         }
 
@@ -57,7 +57,7 @@ namespace BookingProject.View.GuideView
         }
       */
 
-        private void Button_Click_Kreiraj(object sender, RoutedEventArgs e)
+        private void Button_Click_Ask(object sender, RoutedEventArgs e)
         {
             TourPresence tourPresence= new TourPresence();
             tourPresence.TourId = ChosenTour.Id; 

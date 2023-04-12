@@ -122,6 +122,12 @@ namespace BookingProject.View.GuideView
             }
         }
 
+        private void Button_Click_Home (object sender, RoutedEventArgs e)
+        {
+            GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
+            guideHomeWindow.Show();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

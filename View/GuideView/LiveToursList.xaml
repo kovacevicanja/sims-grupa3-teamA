@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
         Title="LiveTourList" Height="510" Width="1100">
-   
+
     <Grid Margin="0,0,0,13">
 
         <Grid.ColumnDefinitions>
@@ -29,6 +29,7 @@
         <StackPanel Grid.Row = "1" Orientation="Horizontal" Margin="73,0,54,0">
             <Button Content="Create tour" IsDefault="True"
                 Click="Button_Click_Create" Width="90" Height="19" />
+            <Button Content="Home" IsDefault="True" Click="Button_Click_Home" Height="18" Width="58"/>
         </StackPanel>
 
         <Grid Grid.Row="2" Margin="0,0,-42,-16" Grid.RowSpan="2">

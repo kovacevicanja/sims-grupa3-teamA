@@ -18,7 +18,7 @@
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center" >
 
             <Button Content="Cancel" IsCancel="True" Click="CancelButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"/>
-            <Button x:Name="Mark" Content=" Ask " IsDefault="True" Click="Button_Click_Kreiraj"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"/>
+            <Button x:Name="Mark" Content=" Ask " IsDefault="True" Click="Button_Click_Ask"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"/>
         </WrapPanel>
         <Label Content="Ask for presence: " HorizontalAlignment="Center" Height="27" Margin="0,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="103"/>
 

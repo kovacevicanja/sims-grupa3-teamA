@@ -39,7 +39,6 @@ namespace BookingProject.View
         public string NumOfGuests { get; set; } = string.Empty;
         public Tour ChosenTour { get; set; }
         public Guest2Controller Guest2Controller { get; set; }
-
         public Guest2 Guest { get; set; }   
         public int GuestId { get; set; }
         public User User { get; set; }  

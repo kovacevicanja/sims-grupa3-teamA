@@ -42,6 +42,7 @@
             </Grid.RowDefinitions>
 
             <DataGrid DockPanel.Dock="Bottom"
+                              ItemsSource="{Binding Path=User, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding Path=ChosenGuest, UpdateSourceTrigger=PropertyChanged}"
                               Name="GuestDataGrid"
                               AutoGenerateColumns="False" IsReadOnly="True" Margin="24,11,22,78" RenderTransformOrigin="0.5,0.5">
