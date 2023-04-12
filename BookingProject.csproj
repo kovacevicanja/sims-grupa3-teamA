@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="Controllers\AccommodationController.cs" />
     <Compile Include="Controllers\AccommodationDateController.cs" />
+    <Compile Include="Controllers\AccommodationGuestImageController.cs" />
     <Compile Include="Controllers\AccommodationLocationController.cs" />
     <Compile Include="Controllers\AccommodationImageController.cs" />
     <Compile Include="Controllers\AccommodationOwnerGradeController.cs" />
@@ -80,10 +81,12 @@
     <Compile Include="Domain\Enums\GuideType.cs" />
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Guide.cs" />
+    <Compile Include="Domain\Images\AccommodationGuestImage.cs" />
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\ToursGuests.cs" />
     <Compile Include="Domain\Voucher.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
+    <Compile Include="FileHandler\AccommodationGuestImageHandler.cs" />
     <Compile Include="FileHandler\AccommodationHandler.cs" />
     <Compile Include="FileHandler\AccommodationOwnerGradeHandler.cs" />
     <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
@@ -377,6 +380,7 @@
     <None Include="Resources\Data\tourTimeInstances.csv" />
     <None Include="Resources\Data\users.csv" />
     <None Include="Resources\Data\vouchers.csv" />
+    <None Include="Resources\Images\accommodationguestimages.csv" />
     <None Include="Resources\Images\accommodationimages.csv" />
     <None Include="View\very-popular-thread_318-10286.avif" />
   </ItemGroup>
@@ -429,6 +433,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\backgroundguest1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

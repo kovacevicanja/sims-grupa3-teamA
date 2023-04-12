@@ -1,4 +1,6 @@
 ﻿using BookingProject.Controller;
+using BookingProject.Controllers;
+using BookingProject.Domain.Images;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using System;
@@ -29,6 +31,9 @@ namespace BookingProject.View
         public ObservableCollection<AccommodationOwnerGrade> Grades { get; set; }
         private AccommodationReservation _selectedReservation;
         public AccommodationImageController AccommodationImageController { get; set; }
+        public AccommodationGuestImageController AccommodationGuestImageController { get; set; }
+        public UserController UserController { get; set; }
+        public AccommodationOwnerGrade grade;
 
         public ObservableCollection<int> CleanlinessOption { get; set; }
         public int chosenCleanliness { get; set; }
@@ -43,6 +48,10 @@ namespace BookingProject.View
             this.DataContext = this;
             AccommodationOwnerGradeController = new AccommodationOwnerGradeController();
             AccommodationImageController = new AccommodationImageController();
+            AccommodationGuestImageController = new AccommodationGuestImageController();
+            UserController = new UserController();
+            grade = new AccommodationOwnerGrade();
+            grade.Id = AccommodationOwnerGradeController.GenerateId();
             _selectedReservation = new AccommodationReservation();
             _selectedReservation = selectedReservation;
             CleanlinessOption = new ObservableCollection<int>();
@@ -150,15 +159,14 @@ namespace BookingProject.View
 
         private void Button_Click_Review(object sender, RoutedEventArgs e)
         {
-            AccommodationOwnerGrade grade = new AccommodationOwnerGrade();
-            grade.Id = AccommodationOwnerGradeController.GenerateId();
+           
             grade.Accommodation.Id = _selectedReservation.Accommodation.Id;
             grade.Cleanliness = chosenCleanliness;
             grade.OwnerCorectness = chosenCorectness;
             grade.AdditionalComment = Comment;
             grade.Reccommendation = Reccommendation;
 
-
+            
             AccommodationOwnerGradeController.Create(grade);
             AccommodationOwnerGradeController.Save();
 
@@ -169,12 +177,14 @@ namespace BookingProject.View
         {
             if (UrlPicture.Text != "")
             {
-                AccommodationImage Picture = new AccommodationImage();
+                AccommodationGuestImage Picture = new AccommodationGuestImage();
+                Picture.Id = AccommodationGuestImageController.GenerateId();
                 Picture.Url = UrlPicture.Text;
-                _selectedReservation.Accommodation.Images.Add(Picture);
-                Picture.AccommodationId = _selectedReservation.Accommodation.Id;
-                AccommodationImageController.Create(Picture);
-                AccommodationImageController.SaveImage();
+                Picture.Guest.Id = UserController.GetLoggedUser().Id;
+                Picture.Grade.Id = grade.Id;
+                grade.guestImages.Add(Picture);
+                AccommodationGuestImageController.Create(Picture);
+                AccommodationGuestImageController.SaveImage();
             }
             else
             {
