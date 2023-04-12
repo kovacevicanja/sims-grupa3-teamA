@@ -5,6 +5,7 @@ using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.View.GuideView;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,12 +70,12 @@ namespace BookingProject.View
 
         private void SignIn(object sender, RoutedEventArgs e)
         {
-            User user = _controller.GetByUsername(Username);
+            Model.User user = _controller.GetByUsername(Username);
             if (user != null)
             {
                 if (user.Password == txtPassword.Password)
                 {
-                    if (user.UserType==UserType.OWNER)
+                    if (user.UserType == UserType.OWNER)
                     {
                         _controller.GetByUsername(Username).IsLoggedIn = true;
                         OwnerView ownerView = new OwnerView();
@@ -86,43 +87,32 @@ namespace BookingProject.View
                             MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
                         }
                     }
-                    else if(user.UserType == UserType.GUEST1){
+                    else if (user.UserType == UserType.GUEST1)
+                    {
                         _controller.GetByUsername(Username).IsLoggedIn = true;
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
-                        
-                    }else if(user.UserType == UserType.GUEST2)
+
+                    }
+                    else if (user.UserType == UserType.GUEST2)
                     {
                         _controller.GetByUsername(Username).IsLoggedIn = true;
-                        User userGuest = _controller.GetByUsername(Username);
+                        Model.User userGuest = _controller.GetByUsername(Username);
                         _controller.Save();
                         SecondGuestProfile secondGuestProfile = new SecondGuestProfile(userGuest.Id);
                         secondGuestProfile.Show();
                         List<Notification> notifications = _tourPresenceController.GetGuestNotifications(userGuest);
                         List<Notification> notificationsCopy = new List<Notification>();
 
-                        foreach (Notification n in notifications)
-                        {
-                            if (n.UserId == user.Id)
-                            {
-                                _controller.GetByID(user.Id).IsPresent = true; //dodaj dugme za sredjivanje
-                                _controller.Save();
-                                NotificationController.GetByID(n.Id).Read = true;
-                                NotificationController.Save();
-                            }
-                        }
-
-                        notifications = _tourPresenceController.GetGuestNotifications(userGuest);
-
                         foreach (Notification notification in notifications)
                         {
-                            ShowCustomMessageBoxNotification(notification.Text);
+                            ShowCustomMessageBoxNotification(notification.Text, userGuest);
                             notificationsCopy.Add(notification);
-                            _tourPresenceController.GetGuestNotifications(userGuest);
+                            _tourPresenceController.DeleteNotificationFromCSV(notification);
                         }
                         foreach (Notification notification1 in notificationsCopy)
                         {
-                            _tourPresenceController.GetGuestNotifications(userGuest);
+                            _tourPresenceController.WriteNotificationAgain(notification1);
                         }
                     }
                     else if (user.UserType == UserType.GUIDE)
@@ -145,8 +135,10 @@ namespace BookingProject.View
             }
         }
 
-        public void ShowCustomMessageBoxNotification(string messageText)
+        public void ShowCustomMessageBoxNotification(string messageText, Model.User userGuest)
         {
+            List<Notification> notifications = _tourPresenceController.GetGuestNotifications(userGuest);
+
             Window customMessageBox = new Window
             {
                 Title = "Message",
@@ -180,8 +172,17 @@ namespace BookingProject.View
             };
             yesButton.Click += (o, args) =>
             {
-                // Perform action for 'Yes' button
-                MessageBox.Show("Action for 'Yes' button clicked!");
+                MessageBox.Show("You have successfully confirmed your presence on the tour.");
+                foreach (Notification notification in notifications)
+                {
+                    if (notification.UserId == userGuest.Id)
+                    {
+                        _controller.GetByID(userGuest.Id).IsPresent = true;
+                        _controller.Save();
+                        NotificationController.GetByID(notification.Id).Read = true;
+                        NotificationController.Save();
+                    }
+                }
                 customMessageBox.Close();
             };
 
@@ -196,8 +197,15 @@ namespace BookingProject.View
             };
             noButton.Click += (o, args) =>
             {
-                // Perform action for 'No' button
-                MessageBox.Show("Action for 'No' button clicked!");
+                MessageBox.Show("You have successfully reported that you are not present on the tour.");
+                foreach (Notification notification in notifications)
+                {
+                    if (notification.UserId == userGuest.Id)
+                    {
+                        _controller.GetByID(userGuest.Id).IsPresent = false;
+                        _controller.Save();
+                    }
+                }
                 customMessageBox.Close();
             };
 
@@ -223,3 +231,4 @@ namespace BookingProject.View
             customMessageBox.ShowDialog();
         }
     }
+}
