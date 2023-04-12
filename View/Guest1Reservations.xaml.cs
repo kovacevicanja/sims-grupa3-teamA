@@ -61,5 +61,11 @@ namespace BookingProject.View
                 MessageBox.Show("You have failed to cancel your reservation because you have not met the accommodation owner's requirements!");
             }
         }
+
+        private void Button_Click_Reschedule(object sender, RoutedEventArgs e)
+        {
+            var RescheduleAccommodationReservation = new RescheduleAccommodationReservationView(SelectedReservation);
+            RescheduleAccommodationReservation.Show();
+        }
     }
 }

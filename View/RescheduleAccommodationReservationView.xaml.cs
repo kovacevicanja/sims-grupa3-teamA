@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BookingProject.Controllers;
+using BookingProject.Domain;
+using BookingProject.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -21,10 +24,17 @@ namespace BookingProject.View
     /// </summary>
     public partial class RescheduleAccommodationReservationView : Window
     {
-        public RescheduleAccommodationReservationView()
+        public RequestAccommodationReservationController RequestAccommodationReservationController  { get; set;}
+        public AccommodationReservation SelectedReservation;
+        public RescheduleAccommodationReservationView(AccommodationReservation selectedReservation)
         {
             InitializeComponent();
             this.DataContext = this;
+            RequestAccommodationReservationController = new RequestAccommodationReservationController();
+            SelectedReservation = new AccommodationReservation();
+            SelectedReservation = selectedReservation;
+            NewInitialDate = DateTime.Now;
+            NewEndDate = DateTime.Now;
         }
 
         public DateTime _newInitialDate;
@@ -77,7 +87,16 @@ namespace BookingProject.View
 
         private void Button_Click_Send_Request(object sender, RoutedEventArgs e)
         {
+            RequestAccommodationReservation request = new RequestAccommodationReservation();
+            request.AccommodationReservation = SelectedReservation;
+            request.Comment = Comment;
+            request.NewArrivalDay = NewInitialDate;
+            request.NewDeparuteDay = NewEndDate;
+            request.Status = Domain.Enums.RequestStatus.PENDING;
 
+            RequestAccommodationReservationController.Create(request);
+            RequestAccommodationReservationController.SaveRequest();
+            this.Close();
         }
     }
 }

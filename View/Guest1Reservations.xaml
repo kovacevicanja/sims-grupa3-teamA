@@ -90,7 +90,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <WrapPanel VerticalAlignment="Bottom">
-                        <Button Opacity="10" BorderThickness="2" BorderBrush="Black"  Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="20 15 15 15">Reschedule</Button>
+                        <Button Opacity="10" BorderThickness="2" BorderBrush="Black"  Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="20 15 15 15" Click="Button_Click_Reschedule">Reschedule</Button>
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="60" IsDefault="True" Margin="15" Click="Button_Click_Cancel">Cancel</Button>
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="60" IsDefault="True" Margin="15" Click="Button_Click_Review">Review</Button>
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="15">See requests</Button>
