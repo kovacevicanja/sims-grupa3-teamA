@@ -433,7 +433,6 @@
     <None Include="Resources\Data\toursGuests.csv" />
     <None Include="Resources\Data\guest2.csv" />
     <None Include="Resources\Data\users.csv" />
-    <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Images\accommodationguestimages.csv" />
     <None Include="Resources\Images\accommodationimages.csv" />
     <None Include="View\very-popular-thread_318-10286.avif" />

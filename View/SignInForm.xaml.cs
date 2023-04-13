@@ -20,6 +20,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BookingProject.Controller;
 
 namespace BookingProject.View
 {
@@ -76,7 +77,7 @@ namespace BookingProject.View
             {
                 if (user.Password == txtPassword.Password)
                 {
-                    if (user.UserType==UserType.OWNER)
+                    if (user.UserType == UserType.OWNER)
                     {
                         User owner = _controller.GetByUsername(Username);
                         owner.IsLoggedIn = true;
@@ -85,13 +86,13 @@ namespace BookingProject.View
                         ownerView.Show();
                         List<Notification> notifications = _accResController.GetOwnerNotifications(owner);
                         List<Notification> notificationsCopy = new List<Notification>();
-                        foreach(Notification notification in notifications)
+                        foreach (Notification notification in notifications)
                         {
                             MessageBox.Show(notification.Text);
                             notificationsCopy.Add(notification);
                             _accResController.DeleteNotificationFromCSV(notification);
                         }
-                        foreach(Notification notification1 in notificationsCopy)
+                        foreach (Notification notification1 in notificationsCopy)
                         {
                             _accResController.WriteNotificationAgain(notification1);
                         }
@@ -102,14 +103,16 @@ namespace BookingProject.View
                             MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
                         }
                     }
-                    else if(user.UserType == UserType.GUEST1){
+                    else if (user.UserType == UserType.GUEST1)
+                    {
                         User guest1 = _controller.GetByUsername(Username);
                         guest1.IsLoggedIn = true;
                         _controller.Save();
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
-                        
-                    }else if(user.UserType == UserType.GUEST2)
+
+                    }
+                    else if (user.UserType == UserType.GUEST2)
                     {
                         _controller.GetByUsername(Username).IsLoggedIn = true;
                         User userGuest = _controller.GetByUsername(Username);
@@ -241,3 +244,4 @@ namespace BookingProject.View
             customMessageBox.ShowDialog();
         }
     }
+}

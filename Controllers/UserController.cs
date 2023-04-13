@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Controller
 {
-    public class UserController:ISubject
+    public class UserController : ISubject
     {
         private readonly List<IObserver> observers;
 
@@ -21,8 +21,6 @@ namespace BookingProject.Controller
 
         public UserController()
         {
-            _serializer = new Serializer<User>();
-            _users = Load();
             _userHandler = new UserHandler();
             _users = new List<User>();
             observers = new List<IObserver>();
@@ -34,15 +32,9 @@ namespace BookingProject.Controller
             return _users.FirstOrDefault(u => u.Username == username);
         }
 
-
-        public List<User> Load()
-        {
-            return _serializer.FromCSV(FilePath);
-
         public void Load()
         {
             _users = _userHandler.Load();
-
         }
 
         public void Save()
@@ -94,16 +86,10 @@ namespace BookingProject.Controller
             observers.Add(observer);
         }
 
-        public User GetByID(int id)
-        {
-            return _users.Find(u => u.Id == id);
-        }
-
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);
         }
-
         public User GetLoggedUser()
         {
             foreach (User user in _users)

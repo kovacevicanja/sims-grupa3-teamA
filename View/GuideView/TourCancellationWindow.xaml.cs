@@ -1,6 +1,7 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Domain;
+using BookingProject.Domain.Enums;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using System;
@@ -42,10 +43,10 @@ namespace BookingProject.View.GuideView
         {
             foreach(TourReservation reservation in _tourReservationController.GetAll())
             {
-                if (reservation.Tour.Id == ChosenTour.Id)
+                if (reservation.Tour.Id == ChosenTour.TourId)
                 {
                     Voucher voucher = new Voucher();
-                    voucher.Guest.Id = reservation.Guest.Id;
+                    voucher.Guest = reservation.Guest;
                     voucher.StartDate = DateTime.Now;
                     voucher.EndDate=DateTime.Now.AddDays(7);
                     _voucherController.Create(voucher);

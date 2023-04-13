@@ -126,6 +126,7 @@ namespace BookingProject.View.GuideView
         {
             GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
             guideHomeWindow.Show();
+            Close();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
