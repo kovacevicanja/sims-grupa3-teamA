@@ -1,11 +1,10 @@
-using BookingProject.Domain;
+using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.View.GuideView;
-using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +20,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BookingProject.Controller;
 
 namespace BookingProject.View
 {
@@ -31,11 +29,11 @@ namespace BookingProject.View
     public partial class SignInForm : Window
     {
         private readonly UserController _controller;
-        private readonly AccommodationReservationController _accResController;
         public bool IsSelectedOwner { get; set; }
         public bool IsSelectedGuest1 { get; set; }
         public bool IsSelectedGuest2 { get; set; }
         public bool IsSelectedGuide { get; set; }
+        public static User LoggedInUser { get; set; }
         private TourPresenceController _tourPresenceController { get; set; }
         public NotificationController NotificationController { get; set; }
 
@@ -66,37 +64,23 @@ namespace BookingProject.View
             DataContext = this;
             var app = Application.Current as App;
             _controller = app.UserController;
-            _accResController = new AccommodationReservationController();
             _tourPresenceController = app.TourPresenceController;
             NotificationController = new NotificationController();
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
         {
-            Model.User user = _controller.GetByUsername(Username);
+            User user = _controller.GetByUsername(Username);
             if (user != null)
             {
                 if (user.Password == txtPassword.Password)
                 {
+                    LoggedInUser = user;
                     if (user.UserType == UserType.OWNER)
                     {
-                        Model.User owner = _controller.GetByUsername(Username);
-                        owner.IsLoggedIn = true;
-                        _controller.Save();
+                        _controller.GetByUsername(Username).IsLoggedIn = true;
                         OwnerView ownerView = new OwnerView();
                         ownerView.Show();
-                        List<Notification> notifications = _accResController.GetOwnerNotifications(owner);
-                        List<Notification> notificationsCopy = new List<Notification>();
-                        foreach(Notification notification in notifications)
-                        {
-                            MessageBox.Show(notification.Text);
-                            notificationsCopy.Add(notification);
-                            _accResController.DeleteNotificationFromCSV(notification);
-                        }
-                        foreach(Notification notification1 in notificationsCopy)
-                        {
-                            _accResController.WriteNotificationAgain(notification1);
-                        }
                         NotGradedView not_view = new NotGradedView();
                         int row_num = not_view.RowNum();
                         if (row_num > 0)
@@ -104,10 +88,9 @@ namespace BookingProject.View
                             MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
                         }
                     }
-                    else if(user.UserType == UserType.GUEST1){
-                        Model.User guest1 = _controller.GetByUsername(Username);
-                        guest1.IsLoggedIn = true;
-                        _controller.Save();
+                    else if (user.UserType == UserType.GUEST1)
+                    {
+                        _controller.GetByUsername(Username).IsLoggedIn = true;
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
 
@@ -115,22 +98,35 @@ namespace BookingProject.View
                     else if (user.UserType == UserType.GUEST2)
                     {
                         _controller.GetByUsername(Username).IsLoggedIn = true;
-                        Model.User userGuest = _controller.GetByUsername(Username);
+                        User userGuest = _controller.GetByUsername(Username);
                         _controller.Save();
                         SecondGuestProfile secondGuestProfile = new SecondGuestProfile(userGuest.Id);
                         secondGuestProfile.Show();
                         List<Notification> notifications = _tourPresenceController.GetGuestNotifications(userGuest);
                         List<Notification> notificationsCopy = new List<Notification>();
 
+                        foreach (Notification n in notifications)
+                        {
+                            if (n.UserId == user.Id)
+                            {
+                                _controller.GetByID(user.Id).IsPresent = true; //dodaj dugme za sredjivanje
+                                _controller.Save();
+                                NotificationController.GetByID(n.Id).Read = true;
+                                NotificationController.Save();
+                            }
+                        }
+
+                        notifications = _tourPresenceController.GetGuestNotifications(userGuest);
+
                         foreach (Notification notification in notifications)
                         {
-                            ShowCustomMessageBoxNotification(notification.Text, userGuest);
+                            ShowCustomMessageBoxNotification(notification.Text);
                             notificationsCopy.Add(notification);
-                            _tourPresenceController.DeleteNotificationFromCSV(notification);
+                            _tourPresenceController.GetGuestNotifications(userGuest);
                         }
                         foreach (Notification notification1 in notificationsCopy)
                         {
-                            _tourPresenceController.WriteNotificationAgain(notification1);
+                            _tourPresenceController.GetGuestNotifications(userGuest);
                         }
                     }
                     else if (user.UserType == UserType.GUIDE)
@@ -153,10 +149,8 @@ namespace BookingProject.View
             }
         }
 
-        public void ShowCustomMessageBoxNotification(string messageText, Model.User userGuest)
+        public void ShowCustomMessageBoxNotification(string messageText)
         {
-            List<Notification> notifications = _tourPresenceController.GetGuestNotifications(userGuest);
-
             Window customMessageBox = new Window
             {
                 Title = "Message",
@@ -190,17 +184,8 @@ namespace BookingProject.View
             };
             yesButton.Click += (o, args) =>
             {
-                MessageBox.Show("You have successfully confirmed your presence on the tour.");
-                foreach (Notification notification in notifications)
-                {
-                    if (notification.UserId == userGuest.Id)
-                    {
-                        _controller.GetByID(userGuest.Id).IsPresent = true;
-                        _controller.Save();
-                        NotificationController.GetByID(notification.Id).Read = true;
-                        NotificationController.Save();
-                    }
-                }
+                // Perform action for 'Yes' button
+                MessageBox.Show("Action for 'Yes' button clicked!");
                 customMessageBox.Close();
             };
 
@@ -215,15 +200,8 @@ namespace BookingProject.View
             };
             noButton.Click += (o, args) =>
             {
-                MessageBox.Show("You have successfully reported that you are not present on the tour.");
-                foreach (Notification notification in notifications)
-                {
-                    if (notification.UserId == userGuest.Id)
-                    {
-                        _controller.GetByID(userGuest.Id).IsPresent = false;
-                        _controller.Save();
-                    }
-                }
+                // Perform action for 'No' button
+                MessageBox.Show("Action for 'No' button clicked!");
                 customMessageBox.Close();
             };
 

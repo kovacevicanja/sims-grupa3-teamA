@@ -24,12 +24,18 @@ namespace BookingProject.View
     public partial class OwnerView : Window
     {
         private AccommodationController _accommodationController;
+        private AccommodationOwnerGradeController _accommodationOwnerGradeController;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
         public OwnerView()
         {
             InitializeComponent();
             this.DataContext = this;
             _accommodationController = new AccommodationController();
+            _accommodationOwnerGradeController = new AccommodationOwnerGradeController();
+            if (!_accommodationOwnerGradeController.IsOwnerSuperOwner(SignInForm.LoggedInUser.Id))
+            {
+                SuperOwnerImage.Visibility = Visibility.Hidden;
+            }
             Accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
         }
         private void Button_Click_Add(object sender, RoutedEventArgs e)

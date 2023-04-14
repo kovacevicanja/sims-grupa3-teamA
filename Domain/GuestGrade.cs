@@ -20,6 +20,7 @@ namespace BookingProject.Model
         public int Decency { get; set; }
         public int Noisiness { get; set; }
         public string Comment { get; set; }
+        public User Guest { get; set; }
 
         public GuestGrade()
         {
@@ -35,6 +36,7 @@ namespace BookingProject.Model
             Decency = int.Parse((string)values[5]);
             Noisiness = int.Parse((string)values[6]);
             Comment = values[7];
+            Guest.Id = int.Parse((string)values[8]);
         }
         public string[] ToCSV()
         {
@@ -47,7 +49,8 @@ namespace BookingProject.Model
                 ObservanceOfRules.ToString(),
                 Decency.ToString(),
                 Noisiness.ToString(),
-                Comment
+                Comment,
+                Guest.Id.ToString()
             };
             return csvValues;
         }
