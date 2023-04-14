@@ -71,6 +71,17 @@ namespace BookingProject.Controller
         {
             return _accommodationReservations.Find(ar => ar.Id == id);
         }
+        public void Update(AccommodationReservation reservation)
+        {
+            AccommodationReservation oldReservation = GetByID(reservation.Id);
+            if (oldReservation == null)
+            {
+                return;
+            }
+            oldReservation.InitialDate = reservation.InitialDate;
+            oldReservation.EndDate = reservation.EndDate;
+            Save();
+        }
 
         private bool IsReservationAvailable(AccommodationReservation accommodationReservation)
         {

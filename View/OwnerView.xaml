@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="Owner" Height="450" Width="1000" Closed="Window_Closed">
+        Title="Owner" Height="500" Width="1000" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,6 +21,8 @@
                Click="Button_Click_Add"/>
             <Button Content="Rate Guests" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
                Click="Button_Click_Rate"/>
+            <Button Content="Reviews" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
+               Click="Button_Click_Review"/>
         </StackPanel>
         <Grid Grid.Row="1">
 
@@ -33,7 +35,7 @@
             </Grid.RowDefinitions>
 
 
-            <DataGrid ItemsSource ="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
+            <DataGrid ItemsSource ="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}" 
                       Margin="16,12,16,104" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Width="100" Binding="{Binding AccommodationName}"></DataGridTextColumn>

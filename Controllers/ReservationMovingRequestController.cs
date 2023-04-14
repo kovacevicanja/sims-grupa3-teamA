@@ -43,6 +43,28 @@ namespace BookingProject.Controllers
             _reservationMovingRequestHandler.Save(_reservationMovingRequest);
         }
 
+        public void AcceptRequest(ReservationMovingRequest reservationMovingRequest)
+        {
+            AccommodationReservation res = _reservationController.GetByID(reservationMovingRequest.Reservation.Id);
+            res.InitialDate = reservationMovingRequest.NewStart;
+            res.EndDate = reservationMovingRequest.NewEnd;
+            _reservationController.Update(res);
+        }
+
+        public void Update(ReservationMovingRequest reservationMovingRequest)
+        {
+            ReservationMovingRequest oldRequest = GetByID(reservationMovingRequest.Id);
+            if (oldRequest == null)
+            {
+                return;
+            }
+            oldRequest.Comment = reservationMovingRequest.Comment;
+            oldRequest.NewStart = reservationMovingRequest.NewStart;
+            oldRequest.NewEnd = reservationMovingRequest.NewEnd;
+            oldRequest.Status = reservationMovingRequest.Status;
+            Save();
+        }
+
         public void RequestReservationBind()
         {
             _reservationController.Load();

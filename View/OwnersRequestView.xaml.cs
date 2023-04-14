@@ -42,5 +42,10 @@ namespace BookingProject.View
             OwnersApprovingDenyingRequestView view = new OwnersApprovingDenyingRequestView(SelectedMovingRequest);
             view.Show();
         }
+        private void Button_Click_Menu(object sender, RoutedEventArgs e)
+        {
+            MenuView view = new MenuView();
+            view.Show();
+        }
     }
 }

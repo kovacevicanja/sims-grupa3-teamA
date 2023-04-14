@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="OwnersApprovingDenyingRequestView" Height="450" Width="800">
+        Title="OwnersApprovingDenyingRequestView" Height="600" Width="356">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
@@ -18,16 +18,16 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="64*"/>
+            <ColumnDefinition Width="0"/>
             <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="473*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto" MinHeight="434"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="2" Height="300" Margin="28,25,121,25">
+        <Grid Grid.Row="0" Grid.Column="2" Margin="28,33,33,33">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -76,13 +76,10 @@
                      Text="{Binding Path=Availability}"
                      Height="30" IsEnabled="False"></TextBox>
         </Grid>
-        <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="15,22,0,0" Width="560" >
-            <Button Content="Accept" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
-              Click="Button_Click_Accept" />
-            <Button Content="Decline" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
-               Click="Button_Click_Decline"/>
-
-
-        </WrapPanel>
+        <Button Content="Accept" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"
+              Click="Button_Click_Accept" RenderTransformOrigin="0.5,0.5" Width="46" Grid.Column="2" Margin="256,10,0,0" Grid.Row="1" >
+        </Button>
+        <Button Content="Decline" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="253,50,0,0"
+               Click="Button_Click_Decline" Grid.Column="2" Width="49" Grid.Row="1"/>
     </Grid>
 </Window>
