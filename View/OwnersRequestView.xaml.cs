@@ -22,16 +22,16 @@ namespace BookingProject.View
     /// </summary>
     public partial class OwnersRequestView : Window
     {
-        private ReservationMovingRequestController _requestController;
-        public ObservableCollection<ReservationMovingRequest> Requests { get; set; }
-        public ReservationMovingRequest SelectedMovingRequest { get; set; }
+        private RequestAccommodationReservationController _requestController;
+        public ObservableCollection<RequestAccommodationReservation> Requests { get; set; }
+        public RequestAccommodationReservation SelectedMovingRequest { get; set; }
         public OwnersRequestView()
         {
             InitializeComponent();
             this.DataContext = this;
-            _requestController = new ReservationMovingRequestController();
+            _requestController = new RequestAccommodationReservationController();
             int ownerId = 1;                                                                                                   //change to logged user
-            Requests = new ObservableCollection<ReservationMovingRequest>(_requestController.GetAllRequestForOwner(ownerId));
+            Requests = new ObservableCollection<RequestAccommodationReservation>(_requestController.GetAllRequestForOwner(ownerId));
         }
         private void Button_Click_View(object sender, RoutedEventArgs e)
         {

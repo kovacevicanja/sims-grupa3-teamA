@@ -24,24 +24,24 @@ namespace BookingProject.View
     /// </summary>
     public partial class OwnersApprovingDenyingRequestView : Window
     {
-        public ReservationMovingRequest SelectedMovingRequest { get; set; }
+        public RequestAccommodationReservation SelectedMovingRequest { get; set; }
         public Boolean Availability { get; set; }
         private AccommodationReservationController _reservationController;
-        private ReservationMovingRequestController _movingController;
-        public OwnersApprovingDenyingRequestView(ReservationMovingRequest selectedMovingRequest)
+        private RequestAccommodationReservationController _movingController;
+        public OwnersApprovingDenyingRequestView(RequestAccommodationReservation selectedMovingRequest)
         {
             InitializeComponent();
             this.DataContext = this;
             SelectedMovingRequest= selectedMovingRequest;
             _reservationController = new AccommodationReservationController();
-            _movingController = new ReservationMovingRequestController();
+            _movingController = new RequestAccommodationReservationController();
             Availability = _reservationController.IsAvailableToMove(selectedMovingRequest);
             
         }
 
         private void Button_Click_Accept(object sender, RoutedEventArgs e)
         {
-            SelectedMovingRequest.Status = RequestStatus.ACCEPTED;
+            SelectedMovingRequest.Status = RequestStatus.APPROVED;
             _movingController.Update(SelectedMovingRequest);
             _movingController.AcceptRequest(SelectedMovingRequest);
             Close();

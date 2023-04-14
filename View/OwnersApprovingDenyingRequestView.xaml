@@ -51,22 +51,22 @@
             <Label Grid.Row="6" Grid.Column="0" Height="30" >Comment</Label>
             <Label Grid.Row="7" Grid.Column="0" Height="30" >Availability</Label>
             <TextBox Grid.Row="0" Grid.Column="1" 
-                     Text="{Binding Path=SelectedMovingRequest.Reservation.Accommodation.AccommodationName}"
+                     Text="{Binding Path=SelectedMovingRequest.AccommodationReservation.Accommodation.AccommodationName}"
                      Height="30" IsEnabled="False"></TextBox>
             <TextBox Grid.Row="1" Grid.Column="1" 
-                     Text="{Binding Path=SelectedMovingRequest.Reservation.User.Username}"
+                     Text="{Binding Path=SelectedMovingRequest.AccommodationReservation.User.Username}"
                      Height="30" IsEnabled="False"></TextBox>
             <TextBox Grid.Row="2" Grid.Column="1" 
-                     Text="{Binding Path=SelectedMovingRequest.NewStart}"
+                     Text="{Binding Path=SelectedMovingRequest.NewArrivalDay}"
                      Height="30" IsEnabled="False"></TextBox>
             <TextBox Grid.Row="3" Grid.Column="1" 
-                     Text="{Binding Path=SelectedMovingRequest.NewEnd}"
+                     Text="{Binding Path=SelectedMovingRequest.NewDeparuteDay}"
                      Height="30" IsEnabled="False"></TextBox>
             <TextBox Grid.Row="4" Grid.Column="1" 
-                     Text="{Binding Path=SelectedMovingRequest.Reservation.InitialDate}"
+                     Text="{Binding Path=SelectedMovingRequest.AccommodationReservation.InitialDate}"
                      Height="30" IsEnabled="False"></TextBox>
             <TextBox Grid.Row="5" Grid.Column="1" 
-                     Text="{Binding Path=SelectedMovingRequest.Reservation.EndDate}"
+                     Text="{Binding Path=SelectedMovingRequest.AccommodationReservation.EndDate}"
                      Height="30" IsEnabled="False"></TextBox>
             <TextBox Grid.Row="6" Grid.Column="1" 
                      Text="{Binding Path=SelectedMovingRequest.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"

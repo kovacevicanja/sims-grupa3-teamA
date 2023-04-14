@@ -308,19 +308,19 @@ namespace BookingProject.Controller
             return start1 < end2 && end1 > start2;
         }
 
-        private void RemoveCurrentReservation(List<AccommodationReservation> allReservations, ReservationMovingRequest request)
+        private void RemoveCurrentReservation(List<AccommodationReservation> allReservations, RequestAccommodationReservation request)
         {
-            allReservations.Remove(allReservations.Single(res => res.Id == request.Reservation.Id));
+            allReservations.Remove(allReservations.Single(res => res.Id == request.AccommodationReservation.Id));
         }
 
 
-        public bool IsAvailableToMove(ReservationMovingRequest request)
+        public bool IsAvailableToMove(RequestAccommodationReservation request)
         {
             List<AccommodationReservation> allReservations = _accommodationReservations.ToList();
             RemoveCurrentReservation(allReservations, request);
             foreach(var reservation in allReservations)
             {
-                if (DatesOverlaps(reservation.InitialDate, reservation.EndDate, request.NewStart, request.NewEnd))
+                if (DatesOverlaps(reservation.InitialDate, reservation.EndDate, request.NewArrivalDay, request.NewDeparuteDay))
                 {
                     return false;
                 }

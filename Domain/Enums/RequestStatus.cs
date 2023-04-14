@@ -8,6 +8,6 @@ namespace BookingProject.Domain.Enums
 {
     public enum RequestStatus
     {
-        ON_WAIT, ACCEPTED, DECLINED
+        APPROVED, DECLINED, PENDING
     }
 }
