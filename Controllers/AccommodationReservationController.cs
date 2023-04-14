@@ -25,6 +25,7 @@ namespace BookingProject.Controller
 
         public AccommodationReservationController()
         {
+            observers = new List<IObserver>();
             _accommodationReservationHandler = new AccommodationReservationHandler();
             _accommodationReservations = new List<AccommodationReservation>();
             _accommodationController = new AccommodationController();
@@ -318,26 +319,18 @@ namespace BookingProject.Controller
             {
                 DeleteReservationFromCSV(accommodationReservation);
                 SendNotification(accommodationReservation);
+                NotifyObservers();
                 return true;
             }
+
             return false;
         }
 
         public void DeleteReservationFromCSV(AccommodationReservation accommmodationReservation)
         {
-            string[] lines = File.ReadAllLines("../../Resources/Data/accommodationReservations.csv");
-            int rowIndex = Array.FindIndex(lines, line => line.StartsWith(accommmodationReservation.Id + "|"));
-
-            if (rowIndex >= 0)
-            {
-                // Remove the row at the specified index
-                List<string> linesList = new List<string>(lines);
-                linesList.RemoveAt(rowIndex);
-                lines = linesList.ToArray();
-
-                // Write the modified lines back to the file
-                File.WriteAllLines("../../Resources/Data/accommodationReservations.csv", lines);
-            }
+            List<AccommodationReservation> _reservations = GetAll();
+            _reservations.RemoveAll(n => n.Id == accommmodationReservation.Id);
+            Save();
         }
 
         public void SendNotification(AccommodationReservation accommodationReservation)
