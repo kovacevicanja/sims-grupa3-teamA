@@ -84,11 +84,15 @@ namespace BookingProject.Controller
             return accommodationReservation.EndDate <= DateTime.Now && accommodationReservation.EndDate.AddDays(5) >= DateTime.Now;
         }
 
-        public List<AccommodationReservation> GetAllNotGradedReservations()
+        public List<AccommodationReservation> GetAllNotGradedReservations(int ownerId)
         {
             List<AccommodationReservation> reservations = new List<AccommodationReservation>();
             foreach (AccommodationReservation reservation in _accommodationReservations)
             {
+                if (reservation.Accommodation.Owner.Id != ownerId)
+                {
+                    continue;
+                }
                 if (IsReservationAvailable(reservation) == false)
                 {
                     continue;

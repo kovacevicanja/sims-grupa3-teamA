@@ -21,6 +21,8 @@
                Click="Button_Click_Add"/>
             <Button Content="Rate Guests" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
                Click="Button_Click_Rate"/>
+            <Button Content="Guest Grades" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
+               Click="Button_Click_Review"/>
             <Image Name="SuperOwnerImage" Source="../Resources/Images/star.jpg"/>
         </StackPanel>
         <Grid Grid.Row="1">

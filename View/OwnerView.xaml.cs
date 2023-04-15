@@ -36,7 +36,7 @@ namespace BookingProject.View
             {
                 SuperOwnerImage.Visibility = Visibility.Hidden;
             }
-            Accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
+            Accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAllForOwner(SignInForm.LoggedInUser.Id));
         }
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
@@ -55,6 +55,12 @@ namespace BookingProject.View
         private void Window_Closed(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void Button_Click_Review(object sender, RoutedEventArgs e)
+        {
+            GuestGradesForOwnerView view = new GuestGradesForOwnerView();
+            view.Show();
         }
     }
 }

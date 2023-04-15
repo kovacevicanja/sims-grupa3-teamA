@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace BookingProject.Controller
 
         private List<AccommodationOwnerGrade> _grades;
         private UserController _userController;
+        private GuestGradeController _guestGradeController;
 
         public AccommodationOwnerGradeController()
         {
@@ -26,6 +28,7 @@ namespace BookingProject.Controller
             _accommodationController = new AccommodationController();
             observers = new List<IObserver>();
             _userController = new UserController();
+            _guestGradeController= new GuestGradeController();
             Load();
         }
 
@@ -33,6 +36,7 @@ namespace BookingProject.Controller
         {
             _grades = _accommodationOwnerGradeHandler.Load();
             GradeUserBind();
+            GradeAccommodationBind();
         }
 
         public int GenerateId()
@@ -58,6 +62,108 @@ namespace BookingProject.Controller
             }
             return false;
         }
+        //public List<AccommodationOwnerGrade> GetGradesForAccAndUserSkipN(int accId, int userId, int skip)
+        //{
+        //    int skipped = 0;
+        //    List<AccommodationOwnerGrade> accommodationOwnerGrades = new List<AccommodationOwnerGrade>();
+        //    foreach (AccommodationOwnerGrade accommodationOwnerGrade in _grades)
+        //    {
+        //        if(accommodationOwnerGrade.Accommodation.Id==accId && accommodationOwnerGrade.User.Id == userId)
+        //        {
+        //            if (skipped < skip) 
+        //            {
+        //                skipped++;
+        //                continue;
+        //            }
+        //            accommodationOwnerGrades.Add(accommodationOwnerGrade);
+        //        }
+        //    }
+        //    return accommodationOwnerGrades;
+        //}
+        //private bool ExistsAlreadyAccommodationAndUser(int accId,int userId,List<AccommodationOwnerGrade> grades)
+        //{
+        //    foreach(AccommodationOwnerGrade grade in grades)
+        //    {
+        //        if(grade.Accommodation.Id==accId && grade.User.Id == userId)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
+        ////public List<AccommodationOwnerGrade> GradesGradedByBothSides()
+        ////{
+        ////    List<AccommodationOwnerGrade> accommodationOwnerGrades = new List<AccommodationOwnerGrade>();
+        ////    foreach(AccommodationOwnerGrade accommodationOwnerGrade in _grades)
+        ////    {
+        ////        int gradedForAccommodationUser = _guestGradeController.CountGradesForAccommodationAndUser(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id);
+        ////        List<AccommodationOwnerGrade> latestGrades=GetGradesForAccAndUserSkipN(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id)
+        ////        bool exists = ExistsAlreadyAccommodationAndUser(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id, accommodationOwnerGrades);
+        ////        accommodationOwnerGrades.AddRange(latestGrades);
+        ////    }
+        ////    return accommodationOwnerGrades;
+        ////}
+        //public List<AccommodationOwnerGrade> GradesGradedByBothSidesForOwner(int ownerId)
+        //{
+        //    List<AccommodationOwnerGrade> accommodationOwnerGrades = new List<AccommodationOwnerGrade>();
+        //    foreach (AccommodationOwnerGrade accommodationOwnerGrade in _grades)
+        //    {
+        //        if (accommodationOwnerGrade.Accommodation.Owner.Id != ownerId)
+        //        {
+        //            continue;
+        //        }
+        //        int gradedForAccUser = _guestGradeController.CountGradesForAccommodationAndUser(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id);
+        //        List<AccommodationOwnerGrade> latestGrades = GetGradesForAccAndUserSkipN(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id, gradedForAccUser);
+        //        bool exists = ExistsAlreadyAccommodationAndUser(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id, accommodationOwnerGrades);
+        //        if (exists)
+        //        {
+        //            continue;
+        //        }
+        //        accommodationOwnerGrades.AddRange(latestGrades);
+        //    }
+
+        //    return accommodationOwnerGrades;
+        //}
+
+        public List<AccommodationOwnerGrade> GetGradesForAccAndUserLastN(int accId, int userId, int n)
+        {
+
+            return _grades.Skip(Math.Max(0, _grades.Count() - n)).ToList();
+
+        }
+        private bool ExistsAlreadyAccommodationAndUser(int accId, int userId, List<AccommodationOwnerGrade> grades)
+        {
+            foreach (AccommodationOwnerGrade grade in grades)
+            {
+                if (grade.Accommodation.Id == accId && grade.User.Id == userId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public List<AccommodationOwnerGrade> GradesGradedByBothSidesForOwner(int ownerId)
+        {
+            List<AccommodationOwnerGrade> accommodationOwnerGrades = new List<AccommodationOwnerGrade>();
+            foreach (AccommodationOwnerGrade accommodationOwnerGrade in _grades)
+            {
+                if (accommodationOwnerGrade.Accommodation.Owner.Id != ownerId)
+                {
+                    continue;
+                }
+                int gradedForAccUser = _guestGradeController.CountGradesForAccommodationAndUser(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id);
+                List<AccommodationOwnerGrade> latestGrades = GetGradesForAccAndUserLastN(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id, gradedForAccUser);
+                bool exists = ExistsAlreadyAccommodationAndUser(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id, accommodationOwnerGrades);
+                if (exists)
+                {
+                    continue;
+                }
+                accommodationOwnerGrades.AddRange(latestGrades);
+            }
+
+            return accommodationOwnerGrades;
+        }
 
         public void GradeUserBind()
         {
@@ -66,6 +172,15 @@ namespace BookingProject.Controller
             {
                 User user = _userController.GetByID(grade.User.Id);
                 grade.User = user;
+            }
+        }
+        public void GradeAccommodationBind()
+        {
+
+            foreach (AccommodationOwnerGrade grade in _grades)
+            {
+                Accommodation accommodation = _accommodationController.GetByID(grade.Accommodation.Id);
+                grade.Accommodation = accommodation;
             }
         }
 

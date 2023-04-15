@@ -87,6 +87,8 @@ namespace BookingProject.View
                         {
                             MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
                         }
+                        //GuestGradesForOwnerView view = new GuestGradesForOwnerView();
+                        //view.Show();
                     }
                     else if (user.UserType == UserType.GUEST1)
                     {

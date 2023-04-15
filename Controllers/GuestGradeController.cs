@@ -32,7 +32,7 @@ namespace BookingProject.Controller
         {
             _grades = _gradeHandler.Load();
             AccommodationGradeBind();
-            GradeUserBind();
+            //GradeUserBind();
         }
 
         public List<GuestGrade> GetAll()
@@ -50,15 +50,15 @@ namespace BookingProject.Controller
             grade.Id = GenerateId();
             _grades.Add(grade);
         }
-        public void GradeUserBind()
-        {
+        //public void GradeUserBind()
+        //{
 
-            foreach (GuestGrade grade in _grades)
-            {
-                User user = _userController.GetByID(grade.Guest.Id);
-                grade.Guest = user;
-            }
-        }
+        //    foreach (GuestGrade grade in _grades)
+        //    {
+        //        User user = _userController.GetByID(grade.Guest.Id);
+        //        grade.Guest = user;
+        //    }
+        //}
 
         public void AccommodationGradeBind()
         {
@@ -128,6 +128,18 @@ namespace BookingProject.Controller
                 }
             }
             return false;
+        }
+        public int CountGradesForAccommodationAndUser(int accommodationId, int userId)
+        {
+            int count = 0;
+            foreach (GuestGrade grade in _grades)
+            {
+                if (grade.AccommodationReservation.Accommodation.Id == accommodationId && grade.AccommodationReservation.Guest.Id==userId)
+                {
+                    count++;
+                }
+            }
+            return count;
         }
 
 

@@ -47,6 +47,18 @@ namespace BookingProject.Controller
         {
             return _accommodations;
         }
+        public List<Accommodation> GetAllForOwner(int ownerId)
+        {
+            List<Accommodation> accommodations= new List<Accommodation>();
+            foreach(Accommodation accommodation in _accommodations)
+            {
+                if (accommodation.Owner.Id == ownerId)
+                {
+                    accommodations.Add(accommodation);
+                }
+            }
+            return accommodations;
+        }
 
         public void Create(Accommodation accommodation)
         {
