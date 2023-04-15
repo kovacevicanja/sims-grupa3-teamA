@@ -26,7 +26,6 @@ namespace BookingProject.View
         private ObservableCollection<Tour> _tours;
         private TourReservationController _tourReservationController;
         public Tour ChoosenTour { get; set; } //ovo je stara odabrana tura
-        public Guest2 Guest { get; set; }
         public int GuestId { get; set; }
         public ReservationTourOtherOffersView(Tour choosenTour, DateTime selectedDate, int guestId)
         {
@@ -36,8 +35,6 @@ namespace BookingProject.View
             _tourReservationController = new TourReservationController();
             _tours = new ObservableCollection<Tour>(_tourReservationController.GetFilteredTours(choosenTour.Location, selectedDate));
             TourDataGrid.ItemsSource = _tours;
-            Guest = new Guest2();
-            Guest.Id = guestId;
             GuestId = guestId;
         }
         private void Button_Click_Close(object sender, RoutedEventArgs e)

@@ -63,7 +63,6 @@
     <Compile Include="Controllers\AccommodationImageController.cs" />
     <Compile Include="Controllers\AccommodationOwnerGradeController.cs" />
     <Compile Include="Controllers\AccommodationReservationController.cs" />
-    <Compile Include="Controllers\Guest2Controller.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\TourEvaluationController.cs" />
     <Compile Include="Controllers\TourGuestController.cs" />
@@ -74,7 +73,6 @@
     <Compile Include="Controllers\TourLocationController.cs" />
     <Compile Include="Controllers\TourPresenceController.cs" />
     <Compile Include="Controllers\TourReservationController.cs" />
-    <Compile Include="Controllers\ToursGuestsController.cs" />
     <Compile Include="Controllers\TourStartingTimeController.cs" />
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Controllers\TourTimeInstanceController.cs" />
@@ -91,7 +89,6 @@
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\TourEvaluation.cs" />
     <Compile Include="Domain\TourPresence.cs" />
-    <Compile Include="Domain\ToursGuests.cs" />
     <Compile Include="Domain\Voucher.cs" />
     <Compile Include="FileHandler\AccommodationDateHandler.cs" />
     <Compile Include="FileHandler\AccommodationGuestImageHandler.cs" />
@@ -99,7 +96,6 @@
     <Compile Include="FileHandler\AccommodationOwnerGradeHandler.cs" />
     <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
     <Compile Include="FileHandler\AccomodationLocationHandler.cs" />
-    <Compile Include="FileHandler\Guest2Handler.cs" />
     <Compile Include="FileHandler\NotificationHandler.cs" />
     <Compile Include="FileHandler\TourEvaluationHandler.cs" />
     <Compile Include="FileHandler\TourGuestHandler.cs" />
@@ -112,7 +108,6 @@
     <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="FileHandler\TourPresenceHandler.cs" />
     <Compile Include="FileHandler\TourReservationHandler.cs" />
-    <Compile Include="FileHandler\ToursGuestsHandler.cs" />
     <Compile Include="FileHandler\TourStartingTimeHandler.cs" />
     <Compile Include="FileHandler\TourHandler.cs" />
     <Compile Include="FileHandler\TourTimeInstanceHandler.cs" />
@@ -123,7 +118,6 @@
     <Compile Include="Domain\Enums\KeyPointState.cs" />
     <Compile Include="Domain\Enums\TourState.cs" />
     <Compile Include="Domain\Enums\UserType.cs" />
-    <Compile Include="Domain\Guest2.cs" />
     <Compile Include="Domain\GuestGrade.cs" />
     <Compile Include="Domain\KeyPoint.cs" />
     <Compile Include="Domain\TourDateTime.cs" />
@@ -437,8 +431,6 @@
     <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Data\tourTime.csv" />
     <None Include="Resources\Data\tourTimeInstances.csv" />
-    <None Include="Resources\Data\toursGuests.csv" />
-    <None Include="Resources\Data\guest2.csv" />
     <None Include="Resources\Data\users.csv" />
     <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Images\accommodationguestimages.csv" />
@@ -498,6 +490,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
+    <Folder Include="View\SecondGuestView\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\backgroundguest1.jpg" />

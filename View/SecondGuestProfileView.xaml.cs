@@ -25,12 +25,12 @@ namespace BookingProject.View
     public partial class SecondGuestProfile : Window
     {
         private int GuestId { get; set; }
-        private Guest2Controller Guest2Controller { get; set; }
-        public Guest2 Guest { get; set; }
         public UserController UserController { get; set; }
         public User User { get; set; }
+        public Tour Tour { get; set; }
         public TourReservationController TourReservationController { get; set; }
         public TourReservationHandler TourReservationHandler { get; set; }
+        public TourReservation TourReservation { get; set; }    
         public SecondGuestProfile(int idGuest)
         {
             InitializeComponent();
@@ -40,6 +40,8 @@ namespace BookingProject.View
             //Guest2Controller = new Guest2Controller();
             UserController = new UserController();
             User = new User();
+            Tour = new Tour();
+            TourReservation = new TourReservation();
             TourReservationController = new TourReservationController();
             TourReservationHandler = new TourReservationHandler();
         }
@@ -62,7 +64,7 @@ namespace BookingProject.View
 
         private void Button_Click_MyVouchers (object sender, RoutedEventArgs e)
         {
-            SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(GuestId);
+            SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(GuestId, Tour);
             secondGuestMyVouchers.ShowDialog();
         }
 

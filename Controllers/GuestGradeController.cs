@@ -12,10 +12,8 @@ namespace BookingProject.Controller
 {
     public class GuestGradeController: ISubject
     {
-
         private readonly List<IObserver> observers;
         private readonly GuestGradeHandler _gradeHandler;
-
         private List<GuestGrade> _grades;
         public AccommodationReservationController _accommodationController { get; set; }
 
@@ -24,30 +22,24 @@ namespace BookingProject.Controller
             _gradeHandler = new GuestGradeHandler();
             _grades = new List<GuestGrade>();
         }
-
-       
         public void Load()
         {
             _grades = _gradeHandler.Load();
             AccommodationGradeBind();
         }
-
         public List<GuestGrade> GetAll()
         {
             return _grades;
         }
-
         public GuestGrade GetByID(int id)
         {
             return _grades.Find(grade => grade.Id == id);
         }
-
         public void Create(GuestGrade grade)
         {
             grade.Id = GenerateId();
             _grades.Add(grade);
         }
-
         public void AccommodationGradeBind()
         {
             _accommodationController.Load();
@@ -61,7 +53,6 @@ namespace BookingProject.Controller
         {
             _gradeHandler.Save(_grades);
         }
-
         public int GenerateId()
         {
             int maxId = 0;
@@ -74,7 +65,6 @@ namespace BookingProject.Controller
             }
             return maxId + 1;
         }
-
         public void NotifyObservers()
         {
             foreach (var observer in observers)
@@ -82,18 +72,14 @@ namespace BookingProject.Controller
                 observer.Update();
             }
         }
-
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
         }
-
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);
         }
-
-
         public bool DoesReservationHaveGrade(int accommodationReservationId)
         {
             foreach (GuestGrade grade in _grades)
@@ -105,7 +91,5 @@ namespace BookingProject.Controller
             }
             return false;
         }
-
-
     }
 }

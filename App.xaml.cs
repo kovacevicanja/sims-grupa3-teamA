@@ -32,10 +32,6 @@ namespace BookingProject
 
         public AccommodationReservationController AccommodationReservationController { get; set; }
 
-        //
-        public Guest2Controller Guest2Controller { get; set; } 
-        public ToursGuestsController ToursGuestsController { get; set; }
-
         public TourReservationController TourReservationController { get; set; }
         //
         public TourEvaluationController TourEvaluationController { get; set; }
@@ -67,8 +63,6 @@ namespace BookingProject
             AccommodationReservationController._accommodationController = AccommodationController;
 
             //
-            Guest2Controller = new Guest2Controller();
-            ToursGuestsController = new ToursGuestsController();
             TourReservationController = new TourReservationController();
 
             //

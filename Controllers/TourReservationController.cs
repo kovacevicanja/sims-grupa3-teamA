@@ -22,41 +22,20 @@ namespace BookingProject.Controller
     {
         private readonly List<IObserver> observers;
         private readonly TourReservationHandler _reservationHandler;
-        private readonly ToursGuestsHandler _toursGuestsHandler;
         private List<TourReservation> _reservations;
-        private List<ToursGuests> _toursGuests;
         private TourReservation tourReservation { get; set; }
         private List<Tour> _tours { get; set; }
         private TourController _tourController { get; set; }
-        private ToursGuestsController _toursGuestsController { get; set; }
-        private List<Guest2> _guests { get; set; }
-        private Guest2Controller _guest2Controller { get; set; }
         public VoucherController VoucherController { get; set; }
-        public Guest2 Guest { get; set; }
-
-        public TourTimeInstanceController TourTimeInstanceController { get; set; } //
         public TourReservationController()
         {
             _reservationHandler = new TourReservationHandler();
-
-            _toursGuestsHandler = new ToursGuestsHandler();
-
             _reservations = new List<TourReservation>();
-
             tourReservation = new TourReservation();
-
             _tourController = new TourController();
             _tours = new List<Tour>(_tourController.GetAll());
-
-            _guest2Controller = new Guest2Controller();//
-            _guests = new List<Guest2>(_guest2Controller.GetAll());//
-
             VoucherController = new VoucherController();
-
-            TourTimeInstanceController = new TourTimeInstanceController(); //
-
             observers = new List<IObserver>();
-
             Load();
         }
 
@@ -65,7 +44,19 @@ namespace BookingProject.Controller
             _reservations = _reservationHandler.Load();
             TourReservationBind();
             //GuestReservationBind();
+            //VoucherReservationBind();
         }
+        /*public void VoucherReservationBind()
+        {
+            List <Voucher> _vouchers = new List<Voucher>();
+            _vouchers = VoucherController.GetAll();
+            TourReservation = new TourReservation();
+            foreach (Voucher voucher in _vouchers)
+            {
+                TourReservation tourReservation = GetByID(voucher.TourReservation.Id);
+                voucher.TourReservation = tourReservation;
+            }
+        }*/
 
         public List<TourReservation> GetAll()
         {
@@ -110,7 +101,6 @@ namespace BookingProject.Controller
                 reservation.Tour = tour;
             }
         }
-
         public void ReservationGuestBind(int id)
         {
             _tourController.Load();
@@ -124,7 +114,7 @@ namespace BookingProject.Controller
             NotifyObservers();
         }
 
-        public void GuestReservationBind()
+        /*public void GuestReservationBind()
         {
             _tourController.Load();
             foreach (TourReservation reservation in _reservations)
@@ -132,7 +122,7 @@ namespace BookingProject.Controller
                 Guest2 guest = _guest2Controller.GetByID(reservation.Guest.Id);
                 reservation.Guest = guest;
             }
-        }
+        }*/
 
         public List<TourReservation> GetUserReservations(int guestId)
         {
@@ -149,8 +139,6 @@ namespace BookingProject.Controller
 
         public void SaveReservationToFile(Tour choosenTour, string numberOfGuests, DateTime selectedDate, User guest)
         {
-            //_guests.Add(guest);
-
             TourReservation reservation = new TourReservation(GenerateId(), choosenTour, choosenTour.MaxGuests - int.Parse(numberOfGuests), selectedDate, guest);
 
             guest.MyTours = GetUserReservations(guest.Id);
@@ -160,8 +148,7 @@ namespace BookingProject.Controller
             _reservations.Add(reservation);
             _reservationHandler.Save(_reservations);
         }
-
-        public void SaveSameReservationToFile(Tour choosenTour, TourReservation tourReservation, string numberOfGuests, DateTime selectedDate, User guest)
+        public void SaveSameReservationToFile(Tour chosenTour, TourReservation tourReservation, string numberOfGuests, DateTime selectedDate, User guest)
         {
             foreach (TourReservation tr in _reservations)
             {
@@ -187,33 +174,32 @@ namespace BookingProject.Controller
                 reservationsCopy.Remove(tr);
             }
 
-            TourReservation newReservation = new TourReservation(tourReservation.Id, choosenTour, tourReservation.GuestsNumberPerReservation, selectedDate, guest);
+            TourReservation newReservation = new TourReservation(tourReservation.Id, chosenTour, tourReservation.GuestsNumberPerReservation, selectedDate, guest);
             reservationsCopy.Add(newReservation);
             _reservationHandler.Save(reservationsCopy);
         }
-
-        public bool BookingSuccess(Tour choosenTour, string numberOfGuests, DateTime selectedDate, User guest)
+        public bool BookingSuccess(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest)
         {
             if (_reservations.Count() == 0)
             {
-                if (TryReservation(choosenTour, numberOfGuests, selectedDate, guest)) { return true; }
+                if (TryReservation(chosenTour, numberOfGuests, selectedDate, guest)) { return true; }
                 else { return false; }
             }
             else
             {
-                if (GoThroughReservations(choosenTour, numberOfGuests, selectedDate, guest)) { return true; }
+                if (GoThroughReservations(chosenTour, numberOfGuests, selectedDate, guest)) { return true; }
                 else { return false; }
             }
         }
-        public bool GoThroughReservations(Tour choosenTour, string numberOfGuests, DateTime selectedDate, User guest)
+        public bool GoThroughReservations(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest)
         {
             foreach (TourReservation tourReservation in _reservations)
             {
-                if (tourReservation.Tour.Id == choosenTour.Id && tourReservation.ReservationStartingTime == selectedDate)
+                if (tourReservation.Tour.Id == chosenTour.Id && tourReservation.ReservationStartingTime == selectedDate)
                 {
                     if (int.Parse(numberOfGuests) <= tourReservation.GuestsNumberPerReservation)
                     {
-                        SaveSameReservationToFile(choosenTour, tourReservation, numberOfGuests, selectedDate, guest);
+                        SaveSameReservationToFile(chosenTour, tourReservation, numberOfGuests, selectedDate, guest);
                         return true;
 
                     }
@@ -221,7 +207,7 @@ namespace BookingProject.Controller
                     {
                         if (tourReservation.GuestsNumberPerReservation == 0)
                         {
-                            FullyBookedTours(choosenTour, selectedDate, guest);
+                            FullyBookedTours(chosenTour, selectedDate, guest);
                             return false;
                         }
                         else
@@ -232,21 +218,21 @@ namespace BookingProject.Controller
                     }
                 }
             }
-            if (TryReservation(choosenTour, numberOfGuests, selectedDate, guest)) { return true; }
+            if (TryReservation(chosenTour, numberOfGuests, selectedDate, guest)) { return true; }
             else { return false; }
 
         }
-        public bool TryReservation(Tour choosenTour, string numberOfGuests, DateTime selectedDate, User guest)
+        public bool TryReservation(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest)
         {
-            if (int.Parse(numberOfGuests) <= choosenTour.MaxGuests)
+            if (int.Parse(numberOfGuests) <= chosenTour.MaxGuests)
             {
-                SaveReservationToFile(choosenTour, numberOfGuests, selectedDate, guest);
+                SaveReservationToFile(chosenTour, numberOfGuests, selectedDate, guest);
                 return true;
 
             }
             else
             {
-                FreePlaceMessage(choosenTour.MaxGuests);
+                FreePlaceMessage(chosenTour.MaxGuests);
                 return false;
             }
         }
@@ -299,8 +285,7 @@ namespace BookingProject.Controller
             customMessageBox.Content = stackPanel;
             customMessageBox.ShowDialog();
         }
-
-        public void TryToBook(Tour choosenTour, string numberOfGuests, DateTime selectedDate, User guest)
+        public void TryToBook(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest)
         {
             if (int.Parse(numberOfGuests) <= 0)
             {
@@ -308,46 +293,29 @@ namespace BookingProject.Controller
             }
             else
             {
-                if (BookingSuccess(choosenTour, numberOfGuests, selectedDate, guest))
+                if (BookingSuccess(chosenTour, numberOfGuests, selectedDate, guest))
                 {
-                    SuccessfulReservationMessage(numberOfGuests, guest);
+                    SuccessfulReservationMessage(numberOfGuests, guest, chosenTour);
                 }
             }
         }
-
         public void FullyBookedTours(Tour choosenTour, DateTime selectedDate, User guest)
         {
             ShowCustomMessageBox("The tour is fully booked. The system will offer you tours at the same location.");
             ReservationTourOtherOffersView reservationTourOtherOffersView = new ReservationTourOtherOffersView(choosenTour, selectedDate, guest.Id);
             reservationTourOtherOffersView.Show();
         }
-
-        public void SuccessfulReservationMessage(string numberOfGuests, User guest) //ovde smanjujem vaucer
+        public void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour) //ovde smanjujem vaucer
         {
-            /*List<Voucher> vouchers = new List<Voucher>();
-            vouchers = VoucherController.GetAll();
-
-            foreach (Voucher voucher in vouchers)
-            {
-                if (guest.Id == voucher.Guest.Id)
-                {
-                    guest.MyVouchers.Add(voucher);
-                }
-            }*/
-
             guest.Vouchers = VoucherController.GetUserVouhers(guest.Id);
 
             if (int.Parse(numberOfGuests) == 1)
             {
                 ShowCustomMessageBox("You have successfully booked a tour for " + numberOfGuests + " person");
-                //VoucherController.Load(); //
-                //_guest2Controller.Load(); //
-
-
                 if (guest.Vouchers.Count != 0)
                 {
                     ShowCustomMessageBox("The system has detected that you have an unused voucher. You can use them now.");
-                    SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(guest.Id);
+                    SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(guest.Id, chosenTour);//
                     secondGuestMyVouchers.ShowDialog();
                 }
             }
@@ -357,12 +325,11 @@ namespace BookingProject.Controller
                 if (guest.Vouchers.Count != 0)
                 {
                     ShowCustomMessageBox("The system has detected that you have an unused voucher. You can use them now.");
-                    SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(guest.Id);
+                    SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(guest.Id, chosenTour);//
                     secondGuestMyVouchers.ShowDialog();
                 }
             }
         }
-
         public void FreePlaceMessage(int maxGuests)
         {
             if (maxGuests == 1)
@@ -374,7 +341,6 @@ namespace BookingProject.Controller
                 ShowCustomMessageBox("There is space for " + maxGuests + " more people");
             }
         }
-
         public List<Tour> GetFilteredTours(Location location, DateTime selectedDate)
         {
             List<Tour> filteredTours = FilterToursByDate(selectedDate);
@@ -399,7 +365,6 @@ namespace BookingProject.Controller
 
             return filteredTours;
         }
-
         public void GoThroughTourDates(Tour tour, DateTime selectedDate)
         {
             List<TourDateTime> startingTimeCopy = tour.StartingTime.ToList();

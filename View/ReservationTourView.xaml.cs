@@ -31,9 +31,7 @@ namespace BookingProject.View
         private TourReservationController _tourReservationController;
         private ObservableCollection<TourReservation> _tourReservations;
         public Tour ChoosenTour { get; set; }
-        public Guest2 Guest { get; set; }
         public int GuestId { get; set; }
-        public Guest2Controller Guest2Controller { get; set; }
         public User User { get; set; }
         public UserController UserController { get; set; }
 
@@ -46,15 +44,11 @@ namespace BookingProject.View
             _tourReservationController = new TourReservationController();
             _tourReservations = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
             GuestId = guestId;
-            Guest2Controller = new Guest2Controller();
-            Guest = new Guest2();
-            Guest.Id = GuestId;
             //Guest = Guest2Controller.GetByID(GuestId);
             UserController = new UserController();
             User = new User();
             User.Id = GuestId;
             //User = UserController.GetByID(GuestId);
-
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)

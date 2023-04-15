@@ -31,15 +31,12 @@ namespace BookingProject.View
     {
         private TourController _tourController;
         private ObservableCollection<Tour> _tours;
-
         public string City { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
         public string ChosenLanguage { get; set; } = string.Empty;
         public string NumOfGuests { get; set; } = string.Empty;
         public Tour ChosenTour { get; set; }
-        public Guest2Controller Guest2Controller { get; set; }
-        public Guest2 Guest { get; set; }   
         public int GuestId { get; set; }
         public User User { get; set; }  
 
@@ -50,8 +47,6 @@ namespace BookingProject.View
             _tourController = new TourController();
             _tours = new ObservableCollection<Tour>(_tourController.GetAll());
             TourDataGrid.ItemsSource = _tours;
-
-            Guest2Controller = new Guest2Controller();
 
             //Guest = new Guest2();
             //Guest = guest;
@@ -100,15 +95,15 @@ namespace BookingProject.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string _name;
-        public string Name
+        private string _tourName;
+        public string TourName
         {
-            get => _name;
+            get => _tourName;
             set
             {
-                if (value != _name)
+                if (value != _tourName)
                 {
-                    _name = value;
+                    _tourName = value;
                     OnPropertyChanged();
                 }
             }
@@ -142,15 +137,15 @@ namespace BookingProject.View
             }
         }
 
-        private LanguageEnum _language; 
-        public LanguageEnum Language
+        private LanguageEnum _tourLanguage; 
+        public LanguageEnum TourLanguage
         {
-            get => _language;
+            get => _tourLanguage;
             set
             {
-                if (value != _language)
+                if (value != _tourLanguage)
                 {
-                    _language = value;
+                    _tourLanguage = value;
                     OnPropertyChanged();
                 }
             }
@@ -183,10 +178,7 @@ namespace BookingProject.View
                 }
             }
         }
-
-        //
         private List<DateTime> _startingTime; 
-
         public List <DateTime> StartingTime
         {
             get => _startingTime;
@@ -203,6 +195,5 @@ namespace BookingProject.View
             SignInForm signInForm = new SignInForm();
             signInForm.ShowDialog();
         }
-
     }
 }

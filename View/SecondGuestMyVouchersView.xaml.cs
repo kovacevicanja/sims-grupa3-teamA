@@ -34,35 +34,29 @@ namespace BookingProject.View
         private VoucherHandler _voucherHandler { get; set; }
         public ObservableCollection<Voucher> _vouchers { get; set; }
         public List<Voucher> _vouchersList { get; set; }
-        public Guest2 Guest { get; set; }
         public Voucher ChosenVoucher { get; set; }
         public TourReservationController TourReservationController { get; set; }
         public TourReservationHandler TourReservationHandler { get; set; }
-        public Guest2Controller Guest2Controller { get; set; }
-
+        public Tour ChosenTour { get; set; }
         public int ReservationId { get; set; }  
 
-        public SecondGuestMyVouchersView(int guestId)
+        public SecondGuestMyVouchersView(int guestId, Tour chosenTour)
         {
             InitializeComponent();
             this.DataContext = this;
 
             ChosenVoucher = new Voucher();
-
+            ChosenTour = chosenTour;
             TourReservationController = new TourReservationController();
             TourReservationHandler = new TourReservationHandler();
             //ReservationId = reservationId;
             _voucherHandler = new VoucherHandler();
             VoucherController = new VoucherController();
 
-            Guest2Controller = new Guest2Controller();    
 
-            Guest = new Guest2();
             //Guest = guest;
-            Guest.Id = guestId; 
-            this.Guest = Guest2Controller.GetByID(guestId);
 
-            VoucherController.GuestVoucherBind(guestId);
+            //VoucherController.GuestVoucherBind(guestId);
 
             VoucherController.DeleteExpiredVouchers();
 
@@ -80,6 +74,7 @@ namespace BookingProject.View
                 TourReservationController.ShowCustomMessageBox("You have successfully used your voucher to book this tour.");
                 //_vouchersList.Remove(ChosenVoucher);
                 ChosenVoucher.State = VoucherState.USED;
+                ChosenVoucher.Tour = ChosenTour; //
                 _voucherHandler.Save(_vouchersList);
 
                 /*

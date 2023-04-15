@@ -20,40 +20,19 @@ namespace BookingProject.Controllers
         private readonly VoucherHandler _voucherHandler;
 
         private List<Voucher> _vouchers;
-        private Guest2Controller _guest2Controller;
-        private UserController _userController;
-        public Guest2 Guest { get; set; }
+        private TourReservationController _tourReservationController { get; set; }
         public VoucherController()
         {
             _voucherHandler = new VoucherHandler();
             _vouchers = new List<Voucher>();
             observers = new List<IObserver>();
-            _guest2Controller = new Guest2Controller();
-            //Guest = new Guest2();   
             Load();
         }
 
         public void Load()
         {
             _vouchers = _voucherHandler.Load();
-            //GuestVoucherBind();
         }
-
-        public void GuestVoucherBind(int id)
-        {
-            _guest2Controller.Load();
-            foreach (Voucher voucher in _vouchers)
-            {
-                //Guest2 guest = _guest2Controller.GetByID(voucher.Id);
-                //voucher.Guest = guest;
-                if (voucher.Guest.Id == -1)
-                {
-                    voucher.Guest.Id = id;
-        }
-            }
-            NotifyObservers();
-        }
-
         public int GenerateId()
         {
             int maxId = 0;
@@ -132,6 +111,5 @@ namespace BookingProject.Controllers
         {
             observers.Remove(observer);
         }
-
     }
 }

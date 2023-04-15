@@ -41,7 +41,5 @@ namespace BookingProject.Serializer
 
 			return objects;
 		}
-
-        
     }
 }
