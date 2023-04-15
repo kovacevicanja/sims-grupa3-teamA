@@ -75,15 +75,15 @@ namespace BookingProject.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string _name;
-        public string Name
+        private string _tourName;
+        public string TourName
         {
-            get => _name;
+            get => _tourName;
             set
             {
-                if (value != _name)
+                if (value != _tourName)
                 {
-                    _name = value;
+                    _tourName = value;
                     OnPropertyChanged();
                 }
             }
@@ -117,15 +117,15 @@ namespace BookingProject.View
             }
         }
 
-        private LanguageEnum _language;
-        public LanguageEnum Language
+        private LanguageEnum _tourLanguage;
+        public LanguageEnum TourLanguage
         {
-            get => _language;
+            get => _tourLanguage;
             set
             {
-                if (value != _language)
+                if (value != _tourLanguage)
                 {
-                    _language = value;
+                    _tourLanguage = value;
                     OnPropertyChanged();
                 }
             }

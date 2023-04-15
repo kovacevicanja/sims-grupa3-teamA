@@ -30,6 +30,7 @@ namespace BookingProject.Controllers
             _tourEvaluations = new List<TourEvaluation>();
             _tourController = new TourController();
             _images = new List<TourEvaluationImage>();
+            observers = new List<IObserver>();
             Load();
         }
 

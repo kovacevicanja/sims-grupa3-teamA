@@ -20,20 +20,23 @@ namespace BookingProject.Domain
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public VoucherState State { get; set; }
+        public Tour Tour { get; set; }
 
         public Voucher()
         {
             State = VoucherState.CREATED;
             Guest = new User();
+            Tour = new Tour(); 
         }
 
-        public Voucher(int id, User guest, DateTime startDate, DateTime endDate, VoucherState state)
+        public Voucher(int id, User guest, DateTime startDate, DateTime endDate, VoucherState state, Tour tour)
         {
             Id = id;
             Guest = guest;
             StartDate = startDate;
             EndDate = endDate;
             State = state;
+            Tour = tour;
         }
 
         public void FromCSV(string[] values)
@@ -42,8 +45,6 @@ namespace BookingProject.Domain
             Guest.Id = int.Parse(values[1]);
             StartDate = DateConversion.StringToDateTour(values[2]);
             EndDate = DateConversion.StringToDateTour(values[3]);
-
-
             VoucherState voucherState;
             if (Enum.TryParse<VoucherState>(values[4], out voucherState))
             {
@@ -54,6 +55,7 @@ namespace BookingProject.Domain
                 voucherState = VoucherState.CREATED;
                 System.Console.WriteLine("An error occurred while loading the state!");
             }
+            Tour.Id = int.Parse(values[5]);
         }
 
         public string[] ToCSV()
@@ -65,11 +67,9 @@ namespace BookingProject.Domain
                 StartDate.ToString(),
                 EndDate.ToString(),
                 State.ToString(),
-
+                Tour.Id.ToString()
             };
             return csvValues;
         }
-
     }
 }
-

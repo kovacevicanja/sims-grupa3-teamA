@@ -29,129 +29,37 @@ namespace BookingProject.View
     /// </summary>
     public partial class SecondGuestMyAttendedTours : Window, INotifyPropertyChanged
     {
-        private Guest2Controller _guest2Controller;
-        private ToursGuestsController _toursGuestsController;
-        private ObservableCollection<Guest2> _guests2;
-        private ObservableCollection<ToursGuests> _toursGuests;
-        public ObservableCollection<Tour> MyToursWpf { get; set; }
-        private ObservableCollection<Tour> _tours;
-
-        private TourController _tourController;
-
         public Tour ChosenTour { get; set; } //
-
         public User Guest;                     
         private List<Object> tourGuestsGrid;
         private readonly TourReservationHandler _reservationHandler;
-
         private ObservableCollection<TourReservation> _reservations;
-
         public TourReservationController TourReservationController { get; set; }
-
-        private ObservableCollection<TourReservation> tourCollection = new ObservableCollection<TourReservation>(); //
-
-        private TourReservationController _tourReservationController; //
-        private ObservableCollection<Tour> _toursReservation; //
-
+        private ObservableCollection<TourReservation> tourCollection = new ObservableCollection<TourReservation>(); 
+        private TourReservationController _tourReservationController; 
+        private ObservableCollection<Tour> _toursReservation; 
         private TourPresenceController _tourPresenceController { get; set; }
-
         public UserController UserController { get; set; }
-
         public int GuestId { get; set; }
-
         public SecondGuestMyAttendedTours(int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
 
             _reservationHandler = new TourReservationHandler();
-            //Guest = guest;
             Guest = new User();
             UserController = new UserController();
             GuestId = guestId;
-            _guest2Controller = new Guest2Controller();
             Guest = UserController.GetByID(GuestId);
-            //Guest = UserController.GetLoggedUser();
-            Guest.MyTours = UserController.GetByID(GuestId).MyTours; //POGLEDAJ OVO
-
+            Guest.MyTours = UserController.GetByID(GuestId).MyTours;
             TourReservationController = new TourReservationController();
             _reservations = new ObservableCollection<TourReservation>(TourReservationController.GetAll());
-
-            //TourReservationController.ReservationGuestBind(guest.Id);
-
-            //_guests2 = new ObservableCollection<Guest2>(_guest2Controller.GetAll());
-            //MyToursDataGrid.ItemsSource = _guests2;
             tourGuestsGrid = new List<Object>();
-
-            //_toursGuestsController = new ToursGuestsController();
-            //_toursGuestsController.Load();
-            //_toursGuests = new ObservableCollection<ToursGuests>(_toursGuestsController.GetAll());
-
-            //
             _tourReservationController = new TourReservationController();
-            //_toursReservation = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
             _tourPresenceController = new TourPresenceController();
-            _toursReservation = new ObservableCollection<Tour>(_tourPresenceController.FindAttendedTours(Guest)); //ovde menjam logiku!!!!!!
-            //_tourReservationController.ReservationGuestBind(guestId);
+            _toursReservation = new ObservableCollection<Tour>(_tourPresenceController.FindAttendedTours(Guest));
             MyToursDataGrid.ItemsSource = _toursReservation;
-            //
-
-
-            //MyToursDataGrid.ItemsSource = tourCollection;
-
-            //Guest = _guest2Controller.GetByID(guestId);
-
-            //_tourController = new TourController();
-            //_tourController.Load();
-            //_tours = new ObservableCollection<Tour>(_tourController.GetAll());
-
-            /*
-            foreach (ToursGuests tg in _toursGuests) 
-            { 
-                foreach (Tour tour in _tours)
-                {
-                    if (tg.Tour.Id == tour.Id)
-                    {
-                        MyToursDataGrid.Add()
-                    }
-                }
-            }
-            */
-
-
-            //MyToursDataGrid.ItemsSource = _toursGuests;
-
-
-            //fillDataGrid(_toursGuests);
-            //fillDataGrid();
-            //MyToursDataGrid.ItemsSource = tourGuestsGrid;
-
-            //MyToursWpf = new ObservableCollection<Tour>(guest.MyTours);
-            //CollectionViewSource.GetDefaultView(MyToursWpf).Refresh();
-
         }
-
-        /*
-        private void MyToursDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (MyToursDataGrid.SelectedItem == null)
-            {
-                MyToursWpf.Clear();
-                return;
-            }
-
-            _selectedGuest = MyToursDataGrid.SelectedItem as Guest2;
-
-            if (_selectedGuest != null)
-            {
-                MyToursWpf.Clear();
-                foreach (var tour in _selectedGuest.MyTours)
-                {
-                    MyToursWpf.Add(tour);
-                }
-            }
-        }
-        */
         private void Button_Rate(object sender, RoutedEventArgs e)
         {
             if (ChosenTour != null)
@@ -161,94 +69,21 @@ namespace BookingProject.View
             }
 
         }
-
-        /*public void SetToursAndGuests()
-        {
-            TourReservationController.Load();
-            foreach (ToursGuests tg in _toursGuests)
-            {
-                TourReservation tour = TourReservationController.GetByID(tg.TourReservation.Id);
-                tg.TourReservation = tour;
-            }
-
-            GuestController.Load();
-            foreach (ToursGuests tg in _toursGuests)
-            {
-                Guest2 guest = GuestController.GetByID(tg.Guest.Id);
-                tg.Guest = guest;
-            }
-        }*/
-
-        /*private void fillDataGrid()
-        {
-            //List<TourReservation> reservationsFromFile = _reservationHandler.Load();
-            //TourReservationController.Load();
-            //List <TourReservation> reservationsFromFile = TourReservationController.GetAll();
-
-            /*if (_reservations.Count() != 0)
-            {
-                foreach (TourReservation tr in _reservations)
-                {
-                    foreach (Guest2 g in tr.Guests)
-                    {
-                        if (g.Id == Guest.Id)
-                        {
-                            Guest.MyTours.Add(tr);
-                        }
-                    }
-                }
-            }*/
-
-            /*
-            if (_reservations.Count == 0)
-            {
-                MessageBox.Show("nemate ni jednu rezervaciju");
-            }
-
-            List<TourReservation> toursList = new List<TourReservation>();
-            toursList = Guest.MyTours;
-
-            foreach (TourReservation reservation in _reservations)
-            {
-                if (reservation.Guest.Id == Guest.Id)
-                {
-                    toursList.Add(reservation);
-                }
-            }
-
-            foreach (TourReservation tour in toursList)
-            {
-                tourGuestsGrid.Add(new
-                {
-                    TourName = tour.Tour.Name,
-                    TourCity = tour.Tour.Location.City,
-                    TourCountry = tour.Tour.Location.Country,
-                    TourDescription = tour.Tour.Description,
-                    TourDuration = tour.Tour.DurationInHours,
-                    TourKeyPoints = tour.Tour.KeyPoints,
-                    TourLanguage = tour.Tour.Language,
-                    TourStartingTime = tour.ReservationStartingTime,
-                    TourMaxGuests = tour.Tour.MaxGuests,
-                    TourImages = tour.Tour.Images
-                });
-            }
-            */
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string _name;
-        public string Name
+        private string _tourName;
+        public string TourName
         {
-            get => _name;
+            get => _tourName;
             set
             {
-                if (value != _name)
+                if (value != _tourName)
                 {
-                    _name = value;
+                    _tourName = value;
                     OnPropertyChanged();
                 }
             }
@@ -282,15 +117,15 @@ namespace BookingProject.View
             }
         }
 
-        private LanguageEnum _language;
-        public LanguageEnum Language
+        private LanguageEnum _tourLanguage;
+        public LanguageEnum TourLanguage
         {
-            get => _language;
+            get => _tourLanguage;
             set
             {
-                if (value != _language)
+                if (value != _tourLanguage)
                 {
-                    _language = value;
+                    _tourLanguage = value;
                     OnPropertyChanged();
                 }
             }
@@ -325,7 +160,6 @@ namespace BookingProject.View
         }
 
         private List<DateTime> _startingTime;
-
         public List<DateTime> StartingTime
         {
             get => _startingTime;

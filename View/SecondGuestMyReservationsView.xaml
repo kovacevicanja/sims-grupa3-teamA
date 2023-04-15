@@ -58,7 +58,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Grid>
-            <Button Content="Rate tour and guide" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="309,418,0,0" VerticalAlignment="Top" Width="169" Click="Button_Rate"/>
+            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="309,418,0,0" VerticalAlignment="Top" Width="169" Click="Button_Cancel"/>
         </Grid>
     </Grid>
 </Window>
