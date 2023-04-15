@@ -185,6 +185,9 @@
     <Compile Include="View\GuideView\GuestPreseanceCheck.xaml.cs">
       <DependentUpon>GuestPreseanceCheck.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\GuestReviewsWindow.xaml.cs">
+      <DependentUpon>GuestReviewsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\GuideHomeWindow.xaml.cs">
       <DependentUpon>GuideHomeWindow.xaml</DependentUpon>
     </Compile>
@@ -313,6 +316,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GuideView\GuestPreseanceCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\GuestReviewsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

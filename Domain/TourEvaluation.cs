@@ -20,12 +20,15 @@ namespace BookingProject.Domain
         public string AdditionalComment { get; set; }
         public List<TourEvaluationImage> Images { get; set; }  
         public TourReservation TourReservation { get; set; }
+
+        public bool IsValid { get; set; }
         public TourEvaluation() 
         {
             Images = new List<TourEvaluationImage>();
             TourReservation = new TourReservation();
+            IsValid= true;
         }
-        public TourEvaluation (int id, int knowledge, int language, int interestigness, string comment, List<TourEvaluationImage> images, TourReservation tourReservation)
+        public TourEvaluation (int id, int knowledge, int language, int interestigness, string comment, List<TourEvaluationImage> images, TourReservation tourReservation, bool isValid)
         {
             Id = id;
             GuideKnowledge = knowledge;
@@ -34,6 +37,7 @@ namespace BookingProject.Domain
             AdditionalComment = comment;
             Images = images;
             TourReservation = tourReservation;
+            IsValid = isValid;
         }
         public void FromCSV(string[] values)
         {
@@ -43,6 +47,7 @@ namespace BookingProject.Domain
             TourInterestigness = int.Parse(values[3]);
             AdditionalComment = values[4];
             TourReservation.Id = int.Parse(values[5]);
+            IsValid = bool.Parse(values[6]);
         }
         public string[] ToCSV()
         {
@@ -53,7 +58,8 @@ namespace BookingProject.Domain
             GuideLanguage.ToString(),
             TourInterestigness.ToString(),
             AdditionalComment, 
-            TourReservation.Id.ToString()
+            TourReservation.Id.ToString(),
+            IsValid.ToString(),
             };
             return csvValues;
         }

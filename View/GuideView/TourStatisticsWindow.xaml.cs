@@ -133,6 +133,10 @@ namespace BookingProject.View.GuideView
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
+            GuestReviewsWindow guestReviewsWindow = new GuestReviewsWindow(ChosenTour);
+            guestReviewsWindow.Show();
+            Close();
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

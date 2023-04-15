@@ -78,7 +78,7 @@ namespace BookingProject.View.GuideView
             int guestCount = GuestNumbers[0] + GuestNumbers[1] + GuestNumbers[2];
             foreach (Voucher voucher in _voucherController.GetAll())
             {
-                if(voucher.TourId == ChosenTour.TourId && voucher.State == VoucherState.USED)
+                if(voucher.Tour.Id == ChosenTour.TourId && voucher.State == VoucherState.USED)
                 {
                     voucherCount += 1;
                 }
