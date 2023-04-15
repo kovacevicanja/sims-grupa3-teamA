@@ -60,7 +60,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Label  Content="Select Tour To Get Statistics | Most visited tour: "  FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top"/>
-            <Label  Content="{Binding MyLabelString}"  FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="494,0,20,263"/>
+            <Label  Content="{Binding TopTour}"  FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="494,0,20,263"/>
         </Grid>
 
 

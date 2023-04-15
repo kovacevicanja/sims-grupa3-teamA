@@ -58,7 +58,7 @@ namespace BookingProject.View.GuideView
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow();
+            TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow("all");
             tourStatisticsWindow.Show();
             Close();
         }

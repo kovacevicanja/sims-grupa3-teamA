@@ -34,23 +34,25 @@ namespace BookingProject.View.GuideView
         private TourController _tourController;
         private ObservableCollection<TourTimeInstance> _instances;
         public TourTimeInstance ChosenTour { get; set; }
-
-        public TourStatisticsWindow()
+        public string PickedYear { get; set; }
+        public TourStatisticsWindow(string pickedYear)
         {
             InitializeComponent();
             this.DataContext = this;
             _tourTimeInstanceController = new TourTimeInstanceController();
             _tourStartingTimeController = new TourStartingTimeController();
             _tourReservationController = new TourReservationController();
+            PickedYear = pickedYear;
             _tourController= new TourController();
-            _instances = new ObservableCollection<TourTimeInstance>(FilterTours(_tourTimeInstanceController.GetAll()));
-            MyLabelString= getMostVisitedTourName();
+            _instances = new ObservableCollection<TourTimeInstance>(FilterTours(TourYearFilter(_tourTimeInstanceController.GetAll())));
+            TopTour= getMostVisitedTourName();
             TourDataGrid.ItemsSource = _instances;
         }
 
         public List<TourTimeInstance> FilterTours(List<TourTimeInstance> tours)
         {
             List<TourTimeInstance> filteredTours = new List<TourTimeInstance>();
+
             foreach (TourTimeInstance tour in tours)
             {
                 if (tour.State == TourState.COMPLETED)
@@ -61,7 +63,29 @@ namespace BookingProject.View.GuideView
             return filteredTours;
         }
 
-        public string MyLabelString { get; set; } = "LOREM IPSUM";
+        public List<TourTimeInstance> TourYearFilter(List<TourTimeInstance> tours)
+        {
+            List<TourTimeInstance> filteredTours = new List<TourTimeInstance>();
+            if (PickedYear.Equals("all"))
+            {
+                return tours;
+            }
+            else
+            {
+
+                int pickedYear = int.Parse(PickedYear);
+                foreach (TourTimeInstance tour in tours)
+                {
+                    if (_tourStartingTimeController.GetByID(tour.DateId).StartingDateTime.Year == pickedYear)
+                    {
+                        filteredTours.Add(tour);
+                    }
+                }
+                return filteredTours;
+            }
+        }
+
+        public string TopTour { get; set; } = "LOREM IPSUM";
 
         public string getMostVisitedTourName()
         {
@@ -101,7 +125,9 @@ namespace BookingProject.View.GuideView
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-
+            ChangeStatsYearWindow changeStatsYearWindow = new ChangeStatsYearWindow();
+            changeStatsYearWindow.Show();
+            Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -111,6 +137,10 @@ namespace BookingProject.View.GuideView
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            SelectedTourStatsWindow selectedTourStatsWindow = new SelectedTourStatsWindow(ChosenTour);
+            selectedTourStatsWindow.Show();
+            Close();
+
 
         }
 

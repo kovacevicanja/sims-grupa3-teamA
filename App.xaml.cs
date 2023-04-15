@@ -31,6 +31,7 @@ namespace BookingProject
         public GuestGradeController GuestGradeController { get; set; }
 
         public AccommodationReservationController AccommodationReservationController { get; set; }
+        public VoucherController VoucherController { get; set; }
 
         //
         public Guest2Controller Guest2Controller { get; set; } 
@@ -61,6 +62,7 @@ namespace BookingProject
             GuestGradeController = new GuestGradeController();
             TourEvaluationController = new TourEvaluationController();
             TourPresenceController= new TourPresenceController();
+            VoucherController = new VoucherController();
 
             GuestGradeController._accommodationController = AccommodationReservationController;
             AccommodationReservationController._guestGradeController= GuestGradeController;
