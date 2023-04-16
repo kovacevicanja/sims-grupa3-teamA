@@ -58,7 +58,7 @@ namespace BookingProject.Domain
             GuideLanguage.ToString(),
             TourInterestigness.ToString(),
             AdditionalComment,
-            Tour.Id.ToString()
+            Tour.Id.ToString(),
             IsValid.ToString(),
             };
             return csvValues;

@@ -46,8 +46,8 @@ namespace BookingProject.View.GuideView
             _userControler = app.UserController;
             _tourReservationController = app.TourReservationController;
             _voucherController = app.VoucherController;
-            GuestNumbers = getGuestNumbers();
-            //vouchersPercentage = GetVoucherPercentage();
+            GuestNumbers = GetGuestNumbers();
+            vouchersPercentage = GetVoucherPercentage();
             SetValues();
         }
         public void SetValues()
@@ -58,11 +58,10 @@ namespace BookingProject.View.GuideView
             VoucherGuests = Math.Round(vouchersPercentage,2).ToString() + "%";
             VoucherlessGuests = Math.Round((100 - vouchersPercentage), 2).ToString() + "%";
         }
-       /* public double getVoucherPercentage()
+        public double GetVoucherPercentage()
         { 
-            double voucherPercentage = 0;
-            int voucherCount = 0;
-            int guestCount = GuestNumbers[0] + GuestNumbers[1] + GuestNumbers[2];
+            double voucherCount = 0;
+            double guestCount = GuestNumbers[0] + GuestNumbers[1] + GuestNumbers[2];
             foreach (Voucher voucher in _voucherController.GetAll())
             {
                 if(voucher.Tour.Id == ChosenTour.TourId && voucher.State == VoucherState.USED)
@@ -70,19 +69,17 @@ namespace BookingProject.View.GuideView
                     voucherCount += 1;
                 }
             }
-            voucherPercentage= (voucherCount / guestCount)*100;
-
-            return voucherPercentage;
+            return voucherCount / guestCount * 100;
         }
-       */
-        public List<int> getGuestNumbers()
+       
+        public List<int> GetGuestNumbers()
         {
             List<int> guestNumbers = new List<int>();
             int Teen = 0; guestNumbers.Add(Teen);
             int Adult = 0; guestNumbers.Add(Adult);
             int Senior = 0; guestNumbers.Add(Senior);
 
-            foreach (TourReservation reservation in filterTourReservations(_tourReservationController.GetAll()))
+            foreach (TourReservation reservation in FilterTourReservations(_tourReservationController.GetAll()))
             {
                 if (_userControler.GetByID(reservation.Guest.Id).Age < 18)
                 {
@@ -99,7 +96,7 @@ namespace BookingProject.View.GuideView
             }
             return guestNumbers;
         }
-        public List<TourReservation> filterTourReservations(List<TourReservation> reservations)
+        public List<TourReservation> FilterTourReservations(List<TourReservation> reservations)
         {
             List<TourReservation> filteredReservations= new List<TourReservation>();
             foreach(TourReservation reservation in reservations)
