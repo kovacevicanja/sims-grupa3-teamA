@@ -170,17 +170,29 @@
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\ChangeStatsYearWindow.xaml.cs">
+      <DependentUpon>ChangeStatsYearWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\ExamineGradeWindow.xaml.cs">
+      <DependentUpon>ExamineGradeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\GuestListView.xaml.cs">
       <DependentUpon>GuestListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\GuestPreseanceCheck.xaml.cs">
       <DependentUpon>GuestPreseanceCheck.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\GuestReviewsWindow.xaml.cs">
+      <DependentUpon>GuestReviewsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\GuideHomeWindow.xaml.cs">
       <DependentUpon>GuideHomeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\MyToursWindow.xaml.cs">
       <DependentUpon>MyToursWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\SelectedTourStatsWindow.xaml.cs">
+      <DependentUpon>SelectedTourStatsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SecondGuestMyReservationsView.xaml.cs">
       <DependentUpon>SecondGuestMyReservationsView.xaml</DependentUpon>
@@ -295,11 +307,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\GuideView\ChangeStatsYearWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\ExamineGradeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\GuestListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GuideView\GuestPreseanceCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\GuestReviewsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -314,6 +338,10 @@
     <Page Include="View\SecondGuestMyReservationsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\GuideView\SelectedTourStatsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GuideView\TourCancellationWindow.xaml">
       <SubType>Designer</SubType>
@@ -432,7 +460,6 @@
     <None Include="Resources\Data\tourTime.csv" />
     <None Include="Resources\Data\tourTimeInstances.csv" />
     <None Include="Resources\Data\users.csv" />
-    <None Include="Resources\Data\vouchers.csv" />
     <None Include="Resources\Images\accommodationguestimages.csv" />
     <None Include="Resources\Images\accommodationimages.csv" />
     <None Include="View\very-popular-thread_318-10286.avif" />

@@ -24,13 +24,9 @@ namespace BookingProject.View.GuideView
     public partial class GuestPreseanceCheck : Window
     {
         public KeyPoint ChosenKeyPoint;
-
         public TourTimeInstance ChosenTour;
-
         public User ChosenGuest;
-
         public UserController _userController;
-
         public TourPresenceController _tourPresenceController;
 
         public GuestPreseanceCheck(TourTimeInstance chosenTour, KeyPoint chosenKeyPoint, User chosenGuest)
@@ -40,22 +36,12 @@ namespace BookingProject.View.GuideView
             ChosenKeyPoint = chosenKeyPoint;
             ChosenTour = chosenTour;
             ChosenGuest = chosenGuest;
-            //_userController= app.UserController;
             _tourPresenceController= app.TourPresenceController;
         }
-
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
-      /*  private void turnTrue()
-        {
-            _userController.GetByID(ChosenGuest.Id).IsPresent= true;
-            _userController.Save();
-
-        }
-      */
 
         private void Button_Click_Ask(object sender, RoutedEventArgs e)
         {
@@ -64,7 +50,6 @@ namespace BookingProject.View.GuideView
             tourPresence.UserId = ChosenGuest.Id;
             _tourPresenceController.Create(tourPresence);
             _tourPresenceController.Save();
-            //turnTrue();
             _tourPresenceController.SendNotification(ChosenGuest);
             Close();
         }

@@ -74,13 +74,13 @@ namespace BookingProject.View
                         ownerView.Show();
                         List<Notification> notifications = _accResController.GetOwnerNotifications(owner);
                         List<Notification> notificationsCopy = new List<Notification>();
-                        foreach(Notification notification in notifications)
+                        foreach (Notification notification in notifications)
                         {
                             MessageBox.Show(notification.Text);
                             notificationsCopy.Add(notification);
                             _accResController.DeleteNotificationFromCSV(notification);
                         }
-                        foreach(Notification notification1 in notificationsCopy)
+                        foreach (Notification notification1 in notificationsCopy)
                         {
                             _accResController.WriteNotificationAgain(notification1);
                         }
