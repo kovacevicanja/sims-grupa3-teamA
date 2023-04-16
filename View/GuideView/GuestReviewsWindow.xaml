@@ -19,7 +19,7 @@
         <Grid Grid.Row="1">
             <DataGrid
                               ItemsSource="{Binding Path=Tours, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding Path=ChosenTour, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding Path=ChosenEvaluation, UpdateSourceTrigger=PropertyChanged}"
                               Name="TourDataGrid"
                               AutoGenerateColumns="False" IsReadOnly="True" Margin="37,38,40,37" RenderTransformOrigin="0.5,0.5">
                 <DataGrid.RenderTransform>

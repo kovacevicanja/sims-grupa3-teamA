@@ -35,7 +35,7 @@ namespace BookingProject.View.GuideView
         private TourEvaluationController _tourEvaluationController;
         private ObservableCollection<TourEvaluation> _grades;
         public TourTimeInstance ChosenTour { get; set; }
-
+        public TourEvaluation ChosenEvaluation { get; set; }
 
         public GuestReviewsWindow(TourTimeInstance chosenTour)
         {
@@ -75,7 +75,9 @@ namespace BookingProject.View.GuideView
 
         private void Button_Click_Examine(object sender, RoutedEventArgs e)
         {
-
+            ExamineGradeWindow examineGradeWindow = new ExamineGradeWindow(ChosenEvaluation, ChosenTour);
+            examineGradeWindow.Show();
+            Close();
         }
     }
 }
