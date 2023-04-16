@@ -27,11 +27,6 @@ namespace BookingProject.View.GuideView
 
     public partial class GuestReviewsWindow : Window
     {
-
-        private TourTimeInstanceController _tourTimeInstanceController;
-        private TourStartingTimeController _tourStartingTimeController;
-        private TourReservationController _tourReservationController;
-        private TourController _tourController;
         private TourEvaluationController _tourEvaluationController;
         private ObservableCollection<TourEvaluation> _grades;
         public TourTimeInstance ChosenTour { get; set; }
@@ -41,20 +36,14 @@ namespace BookingProject.View.GuideView
         {
             InitializeComponent();
             this.DataContext = this;
-            _tourTimeInstanceController = new TourTimeInstanceController();
-            _tourStartingTimeController = new TourStartingTimeController();
-            _tourReservationController = new TourReservationController();
             _tourEvaluationController= new TourEvaluationController();
-            _tourController = new TourController();
             ChosenTour = chosenTour;
             _grades = new ObservableCollection<TourEvaluation>(FilterGrades(_tourEvaluationController.GetAll()));
             TourDataGrid.ItemsSource = _grades;
         }
-
         public List<TourEvaluation> FilterGrades(List<TourEvaluation> grades)
         {
             List<TourEvaluation> filteredGrades = new List<TourEvaluation>();
-
             foreach (TourEvaluation grade in grades)
             {
                 if (grade.TourReservation.Tour.Id == ChosenTour.TourId)
@@ -64,15 +53,12 @@ namespace BookingProject.View.GuideView
             }
             return filteredGrades;
         }
-
-
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow("all");
             tourStatisticsWindow.Show();
             Close();
         }
-
         private void Button_Click_Examine(object sender, RoutedEventArgs e)
         {
             ExamineGradeWindow examineGradeWindow = new ExamineGradeWindow(ChosenEvaluation, ChosenTour);

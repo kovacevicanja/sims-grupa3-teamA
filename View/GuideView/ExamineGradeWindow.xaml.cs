@@ -26,11 +26,9 @@ namespace BookingProject.View.GuideView
     {
         public TourEvaluation ChosenEvaluation { get; set; }
         public TourTimeInstance ChosenTour { get; set; }
-
         public string GuestKeyPoint { get; set; } = "LOREM IPSUM";
         public TourEvaluationController _tourEvaluationController { get; set; }
         public TourPresenceController _tourPresenceController { get; set; }
-
         public KeyPointController _keyPointController { get; set; }
         public ExamineGradeWindow(TourEvaluation chosenEvaluation, TourTimeInstance chosenTour)
         {
@@ -43,14 +41,11 @@ namespace BookingProject.View.GuideView
             _keyPointController = new KeyPointController();
             GuestKeyPoint = GetGuestKeyPoint();
         }
-
         public void MarkAsInvalid()
         {
             _tourEvaluationController.GetByID(ChosenEvaluation.Id).IsValid = false;
             _tourEvaluationController.SaveEvaluation();
         }
-
-
         public string GetGuestKeyPoint()
         {
             foreach(TourPresence presence in _tourPresenceController.GetAll())
@@ -62,21 +57,18 @@ namespace BookingProject.View.GuideView
             }
             return "LOREM IPSUM";
         }
-
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             GuestReviewsWindow guestReviewsWindow = new GuestReviewsWindow(ChosenTour);
             guestReviewsWindow.Show();
             Close();
         }
-
         private void Button_Click_Mark(object sender, RoutedEventArgs e)
         {
             MarkAsInvalid();
             GuestReviewsWindow guestReviewsWindow = new GuestReviewsWindow(ChosenTour);
             guestReviewsWindow.Show();
             Close();
-
         }
     }
 }

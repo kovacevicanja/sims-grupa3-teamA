@@ -28,9 +28,7 @@ namespace BookingProject.View.GuideView
             PickedYear = "all";
         }
 
-
         private string _pickedYear;
-
         public string PickedYear
         {
             get => _pickedYear;
@@ -43,23 +41,17 @@ namespace BookingProject.View.GuideView
                 }
             }
         }
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow("all");
             tourStatisticsWindow.Show();
             Close();
-
-
         }
-
         private void Button_Click_Set(object sender, RoutedEventArgs e)
         {
-
             TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow(PickedYear);
             tourStatisticsWindow.Show();
             Close();
-
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -27,7 +27,6 @@ namespace BookingProject.View.GuideView
 
     public partial class TourStatisticsWindow : Window
     {
-
         private TourTimeInstanceController _tourTimeInstanceController;
         private TourStartingTimeController _tourStartingTimeController;
         private TourReservationController _tourReservationController;
@@ -48,7 +47,6 @@ namespace BookingProject.View.GuideView
             TopTour= getMostVisitedTourName();
             TourDataGrid.ItemsSource = _instances;
         }
-
         public List<TourTimeInstance> FilterTours(List<TourTimeInstance> tours)
         {
             List<TourTimeInstance> filteredTours = new List<TourTimeInstance>();
@@ -62,7 +60,6 @@ namespace BookingProject.View.GuideView
             }
             return filteredTours;
         }
-
         public List<TourTimeInstance> TourYearFilter(List<TourTimeInstance> tours)
         {
             List<TourTimeInstance> filteredTours = new List<TourTimeInstance>();
@@ -72,7 +69,6 @@ namespace BookingProject.View.GuideView
             }
             else
             {
-
                 int pickedYear = int.Parse(PickedYear);
                 foreach (TourTimeInstance tour in tours)
                 {
@@ -84,9 +80,7 @@ namespace BookingProject.View.GuideView
                 return filteredTours;
             }
         }
-
         public string TopTour { get; set; } = "LOREM IPSUM";
-
         public string getMostVisitedTourName()
         {
             string maxTourName = "Lorem Ipsum";
@@ -98,12 +92,9 @@ namespace BookingProject.View.GuideView
                     guestCount = countTourGuests(instance.TourId);
                     maxTourName = _tourController.GetByID(instance.TourId).Name;
                 }
-
             }
-
             return maxTourName;
         }
-
         public int countTourGuests(int TourId)
         {
             int guestCount = 0;
@@ -114,22 +105,14 @@ namespace BookingProject.View.GuideView
                     guestCount += reservation.GuestsNumberPerReservation;
                 }
             }
-
             return guestCount;
         }
-
-
-
-
-
-
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             ChangeStatsYearWindow changeStatsYearWindow = new ChangeStatsYearWindow();
             changeStatsYearWindow.Show();
             Close();
         }
-
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
@@ -138,7 +121,6 @@ namespace BookingProject.View.GuideView
             Close();
 
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             SelectedTourStatsWindow selectedTourStatsWindow = new SelectedTourStatsWindow(ChosenTour);
@@ -147,7 +129,6 @@ namespace BookingProject.View.GuideView
 
 
         }
-
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
@@ -155,7 +136,6 @@ namespace BookingProject.View.GuideView
             Close();
 
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

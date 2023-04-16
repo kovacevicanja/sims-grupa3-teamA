@@ -25,22 +25,15 @@ namespace BookingProject.View.GuideView
     /// </summary>
     public partial class SelectedTourStatsWindow : Window
     {
-
         public string TeenGuests { get; set; }="LOREM IPSUM";
         public string AdultGuests { get; set; } = "LOREM IPSUM";
         public string OldGuests { get; set; } = "LOREM IPSUM";
         public string VoucherGuests { get; set; } = "LOREM IPSUM";
         public string VoucherlessGuests { get; set; } = "LOREM IPSUM";
-
         public List<int> GuestNumbers { get; set; }
         public double vouchersPercentage { get; set; } = 0;
         public TourTimeInstance ChosenTour { get; set; }
-
-        private TourTimeInstanceController _tourTimeInstanceController;
-        private KeyPointController _keyPointController;
         private UserController _userControler;
-        private ObservableCollection<KeyPoint> _keyPoints;
-        private TourPresenceController _tourPresenceController;
         private VoucherController _voucherController;
         private TourReservationController _tourReservationController;
 
@@ -50,9 +43,6 @@ namespace BookingProject.View.GuideView
             this.DataContext = this;
             ChosenTour = chosenTour;
             var app = Application.Current as App;
-            _tourTimeInstanceController = app.TourTimeInstanceController;
-            _tourPresenceController = app.TourPresenceController;
-            _keyPointController = app.KeyPointController;
             _userControler = app.UserController;
             _tourReservationController = app.TourReservationController;
             _voucherController = app.VoucherController;
@@ -60,8 +50,6 @@ namespace BookingProject.View.GuideView
             //vouchersPercentage = GetVoucherPercentage();
             SetValues();
         }
-
-
         public void SetValues()
         {
             TeenGuests = GuestNumbers[0].ToString();
@@ -70,7 +58,6 @@ namespace BookingProject.View.GuideView
             VoucherGuests = Math.Round(vouchersPercentage,2).ToString() + "%";
             VoucherlessGuests = Math.Round((100 - vouchersPercentage), 2).ToString() + "%";
         }
-
        /* public double getVoucherPercentage()
         { 
             double voucherPercentage = 0;
@@ -109,11 +96,9 @@ namespace BookingProject.View.GuideView
                 {
                     guestNumbers[1] += 1;
                 }
-
             }
             return guestNumbers;
         }
-
         public List<TourReservation> filterTourReservations(List<TourReservation> reservations)
         {
             List<TourReservation> filteredReservations= new List<TourReservation>();
@@ -126,7 +111,6 @@ namespace BookingProject.View.GuideView
             }
             return filteredReservations;
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow("all");

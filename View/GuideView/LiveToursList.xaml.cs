@@ -31,24 +31,17 @@ namespace BookingProject.View.GuideView
         private TourTimeInstanceController _tourTimeInstanceController;
         private TourStartingTimeController _tourStartingTimeController;
         private ObservableCollection<TourTimeInstance> _instances;
-
-
         public TourTimeInstance ChosenTour { get; set; }
-
-
-
         public LiveToursList()
         {
             InitializeComponent();
             this.DataContext = this;
             _tourTimeInstanceController = new TourTimeInstanceController();
             _tourStartingTimeController = new TourStartingTimeController();
-
             _instances = new ObservableCollection<TourTimeInstance>(FilterTours(_tourTimeInstanceController.GetAll()));
             TourDataGrid.ItemsSource = _instances;
 
         }
-
         private TourState _state;
         public TourState State
         {
@@ -62,10 +55,6 @@ namespace BookingProject.View.GuideView
                     }
                 }
             }
-
-
-
-
         public List<TourTimeInstance> FilterTours(List<TourTimeInstance> tours)
         {
             List<TourTimeInstance> filteredTours= new List<TourTimeInstance>();
@@ -86,7 +75,6 @@ namespace BookingProject.View.GuideView
             }
             return filteredTours;
         }
-
         public bool TodayCheck(TourTimeInstance tour)
         {
             TourDateTime tourDate = new TourDateTime();
@@ -101,7 +89,6 @@ namespace BookingProject.View.GuideView
                 }  
             return false;
         }
-
         private void Button_Click_Create(object sender, RoutedEventArgs e)
         {
 
@@ -109,9 +96,6 @@ namespace BookingProject.View.GuideView
             tourCreationWindow.Show();
             Close();
         }
-
-
-
         private void Button_Click_Start(object sender, RoutedEventArgs e)
         {
             if (ChosenTour != null)
@@ -121,20 +105,16 @@ namespace BookingProject.View.GuideView
                 Close();
             }
         }
-
         private void Button_Click_Home (object sender, RoutedEventArgs e)
         {
             GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
             guideHomeWindow.Show();
             Close();
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }
-

@@ -34,7 +34,7 @@
 
 
 
-            <Button Content="Close" IsCancel="True" Click="CancelButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"/>
+            <Button Content="Close" IsCancel="True" Click="Cancel_Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"/>
             <Button x:Name="CreateButton" Content="Set" IsDefault="True" Click="Button_Click_Set"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5" />
         </WrapPanel>
     </Grid>

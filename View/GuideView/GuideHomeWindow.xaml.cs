@@ -29,24 +29,16 @@ namespace BookingProject.View.GuideView
             var app = Application.Current as App;
             _userController = app.UserController;
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             MyToursWindow myToursWindow= new MyToursWindow();
             myToursWindow.Show();
             Close();
         }
-
         public void LogoutUser()
         {
             _userController.GetLoggedUser().IsLoggedIn = false;
             _userController.Save();
-
         }
         private void Button_Click_Logout(object sender, RoutedEventArgs e)
         {
@@ -62,7 +54,6 @@ namespace BookingProject.View.GuideView
             tourStatisticsWindow.Show();
             Close();
         }
-
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             LiveToursList liveTourList= new LiveToursList();
