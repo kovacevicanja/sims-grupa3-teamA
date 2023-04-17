@@ -83,8 +83,8 @@
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Accommodation name" Width="120" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="State" Width="50" Binding="{Binding Accommodation.Location.Country}"></DataGridTextColumn>
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="City" Width="50" Binding="{Binding Accommodation.Location.City}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Start date" Width="70" Binding="{Binding InitialDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="End date" Width="70" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Start date" Width="70" Binding="{Binding InitialDate, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="End date" Width="70" Binding="{Binding EndDate, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Number of days to stay" Width="120" Binding="{Binding DaysToStay}"></DataGridTextColumn>
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Owner username" Width="100" Binding="{Binding Accommodation.Owner.Username}"></DataGridTextColumn>
                         </DataGrid.Columns>
@@ -93,7 +93,7 @@
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black"  Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="20 15 15 15" Click="Button_Click_Reschedule">Reschedule</Button>
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="60" IsDefault="True" Margin="15" Click="Button_Click_Cancel">Cancel</Button>
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="60" IsDefault="True" Margin="15" Click="Button_Click_Review">Review</Button>
-                        <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="15">See requests</Button>
+                        <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="15" Click="Button_Click_See_Requests">See requests</Button>
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="15">View tutorial</Button>
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="70" IsDefault="True" Margin="15 15 15 20">Homepage</Button>
                     </WrapPanel>

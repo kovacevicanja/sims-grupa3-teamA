@@ -1,5 +1,7 @@
-﻿using BookingProject.Domain;
+﻿using BookingProject.Controller;
+using BookingProject.Domain;
 using BookingProject.FileHandler;
+using BookingProject.Model;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -17,9 +19,12 @@ namespace BookingProject.Controllers
 
         private List<RequestAccommodationReservation> _requests;
 
+        private AccommodationReservationController _accommodationReservationController;
+
         public RequestAccommodationReservationController()
         {
             _requestsHandler = new RequestAccommodationReservationHandler();
+            _accommodationReservationController = new AccommodationReservationController();
             _requests = new List<RequestAccommodationReservation>();
             Load();
         }
@@ -27,11 +32,35 @@ namespace BookingProject.Controllers
         public void Load()
         {
             _requests = _requestsHandler.Load();
+            ReservationRequestsBind();
+        }
+
+        public void ReservationRequestsBind()
+        {
+            _accommodationReservationController.Load();
+                foreach (RequestAccommodationReservation request in _requests)
+                {
+                    AccommodationReservation reservation = _accommodationReservationController.GetByID(request.AccommodationReservation.Id);
+                    request.AccommodationReservation = reservation;
+                }
+            
         }
 
         public List<RequestAccommodationReservation> GetAll()
         {
             return _requests;
+        }
+        public List<RequestAccommodationReservation> GetAllForUser(User guest)
+        {
+            List<RequestAccommodationReservation> requests = new List<RequestAccommodationReservation>();
+            foreach(RequestAccommodationReservation r in _requests)
+            {
+                if(r.AccommodationReservation.Guest.Id == guest.Id)
+                {
+                    requests.Add(r);
+                }
+            }
+            return requests;
         }
         public int GenerateId()
         {

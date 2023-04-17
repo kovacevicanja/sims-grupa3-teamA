@@ -61,8 +61,8 @@ namespace BookingProject.Domain
             {
                 Id.ToString(),
                 AccommodationReservation.Id.ToString(),
-                NewArrivalDay.ToString("dd/MM/yyyy"),
-                NewDeparuteDay.ToString("dd/MM/yyyy"),
+                DateConversion.DateToStringAccommodation(NewArrivalDay),
+                DateConversion.DateToStringAccommodation(NewDeparuteDay),
                 Status.ToString(),
                 Comment
         };

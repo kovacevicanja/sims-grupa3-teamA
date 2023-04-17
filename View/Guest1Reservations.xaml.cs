@@ -78,5 +78,11 @@ namespace BookingProject.View
                 _reservations.Add(reservation);
             }
         }
+
+        private void Button_Click_See_Requests(object sender, RoutedEventArgs e)
+        {
+            var reqAccView = new AccommodationRequestsView();
+            reqAccView.Show();
+        }
     }
 }

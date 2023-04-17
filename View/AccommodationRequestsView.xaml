@@ -79,13 +79,13 @@
                     <Label FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Foreground="Black" FontWeight="Bold">All requests</Label>
                     <DataGrid SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="20 10 20 20" Name="RequestsDataGrid" FontSize="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Old initial date" Width="90" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Old end date" Width="80" Binding="{Binding Accommodation.Location.Country}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="New initial date" Width="80" Binding="{Binding Accommodation.Location.City}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="New end date" Width="80" Binding="{Binding InitialDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Status" Width="60" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Comment from owner" Width="120" Binding="{Binding DaysToStay}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Owner username" Width="100" Binding="{Binding Accommodation.Owner.Username}"></DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Old initial date" Width="90" Binding="{Binding AccommodationReservation.InitialDate, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Old end date" Width="80" Binding="{Binding AccommodationReservation.EndDate, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="New initial date" Width="80" Binding="{Binding NewArrivalDay, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="New end date" Width="80" Binding="{Binding NewDeparuteDay, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Status" Width="60" Binding="{Binding Status}"></DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Comment from owner" Width="120" ></DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Owner username" Width="100" Binding="{Binding AccommodationReservation.Accommodation.Owner.Username}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <WrapPanel VerticalAlignment="Bottom">

@@ -1,4 +1,5 @@
 ﻿using BookingProject.Controllers;
+using BookingProject.ConversionHelp;
 using BookingProject.Domain;
 using BookingProject.FileHandler;
 using BookingProject.Model;
@@ -304,18 +305,14 @@ namespace BookingProject.Controller
         {
             DateTime today = DateTime.Now.Date;
             DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
-            if (accommodationReservation.EndDate < todayMidnight && todayMidnight <= accommodationReservation.EndDate.AddDays(5))
-            {
-                return true;
-            }
-            return false;
+            return accommodationReservation.EndDate < todayMidnight && todayMidnight <= accommodationReservation.EndDate.AddDays(5);
         }
 
         public bool PermissionToCancel(AccommodationReservation accommodationReservation)
         {
             DateTime today = DateTime.Now.Date;
             DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
-            if(todayMidnight.AddDays(accommodationReservation.Accommodation.CancellationPeriod) <= accommodationReservation.EndDate)
+            if(todayMidnight.AddDays(accommodationReservation.Accommodation.CancellationPeriod) <= accommodationReservation.InitialDate)
             {
                 DeleteReservationFromCSV(accommodationReservation);
                 SendNotification(accommodationReservation);
@@ -338,7 +335,7 @@ namespace BookingProject.Controller
             Notification notification = new Notification();
             notification.Id = _notificationController.GenerateId();
             notification.UserId = accommodationReservation.Accommodation.Owner.Id;
-            notification.Text = "Reservation for your accommodation " + accommodationReservation.Accommodation.AccommodationName + " was cancelled!";
+            notification.Text = "Reservation for your accommodation " + accommodationReservation.Accommodation.AccommodationName + ", from " + DateConversion.DateToStringAccommodation(accommodationReservation.InitialDate) + ", to " + DateConversion.DateToStringAccommodation(accommodationReservation.EndDate) + " was cancelled!";
             notification.Read = false;
             _notificationController.Create(notification);
             _notificationController.Save();
