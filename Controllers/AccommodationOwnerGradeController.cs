@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BookingProject.Controller
 {
@@ -28,7 +29,9 @@ namespace BookingProject.Controller
             _accommodationController = new AccommodationController();
             observers = new List<IObserver>();
             _userController = new UserController();
-            _guestGradeController= new GuestGradeController();
+            var app = Application.Current as App;
+
+            _guestGradeController = app.GuestGradeController;
             Load();
         }
 
@@ -127,9 +130,8 @@ namespace BookingProject.Controller
 
         public List<AccommodationOwnerGrade> GetGradesForAccAndUserLastN(int accId, int userId, int n)
         {
-
-            return _grades.Skip(Math.Max(0, _grades.Count() - n)).ToList();
-
+            List<AccommodationOwnerGrade> gradesForUser = _grades.Where(grad => grad.Accommodation.Id == accId && grad.User.Id == userId).ToList();
+            return gradesForUser.Take(Math.Max(0, n)).ToList();
         }
         private bool ExistsAlreadyAccommodationAndUser(int accId, int userId, List<AccommodationOwnerGrade> grades)
         {
