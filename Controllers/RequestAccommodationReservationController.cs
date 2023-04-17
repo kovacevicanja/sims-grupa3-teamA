@@ -1,4 +1,5 @@
 ﻿using BookingProject.Controller;
+using BookingProject.ConversionHelp;
 using BookingProject.Domain;
 using BookingProject.FileHandler;
 using BookingProject.Model;
@@ -20,11 +21,14 @@ namespace BookingProject.Controllers
         private List<RequestAccommodationReservation> _requests;
 
         private AccommodationReservationController _accommodationReservationController;
+        public NotificationController _notificationController { get; set; }
 
         public RequestAccommodationReservationController()
         {
             _requestsHandler = new RequestAccommodationReservationHandler();
+            observers = new List<IObserver>();
             _accommodationReservationController = new AccommodationReservationController();
+            _notificationController = new NotificationController();
             _requests = new List<RequestAccommodationReservation>();
             Load();
         }
@@ -61,6 +65,66 @@ namespace BookingProject.Controllers
                 }
             }
             return requests;
+        }
+        public bool PermissionToAcceptDenyRequest(RequestAccommodationReservation requestAccommodationReservation)
+        {
+            DateTime today = DateTime.Now.Date;
+            if (requestAccommodationReservation.AccommodationReservation.InitialDate > today)
+            {
+                //DeleteReservationFromCSV(accommodationReservation);
+                SendNotification(requestAccommodationReservation);
+                NotifyObservers();
+                return true;
+            }
+
+            return false;
+        }
+        public void SendNotification(RequestAccommodationReservation requestAccommodationReservation)
+        {
+            Notification notification = new Notification();
+            notification.Id = _notificationController.GenerateId();
+            notification.UserId = requestAccommodationReservation.AccommodationReservation.Guest.Id;
+            notification.Text = "Request to move reservation from " + DateConversion.DateToStringAccommodation(requestAccommodationReservation.AccommodationReservation.InitialDate) + 
+                " - " + DateConversion.DateToStringAccommodation(requestAccommodationReservation.AccommodationReservation.EndDate) + 
+                " to " + DateConversion.DateToStringAccommodation(requestAccommodationReservation.NewArrivalDay) + " - "
+                + DateConversion.DateToStringAccommodation(requestAccommodationReservation.NewDeparuteDay)  + " is " 
+                + requestAccommodationReservation.Status;
+            notification.Read = false;
+            _notificationController.Create(notification);
+            _notificationController.Save();
+        }
+
+        public List<Notification> GetGuest1Notifications(User guest)
+        {
+            List<Notification> notificationsForGuest = new List<Notification>();
+            List<Notification> _notifications = _notificationController.GetAll();
+
+            foreach (Notification notification in _notifications)
+            {
+                if (notification.UserId == guest.Id && notification.Read == false)
+                {
+                    notificationsForGuest.Add(notification);
+                }
+            }
+
+            return notificationsForGuest;
+        }
+
+        public void DeleteNotificationFromCSV(Notification notification)
+        {
+            List<Notification> _notifications = _notificationController.GetAll();
+            _notifications.RemoveAll(n => n.Id == notification.Id);
+            _notificationController.Save();
+        }
+
+        public void WriteNotificationAgain(Notification n)
+        {
+            Notification notification = new Notification();
+            notification.UserId = n.UserId;
+            notification.Text = n.Text;
+            notification.Read = true;
+            _notificationController.Create(notification);
+            _notificationController.Save();
         }
         public int GenerateId()
         {

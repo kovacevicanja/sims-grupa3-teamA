@@ -42,15 +42,22 @@ namespace BookingProject.View
         private void Button_Click_Accept(object sender, RoutedEventArgs e)
         {
             SelectedMovingRequest.Status = RequestStatus.APPROVED;
-            _movingController.Update(SelectedMovingRequest);
-            _movingController.AcceptRequest(SelectedMovingRequest);
-            Close();
+            if (_movingController.PermissionToAcceptDenyRequest(SelectedMovingRequest))
+            {
+                //SelectedMovingRequest.Status = RequestStatus.APPROVED;
+                _movingController.Update(SelectedMovingRequest);
+                _movingController.AcceptRequest(SelectedMovingRequest);
+                Close();
+            }                
         }
         private void Button_Click_Decline(object sender, RoutedEventArgs e)
         {
             SelectedMovingRequest.Status = RequestStatus.DECLINED;
-            _movingController.Update(SelectedMovingRequest);
-            Close();
+            if (_movingController.PermissionToAcceptDenyRequest(SelectedMovingRequest))
+            {
+                _movingController.Update(SelectedMovingRequest);
+                Close();
+            }
         }
     }
 }

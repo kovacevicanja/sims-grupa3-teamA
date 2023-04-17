@@ -30,6 +30,7 @@ namespace BookingProject.View
         private TourPresenceController _tourPresenceController { get; set; }
         public NotificationController NotificationController { get; set; }
         private readonly AccommodationReservationController _accResController;
+        private readonly RequestAccommodationReservationController _requestController;
 
         private string _username;
         public string Username
@@ -57,6 +58,7 @@ namespace BookingProject.View
             _controller = app.UserController;
             _tourPresenceController = app.TourPresenceController;
             _accResController = new AccommodationReservationController();
+            _requestController = new RequestAccommodationReservationController();
             NotificationController = new NotificationController();
         }
         private void SignIn(object sender, RoutedEventArgs e)
@@ -97,9 +99,24 @@ namespace BookingProject.View
                     }
                     else if (user.UserType == UserType.GUEST1)
                     {
-                        _controller.GetByUsername(Username).IsLoggedIn = true;
+                        //_controller.GetByUsername(Username).IsLoggedIn = true;
+                        Model.User guest = _controller.GetByUsername(Username);
+                        guest.IsLoggedIn = true;
+                        _controller.Save();
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
+                        List<Notification> notifications = _requestController.GetGuest1Notifications(guest);
+                        List<Notification> notificationsCopy = new List<Notification>();
+                        foreach (Notification notification in notifications)
+                        {
+                            MessageBox.Show(notification.Text);
+                            notificationsCopy.Add(notification);
+                            _requestController.DeleteNotificationFromCSV(notification);
+                        }
+                        foreach (Notification notification1 in notificationsCopy)
+                        {
+                            _requestController.WriteNotificationAgain(notification1);
+                        }
 
                     }
                     else if (user.UserType == UserType.GUEST2)

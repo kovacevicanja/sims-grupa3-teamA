@@ -30,7 +30,7 @@ namespace BookingProject.View
             InitializeComponent();
             this.DataContext = this;
             _requestController = new RequestAccommodationReservationController();
-            int ownerId = 2;                                                                                                   //change to logged user
+            int ownerId = SignInForm.LoggedInUser.Id;                                                                                                   //change to logged user
             Requests = new ObservableCollection<RequestAccommodationReservation>(_requestController.GetAllRequestForOwner(ownerId));
         }
         private void Button_Click_View(object sender, RoutedEventArgs e)
