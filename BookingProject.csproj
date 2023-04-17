@@ -87,7 +87,6 @@
     <Compile Include="Domain\Images\AccommodationGuestImage.cs" />
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\RequestAccommodationReservation.cs" />
-    <Compile Include="Domain\ToursGuests.cs" />
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Images\TourEvaluationImage.cs" />
     <Compile Include="Domain\Notification.cs" />

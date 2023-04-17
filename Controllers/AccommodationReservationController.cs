@@ -293,6 +293,7 @@ namespace BookingProject.Controller
             reservation.InitialDate = initialDate;
             reservation.EndDate = endDate;
             reservation.DaysToStay = (endDate - initialDate).Days;
+            reservation.Guest.Id = _userController.GetLoggedUser().Id;
             _accommodationReservations.Add(reservation);
             Save();
         }
