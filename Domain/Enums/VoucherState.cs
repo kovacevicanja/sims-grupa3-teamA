@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Domain.Enums
 {
-    public enum VoucherState{
+    public enum VoucherState
+    {
         CREATED,
         USED,
-        INVALID
+        INVALID,
+        EXPIRED
     }
 }

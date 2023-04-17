@@ -12,7 +12,7 @@ namespace BookingProject.Model
     public class TourTimeInstance : ISerializable
     {
         public int Id { get; set; }
-        public int TourId { get; set; }
+        public int TourId { get; set; } 
 
         public int DateId { get; set; }
         public TourState State { get; set; }     

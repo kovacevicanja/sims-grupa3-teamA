@@ -1,6 +1,7 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Domain;
+using BookingProject.Domain.Enums;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using System;
@@ -36,16 +37,15 @@ namespace BookingProject.View.GuideView
             _voucherController = new VoucherController();
             _tourReservationController= new TourReservationController();
             ChosenTour = chosenTour;
-        }
-        /*
+        }     
         public void SendVouchers()
         {
             foreach(TourReservation reservation in _tourReservationController.GetAll())
             {
-                if (reservation.TourId == ChosenTour.Id)
+                if (reservation.Tour.Id == ChosenTour.TourId)
                 {
                     Voucher voucher = new Voucher();
-                    voucher.UserId = reservation.UserId;
+                    voucher.Guest = reservation.Guest;
                     voucher.StartDate = DateTime.Now;
                     voucher.EndDate=DateTime.Now.AddDays(7);
                     _voucherController.Create(voucher);
@@ -53,25 +53,20 @@ namespace BookingProject.View.GuideView
             }
             _voucherController.Save();
         }
-        */
-
         private void No_Click(object sender, RoutedEventArgs e)
         {
             MyToursWindow myToursWindow = new MyToursWindow();
             myToursWindow.Show();
             Close();
-
         }
-
         private void Yes_Click(object sender, RoutedEventArgs e)
         {
             _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.CANCELLED;
             _tourTimeInstanceController.Save();
-            //SendVouchers();
+            SendVouchers();
             MyToursWindow myToursWindow = new MyToursWindow();
             myToursWindow.Show();
             Close();
         }
-
     }
 }

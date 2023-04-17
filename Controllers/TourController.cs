@@ -110,7 +110,7 @@ namespace BookingProject.Controller
         {
             foreach (TourImage image in images)
             {
-                if (tour.Id == image.TourId)
+                if (tour.Id == image.Tour.Id)
                 {
                     tour.Images.Add(image);
                 }

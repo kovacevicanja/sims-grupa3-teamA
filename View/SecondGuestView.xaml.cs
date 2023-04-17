@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingProject.Controller;
+using BookingProject.Controllers;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Model.Images;
@@ -30,15 +31,16 @@ namespace BookingProject.View
     {
         private TourController _tourController;
         private ObservableCollection<Tour> _tours;
-
         public string City { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
-        public string ChoosenLanguage { get; set; } = string.Empty;
+        public string ChosenLanguage { get; set; } = string.Empty;
         public string NumOfGuests { get; set; } = string.Empty;
-        public Tour ChoosenTour { get; set; }  
+        public Tour ChosenTour { get; set; }
+        public int GuestId { get; set; }
+        public User User { get; set; }  
 
-        public SecondGuestView()
+        public SecondGuestView(int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -46,12 +48,19 @@ namespace BookingProject.View
             _tours = new ObservableCollection<Tour>(_tourController.GetAll());
             TourDataGrid.ItemsSource = _tours;
 
+            //Guest = new Guest2();
+            //Guest = guest;
+            //Guest.Id = guestId;
+            //Guest = Guest2Controller.GetByID(guestId);
+            GuestId = guestId;
+            User = new User();
+
             languageComboBox.ItemsSource = new List<string>() { "ENGLISH", "SERBIAN", "GERMAN" };
         }
 
         private void Button_Click_Search(object sender, RoutedEventArgs e)
         {
-            _tourController.Search(_tours, City, Country, Duration, ChoosenLanguage, NumOfGuests);
+            _tourController.Search(_tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
 
         }
 
@@ -68,9 +77,9 @@ namespace BookingProject.View
 
         private void Button_Click_Book(object sender, RoutedEventArgs e)
         {
-            if (ChoosenTour != null)
+            if (ChosenTour != null)
             {
-                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour);
+                ReservationTourView reservationTourView = new ReservationTourView(ChosenTour, GuestId);
                 reservationTourView.Show();
             }
         }
@@ -80,28 +89,21 @@ namespace BookingProject.View
             this.Close();
         }
 
-        private void BookButton_Click(object sender, RoutedEventArgs e)
-        {
-                ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour);
-                reservationTourView.Show();
-
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string _name;
-        public string Name
+        private string _tourName;
+        public string TourName
         {
-            get => _name;
+            get => _tourName;
             set
             {
-                if (value != _name)
+                if (value != _tourName)
                 {
-                    _name = value;
+                    _tourName = value;
                     OnPropertyChanged();
                 }
             }
@@ -135,15 +137,15 @@ namespace BookingProject.View
             }
         }
 
-        private LanguageEnum _language; 
-        public LanguageEnum Language
+        private LanguageEnum _tourLanguage; 
+        public LanguageEnum TourLanguage
         {
-            get => _language;
+            get => _tourLanguage;
             set
             {
-                if (value != _language)
+                if (value != _tourLanguage)
                 {
-                    _language = value;
+                    _tourLanguage = value;
                     OnPropertyChanged();
                 }
             }
@@ -176,10 +178,7 @@ namespace BookingProject.View
                 }
             }
         }
-
-        //
         private List<DateTime> _startingTime; 
-
         public List <DateTime> StartingTime
         {
             get => _startingTime;
@@ -189,6 +188,12 @@ namespace BookingProject.View
                 OnPropertyChanged();
             }
         }
-
+        private void Button_Click_LogOut(object sender, RoutedEventArgs e)
+        {
+            User.Id = GuestId;
+            User.IsLoggedIn = false;
+            SignInForm signInForm = new SignInForm();
+            signInForm.ShowDialog();
+        }
     }
 }

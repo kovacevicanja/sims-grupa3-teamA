@@ -36,11 +36,9 @@ namespace BookingProject.View.GuideView
             this.DataContext = this;
             _tourTimeInstanceController = new TourTimeInstanceController();
             _tourStartingTimeController = new TourStartingTimeController();
-
             _instances = new ObservableCollection<TourTimeInstance>(FilterTours(_tourTimeInstanceController.GetAll()));
             TourDataGrid.ItemsSource = _instances;
         }
-
         public List<TourTimeInstance> FilterTours(List<TourTimeInstance> tours)
         {
             List<TourTimeInstance> filteredTours = new List<TourTimeInstance>();
@@ -53,7 +51,6 @@ namespace BookingProject.View.GuideView
             }
             return filteredTours;
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -64,22 +61,16 @@ namespace BookingProject.View.GuideView
             GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
             guideHomeWindow.Show();
             Close();
-
         }
-
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
         {
-
             if (ChosenTour != null && IsNotLate(ChosenTour))
             {
                 TourCancellationWindow tourCancellationWindow = new TourCancellationWindow(ChosenTour);
                 tourCancellationWindow.Show();
                 Close();
             }
-
-
         }
-
         private bool IsNotLate(TourTimeInstance tour)
         {
             TourDateTime tourDate = new TourDateTime();
@@ -89,11 +80,8 @@ namespace BookingProject.View.GuideView
             {
                 return true;
             }
-
-
             return false;
         }
-
         private void Button_Click_Create(object sender, RoutedEventArgs e)
         {
             TourCreationWindow tourCreationWindow = new TourCreationWindow();

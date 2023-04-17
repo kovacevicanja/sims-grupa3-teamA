@@ -30,8 +30,6 @@ namespace BookingProject.View
         public ObservableCollection<GuestGrade> Grades { get; set; }
         public object SelectedObject { get; set; }
         private AccommodationReservation _selectedReservation;
-
-
         public ObservableCollection<int> CleanlinessOption { get; set; }
         public int ChosenCleanliness { get; set; }
         public ObservableCollection<int> CommunicationOption { get; set; }
@@ -42,10 +40,6 @@ namespace BookingProject.View
         public int ChosenDecency { get; set; }
         public ObservableCollection<int> NoisinessOption { get; set; }
         public int ChosenNoisiness { get; set; }
-
-
-
-
         public GuestRateView(AccommodationReservation selectedReservation)
         {
             InitializeComponent();
@@ -99,8 +93,6 @@ namespace BookingProject.View
         }
 
         private int _cleanliness;
-
-
         public int Cleanliness
         {
             get => _cleanliness;

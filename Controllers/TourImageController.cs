@@ -64,9 +64,9 @@ namespace BookingProject.Controller
 
             foreach (TourImage image in _images)
             {
-                if (image.TourId == -1)
+                if (image.Tour.Id == -1)
                 {
-                    image.TourId = id;
+                    image.Tour.Id = id;
                 }
 
             }
@@ -75,7 +75,7 @@ namespace BookingProject.Controller
 
         public void CleanUnused()
         {
-            _images.RemoveAll(i => i.TourId == -1);
+            _images.RemoveAll(i => i.Tour.Id == -1);
             NotifyObservers();
 
         }

@@ -27,10 +27,8 @@ namespace BookingProject.Controller
 
             public void Load()
             {
-                _tourGuests = _tourGuestHandler.Load();
+                _tourGuests = _tourGuestHandler.Load(); 
             }
-
-
 
             private int GenerateId()
             {

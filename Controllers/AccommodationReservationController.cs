@@ -102,10 +102,6 @@ namespace BookingProject.Controller
             }
             return reservations;
         }
-
-        
-
-
         public int GenerateId()
         {
             int maxId = 0;
