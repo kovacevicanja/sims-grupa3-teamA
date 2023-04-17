@@ -1,5 +1,7 @@
-﻿using BookingProject.Domain;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain;
 using BookingProject.FileHandler;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -9,77 +11,24 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Controllers
 {
-    public class NotificationController : ISubject
+    public class NotificationController 
     {
-        private readonly List<IObserver> observers;
-        private readonly NotificationHandler _notificationHandler;
-        private List<Notification> _notifications;
-
+        private readonly INotificationService _notificationService;
         public NotificationController()
         {
-            observers = new List<IObserver>();
-            _notificationHandler = new NotificationHandler();
-            Load();
+            _notificationService = Injector.CreateInstance<INotificationService>();
         }
-
-        public void Load()
-        {
-            _notifications = _notificationHandler.Load();
-        }
-
-        public int GenerateId()
-        {
-            int maxId = 0;
-            foreach (Notification notification in _notifications)
-            {
-                if (notification.Id > maxId)
-                {
-                    maxId = notification.Id;
-                }
-            }
-            return maxId + 1;
-        }
-
         public void Create(Notification notification)
         {
-            notification.Id = GenerateId();
-            _notifications.Add(notification);
-            NotifyObservers();
+            _notificationService.Create(notification);
         }
-
-        public void Save()
-        {
-            _notificationHandler.Save(_notifications);
-            NotifyObservers();
-        }
-
         public List<Notification> GetAll()
         {
-            return _notifications;
+            return _notificationService.GetAll();
         }
-
         public Notification GetByID(int id)
         {
-            return _notifications.Find(notification => notification.Id == id);
-        }
-
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
-
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
+            return _notificationService.GetByID(id);
         }
     }
 }
-

@@ -37,13 +37,23 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationImageService), new TourEvaluationImageService() },
             { typeof(ITourEvaluationService), new TourEvaluationService() },
             { typeof(IKeyPointService), new KeyPointService() },
-            { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(ITourStartingTimeService), new TourStartingTimeService() },
+            { typeof(INotificationService), new NotificationService() },
 
         };
         public static void Initialize()
         {
-            //CreateInstance<IVoucherRepository>().Initialize();
+            CreateInstance<IVoucherRepository>().Initialize();
             CreateInstance<ITourReservationRepository>().Initialize();
+            CreateInstance<IUserRepository>().Initialize();
+            CreateInstance<ITourRepository>().Initialize();
+            CreateInstance<ITourReservationRepository>().Initialize();
+            CreateInstance<ITourLocationRepository>().Initialize();  
+            CreateInstance<ITourEvaluationImageRepository>().Initialize();
+            CreateInstance<ITourEvaluationRepository>().Initialize();
+            CreateInstance<IKeyPointRepository>().Initialize();
+            CreateInstance<ITourStartingTimeRepository>().Initialize();
+            CreateInstance<INotificationRepository>().Initialize();
         }
 
         public static T CreateInstance<T>()

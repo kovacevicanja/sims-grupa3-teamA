@@ -1,4 +1,7 @@
-﻿using BookingProject.Services.Interfaces;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Model;
+using BookingProject.Repositories.Intefaces;
+using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +12,30 @@ namespace BookingProject.Services.Implementations
 {
     public class TourLocationService : ITourLocationService
     {
+        public ITourLocationRepository _tourLocationRepository { get; set; }
+        public TourLocationService() 
+        {
+            _tourLocationRepository = Injector.CreateInstance<ITourLocationRepository>();
+        }
+        /*
+        public void Initialize()
+        {
+            _tourLocationRepository = Injector.CreateInstance<ITourLocationRepository>();
+        }
+        */
+        public void Create(Location location)
+        {
+            _tourLocationRepository.Create(location);   
+        }
 
+        public List<Location> GetAll()
+        {
+            return _tourLocationRepository.GetAll();
+        }
+
+        public Location GetByID(int id)
+        {
+            return _tourLocationRepository.GetByID(id);
+        }
     }
 }

@@ -16,11 +16,12 @@ namespace BookingProject.Repositories.Implementations
     {
         private const string FilePath = "../../Resources/Data/keyPoints.csv";
 
-        private readonly Serializer<KeyPoint> _serializer;
+        private Serializer<KeyPoint> _serializer;
 
         public List<KeyPoint> _keyPoints;
 
-        public KeyPointRepository()
+        public KeyPointRepository() { }
+        public void Initialize()
         {
             _serializer = new Serializer<KeyPoint>();
             _keyPoints = Load();

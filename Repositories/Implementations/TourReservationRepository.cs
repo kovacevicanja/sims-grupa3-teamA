@@ -25,9 +25,7 @@ namespace BookingProject.Repositories.Implementations
 
         public List<TourReservation> _reservations;
 
-        public TourReservationRepository()
-        {
-        }
+        public TourReservationRepository() { }
 
         public void Initialize()
         {

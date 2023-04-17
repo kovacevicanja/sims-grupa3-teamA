@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace BookingProject.Services.Interfaces
 {
     public interface ITourLocationService
     {
+        void Create(Location location);
+        List<Location> GetAll();
+        Location GetByID(int id);
     }
 }

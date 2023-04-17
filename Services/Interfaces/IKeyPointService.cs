@@ -10,6 +10,9 @@ namespace BookingProject.Services.Interfaces
 {
     public interface IKeyPointService
     {
+        void Create(KeyPoint keyPoint);
+        List<KeyPoint> GetAll();
+        KeyPoint GetByID(int id);
         void CleanUnused();
         void LinkToTour(int id);
         KeyPoint GetCurrentKeyPoint();

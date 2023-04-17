@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Repositories.Intefaces
 {
-    internal interface ITourEvaluationImageRepository
+    public interface ITourEvaluationImageRepository
     {
         void Create(TourEvaluationImage tourEvaluationImage);
         List<TourEvaluationImage> GetAll();
         TourEvaluationImage GetByID(int id);
+        void Initialize();
     }
 }

@@ -1,7 +1,9 @@
-﻿using BookingProject.Domain;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain;
 using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Repositories;
+using BookingProject.Repositories.Intefaces;
 using BookingProject.Repository;
 using BookingProject.Services.Interfaces;
 using System;
@@ -14,34 +16,41 @@ namespace BookingProject.Services
 {
     public class UserService : IUserService
     {
-        private List<User> _users;
-        private UserRepository _userRepository;
-        public UserService() 
-        { 
-            _users = new List<User>();
-            _userRepository = new UserRepository();
-            Load();
-        }
-        public void Load()
+        private IUserRepository _userRepository;
+        public UserService() { }
+        public void Initialize()
         {
-            _users = _userRepository.Load();
+            _userRepository = Injector.CreateInstance<UserRepository>();
         }
-
         public User GetByUsername(string username)
         {
-            _users = _userRepository.Load(); 
-            return _users.FirstOrDefault(u => u.Username == username);
+            return _userRepository.GetAll().FirstOrDefault(u => u.Username == username);
         }
         public User GetLoggedUser()
         {
-            foreach (User user in _users)
+            foreach (User user in _userRepository.GetAll())
             {
                 if (user.IsLoggedIn == true)
                 {
                     return user;
                 }
             }
-            return _users.FirstOrDefault(u => u.IsLoggedIn == true);
+            return _userRepository.GetAll().FirstOrDefault(u => u.IsLoggedIn == true);
+        }
+
+        public void Create(User user)
+        {
+            _userRepository.Create(user);
+        }
+
+        public List<User> GetAll()
+        {
+            return _userRepository.GetAll();
+        }
+
+        public User GetByID(int id)
+        {
+            return _userRepository.GetByID(id);
         }
     }
 }

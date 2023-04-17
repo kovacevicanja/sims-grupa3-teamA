@@ -20,11 +20,13 @@ namespace BookingProject.Repositories
     {
         private const string FilePath = "../../Resources/Data/tours.csv";
 
-        private readonly Serializer<Tour> _serializer;
+        private Serializer<Tour> _serializer;
 
         public List<Tour> _tours;
 
-        public TourRepository()
+        public TourRepository() { }
+
+        public void Initialize()
         {
             _serializer = new Serializer<Tour>();
             _tours = Load();

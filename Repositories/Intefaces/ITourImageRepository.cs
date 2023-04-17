@@ -10,10 +10,9 @@ namespace BookingProject.Repositories.Intefaces
     public interface ITourImageRepository
     {
         void Create(TourImage image);
-
         void LinkToTour(int id);
-
         List<TourImage> GetAll();
         TourImage GetByID(int id);
+        void Initialize();
     }
 }

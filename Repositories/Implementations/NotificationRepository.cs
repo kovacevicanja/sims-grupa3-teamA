@@ -15,11 +15,12 @@ namespace BookingProject.Repositories
     {
         private const string FilePath = "../../Resources/Data/notifications.csv";
 
-        private readonly Serializer<Notification> _serializer;
+        private Serializer<Notification> _serializer;
 
         public List<Notification> _notifications;
 
-        public NotificationRepository()
+        public NotificationRepository() { } 
+        public void Initialize()
         {
             _serializer = new Serializer<Notification>();
             _notifications = Load();

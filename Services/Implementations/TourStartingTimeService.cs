@@ -1,32 +1,23 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Model;
 using BookingProject.Repositories.Implementations;
+using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
-using OisisiProjekat.Observer;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookingProject.Services.Implementations
 {
     public class TourStartingTimeService : ITourStartingTimeService
     {
-        public List<TourDateTime> _dates;
-        public TourStartingTimeRepository tourStartingTimeRepository;
-        public TourStartingTimeService()
+        public ITourStartingTimeRepository _tourStartingTimeRepository;
+        public TourStartingTimeService() { }
+        public void Initialize()
         {
-            _dates = new List<TourDateTime>();
-            tourStartingTimeRepository = new TourStartingTimeRepository();
-            Load();
-        }
-        public void Load()
-        {
-            _dates = tourStartingTimeRepository.GetAll();
+            _tourStartingTimeRepository = Injector.CreateInstance<TourStartingTimeRepository>();
         }
         public void LinkToTour(int id)
         {
-            foreach (TourDateTime startingDate in _dates)
+            foreach (TourDateTime startingDate in _tourStartingTimeRepository.GetAll())
             {
                 if (startingDate.TourId == -1)
                 {
@@ -36,7 +27,22 @@ namespace BookingProject.Services.Implementations
         }
         public void CleanUnused()
         {
-            _dates.RemoveAll(d => d.TourId == -1);
+            _tourStartingTimeRepository.GetAll().RemoveAll(d => d.TourId == -1);
+        }
+
+        public void Create(TourDateTime date)
+        {
+            _tourStartingTimeRepository.Create(date);
+        }
+
+        public List<TourDateTime> GetAll()
+        {
+            return _tourStartingTimeRepository.GetAll();
+        }
+
+        public TourDateTime GetByID(int id)
+        {
+            return _tourStartingTimeRepository.GetByID(id);
         }
     }
 }

@@ -65,7 +65,6 @@ namespace BookingProject.Controller
             NotifyObservers();
         }
 
-
         public List<TourTimeInstance> GetAll()
         {
             return _tourInstances;

@@ -13,5 +13,6 @@ namespace BookingProject.Repositories.Intefaces
         void Create(Notification notification);
         List<Notification> GetAll();
         Notification GetByID(int id);
+        void Initialize();
     }
 }

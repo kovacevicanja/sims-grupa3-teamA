@@ -10,7 +10,9 @@ namespace BookingProject.Services.Interfaces
     public interface IUserService
     {
         User GetByUsername(string username);
-       
         User GetLoggedUser();
+        void Create(User user);
+        List<User> GetAll();
+        User GetByID(int id);
     }
 }

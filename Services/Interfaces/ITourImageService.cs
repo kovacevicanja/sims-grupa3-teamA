@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Services.Interfaces
 {
-    public interface ITourEvaluationImageService 
+    public interface ITourImageService
     {
-        void Create(TourEvaluationImage tourEvaluationImage);
-        List<TourEvaluationImage> GetAll();
-        TourEvaluationImage GetByID(int id);
+        void CleanUnused();
+        void Create(TourImage image);
+        void LinkToTour(int id);
+        List<TourImage> GetAll();
+        TourImage GetByID(int id);
     }
 }

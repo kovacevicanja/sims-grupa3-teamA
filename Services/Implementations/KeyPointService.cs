@@ -7,33 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingProject.Repositories.Implementations;
+using BookingProject.Serializer;
+using BookingProject.DependencyInjection;
+using BookingProject.Repositories.Intefaces;
+using BookingProject.Repositories;
 
 namespace BookingProject.Services.Implementations
 {
     public class KeyPointService : IKeyPointService
     {
-        public List<KeyPoint> _keyPoints {  get; set; }
-        public KeyPointRepository keyPointRepository { get; set; }
-        public KeyPointService() 
+        public IKeyPointRepository _keyPointRepository { get; set; }
+        public KeyPointService() { }
+        public void Initialize()
         {
-            _keyPoints = new List<KeyPoint>();
-            keyPointRepository = new KeyPointRepository();
-            Load();
-
+            _keyPointRepository = Injector.CreateInstance<IKeyPointRepository>();
         }
-        public void Load()
-        {
-            _keyPoints = keyPointRepository.GetAll();
-        }
+       
         public void CleanUnused()
         {
-            _keyPoints.RemoveAll(r => r.TourId == -1);
+            _keyPointRepository.GetAll().RemoveAll(r => r.TourId == -1);
         }
 
         public void LinkToTour(int id)
         {
 
-            foreach (KeyPoint keyPoint in _keyPoints)
+            foreach (KeyPoint keyPoint in _keyPointRepository.GetAll())
             {
                 if (keyPoint.TourId == -1)
                 {
@@ -45,7 +43,7 @@ namespace BookingProject.Services.Implementations
 
         public KeyPoint GetCurrentKeyPoint()
         {
-            foreach (KeyPoint keyPoint in _keyPoints)
+            foreach (KeyPoint keyPoint in _keyPointRepository.GetAll())
             {
                 if (keyPoint.State == KeyPointState.CURRENT)
                 {
@@ -58,7 +56,7 @@ namespace BookingProject.Services.Implementations
         {
             List<KeyPoint> tourKeyPoints = new List<KeyPoint>();
 
-            foreach (KeyPoint kp in _keyPoints)
+            foreach (KeyPoint kp in _keyPointRepository.GetAll())
             {
                 if (kp.TourId == id)
                 {
@@ -69,7 +67,7 @@ namespace BookingProject.Services.Implementations
         }
         public KeyPoint GetPassedKeyPoint()
         {
-            foreach (KeyPoint keyPoint in _keyPoints)
+            foreach (KeyPoint keyPoint in _keyPointRepository.GetAll())
             {
                 if (keyPoint.State == KeyPointState.PASSED)
                 {

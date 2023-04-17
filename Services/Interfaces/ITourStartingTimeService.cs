@@ -11,5 +11,8 @@ namespace BookingProject.Services.Interfaces
     {
         void LinkToTour(int id);
         void CleanUnused();
+        void Create(TourDateTime date);
+        List<TourDateTime> GetAll();
+        TourDateTime GetByID(int id);
     }
 }
