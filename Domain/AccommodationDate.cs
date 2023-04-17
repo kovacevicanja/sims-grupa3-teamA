@@ -8,7 +8,7 @@ using BookingProject.Serializer;
 
 namespace BookingProject.Model
 {
-    internal class AccommodationDate : ISerializable
+    public class AccommodationDate : ISerializable
     {
         public int Id { get; set; }
 

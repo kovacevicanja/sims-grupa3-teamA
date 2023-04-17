@@ -26,6 +26,11 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationRepository), new TourEvaluationRepository() },
             { typeof(IKeyPointRepository), new KeyPointRepository() },
             { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(IAccommodationRepository), new AccommodationRepository() },
+            { typeof(IAccommodationDateRepository), new AccommodationDateRepository() },
+            { typeof(IAccommodationGuestImageRepository), new AccommodationGuestImageRepository() },
+            { typeof(IAccommodationOwnerGradeRepository), new AccommodationOwnerGradeRepository() },
+            { typeof(IRequestAccommodationReservationRepository), new RequestAccommodationReservationRepository() },
 
 
             { typeof(ITourService), new TourService() },
@@ -38,12 +43,19 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationService), new TourEvaluationService() },
             { typeof(IKeyPointService), new KeyPointService() },
             { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(IAccommodationService), new AccommodationService() },
+            { typeof(IAccommodationOwnerGradeService), new AccommodationOwnerGradeService() },
+            { typeof(IRequestAccommodationReservationService), new RequestAccommodationReservationService() },
 
         };
         public static void Initialize()
         {
             //CreateInstance<IVoucherRepository>().Initialize();
             CreateInstance<ITourReservationRepository>().Initialize();
+            CreateInstance<IAccommodationRepository>().Initialize();
+            CreateInstance<IAccommodationDateRepository>().Initialize();
+            CreateInstance<IAccommodationGuestImageRepository>().Initialize();
+            CreateInstance<IAccommodationOwnerGradeRepository>().Initialize();
         }
 
         public static T CreateInstance<T>()

@@ -1,5 +1,7 @@
-﻿using BookingProject.Domain.Images;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain.Images;
 using BookingProject.FileHandler;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -11,73 +13,21 @@ namespace BookingProject.Controllers
 {
     public class AccommodationGuestImageController
     {
-        private readonly List<IObserver> observers;
-
-        private readonly AccommodationGuestImageHandler _imageHandler;
-
-        private List<AccommodationGuestImage> _images;
-
+        private readonly IAccommodationGuestImageService _accommodationGuestImageService;
         public AccommodationGuestImageController()
         {
-            _imageHandler = new AccommodationGuestImageHandler();
-            _images = new List<AccommodationGuestImage>();
-            Load();
-        }
-
-        public void Load()
-        {
-            _images = _imageHandler.Load();
+            _accommodationGuestImageService = Injector.CreateInstance<IAccommodationGuestImageService>();
         }
 
         public List<AccommodationGuestImage> GetAll()
         {
-            return _images;
-        }
-        public int GenerateId()
-        {
-            int maxId = 0;
-            foreach (AccommodationGuestImage image in _images)
-            {
-                if (image.Id > maxId)
-                {
-                    maxId = image.Id;
-                }
-            }
-            return maxId + 1;
+            return _accommodationGuestImageService.GetAll();
         }
 
-        public void Create(AccommodationGuestImage image)
-        {
-            image.Id = GenerateId();
-            _images.Add(image);
-        }
-
-        public void SaveImage()
-        {
-            _imageHandler.Save(_images);
-        }
-
+        public void Create(AccommodationGuestImage image) { _accommodationGuestImageService.Create(image); }
         public AccommodationGuestImage GetByID(int id)
         {
-            return _images.Find(image => image.Id == id);
-        }
-
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
-
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
+            return _accommodationGuestImageService.GetByID(id);
         }
     }
 }
