@@ -36,7 +36,7 @@ namespace BookingProject.View
 
 
             _accommodationController.Load();
-            Reservations = new ObservableCollection<AccommodationReservation>(_accommodationController.GetAllNotGradedReservations());
+            Reservations = new ObservableCollection<AccommodationReservation>(_accommodationController.GetAllNotGradedReservations(SignInForm.LoggedInUser.Id));
         }
         private void selectedIndexChanged(object sender, EventArgs e)
         {

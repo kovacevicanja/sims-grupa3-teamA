@@ -183,6 +183,9 @@
     <Compile Include="View\GuideView\ExamineGradeWindow.xaml.cs">
       <DependentUpon>ExamineGradeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuestGradesForOwnerView.xaml.cs">
+      <DependentUpon>GuestGradesForOwnerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\GuestListView.xaml.cs">
       <DependentUpon>GuestListView.xaml</DependentUpon>
     </Compile>
@@ -335,6 +338,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GuideView\ExamineGradeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuestGradesForOwnerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -601,6 +608,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\star.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

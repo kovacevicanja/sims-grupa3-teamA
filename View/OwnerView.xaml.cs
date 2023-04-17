@@ -24,13 +24,19 @@ namespace BookingProject.View
     public partial class OwnerView : Window
     {
         private AccommodationController _accommodationController;
+        private AccommodationOwnerGradeController _accommodationOwnerGradeController;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
         public OwnerView()
         {
             InitializeComponent();
             this.DataContext = this;
             _accommodationController = new AccommodationController();
-            Accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
+            _accommodationOwnerGradeController = new AccommodationOwnerGradeController();
+            if (!_accommodationOwnerGradeController.IsOwnerSuperOwner(SignInForm.LoggedInUser.Id))
+            {
+                SuperOwnerImage.Visibility = Visibility.Hidden;
+            }
+            Accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAllForOwner(SignInForm.LoggedInUser.Id));
         }
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
@@ -42,7 +48,7 @@ namespace BookingProject.View
             NotGradedView view = new NotGradedView();
             view.Show();
         }
-        private void Button_Click_Review(object sender, RoutedEventArgs e)
+        private void Button_Click_Request(object sender, RoutedEventArgs e)
         {
             OwnersRequestView view = new OwnersRequestView();
             view.Show();
@@ -54,6 +60,12 @@ namespace BookingProject.View
         private void Window_Closed(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void Button_Click_Review(object sender, RoutedEventArgs e)
+        {
+            GuestGradesForOwnerView view = new GuestGradesForOwnerView();
+            view.Show();
         }
     }
 }
