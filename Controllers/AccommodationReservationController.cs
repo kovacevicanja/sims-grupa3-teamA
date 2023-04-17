@@ -1,4 +1,5 @@
 ﻿using BookingProject.Controllers;
+using BookingProject.ConversionHelp;
 using BookingProject.Domain;
 using BookingProject.FileHandler;
 using BookingProject.Model;
@@ -25,6 +26,7 @@ namespace BookingProject.Controller
 
         public AccommodationReservationController()
         {
+            observers = new List<IObserver>();
             _accommodationReservationHandler = new AccommodationReservationHandler();
             _accommodationReservations = new List<AccommodationReservation>();
             _accommodationController = new AccommodationController();
@@ -299,41 +301,29 @@ namespace BookingProject.Controller
         {
             DateTime today = DateTime.Now.Date;
             DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
-            if (accommodationReservation.EndDate < todayMidnight && todayMidnight <= accommodationReservation.EndDate.AddDays(5))
-            {
-                return true;
-            }
-            return false;
+            return accommodationReservation.EndDate < todayMidnight && todayMidnight <= accommodationReservation.EndDate.AddDays(5);
         }
 
         public bool PermissionToCancel(AccommodationReservation accommodationReservation)
         {
             DateTime today = DateTime.Now.Date;
             DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
-            if(todayMidnight.AddDays(accommodationReservation.Accommodation.CancellationPeriod) <= accommodationReservation.EndDate)
+            if(todayMidnight.AddDays(accommodationReservation.Accommodation.CancellationPeriod) <= accommodationReservation.InitialDate)
             {
                 DeleteReservationFromCSV(accommodationReservation);
                 SendNotification(accommodationReservation);
+                NotifyObservers();
                 return true;
             }
+
             return false;
         }
 
         public void DeleteReservationFromCSV(AccommodationReservation accommmodationReservation)
         {
-            string[] lines = File.ReadAllLines("../../Resources/Data/accommodationReservations.csv");
-            int rowIndex = Array.FindIndex(lines, line => line.StartsWith(accommmodationReservation.Id + "|"));
-
-            if (rowIndex >= 0)
-            {
-                // Remove the row at the specified index
-                List<string> linesList = new List<string>(lines);
-                linesList.RemoveAt(rowIndex);
-                lines = linesList.ToArray();
-
-                // Write the modified lines back to the file
-                File.WriteAllLines("../../Resources/Data/accommodationReservations.csv", lines);
-            }
+            List<AccommodationReservation> _reservations = GetAll();
+            _reservations.RemoveAll(n => n.Id == accommmodationReservation.Id);
+            Save();
         }
 
         public void SendNotification(AccommodationReservation accommodationReservation)
@@ -341,7 +331,7 @@ namespace BookingProject.Controller
             Notification notification = new Notification();
             notification.Id = _notificationController.GenerateId();
             notification.UserId = accommodationReservation.Accommodation.Owner.Id;
-            notification.Text = "Reservation for your accommodation " + accommodationReservation.Accommodation.AccommodationName + " was cancelled!";
+            notification.Text = "Reservation for your accommodation " + accommodationReservation.Accommodation.AccommodationName + ", from " + DateConversion.DateToStringAccommodation(accommodationReservation.InitialDate) + ", to " + DateConversion.DateToStringAccommodation(accommodationReservation.EndDate) + " was cancelled!";
             notification.Read = false;
             _notificationController.Create(notification);
             _notificationController.Save();

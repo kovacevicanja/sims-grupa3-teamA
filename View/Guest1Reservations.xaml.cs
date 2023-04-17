@@ -1,5 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Model;
+using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,7 +21,7 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for Guest1Reservations.xaml
     /// </summary>
-    public partial class Guest1Reservations : Window
+    public partial class Guest1Reservations : Window, IObserver
     {
         public ObservableCollection<AccommodationReservation> _reservations;
         public AccommodationReservationController _accommodationReservationController;
@@ -34,6 +35,7 @@ namespace BookingProject.View
             _accommodationReservationController = new AccommodationReservationController();
             _userController = new UserController();
             _reservations = new ObservableCollection<AccommodationReservation>(_accommodationReservationController.getReservationsForGuest(_userController.GetLoggedUser()));
+            _accommodationReservationController.Subscribe(this);
             ReservationsDataGrid.ItemsSource = _reservations;
         }
 
@@ -60,6 +62,27 @@ namespace BookingProject.View
             {
                 MessageBox.Show("You have failed to cancel your reservation because you have not met the accommodation owner's requirements!");
             }
+        }
+
+        private void Button_Click_Reschedule(object sender, RoutedEventArgs e)
+        {
+            var RescheduleAccommodationReservation = new RescheduleAccommodationReservationView(SelectedReservation);
+            RescheduleAccommodationReservation.Show();
+        }
+
+        public void Update()
+        {
+            _reservations.Clear();
+            foreach(AccommodationReservation reservation in _accommodationReservationController.getReservationsForGuest(_userController.GetLoggedUser()))
+            {
+                _reservations.Add(reservation);
+            }
+        }
+
+        private void Button_Click_See_Requests(object sender, RoutedEventArgs e)
+        {
+            var reqAccView = new AccommodationRequestsView();
+            reqAccView.Show();
         }
     }
 }

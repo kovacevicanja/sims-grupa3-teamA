@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
         Title="TourStatisticsWindow" Height="480" Width="815">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
@@ -58,7 +59,8 @@
                     <DataGridTextColumn Header="Max guests" Width="100" Binding="{Binding Tour.MaxGuests}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Label  Content="Select Tour To Get Statistics"  FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top"/>
+            <Label  Content="Select Tour To Get Statistics | Most visited tour: "  FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top"/>
+            <Label  Content="{Binding TopTour}"  FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="494,0,20,263"/>
         </Grid>
 
 

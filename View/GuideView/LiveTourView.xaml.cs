@@ -31,7 +31,6 @@ namespace BookingProject.View.GuideView
         public bool IsValid { get; set; }
         public KeyPoint ChosenKeyPoint { get; set; }
         public TourTimeInstance ChosenTour { get; set; }
-
         private TourTimeInstanceController _tourTimeInstanceController;
         private KeyPointController _keyPointController;
         private UserController _userControler;
@@ -62,7 +61,6 @@ namespace BookingProject.View.GuideView
                 IsValid = false;
             }
         }
-
         public void InitState()
         {
             bool initState = true;
@@ -73,7 +71,6 @@ namespace BookingProject.View.GuideView
                     _keyPoints[0].State = KeyPointState.PASSED;
                     initState = false;
                 }
-
             }
             if (initState)
             {
@@ -81,7 +78,6 @@ namespace BookingProject.View.GuideView
             }
             _keyPointController.Save();
         }
-
         public void CurrentState()
         {
             foreach(KeyPoint keyPoint in _keyPoints) 
@@ -89,12 +85,10 @@ namespace BookingProject.View.GuideView
                 if (keyPoint.Id == ChosenKeyPoint.Id && keyPoint.State==KeyPointState.EMPTY)
                 {
                     keyPoint.State = KeyPointState.CURRENT;
-                }
-            
+                }           
             }
             _keyPointController.Save();
         }
-
         public void PassedState()
         {
             foreach (KeyPoint keyPoint in _keyPoints)
@@ -103,13 +97,9 @@ namespace BookingProject.View.GuideView
                 {
                     keyPoint.State = KeyPointState.PASSED;
                 }
-
             }
             _keyPointController.Save();
-
         }
-
-
         private void Button_Click_Mark(object sender, RoutedEventArgs e)
         {
             if (ChosenKeyPoint != null)
@@ -121,16 +111,13 @@ namespace BookingProject.View.GuideView
                 GuestListView guestListView = new GuestListView(ChosenTour, ChosenKeyPoint);
                 guestListView.Show();
                 Close();
-
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         public void SaveStates()
         {
             foreach(KeyPoint keyPoint in _keyPoints)
@@ -138,9 +125,7 @@ namespace BookingProject.View.GuideView
                 _keyPointController.GetByID(keyPoint.Id).State = keyPoint.State;
             }
             _keyPointController.Save();
-
         }
-
         public void RevertStates()
         {
             foreach (KeyPoint keyPoint in _keyPoints)
@@ -148,9 +133,7 @@ namespace BookingProject.View.GuideView
                 _keyPointController.GetByID(keyPoint.Id).State = KeyPointState.EMPTY;
             }
             _keyPointController.Save();
-
         }
-
         public void RevertUsers()
         {
             foreach (User user in _userControler.GetAll())
@@ -159,30 +142,24 @@ namespace BookingProject.View.GuideView
             }
             _userControler.Save();
         }
-
         private void Button_Click_Cancell(object sender, RoutedEventArgs e)
         {
             SaveStates();
             LiveToursList liveTourList = new LiveToursList();
             liveTourList.Show();
             Close();
-
         }
-
         public void TourEnding()
         {
             _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.COMPLETED;
             _tourTimeInstanceController.Save();
-
         }
-
         public void TourStarting()
         {
             _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.STARTED;
             _tourTimeInstanceController.Save();
 
         }
-
         public bool PresenceCheck(TourPresence presence)
         {
             if(_userControler.GetByID(presence.UserId).IsPresent && (presence.KeyPointId== -1))
@@ -191,8 +168,6 @@ namespace BookingProject.View.GuideView
             }
             return false;
         }
-
-
         public void SavePresence()
         {
             foreach(TourPresence presence in _tourPresenceController.GetAll())
@@ -201,16 +176,9 @@ namespace BookingProject.View.GuideView
                 {
                     _tourPresenceController.GetByID(presence.Id).KeyPointId = _keyPointController.GetCurrentKeyPoint().Id;
                 }
-
-
             }
-
             _tourPresenceController.Save();
-
         }
-
-
-
         private void Button_Click_End(object sender, RoutedEventArgs e)
         {
             TourEnding();
@@ -227,7 +195,5 @@ namespace BookingProject.View.GuideView
             else
                 EndButton.IsEnabled = false;
         }
-
-
     }
 }
