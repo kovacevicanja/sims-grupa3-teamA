@@ -165,6 +165,7 @@ namespace BookingProject.View
             grade.OwnerCorectness = chosenCorectness;
             grade.AdditionalComment = Comment;
             grade.Reccommendation = Reccommendation;
+            grade.User.Id = UserController.GetLoggedUser().Id;
 
             
             AccommodationOwnerGradeController.Create(grade);
