@@ -18,16 +18,18 @@ namespace BookingProject.Domain
         public DateTime NewArrivalDay { get; set; }
         public DateTime NewDeparuteDay { get; set; }
         public RequestStatus Status { get; set; }
-        public String Comment { get; set; }
+        public String GuestComment { get; set; }
+        public String OwnerComment { get; set; }
 
 
-        public RequestAccommodationReservation(AccommodationReservation accommodationReservation, DateTime newArrivalDay, DateTime newDeparuteDay, RequestStatus status, string comment)
+        public RequestAccommodationReservation(AccommodationReservation accommodationReservation, DateTime newArrivalDay, DateTime newDeparuteDay, RequestStatus status, string comment, string comment2)
         {
             AccommodationReservation = accommodationReservation;
             NewArrivalDay = newArrivalDay;
             NewDeparuteDay = newDeparuteDay;
             Status = status;
-            Comment = comment;
+            GuestComment = comment;
+            OwnerComment = comment2;
         }
 
         public RequestAccommodationReservation()
@@ -52,7 +54,8 @@ namespace BookingProject.Domain
                 Status = RequestStatus.PENDING;
                 System.Console.WriteLine("Doslo je do greske prilikom ucitavanja tipa zahteva!");
             }
-            Comment = values[5];
+            GuestComment = values[5];
+            OwnerComment = values[6];
         }
 
         public string[] ToCSV()
@@ -64,7 +67,8 @@ namespace BookingProject.Domain
                 DateConversion.DateToStringAccommodation(NewArrivalDay),
                 DateConversion.DateToStringAccommodation(NewDeparuteDay),
                 Status.ToString(),
-                Comment
+                GuestComment,
+                OwnerComment
         };
             return csvValues;
         }

@@ -152,7 +152,7 @@ namespace BookingProject.Controllers
             {
                 return;
             }
-            oldRequest.Comment = reservationMovingRequest.Comment;
+            oldRequest.OwnerComment = reservationMovingRequest.OwnerComment;
             oldRequest.NewArrivalDay = reservationMovingRequest.NewArrivalDay;
             oldRequest.NewDeparuteDay = reservationMovingRequest.NewDeparuteDay;
             oldRequest.Status = reservationMovingRequest.Status;

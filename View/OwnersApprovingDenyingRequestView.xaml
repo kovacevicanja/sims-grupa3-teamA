@@ -71,7 +71,7 @@
                      Text="{Binding Path=SelectedMovingRequest.AccommodationReservation.EndDate}"
                      Height="30" IsEnabled="False"></TextBox>
             <TextBox x:Name ="Comment" TextChanged="Comment_TextChanged" Grid.Row="6" Grid.Column="1" 
-                     Text="{Binding Path=SelectedMovingRequest.Comment, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                     Text="{Binding Path=SelectedMovingRequest.OwnerComment, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
             <TextBox Grid.Row="7" Grid.Column="1" 
