@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookingProject.View"
+        xmlns:local="clr-namespace:BookingProject.View" 
+        xmlns:local1="clr-namespace:BookingProject.ConversionHelp"
+        xmlns:Local="clr-namespace:BookingProject.ConversionHelp;assembly=BookingProject"
         mc:Ignorable="d"
         Title="OwnersApprovingDenyingRequestView" Height="600" Width="356">
     <Window.Resources>
@@ -68,18 +70,18 @@
             <TextBox Grid.Row="5" Grid.Column="1" 
                      Text="{Binding Path=SelectedMovingRequest.AccommodationReservation.EndDate}"
                      Height="30" IsEnabled="False"></TextBox>
-            <TextBox Grid.Row="6" Grid.Column="1" 
-                     Text="{Binding Path=SelectedMovingRequest.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            <TextBox x:Name ="Comment" TextChanged="Comment_TextChanged" Grid.Row="6" Grid.Column="1" 
+                     Text="{Binding Path=SelectedMovingRequest.Comment, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
             <TextBox Grid.Row="7" Grid.Column="1" 
                      Text="{Binding Path=Availability}"
                      Height="30" IsEnabled="False"></TextBox>
         </Grid>
-        <Button Content="Accept" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"
+        <Button x:Name ="Button_Comment" Content="Accept" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top"
               Click="Button_Click_Accept" RenderTransformOrigin="0.5,0.5" Width="46" Grid.Column="2" Margin="256,10,0,0" Grid.Row="1" >
         </Button>
-        <Button Content="Decline" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="253,50,0,0"
+        <Button  Content="Decline" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="253,50,0,0"
                Click="Button_Click_Decline" Grid.Column="2" Width="49" Grid.Row="1"/>
     </Grid>
 </Window>

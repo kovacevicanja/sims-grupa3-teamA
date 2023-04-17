@@ -28,6 +28,7 @@ namespace BookingProject.View
         public Boolean Availability { get; set; }
         private AccommodationReservationController _reservationController;
         private RequestAccommodationReservationController _movingController;
+        
         public OwnersApprovingDenyingRequestView(RequestAccommodationReservation selectedMovingRequest)
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace BookingProject.View
             Availability = _reservationController.IsAvailableToMove(selectedMovingRequest);
             
         }
+        
 
         private void Button_Click_Accept(object sender, RoutedEventArgs e)
         {
@@ -57,6 +59,17 @@ namespace BookingProject.View
             {
                 _movingController.Update(SelectedMovingRequest);
                 Close();
+            }
+        }
+
+        private void Comment_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(Comment.Text.Length > 0)
+            {
+                Button_Comment.IsEnabled= false;
+            } else
+            {
+                Button_Comment.IsEnabled= true;
             }
         }
     }
