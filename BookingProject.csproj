@@ -80,6 +80,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="DependencyInjection\Injector.cs" />
+    <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Domain\AccommodationOwnerGrade.cs" />
     <Compile Include="Domain\Enums\GuideType.cs" />
     <Compile Include="Domain\Enums\RequestStatus.cs" />
@@ -110,7 +111,6 @@
     <Compile Include="FileHandler\KeyPointHandler.cs" />
     <Compile Include="FileHandler\AccommodationImageHandler.cs" />
     <Compile Include="FileHandler\TourLocationHandler.cs" />
-    <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="FileHandler\TourPresenceHandler.cs" />
     <Compile Include="FileHandler\TourReservationHandler.cs" />
     <Compile Include="FileHandler\TourStartingTimeHandler.cs" />
@@ -227,6 +227,9 @@
     <Compile Include="View\GuideView\ExamineGradeWindow.xaml.cs">
       <DependentUpon>ExamineGradeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuestGradesForOwnerView.xaml.cs">
+      <DependentUpon>GuestGradesForOwnerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\GuestListView.xaml.cs">
       <DependentUpon>GuestListView.xaml</DependentUpon>
     </Compile>
@@ -266,8 +269,17 @@
     <Compile Include="View\MonitoringActiveToursView.xaml.cs">
       <DependentUpon>MonitoringActiveToursView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NotGradedView.xaml.cs">
       <DependentUpon>NotGradedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersApprovingDenyingRequestView.xaml.cs">
+      <DependentUpon>OwnersApprovingDenyingRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersRequestView.xaml.cs">
+      <DependentUpon>OwnersRequestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnerView.xaml.cs">
       <DependentUpon>OwnerView.xaml</DependentUpon>
@@ -373,6 +385,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\GuestGradesForOwnerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\GuestListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -425,7 +441,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\NotGradedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersApprovingDenyingRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -621,6 +649,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\ToursImages\logOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\star.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -17,12 +17,14 @@ namespace BookingProject.Model
         public int OwnerCorectness { get; set; }
         public string AdditionalComment { get; set; }
         public string Reccommendation { get; set; }
+        public User User { get; set; }
         public List<AccommodationGuestImage> guestImages;
 
         public AccommodationOwnerGrade()
         {
             Accommodation = new Accommodation();
             guestImages = new List<AccommodationGuestImage>();
+            User = new User();
 
         }
 
@@ -34,6 +36,7 @@ namespace BookingProject.Model
             OwnerCorectness = int.Parse((string)values[3]);
             AdditionalComment = values[4];
             Reccommendation = values[5];
+            User.Id = int.Parse((string)values[6]);
         }
 
         public string[] ToCSV()
@@ -45,7 +48,8 @@ namespace BookingProject.Model
                 Cleanliness.ToString(),
                 OwnerCorectness.ToString(),
                 AdditionalComment,
-                Reccommendation
+                Reccommendation,
+                User.Id.ToString()
             };
             return csvValues;
         }

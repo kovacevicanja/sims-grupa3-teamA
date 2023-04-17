@@ -47,7 +47,7 @@ namespace BookingProject.Model
                 ObservanceOfRules.ToString(),
                 Decency.ToString(),
                 Noisiness.ToString(),
-                Comment
+                Comment,
             };
             return csvValues;
         }
