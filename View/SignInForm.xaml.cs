@@ -49,7 +49,8 @@ namespace BookingProject.View
             InitializeComponent();
             DataContext = this;
             var app = Application.Current as App;
-            _controller = app.UserController;
+            //_controller = app.UserController;
+            _controller = new UserController();
             _accResController = new AccommodationReservationController();
             _tourPresenceController = app.TourPresenceController;
             NotificationController = new NotificationController();

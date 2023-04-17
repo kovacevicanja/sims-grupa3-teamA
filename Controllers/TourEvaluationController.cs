@@ -36,7 +36,7 @@ namespace BookingProject.Controllers
         }
         public void BindTourEvaluationToTour()
         {
-            _tourController.Load();
+            //_tourController.Load();
             foreach (TourEvaluation evaluation in _tourEvaluations)
             {
                 Tour tour = _tourController.GetByID(evaluation.Tour.Id);

@@ -3,6 +3,7 @@ using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Model.Images;
+using BookingProject.Services;
 using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
@@ -173,7 +174,6 @@ namespace BookingProject.View
             tour.LocationId = location.Id;
             //kreiranje
             TourController.Create(tour);
-            TourController.Save();
             //uvezivanje sa ostalim pomocnim klasama
             KeyPointController.LinkToTour(tour.Id);
             KeyPointController.Save();
@@ -187,7 +187,6 @@ namespace BookingProject.View
         public void saveInstance()
         {
             StartingDateController.Load();
-            TourController.Load();
             makeTimeInstances(TourController.GetLastTour());
         }
         //use of this function is necessary if a tour has multiple dates   

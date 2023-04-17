@@ -3,6 +3,7 @@ using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,11 +41,14 @@ namespace BookingProject.View
         public TourEvaluationImageController TourEvaluationImageController { get; set; }
         public Tour ChosenTour { get; set; }
         public TourReservationController TourReservationController { get; set; }
+        public CustomMessageBox CustomMessageBox { get; set; }
         public ToursAndGuidesEvaluationView(Tour chosenTour)
         {
             InitializeComponent();
             this.DataContext = this;
             var app = Application.Current as App;
+
+            CustomMessageBox = new CustomMessageBox();
 
             TourEvaluationController = new TourEvaluationController();
             ChosenTour = chosenTour;
@@ -146,7 +150,7 @@ namespace BookingProject.View
             TourEvaluationImageController.Create(TourImage);
             TourEvaluationImageController.Save();
 
-            TourReservationController.ShowCustomMessageBox("You have successfully added a picture, if you want you can add more.");
+            CustomMessageBox.ShowCustomMessageBox("You have successfully added a picture, if you want you can add more.");
             TourImageTextBox.Clear();
         }
         private void Button_Click_Rate(object sender, RoutedEventArgs e)

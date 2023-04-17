@@ -19,7 +19,7 @@
 
             <DataGrid DockPanel.Dock="Bottom"
                                   ItemsSource="{Binding Path=Tours, UpdateSourceTrigger=PropertyChanged}"
-                                  SelectedItem="{Binding Path=ChoosenTour, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding Path=ChosenTour, UpdateSourceTrigger=PropertyChanged}"
                                   Name="TourDataGrid"
                                   AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,50,8" RenderTransformOrigin="0.5,0.5">
                 <DataGrid.RenderTransform>
@@ -87,9 +87,5 @@
             <Button Content="Try to book tour" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
                        Click="Button_Click_TryToBook"/>
         </WrapPanel>
-
     </Grid>
-
-
-
 </Window>

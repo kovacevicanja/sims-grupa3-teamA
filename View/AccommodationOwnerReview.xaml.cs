@@ -45,7 +45,6 @@ namespace BookingProject.View
         {
             InitializeComponent();
             this.DataContext = this;
-            this.DataContext = this;
             AccommodationOwnerGradeController = new AccommodationOwnerGradeController();
             AccommodationImageController = new AccommodationImageController();
             AccommodationGuestImageController = new AccommodationGuestImageController();
