@@ -74,6 +74,35 @@ namespace BookingProject.Controllers
             }
             return maxId + 1;
         }
+        public void AcceptRequest(RequestAccommodationReservation reservationMovingRequest)
+        {
+            AccommodationReservation res = _accommodationReservationController.GetByID(reservationMovingRequest.AccommodationReservation.Id);
+            res.InitialDate = reservationMovingRequest.NewArrivalDay;
+            res.EndDate = reservationMovingRequest.NewDeparuteDay;
+            _accommodationReservationController.Update(res);
+        }
+        public void Update(RequestAccommodationReservation reservationMovingRequest)
+        {
+            RequestAccommodationReservation oldRequest = GetByID(reservationMovingRequest.Id);
+            if (oldRequest == null)
+            {
+                return;
+            }
+            oldRequest.Comment = reservationMovingRequest.Comment;
+            oldRequest.NewArrivalDay = reservationMovingRequest.NewArrivalDay;
+            oldRequest.NewDeparuteDay = reservationMovingRequest.NewDeparuteDay;
+            oldRequest.Status = reservationMovingRequest.Status;
+            SaveRequest();
+        }
+        public void RequestReservationBind()
+        {
+            _accommodationReservationController.Load();
+            foreach (RequestAccommodationReservation request in _requests)
+            {
+                AccommodationReservation accommodation = _accommodationReservationController.GetByID(request.AccommodationReservation.Id);
+                request.AccommodationReservation = accommodation;
+            }
+        }
 
         public void Create(RequestAccommodationReservation request)
         {
@@ -84,6 +113,19 @@ namespace BookingProject.Controllers
         public void SaveRequest()
         {
             _requestsHandler.Save(_requests);
+        }
+        public List<RequestAccommodationReservation> GetAllRequestForOwner(int ownerId)
+        {
+            List<RequestAccommodationReservation> requestList = new List<RequestAccommodationReservation>();
+            foreach (var request in _requests)
+            {
+                if (request.AccommodationReservation.Accommodation.Owner.Id == ownerId && request.Status == Domain.Enums.RequestStatus.PENDING)
+                {
+                    requestList.Add(request);
+                }
+            }
+
+            return requestList;
         }
 
         public RequestAccommodationReservation GetByID(int id)

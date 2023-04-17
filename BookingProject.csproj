@@ -87,7 +87,6 @@
     <Compile Include="Domain\Images\AccommodationGuestImage.cs" />
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\RequestAccommodationReservation.cs" />
-    <Compile Include="Domain\ToursGuests.cs" />
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Images\TourEvaluationImage.cs" />
     <Compile Include="Domain\Notification.cs" />
@@ -223,8 +222,17 @@
     <Compile Include="View\MonitoringActiveToursView.xaml.cs">
       <DependentUpon>MonitoringActiveToursView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NotGradedView.xaml.cs">
       <DependentUpon>NotGradedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersApprovingDenyingRequestView.xaml.cs">
+      <DependentUpon>OwnersApprovingDenyingRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersRequestView.xaml.cs">
+      <DependentUpon>OwnersRequestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnerView.xaml.cs">
       <DependentUpon>OwnerView.xaml</DependentUpon>
@@ -382,7 +390,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\NotGradedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersApprovingDenyingRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -578,6 +598,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\ToursImages\logOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\menu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

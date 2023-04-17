@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Domain
 {
-    public class RequestAccommodationReservation : ISerializable 
+    public class RequestAccommodationReservation : ISerializable
     {
         public int Id { get; set; }
         public AccommodationReservation AccommodationReservation { get; set; }

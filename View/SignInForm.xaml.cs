@@ -86,6 +86,8 @@ namespace BookingProject.View
                         {
                             MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
                         }
+                        //OwnersRequestView view = new OwnersRequestView();
+                        //view.Show();
                     }
                     else if(user.UserType == UserType.GUEST1){
                         Model.User guest1 = _controller.GetByUsername(Username);

@@ -42,6 +42,11 @@ namespace BookingProject.View
             NotGradedView view = new NotGradedView();
             view.Show();
         }
+        private void Button_Click_Review(object sender, RoutedEventArgs e)
+        {
+            OwnersRequestView view = new OwnersRequestView();
+            view.Show();
+        }
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             this.Close();
