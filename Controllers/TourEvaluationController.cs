@@ -15,15 +15,10 @@ namespace BookingProject.Controllers
     public class TourEvaluationController
     {
         private readonly List<IObserver> observers;
-
         private readonly TourEvaluationHandler _tourEvaluationHandler;
-
         private List<TourEvaluation> _tourEvaluations; 
         private TourController _tourController { get; set; }
-
         private List<TourEvaluationImage> _images { get; set; }
-
-
         public TourEvaluationController()
         {
             _tourEvaluationHandler = new TourEvaluationHandler();
@@ -33,24 +28,21 @@ namespace BookingProject.Controllers
             observers = new List<IObserver>();
             Load();
         }
-
         public void Load()
         {
             _tourEvaluations = _tourEvaluationHandler.Load();
             BindTourEvaluationToTour();
             TourEvaluationImagesBind();
         }
-
         public void BindTourEvaluationToTour()
         {
-            _tourController.Load();
+            //_tourController.Load();
             foreach (TourEvaluation evaluation in _tourEvaluations)
             {
                 Tour tour = _tourController.GetByID(evaluation.Tour.Id);
                 evaluation.Tour = tour;
             }
         }
-
         public void TourEvaluationImagesBind()
         {
             TourEvaluationImageHandler imageHandler = new TourEvaluationImageHandler();
@@ -67,12 +59,10 @@ namespace BookingProject.Controllers
                 }
             }
         }
-
         public List<TourEvaluation> GetAll()
         {
             return _tourEvaluations;
         }
-
         public int GenerateId()
         {
             int maxId = 0;
@@ -90,17 +80,14 @@ namespace BookingProject.Controllers
             tourEvalution.Id = GenerateId();
             _tourEvaluations.Add(tourEvalution);
         }
-
         public void SaveEvaluation()
         {
             _tourEvaluationHandler.Save(_tourEvaluations);
         }
-
         public TourEvaluation GetByID(int id)
         {
             return _tourEvaluations.Find(tourEvalution => tourEvalution.Id == id);
         }
-
         public void NotifyObservers()
         {
             foreach (var observer in observers)
@@ -108,12 +95,10 @@ namespace BookingProject.Controllers
                 observer.Update();
             }
         }
-
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
         }
-
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);

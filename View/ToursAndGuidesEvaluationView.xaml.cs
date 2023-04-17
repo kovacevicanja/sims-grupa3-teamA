@@ -3,6 +3,7 @@ using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,8 +30,6 @@ namespace BookingProject.View
     public partial class ToursAndGuidesEvaluationView : Window
     {
         public TourEvaluationController TourEvaluationController { get; set; }
-        public ObservableCollection<TourEvaluation> TourEvaluation{ get; set; }
-        public object SelectedObject { get; set; }
         public ObservableCollection<int> GuideKnowledgeOption { get; set; }
         public int ChosenGuideKnowledge { get; set; }
         public ObservableCollection<int> GuideLanguageOption { get; set; }
@@ -42,11 +41,14 @@ namespace BookingProject.View
         public TourEvaluationImageController TourEvaluationImageController { get; set; }
         public Tour ChosenTour { get; set; }
         public TourReservationController TourReservationController { get; set; }
+        public CustomMessageBox CustomMessageBox { get; set; }
         public ToursAndGuidesEvaluationView(Tour chosenTour)
         {
             InitializeComponent();
             this.DataContext = this;
             var app = Application.Current as App;
+
+            CustomMessageBox = new CustomMessageBox();
 
             TourEvaluationController = new TourEvaluationController();
             ChosenTour = chosenTour;
@@ -69,7 +71,6 @@ namespace BookingProject.View
                 TourInterestignessOption.Add(i);
             }
         }
-
         private int _guideKnowledge;
         public int GuideKnowledge
         {
@@ -83,7 +84,6 @@ namespace BookingProject.View
                 }
             }
         }
-
         private int _guideLanguage;
         public int GuideLanguage
         {
@@ -97,7 +97,6 @@ namespace BookingProject.View
                 }
             }
         }
-
         private int _tourInterestigness;
         public int TourInterestigness
         {
@@ -111,7 +110,6 @@ namespace BookingProject.View
                 }
             }
         }
-
         private string _additionalComment;
         public string AdditionalComment
         {
@@ -125,7 +123,6 @@ namespace BookingProject.View
                 }
             }
         }
-
         private string _imageUrl;
         public string ImageUrl
         {
@@ -139,7 +136,6 @@ namespace BookingProject.View
                 }
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -154,7 +150,7 @@ namespace BookingProject.View
             TourEvaluationImageController.Create(TourImage);
             TourEvaluationImageController.Save();
 
-            TourReservationController.ShowCustomMessageBox("You have successfully added a picture, if you want you can add more.");
+            CustomMessageBox.ShowCustomMessageBox("You have successfully added a picture, if you want you can add more.");
             TourImageTextBox.Clear();
         }
         private void Button_Click_Rate(object sender, RoutedEventArgs e)

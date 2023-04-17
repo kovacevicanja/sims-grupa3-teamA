@@ -2,26 +2,15 @@
 using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.FileHandler;
-using BookingProject.Model.Enums;
 using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using BookingProject.Domain.Enums;
-using BookingProject.ConversionHelp;
+using BookingProject.View.CustomMessageBoxes;
 
 namespace BookingProject.View
 {
@@ -36,27 +25,21 @@ namespace BookingProject.View
         public List<Voucher> _vouchersList { get; set; }
         public Voucher ChosenVoucher { get; set; }
         public TourReservationController TourReservationController { get; set; }
-        public TourReservationHandler TourReservationHandler { get; set; }
         public Tour ChosenTour { get; set; }
-        public int ReservationId { get; set; }  
-
+        public CustomMessageBox CustomMessageBox { get; set; }  
         public SecondGuestMyVouchersView(int guestId, Tour chosenTour)
         {
             InitializeComponent();
             this.DataContext = this;
 
+            CustomMessageBox = new CustomMessageBox();
+
             ChosenVoucher = new Voucher();
             ChosenTour = chosenTour;
             TourReservationController = new TourReservationController();
-            TourReservationHandler = new TourReservationHandler();
-            //ReservationId = reservationId;
+
             _voucherHandler = new VoucherHandler();
             VoucherController = new VoucherController();
-
-
-            //Guest = guest;
-
-            //VoucherController.GuestVoucherBind(guestId);
 
             VoucherController.DeleteExpiredVouchers();
 
@@ -65,32 +48,15 @@ namespace BookingProject.View
 
             MyVouchersDataGrid.ItemsSource = _vouchers;
         }
-
         private void Button_UseVoucher(object sender, RoutedEventArgs e)
         {
             if (ChosenVoucher != null)
             {
                 _vouchersList = VoucherController.GetAll();
-                TourReservationController.ShowCustomMessageBox("You have successfully used your voucher to book this tour.");
-                //_vouchersList.Remove(ChosenVoucher);
+                CustomMessageBox.ShowCustomMessageBox("You have successfully used your voucher to book this tour.");
                 ChosenVoucher.State = VoucherState.USED;
-                ChosenVoucher.Tour = ChosenTour; //
+                ChosenVoucher.Tour = ChosenTour; 
                 _voucherHandler.Save(_vouchersList);
-
-                /*
-                List<TourReservation> tourReservations = new List<TourReservation>();
-                tourReservations = TourReservationHandler.Load();
-
-                foreach (TourReservation tr in tourReservations)
-                {
-                    if (tr.Id == ReservationId)
-                    {
-                        tr.UsedVoucher = true;
-                    }
-                }
-
-                TourReservationHandler.Save(tourReservations);
-                */
 
                 this.Close();
             }

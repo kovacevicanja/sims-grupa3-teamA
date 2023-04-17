@@ -10,22 +10,27 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Controller
 {
-    public class GuestGradeController: ISubject
+    public class GuestGradeController : ISubject
     {
         private readonly List<IObserver> observers;
         private readonly GuestGradeHandler _gradeHandler;
         private List<GuestGrade> _grades;
         public AccommodationReservationController _accommodationController { get; set; }
+        public UserController _userController;
 
         public GuestGradeController()
         {
             _gradeHandler = new GuestGradeHandler();
             _grades = new List<GuestGrade>();
+            _userController = new UserController();
         }
+
+
         public void Load()
         {
             _grades = _gradeHandler.Load();
             AccommodationGradeBind();
+            //GradeUserBind();
         }
         public List<GuestGrade> GetAll()
         {
@@ -40,6 +45,16 @@ namespace BookingProject.Controller
             grade.Id = GenerateId();
             _grades.Add(grade);
         }
+        //public void GradeUserBind()
+        //{
+
+        //    foreach (GuestGrade grade in _grades)
+        //    {
+        //        User user = _userController.GetByID(grade.Guest.Id);
+        //        grade.Guest = user;
+        //    }
+        //}
+
         public void AccommodationGradeBind()
         {
             _accommodationController.Load();
@@ -91,5 +106,31 @@ namespace BookingProject.Controller
             }
             return false;
         }
+
+        public bool ExistsGuestGradeForAccommodationId(int accomomodationId)
+        {
+            foreach (GuestGrade grade in _grades)
+            {
+                if (grade.AccommodationReservation.Accommodation.Id == accomomodationId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public int CountGradesForAccommodationAndUser(int accommodationId, int userId)
+        {
+            int count = 0;
+            foreach (GuestGrade grade in _grades)
+            {
+                if (grade.AccommodationReservation.Accommodation.Id == accommodationId && grade.AccommodationReservation.Guest.Id==userId)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+
     }
 }

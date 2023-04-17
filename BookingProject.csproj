@@ -79,6 +79,8 @@
     <Compile Include="Controllers\TourTimeInstanceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
+    <Compile Include="DependencyInjection\Injector.cs" />
+    <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Domain\AccommodationOwnerGrade.cs" />
     <Compile Include="Domain\Enums\GuideType.cs" />
     <Compile Include="Domain\Enums\RequestStatus.cs" />
@@ -109,7 +111,6 @@
     <Compile Include="FileHandler\KeyPointHandler.cs" />
     <Compile Include="FileHandler\AccommodationImageHandler.cs" />
     <Compile Include="FileHandler\TourLocationHandler.cs" />
-    <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="FileHandler\TourPresenceHandler.cs" />
     <Compile Include="FileHandler\TourReservationHandler.cs" />
     <Compile Include="FileHandler\TourStartingTimeHandler.cs" />
@@ -139,8 +140,50 @@
     <Compile Include="FileHandler\VoucherHandler.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
+    <Compile Include="Repositories\Implementations\NotificationRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourStartingTimeRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourEvaluationImageRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourEvaluationRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourImageRepository.cs" />
+    <Compile Include="Repositories\Implementations\KeyPointRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourLocationRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourReservationRepository.cs" />
+    <Compile Include="Repositories\Implementations\UserRepository.cs" />
+    <Compile Include="Repositories\Implementations\VoucherRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IKeyPointRepository.cs" />
+    <Compile Include="Repositories\Intefaces\INotificationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourEvaluationImageRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourEvaluationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourImageRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourLocationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourReservationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourStartingTimeRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IUserRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IVoucherRepository.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
+    <Compile Include="Services\Implementations\KeyPointService.cs" />
+    <Compile Include="Services\Implementations\NotificationService.cs" />
+    <Compile Include="Services\Implementations\TourEvaluationImageService.cs" />
+    <Compile Include="Services\Implementations\TourEvaluationService.cs" />
+    <Compile Include="Services\Implementations\TourLocationService.cs" />
+    <Compile Include="Services\Implementations\TourReservationService.cs" />
+    <Compile Include="Services\Implementations\TourService.cs" />
+    <Compile Include="Services\Implementations\TourStartingTimeService.cs" />
+    <Compile Include="Services\Implementations\UserService.cs" />
+    <Compile Include="Services\Implementations\VoucherService.cs" />
+    <Compile Include="Services\Interfaces\IKeyPointService.cs" />
+    <Compile Include="Services\Interfaces\INotificationService.cs" />
+    <Compile Include="Services\Interfaces\ITourEvaluationImageService.cs" />
+    <Compile Include="Services\Interfaces\ITourEvaluationService.cs" />
+    <Compile Include="Services\Interfaces\ITourLocationService.cs" />
+    <Compile Include="Services\Interfaces\ITourReservationService.cs" />
+    <Compile Include="Services\Interfaces\ITourService.cs" />
+    <Compile Include="Services\Interfaces\ITourStartingTimeService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\Interfaces\IVoucherService.cs" />
     <Compile Include="View\AccommodationOwnerReview.xaml.cs">
       <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
     </Compile>
@@ -156,6 +199,7 @@
     <Compile Include="View\AddPhotosToAccommodationView.xaml.cs">
       <DependentUpon>AddPhotosToAccommodationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CustomMessageBoxes\CustomMessageBox.cs" />
     <Compile Include="View\EnterDate.xaml.cs">
       <DependentUpon>EnterDate.xaml</DependentUpon>
     </Compile>
@@ -182,6 +226,9 @@
     </Compile>
     <Compile Include="View\GuideView\ExamineGradeWindow.xaml.cs">
       <DependentUpon>ExamineGradeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuestGradesForOwnerView.xaml.cs">
+      <DependentUpon>GuestGradesForOwnerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\GuestListView.xaml.cs">
       <DependentUpon>GuestListView.xaml</DependentUpon>
@@ -222,8 +269,17 @@
     <Compile Include="View\MonitoringActiveToursView.xaml.cs">
       <DependentUpon>MonitoringActiveToursView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NotGradedView.xaml.cs">
       <DependentUpon>NotGradedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersApprovingDenyingRequestView.xaml.cs">
+      <DependentUpon>OwnersApprovingDenyingRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersRequestView.xaml.cs">
+      <DependentUpon>OwnersRequestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnerView.xaml.cs">
       <DependentUpon>OwnerView.xaml</DependentUpon>
@@ -249,8 +305,8 @@
     <Compile Include="View\SecondGuestProfileView.xaml.cs">
       <DependentUpon>SecondGuestProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SecondGuestView.xaml.cs">
-      <DependentUpon>SecondGuestView.xaml</DependentUpon>
+    <Compile Include="View\SecondGuestSearchAndReservationTours.xaml.cs">
+      <DependentUpon>SecondGuestSearchAndReservationTours.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
@@ -329,6 +385,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\GuestGradesForOwnerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\GuestListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -381,7 +441,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\NotGradedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersApprovingDenyingRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -417,7 +489,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SecondGuestView.xaml">
+    <Page Include="View\SecondGuestSearchAndReservationTours.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -577,6 +649,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\ToursImages\logOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\star.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

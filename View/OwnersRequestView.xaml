@@ -1,0 +1,24 @@
+﻿<Window x:Class="BookingProject.View.OwnersRequestView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View"
+        mc:Ignorable="d"
+        Title="OwnersRequestView" Height="600" Width="356">
+    <Grid>
+        <Button Name="btn5" Width="50" Height="30" Click="Button_Click_Menu" Margin="250,-531,-41,0" >
+            <Image Source="..\Resources/Images/menu.png"/>
+        </Button>
+        <DataGrid ItemsSource ="{Binding Path=Requests, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedMovingRequest}"
+                      FontSize="10" Margin="16,80,16,350" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Accommodation" Width="85" Binding="{Binding AccommodationReservation.Accommodation.AccommodationName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Guest Name" Width="70" Binding="{Binding AccommodationReservation.Guest.Username}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Wanted Start" Width="75" Binding="{Binding NewArrivalDay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Wanted End" Width="100" Binding="{Binding NewDeparuteDay}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button  Click="Button_Click_View" Content="View" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
+    </Grid>
+</Window>

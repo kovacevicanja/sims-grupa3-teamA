@@ -96,7 +96,7 @@ namespace BookingProject.Controller
 
         public void InstanceTourBind()
         {
-            _tourController.Load();
+            //_tourController.Load();
             foreach (TourTimeInstance tourTimeInstance in _tourInstances)
             {
                 Tour tour = _tourController.GetByID(tourTimeInstance.TourId);

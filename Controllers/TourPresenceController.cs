@@ -15,15 +15,11 @@ namespace BookingProject.Controller
     public class TourPresenceController : ISubject
     {
         private readonly List<IObserver> observers;
-
         private readonly TourPresenceHandler _tourPresenceHandler;
-
         public NotificationController _notificationController { get; set; }
-
         private List<TourPresence> _presences;
         private TourTimeInstanceHandler _timeInstanceHandler { get; set; }
         public TourController TourController {get; set;}
-
         public TourPresenceController()
         {
             _tourPresenceHandler = new TourPresenceHandler();
@@ -40,7 +36,6 @@ namespace BookingProject.Controller
             _presences = _tourPresenceHandler.Load();
         }
 
-
         private int GenerateId()
         {
             int maxId = 0;
@@ -53,7 +48,6 @@ namespace BookingProject.Controller
             }
             return maxId + 1;
         }
-
         public void Create(TourPresence presence)
         {
             presence.Id = GenerateId();

@@ -68,7 +68,6 @@ namespace BookingProject.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
         private void Button_Click_Kreiraj(object sender, RoutedEventArgs e)
         {
             TourDateTime startingDate = new TourDateTime();
@@ -100,9 +99,7 @@ namespace BookingProject.View
             }
         }
 
-
         private readonly string[] _validatedProperties = { "StartingDate" };
-
 
         public bool IsValid
         {
@@ -130,12 +127,5 @@ namespace BookingProject.View
             else
                 CreateButton.IsEnabled = false;
         }
-
-
-
-
-
-
     }
-
 }

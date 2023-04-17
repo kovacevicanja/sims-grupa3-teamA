@@ -39,6 +39,7 @@ namespace BookingProject.Controller
         {
             _accommodationReservations = _accommodationReservationHandler.Load();
             AccommodationReservationBind();
+            ReservationUserBind();
         }
 
         public List<AccommodationReservation> GetAll()
@@ -76,9 +77,30 @@ namespace BookingProject.Controller
             }
         }
 
+        public void ReservationUserBind()
+        {
+            
+            foreach (AccommodationReservation reservation in _accommodationReservations)
+            {
+                User user = _userController.GetByID(reservation.Guest.Id);
+                reservation.Guest = user;
+            }
+        }
+
         public AccommodationReservation GetByID(int id)
         {
             return _accommodationReservations.Find(ar => ar.Id == id);
+        }
+        public void Update(AccommodationReservation reservation)
+        {
+            AccommodationReservation oldReservation = GetByID(reservation.Id);
+            if (oldReservation == null)
+            {
+                return;
+            }
+            oldReservation.InitialDate = reservation.InitialDate;
+            oldReservation.EndDate = reservation.EndDate;
+            Save();
         }
 
         private bool IsReservationAvailable(AccommodationReservation accommodationReservation)
@@ -86,11 +108,15 @@ namespace BookingProject.Controller
             return accommodationReservation.EndDate <= DateTime.Now && accommodationReservation.EndDate.AddDays(5) >= DateTime.Now;
         }
 
-        public List<AccommodationReservation> GetAllNotGradedReservations()
+        public List<AccommodationReservation> GetAllNotGradedReservations(int ownerId)
         {
             List<AccommodationReservation> reservations = new List<AccommodationReservation>();
             foreach (AccommodationReservation reservation in _accommodationReservations)
             {
+                if (reservation.Accommodation.Owner.Id != ownerId)
+                {
+                    continue;
+                }
                 if (IsReservationAvailable(reservation) == false)
                 {
                     continue;
@@ -319,6 +345,32 @@ namespace BookingProject.Controller
 
             return false;
         }
+        public bool DatesOverlaps(DateTime start1, DateTime end1, DateTime start2, DateTime end2)
+        {
+            return start1 < end2 && end1 > start2;
+        }
+
+        private void RemoveCurrentReservation(List<AccommodationReservation> allReservations, RequestAccommodationReservation request)
+        {
+            allReservations.Remove(allReservations.Single(res => res.Id == request.AccommodationReservation.Id));
+        }
+
+
+        public bool IsAvailableToMove(RequestAccommodationReservation request)
+        {
+            List<AccommodationReservation> allReservations = _accommodationReservations.ToList();
+            RemoveCurrentReservation(allReservations, request);
+            foreach(var reservation in allReservations)
+            {
+                if (DatesOverlaps(reservation.InitialDate, reservation.EndDate, request.NewArrivalDay, request.NewDeparuteDay))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        
 
         public void DeleteReservationFromCSV(AccommodationReservation accommmodationReservation)
         {

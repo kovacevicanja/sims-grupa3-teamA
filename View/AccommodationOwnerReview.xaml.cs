@@ -45,7 +45,6 @@ namespace BookingProject.View
         {
             InitializeComponent();
             this.DataContext = this;
-            this.DataContext = this;
             AccommodationOwnerGradeController = new AccommodationOwnerGradeController();
             AccommodationImageController = new AccommodationImageController();
             AccommodationGuestImageController = new AccommodationGuestImageController();
@@ -165,6 +164,7 @@ namespace BookingProject.View
             grade.OwnerCorectness = chosenCorectness;
             grade.AdditionalComment = Comment;
             grade.Reccommendation = Reccommendation;
+            grade.User.Id = UserController.GetLoggedUser().Id;
 
             
             AccommodationOwnerGradeController.Create(grade);

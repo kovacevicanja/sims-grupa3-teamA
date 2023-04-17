@@ -9,7 +9,7 @@
     <Grid>
         <Button Content="My attended tours" HorizontalAlignment="Left" Height="50" Margin="600,30,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MyAttendedTours"/>
         <Button Content="My reservations" HorizontalAlignment="Left" Height="50" Margin="410,30,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MyReservations"/>
-        <Button Content="Second Guest View" HorizontalAlignment="Left" Height="50" Margin="600,107,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_SecondGuestView"/>
+        <Button Content="Search and reservation of tours" HorizontalAlignment="Left" Height="50" Margin="600,107,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_SerachAndReservationTours"/>
         <Button Content="My vouchers" HorizontalAlignment="Left" Height="50" Margin="600,187,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MyVouchers"/>
         <Button Content="Log out" HorizontalAlignment="Left" Height="50" Margin="600,350,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_LogOut"/>
         <Button Content="Monitoring active tours" HorizontalAlignment="Left" Height="50" Margin="600,274,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MonitoringActiveTours"/>

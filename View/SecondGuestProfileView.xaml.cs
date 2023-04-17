@@ -37,7 +37,7 @@ namespace BookingProject.View
             this.DataContext = this;
 
             this.GuestId = idGuest;
-            //Guest2Controller = new Guest2Controller();
+
             UserController = new UserController();
             User = new User();
             Tour = new Tour();
@@ -56,10 +56,10 @@ namespace BookingProject.View
             secondGuestMyReservations.Show();
         }
 
-        private void Button_Click_SecondGuestView(object sender, RoutedEventArgs e)
+        private void Button_Click_SerachAndReservationTours(object sender, RoutedEventArgs e)
         {
-            SecondGuestView secondGuestView = new SecondGuestView(GuestId);
-            secondGuestView.Show();
+            SecondGuestSerachAndReservationTours secondGuestSerachAndReservationTours = new SecondGuestSerachAndReservationTours(GuestId);
+            secondGuestSerachAndReservationTours.Show();
         }
 
         private void Button_Click_MyVouchers (object sender, RoutedEventArgs e)
@@ -78,7 +78,6 @@ namespace BookingProject.View
         }
         private void Button_Click_MonitoringActiveTours(object sender, RoutedEventArgs e)
         {
-            //prolazim kroz listu trenutno aktivnih tura
             List<TourReservation> tourReservations = new List<TourReservation>();
             tourReservations = TourReservationHandler.Load();
             int flag = 0;
@@ -90,9 +89,6 @@ namespace BookingProject.View
                 if (GuestId == tr.Guest.Id && tr.ReservationStartingTime.Date == DateTime.Now.Date)
                 {
                     flag = 1;
-                    //MonitoringActiveToursView monitoringActiveTours = new MonitoringActiveToursView(tr);
-                    //monitoringActiveTours.ShowDialog();
-                    //prenosim rez ture koja je trenutno aktivna za tog gosta
                     activeTours.Add(tr);
                     activeToursIds.Add(tr.Tour.Id);
                 }

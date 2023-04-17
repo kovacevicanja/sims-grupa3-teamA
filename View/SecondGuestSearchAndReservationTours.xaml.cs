@@ -27,7 +27,7 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for SecondGuestView.xaml
     /// </summary>
-    public partial class SecondGuestView : Window
+    public partial class SecondGuestSerachAndReservationTours : Window
     {
         private TourController _tourController;
         private ObservableCollection<Tour> _tours;
@@ -39,19 +39,14 @@ namespace BookingProject.View
         public Tour ChosenTour { get; set; }
         public int GuestId { get; set; }
         public User User { get; set; }  
-
-        public SecondGuestView(int guestId)
+        public SecondGuestSerachAndReservationTours(int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
             _tourController = new TourController();
             _tours = new ObservableCollection<Tour>(_tourController.GetAll());
-            TourDataGrid.ItemsSource = _tours;
 
-            //Guest = new Guest2();
-            //Guest = guest;
-            //Guest.Id = guestId;
-            //Guest = Guest2Controller.GetByID(guestId);
+            TourDataGrid.ItemsSource = _tours;
             GuestId = guestId;
             User = new User();
 
