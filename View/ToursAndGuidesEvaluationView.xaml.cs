@@ -29,8 +29,6 @@ namespace BookingProject.View
     public partial class ToursAndGuidesEvaluationView : Window
     {
         public TourEvaluationController TourEvaluationController { get; set; }
-        public ObservableCollection<TourEvaluation> TourEvaluation{ get; set; }
-        public object SelectedObject { get; set; }
         public ObservableCollection<int> GuideKnowledgeOption { get; set; }
         public int ChosenGuideKnowledge { get; set; }
         public ObservableCollection<int> GuideLanguageOption { get; set; }
@@ -69,7 +67,6 @@ namespace BookingProject.View
                 TourInterestignessOption.Add(i);
             }
         }
-
         private int _guideKnowledge;
         public int GuideKnowledge
         {
@@ -83,7 +80,6 @@ namespace BookingProject.View
                 }
             }
         }
-
         private int _guideLanguage;
         public int GuideLanguage
         {
@@ -97,7 +93,6 @@ namespace BookingProject.View
                 }
             }
         }
-
         private int _tourInterestigness;
         public int TourInterestigness
         {
@@ -111,7 +106,6 @@ namespace BookingProject.View
                 }
             }
         }
-
         private string _additionalComment;
         public string AdditionalComment
         {
@@ -125,7 +119,6 @@ namespace BookingProject.View
                 }
             }
         }
-
         private string _imageUrl;
         public string ImageUrl
         {
@@ -139,7 +132,6 @@ namespace BookingProject.View
                 }
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

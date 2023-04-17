@@ -227,8 +227,8 @@
     <Compile Include="View\SecondGuestProfileView.xaml.cs">
       <DependentUpon>SecondGuestProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SecondGuestView.xaml.cs">
-      <DependentUpon>SecondGuestView.xaml</DependentUpon>
+    <Compile Include="View\SecondGuestSearchAndReservationTours.xaml.cs">
+      <DependentUpon>SecondGuestSearchAndReservationTours.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
@@ -371,7 +371,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SecondGuestView.xaml">
+    <Page Include="View\SecondGuestSearchAndReservationTours.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

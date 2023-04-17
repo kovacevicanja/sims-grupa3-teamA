@@ -39,14 +39,11 @@ namespace BookingProject.View
                 }
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         public SignInForm()
         {
             InitializeComponent();
@@ -57,7 +54,6 @@ namespace BookingProject.View
             _tourPresenceController = app.TourPresenceController;
             NotificationController = new NotificationController();
         }
-
         private void SignIn(object sender, RoutedEventArgs e)
         {
             Model.User user = _controller.GetByUsername(Username);
@@ -139,7 +135,6 @@ namespace BookingProject.View
                 MessageBox.Show("Wrong username!");
             }
         }
-
         public void ShowCustomMessageBoxNotification(string messageText, Model.User userGuest)
         {
             List<Notification> notifications = _tourPresenceController.GetGuestNotifications(userGuest);

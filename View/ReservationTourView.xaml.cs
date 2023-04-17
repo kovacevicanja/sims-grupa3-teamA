@@ -30,25 +30,23 @@ namespace BookingProject.View
         public TourDateTime SelectedDate { get; set; }
         private TourReservationController _tourReservationController;
         private ObservableCollection<TourReservation> _tourReservations;
-        public Tour ChoosenTour { get; set; }
+        public Tour ChosenTour { get; set; }
         public int GuestId { get; set; }
         public User User { get; set; }
         public UserController UserController { get; set; }
 
-        public ReservationTourView(Tour choosenTour, int guestId)
+        public ReservationTourView(Tour chosenTour, int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
 
-            ChoosenTour = choosenTour;
+            ChosenTour = chosenTour;
             _tourReservationController = new TourReservationController();
             _tourReservations = new ObservableCollection<TourReservation>(_tourReservationController.GetAll());
             GuestId = guestId;
-            //Guest = Guest2Controller.GetByID(GuestId);
             UserController = new UserController();
             User = new User();
             User.Id = GuestId;
-            //User = UserController.GetByID(GuestId);
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
@@ -57,7 +55,7 @@ namespace BookingProject.View
         }
         private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
         {
-            _tourReservationController.TryToBook(ChoosenTour, EnteredGuests, SelectedDate.StartingDateTime, User);
+            _tourReservationController.TryToBook(ChosenTour, EnteredGuests, SelectedDate.StartingDateTime, User);
         }
     }
 }

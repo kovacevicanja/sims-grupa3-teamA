@@ -43,20 +43,7 @@ namespace BookingProject.Controller
         {
             _reservations = _reservationHandler.Load();
             TourReservationBind();
-            //GuestReservationBind();
-            //VoucherReservationBind();
         }
-        /*public void VoucherReservationBind()
-        {
-            List <Voucher> _vouchers = new List<Voucher>();
-            _vouchers = VoucherController.GetAll();
-            TourReservation = new TourReservation();
-            foreach (Voucher voucher in _vouchers)
-            {
-                TourReservation tourReservation = GetByID(voucher.TourReservation.Id);
-                voucher.TourReservation = tourReservation;
-            }
-        }*/
 
         public List<TourReservation> GetAll()
         {
@@ -67,7 +54,6 @@ namespace BookingProject.Controller
         {
             return _reservations.Find(date => date.Id == id);
         }
-
         public void NotifyObservers()
         {
             foreach (var observer in observers)
@@ -75,7 +61,6 @@ namespace BookingProject.Controller
                 observer.Update();
             }
         }
-
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
@@ -113,17 +98,6 @@ namespace BookingProject.Controller
             }
             NotifyObservers();
         }
-
-        /*public void GuestReservationBind()
-        {
-            _tourController.Load();
-            foreach (TourReservation reservation in _reservations)
-            {
-                Guest2 guest = _guest2Controller.GetByID(reservation.Guest.Id);
-                reservation.Guest = guest;
-            }
-        }*/
-
         public List<TourReservation> GetUserReservations(int guestId)
         {
             List<TourReservation> guestsTours = new List<TourReservation>();
@@ -136,14 +110,13 @@ namespace BookingProject.Controller
             }
             return guestsTours;
         }
-
         public void SaveReservationToFile(Tour choosenTour, string numberOfGuests, DateTime selectedDate, User guest)
         {
             TourReservation reservation = new TourReservation(GenerateId(), choosenTour, choosenTour.MaxGuests - int.Parse(numberOfGuests), selectedDate, guest);
 
             guest.MyTours = GetUserReservations(guest.Id);
             
-            ReservationGuestBind(guest.Id); //ovde bindujem
+            ReservationGuestBind(guest.Id); 
             guest.MyTours.Add(reservation);
             _reservations.Add(reservation);
             _reservationHandler.Save(_reservations);

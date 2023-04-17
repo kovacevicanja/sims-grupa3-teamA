@@ -16,11 +16,6 @@ namespace BookingProject.View
     /// </summary>
     public partial class SecondGuestMyReservations : Window, INotifyPropertyChanged
     {
-        private List<Object> tourGuestsGrid;
-        private readonly TourReservationHandler _reservationHandler;
-        private ObservableCollection<TourReservation> _reservations;
-        public TourReservationController TourReservationController { get; set; }
-        private ObservableCollection<TourReservation> tourCollection = new ObservableCollection<TourReservation>(); 
         private TourReservationController _tourReservationController; 
         private ObservableCollection<TourReservation> _toursReservation; 
         public int GuestId { get; set; }
@@ -28,11 +23,7 @@ namespace BookingProject.View
         {
             InitializeComponent();
             this.DataContext = this;
-            _reservationHandler = new TourReservationHandler();
             GuestId = guestId;
-            TourReservationController = new TourReservationController();
-            _reservations = new ObservableCollection<TourReservation>(TourReservationController.GetAll());
-            tourGuestsGrid = new List<Object>();
             _tourReservationController = new TourReservationController();
             _toursReservation = new ObservableCollection<TourReservation>(_tourReservationController.GetUserReservations(guestId));
             MyToursDataGrid.ItemsSource = _toursReservation;

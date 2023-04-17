@@ -27,10 +27,7 @@ namespace BookingProject.View
     /// </summary>
     public partial class ActiveToursView : Window
     {
-        public List <TourReservation> ActiveTours { get; set; }
         public ObservableCollection<Tour> ActiveToursCollection { get; set; }
-        public TourReservationController TourReservationController { get; set; }
-        public TourHandler TourHandler { get; set; }
         public TourController TourController { get; set; }
         public List<Tour> Tours { get; set; }
         public List<int> ActiveToursIds { get; set; }
@@ -41,7 +38,6 @@ namespace BookingProject.View
             this.DataContext = this;
 
             ActiveToursIds = activeToursIds;
-            TourHandler = new TourHandler();
             List<Tour> activeTours = new List<Tour>();
 
             TourController = new TourController();
@@ -172,4 +168,3 @@ namespace BookingProject.View
         }
     }
 }
-

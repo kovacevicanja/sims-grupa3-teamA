@@ -15,19 +15,12 @@ namespace BookingProject.Controller
     public class TourController : ISubject
     {
         private readonly List<IObserver> observers;
-
         private readonly TourHandler _tourHandler;
-
         private List<Tour> _tours;
-
         private TourLocationController _locationController;
-
         private TourImageController _tourImageController;
-
         private KeyPointController _keyPointController;
-
         private TourStartingTimeController _startingDateController;
-
         public TourController()
         {
             _tourHandler = new TourHandler();
@@ -48,7 +41,6 @@ namespace BookingProject.Controller
             TourDateBind();
             TourKeyPointBind();
         }
-
         private int GenerateId()
         {
             int maxId = 0;
@@ -61,35 +53,29 @@ namespace BookingProject.Controller
             }
             return maxId + 1;
         }
-
         public void Create(Tour tour)
         {
             tour.Id = GenerateId();
             _tours.Add(tour);
             NotifyObservers();
         }
-
         public void Save()
         {
             _tourHandler.Save(_tours);
             NotifyObservers();
         }
-
         public Tour GetLastTour()
         {
             return _tours.Last();
         }
-
         public List<Tour> GetAll()
         {
             return _tours;
         }
-
         public Tour GetByID(int id)
         {
             return _tours.Find(tour => tour.Id == id);
         }
-
         public void TourLocationBind()
         {
             _locationController.Load();
@@ -136,7 +122,6 @@ namespace BookingProject.Controller
             KeyPointHandler keyPointHandler = new KeyPointHandler();
             return keyPointHandler.Load();
         }
-
         public void AddKeyPointToTour(Tour tour, List<KeyPoint> keyPoints)
         {
             foreach (KeyPoint keyPoint in keyPoints)
@@ -147,7 +132,6 @@ namespace BookingProject.Controller
                 }
             }
         }
-
         public void BindTourKeyPoint(List<KeyPoint> keyPoints)
         {
             foreach (Tour tour in _tours)
@@ -156,7 +140,6 @@ namespace BookingProject.Controller
             }
             NotifyObservers();
         }
-
         public void TourKeyPointBind()
         {
             List<KeyPoint> keyPoints = LoadKeyPoints();
@@ -203,7 +186,6 @@ namespace BookingProject.Controller
         {
             observers.Add(observer);
         }
-
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);
@@ -217,26 +199,21 @@ namespace BookingProject.Controller
                 && RequestedNumOfGuests(tour, numOfGuests)) { return true; }
             else { return false; } 
         }
-
         public bool RequestedCity (Tour tour, string city)
         {
             if (city.Equals("") || tour.Location.City.ToLower().Contains(city.ToLower())) { return true; }
             else { return false; }
         }
-
         public bool RequestedCountry(Tour tour, string country)
         {
             if (country.Equals("") || tour.Location.Country.ToLower().Contains(country.ToLower())) { return true; }
             else { return false; }
         }
-
-
         public bool RequestedDuration(Tour tour, string duration)
         {
             if (duration.Equals("") || double.Parse(duration) == tour.DurationInHours) { return true; }
             else { return false; }
         }
-
         public bool RequestedLanguage(Tour tour, string choosenLanguage)
         {
             string languageEnum = tour.Language.ToString().ToLower();
@@ -244,13 +221,11 @@ namespace BookingProject.Controller
             if (choosenLanguage.Equals("") || languageEnum.Equals(choosenLanguage.ToLower())) { return true; }
             else { return false; }
         }
-
         public bool RequestedNumOfGuests(Tour tour, string numOfGuests)
         {
             if (numOfGuests.Equals("") || int.Parse(numOfGuests) <= tour.MaxGuests) { return true; }
             else { return false; }
         }
-
         public ObservableCollection<Tour> Search(ObservableCollection<Tour> tourView, string city, string country, string duration, string choosenLanguage, string numOfGuests)
         {
             tourView.Clear();
@@ -264,7 +239,6 @@ namespace BookingProject.Controller
             }
             return tourView;
         }
-
         public void ShowAll(ObservableCollection<Tour> tourView)
         {
             tourView.Clear();

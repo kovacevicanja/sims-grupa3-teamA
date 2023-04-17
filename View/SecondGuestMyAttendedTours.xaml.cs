@@ -31,12 +31,6 @@ namespace BookingProject.View
     {
         public Tour ChosenTour { get; set; } //
         public User Guest;                     
-        private List<Object> tourGuestsGrid;
-        private readonly TourReservationHandler _reservationHandler;
-        private ObservableCollection<TourReservation> _reservations;
-        public TourReservationController TourReservationController { get; set; }
-        private ObservableCollection<TourReservation> tourCollection = new ObservableCollection<TourReservation>(); 
-        private TourReservationController _tourReservationController; 
         private ObservableCollection<Tour> _toursReservation; 
         private TourPresenceController _tourPresenceController { get; set; }
         public UserController UserController { get; set; }
@@ -46,16 +40,11 @@ namespace BookingProject.View
             InitializeComponent();
             this.DataContext = this;
 
-            _reservationHandler = new TourReservationHandler();
             Guest = new User();
             UserController = new UserController();
             GuestId = guestId;
             Guest = UserController.GetByID(GuestId);
             Guest.MyTours = UserController.GetByID(GuestId).MyTours;
-            TourReservationController = new TourReservationController();
-            _reservations = new ObservableCollection<TourReservation>(TourReservationController.GetAll());
-            tourGuestsGrid = new List<Object>();
-            _tourReservationController = new TourReservationController();
             _tourPresenceController = new TourPresenceController();
             _toursReservation = new ObservableCollection<Tour>(_tourPresenceController.FindAttendedTours(Guest));
             MyToursDataGrid.ItemsSource = _toursReservation;

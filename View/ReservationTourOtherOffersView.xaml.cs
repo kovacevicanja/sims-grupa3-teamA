@@ -25,15 +25,15 @@ namespace BookingProject.View
     {
         private ObservableCollection<Tour> _tours;
         private TourReservationController _tourReservationController;
-        public Tour ChoosenTour { get; set; } //ovo je stara odabrana tura
+        public Tour ChosenTour { get; set; } 
         public int GuestId { get; set; }
-        public ReservationTourOtherOffersView(Tour choosenTour, DateTime selectedDate, int guestId)
+        public ReservationTourOtherOffersView(Tour chosenTour, DateTime selectedDate, int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
-            ChoosenTour = choosenTour;
+            ChosenTour = chosenTour;
             _tourReservationController = new TourReservationController();
-            _tours = new ObservableCollection<Tour>(_tourReservationController.GetFilteredTours(choosenTour.Location, selectedDate));
+            _tours = new ObservableCollection<Tour>(_tourReservationController.GetFilteredTours(chosenTour.Location, selectedDate));
             TourDataGrid.ItemsSource = _tours;
             GuestId = guestId;
         }
@@ -44,7 +44,7 @@ namespace BookingProject.View
 
         private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
         {
-            ReservationTourView reservationTourView = new ReservationTourView(ChoosenTour, GuestId);
+            ReservationTourView reservationTourView = new ReservationTourView(ChosenTour, GuestId);
             reservationTourView.Show();
 
         }
