@@ -1,5 +1,7 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.FileHandler;
 using BookingProject.Model.Images;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -11,93 +13,32 @@ namespace BookingProject.Controller
 {
     public class AccommodationImageController
     {
-        private readonly List<IObserver> observers;
-
-        private readonly AccommodationImageHandler _imageHandler;
-
-        private List<AccommodationImage> _images;
-
+        private readonly IAccommodationImageService _imageService;
         public AccommodationImageController()
         {
-            _imageHandler = new AccommodationImageHandler();
-            _images = new List<AccommodationImage>();
-            Load();
+            _imageService= Injector.CreateInstance<IAccommodationImageService>();
         }
-
-        public void Load()
-        {
-            _images = _imageHandler.Load();
-        }
-
-        public List<AccommodationImage> GetAll()
-        {
-            return _images;
-        }
-        private int GenerateId()
-        {
-            int maxId = 0;
-            foreach (AccommodationImage image in _images)
-            {
-                if (image.Id > maxId)
-                {
-                    maxId = image.Id;
-                }
-            }
-            return maxId + 1;
-        }
-
         public void Create(AccommodationImage image)
         {
-            image.Id = GenerateId();
-            _images.Add(image);
+            _imageService.Create(image);
         }
-
-
-        public void LinkToAccommodation(int id)
+        public List<AccommodationImage> GetAll()
         {
-
-            foreach (AccommodationImage image in _images)
-            {
-                if (image.AccommodationId == -1)
-                {
-                    image.AccommodationId = id;
-                }
-
-            }
+            return _imageService.GetAll();
         }
-
-        public void DeleteUnused()
-        {
-            _images.RemoveAll(i => i.AccommodationId == -1);
-
-        }
-
-        public void SaveImage()
-        {
-            _imageHandler.Save(_images);
-        }
-
         public AccommodationImage GetByID(int id)
         {
-            return _images.Find(image => image.Id == id);
+            return _imageService.GetByID(id);
+        }
+        public void LinkToAccommodation(int id)
+        {
+            _imageService.LinkToAccommodation(id);
+        }
+        public void DeleteUnused()
+        {
+            _imageService.DeleteUnused();
         }
 
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
 
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
-        }
     }
 }

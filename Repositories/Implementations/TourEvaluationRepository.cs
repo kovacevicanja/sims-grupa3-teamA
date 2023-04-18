@@ -18,12 +18,14 @@ namespace BookingProject.Services
     public class TourEvaluationRepository : ITourEvaluationRepository
     {
         private const string FilePath = "../../Resources/Data/tourEvaluation.csv";
-        private readonly Serializer<TourEvaluation> _serializer;
+        private Serializer<TourEvaluation> _serializer;
         public List<TourEvaluation> _tourEvaluations;
         private List<TourEvaluationImage> _images;
         private TourRepository _tourRepository;
 
-        public TourEvaluationRepository()
+        public TourEvaluationRepository() { }
+
+        public void Initialize()
         {
             _serializer = new Serializer<TourEvaluation>();
             _images = new List<TourEvaluationImage>();

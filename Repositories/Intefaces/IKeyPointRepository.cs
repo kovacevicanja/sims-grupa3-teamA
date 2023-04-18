@@ -10,9 +10,8 @@ namespace BookingProject.Repositories.Intefaces
     public interface IKeyPointRepository
     {
        void Create(KeyPoint keyPoint);
-
        List<KeyPoint> GetAll();
-
        KeyPoint GetByID(int id);
+       void Initialize();
     }
 }

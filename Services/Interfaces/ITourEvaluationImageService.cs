@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingProject.Model.Images;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace BookingProject.Services.Interfaces
 {
     public interface ITourEvaluationImageService 
     {
+        void Create(TourEvaluationImage tourEvaluationImage);
+        List<TourEvaluationImage> GetAll();
+        TourEvaluationImage GetByID(int id);
     }
 }

@@ -15,16 +15,17 @@ namespace BookingProject.Repositories.Implementations
     {
         private const string FilePath = "../../Resources/Data/tourStartingTime.csv";
 
-        private readonly Serializer<TourDateTime> _serializer;
+        private Serializer<TourDateTime> _serializer;
 
         public List<TourDateTime> _dates;
 
-        public TourStartingTimeRepository()
+        public TourStartingTimeRepository() { }
+       
+        public void Initialize()
         {
             _serializer = new Serializer<TourDateTime>();
             _dates = Load();
         }
-
         public List<TourDateTime> Load()
         {
             return _serializer.FromCSV(FilePath);

@@ -15,11 +15,13 @@ namespace BookingProject.Repositories.Implementations
     {
         private const string FilePath = "../../Resources/Data/tourLocations.csv";
 
-        private readonly Serializer<Location> _serializer;
+        private Serializer<Location> _serializer;
 
         public List<Location> _locations;
 
-        public TourLocationRepository()
+        public TourLocationRepository() { }
+
+        public void Initialize()
         {
             _serializer = new Serializer<Location>();
             _locations = Load();

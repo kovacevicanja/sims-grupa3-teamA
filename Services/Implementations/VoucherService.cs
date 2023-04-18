@@ -1,4 +1,7 @@
-﻿using BookingProject.Domain;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain;
+using BookingProject.Repositories;
+using BookingProject.Repositories.Intefaces;
 using BookingProject.Repository;
 using BookingProject.Services.Interfaces;
 using System;
@@ -11,36 +14,28 @@ namespace BookingProject.Services
 {
     public class VoucherService : IVoucherService
     {
-        private List<Voucher> _vouchers;
-        private VoucherRepository _voucherRepository;
-        public VoucherService() 
+        private IVoucherRepository _voucherRepository;
+        public VoucherService() { }
+        public void Initialize()
         {
-            _vouchers = new List<Voucher>();
-            _voucherRepository = new VoucherRepository();
-            Load();
+            _voucherRepository = Injector.CreateInstance<VoucherRepository>();
         }
-        
-        public void Load()
-        {
-            _vouchers = _voucherRepository.Load();
-        }
-
         public void DeleteExpiredVouchers()
         {
-            List<Voucher> copyList = new List<Voucher>(_vouchers);
+            List<Voucher> copyList = new List<Voucher>(_voucherRepository.GetAll());
             foreach (Voucher voucher in copyList)
             {
                 if (voucher.EndDate <= DateTime.Now)
                 {
-                    _vouchers.Remove(voucher);
+                    _voucherRepository.GetAll().Remove(voucher);
                 }
             }
-            _voucherRepository.Save();
+            //_voucherRepository.Save();
         }
         public List<Voucher> GetUserVouhers(int guestId)
         {
             List<Voucher> guestsVouchers = new List<Voucher>();
-            foreach (Voucher voucher in _vouchers)
+            foreach (Voucher voucher in _voucherRepository.GetAll())
             {
                 if (voucher.Guest.Id == guestId && voucher.State.ToString() != "USED")
                 {
@@ -48,6 +43,21 @@ namespace BookingProject.Services
                 }
             }
             return guestsVouchers;
+        }
+
+        public void Create(Voucher voucher)
+        {
+            _voucherRepository.Create(voucher);
+        }
+
+        public List<Voucher> GetAll()
+        {
+            return _voucherRepository.GetAll();
+        }
+
+        public Voucher GetByID(int id)
+        {
+            return _voucherRepository.GetByID(id);
         }
     }
 }

@@ -20,17 +20,17 @@ namespace BookingProject.Repositories
     {
         private const string FilePath = "../../Resources/Data/tourEvaluationImages.csv";
 
-        private readonly Serializer<TourEvaluationImage> _serializer;
+        private Serializer<TourEvaluationImage> _serializer;
 
         public List<TourEvaluationImage> _images;
 
-        public TourEvaluationImageRepository()
+        public TourEvaluationImageRepository() { }
+        public void Initialize()
         {
             _serializer = new Serializer<TourEvaluationImage>();
             _images = Load();
             TourEvaluationBind();
         }
-
         public List<TourEvaluationImage> Load()
         {
             return _serializer.FromCSV(FilePath);

@@ -26,6 +26,13 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationRepository), new TourEvaluationRepository() },
             { typeof(IKeyPointRepository), new KeyPointRepository() },
             { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(IGuestGradeRepository), new GuestGradeRepository() },
+            { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
+            { typeof(IAccommodationImageRepository), new AccommodationImageRepository() },
+            { typeof(IAccommodationLocationRepository), new AccommodationLocationRepository() },
+            { typeof(INotificationRepository), new NotificationRepository() },
+            { typeof(ITourPresenceRepository), new TourPresenceRepository() },
+            { typeof(ITourTimeInstanceRepository), new TourPresenceRepository() },
             { typeof(IAccommodationRepository), new AccommodationRepository() },
             { typeof(IAccommodationDateRepository), new AccommodationDateRepository() },
             { typeof(IAccommodationGuestImageRepository), new AccommodationGuestImageRepository() },
@@ -42,18 +49,41 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationImageService), new TourEvaluationImageService() },
             { typeof(ITourEvaluationService), new TourEvaluationService() },
             { typeof(IKeyPointService), new KeyPointService() },
+            { typeof(ITourStartingTimeService), new TourStartingTimeService() },
+            { typeof(INotificationService), new NotificationService() },
             { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(IGuestGradeService), new GuestGradeService() },
+            { typeof(IAccommodationReservationService), new AccommodationReservationService() },
+            { typeof(IAccommodationImageService), new AccommodationImageService() },
+            { typeof(INotificationService), new NotificationService() },
+            { typeof(IAccommodationLocationService), new AccommodationLocationService() },
+            { typeof(ITourPresenceService), new TourPresenceService() },
+            { typeof(ITourTimeInstanceService), new TourTimeInstanceService() },
             { typeof(IAccommodationService), new AccommodationService() },
             { typeof(IAccommodationDateService), new AccommodationDateService() },
             { typeof(IAccommodationGuestImageService), new AccommodationGuestImageService() },
             { typeof(IAccommodationOwnerGradeService), new AccommodationOwnerGradeService() },
             { typeof(IRequestAccommodationReservationService), new RequestAccommodationReservationService() },
 
+
         };
         public static void Initialize()
         {
-            //CreateInstance<IVoucherRepository>().Initialize();
+            CreateInstance<IVoucherRepository>().Initialize();
             CreateInstance<ITourReservationRepository>().Initialize();
+            CreateInstance<IUserRepository>().Initialize();
+            CreateInstance<ITourRepository>().Initialize();
+            CreateInstance<ITourReservationRepository>().Initialize();
+            CreateInstance<ITourLocationRepository>().Initialize();  
+            CreateInstance<ITourEvaluationImageRepository>().Initialize();
+            CreateInstance<ITourEvaluationRepository>().Initialize();
+            CreateInstance<IKeyPointRepository>().Initialize();
+            CreateInstance<ITourStartingTimeRepository>().Initialize();
+            CreateInstance<INotificationRepository>().Initialize();
+            CreateInstance<IGuestGradeService>().Initialize();
+            CreateInstance<IAccommodationReservationService>().Initialize();
+            CreateInstance<IAccommodationImageService>().Initialize();
+            CreateInstance<INotificationService>().Initialize();
             CreateInstance<IAccommodationRepository>().Initialize();
             CreateInstance<IAccommodationDateRepository>().Initialize();
             CreateInstance<IAccommodationGuestImageRepository>().Initialize();

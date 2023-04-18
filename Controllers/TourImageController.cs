@@ -1,6 +1,8 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -10,83 +12,32 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Controller
 {
-    public class TourImageController: ISubject
+    public class TourImageController
     {
-        private readonly List<IObserver> observers;
-        private readonly TourImageHandler _imageHandler;
-        private List<TourImage> _images;
+        private readonly ITourImageService _tourImageService;
         public TourImageController()
         {
-            _imageHandler = new TourImageHandler();
-            _images = new List<TourImage>();
-            observers = new List<IObserver>();
-            Load();
-        }
-        public void Load()
-        {
-            _images = _imageHandler.Load();
-        }
-        private int GenerateId()
-        {
-            int maxId = 0;
-            foreach (TourImage image in _images)
-            {
-                if (image.Id > maxId)
-                {
-                    maxId = image.Id;
-                }
-            }
-            return maxId + 1;
-        }
-        public void Create(TourImage image) 
-        {
-            image.Id = GenerateId();
-            _images.Add(image);
-            NotifyObservers();
-        }
-        public void Save()
-        {
-            _imageHandler.Save(_images);
-            NotifyObservers();
-        }
-        public void LinkToTour(int id)
-        {
-            foreach (TourImage image in _images)
-            {
-                if (image.Tour.Id == -1)
-                {
-                    image.Tour.Id = id;
-                }
-            }
-            NotifyObservers();
+            _tourImageService = Injector.CreateInstance<ITourImageService>();
         }
         public void CleanUnused()
         {
-            _images.RemoveAll(i => i.Tour.Id == -1);
-            NotifyObservers();
+            _tourImageService.CleanUnused();
+        }
+        public void Create(TourImage image)
+        {
+            _tourImageService.Create(image);
+        }
+        public void LinkToTour(int id)
+        {
+            _tourImageService.LinkToTour(id);
         }
         public List<TourImage> GetAll()
         {
-            return _images;
+            return _tourImageService.GetAll();
         }
         public TourImage GetByID(int id)
         {
-            return _images.Find(image => image.Id == id);
-        }
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
+            return _tourImageService.GetByID(id);   
         }
     }
 }
