@@ -1,7 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.DependencyInjection;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
@@ -36,9 +35,9 @@ namespace BookingProject.Repositories.Implementations
             return _serializer.FromCSV(FilePath);
         }
 
-        public void Save(List<TourTimeInstance> instances)
+        public void Save()
         {
-            _serializer.ToCSV(FilePath, instances);
+            _serializer.ToCSV(FilePath, _instances);
         }
 
         private int GenerateId()
@@ -57,7 +56,7 @@ namespace BookingProject.Repositories.Implementations
         {
             instances.Id = GenerateId();
             _instances.Add(instances);
-            Save(_instances);
+            Save();
         }
 
         public List<TourTimeInstance> GetAll()
@@ -87,7 +86,5 @@ namespace BookingProject.Repositories.Implementations
                 tourTimeInstance.TourTime = tourTime;
             }
         }
-
-
     }
 }

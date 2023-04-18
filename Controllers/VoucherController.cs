@@ -2,9 +2,9 @@
 using BookingProject.DependencyInjection;
 using BookingProject.Domain;
 using BookingProject.Domain.Enums;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Serializer;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
@@ -41,6 +41,11 @@ namespace BookingProject.Controllers
         public Voucher GetByID(int id)
         {
             return _voucherService.GetByID(id);
+        }
+
+        public void Save(List<Voucher> _vouchers)
+        {
+            _voucherService.Save(_vouchers);
         }
     }
 }

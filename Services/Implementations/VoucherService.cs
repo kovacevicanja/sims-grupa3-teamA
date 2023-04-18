@@ -3,6 +3,7 @@ using BookingProject.Domain;
 using BookingProject.Repositories;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Repository;
+using BookingProject.Serializer;
 using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,11 @@ namespace BookingProject.Services
         public Voucher GetByID(int id)
         {
             return _voucherRepository.GetByID(id);
+        }
+
+        public void Save(List<Voucher> vouchers)
+        {
+            _voucherRepository.Save(vouchers);
         }
     }
 }

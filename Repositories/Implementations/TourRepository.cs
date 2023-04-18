@@ -1,6 +1,5 @@
 ﻿using BookingProject.Controller;
 using BookingProject.DependencyInjection;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Repositories.Implementations;
@@ -23,6 +22,7 @@ namespace BookingProject.Repositories
         private Serializer<Tour> _serializer;
 
         public List<Tour> _tours;
+        public ITourStartingTimeRepository _tourStartingTimeRepository; 
 
         public TourRepository() { }
 
@@ -30,6 +30,7 @@ namespace BookingProject.Repositories
         {
             _serializer = new Serializer<Tour>();
             _tours = Load();
+            _tourStartingTimeRepository = Injector.CreateInstance<ITourStartingTimeRepository>();
             TourLocationBind();
             BindTourImage();
             TourKeyPointBind();
@@ -133,11 +134,6 @@ namespace BookingProject.Repositories
             {
                 AddStartingTimesToTour(tour, dates);
             }
-        }
-        public List<TourDateTime> LoadTourStartingTimes()
-        {
-            TourStartingTimeHandler dateHandler = new TourStartingTimeHandler();
-            return dateHandler.Load();
         }
         public void TourDateBind()
         {

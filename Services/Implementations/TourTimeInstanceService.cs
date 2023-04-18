@@ -3,6 +3,7 @@ using BookingProject.Model;
 using BookingProject.Repositories;
 using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
+using BookingProject.Serializer;
 using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,9 @@ namespace BookingProject.Services.Implementations
         {
             return _tourTimeInstanceRepository.GetByID(id);
         }
-
-
+        public void Save()
+        {
+            _tourTimeInstanceRepository.Save();
+        }
     }
 }

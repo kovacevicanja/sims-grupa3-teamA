@@ -1,5 +1,4 @@
-﻿using BookingProject.FileHandler;
-using BookingProject.Model.Images;
+﻿using BookingProject.Model.Images;
 using BookingProject.Model;
 using OisisiProjekat.Observer;
 using System;
@@ -9,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingProject.Services.Interfaces;
 using BookingProject.DependencyInjection;
+using BookingProject.Serializer;
 
 namespace BookingProject.Controller
 {
@@ -38,7 +38,10 @@ namespace BookingProject.Controller
             return _tourTimeInstanceService.GetByID(id);
         }
 
-
+        public void Save()
+        {
+            _tourTimeInstanceService.Save();
+        }
 
     }
 }

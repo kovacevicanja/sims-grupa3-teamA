@@ -1,5 +1,4 @@
-﻿using BookingProject.FileHandler;
-using BookingProject.Model;
+﻿using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
@@ -32,9 +31,9 @@ namespace BookingProject.Repositories.Implementations
             return _serializer.FromCSV(FilePath);
         }
 
-        public void Save(List<KeyPoint> keyPoints)
+        public void Save()
         {
-            _serializer.ToCSV(FilePath, keyPoints);
+            _serializer.ToCSV(FilePath, _keyPoints);
         }
 
         private int GenerateId()
@@ -54,7 +53,7 @@ namespace BookingProject.Repositories.Implementations
         {
             keyPoint.Id = GenerateId();
             _keyPoints.Add(keyPoint);
-            Save(_keyPoints);
+            Save();
         }
 
         public List<KeyPoint> GetAll()

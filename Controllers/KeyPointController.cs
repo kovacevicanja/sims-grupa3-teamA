@@ -1,5 +1,4 @@
 ﻿using BookingProject.DependencyInjection;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Services.Interfaces;
@@ -52,9 +51,9 @@ namespace BookingProject.Controller
         {
             return _tourKeyPointService.GetPassedKeyPoint();
         }
-        public void Save(List<KeyPoint> keyPoints)
+        public void Save()
         {
-            _tourKeyPointService.Save(keyPoints);
+            _tourKeyPointService.Save();
         }
     }
 }

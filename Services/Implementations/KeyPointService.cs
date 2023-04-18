@@ -90,9 +90,9 @@ namespace BookingProject.Services.Implementations
             return _keyPointRepository.GetByID(id); 
         }
 
-        public void Save(List<KeyPoint> keyPoints)
+        public void Save()
         {
-            _keyPointRepository.Save(keyPoints);
+            _keyPointRepository.Save();
         }
     }
 }

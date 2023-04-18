@@ -1,4 +1,5 @@
 ﻿using BookingProject.Model;
+using BookingProject.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace BookingProject.Repositories.Intefaces
         List<Location> GetAll();
         Location GetByID(int id);
         void Initialize();
+        void Save();
     }
 }

@@ -15,5 +15,6 @@ namespace BookingProject.Services.Interfaces
         List<User> GetAll();
         User GetByID(int id);
         void Initialize();
+        void Save();
     }
 }

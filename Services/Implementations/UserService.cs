@@ -1,6 +1,5 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Repositories;
 using BookingProject.Repositories.Intefaces;
@@ -51,6 +50,11 @@ namespace BookingProject.Services
         public User GetByID(int id)
         {
             return _userRepository.GetByID(id);
+        }
+
+        public void Save()
+        {
+            _userRepository.Save();
         }
     }
 }

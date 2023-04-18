@@ -62,7 +62,7 @@ namespace BookingProject.Services.Implementations
             }
             oldReservation.InitialDate = reservation.InitialDate;
             oldReservation.EndDate = reservation.EndDate;
-            Save();
+            _accommodationReservationRepository.Save();
         }
 
         public bool IsReservationAvailable(AccommodationReservation accommodationReservation)
@@ -375,6 +375,11 @@ namespace BookingProject.Services.Implementations
             notification.Read = true;
             Injector.CreateInstance<INotificationService>().Create(notification);
             //_notificationService.Save();
+        }
+
+        public void Subscribe(IObserver observer)
+        {
+            _accommodationReservationRepository.Subscribe(observer);
         }
     }
 }

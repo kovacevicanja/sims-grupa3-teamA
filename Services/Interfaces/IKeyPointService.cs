@@ -19,6 +19,6 @@ namespace BookingProject.Services.Interfaces
         List<KeyPoint> GetToursKeyPoints(int id);
         KeyPoint GetPassedKeyPoint();
         void Initialize();
-        void Save(List<KeyPoint> keyPoints);
+        void Save();
     }
 }

@@ -1,6 +1,5 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Model.Images;
 using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
@@ -37,9 +36,9 @@ namespace BookingProject.Repositories.Implementations
             return _serializer.FromCSV(FilePath);
         }
 
-        public void Save(List<TourPresence> presences)
+        public void Save()
         {
-            _serializer.ToCSV(FilePath, presences);
+            _serializer.ToCSV(FilePath, _presences);
         }
 
         private int GenerateId()
@@ -58,7 +57,7 @@ namespace BookingProject.Repositories.Implementations
         {
             presence.Id = GenerateId();
             _presences.Add(presence);
-            Save(_presences);
+            Save();
         }
 
         public List<TourPresence> GetAll()

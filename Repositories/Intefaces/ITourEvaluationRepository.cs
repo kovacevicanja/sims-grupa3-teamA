@@ -14,5 +14,6 @@ namespace BookingProject.Repositories.Intefaces
         List<TourEvaluation> GetAll();
         TourEvaluation GetByID(int id);
         void Initialize();
+        void Save();
     }
-}
+ }

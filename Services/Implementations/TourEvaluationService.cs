@@ -2,6 +2,7 @@
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
+using BookingProject.Serializer;
 using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -31,12 +32,9 @@ namespace BookingProject.Services
         {
             return _tourEvaluationRepository.GetByID(id);
         }
- 
-                /*
-        public void Initialize()
+        public void Save()
         {
-           _tourEvaluationRepository.Initialize();
+            _tourEvaluationRepository.Save();
         }
-        */
     }
 }

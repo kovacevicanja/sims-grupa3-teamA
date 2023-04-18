@@ -3,6 +3,7 @@ using BookingProject.DependencyInjection;
 using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
+using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +12,19 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Repositories.Implementations
 {
-    public class AccommodationReservationRepository : IAccommodationReservationRepository
+    public class AccommodationReservationRepository : IAccommodationReservationRepository, ISubject
     {
         private const string FilePath = "../../Resources/Data/accommodationReservations.csv";
         private Serializer<AccommodationReservation> _serializer;
         public List<AccommodationReservation> _accommodationReservations;
+        private  List<IObserver> observers;
+
 
         public AccommodationReservationRepository() { }
         public void Initialize()
         {
             _serializer = new Serializer<AccommodationReservation>();
+            observers = new List<IObserver>();
             _accommodationReservations = Load();
             AccommodationReservationBind();
             ReservationUserBind();
@@ -30,10 +34,11 @@ namespace BookingProject.Repositories.Implementations
             return _serializer.FromCSV(FilePath);
         }
 
-        public void Save(List<AccommodationReservation> accommodationReservations)
+        public void Save()
         {
-            _serializer.ToCSV(FilePath, accommodationReservations);
+            _serializer.ToCSV(FilePath, _accommodationReservations);
         }
+ 
         public void AccommodationReservationBind()
         {
             foreach (AccommodationReservation reservation in _accommodationReservations)
@@ -77,6 +82,19 @@ namespace BookingProject.Repositories.Implementations
         public AccommodationReservation GetByID(int id)
         {
             return _accommodationReservations.Find(ar => ar.Id == id);
+        }
+        public void Subscribe(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+        public void Unsubscribe(IObserver observer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void NotifyObservers()
+        {
+            throw new NotImplementedException();
         }
     }
 }

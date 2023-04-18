@@ -1,4 +1,5 @@
 ﻿using BookingProject.Model;
+using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace BookingProject.Repositories.Intefaces
         List<AccommodationReservation> GetAll();
         AccommodationReservation GetByID(int id);
         void Initialize();
+        void Subscribe(IObserver observer);
     }
 }

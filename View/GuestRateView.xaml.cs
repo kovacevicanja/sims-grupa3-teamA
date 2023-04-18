@@ -190,11 +190,9 @@ namespace BookingProject.View
             grade.Decency = ChosenDecency;
             grade.Noisiness = ChosenNoisiness;
             grade.Comment = Comment;
-            grade.Id = GradeController.GenerateId();
             grade.AccommodationReservation.Id = _selectedReservation.Id;
 
             GradeController.Create(grade);
-            GradeController.Save();
 
 
 

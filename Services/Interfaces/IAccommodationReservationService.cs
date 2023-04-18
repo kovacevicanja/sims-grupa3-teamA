@@ -3,6 +3,7 @@ using BookingProject.Controllers;
 using BookingProject.ConversionHelp;
 using BookingProject.Domain;
 using BookingProject.Model;
+using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,5 +44,6 @@ namespace BookingProject.Services.Interfaces
         List<Notification> GetOwnerNotifications(User owner);
         void DeleteNotificationFromCSV(Notification notification);
         void WriteNotificationAgain(Notification n);
+        void Subscribe(IObserver observer);
     }
 }

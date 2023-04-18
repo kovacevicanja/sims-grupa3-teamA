@@ -1,5 +1,4 @@
-﻿using BookingProject.FileHandler;
-using BookingProject.Model;
+﻿using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
 using OisisiProjekat.Observer;
@@ -31,9 +30,9 @@ namespace BookingProject.Repositories.Implementations
             return _serializer.FromCSV(FilePath);
         }
 
-        public void Save(List<TourDateTime> dates)
+        public void Save()
         {
-            _serializer.ToCSV(FilePath, dates);
+            _serializer.ToCSV(FilePath, _dates);
         }
     
         private int GenerateId()
@@ -53,7 +52,7 @@ namespace BookingProject.Repositories.Implementations
         {
             date.Id = GenerateId();
             _dates.Add(date);
-            Save(_dates);
+            Save();
         }
 
         public List<TourDateTime> GetAll()

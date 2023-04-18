@@ -2,7 +2,6 @@
 using BookingProject.ConversionHelp;
 using BookingProject.DependencyInjection;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
@@ -138,6 +137,10 @@ namespace BookingProject.Controller
         public void WriteNotificationAgain(Notification n)
         {
             _accommodationReservationService.WriteNotificationAgain(n);
+        }
+        public void Subscribe(IObserver observer)
+        {
+            _accommodationReservationService.Subscribe(observer);
         }
     }
 }

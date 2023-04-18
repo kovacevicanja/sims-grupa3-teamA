@@ -146,9 +146,7 @@ namespace BookingProject.View
             TourEvaluationImage TourImage = new TourEvaluationImage();
             TourImage.Url = ImageUrl;
             tourEvaluation.Images.Add(TourImage);
-            TourImage.TourEvaluation.Id = TourEvaluationController.GenerateId();
             TourEvaluationImageController.Create(TourImage);
-            TourEvaluationImageController.Save();
 
             CustomMessageBox.ShowCustomMessageBox("You have successfully added a picture, if you want you can add more.");
             TourImageTextBox.Clear();
@@ -163,7 +161,6 @@ namespace BookingProject.View
             tourEvaluation.Tour.Id = ChosenTour.Id;
 
             TourEvaluationController.Create(tourEvaluation);
-            TourEvaluationController.SaveEvaluation();
             this.Close();
         }
     }

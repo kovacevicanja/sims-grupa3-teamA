@@ -1,7 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using System;
 using System.Collections.Generic;
@@ -22,5 +21,6 @@ namespace BookingProject.Services.Interfaces
         List<Tour> FindAttendedTours(User guest);
         void DeleteNotificationFromCSV(Notification notification);
         void WriteNotificationAgain(Notification n);
+        void Save();
     }
 }

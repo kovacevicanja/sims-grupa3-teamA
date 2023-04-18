@@ -2,7 +2,6 @@
 using BookingProject.Controllers;
 using BookingProject.DependencyInjection;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Repositories;
@@ -13,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingProject.Repositories.Implementations;
+using BookingProject.Serializer;
 
 namespace BookingProject.Services.Implementations
 {
@@ -121,6 +121,10 @@ namespace BookingProject.Services.Implementations
             notification.Text = n.Text;
             notification.Read = true;
             _notificationService.Create(notification);
+        }
+        public void Save()
+        {
+            _tourPresenceRepository.Save();
         }
     }
 }

@@ -14,6 +14,6 @@ namespace BookingProject.Repositories.Intefaces
        List<KeyPoint> GetAll();
        KeyPoint GetByID(int id);
        void Initialize();
-       void Save(List<KeyPoint> keyPoints);
+       void Save();
     }
 }

@@ -1,5 +1,4 @@
 ﻿using BookingProject.DependencyInjection;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
@@ -41,6 +40,10 @@ namespace BookingProject.Controller
         public Location GetByID(int id)
         {
             return _tourLocationService.GetByID(id);
+        }
+        public void Save()
+        {
+            _tourLocationService.Save();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BookingProject.Model.Images;
+using BookingProject.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace BookingProject.Repositories.Intefaces
         List<TourImage> GetAll();
         TourImage GetByID(int id);
         void Initialize();
+        void Save();
     }
 }

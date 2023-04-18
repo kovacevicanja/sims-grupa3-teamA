@@ -1,5 +1,4 @@
-﻿using BookingProject.FileHandler;
-using BookingProject.Domain;
+﻿using BookingProject.Domain;
 using BookingProject.View;
 using OisisiProjekat.Observer;
 using System;
@@ -64,6 +63,10 @@ namespace BookingProject.Controller
             _tourPresenceService.WriteNotificationAgain(n);
         }
 
+        public void Save()
+        {
+            _tourPresenceService.Save();
+        }
 
 
     }

@@ -44,5 +44,10 @@ namespace BookingProject.Services.Implementations
         {
             return _tourImageRepository.GetByID(id);    
         }
+        public void Save()
+        {
+            _tourImageRepository.Save();
+        }
+
     }
 }

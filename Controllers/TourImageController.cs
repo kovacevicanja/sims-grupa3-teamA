@@ -1,5 +1,4 @@
 ﻿using BookingProject.DependencyInjection;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Services.Interfaces;
@@ -38,6 +37,10 @@ namespace BookingProject.Controller
         public TourImage GetByID(int id)
         {
             return _tourImageService.GetByID(id);   
+        }
+        public void Save()
+        {
+            _tourImageService.Save();
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using System;
 using System.Collections.Generic;
@@ -20,7 +19,6 @@ namespace BookingProject.View
     public partial class SecondGuestMyVouchersView : Window, INotifyPropertyChanged
     {
         public VoucherController VoucherController { get; set; }
-        private VoucherHandler _voucherHandler { get; set; }
         public ObservableCollection<Voucher> _vouchers { get; set; }
         public List<Voucher> _vouchersList { get; set; }
         public Voucher ChosenVoucher { get; set; }
@@ -38,7 +36,6 @@ namespace BookingProject.View
             ChosenTour = chosenTour;
             TourReservationController = new TourReservationController();
 
-            _voucherHandler = new VoucherHandler();
             VoucherController = new VoucherController();
 
             VoucherController.DeleteExpiredVouchers();
@@ -56,7 +53,7 @@ namespace BookingProject.View
                 CustomMessageBox.ShowCustomMessageBox("You have successfully used your voucher to book this tour.");
                 ChosenVoucher.State = VoucherState.USED;
                 ChosenVoucher.Tour = ChosenTour; 
-                _voucherHandler.Save(_vouchersList);
+                VoucherController.Save(_vouchersList);
 
                 this.Close();
             }

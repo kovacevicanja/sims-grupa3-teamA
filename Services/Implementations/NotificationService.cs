@@ -37,5 +37,9 @@ namespace BookingProject.Services
         {
             _notificationRepository.DeleteNotificationFromCSV(notification);
         }
+        public void Save()
+        {
+            _notificationRepository.Save();
+        }
     }
 }

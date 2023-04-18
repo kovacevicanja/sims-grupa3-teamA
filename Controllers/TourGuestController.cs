@@ -1,5 +1,4 @@
-﻿using BookingProject.FileHandler;
-using BookingProject.Model;
+﻿using BookingProject.Model;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ namespace BookingProject.Controller
 {
     public class TourGuestController
     {
+        /*
             private readonly List<IObserver> observers;
 
             private readonly TourGuestHandler _tourGuestHandler;
@@ -84,5 +84,6 @@ namespace BookingProject.Controller
             {
                 observers.Remove(observer);
             }
+        */
         }
 }

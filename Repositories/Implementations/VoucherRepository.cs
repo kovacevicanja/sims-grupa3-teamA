@@ -1,6 +1,5 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
 using OisisiProjekat.Observer;
@@ -29,9 +28,9 @@ namespace BookingProject.Repository
             return _serializer.FromCSV(FilePath);
         }
 
-        public void Save()
+        public void Save(List<Voucher> vouchers)
         {
-            _serializer.ToCSV(FilePath, _vouchers);
+            _serializer.ToCSV(FilePath, vouchers);
         }
 
         public int GenerateId()
@@ -50,7 +49,7 @@ namespace BookingProject.Repository
         {
             voucher.Id = GenerateId();
             _vouchers.Add(voucher);
-            Save();
+            Save(_vouchers);
         }
        
         public List<Voucher> GetAll()

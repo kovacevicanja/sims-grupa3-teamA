@@ -15,5 +15,6 @@ namespace BookingProject.Services.Interfaces
         List<TourDateTime> GetAll();
         TourDateTime GetByID(int id);
         void Initialize();
+        void Save();
     }
 }

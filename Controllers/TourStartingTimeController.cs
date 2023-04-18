@@ -1,6 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
-using BookingProject.FileHandler;
 using BookingProject.Model;
+using BookingProject.Serializer;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
@@ -37,6 +37,10 @@ namespace BookingProject.Controller
         public TourDateTime GetByID(int id)
         {
             return _tourStartingTimeService.GetByID(id);
+        }
+        public void Save()
+        {
+            _tourStartingTimeService.Save();
         }
     }
 }

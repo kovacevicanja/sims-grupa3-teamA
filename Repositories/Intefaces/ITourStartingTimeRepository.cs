@@ -14,5 +14,6 @@ namespace BookingProject.Repositories.Intefaces
         void Create(TourDateTime date);
         List<TourDateTime> GetAll();
         TourDateTime GetByID(int id);
+        void Save();
     }
 }

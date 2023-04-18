@@ -13,5 +13,7 @@ namespace BookingProject.Services.Interfaces
         List<Notification> GetAll();
         Notification GetByID(int id);
         void Initialize();
+        void Save();
+        void DeleteNotificationFromCSV(Notification notification);
     }
 }
