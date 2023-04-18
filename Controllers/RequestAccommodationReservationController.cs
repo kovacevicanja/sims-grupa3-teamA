@@ -62,7 +62,7 @@ namespace BookingProject.Controllers
 
         public List<RequestAccommodationReservation> GetAllRequestForOwner(int ownerId)
         {
-            return GetAllRequestForOwner(ownerId);
+            return _requestsService.GetAllRequestForOwner(ownerId);
         }
 
         public void Update(RequestAccommodationReservation reservationMovingRequest)

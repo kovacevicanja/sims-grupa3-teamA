@@ -31,8 +31,9 @@ namespace BookingProject.View
             InitializeComponent();
             this.DataContext = this;
 
-            var app = Application.Current as App;
-            _accommodationController = app.AccommodationReservationController;
+            //var app = Application.Current as App;
+            //_accommodationController = app.AccommodationReservationController;
+            _accommodationController = new AccommodationReservationController();
 
 
             Reservations = new ObservableCollection<AccommodationReservation>(_accommodationController.GetAllNotGradedReservations(SignInForm.LoggedInUser.Id));

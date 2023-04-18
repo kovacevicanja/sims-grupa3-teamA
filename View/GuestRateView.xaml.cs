@@ -45,8 +45,9 @@ namespace BookingProject.View
             InitializeComponent();
             this.DataContext = this;
 
-            var app = Application.Current as App;
-            GradeController = app.GuestGradeController;
+            //var app = Application.Current as App;
+            //GradeController = app.GuestGradeController;
+            GradeController = new GuestGradeController();
             _selectedReservation = new AccommodationReservation();
             _selectedReservation = selectedReservation;
             CleanlinessOption = new ObservableCollection<int>();

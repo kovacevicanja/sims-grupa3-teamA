@@ -119,7 +119,7 @@ namespace BookingProject.Services
             oldRequest.NewArrivalDay = reservationMovingRequest.NewArrivalDay;
             oldRequest.NewDeparuteDay = reservationMovingRequest.NewDeparuteDay;
             oldRequest.Status = reservationMovingRequest.Status;
-            // SaveRequest(); -- NE RADI TI ?????????
+            SaveRequest(); //-- NE RADI TI ?????????
         }
 
         public List<RequestAccommodationReservation> GetAll()
