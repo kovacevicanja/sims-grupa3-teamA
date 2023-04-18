@@ -69,7 +69,6 @@ namespace BookingProject.Controller
 
         public void AccommodationReservationBind()
         {
-            _accommodationController.Load();
             foreach (AccommodationReservation reservation in _accommodationReservations)
             {
                 Accommodation accommodation = _accommodationController.GetByID(reservation.Accommodation.Id);
@@ -91,6 +90,7 @@ namespace BookingProject.Controller
         {
             return _accommodationReservations.Find(ar => ar.Id == id);
         }
+
         public void Update(AccommodationReservation reservation)
         {
             AccommodationReservation oldReservation = GetByID(reservation.Id);
@@ -128,6 +128,7 @@ namespace BookingProject.Controller
             }
             return reservations;
         }
+
         public int GenerateId()
         {
             int maxId = 0;

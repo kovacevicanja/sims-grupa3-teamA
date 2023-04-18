@@ -94,9 +94,5 @@ namespace BookingProject.Repositories.Implementations
             _notificationController.Create(notification);
             _notificationController.Save();
         }*/
-
-
-
-
     }
 }

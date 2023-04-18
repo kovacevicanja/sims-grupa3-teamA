@@ -9,6 +9,7 @@ namespace BookingProject.Services.Interfaces
 {
     public interface IAccommodationOwnerGradeService
     {
+        void Initialize();
         bool ExistsAccommodationGradeForAccommodationId(int accomomodationId);
         List<AccommodationOwnerGrade> GetGradesForAccAndUserLastN(int accId, int userId, int n);
         bool ExistsAlreadyAccommodationAndUser(int accId, int userId, List<AccommodationOwnerGrade> grades);

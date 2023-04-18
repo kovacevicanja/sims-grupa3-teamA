@@ -1,8 +1,10 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
+using BookingProject.DependencyInjection;
 using BookingProject.Domain.Images;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Repositories.Intefaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -50,7 +52,7 @@ namespace BookingProject.View
             AccommodationGuestImageController = new AccommodationGuestImageController();
             UserController = new UserController();
             grade = new AccommodationOwnerGrade();
-            grade.Id = AccommodationOwnerGradeController.GenerateId();
+            grade.Id = Injector.CreateInstance<IAccommodationOwnerGradeRepository>().GenerateId();
             _selectedReservation = new AccommodationReservation();
             _selectedReservation = selectedReservation;
             CleanlinessOption = new ObservableCollection<int>();

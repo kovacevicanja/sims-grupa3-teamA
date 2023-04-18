@@ -1,4 +1,5 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
@@ -93,10 +94,9 @@ namespace BookingProject.Repositories.Implementations
 
         public void AccommodationLocationBind()
         {
-            _locationController.Load();
             foreach (Accommodation accommodation in _accommodations)
             {
-                Location location = _locationController.GetByID(accommodation.IdLocation);
+                Location location = Injector.CreateInstance<IAccommodationLocationRepository>().GetByID(accommodation.IdLocation);
                 accommodation.Location = location;
             }
         }
@@ -105,37 +105,26 @@ namespace BookingProject.Repositories.Implementations
 
             foreach (Accommodation accommodation in _accommodations)
             {
-                User user = _userController.GetByID(accommodation.Owner.Id);
+                User user = Injector.CreateInstance<IUserRepository>().GetByID(accommodation.Owner.Id);
                 accommodation.Owner = user;
             }
         }
 
         public void AccommodationImagesBind()
         {
-            List<AccommodationImage> images = new List<AccommodationImage>();
-            AccommodationImageHandler accommodationImageHandler = new AccommodationImageHandler();
-            images = accommodationImageHandler.Load();
-
-            foreach (Accommodation accommodation in _accommodations)
+            IAccommodationImageRepository accommodationImageRepository = Injector.CreateInstance<IAccommodationImageRepository>();
+            foreach(AccommodationImage image in accommodationImageRepository.GetAll())
             {
-                foreach (AccommodationImage image in images)
-                {
-
-                    if (accommodation.Id == image.AccommodationId)
-                    {
-                        accommodation.Images.Add(image);
-                    }
-
-                }
+                Accommodation accommodation = GetByID(image.AccommodationId);
+                accommodation.Images.Add(image);
             }
         }
 
         public void AccommodationOwnerBind()
         {
-            _userController.Load();
             foreach (Accommodation accommodation in _accommodations)
             {
-                User owner = _userController.GetByID(accommodation.Owner.Id);
+                User owner = Injector.CreateInstance<IUserRepository>().GetByID(accommodation.Owner.Id);
                 accommodation.Owner = owner;
             }
         }

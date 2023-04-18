@@ -1,4 +1,5 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
 using System;
@@ -57,7 +58,7 @@ namespace BookingProject.Repositories.Implementations
 
             foreach (AccommodationOwnerGrade grade in _grades)
             {
-                User user = _userController.GetByID(grade.User.Id);
+                User user = Injector.CreateInstance<IUserRepository>().GetByID(grade.User.Id);
                 grade.User = user;
             }
         }
@@ -66,7 +67,7 @@ namespace BookingProject.Repositories.Implementations
 
             foreach (AccommodationOwnerGrade grade in _grades)
             {
-                Accommodation accommodation = _accommodationController.GetByID(grade.Accommodation.Id);
+                Accommodation accommodation = Injector.CreateInstance<IAccommodationRepository>().GetByID(grade.Accommodation.Id);
                 grade.Accommodation = accommodation;
             }
         }

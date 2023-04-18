@@ -44,6 +44,8 @@ namespace BookingProject.DependencyInjection
             { typeof(IKeyPointService), new KeyPointService() },
             { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
             { typeof(IAccommodationService), new AccommodationService() },
+            { typeof(IAccommodationDateService), new AccommodationDateService() },
+            { typeof(IAccommodationGuestImageService), new AccommodationGuestImageService() },
             { typeof(IAccommodationOwnerGradeService), new AccommodationOwnerGradeService() },
             { typeof(IRequestAccommodationReservationService), new RequestAccommodationReservationService() },
 
@@ -56,6 +58,7 @@ namespace BookingProject.DependencyInjection
             CreateInstance<IAccommodationDateRepository>().Initialize();
             CreateInstance<IAccommodationGuestImageRepository>().Initialize();
             CreateInstance<IAccommodationOwnerGradeRepository>().Initialize();
+            CreateInstance<IRequestAccommodationReservationRepository>().Initialize();
         }
 
         public static T CreateInstance<T>()
