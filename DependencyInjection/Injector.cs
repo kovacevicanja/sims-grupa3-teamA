@@ -31,6 +31,8 @@ namespace BookingProject.DependencyInjection
             { typeof(IAccommodationImageRepository), new AccommodationImageRepository() },
             { typeof(IAccommodationLocationRepository), new AccommodationLocationRepository() },
             { typeof(INotificationRepository), new NotificationRepository() },
+            { typeof(ITourPresenceRepository), new TourPresenceRepository() },
+            { typeof(ITourTimeInstanceRepository), new TourPresenceRepository() },
 
 
             { typeof(ITourService), new TourService() },
@@ -48,6 +50,9 @@ namespace BookingProject.DependencyInjection
             { typeof(IAccommodationImageService), new AccommodationImageService() },
             { typeof(INotificationService), new NotificationService() },
             { typeof(IAccommodationLocationService), new AccommodationLocationService() },
+            { typeof(ITourPresenceService), new TourPresenceService() },
+            { typeof(ITourTimeInstanceService), new TourTimeInstanceService() },
+
 
         };
         public static void Initialize()

@@ -9,162 +9,62 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingProject.Controllers;
 using BookingProject.Model;
+using BookingProject.Services.Interfaces;
+using BookingProject.DependencyInjection;
+using BookingProject.Services;
 
 namespace BookingProject.Controller
 {
-    public class TourPresenceController : ISubject
+    public class TourPresenceController 
     {
-        private readonly List<IObserver> observers;
-        private readonly TourPresenceHandler _tourPresenceHandler;
-        public NotificationController _notificationController { get; set; }
-        private List<TourPresence> _presences;
-        private TourTimeInstanceHandler _timeInstanceHandler { get; set; }
-        public TourController TourController {get; set;}
+        private readonly ITourPresenceService _tourPresenceService;
         public TourPresenceController()
         {
-            _tourPresenceHandler = new TourPresenceHandler();
-            _presences = new List<TourPresence>();
-            observers = new List<IObserver>();
-            _notificationController = new NotificationController();
-            _timeInstanceHandler = new TourTimeInstanceHandler();
-            TourController = new TourController();
-            Load();
+            _tourPresenceService = Injector.CreateInstance<ITourPresenceService>();
         }
 
-        public void Load()
-        {
-            _presences = _tourPresenceHandler.Load();
-        }
-
-        private int GenerateId()
-        {
-            int maxId = 0;
-            foreach (TourPresence tourPresence in _presences)
-            {
-                if (tourPresence.Id > maxId)
-                {
-                    maxId = tourPresence.Id;
-                }
-            }
-            return maxId + 1;
-        }
         public void Create(TourPresence presence)
         {
-            presence.Id = GenerateId();
-            _presences.Add(presence);
-            NotifyObservers();
-        }
-
-        public void Save()
-        {
-            _tourPresenceHandler.Save(_presences);
-            NotifyObservers();
+            _tourPresenceService.Create(presence);
         }
 
         public List<TourPresence> GetAll()
         {
-            return _presences;
+            return _tourPresenceService.GetAll();
         }
 
         public TourPresence GetByID(int id)
         {
-            return _presences.Find(presence => presence.Id == id);
+            return _tourPresenceService.GetByID(id);
         }
 
 
         public void SendNotification(User guest)
         {
-            Notification notification = new Notification();
-            //notification.Id = _notificationController.GenerateId();
-            notification.UserId = guest.Id;
-            notification.Text = "Presence check !!! ";
-            notification.Read = false;
-            _notificationController.Create(notification);
-            //_notificationController.Save();
+            _tourPresenceService.SendNotification(guest);
         }
 
         public List<Notification> GetGuestNotifications(User guest)
         {
-            List<Notification> notificationsForGuest = new List<Notification>();
-            List<Notification> _notifications = _notificationController.GetAll();
-
-            foreach (Notification notification in _notifications)
-            {
-                if (notification.UserId == guest.Id && notification.Read == false)
-                {
-                    notificationsForGuest.Add(notification);
-                }
-            }
-
-            return notificationsForGuest;
+            return _tourPresenceService.GetGuestNotifications(guest);
         }
 
         public List<Tour> FindAttendedTours (User guest)
         {
-            List <int> tourInstanceIds = new List<int>();
-            List<TourReservation> attendedTours = new List<TourReservation>();
-            List<TourTimeInstance> tourTimeInstances = _timeInstanceHandler.Load();
-            List <Tour> tours = new List<Tour>();
-            List<Tour> potentialTours = new List<Tour>();
-
-            foreach (TourPresence tp in _presences)
-            {
-                if (tp.UserId == guest.Id && tp.KeyPointId != -1)
-                {
-                    tourInstanceIds.Add(tp.TourId);
-                }
-            }
-
-            foreach (TourTimeInstance tti in tourTimeInstances)
-            {
-                foreach (int id in tourInstanceIds)
-                {
-                    if (id == tti.Id)
-                    {
-                        Tour tour = new Tour();
-                        tour = TourController.GetByID(tti.TourId);
-                        tours.Add(tour);
-                    }
-                }
-            }
-            return tours.Distinct().ToList();
+            return _tourPresenceService.FindAttendedTours(guest);
         }
 
         public void DeleteNotificationFromCSV(Notification notification)
         {
-            List<Notification> _notifications = _notificationController.GetAll();
-            _notifications.RemoveAll(n => n.Id == notification.Id);
-            _notificationController.Save();
+            _tourPresenceService.DeleteNotificationFromCSV(notification);
         }
 
         public void WriteNotificationAgain(Notification n)
         {
-            Notification notification = new Notification();
-            notification.UserId = n.UserId;
-            notification.Text = n.Text;
-            notification.Read = true;
-            _notificationController.Create(notification);
-            _notificationController.Save();
+            _tourPresenceService.WriteNotificationAgain(n);
         }
 
 
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
-
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
-        }
 
     }
 }
