@@ -278,7 +278,7 @@ namespace BookingProject.Controller
             ReservationTourOtherOffersView reservationTourOtherOffersView = new ReservationTourOtherOffersView(choosenTour, selectedDate, guest.Id);
             reservationTourOtherOffersView.Show();
         }
-        public void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour) //ovde smanjujem vaucer
+        public void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour) 
         {
             guest.Vouchers = VoucherController.GetUserVouhers(guest.Id);
 

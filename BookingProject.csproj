@@ -87,7 +87,6 @@
     <Compile Include="Domain\Images\AccommodationGuestImage.cs" />
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\RequestAccommodationReservation.cs" />
-    <Compile Include="Domain\ToursGuests.cs" />
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Images\TourEvaluationImage.cs" />
     <Compile Include="Domain\Notification.cs" />
@@ -140,6 +139,7 @@
     <Compile Include="FileHandler\VoucherHandler.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
+    <Compile Include="Repository\VoucherRepository.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
     <Compile Include="View\AccommodationOwnerReview.xaml.cs">

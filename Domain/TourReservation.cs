@@ -14,14 +14,7 @@ namespace BookingProject.Model
         public Tour Tour { get; set; }
         public int GuestsNumberPerReservation { get; set;  }
         public DateTime ReservationStartingTime { get; set; }
-        //public List <Guest2> Guests { get; set; }
         public User Guest { get; set; }   
-
-        //id gosta koji je rez turu 
-        //prolaxim kroz rez
-        //trazim taj id gosta u svakoj rez i svaku tu rez stavim u neku listu mytours
-        //i onda samo to prikazem u wpfu
-        //ili alternativa prodjem sve i samo zalepim taj komad za turu
         public TourReservation() 
         {
             Tour = new Tour();

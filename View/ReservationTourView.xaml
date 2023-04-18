@@ -58,7 +58,7 @@
             <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Grid.Row="0" Text="{Binding EnteredGuests}" Margin="0,88,328,219" Grid.Column="1" RenderTransformOrigin="0.486,0.596"/>
             <Label Grid.Row="0" Grid.Column="0" Margin="-1,176,10,100" Content="Select the date and time:"/>
             <ComboBox x:Name="TourDatesComboBox" Background="LightBlue"
-              ItemsSource="{Binding ChoosenTour.StartingTime}"
+              ItemsSource="{Binding ChosenTour.StartingTime}"
               SelectedItem="{Binding SelectedDate}"
               DisplayMemberPath="StartingDateTime" Margin="299,187,137,126" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
                 <ComboBox.RenderTransform>
