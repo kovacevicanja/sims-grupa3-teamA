@@ -17,7 +17,7 @@ namespace BookingProject.Services.Interfaces
         User GetByID(int id);
         void Initialize();
         void Save();
-        bool IsUserSuperUser(User user);
+        User IsUserSuperUser(User user);
         void Update(User user);
     }
 }

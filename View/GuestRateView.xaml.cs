@@ -44,46 +44,22 @@ namespace BookingProject.View
         {
             InitializeComponent();
             this.DataContext = this;
-
-            //var app = Application.Current as App;
-            //GradeController = app.GuestGradeController;
             GradeController = new GuestGradeController();
             _selectedReservation = new AccommodationReservation();
             _selectedReservation = selectedReservation;
             CleanlinessOption = new ObservableCollection<int>();
-            CleanlinessOption.Add(1);
-            CleanlinessOption.Add(2);
-            CleanlinessOption.Add(3);
-            CleanlinessOption.Add(4);
-            CleanlinessOption.Add(5);
-
             CommunicationOption = new ObservableCollection<int>();
-            CommunicationOption.Add(1);
-            CommunicationOption.Add(2);
-            CommunicationOption.Add(3);
-            CommunicationOption.Add(4);
-            CommunicationOption.Add(5);
-
             ObservanceOption = new ObservableCollection<int>();
-            ObservanceOption.Add(1);
-            ObservanceOption.Add(2);
-            ObservanceOption.Add(3);
-            ObservanceOption.Add(4);
-            ObservanceOption.Add(5);
-
             DecencyOption = new ObservableCollection<int>();
-            DecencyOption.Add(1);
-            DecencyOption.Add(2);
-            DecencyOption.Add(3);
-            DecencyOption.Add(4);
-            DecencyOption.Add(5);
-
             NoisinessOption = new ObservableCollection<int>();
-            NoisinessOption.Add(1);
-            NoisinessOption.Add(2);
-            NoisinessOption.Add(3);
-            NoisinessOption.Add(4);
-            NoisinessOption.Add(5);
+            for(int i = 1; i <= 5; i++)
+            {
+                CleanlinessOption.Add(i);
+                CommunicationOption.Add(i);
+                ObservanceOption.Add(i);
+                DecencyOption.Add(i);
+                NoisinessOption.Add(i);
+            }
         }
 
 
