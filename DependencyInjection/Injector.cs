@@ -26,6 +26,8 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationRepository), new TourEvaluationRepository() },
             { typeof(IKeyPointRepository), new KeyPointRepository() },
             { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(ITourPresenceRepository), new TourPresenceRepository() },
+            { typeof(ITourTimeInstanceRepository), new TourPresenceRepository() },
 
 
             { typeof(ITourService), new TourService() },
@@ -38,6 +40,9 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationService), new TourEvaluationService() },
             { typeof(IKeyPointService), new KeyPointService() },
             { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(ITourPresenceService), new TourPresenceService() },
+            { typeof(ITourTimeInstanceService), new TourTimeInstanceService() },
+
 
         };
         public static void Initialize()
