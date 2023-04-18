@@ -20,7 +20,7 @@ namespace BookingProject.Services.Implementations
         public TourTimeInstanceService() { }
         public void Initialize()
         {
-            _tourTimeInstanceRepository = Injector.CreateInstance<TourTimeInstanceRepository>();
+            _tourTimeInstanceRepository = Injector.CreateInstance<ITourTimeInstanceRepository>();
         }
 
         public void Create(TourTimeInstance instance)

@@ -18,7 +18,7 @@ namespace BookingProject.Services.Implementations
         public GuestGradeService() { }
         public void Initialize()
         {
-            _guestGradeRepository = Injector.CreateInstance<GuestGradeRepository>();
+            _guestGradeRepository = Injector.CreateInstance<IGuestGradeRepository>();
         }
         public void Create(GuestGrade grade)
         {

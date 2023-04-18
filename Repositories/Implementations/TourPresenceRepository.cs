@@ -20,14 +20,16 @@ namespace BookingProject.Repositories.Implementations
         private Serializer<TourPresence> _serializer;
 
         public List<TourPresence> _presences;
-
         public INotificationRepository _notificationRepository { get; set; }
 
-        public TourPresenceRepository() { }
-        public void Initialize()
+        public TourPresenceRepository()
         {
             _serializer = new Serializer<TourPresence>();
             _presences = Load();
+        }
+
+        public void Initialize() 
+        {
             _notificationRepository = Injector.CreateInstance<INotificationRepository>();
         }
 

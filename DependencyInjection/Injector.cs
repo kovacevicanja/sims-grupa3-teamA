@@ -32,18 +32,20 @@ namespace BookingProject.DependencyInjection
             { typeof(IAccommodationLocationRepository), new AccommodationLocationRepository() },
             { typeof(INotificationRepository), new NotificationRepository() },
             { typeof(ITourPresenceRepository), new TourPresenceRepository() },
-            { typeof(ITourTimeInstanceRepository), new TourPresenceRepository() },
+            { typeof(ITourTimeInstanceRepository), new TourTimeInstanceRepository() },
             { typeof(IAccommodationRepository), new AccommodationRepository() },
             { typeof(IAccommodationDateRepository), new AccommodationDateRepository() },
             { typeof(IAccommodationGuestImageRepository), new AccommodationGuestImageRepository() },
             { typeof(IAccommodationOwnerGradeRepository), new AccommodationOwnerGradeRepository() },
             { typeof(IRequestAccommodationReservationRepository), new RequestAccommodationReservationRepository() },
+            { typeof(ITourEvaluationImageRepository), new TourEvaluationImageRepository() },
+
+
 
 
             { typeof(ITourService), new TourService() },
             { typeof(ITourReservationService), new TourReservationService() },
             { typeof(ITourLocationService), new TourLocationService() },
-            { typeof(IVoucherService), new VoucherService() },
             { typeof(IUserService), new UserService() },
             { typeof(IVoucherService), new VoucherService() },
             { typeof(ITourEvaluationImageService), new TourEvaluationImageService() },
@@ -54,7 +56,6 @@ namespace BookingProject.DependencyInjection
             { typeof(IGuestGradeService), new GuestGradeService() },
             { typeof(IAccommodationReservationService), new AccommodationReservationService() },
             { typeof(IAccommodationImageService), new AccommodationImageService() },
-            { typeof(INotificationService), new NotificationService() },
             { typeof(IAccommodationLocationService), new AccommodationLocationService() },
             { typeof(ITourPresenceService), new TourPresenceService() },
             { typeof(ITourTimeInstanceService), new TourTimeInstanceService() },
@@ -63,6 +64,8 @@ namespace BookingProject.DependencyInjection
             { typeof(IAccommodationGuestImageService), new AccommodationGuestImageService() },
             { typeof(IAccommodationOwnerGradeService), new AccommodationOwnerGradeService() },
             { typeof(IRequestAccommodationReservationService), new RequestAccommodationReservationService() },
+            { typeof(ITourImageService), new TourImageService() },
+
 
 
         };

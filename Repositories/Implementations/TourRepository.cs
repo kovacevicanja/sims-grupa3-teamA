@@ -24,12 +24,14 @@ namespace BookingProject.Repositories
         public List<Tour> _tours;
         public ITourStartingTimeRepository _tourStartingTimeRepository; 
 
-        public TourRepository() { }
-
-        public void Initialize()
+        public TourRepository() 
         {
             _serializer = new Serializer<Tour>();
             _tours = Load();
+        }
+
+        public void Initialize()
+        {
             _tourStartingTimeRepository = Injector.CreateInstance<ITourStartingTimeRepository>();
             TourLocationBind();
             BindTourImage();

@@ -19,7 +19,7 @@ namespace BookingProject.Services
         public VoucherService() { }
         public void Initialize()
         {
-            _voucherRepository = Injector.CreateInstance<VoucherRepository>();
+            _voucherRepository = Injector.CreateInstance<IVoucherRepository>();
         }
         public void DeleteExpiredVouchers()
         {

@@ -17,13 +17,13 @@ namespace BookingProject.Repositories.Implementations
 
         public List<AccommodationImage> _images;
 
-        public AccommodationImageRepository() { }
-
-        public void Initialize()
+        public AccommodationImageRepository()
         {
             _serializer = new Serializer<AccommodationImage>();
             _images = Load();
         }
+
+        public void Initialize() { }
 
         public List<AccommodationImage> Load()
         {

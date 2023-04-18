@@ -18,12 +18,12 @@ namespace BookingProject.Repositories.Implementations
 
         public List<TourImage> _images;
 
-        public TourImageRepository() { }
-        public void Initialize()
+        public TourImageRepository()
         {
             _serializer = new Serializer<TourImage>();
             _images = Load();
         }
+        public void Initialize() { }
 
         public List<TourImage> Load()
         {

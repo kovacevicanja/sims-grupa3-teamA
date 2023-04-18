@@ -19,12 +19,14 @@ namespace BookingProject.Repositories.Implementations
 
         public List<RequestAccommodationReservation> _requests;
         
-        public RequestAccommodationReservationRepository() { }
-
-        public void Initialize()
+        public RequestAccommodationReservationRepository() 
         {
             _serializer = new Serializer<RequestAccommodationReservation>();
             _requests = Load();
+        }
+
+        public void Initialize()
+        {
             RequestReservationBind();
         }
 

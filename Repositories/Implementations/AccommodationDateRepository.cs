@@ -17,13 +17,13 @@ namespace BookingProject.Repositories.Implementations
 
         public List<AccommodationDate> _dates;
 
-        public AccommodationDateRepository() { }
-
-        public void Initialize()
+        public AccommodationDateRepository() 
         {
             _serializer = new Serializer<AccommodationDate>();
             _dates = Load();
         }
+
+        public void Initialize() { }
 
         public List<AccommodationDate> Load()
         {

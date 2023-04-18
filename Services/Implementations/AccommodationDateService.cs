@@ -2,6 +2,7 @@
 using BookingProject.Model;
 using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
+using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Services.Implementations
 {
-    public class AccommodationDateService
+    public class AccommodationDateService : IAccommodationDateService
     {
         private IAccommodationDateRepository _accommodationDateRepository;
         public AccommodationDateService() { }

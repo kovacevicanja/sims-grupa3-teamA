@@ -16,12 +16,12 @@ namespace BookingProject.Repository
         private const string FilePath = "../../Resources/Data/vouchers.csv";
         private Serializer<Voucher> _serializer;
         public List<Voucher> _vouchers;
-        public VoucherRepository() { }
-        public void Initialize()
+        public VoucherRepository()
         {
             _serializer = new Serializer<Voucher>();
             _vouchers = Load();
         }
+        public void Initialize() { }
 
         public List<Voucher> Load()
         {

@@ -11,8 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingProject.Repositories;
 using BookingProject.Repositories.Intefaces;
+using BookingProject.DependencyInjection;
 
-namespace BookingProject.Services
+namespace BookingProject.Repositories.Implementations
 {
     public class TourEvaluationRepository : ITourEvaluationRepository
     {
@@ -20,16 +21,20 @@ namespace BookingProject.Services
         private Serializer<TourEvaluation> _serializer;
         public List<TourEvaluation> _tourEvaluations;
         private List<TourEvaluationImage> _images;
-        private TourRepository _tourRepository;
+        private ITourRepository _tourRepository;
 
-        public TourEvaluationRepository() { }
-
-        public void Initialize()
+        public TourEvaluationRepository()
         {
             _serializer = new Serializer<TourEvaluation>();
             _images = new List<TourEvaluationImage>();
-            _tourRepository = new TourRepository();
             _tourEvaluations = Load();
+        }
+
+        public void Initialize() 
+        {
+            _tourRepository = Injector.CreateInstance<ITourRepository>();
+            BindTourEvaluationToTour();
+            TourEvaluationImagesBind();
         }
 
         public List<TourEvaluation> Load()

@@ -19,7 +19,7 @@ namespace BookingProject.Services.Implementations
         public AccommodationImageService() { }
         public void Initialize()
         {
-            _imageRepository= Injector.CreateInstance<AccommodationImageRepository>();
+            _imageRepository= Injector.CreateInstance<IAccommodationImageRepository>();
         }
         public void Create(AccommodationImage image)
         {

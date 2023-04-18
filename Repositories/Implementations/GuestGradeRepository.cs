@@ -18,14 +18,12 @@ namespace BookingProject.Repositories.Implementations
         private Serializer<GuestGrade> _serializer;
 
         public List<GuestGrade> _grades;
-        public GuestGradeRepository() { }
-        
-        public void Initialize()
+        public GuestGradeRepository()
         {
             _serializer = new Serializer<GuestGrade>();
             _grades = Load();
         }
-
+        public void Initialize() { }
         public List<GuestGrade> Load()
         {
             return _serializer.FromCSV(FilePath);

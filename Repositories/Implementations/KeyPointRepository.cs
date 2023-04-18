@@ -19,12 +19,11 @@ namespace BookingProject.Repositories.Implementations
 
         public List<KeyPoint> _keyPoints;
 
-        public KeyPointRepository() { }
-        public void Initialize()
-        {
+        public KeyPointRepository() {
             _serializer = new Serializer<KeyPoint>();
             _keyPoints = Load();
         }
+        public void Initialize() { }
 
         public List<KeyPoint> Load()
         {

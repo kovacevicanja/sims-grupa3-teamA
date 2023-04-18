@@ -18,13 +18,13 @@ namespace BookingProject.Repositories.Implementations
 
         public List<Location> _locations;
 
-        public TourLocationRepository() { }
-
-        public void Initialize()
+        public TourLocationRepository()
         {
             _serializer = new Serializer<Location>();
             _locations = Load();
         }
+
+        public void Initialize() { }
 
         public List<Location> Load()
         {

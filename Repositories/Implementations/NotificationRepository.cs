@@ -1,4 +1,5 @@
-﻿using BookingProject.Domain;
+﻿using BookingProject.Controllers;
+using BookingProject.Domain;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
 using OisisiProjekat.Observer;
@@ -18,12 +19,12 @@ namespace BookingProject.Repositories
 
         public List<Notification> _notifications;
 
-        public NotificationRepository() { } 
-        public void Initialize()
+        public NotificationRepository()
         {
             _serializer = new Serializer<Notification>();
             _notifications = Load();
         }
+        public void Initialize() { }
 
         public List<Notification> Load()
         {
@@ -67,7 +68,7 @@ namespace BookingProject.Repositories
         public void DeleteNotificationFromCSV(Notification notification)
         {
             _notifications.RemoveAll(n => n.Id == notification.Id);
-            Save(_notifications);
+            Save();
         }
     }
 }

@@ -18,7 +18,6 @@ namespace BookingProject.Services.Interfaces
         void Create(AccommodationReservation reservation);
         List<AccommodationReservation> GetAll();
         AccommodationReservation GetByID(int id);
-        void Save(List<AccommodationReservation> reservations);
         List<AccommodationReservation> getReservationsForGuest(User loggedInUser);
         void Update(AccommodationReservation reservation);
         bool IsReservationAvailable(AccommodationReservation accommodationReservation);
@@ -46,5 +45,7 @@ namespace BookingProject.Services.Interfaces
         void DeleteNotificationFromCSV(Notification notification);
         void WriteNotificationAgain(Notification n);
         void Subscribe(IObserver observer);
+        void SaveParam(List<AccommodationReservation> reservations);
+        void Save();
     }
 }

@@ -29,10 +29,6 @@ namespace BookingProject.Services.Implementations
         {
             _accommodationReservationRepository.Create(reservation);
         }
-        public void Save(List<AccommodationReservation> reservations)
-        {
-            _accommodationReservationRepository.Save(reservations);
-        }
 
         public List<AccommodationReservation> GetAll()
         {
@@ -317,7 +313,6 @@ namespace BookingProject.Services.Implementations
             allReservations.Remove(allReservations.Single(res => res.Id == request.AccommodationReservation.Id));
         }
 
-
         public bool IsAvailableToMove(RequestAccommodationReservation request)
         {
             List<AccommodationReservation> allReservations = _accommodationReservationRepository.GetAll().ToList();
@@ -331,7 +326,6 @@ namespace BookingProject.Services.Implementations
             }
             return true;
         }
-
         public void DeleteReservationFromCSV(AccommodationReservation accommmodationReservation)
         {
             List<AccommodationReservation> _reservations = GetAll();
@@ -385,6 +379,15 @@ namespace BookingProject.Services.Implementations
         public void Subscribe(IObserver observer)
         {
             _accommodationReservationRepository.Subscribe(observer);
+        }
+        public void SaveParam(List<AccommodationReservation> reservations)
+        {
+            _accommodationReservationRepository.SaveParam(reservations);
+        }
+
+        public void Save()
+        {
+            _accommodationReservationRepository.Save();
         }
     }
 }

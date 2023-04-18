@@ -18,14 +18,14 @@ namespace BookingProject.Repositories.Implementations
         private Serializer<AccommodationReservation> _serializer;
         public List<AccommodationReservation> _accommodationReservations;
         private  List<IObserver> observers;
-
-
-        public AccommodationReservationRepository() { }
-        public void Initialize()
+        public AccommodationReservationRepository() 
         {
             _serializer = new Serializer<AccommodationReservation>();
             observers = new List<IObserver>();
             _accommodationReservations = Load();
+        }
+        public void Initialize()
+        {
             AccommodationReservationBind();
             ReservationUserBind();
         }
@@ -65,7 +65,7 @@ namespace BookingProject.Repositories.Implementations
         {
             reservation.Id = GenerateId();
             _accommodationReservations.Add(reservation);
-            Save(_accommodationReservations);
+            SaveParam(_accommodationReservations);
         }
         public int GenerateId()
         {
@@ -95,6 +95,11 @@ namespace BookingProject.Repositories.Implementations
         public void NotifyObservers()
         {
             throw new NotImplementedException();
+        }
+
+        public void SaveParam(List<AccommodationReservation> reservations)
+        {
+            _serializer.ToCSV(FilePath, reservations);
         }
     }
 }

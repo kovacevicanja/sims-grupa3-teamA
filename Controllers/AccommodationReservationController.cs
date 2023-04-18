@@ -26,10 +26,6 @@ namespace BookingProject.Controller
         {
             _accommodationReservationService.Create(reservation);
         }
-        public void Save(List<AccommodationReservation> reservations)
-        {
-            _accommodationReservationService.Save(reservations);
-        }
         public List<AccommodationReservation> GetAll()
         {
             return _accommodationReservationService.GetAll();
@@ -145,6 +141,14 @@ namespace BookingProject.Controller
         public void Subscribe(IObserver observer)
         {
             _accommodationReservationService.Subscribe(observer);
+        }
+        public void SaveParam(List<AccommodationReservation> reservations)
+        {
+            _accommodationReservationService.SaveParam(reservations);
+        }
+        public void Save()
+        {
+            _accommodationReservationService.Save();
         }
     }
 }

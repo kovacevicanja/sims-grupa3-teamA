@@ -19,7 +19,7 @@ namespace BookingProject.Services
         public UserService() { }
         public void Initialize()
         {
-            _userRepository = Injector.CreateInstance<UserRepository>();
+            _userRepository = Injector.CreateInstance<IUserRepository>();
         }
         public User GetByUsername(string username)
         {

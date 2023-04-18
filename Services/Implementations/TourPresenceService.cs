@@ -21,18 +21,18 @@ namespace BookingProject.Services.Implementations
     {
         private ITourPresenceRepository _tourPresenceRepository;
         private ITourTimeInstanceRepository _tourTimeInstanceRepository;
-        private TourService _tourService;
-        private NotificationService _notificationService;
-        private NotificationRepository _notificationRepository;
+        private ITourService _tourService;
+        private INotificationService _notificationService;
+        private INotificationRepository _notificationRepository;
         public TourPresenceService() { }
 
         public void Initialize()
         {
-            _tourPresenceRepository = Injector.CreateInstance<TourPresenceRepository>();
-            _tourTimeInstanceRepository = Injector.CreateInstance<TourTimeInstanceRepository>();
-            _tourService = Injector.CreateInstance<TourService>();
-            _notificationService = Injector.CreateInstance<NotificationService>();
-            _notificationRepository = Injector.CreateInstance<NotificationRepository>();
+            _tourPresenceRepository = Injector.CreateInstance<ITourPresenceRepository>();
+            _tourTimeInstanceRepository = Injector.CreateInstance<ITourTimeInstanceRepository>();
+            _tourService = Injector.CreateInstance<ITourService>();
+            _notificationService = Injector.CreateInstance<INotificationService>();
+            _notificationRepository = Injector.CreateInstance<INotificationRepository>();
         }
 
         public void Create(TourPresence presence)
@@ -55,7 +55,7 @@ namespace BookingProject.Services.Implementations
         public void SendNotification(User guest)
         {
             Notification notification = new Notification();
-            notification.Id = _notificationRepository.GenerateId();
+            //notification.Id = _notificationRepository.GenerateId();
             notification.UserId = guest.Id;
             notification.Text = "Presence check !!! ";
             notification.Read = false;

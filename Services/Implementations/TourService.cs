@@ -24,7 +24,7 @@ namespace BookingProject.Services
         public TourService() { }
         public void Initialize()
         {
-            _tourRepository = Injector.CreateInstance<TourRepository>();
+            _tourRepository = Injector.CreateInstance<ITourRepository>();
         }
         public bool WantedTour(Tour tour, string city, string country, string duration, string choosenLanguage, string numOfGuests)
         {

@@ -18,12 +18,12 @@ namespace BookingProject.Repositories
 
         public List<User> _users;
 
-        public UserRepository() { }
-        public void Initialize()
+        public UserRepository()
         {
             _serializer = new Serializer<User>();
             _users = Load();
         }
+        public void Initialize() { }
 
         public List<User> Load()
         {

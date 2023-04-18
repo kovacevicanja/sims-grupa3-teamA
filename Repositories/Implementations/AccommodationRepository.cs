@@ -19,17 +19,18 @@ namespace BookingProject.Repositories.Implementations
 
         public List<Accommodation> _accommodations;
 
-        public AccommodationRepository() { }
-
-        public void Initialize()
+        public AccommodationRepository()
         {
             _serializer = new Serializer<Accommodation>();
             _accommodations = Load();
+        }
+
+        public void Initialize()
+        {
             AccommodationLocationBind();
             AccommodationImagesBind();
             AccommodationOwnerBind();
             AccommodationUserBind();
-
         }
 
         public List<Accommodation> Load()

@@ -198,7 +198,6 @@ namespace BookingProject.View
         }
         private void Button_Click_Cancel(Object sender, RoutedEventArgs e)
         {
-            ImageController.Load();
             ImageController.DeleteUnused();
             ImageController.SaveImage();
             this.Close();

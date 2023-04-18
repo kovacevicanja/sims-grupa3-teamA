@@ -31,6 +31,7 @@ namespace BookingProject.View
         public NotificationController NotificationController { get; set; }
         private readonly AccommodationReservationController _accResController;
         private readonly RequestAccommodationReservationController _requestController;
+        private readonly NotificationController _notificationController;
 
         private string _username;
         public string Username
@@ -58,9 +59,11 @@ namespace BookingProject.View
             //_controller = app.UserController;
             _controller = new UserController();
             _accResController = new AccommodationReservationController();
-            _tourPresenceController = app.TourPresenceController;
+            //_tourPresenceController = app.TourPresenceController;
+            _tourPresenceController = new TourPresenceController();
             _accResController = new AccommodationReservationController();
             _requestController = new RequestAccommodationReservationController();
+            _notificationController = new NotificationController();
             NotificationController = new NotificationController();
         }
         private void SignIn(object sender, RoutedEventArgs e)
@@ -107,17 +110,18 @@ namespace BookingProject.View
                         _controller.Save();
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
-                        List<Notification> notifications = _requestController.GetGuest1Notifications(guest);
+                        List<Notification> notifications = new List<Notification>();
+                        notifications = _requestController.GetGuest1Notifications(guest);
                         List<Notification> notificationsCopy = new List<Notification>();
                         foreach (Notification notification in notifications)
                         {
                             MessageBox.Show(notification.Text);
                             notificationsCopy.Add(notification);
-                            _requestController.DeleteNotificationFromCSV(notification);
+                            _notificationController.DeleteNotificationFromCSV(notification);
                         }
                         foreach (Notification notification1 in notificationsCopy)
                         {
-                            _requestController.WriteNotificationAgain(notification1);
+                            _accResController.WriteNotificationAgain(notification1);
                         }
 
                     }
@@ -128,31 +132,19 @@ namespace BookingProject.View
                         _controller.Save();
                         SecondGuestProfile secondGuestProfile = new SecondGuestProfile(userGuest.Id);
                         secondGuestProfile.Show();
-                        List<Notification> notifications = _tourPresenceController.GetGuestNotifications(userGuest);
-                        List<Notification> notificationsCopy = new List<Notification>();
-
-                        foreach (Notification n in notifications)
-                        {
-                            if (n.UserId == user.Id)
-                            {
-                                _controller.GetByID(user.Id).IsPresent = true; //dodaj dugme za sredjivanje
-                                _controller.Save();
-                                NotificationController.GetByID(n.Id).Read = true;
-                                NotificationController.Save();
-                            }
-                        }
-
+                        List<Notification> notifications = new List<Notification>();
                         notifications = _tourPresenceController.GetGuestNotifications(userGuest);
+                        List<Notification> notificationsCopy = new List<Notification>();
 
                         foreach (Notification notification in notifications)
                         {
-                            ShowCustomMessageBoxNotification(notification.Text,userGuest);
+                            ShowCustomMessageBoxNotification(notification.Text, userGuest);
                             notificationsCopy.Add(notification);
-                            _tourPresenceController.GetGuestNotifications(userGuest);
+                            _tourPresenceController.DeleteNotificationFromCSV(notification);
                         }
                         foreach (Notification notification1 in notificationsCopy)
                         {
-                            _tourPresenceController.GetGuestNotifications(userGuest);
+                            _tourPresenceController.WriteNotificationAgain(notification1);
                         }
                     }
                     else if (user.UserType == UserType.GUIDE)
@@ -176,6 +168,8 @@ namespace BookingProject.View
         }
         public void ShowCustomMessageBoxNotification(string messageText, Model.User userGuest)
         {
+            List<Notification> notifications = _tourPresenceController.GetGuestNotifications(userGuest);
+
             Window customMessageBox = new Window
             {
                 Title = "Message",
@@ -209,8 +203,17 @@ namespace BookingProject.View
             };
             yesButton.Click += (o, args) =>
             {
-                // Perform action for 'Yes' button
-                MessageBox.Show("Action for 'Yes' button clicked!");
+                MessageBox.Show("You have successfully confirmed your presence on the tour.");
+                foreach (Notification notification in notifications)
+                {
+                    if (notification.UserId == userGuest.Id)
+                    {
+                        _controller.GetByID(userGuest.Id).IsPresent = true;
+                        _controller.Save();
+                        NotificationController.GetByID(notification.Id).Read = true;
+                        NotificationController.Save();
+                    }
+                }
                 customMessageBox.Close();
             };
 
@@ -225,8 +228,15 @@ namespace BookingProject.View
             };
             noButton.Click += (o, args) =>
             {
-                // Perform action for 'No' button
-                MessageBox.Show("Action for 'No' button clicked!");
+                MessageBox.Show("You have successfully reported that you are not present on the tour.");
+                foreach (Notification notification in notifications)
+                {
+                    if (notification.UserId == userGuest.Id)
+                    {
+                        _controller.GetByID(userGuest.Id).IsPresent = false;
+                        _controller.Save();
+                    }
+                }
                 customMessageBox.Close();
             };
 

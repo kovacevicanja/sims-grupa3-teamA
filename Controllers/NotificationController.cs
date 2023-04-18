@@ -37,6 +37,5 @@ namespace BookingProject.Controllers
         {
             _notificationService.DeleteNotificationFromCSV(notification);
         }
-
     }
 }

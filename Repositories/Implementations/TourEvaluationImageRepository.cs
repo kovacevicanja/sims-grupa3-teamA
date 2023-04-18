@@ -3,6 +3,7 @@ using BookingProject.DependencyInjection;
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
 using BookingProject.Services;
@@ -23,11 +24,13 @@ namespace BookingProject.Repositories
 
         public List<TourEvaluationImage> _images;
 
-        public TourEvaluationImageRepository() { }
-        public void Initialize()
+        public TourEvaluationImageRepository() 
         {
             _serializer = new Serializer<TourEvaluationImage>();
             _images = Load();
+        }
+        public void Initialize()
+        {
             TourEvaluationBind();
         }
         public List<TourEvaluationImage> Load()
@@ -62,7 +65,7 @@ namespace BookingProject.Repositories
         {
             foreach (TourEvaluationImage image in _images)
             {
-                TourEvaluation tourEvaluation = Injector.CreateInstance<TourEvaluationRepository>().GetByID(image.TourEvaluation.Id);
+                TourEvaluation tourEvaluation = Injector.CreateInstance<ITourEvaluationRepository>().GetByID(image.TourEvaluation.Id);
                 image.TourEvaluation = tourEvaluation;
             }
         }

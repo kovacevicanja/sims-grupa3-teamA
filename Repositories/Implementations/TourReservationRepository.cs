@@ -25,12 +25,14 @@ namespace BookingProject.Repositories.Implementations
 
         public List<TourReservation> _reservations;
 
-        public TourReservationRepository() { }
-
-        public void Initialize()
+        public TourReservationRepository() 
         {
             _serializer = new Serializer<TourReservation>();
             _reservations = Load();
+        }
+
+        public void Initialize()
+        {
             TourReservationBind();
         }
 

@@ -20,12 +20,14 @@ namespace BookingProject.Repositories.Implementations
 
         public List<TourTimeInstance> _instances;
 
-        public TourTimeInstanceRepository() { }
-        
-        public void Initialize()
+        public TourTimeInstanceRepository() 
         {
             _serializer = new Serializer<TourTimeInstance>();
             _instances = Load();
+        }
+        
+        public void Initialize()
+        {
             InstanceDateBind();
             InstanceTourBind();
         }

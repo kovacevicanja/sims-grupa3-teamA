@@ -14,7 +14,7 @@ namespace BookingProject.Services.Implementations
         public TourStartingTimeService() { }
         public void Initialize()
         {
-            _tourStartingTimeRepository = Injector.CreateInstance<TourStartingTimeRepository>();
+            _tourStartingTimeRepository = Injector.CreateInstance<ITourStartingTimeRepository>();
         }
         public void LinkToTour(int id)
         {

@@ -15,8 +15,7 @@ namespace BookingProject.Repositories.Intefaces
         AccommodationReservation GetByID(int id);
         void Initialize();
         void Subscribe(IObserver observer);
-        void Save(List<AccommodationReservation> reservations);
+        void SaveParam(List<AccommodationReservation> reservations);
+        void Save();
     }
-}
-
 }

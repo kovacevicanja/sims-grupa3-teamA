@@ -18,13 +18,13 @@ namespace BookingProject.Repositories.Implementations
 
         public List<TourDateTime> _dates;
 
-        public TourStartingTimeRepository() { }
-       
-        public void Initialize()
+        public TourStartingTimeRepository()
         {
             _serializer = new Serializer<TourDateTime>();
             _dates = Load();
         }
+
+        public void Initialize() { }
         public List<TourDateTime> Load()
         {
             return _serializer.FromCSV(FilePath);
