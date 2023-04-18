@@ -56,5 +56,30 @@ namespace BookingProject.Services
         {
             _userRepository.Save();
         }
+
+        public bool IsUserSuperUser(User user)
+        {
+            if (Injector.CreateInstance<IAccommodationOwnerGradeService>().IsOwnerSuperOwner(user.Id))
+            {
+                user.IsSuper = true;
+                Update(user);
+                return true;
+            } else
+            {
+                user.IsSuper = false;
+                Update(user);
+                return false;
+            }
+        }
+        public void Update(User user)
+        {
+            User oldUser = _userRepository.GetByID(user.Id);
+            if (oldUser == null)
+            {
+                return;
+            }
+            oldUser.IsSuper = user.IsSuper;
+            Save(); //-- NE RADI TI ?????????
+        }
     }
 }
