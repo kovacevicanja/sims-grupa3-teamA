@@ -140,6 +140,10 @@
     <Compile Include="FileHandler\VoucherHandler.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
+    <Compile Include="Repositories\Implementations\AccommodationImageRepository.cs" />
+    <Compile Include="Repositories\Implementations\AccommodationLocationRepository.cs" />
+    <Compile Include="Repositories\Implementations\AccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Implementations\GuestGradeRepository.cs" />
     <Compile Include="Repositories\Implementations\NotificationRepository.cs" />
     <Compile Include="Repositories\Implementations\TourStartingTimeRepository.cs" />
     <Compile Include="Repositories\Implementations\TourEvaluationImageRepository.cs" />
@@ -151,6 +155,10 @@
     <Compile Include="Repositories\Implementations\TourReservationRepository.cs" />
     <Compile Include="Repositories\Implementations\UserRepository.cs" />
     <Compile Include="Repositories\Implementations\VoucherRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationImageRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationLocationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IGuestGradeRepository.cs" />
     <Compile Include="Repositories\Intefaces\IKeyPointRepository.cs" />
     <Compile Include="Repositories\Intefaces\INotificationRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourEvaluationImageRepository.cs" />
@@ -164,6 +172,10 @@
     <Compile Include="Repositories\Intefaces\IVoucherRepository.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
+    <Compile Include="Services\Implementations\AccommodationImageService.cs" />
+    <Compile Include="Services\Implementations\AccommodationLocationService.cs" />
+    <Compile Include="Services\Implementations\AccommodationReservationService.cs" />
+    <Compile Include="Services\Implementations\GuestGradeService.cs" />
     <Compile Include="Services\Implementations\KeyPointService.cs" />
     <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\TourEvaluationImageService.cs" />
@@ -174,6 +186,10 @@
     <Compile Include="Services\Implementations\TourStartingTimeService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Services\Implementations\VoucherService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationImageService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationLocationService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationReservationService.cs" />
+    <Compile Include="Services\Interfaces\IGuestGradeService.cs" />
     <Compile Include="Services\Interfaces\IKeyPointService.cs" />
     <Compile Include="Services\Interfaces\INotificationService.cs" />
     <Compile Include="Services\Interfaces\ITourEvaluationImageService.cs" />

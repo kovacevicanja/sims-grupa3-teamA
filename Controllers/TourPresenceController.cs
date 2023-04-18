@@ -75,12 +75,12 @@ namespace BookingProject.Controller
         public void SendNotification(User guest)
         {
             Notification notification = new Notification();
-            notification.Id = _notificationController.GenerateId();
+            //notification.Id = _notificationController.GenerateId();
             notification.UserId = guest.Id;
             notification.Text = "Presence check !!! ";
             notification.Read = false;
             _notificationController.Create(notification);
-            _notificationController.Save();
+            //_notificationController.Save();
         }
 
         public List<Notification> GetGuestNotifications(User guest)

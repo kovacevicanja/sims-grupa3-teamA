@@ -26,6 +26,11 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationRepository), new TourEvaluationRepository() },
             { typeof(IKeyPointRepository), new KeyPointRepository() },
             { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(IGuestGradeRepository), new GuestGradeRepository() },
+            { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
+            { typeof(IAccommodationImageRepository), new AccommodationImageRepository() },
+            { typeof(IAccommodationLocationRepository), new AccommodationLocationRepository() },
+            { typeof(INotificationRepository), new NotificationRepository() },
 
 
             { typeof(ITourService), new TourService() },
@@ -38,12 +43,21 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationService), new TourEvaluationService() },
             { typeof(IKeyPointService), new KeyPointService() },
             { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(IGuestGradeService), new GuestGradeService() },
+            { typeof(IAccommodationReservationService), new AccommodationReservationService() },
+            { typeof(IAccommodationImageService), new AccommodationImageService() },
+            { typeof(INotificationService), new NotificationService() },
+            { typeof(IAccommodationLocationService), new AccommodationLocationService() },
 
         };
         public static void Initialize()
         {
             //CreateInstance<IVoucherRepository>().Initialize();
             CreateInstance<ITourReservationRepository>().Initialize();
+            CreateInstance<IGuestGradeService>().Initialize();
+            CreateInstance<IAccommodationReservationService>().Initialize();
+            CreateInstance<IAccommodationImageService>().Initialize();
+            CreateInstance<INotificationService>().Initialize();
         }
 
         public static T CreateInstance<T>()
