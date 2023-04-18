@@ -13,9 +13,7 @@ namespace BookingProject.Repositories.Implementations
     public class TourLocationRepository : ITourLocationRepository
     {
         private const string FilePath = "../../Resources/Data/tourLocations.csv";
-
         private Serializer<Location> _serializer;
-
         public List<Location> _locations;
 
         public TourLocationRepository()
@@ -23,14 +21,11 @@ namespace BookingProject.Repositories.Implementations
             _serializer = new Serializer<Location>();
             _locations = Load();
         }
-
         public void Initialize() { }
-
         public List<Location> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save()
         {
             _serializer.ToCSV(FilePath, _locations);

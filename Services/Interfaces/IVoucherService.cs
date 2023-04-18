@@ -16,5 +16,6 @@ namespace BookingProject.Services.Interfaces
         Voucher GetByID(int id);
         void Initialize();
         void Save(List<Voucher> vouchers);
+        void SaveVouchers();
     }
 }

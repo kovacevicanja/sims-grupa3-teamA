@@ -24,42 +24,34 @@ namespace BookingProject.Controller
         {
             _accommodationOwnerGradeService.Save(grades);
         }
-
         public bool ExistsAccommodationGradeForAccommodationId(int accomomodationId)
         {
             return _accommodationOwnerGradeService.ExistsAccommodationGradeForAccommodationId(accomomodationId);
         }
-
         public List<AccommodationOwnerGrade> GetGradesForAccAndUserLastN(int accId, int userId, int n)
         {
             return _accommodationOwnerGradeService.GetGradesForAccAndUserLastN(accId, userId, n);
         }
-
         public bool ExistsAlreadyAccommodationAndUser(int accId, int userId, List<AccommodationOwnerGrade> grades)
         {
             return _accommodationOwnerGradeService.ExistsAlreadyAccommodationAndUser(accId, userId, grades);
         }
-
         public List<AccommodationOwnerGrade> GradesGradedByBothSidesForOwner(int ownerId)
         {
             return _accommodationOwnerGradeService.GradesGradedByBothSidesForOwner(ownerId);
         }
-
         public bool IsOwnerSuperOwner(int ownerId)
         {
             return _accommodationOwnerGradeService.IsOwnerSuperOwner(ownerId);
         }
-
         public void Create(AccommodationOwnerGrade grade)
         {
             _accommodationOwnerGradeService.Create(grade);
         }
-
         public List<AccommodationOwnerGrade> GetAll()
         {
             return _accommodationOwnerGradeService.GetAll();
         }
-
         public AccommodationOwnerGrade GetByID(int id)
         {
             return _accommodationOwnerGradeService.GetByID(id);

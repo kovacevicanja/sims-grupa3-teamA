@@ -24,16 +24,17 @@ namespace BookingProject.View
     public partial class ReservationTourOtherOffersView : Window
     {
         private ObservableCollection<Tour> _tours;
-        private TourReservationController _tourReservationController;
+        private TourController _tourController;
         public Tour ChosenTour { get; set; } 
         public int GuestId { get; set; }
         public ReservationTourOtherOffersView(Tour chosenTour, DateTime selectedDate, int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
+
             ChosenTour = chosenTour;
-            _tourReservationController = new TourReservationController();
-            _tours = new ObservableCollection<Tour>(_tourReservationController.GetFilteredTours(chosenTour.Location, selectedDate));
+            _tourController = new TourController(); 
+            _tours = new ObservableCollection<Tour>(_tourController.GetFilteredTours(chosenTour.Location, selectedDate)); 
             TourDataGrid.ItemsSource = _tours;
             GuestId = guestId;
         }
@@ -41,7 +42,6 @@ namespace BookingProject.View
         {
             this.Close();
         }
-
         private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
         {
             ReservationTourView reservationTourView = new ReservationTourView(ChosenTour, GuestId);

@@ -22,8 +22,6 @@ namespace BookingProject
         public TourImageController ImageController { get; set; }
         public KeyPointController KeyPointController { get; set; }
         public TourStartingTimeController StartingDateController { get; set; }
-
-        public TourGuestController TourGuestController { get; set; }
         public TourTimeInstanceController TourTimeInstanceController { get; set; }
         public AccommodationController AccommodationController { get; set; }
         public AccommodationLocationController AccommodationLocationController { get; set; }

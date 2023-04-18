@@ -21,9 +21,6 @@ namespace BookingProject.Services.Interfaces
         void FullyBookedTours(Tour choosenTour, DateTime selectedDate, User guest);
         void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour);
         void FreePlaceMessage(int maxGuests);
-        List<Tour> GetFilteredTours(Location location, DateTime selectedDate);
-        void GoThroughTourDates(Tour tour, DateTime selectedDate);
-        void GoThroughBookedToursDates(Tour tour, DateTime selectedDate, TourDateTime tdt);
         List<TourReservation> GetAll();
         TourReservation GetByID(int id);
         List<TourReservation> GetUserReservations(int guestId);

@@ -15,24 +15,21 @@ namespace BookingProject.Services.Implementations
 {
     public class TourTimeInstanceService : ITourTimeInstanceService
     {
-
         private ITourTimeInstanceRepository _tourTimeInstanceRepository;
+
         public TourTimeInstanceService() { }
         public void Initialize()
         {
             _tourTimeInstanceRepository = Injector.CreateInstance<ITourTimeInstanceRepository>();
         }
-
         public void Create(TourTimeInstance instance)
         {
             _tourTimeInstanceRepository.Create(instance);
         }
-
         public List<TourTimeInstance> GetAll()
         {
             return _tourTimeInstanceRepository.GetAll();
         }
-
         public TourTimeInstance GetByID(int id)
         {
             return _tourTimeInstanceRepository.GetByID(id);

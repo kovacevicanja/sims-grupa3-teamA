@@ -1,4 +1,5 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,5 +24,10 @@ namespace BookingProject.Services.Interfaces
         void ShowAll(ObservableCollection<Tour> tourView);
         Tour GetLastTour();
         void Initialize();
+        List<Tour> FilterToursByDate(DateTime selectedDate);
+        void GoThroughTourDates(Tour tour, DateTime selectedDate);
+        void GoThroughBookedToursDates(Tour tour, DateTime selectedDate, TourDateTime tdt);
+        List<Tour> FilterToursByLocation(List<Tour> filteredTours, Location location, DateTime selectedDate);
+        List<Tour> GetFilteredTours(Location location, DateTime selectedDate);
     }
 }

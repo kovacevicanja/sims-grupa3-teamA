@@ -91,8 +91,6 @@ namespace BookingProject.Services.Implementations
             }
             return reservations;
         }
-
-
         public bool CheckNumberOfGuests(Accommodation selectedAccommodation, string numberOfGuests)
         {
             if (selectedAccommodation.MaxGuestNumber >= int.Parse(numberOfGuests))

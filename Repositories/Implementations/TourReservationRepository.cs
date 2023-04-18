@@ -20,9 +20,7 @@ namespace BookingProject.Repositories.Implementations
     public class TourReservationRepository : ITourReservationRepository
     {
         private const string FilePath = "../../Resources/Data/tourReservations.csv";
-
         private  Serializer<TourReservation> _serializer;
-
         public List<TourReservation> _reservations;
 
         public TourReservationRepository() 
@@ -30,32 +28,26 @@ namespace BookingProject.Repositories.Implementations
             _serializer = new Serializer<TourReservation>();
             _reservations = Load();
         }
-
         public void Initialize()
         {
             TourReservationBind();
         }
-
         public List<TourReservation> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save(List<TourReservation> dates)
         {
             _serializer.ToCSV(FilePath, dates);
         }
-
         public List<TourReservation> GetAll()
         {
             return _reservations.ToList();
         }
-
         public TourReservation GetByID(int id)
         {
             return _reservations.Find(date => date.Id == id);
         }
-       
         public int GenerateId()
         {
             if (_reservations.Count == 0) return 0;

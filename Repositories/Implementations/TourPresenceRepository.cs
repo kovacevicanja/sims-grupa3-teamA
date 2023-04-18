@@ -16,33 +16,27 @@ namespace BookingProject.Repositories.Implementations
     public class TourPresenceRepository : ITourPresenceRepository
     {
         private const string FilePath = "../../Resources/Data/tourPresence.csv";
-
         private Serializer<TourPresence> _serializer;
-
         public List<TourPresence> _presences;
-        public INotificationRepository _notificationRepository { get; set; }
 
+        public INotificationRepository _notificationRepository { get; set; }
         public TourPresenceRepository()
         {
             _serializer = new Serializer<TourPresence>();
             _presences = Load();
         }
-
         public void Initialize() 
         {
             _notificationRepository = Injector.CreateInstance<INotificationRepository>();
         }
-
         public List<TourPresence> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save()
         {
             _serializer.ToCSV(FilePath, _presences);
         }
-
         private int GenerateId()
         {
             int maxId = 0;
@@ -61,7 +55,6 @@ namespace BookingProject.Repositories.Implementations
             _presences.Add(presence);
             Save();
         }
-
         public List<TourPresence> GetAll()
         {
             return _presences.ToList();

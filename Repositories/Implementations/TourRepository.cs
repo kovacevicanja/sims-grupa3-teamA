@@ -18,9 +18,7 @@ namespace BookingProject.Repositories
     public class TourRepository : ITourRepository
     {
         private const string FilePath = "../../Resources/Data/tours.csv";
-
         private Serializer<Tour> _serializer;
-
         public List<Tour> _tours;
         public ITourStartingTimeRepository _tourStartingTimeRepository; 
 
@@ -29,7 +27,6 @@ namespace BookingProject.Repositories
             _serializer = new Serializer<Tour>();
             _tours = Load();
         }
-
         public void Initialize()
         {
             _tourStartingTimeRepository = Injector.CreateInstance<ITourStartingTimeRepository>();
@@ -38,17 +35,14 @@ namespace BookingProject.Repositories
             TourKeyPointBind();
             TourDateBind();
         }
-
         public List<Tour> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save(List<Tour> tours)
         {
             _serializer.ToCSV(FilePath, tours);
         }
-
         private int GenerateId()
         {
             int maxId = 0;
@@ -67,7 +61,6 @@ namespace BookingProject.Repositories
             _tours.Add(tour);
             Save(_tours);
         }
-
         public List<Tour> GetAll()
         {
             return _tours.ToList();
@@ -84,7 +77,6 @@ namespace BookingProject.Repositories
                 tour.Location = location;
             }
         }
-        
         public void BindTourImage()
         {
             ITourImageRepository tourImageRepository = Injector.CreateInstance<ITourImageRepository>();
@@ -95,7 +87,6 @@ namespace BookingProject.Repositories
 
             }
         }
-
         public void AddKeyPointToTour(Tour tour, List<KeyPoint> keyPoints)
         {
             foreach (KeyPoint keyPoint in keyPoints)
@@ -118,8 +109,6 @@ namespace BookingProject.Repositories
             List<KeyPoint> keyPoints = Injector.CreateInstance<IKeyPointRepository>().GetAll();
             BindTourKeyPoint(keyPoints);
         }
-        //
-        //TourDate bind
         public void AddStartingTimesToTour(Tour tour, List<TourDateTime> dates)
         {
             foreach (TourDateTime date in dates)
@@ -142,6 +131,5 @@ namespace BookingProject.Repositories
             List<TourDateTime> dates = Injector.CreateInstance<ITourStartingTimeRepository>().GetAll();
             BindTourStartingTimes(dates);
         }
-        //
     }
 }

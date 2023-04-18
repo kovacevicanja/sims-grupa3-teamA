@@ -23,12 +23,10 @@ namespace BookingProject.Services
         {
             _tourEvaluationImageRepository.Create(tourEvaluationImage);
         }
-
         public List<TourEvaluationImage> GetAll()
         {
             return _tourEvaluationImageRepository.GetAll();
         }
-
         public TourEvaluationImage GetByID(int id)
         {
             return _tourEvaluationImageRepository.GetByID(id);

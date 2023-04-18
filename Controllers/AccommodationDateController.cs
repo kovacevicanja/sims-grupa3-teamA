@@ -17,12 +17,10 @@ namespace BookingProject.Controller
         {
             _accommodationDateService = Injector.CreateInstance<IAccommodationDateService>();
         }
-
         public List<AccommodationDate> GetAll()
         {
             return _accommodationDateService.GetAll();
         }
-        
         public AccommodationDate GetByID(int id)
         {
             return _accommodationDateService.GetByID(id);

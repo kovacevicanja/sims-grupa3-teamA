@@ -37,16 +37,18 @@ namespace BookingProject.View
         public ObservableCollection<int> TourInterestignessOption { get; set; }
         public int ChosenInterestigness { get; set; }
         public TourEvaluation tourEvaluation { get; set; }
-        public List <TourEvaluationImage> Images { get; set; }
+        public List<TourEvaluationImage> Images { get; set; }
         public TourEvaluationImageController TourEvaluationImageController { get; set; }
         public Tour ChosenTour { get; set; }
         public TourReservationController TourReservationController { get; set; }
         public CustomMessageBox CustomMessageBox { get; set; }
-        public ToursAndGuidesEvaluationView(Tour chosenTour)
+        public int GuestId { get; set; }
+        public ToursAndGuidesEvaluationView(Tour chosenTour, int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
-            var app = Application.Current as App;
+
+            GuestId = guestId;
 
             CustomMessageBox = new CustomMessageBox();
 
@@ -159,6 +161,7 @@ namespace BookingProject.View
             tourEvaluation.AdditionalComment = AdditionalComment;
 
             tourEvaluation.Tour.Id = ChosenTour.Id;
+            tourEvaluation.Guest.Id = GuestId;
 
             TourEvaluationController.Create(tourEvaluation);
             this.Close();

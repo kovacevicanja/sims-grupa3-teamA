@@ -15,9 +15,7 @@ namespace BookingProject.Repositories.Implementations
     public class TourTimeInstanceRepository : ITourTimeInstanceRepository
     {
         private const string FilePath = "../../Resources/Data/tourTimeInstances.csv";
-
         private Serializer<TourTimeInstance> _serializer;
-
         public List<TourTimeInstance> _instances;
 
         public TourTimeInstanceRepository() 
@@ -25,23 +23,19 @@ namespace BookingProject.Repositories.Implementations
             _serializer = new Serializer<TourTimeInstance>();
             _instances = Load();
         }
-        
         public void Initialize()
         {
             InstanceDateBind();
             InstanceTourBind();
         }
-
         public List<TourTimeInstance> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save()
         {
             _serializer.ToCSV(FilePath, _instances);
         }
-
         private int GenerateId()
         {
             int maxId = 0;
@@ -60,7 +54,6 @@ namespace BookingProject.Repositories.Implementations
             _instances.Add(instances);
             Save();
         }
-
         public List<TourTimeInstance> GetAll()
         {
             return _instances.ToList();
@@ -69,7 +62,6 @@ namespace BookingProject.Repositories.Implementations
         {
             return _instances.Find(presence => presence.Id == id);
         }
-
         public void InstanceTourBind()
         {
             //_tourController.Load();
@@ -79,7 +71,6 @@ namespace BookingProject.Repositories.Implementations
                 tourTimeInstance.Tour = tour;
             }
         }
-
         public void InstanceDateBind()
         {
             foreach (TourTimeInstance tourTimeInstance in _instances)

@@ -33,12 +33,6 @@ namespace BookingProject.Controllers
         {
             return _tourEvaluationService.GetByID(id);
         }
-        /*
-        public void Initialize()
-        {
-            _tourEvaluationRepository.Initialize();
-        }
-        */
         public void Save()
         {
             _tourEvaluationService.Save();

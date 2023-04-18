@@ -46,8 +46,5 @@ namespace BookingProject.Controller
         {
             _imageService.Save(images);
         }
-        
-
-
     }
 }

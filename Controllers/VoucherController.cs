@@ -42,10 +42,13 @@ namespace BookingProject.Controllers
         {
             return _voucherService.GetByID(id);
         }
-
         public void Save(List<Voucher> _vouchers)
         {
             _voucherService.Save(_vouchers);
+        }
+        public void SaveVouchers()
+        {
+            _voucherService.SaveVouchers();
         }
     }
 }

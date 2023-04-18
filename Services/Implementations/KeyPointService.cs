@@ -22,12 +22,10 @@ namespace BookingProject.Services.Implementations
         {
             _keyPointRepository = Injector.CreateInstance<IKeyPointRepository>();
         }
-       
         public void CleanUnused()
         {
             _keyPointRepository.GetAll().RemoveAll(r => r.TourId == -1);
         }
-
         public void LinkToTour(int id)
         {
             foreach (KeyPoint keyPoint in _keyPointRepository.GetAll())
@@ -38,7 +36,6 @@ namespace BookingProject.Services.Implementations
                 }
             }
         }
-
         public KeyPoint GetCurrentKeyPoint()
         {
             foreach (KeyPoint keyPoint in _keyPointRepository.GetAll())
@@ -74,22 +71,18 @@ namespace BookingProject.Services.Implementations
             }
             return null;
         }
-
         public void Create(KeyPoint keyPoint)
         {
             _keyPointRepository.Create(keyPoint);
         }
-
         public List<KeyPoint> GetAll()
         {
             return _keyPointRepository.GetAll();
         }
-
         public KeyPoint GetByID(int id)
         {
             return _keyPointRepository.GetByID(id); 
         }
-
         public void Save()
         {
             _keyPointRepository.Save();

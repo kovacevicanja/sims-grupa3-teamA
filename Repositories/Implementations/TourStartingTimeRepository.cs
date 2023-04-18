@@ -13,9 +13,7 @@ namespace BookingProject.Repositories.Implementations
     public class TourStartingTimeRepository : ITourStartingTimeRepository
     {
         private const string FilePath = "../../Resources/Data/tourStartingTime.csv";
-
         private Serializer<TourDateTime> _serializer;
-
         public List<TourDateTime> _dates;
 
         public TourStartingTimeRepository()
@@ -23,18 +21,15 @@ namespace BookingProject.Repositories.Implementations
             _serializer = new Serializer<TourDateTime>();
             _dates = Load();
         }
-
         public void Initialize() { }
         public List<TourDateTime> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save()
         {
             _serializer.ToCSV(FilePath, _dates);
         }
-    
         private int GenerateId()
         {
             int maxId = 0;
@@ -47,19 +42,16 @@ namespace BookingProject.Repositories.Implementations
             }
             return maxId + 1;
         }
-
         public void Create(TourDateTime date)
         {
             date.Id = GenerateId();
             _dates.Add(date);
             Save();
         }
-
         public List<TourDateTime> GetAll()
         {
             return _dates.ToList();
         }
-
         public TourDateTime GetByID(int id)
         {
             return _dates.Find(date => date.Id == id);

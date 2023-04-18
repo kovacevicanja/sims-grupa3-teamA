@@ -28,7 +28,7 @@ namespace BookingProject.View
     /// </summary>
     public partial class SecondGuestMyAttendedTours : Window, INotifyPropertyChanged
     {
-        public Tour ChosenTour { get; set; } //
+        public Tour ChosenTour { get; set; } 
         public User Guest;                     
         private ObservableCollection<Tour> _toursReservation; 
         private TourPresenceController _tourPresenceController { get; set; }
@@ -52,7 +52,7 @@ namespace BookingProject.View
         {
             if (ChosenTour != null)
             {
-                ToursAndGuidesEvaluationView toursAndGuidesEvaluationView = new ToursAndGuidesEvaluationView(ChosenTour);
+                ToursAndGuidesEvaluationView toursAndGuidesEvaluationView = new ToursAndGuidesEvaluationView(ChosenTour, GuestId);
                 toursAndGuidesEvaluationView.Show();
             }
 

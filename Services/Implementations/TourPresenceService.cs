@@ -16,7 +16,6 @@ using BookingProject.Serializer;
 
 namespace BookingProject.Services.Implementations
 {
-
     public class TourPresenceService : ITourPresenceService
     {
         private ITourPresenceRepository _tourPresenceRepository;
@@ -24,8 +23,8 @@ namespace BookingProject.Services.Implementations
         private ITourService _tourService;
         private INotificationService _notificationService;
         private INotificationRepository _notificationRepository;
-        public TourPresenceService() { }
 
+        public TourPresenceService() { }
         public void Initialize()
         {
             _tourPresenceRepository = Injector.CreateInstance<ITourPresenceRepository>();
@@ -34,13 +33,10 @@ namespace BookingProject.Services.Implementations
             _notificationService = Injector.CreateInstance<INotificationService>();
             _notificationRepository = Injector.CreateInstance<INotificationRepository>();
         }
-
         public void Create(TourPresence presence)
         {
            _tourPresenceRepository.Create(presence);
         }
-
-
         public List<TourPresence> GetAll()
         {
             return _tourPresenceRepository.GetAll();
@@ -50,18 +46,14 @@ namespace BookingProject.Services.Implementations
         {
             return _tourPresenceRepository.GetByID(id);
         }
-
-
         public void SendNotification(User guest)
         {
             Notification notification = new Notification();
-            //notification.Id = _notificationRepository.GenerateId();
             notification.UserId = guest.Id;
             notification.Text = "Presence check !!! ";
             notification.Read = false;
             _notificationService.Create(notification);
         }
-
         public List<Notification> GetGuestNotifications(User guest)
         {
             List<Notification> notificationsForGuest = new List<Notification>();
@@ -77,7 +69,6 @@ namespace BookingProject.Services.Implementations
 
             return notificationsForGuest;
         }
-
         public List<Tour> FindAttendedTours(User guest)
         {
             List<int> tourInstanceIds = new List<int>();
@@ -108,12 +99,10 @@ namespace BookingProject.Services.Implementations
             }
             return tours.Distinct().ToList();
         }
-
         public void DeleteNotificationFromCSV(Notification notification)
         {
             _notificationService.DeleteNotificationFromCSV(notification);
         }
-
         public void WriteNotificationAgain(Notification n)
         {
             Notification notification = new Notification();
@@ -128,4 +117,3 @@ namespace BookingProject.Services.Implementations
         }
     }
 }
-

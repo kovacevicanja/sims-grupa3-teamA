@@ -31,7 +31,6 @@ namespace BookingProject.View
         public User User { get; set; }
         public Tour Tour { get; set; }
         public TourReservationController TourReservationController { get; set; }
-        //public TourReservationHandler TourReservationHandler { get; set; }
         public ITourReservationRepository _tourReservationRepository;
         public TourReservation TourReservation { get; set; }    
         public SecondGuestProfile(int idGuest)

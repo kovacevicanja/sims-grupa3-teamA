@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Odbc;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -21,13 +22,14 @@ namespace BookingProject.Domain
         public List<TourEvaluationImage> Images { get; set; }  
         public Tour Tour { get; set; }
         public TourReservation TourReservation { get; set; }
-
+        public User Guest { get; set; }
         public bool IsValid { get; set; }
         public TourEvaluation() 
         {
             Images = new List<TourEvaluationImage>();
             IsValid= true;
             Tour = new Tour();
+            Guest = new User();
         }
         public TourEvaluation (int id, int knowledge, int language, int interestigness, string comment, List<TourEvaluationImage> images, bool isValid)
         {
@@ -48,6 +50,7 @@ namespace BookingProject.Domain
             AdditionalComment = values[4];
             Tour.Id = int.Parse(values[5]);
             IsValid = bool.Parse(values[6]);
+            Guest.Id = int.Parse(values[7]);
         }
         public string[] ToCSV()
         {
@@ -60,6 +63,7 @@ namespace BookingProject.Domain
             AdditionalComment,
             Tour.Id.ToString(),
             IsValid.ToString(),
+            Guest.Id.ToString()
             };
             return csvValues;
         }
