@@ -1,9 +1,11 @@
 ﻿using BookingProject.Controller;
+using BookingProject.DependencyInjection;
 using BookingProject.Domain;
 using BookingProject.Domain.Enums;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Serializer;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -15,90 +17,35 @@ namespace BookingProject.Controllers
 {
     public class VoucherController
     {
-        private readonly List<IObserver> observers;
-        private readonly VoucherHandler _voucherHandler;
-        private List<Voucher> _vouchers;
-        private TourReservationController _tourReservationController { get; set; }
+        private readonly IVoucherService _voucherService;
         public VoucherController()
         {
-            _voucherHandler = new VoucherHandler();
-            _vouchers = new List<Voucher>();
-            observers = new List<IObserver>();
-            Load();
-        }
-        public void Load()
-        {
-            _vouchers = _voucherHandler.Load();
-        }
-        public int GenerateId()
-        {
-            int maxId = 0;
-            foreach (Voucher voucher in _vouchers)
-            {
-                if (voucher.Id > maxId)
-                {
-                    maxId = voucher.Id;
-                }
-            }
-            return maxId + 1;
-        }
-        public void Create(Voucher voucher)
-        {
-            voucher.Id = GenerateId();
-            _vouchers.Add(voucher);
-            NotifyObservers();
-        }
-        public void Save()
-        {
-            _voucherHandler.Save(_vouchers);
-            NotifyObservers();
-        }
-        public List<Voucher> GetAll()
-        {
-            return _vouchers;
+            _voucherService = Injector.CreateInstance<IVoucherService>();
         }
         public void DeleteExpiredVouchers()
         {
-            List<Voucher> copyList = new List<Voucher>(_vouchers);
-            foreach (Voucher voucher in copyList)
-            {
-                if (voucher.EndDate <= DateTime.Now)
-                {
-                    _vouchers.Remove(voucher);
-                }
-            }
-            Save();
+            _voucherService.DeleteExpiredVouchers();
         }
         public List<Voucher> GetUserVouhers(int guestId)
         {
-            List<Voucher> guestsVouchers = new List<Voucher>();
-            foreach (Voucher voucher in _vouchers)
-            {
-                if (voucher.Guest.Id == guestId && voucher.State.ToString() != "USED")
-                {
-                    guestsVouchers.Add(voucher);
-                }
-            }
-            return guestsVouchers;
+            return _voucherService.GetUserVouhers(guestId);
+        }
+        public void Create(Voucher voucher)
+        {
+            _voucherService.Create(voucher);
+        }
+        public List<Voucher> GetAll()
+        {
+            return _voucherService.GetAll();    
         }
         public Voucher GetByID(int id)
         {
-            return _vouchers.Find(voucher => voucher.Id == id);
+            return _voucherService.GetByID(id);
         }
-        public void NotifyObservers()
+
+        public void Save(List<Voucher> _vouchers)
         {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
+            _voucherService.Save(_vouchers);
         }
     }
 }

@@ -1,88 +1,68 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.DependencyInjection;
 using BookingProject.Model;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BookingProject.Controller
 {
-    public class AccommodationOwnerGradeController : ISubject
+    public class AccommodationOwnerGradeController 
     {
-        private readonly List<IObserver> observers;
-
-        private readonly AccommodationOwnerGradeHandler _accommodationOwnerGradeHandler;
-
-        private List<AccommodationOwnerGrade> _grades;
-
+        private readonly IAccommodationOwnerGradeService _accommodationOwnerGradeService;
         public AccommodationOwnerGradeController()
         {
-            _accommodationOwnerGradeHandler = new AccommodationOwnerGradeHandler();
-            observers = new List<IObserver>();
-            Load();
+            _accommodationOwnerGradeService = Injector.CreateInstance<IAccommodationOwnerGradeService>();
+        }
+        public void Save(List<AccommodationOwnerGrade> grades)
+        {
+            _accommodationOwnerGradeService.Save(grades);
         }
 
-        public void Load()
+        public bool ExistsAccommodationGradeForAccommodationId(int accomomodationId)
         {
-            _grades = _accommodationOwnerGradeHandler.Load();
+            return _accommodationOwnerGradeService.ExistsAccommodationGradeForAccommodationId(accomomodationId);
         }
 
-        public int GenerateId()
+        public List<AccommodationOwnerGrade> GetGradesForAccAndUserLastN(int accId, int userId, int n)
         {
-            int maxId = 0;
-            foreach (AccommodationOwnerGrade grade in _grades)
-            {
-                if (grade.Id > maxId)
-                {
-                    maxId = grade.Id;
-                }
-            }
-            return maxId + 1;
+            return _accommodationOwnerGradeService.GetGradesForAccAndUserLastN(accId, userId, n);
+        }
+
+        public bool ExistsAlreadyAccommodationAndUser(int accId, int userId, List<AccommodationOwnerGrade> grades)
+        {
+            return _accommodationOwnerGradeService.ExistsAlreadyAccommodationAndUser(accId, userId, grades);
+        }
+
+        public List<AccommodationOwnerGrade> GradesGradedByBothSidesForOwner(int ownerId)
+        {
+            return _accommodationOwnerGradeService.GradesGradedByBothSidesForOwner(ownerId);
+        }
+
+        public bool IsOwnerSuperOwner(int ownerId)
+        {
+            return _accommodationOwnerGradeService.IsOwnerSuperOwner(ownerId);
         }
 
         public void Create(AccommodationOwnerGrade grade)
-        { 
-            grade.Id = GenerateId();
-            _grades.Add(grade);
-            NotifyObservers();
-        }
-
-        public void Save()
         {
-            _accommodationOwnerGradeHandler.Save(_grades);
-            NotifyObservers();
+            _accommodationOwnerGradeService.Create(grade);
         }
-
 
         public List<AccommodationOwnerGrade> GetAll()
         {
-            return _grades;
+            return _accommodationOwnerGradeService.GetAll();
         }
 
         public AccommodationOwnerGrade GetByID(int id)
         {
-            return _grades.Find(grade => grade.Id == id);
+            return _accommodationOwnerGradeService.GetByID(id);
         }
-
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
-
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
-        }
-
     }
 }

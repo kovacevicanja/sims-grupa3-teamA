@@ -35,11 +35,10 @@ namespace BookingProject.View
             _accommodationReservationController = new AccommodationReservationController();
             _userController = new UserController();
             _reservations = new ObservableCollection<AccommodationReservation>(_accommodationReservationController.getReservationsForGuest(_userController.GetLoggedUser()));
-            _accommodationReservationController.Subscribe(this);
+            //_accommodationReservationController.Subscribe(this);
             ReservationsDataGrid.ItemsSource = _reservations;
         }
 
-        
         private void Button_Click_Review(object sender, RoutedEventArgs e)
         {
             if (_accommodationReservationController.PermissionToRate(SelectedReservation)) {

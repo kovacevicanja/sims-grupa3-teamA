@@ -1,6 +1,7 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.DependencyInjection;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -11,185 +12,88 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Controller
 {
-    public class AccommodationController : ISubject
+    public class AccommodationController 
     {
-        private readonly List<IObserver> observers;
-
-        private readonly AccommodationHandler _accommodationHandler;
-
-        private List<Accommodation> _accommodations;
-
-        private AccommodationLocationController _locationController;
-
-        private AccommodationImageController _imageController;
-
-        private UserController _userController;
-
+        private readonly IAccommodationService _accommodationService;
         public AccommodationController()
         {
-            _accommodationHandler = new AccommodationHandler();
-            _accommodations = new List<Accommodation>();
-            _locationController = new AccommodationLocationController();
-            _imageController = new AccommodationImageController();
-            _userController = new UserController();
-            Load();
-        }
-
-        public void Load()
-        {
-            _accommodations = _accommodationHandler.Load();
-            AccommodationLocationBind();
-            AccommodationImagesBind();
-            AccommodationOwnerBind();
-        }
-
-        public List<Accommodation> GetAll()
-        {
-            return _accommodations;
-        }
-
-        public void Create(Accommodation accommodation)
-        {
-            accommodation.Id = GenerateId();
-            _accommodations.Add(accommodation);
-        }
-
-        public void SaveAccommodation()
-        {
-            _accommodationHandler.Save(_accommodations);
-        }
-        public void AddImageToAccommodation(Accommodation accommodation, AccommodationImage image)
-        {
-            accommodation.Images.Add(image);
-            image.AccommodationId = accommodation.Id;
-        }
-
-        private int GenerateId()
-        {
-            int maxId = 0;
-            foreach (Accommodation accommodation in _accommodations)
-            {
-                if (accommodation.Id > maxId)
-                {
-                    maxId = accommodation.Id;
-                }
-            }
-            return maxId + 1;
-        }
-
-        public Accommodation GetByID(int id)
-        {
-            return _accommodations.Find(accommodation => accommodation.Id == id);
-        }
-
-        public void AccommodationLocationBind()
-        {
-            _locationController.Load();
-            foreach (Accommodation accommodation in _accommodations)
-            {
-                Location location = _locationController.GetByID(accommodation.IdLocation);
-                accommodation.Location = location;
-            }
-        }
-
-        public void AccommodationImagesBind()
-        {
-            List<AccommodationImage> images = new List<AccommodationImage>();
-            AccommodationImageHandler accommodationImageHandler = new AccommodationImageHandler();
-            images = accommodationImageHandler.Load();
-
-            foreach (Accommodation accommodation in _accommodations)
-            {
-                foreach (AccommodationImage image in images)
-                {
-
-                    if (accommodation.Id == image.AccommodationId)
-                    {
-                        accommodation.Images.Add(image);
-                    }
-
-                }
-            }
-        }
-
-        public void AccommodationOwnerBind()
-        {
-            _userController.Load();
-            foreach(Accommodation accommodation in _accommodations)
-            {
-                User owner = _userController.GetByID(accommodation.Owner.Id);
-                accommodation.Owner = owner;
-            }
+            _accommodationService = Injector.CreateInstance<IAccommodationService>();
         }
 
         public bool CheckType(List<String> accommodationTypes, string accType)
         {
-            return accommodationTypes == null || accommodationTypes.Count == 0 || accommodationTypes.Any(t => accType.Contains(t.ToLower()));
+            return _accommodationService.CheckType(accommodationTypes, accType);
+        }
+        public void SaveAccommodation()
+        {
+            _accommodationService.SaveAccommodation();
         }
 
         public ObservableCollection<Accommodation> Search(ObservableCollection<Accommodation> _accommodationsView, string name, string city, string state, List<string> types, string numberOfGuests, string minNumDaysOfReservation)
         {
-            _accommodationsView.Clear();
-
-            foreach (Accommodation accommodation in _accommodations)
-            {
-                if (AccMatched(accommodation, name, city, state, types, numberOfGuests, minNumDaysOfReservation))
-                {
-                    _accommodationsView.Add(accommodation);
-                }
-            }
-            return _accommodationsView;
-
+            return _accommodationService.Search(_accommodationsView, name, city, state, types, numberOfGuests, minNumDaysOfReservation);
         }
 
         public bool AccMatched(Accommodation accommodation, string name, string city, string state, List<string> types, string numberOfGuests, string minNumDaysOfReservation)
         {
-            if (CityMatched(accommodation, city)
-                && CountryMatched(accommodation, state)
-                && NameMatched(accommodation, name)
-                && TypeMatched(accommodation, types)
-                && NumberOfGuestsMatched(accommodation, numberOfGuests)
-                && MinNumDaysOfReservationOfGuestsMatched(accommodation, minNumDaysOfReservation)) { return true; }
-            else { return false; }
+            return _accommodationService.AccMatched(accommodation, name, city, state, types, numberOfGuests, minNumDaysOfReservation);
         }
 
         public bool CityMatched(Accommodation accommodation, string city)
         {
-            if (string.IsNullOrEmpty(city) || accommodation.Location.City.ToLower().Contains(city.ToLower())) { return true; }
-            else { return false; }
+            return _accommodationService.CityMatched(accommodation, city);
         }
 
         public bool CountryMatched(Accommodation accommodation, string state)
         {
-            if (string.IsNullOrEmpty(state) || accommodation.Location.Country.ToLower().Contains(state.ToLower())) { return true; }
-            else { return false; }
+            return _accommodationService.CountryMatched(accommodation, state);
         }
 
         public bool NameMatched(Accommodation accommodation, string name)
         {
-            if (string.IsNullOrEmpty(name) || accommodation.AccommodationName.ToLower().Contains(name.ToLower())) { return true; }
-            else { return false; }
+            return _accommodationService.NameMatched(accommodation, name);
         }
 
         public bool TypeMatched(Accommodation accommodation, List<string> types)
         {
-            if (CheckType(types, accommodation.Type.ToString().ToLower())) { return true; }
-            else { return false; }
+            return _accommodationService.TypeMatched(accommodation, types);
         }
 
         public bool NumberOfGuestsMatched(Accommodation accommodation, string numberOfGuests)
         {
-            if ((string.IsNullOrEmpty(numberOfGuests) || int.Parse(numberOfGuests) <= accommodation.MaxGuestNumber)) { return true; }
-            else { return false; }
+            return _accommodationService.NumberOfGuestsMatched(accommodation, numberOfGuests);
         }
+
         public bool MinNumDaysOfReservationOfGuestsMatched(Accommodation accommodation, string minNumDaysOfReservation)
         {
-            if (string.IsNullOrEmpty(minNumDaysOfReservation) || int.Parse(minNumDaysOfReservation) >= accommodation.MinDays) { return true; }
-            else { return false; }
+            return _accommodationService.MinNumDaysOfReservationOfGuestsMatched(accommodation, minNumDaysOfReservation);
         }
 
+        public void Create(Accommodation accommodation)
+        {
+            _accommodationService.Create(accommodation);
+        }
 
-        public void NotifyObservers()
+        public List<Accommodation> GetAll()
+        {
+            return _accommodationService.GetAll();
+        }
+
+        public Accommodation GetByID(int id)
+        {
+            return _accommodationService.GetByID(id);
+        }
+        public void Save(List<Accommodation> accommodations)
+        {
+            _accommodationService.Save(accommodations);
+        }
+
+        /* public void SaveAccommodation()
+         {
+             _accommodationHandler.Save(_accommodations);
+         }*/
+
+        /*public void NotifyObservers()
         {
             foreach(var observer in observers)
             {
@@ -205,6 +109,10 @@ namespace BookingProject.Controller
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);
+        }*/
+        public List<Accommodation> GetAllForOwner(int ownerId)
+        {
+           return _accommodationService.GetAllForOwner(ownerId);
         }
     }
 }

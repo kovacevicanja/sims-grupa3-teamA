@@ -89,7 +89,7 @@ namespace BookingProject.View
         {
             RequestAccommodationReservation request = new RequestAccommodationReservation();
             request.AccommodationReservation = SelectedReservation;
-            request.Comment = Comment;
+            request.GuestComment = Comment;
             request.NewArrivalDay = NewInitialDate;
             request.NewDeparuteDay = NewEndDate;
             request.Status = Domain.Enums.RequestStatus.PENDING;

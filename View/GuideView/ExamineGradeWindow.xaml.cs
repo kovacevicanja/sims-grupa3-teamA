@@ -44,7 +44,7 @@ namespace BookingProject.View.GuideView
         public void MarkAsInvalid()
         {
             _tourEvaluationController.GetByID(ChosenEvaluation.Id).IsValid = false;
-            _tourEvaluationController.SaveEvaluation();
+            _tourEvaluationController.Save();
         }
         public string GetGuestKeyPoint()
         {

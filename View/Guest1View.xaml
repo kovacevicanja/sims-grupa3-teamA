@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
+        xmlns:local1="clr-namespace:BookingProject.ConversionHelp"
         mc:Ignorable="d"
         Title="Guest1" Height="600" Width="900">
-
+    <Window.Resources>
+        <local1:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -59,7 +62,16 @@
 
             <DataGrid Margin="5, 0, 5, 16" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True" SelectedItem="{Binding selectedAccommodation}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Width="60" Binding="{Binding AccommodationName}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Name">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="15" Height="15" Margin="0,0,0,90" Source="../Resources/Images/star.jpg" Visibility="{Binding Owner.IsSuper, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    <TextBlock TextAlignment="Right" Text="{Binding AccommodationName}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="City" Width="60" Binding="{Binding Location.City}"></DataGridTextColumn>
                     <DataGridTextColumn Header="State" Width="60" Binding="{Binding Location.Country}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Type" Width="60" Binding="{Binding Type}"></DataGridTextColumn>

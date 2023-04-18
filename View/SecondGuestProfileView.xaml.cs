@@ -1,7 +1,9 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
-using BookingProject.FileHandler;
+using BookingProject.DependencyInjection;
 using BookingProject.Model;
+using BookingProject.Repositories.Implementations;
+using BookingProject.Repositories.Intefaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,7 +31,8 @@ namespace BookingProject.View
         public User User { get; set; }
         public Tour Tour { get; set; }
         public TourReservationController TourReservationController { get; set; }
-        public TourReservationHandler TourReservationHandler { get; set; }
+        //public TourReservationHandler TourReservationHandler { get; set; }
+        public ITourReservationRepository _tourReservationRepository;
         public TourReservation TourReservation { get; set; }    
         public SecondGuestProfile(int idGuest)
         {
@@ -43,7 +46,7 @@ namespace BookingProject.View
             Tour = new Tour();
             TourReservation = new TourReservation();
             TourReservationController = new TourReservationController();
-            TourReservationHandler = new TourReservationHandler();
+            _tourReservationRepository = Injector.CreateInstance<ITourReservationRepository>();
         }
         private void Button_Click_MyAttendedTours(object sender, RoutedEventArgs e)
         {
@@ -79,7 +82,6 @@ namespace BookingProject.View
         private void Button_Click_MonitoringActiveTours(object sender, RoutedEventArgs e)
         {
             List<TourReservation> tourReservations = new List<TourReservation>();
-            tourReservations = TourReservationHandler.Load();
             int flag = 0;
             List<TourReservation> activeTours = new List<TourReservation>(); 
             List<int> activeToursIds = new List<int>();

@@ -31,12 +31,12 @@ namespace BookingProject.View
             InitializeComponent();
             this.DataContext = this;
 
-            var app = Application.Current as App;
-            _accommodationController = app.AccommodationReservationController;
+            //var app = Application.Current as App;
+            //_accommodationController = app.AccommodationReservationController;
+            _accommodationController = new AccommodationReservationController();
 
 
-            _accommodationController.Load();
-            Reservations = new ObservableCollection<AccommodationReservation>(_accommodationController.GetAllNotGradedReservations());
+            Reservations = new ObservableCollection<AccommodationReservation>(_accommodationController.GetAllNotGradedReservations(SignInForm.LoggedInUser.Id));
         }
         private void selectedIndexChanged(object sender, EventArgs e)
         {

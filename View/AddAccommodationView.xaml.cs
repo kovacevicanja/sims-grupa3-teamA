@@ -43,10 +43,13 @@ namespace BookingProject.View
             var types = Enum.GetValues(typeof(AccommodationType)).Cast<AccommodationType>();
             accommodationTypes = new ObservableCollection<AccommodationType>(types);
 
-            var app = Application.Current as App;
-            AccommodationController = app.AccommodationController;
-            LocationController = app.AccommodationLocationController;
-            ImageController= app.AccommodationImageController;
+            //var app = Application.Current as App;
+            AccommodationController = new AccommodationController();
+            LocationController = new AccommodationLocationController();
+            ImageController = new AccommodationImageController();
+            //AccommodationController = app.AccommodationController;
+            //LocationController = app.AccommodationLocationController;
+            //ImageController= app.AccommodationImageController;
         }
 
         private string _accommodationName;
@@ -175,6 +178,7 @@ namespace BookingProject.View
             accommodation.MaxGuestNumber = MaxGuestNumber;
             accommodation.MinDays = MinDays;
             accommodation.CancellationPeriod = CancellationPeriod;
+            accommodation.Owner.Id=SignInForm.LoggedInUser.Id;
 
             Location location = new Location();
             location.City = City;
@@ -185,13 +189,10 @@ namespace BookingProject.View
             accommodation.IdLocation = location.Id;
 
             AccommodationController.Create(accommodation);
-            AccommodationController.SaveAccommodation();
+            //AccommodationController.SaveAccommodation();
 
             ImageController.LinkToAccommodation(accommodation.Id);
             ImageController.SaveImage();
-
-
-            
 
             if (IsValid)
             {
@@ -199,10 +200,8 @@ namespace BookingProject.View
             }
             this.Close();
         }
-
         private void Button_Click_Cancel(Object sender, RoutedEventArgs e)
         {
-            ImageController.Load();
             ImageController.DeleteUnused();
             ImageController.SaveImage();
             this.Close();
@@ -225,7 +224,6 @@ namespace BookingProject.View
             AddPhotosToAccommodationView addPhoto = new AddPhotosToAccommodationView();
             addPhoto.Show();
         }
-
         public string this[string columnName]
         {
             get

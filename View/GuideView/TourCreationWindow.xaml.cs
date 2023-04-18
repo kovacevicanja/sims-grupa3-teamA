@@ -1,8 +1,10 @@
 ﻿using BookingProject.Controller;
-using BookingProject.FileHandler;
+using BookingProject.DependencyInjection;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Model.Images;
+using BookingProject.Services;
+using BookingProject.Services.Interfaces;
 using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
@@ -43,7 +45,7 @@ namespace BookingProject.View
             this.DataContext = this;
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
-            var app = Application.Current as App;
+            /*var app = Application.Current as App;
             TourController = app.TourController;
             LocationController = app.LocationController;
             KeyPointController = app.KeyPointController;
@@ -51,6 +53,7 @@ namespace BookingProject.View
             StartingDateController = app.StartingDateController;
             TourTimeInstanceController = app.TourTimeInstanceController;
             UserController = app.UserController;
+            */
         }
 
         //public string this[string columnName] => throw new NotImplementedException();
@@ -173,7 +176,6 @@ namespace BookingProject.View
             tour.LocationId = location.Id;
             //kreiranje
             TourController.Create(tour);
-            TourController.Save();
             //uvezivanje sa ostalim pomocnim klasama
             KeyPointController.LinkToTour(tour.Id);
             KeyPointController.Save();
@@ -186,8 +188,6 @@ namespace BookingProject.View
         }
         public void saveInstance()
         {
-            StartingDateController.Load();
-            TourController.Load();
             makeTimeInstances(TourController.GetLastTour());
         }
         //use of this function is necessary if a tour has multiple dates   
@@ -204,13 +204,10 @@ namespace BookingProject.View
         }
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            KeyPointController.Load();
             KeyPointController.CleanUnused();
             KeyPointController.Save();
-            ImageController.Load();
             ImageController.CleanUnused();
             ImageController.Save();
-            StartingDateController.Load();
             StartingDateController.CleanUnused();
             StartingDateController.Save();              
             MyToursWindow myToursWindow = new MyToursWindow();
@@ -298,8 +295,8 @@ namespace BookingProject.View
         public bool validKeyPoint()
         {
             int keyPointNumber = 0;
-            KeyPointHandler keyPointHandler = new KeyPointHandler();
-            foreach (KeyPoint keyPoint in keyPointHandler._keyPoints)
+            KeyPointController keyPointController = new KeyPointController();
+            foreach (KeyPoint keyPoint in KeyPointController.GetAll())
             {
                 if (keyPoint.TourId == -1)
                 {
@@ -314,8 +311,8 @@ namespace BookingProject.View
         }
         public bool validTourImage()
         {
-            TourImageHandler tourImageHandler = new TourImageHandler();
-            foreach (TourImage tourImage in tourImageHandler._images)
+            TourImageController tourImageController = new TourImageController();
+            foreach (TourImage tourImage in tourImageController.GetAll())
             {
                 if (tourImage.Tour.Id == -1)
                 {
@@ -326,8 +323,8 @@ namespace BookingProject.View
         }
         public bool validTourDateTime()
         {
-            TourStartingTimeHandler tourStartingTimeHandler = new TourStartingTimeHandler();
-            foreach (TourDateTime tourDate in tourStartingTimeHandler._dates)
+            TourStartingTimeController tourStartingTimeController = new TourStartingTimeController();
+            foreach (TourDateTime tourDate in tourStartingTimeController.GetAll())
             {
                 if (tourDate.TourId == -1)
                 {

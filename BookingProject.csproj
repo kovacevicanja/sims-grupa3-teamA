@@ -79,6 +79,9 @@
     <Compile Include="Controllers\TourTimeInstanceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
+    <Compile Include="ConversionHelp\BooleanToVisibilityConverter.cs" />
+    <Compile Include="DependencyInjection\Injector.cs" />
+    <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Domain\AccommodationOwnerGrade.cs" />
     <Compile Include="Domain\Enums\GuideType.cs" />
     <Compile Include="Domain\Enums\RequestStatus.cs" />
@@ -93,28 +96,6 @@
     <Compile Include="Domain\TourEvaluation.cs" />
     <Compile Include="Domain\TourPresence.cs" />
     <Compile Include="Domain\Voucher.cs" />
-    <Compile Include="FileHandler\AccommodationDateHandler.cs" />
-    <Compile Include="FileHandler\AccommodationGuestImageHandler.cs" />
-    <Compile Include="FileHandler\AccommodationHandler.cs" />
-    <Compile Include="FileHandler\AccommodationOwnerGradeHandler.cs" />
-    <Compile Include="FileHandler\AccommodationReservationHandler.cs" />
-    <Compile Include="FileHandler\AccomodationLocationHandler.cs" />
-    <Compile Include="FileHandler\NotificationHandler.cs" />
-    <Compile Include="FileHandler\TourEvaluationHandler.cs" />
-    <Compile Include="FileHandler\RequestAccommodationReservationHandler.cs" />
-    <Compile Include="FileHandler\TourGuestHandler.cs" />
-    <Compile Include="FileHandler\GuestGradeHandler.cs" />
-    <Compile Include="FileHandler\TourEvaluationImageHandler.cs" />
-    <Compile Include="FileHandler\TourImageHandler.cs" />
-    <Compile Include="FileHandler\KeyPointHandler.cs" />
-    <Compile Include="FileHandler\AccommodationImageHandler.cs" />
-    <Compile Include="FileHandler\TourLocationHandler.cs" />
-    <Compile Include="ConversionHelp\DateConversion.cs" />
-    <Compile Include="FileHandler\TourPresenceHandler.cs" />
-    <Compile Include="FileHandler\TourReservationHandler.cs" />
-    <Compile Include="FileHandler\TourStartingTimeHandler.cs" />
-    <Compile Include="FileHandler\TourHandler.cs" />
-    <Compile Include="FileHandler\TourTimeInstanceHandler.cs" />
     <Compile Include="Domain\Accommodation.cs" />
     <Compile Include="Domain\AccommodationDate.cs" />
     <Compile Include="Domain\AccommodationReservation.cs" />
@@ -135,13 +116,102 @@
     <Compile Include="Domain\TourReservation.cs" />
     <Compile Include="Domain\TourTimeInstance.cs" />
     <Compile Include="Domain\User.cs" />
-    <Compile Include="FileHandler\UserHandler.cs" />
-    <Compile Include="FileHandler\VoucherHandler.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
+<<<<<<< HEAD
     <Compile Include="Repository\VoucherRepository.cs" />
+=======
+    <Compile Include="Repositories\Implementations\AccommodationImageRepository.cs" />
+    <Compile Include="Repositories\Implementations\AccommodationLocationRepository.cs" />
+    <Compile Include="Repositories\Implementations\AccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Implementations\GuestGradeRepository.cs" />
+    <Compile Include="Repositories\Implementations\AccommodationDateRepository.cs" />
+    <Compile Include="Repositories\Implementations\AccommodationGuestImageRepository.cs" />
+    <Compile Include="Repositories\Implementations\AccommodationOwnerGradeRepository.cs" />
+    <Compile Include="Repositories\Implementations\AccommodationRepository.cs" />
+    <Compile Include="Repositories\Implementations\NotificationRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourPresenceRepository.cs" />
+    <Compile Include="Repositories\Implementations\RequestAccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourStartingTimeRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourEvaluationImageRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourEvaluationRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourImageRepository.cs" />
+    <Compile Include="Repositories\Implementations\KeyPointRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourLocationRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourReservationRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourTimeInstanceRepository.cs" />
+    <Compile Include="Repositories\Implementations\UserRepository.cs" />
+    <Compile Include="Repositories\Implementations\VoucherRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationImageRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationLocationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IGuestGradeRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationDateRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationGuestImageRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationOwnerGradeRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IKeyPointRepository.cs" />
+    <Compile Include="Repositories\Intefaces\INotificationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IRequestAccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourEvaluationImageRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourEvaluationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourImageRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourLocationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourPresenceRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourReservationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourStartingTimeRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourTimeInstanceRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IUserRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IVoucherRepository.cs" />
+>>>>>>> d2627674c824f45bb58aa62a6de4d98d327c1446
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
+    <Compile Include="Services\Implementations\AccommodationImageService.cs" />
+    <Compile Include="Services\Implementations\AccommodationLocationService.cs" />
+    <Compile Include="Services\Implementations\AccommodationReservationService.cs" />
+    <Compile Include="Services\Implementations\GuestGradeService.cs" />
+    <Compile Include="Services\Implementations\AccommodationDateService.cs" />
+    <Compile Include="Services\Implementations\AccommodationGuestImageService.cs" />
+    <Compile Include="Services\Implementations\AccommodationOwnerGradeService.cs" />
+    <Compile Include="Services\Implementations\AccommodationService.cs" />
+    <Compile Include="Services\Implementations\KeyPointService.cs" />
+    <Compile Include="Services\Implementations\NotificationService.cs" />
+    <Compile Include="Services\Implementations\RequestAccommodationReservationService.cs" />
+    <Compile Include="Services\Implementations\TourEvaluationImageService.cs" />
+    <Compile Include="Services\Implementations\TourEvaluationService.cs" />
+    <Compile Include="Services\Implementations\TourImageService.cs" />
+    <Compile Include="Services\Implementations\TourLocationService.cs" />
+    <Compile Include="Services\Implementations\TourPresenceService.cs" />
+    <Compile Include="Services\Implementations\TourReservationService.cs" />
+    <Compile Include="Services\Implementations\TourService.cs" />
+    <Compile Include="Services\Implementations\TourStartingTimeService.cs" />
+    <Compile Include="Services\Implementations\TourTimeInstanceService.cs" />
+    <Compile Include="Services\Implementations\UserService.cs" />
+    <Compile Include="Services\Implementations\VoucherService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationImageService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationLocationService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationReservationService.cs" />
+    <Compile Include="Services\Interfaces\IGuestGradeService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationDateService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationGuestImageService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationOwnerGradeService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationService.cs" />
+    <Compile Include="Services\Interfaces\IKeyPointService.cs" />
+    <Compile Include="Services\Interfaces\INotificationService.cs" />
+    <Compile Include="Services\Interfaces\IRequestAccommodationReservationService.cs" />
+    <Compile Include="Services\Interfaces\ITourEvaluationImageService.cs" />
+    <Compile Include="Services\Interfaces\ITourEvaluationService.cs" />
+    <Compile Include="Services\Interfaces\ITourImageService.cs" />
+    <Compile Include="Services\Interfaces\ITourLocationService.cs" />
+    <Compile Include="Services\Interfaces\ITourPresenceService.cs" />
+    <Compile Include="Services\Interfaces\ITourReservationService.cs" />
+    <Compile Include="Services\Interfaces\ITourService.cs" />
+    <Compile Include="Services\Interfaces\ITourStartingTimeService.cs" />
+    <Compile Include="Services\Interfaces\ITourTimeInstanceService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\Interfaces\IVoucherService.cs" />
     <Compile Include="View\AccommodationOwnerReview.xaml.cs">
       <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
     </Compile>
@@ -157,6 +227,7 @@
     <Compile Include="View\AddPhotosToAccommodationView.xaml.cs">
       <DependentUpon>AddPhotosToAccommodationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CustomMessageBoxes\CustomMessageBox.cs" />
     <Compile Include="View\EnterDate.xaml.cs">
       <DependentUpon>EnterDate.xaml</DependentUpon>
     </Compile>
@@ -183,6 +254,9 @@
     </Compile>
     <Compile Include="View\GuideView\ExamineGradeWindow.xaml.cs">
       <DependentUpon>ExamineGradeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuestGradesForOwnerView.xaml.cs">
+      <DependentUpon>GuestGradesForOwnerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\GuestListView.xaml.cs">
       <DependentUpon>GuestListView.xaml</DependentUpon>
@@ -223,8 +297,17 @@
     <Compile Include="View\MonitoringActiveToursView.xaml.cs">
       <DependentUpon>MonitoringActiveToursView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NotGradedView.xaml.cs">
       <DependentUpon>NotGradedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersApprovingDenyingRequestView.xaml.cs">
+      <DependentUpon>OwnersApprovingDenyingRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersRequestView.xaml.cs">
+      <DependentUpon>OwnersRequestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnerView.xaml.cs">
       <DependentUpon>OwnerView.xaml</DependentUpon>
@@ -330,6 +413,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\GuestGradesForOwnerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\GuestListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -382,7 +469,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\NotGradedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersApprovingDenyingRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -457,7 +556,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\Data\notifications.csv" />
     <None Include="Resources\Data\tourEvaluationImages.csv" />
     <None Include="Resources\Data\accommodationOwnerGrades.csv" />
     <None Include="Resources\Data\accommodationReservationRequests.csv" />
@@ -578,6 +676,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\ToursImages\logOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\star.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

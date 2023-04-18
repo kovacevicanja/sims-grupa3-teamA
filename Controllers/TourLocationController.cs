@@ -1,9 +1,12 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.DependencyInjection;
 using BookingProject.Model;
+using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,67 +14,36 @@ using System.Windows.Annotations;
 
 namespace BookingProject.Controller
 {
-    public class TourLocationController : ISubject
+    public class TourLocationController
     {
-        private readonly  List<IObserver> observers;
-        private readonly TourLocationHandler _locationHandler;
-        private List<Location> _locations;
+        private ITourLocationService _tourLocationService { get; set; }
         public TourLocationController()
         {
-            _locationHandler = new TourLocationHandler();
-            _locations = new List<Location>();
-            observers = new List<IObserver>();
-            Load();
+            _tourLocationService = Injector.CreateInstance<ITourLocationService>();
         }
-        public void Load()
+        /*
+        public void Initialize()
         {
-            _locations = _locationHandler.Load();
+            _tourLocationRepository = Injector.CreateInstance<ITourLocationRepository>();
+        }
+        */
+        public void Create(Location location)
+        {
+            _tourLocationService.Create(location);
+        }
+
+        public List<Location> GetAll()
+        {
+            return _tourLocationService.GetAll();
+        }
+
+        public Location GetByID(int id)
+        {
+            return _tourLocationService.GetByID(id);
         }
         public void Save()
         {
-            _locationHandler.Save(_locations);
-            NotifyObservers();
-        }
-        private int GenerateId()
-        {
-            int maxId = 0;
-            foreach (Location location in _locations)
-            {
-                if (location.Id > maxId)
-                {
-                    maxId = location.Id;
-                }
-            }
-            return maxId + 1;
-        }
-        public void Create(Location location)
-        {
-            location.Id = GenerateId();
-            _locations.Add(location);
-            NotifyObservers();
-        }
-        public List<Location> GetAll()
-        {
-            return _locations;
-        }
-        public Location GetByID(int id)
-        {
-            return _locations.Find(location => location.Id == id);
-        }
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
+            _tourLocationService.Save();
         }
     }
 }

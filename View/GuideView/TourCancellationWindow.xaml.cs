@@ -51,7 +51,7 @@ namespace BookingProject.View.GuideView
                     _voucherController.Create(voucher);
                 }
             }
-            _voucherController.Save();
+            //_voucherController.Save();
         }
         private void No_Click(object sender, RoutedEventArgs e)
         {

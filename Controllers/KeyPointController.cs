@@ -1,6 +1,7 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.DependencyInjection;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.Services.Interfaces;
 using BookingProject.View;
 using OisisiProjekat.Observer;
 using System;
@@ -11,140 +12,48 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Controller
 {
-    public class KeyPointController : ISubject
+    public class KeyPointController
     {
-        private readonly List<IObserver> observers;
-
-        private readonly KeyPointHandler _keyPointHandler;
-
-        private List<KeyPoint> _keyPoints;
-
+        private readonly IKeyPointService _tourKeyPointService;
         public KeyPointController()
         {
-            _keyPointHandler = new KeyPointHandler();
-            _keyPoints = new List<KeyPoint>();
-            observers = new List<IObserver>();
-            Load();
+            _tourKeyPointService = Injector.CreateInstance<IKeyPointService>();
         }
-
-        public void Load()
-        {
-            _keyPoints = _keyPointHandler.Load();
-        }
-
-
-        private int GenerateId()
-        {
-            int maxId = 0;
-            foreach (KeyPoint keyPoint in _keyPoints)
-            {
-                if (keyPoint.Id > maxId)
-                {
-                    maxId = keyPoint.Id;
-                }
-            }
-            return maxId + 1;
-        }
-
         public void Create(KeyPoint keyPoint)
         {
-            keyPoint.Id = GenerateId();
-            _keyPoints.Add(keyPoint);
-            NotifyObservers();
+            _tourKeyPointService.Create(keyPoint);
         }
-
-        public void Save()
-        {
-            _keyPointHandler.Save(_keyPoints);
-            NotifyObservers();
-        }
-
         public List<KeyPoint> GetAll()
         {
-            return _keyPoints;
+            return _tourKeyPointService.GetAll();
         }
-
         public KeyPoint GetByID(int id)
         {
-            return _keyPoints.Find(keyPoint => keyPoint.Id == id);
+            return _tourKeyPointService.GetByID(id);
         }
-
         public void CleanUnused()
         {
-            _keyPoints.RemoveAll(r => r.TourId == -1);
-            NotifyObservers();
+            _tourKeyPointService.CleanUnused();
         }
-
         public void LinkToTour(int id)
         {
-
-            foreach(KeyPoint keyPoint in _keyPoints)
-            {
-                if (keyPoint.TourId == -1)
-                {
-                    keyPoint.TourId = id;
-                }
-
-            }
-            NotifyObservers();
+            _tourKeyPointService.LinkToTour(id);
         }
-
         public KeyPoint GetCurrentKeyPoint()
         {
-            foreach(KeyPoint keyPoint in _keyPoints)
-            {
-                if (keyPoint.State == KeyPointState.CURRENT)
-                {
-                    return keyPoint;
-                }
-            }
-            return GetPassedKeyPoint();
+            return _tourKeyPointService.GetCurrentKeyPoint();
         }
         public List<KeyPoint> GetToursKeyPoints(int id)
         {
-            List <KeyPoint> tourKeyPoints = new List<KeyPoint>();  
-
-            foreach (KeyPoint kp in _keyPoints)
-            {
-                if (kp.TourId == id)
-                {
-                    tourKeyPoints.Add(kp);
-                }
-            }
-            return tourKeyPoints;
+            return _tourKeyPointService.GetToursKeyPoints(id);
         }
-
-
         public KeyPoint GetPassedKeyPoint()
         {
-            foreach (KeyPoint keyPoint in _keyPoints)
-            {
-                if (keyPoint.State == KeyPointState.PASSED)
-                {
-                    return keyPoint;
-                }
-            }
-            return null;
+            return _tourKeyPointService.GetPassedKeyPoint();
         }
-
-        public void NotifyObservers()
+        public void Save()
         {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
+            _tourKeyPointService.Save();
         }
-
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
-        }
-
     }
 }
-

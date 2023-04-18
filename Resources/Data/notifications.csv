@@ -17,3 +17,13 @@
 24|5|Presence check !!! |True
 25|5|Presence check !!! |True
 26|5|Presence check !!! |True
+27|7|Reservation for your accommodation Hotel Mona, from 29.04.2023., to 05.05.2023. was cancelled!|False
+28|1|Request to move reservation from 19.04.2023. - 20.04.2023. to 14.04.2023. - 29.04.2023. is DECLINED|True
+29|1|Request to move reservation from 19.04.2023. - 20.04.2023. to 20.04.2023. - 24.04.2023. is DECLINED|True
+30|1|Request to move reservation from 19.04.2023. - 29.04.2023. to 14.04.2023. - 29.04.2023. is APPROVED|True
+31|5|Novo obavestenje test|True
+32|0|Reservation for your accommodation , from 19.04.2023., to 20.04.2023. was cancelled!|False
+33|1|Request to move reservation from 20.04.2023. - 23.04.2023. to 14.04.2023. - 29.04.2023. is APPROVED|True
+34|1|Request to move reservation from 20.04.2023. - 23.04.2023. to 14.04.2023. - 29.04.2023. is APPROVED|True
+35|1|Request to move reservation from 20.04.2023. - 23.04.2023. to 14.04.2023. - 29.04.2023. is APPROVED|True
+36|7|Reservation for your accommodation Hotel Mona, from 29.04.2023., to 05.05.2023. was cancelled!|True

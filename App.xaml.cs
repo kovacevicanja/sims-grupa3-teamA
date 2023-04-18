@@ -1,6 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
-using BookingProject.FileHandler;
+using BookingProject.DependencyInjection;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -44,10 +44,11 @@ namespace BookingProject
 
         public App()
         {
-            TourController = new TourController(); //
-            LocationController = new TourLocationController();
+            /*
+            //TourController = new TourController(); //
+            //LocationController = new TourLocationController();
             ImageController = new TourImageController();
-            KeyPointController = new KeyPointController();  
+            //KeyPointController = new KeyPointController();  
             StartingDateController = new TourStartingTimeController();  
             AccommodationImageController= new AccommodationImageController();
             AccommodationLocationController = new AccommodationLocationController();
@@ -56,28 +57,29 @@ namespace BookingProject
             TourGuestController = new TourGuestController();
             AccommodationReservationController = new AccommodationReservationController();
             GuestGradeController = new GuestGradeController();
-            TourEvaluationController = new TourEvaluationController();
+            //TourEvaluationController = new TourEvaluationController();
             TourPresenceController= new TourPresenceController();
-            VoucherController = new VoucherController();
+            //VoucherController = new VoucherController();
 
             GuestGradeController._accommodationController = AccommodationReservationController;
             AccommodationReservationController._guestGradeController= GuestGradeController;
             AccommodationReservationController._accommodationController = AccommodationController;
 
             //
-            TourReservationController = new TourReservationController();
+            //TourReservationController = new TourReservationController();
 
             //
 
             AccommodationReservationController.Load();
             GuestGradeController.Load();
 
-            TourEvaluationController.Load();
-            TourReservationController.Load(); //
+            //TourEvaluationController.Load();
+            //TourReservationController.Load(); //
                                               //
-            UserController = new UserController();
+            //UserController = new UserController();
 
-
+            */
+            Injector.Initialize();  
         }
 
 

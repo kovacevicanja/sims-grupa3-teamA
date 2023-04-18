@@ -1,6 +1,7 @@
-﻿using BookingProject.FileHandler;
+﻿using BookingProject.DependencyInjection;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -10,86 +11,47 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Controller
 {
-    public class GuestGradeController: ISubject
+    public class GuestGradeController 
     {
-        private readonly List<IObserver> observers;
-        private readonly GuestGradeHandler _gradeHandler;
-        private List<GuestGrade> _grades;
-        public AccommodationReservationController _accommodationController { get; set; }
+        private readonly IGuestGradeService _guestGradeService;
 
         public GuestGradeController()
         {
-            _gradeHandler = new GuestGradeHandler();
-            _grades = new List<GuestGrade>();
-        }
-        public void Load()
-        {
-            _grades = _gradeHandler.Load();
-            AccommodationGradeBind();
-        }
-        public List<GuestGrade> GetAll()
-        {
-            return _grades;
-        }
-        public GuestGrade GetByID(int id)
-        {
-            return _grades.Find(grade => grade.Id == id);
+            _guestGradeService = Injector.CreateInstance<IGuestGradeService>();
         }
         public void Create(GuestGrade grade)
         {
-            grade.Id = GenerateId();
-            _grades.Add(grade);
+            _guestGradeService.Create(grade);
         }
-        public void AccommodationGradeBind()
+
+        public List<GuestGrade> GetAll()
         {
-            _accommodationController.Load();
-            foreach (GuestGrade grade in _grades)
-            {
-                AccommodationReservation accommodation = _accommodationController.GetByID(grade.AccommodationReservation.Id);
-                grade.AccommodationReservation = accommodation;
-            }
+            return _guestGradeService.GetAll(); 
         }
-        public void SaveGrade()
+        public void Save(List<GuestGrade> grades)
         {
-            _gradeHandler.Save(_grades);
+            _guestGradeService.Save(grades);
         }
-        public int GenerateId()
+
+        public GuestGrade GetByID(int id)
         {
-            int maxId = 0;
-            foreach (GuestGrade grade in _grades)
-            {
-                if (grade.Id > maxId)
-                {
-                    maxId = grade.Id;
-                }
-            }
-            return maxId + 1;
-        }
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
+            return _guestGradeService.GetByID(id);
         }
         public bool DoesReservationHaveGrade(int accommodationReservationId)
         {
-            foreach (GuestGrade grade in _grades)
-            {
-                if (grade.AccommodationReservation.Id == accommodationReservationId)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return _guestGradeService.DoesReservationHaveGrade(accommodationReservationId);
         }
+
+        public bool ExistsGuestGradeForAccommodationId(int accomomodationId)
+        {
+            return _guestGradeService.ExistsGuestGradeForAccommodationId(accomomodationId);
+        }
+        public int CountGradesForAccommodationAndUser(int accommodationId, int userId)
+        {
+            return _guestGradeService.CountGradesForAccommodationAndUser(accommodationId, userId);
+        }
+
+
+
     }
 }

@@ -1,7 +1,9 @@
 ﻿using BookingProject.Controller;
+using BookingProject.ConversionHelp;
+using BookingProject.DependencyInjection;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Model;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -13,100 +15,74 @@ namespace BookingProject.Controllers
 {
     public class RequestAccommodationReservationController
     {
-        private readonly List<IObserver> observers;
 
-        private readonly RequestAccommodationReservationHandler _requestsHandler;
-
-        private List<RequestAccommodationReservation> _requests;
-
-        private AccommodationReservationController _accommodationReservationController;
-
+        private readonly IRequestAccommodationReservationService _requestsService;
         public RequestAccommodationReservationController()
         {
-            _requestsHandler = new RequestAccommodationReservationHandler();
-            _accommodationReservationController = new AccommodationReservationController();
-            _requests = new List<RequestAccommodationReservation>();
-            Load();
+            _requestsService = Injector.CreateInstance<IRequestAccommodationReservationService>();
         }
 
-        public void Load()
+        public void Initialize()
         {
-            _requests = _requestsHandler.Load();
-            ReservationRequestsBind();
+            _requestsService.Initialize();
+
+        }
+        public void Save(List<RequestAccommodationReservation> requests)
+        {
+            _requestsService.Save(requests);
+        }
+        public void SaveRequest()
+        {
+            _requestsService.SaveRequest();
+        }
+        public bool PermissionToAcceptDenyRequest(RequestAccommodationReservation requestAccommodationReservation)
+        {
+            return _requestsService.PermissionToAcceptDenyRequest(requestAccommodationReservation);
         }
 
-        public void ReservationRequestsBind()
+        public void SendNotification(RequestAccommodationReservation requestAccommodationReservation)
         {
-            _accommodationReservationController.Load();
-                foreach (RequestAccommodationReservation request in _requests)
-                {
-                    AccommodationReservation reservation = _accommodationReservationController.GetByID(request.AccommodationReservation.Id);
-                    request.AccommodationReservation = reservation;
-                }
-            
+            _requestsService.SendNotification(requestAccommodationReservation);
+        }
+
+        public void AcceptRequest(RequestAccommodationReservation reservationMovingRequest)
+        {
+            _requestsService.AcceptRequest(reservationMovingRequest);
+        }
+
+        public List<RequestAccommodationReservation> GetAllForUser(User guest)
+        {
+            return _requestsService.GetAllForUser(guest);
+        }
+
+        public List<Notification> GetGuest1Notifications(User guest)
+        {
+            return _requestsService.GetGuest1Notifications(guest);
+        }
+
+        public List<RequestAccommodationReservation> GetAllRequestForOwner(int ownerId)
+        {
+            return _requestsService.GetAllRequestForOwner(ownerId);
+        }
+
+        public void Update(RequestAccommodationReservation reservationMovingRequest)
+        {
+            _requestsService.Update(reservationMovingRequest);
         }
 
         public List<RequestAccommodationReservation> GetAll()
         {
-            return _requests;
-        }
-        public List<RequestAccommodationReservation> GetAllForUser(User guest)
-        {
-            List<RequestAccommodationReservation> requests = new List<RequestAccommodationReservation>();
-            foreach(RequestAccommodationReservation r in _requests)
-            {
-                if(r.AccommodationReservation.Guest.Id == guest.Id)
-                {
-                    requests.Add(r);
-                }
-            }
-            return requests;
-        }
-        public int GenerateId()
-        {
-            int maxId = 0;
-            foreach (RequestAccommodationReservation image in _requests)
-            {
-                if (image.Id > maxId)
-                {
-                    maxId = image.Id;
-                }
-            }
-            return maxId + 1;
+            return _requestsService.GetAll();
         }
 
         public void Create(RequestAccommodationReservation request)
         {
-            request.Id = GenerateId();
-            _requests.Add(request);
-        }
-
-        public void SaveRequest()
-        {
-            _requestsHandler.Save(_requests);
+            _requestsService.Create(request);
         }
 
         public RequestAccommodationReservation GetByID(int id)
         {
-            return _requests.Find(image => image.Id == id);
-        }
-
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
-
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
+            return _requestsService.GetByID(id);
         }
     }
 }
