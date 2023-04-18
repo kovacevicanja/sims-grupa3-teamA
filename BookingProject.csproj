@@ -118,6 +118,9 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
+<<<<<<< HEAD
+    <Compile Include="Repository\VoucherRepository.cs" />
+=======
     <Compile Include="Repositories\Implementations\AccommodationImageRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationLocationRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationReservationRepository.cs" />
@@ -162,6 +165,7 @@
     <Compile Include="Repositories\Intefaces\ITourTimeInstanceRepository.cs" />
     <Compile Include="Repositories\Intefaces\IUserRepository.cs" />
     <Compile Include="Repositories\Intefaces\IVoucherRepository.cs" />
+>>>>>>> d2627674c824f45bb58aa62a6de4d98d327c1446
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\Serializer.cs" />
     <Compile Include="Services\Implementations\AccommodationImageService.cs" />
