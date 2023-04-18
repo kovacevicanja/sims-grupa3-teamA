@@ -1,8 +1,10 @@
 ﻿using BookingProject.Controllers;
 using BookingProject.ConversionHelp;
+using BookingProject.DependencyInjection;
 using BookingProject.Domain;
 using BookingProject.FileHandler;
 using BookingProject.Model;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -14,431 +16,128 @@ using static BookingProject.View.FindAvailableDatesForAccommodation;
 
 namespace BookingProject.Controller
 {
-    public class AccommodationReservationController : ISubject 
+    public class AccommodationReservationController 
     {
-        private readonly List<IObserver> observers;
-        private readonly AccommodationReservationHandler _accommodationReservationHandler;
-        private List<AccommodationReservation> _accommodationReservations;
-        public AccommodationController _accommodationController { get; set; }
-        public GuestGradeController _guestGradeController { get; set; }
-        public UserController _userController { get; set; }
-        public NotificationController _notificationController { get; set; }
-
+        private readonly IAccommodationReservationService _accommodationReservationService;
         public AccommodationReservationController()
         {
-            observers = new List<IObserver>();
-            _accommodationReservationHandler = new AccommodationReservationHandler();
-            _accommodationReservations = new List<AccommodationReservation>();
-            _accommodationController = new AccommodationController();
-            _userController = new UserController();
-            _notificationController = new NotificationController();
-            Load();
+            _accommodationReservationService = Injector.CreateInstance<IAccommodationReservationService>();
         }
-
-        public void Load()
+        public void Create(AccommodationReservation reservation)
         {
-            _accommodationReservations = _accommodationReservationHandler.Load();
-            AccommodationReservationBind();
-            ReservationUserBind();
+            _accommodationReservationService.Create(reservation);
         }
-
         public List<AccommodationReservation> GetAll()
         {
-            return _accommodationReservations;
+            return _accommodationReservationService.GetAll();
         }
-
-        public void Save()
-        {
-            _accommodationReservationHandler.Save(_accommodationReservations);
-        }
-
-        public List<AccommodationReservation> getReservationsForGuest(User loggedInUser)
-        {
-            List<AccommodationReservation> _accResForGuest = new List<AccommodationReservation>();
-
-            foreach(AccommodationReservation reservation in _accommodationReservations)
-            {
-                if(reservation.Guest.Id == loggedInUser.Id)
-                {
-                    _accResForGuest.Add(reservation);
-                }
-            }
-
-            return _accResForGuest;
-        }
-
-        public void AccommodationReservationBind()
-        {
-            _accommodationController.Load();
-            foreach (AccommodationReservation reservation in _accommodationReservations)
-            {
-                Accommodation accommodation = _accommodationController.GetByID(reservation.Accommodation.Id);
-                reservation.Accommodation = accommodation;
-            }
-        }
-
-        public void ReservationUserBind()
-        {
-            
-            foreach (AccommodationReservation reservation in _accommodationReservations)
-            {
-                User user = _userController.GetByID(reservation.Guest.Id);
-                reservation.Guest = user;
-            }
-        }
-
         public AccommodationReservation GetByID(int id)
         {
-            return _accommodationReservations.Find(ar => ar.Id == id);
+            return _accommodationReservationService.GetByID(id);
+        }
+        public List<AccommodationReservation> getReservationsForGuest(User loggedInUser)
+        {
+            return _accommodationReservationService.getReservationsForGuest(loggedInUser);
         }
         public void Update(AccommodationReservation reservation)
         {
-            AccommodationReservation oldReservation = GetByID(reservation.Id);
-            if (oldReservation == null)
-            {
-                return;
-            }
-            oldReservation.InitialDate = reservation.InitialDate;
-            oldReservation.EndDate = reservation.EndDate;
-            Save();
+            _accommodationReservationService.Update(reservation);
         }
-
-        private bool IsReservationAvailable(AccommodationReservation accommodationReservation)
+        public bool IsReservationAvailable(AccommodationReservation accommodationReservation)
         {
-            return accommodationReservation.EndDate <= DateTime.Now && accommodationReservation.EndDate.AddDays(5) >= DateTime.Now;
+            return _accommodationReservationService.IsReservationAvailable(accommodationReservation);
         }
-
         public List<AccommodationReservation> GetAllNotGradedReservations(int ownerId)
         {
-            List<AccommodationReservation> reservations = new List<AccommodationReservation>();
-            foreach (AccommodationReservation reservation in _accommodationReservations)
-            {
-                if (reservation.Accommodation.Owner.Id != ownerId)
-                {
-                    continue;
-                }
-                if (IsReservationAvailable(reservation) == false)
-                {
-                    continue;
-                }
-                if (!(_guestGradeController.DoesReservationHaveGrade(reservation.Id)))
-                {
-                    reservations.Add(reservation);
-                }
-            }
-            return reservations;
+            return _accommodationReservationService.GetAllNotGradedReservations(ownerId);
         }
-        public int GenerateId()
-        {
-            int maxId = 0;
-            foreach(AccommodationReservation accommodationReservation in _accommodationReservations)
-            {
-                if(accommodationReservation.Id > maxId)
-                {
-                    maxId = accommodationReservation.Id;
-                }
-            }
-            return maxId + 1;
-        }
-
         public bool CheckNumberOfGuests(Accommodation selectedAccommodation, string numberOfGuests)
         {
-            if(selectedAccommodation.MaxGuestNumber >= int.Parse(numberOfGuests))
-            {
-                return true;
-            }
-            return false;
+            return _accommodationReservationService.CheckNumberOfGuests(selectedAccommodation,numberOfGuests);
         }
-
         public bool CheckEnteredDates(DateTime initialDate, DateTime endDate)
         {
-            if(initialDate.Month > endDate.Month || endDate.Year < initialDate.Year || !CheckDays(initialDate, endDate) || !CompareWithToday(initialDate))
-            {
-                return false;
-            }
-            return true;
+            return _accommodationReservationService.CheckEnteredDates(initialDate, endDate);
         }
-
         public bool CompareWithToday(DateTime initialDate)
         {
-            DateTime today = DateTime.Now.Date;
-            DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
-            if (initialDate < todayMidnight)
-            {
-                return false;
-            }
-            return true;
+            return _accommodationReservationService.CompareWithToday(initialDate);
         }
-
         public bool CheckDays(DateTime initialDate, DateTime endDate)
         {
-            if (initialDate.Month == endDate.Month)
-            {
-                if (initialDate.Day > endDate.Day)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return _accommodationReservationService.CheckDays(initialDate, endDate);
         }
-
         public bool CheckAvailableDate(Accommodation selectedAccommodation, DateTime initialDate, DateTime endDate, int numberOfDaysToStay, string numberOfGuests)
         {
-            List<DateTime> tryDates = MakeListOfReservedDates(initialDate, endDate);
-            List<AccommodationReservation> reservations = GetReservationsForAccommodation(selectedAccommodation);
-            return !IsDateReserved(tryDates, reservations);
+            return _accommodationReservationService.CheckAvailableDate(selectedAccommodation, initialDate, endDate, numberOfDaysToStay, numberOfGuests);
         }
-
         public List<AccommodationReservation> GetReservationsForAccommodation(Accommodation accommodation)
         {
-            List<AccommodationReservation> reservations = new List<AccommodationReservation>();
-            foreach (AccommodationReservation reservation in _accommodationReservations)
-            {
-                if (reservation.Accommodation.Id == accommodation.Id)
-                {
-                    reservations.Add(reservation);
-                }
-            }
-            return reservations;
+            return _accommodationReservationService.GetReservationsForAccommodation(accommodation);
         }
-
-
         public List<DateTime> MakeListOfReservedDates(DateTime initialDate, DateTime endDate)
         {
-            List<DateTime> reservedDates = new List<DateTime>();
-            for (DateTime date = initialDate; date <= endDate; date = date.AddDays(1))
-            {
-                reservedDates.Add(date);
-            }
-            return reservedDates;
+            return _accommodationReservationService.MakeListOfReservedDates(initialDate, endDate);
         }
-
-        /*
-        private bool isDateReserved(List<DateTime> tryDates, List<AccommodationReservation> reservations)
+        public bool IsDateReserved(List<DateTime> tryDates, List<AccommodationReservation> reservations)
         {
-            foreach (AccommodationReservation reservation in reservations)
-            {
-                List<DateTime> reservedDates = makeListOfReservedDates(reservation.InitialDate, reservation.EndDate);
-                if(ifDatesAreInTakenList(tryDates, reservedDates))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return _accommodationReservationService.IsDateReserved(tryDates,reservations);
         }
-        */
-
-        private bool IsDateReserved(List<DateTime> tryDates, List<AccommodationReservation> reservations)
-        {
-            foreach (AccommodationReservation reservation in reservations)
-            {
-                List<DateTime> reservedDates = MakeListOfReservedDates(reservation.InitialDate, reservation.EndDate);
-                if (IfDatesAreInTakenList(tryDates, reservedDates))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public List<(DateTime, DateTime)> FindAvailableDates(Accommodation selectedAccommodation, DateTime initialDate, DateTime endDate, int numberOfDaysToStay)
         {
-            List<(DateTime, DateTime)> availableDates = new List<(DateTime, DateTime)>();
-            List<DateTime> takenDates = FindTakenDates(selectedAccommodation);
-
-            takenDates.Sort();
-
-            for (DateTime date = initialDate; date <= takenDates[takenDates.Count - 1]; date = date.AddDays(1))
-            {
-                List<DateTime> datesInRange = MakeListOfReservedDates(date, date.AddDays(numberOfDaysToStay));
-                if (!IfDatesAreInTakenList(datesInRange, takenDates))
-                {
-                    availableDates.Add((datesInRange[0], datesInRange[datesInRange.Count - 1]));
-                    break;
-                }
-            }
-
-            if (availableDates.Count() == 0)
-            {
-                availableDates.Add((takenDates[takenDates.Count - 1].AddDays(1), takenDates[takenDates.Count - 1].AddDays(numberOfDaysToStay + 1)));
-            }
-
-            DateTime today = DateTime.Now.Date;
-            DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
-
-
-            for (DateTime date = initialDate; (date.AddDays(-numberOfDaysToStay)) > todayMidnight; date = date.AddDays(-1))
-            {
-                List<DateTime> datesInRange = MakeListOfReservedDates(date.AddDays(-numberOfDaysToStay), date);
-                if (!IfDatesAreInTakenList(datesInRange, takenDates))
-                {
-                    availableDates.Add((datesInRange[0], datesInRange[datesInRange.Count - 1]));
-                    break;
-                }
-            }
-
-
-            return availableDates;
+            return _accommodationReservationService.FindAvailableDates(selectedAccommodation,initialDate,endDate,numberOfDaysToStay);
         }
-
         public bool IfDatesAreInTakenList(List<DateTime> datesToCheck, List<DateTime> takenDates)
         {
-            foreach (DateTime date in datesToCheck)
-            {
-                foreach (DateTime takenDate in takenDates)
-                {
-                    if (date == takenDate)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return _accommodationReservationService.IfDatesAreInTakenList(datesToCheck,takenDates);
         }
-
         public List<DateTime> FindTakenDates(Accommodation selectedAccommodation)
         {
-            List<DateTime> takenDates = new List<DateTime>();
-            foreach (AccommodationReservation reservation in _accommodationReservations)
-            {
-                if (reservation.Accommodation.Id == selectedAccommodation.Id)
-                {
-                    List<DateTime> reservedDates = MakeListOfReservedDates(reservation.InitialDate, reservation.EndDate);
-                    takenDates.AddRange(reservedDates);
-                }
-            }
-
-            return takenDates;
+            return _accommodationReservationService.FindTakenDates(selectedAccommodation);
         }
-
         public void BookAccommodation(DateTime initialDate, DateTime endDate, Accommodation selectedAccommodation)
         {
-            AccommodationReservation reservation = new AccommodationReservation();
-            reservation.Id = GenerateId();
-            reservation.Accommodation.Id = selectedAccommodation.Id;
-            reservation.InitialDate = initialDate;
-            reservation.EndDate = endDate;
-            reservation.DaysToStay = (endDate - initialDate).Days;
-            reservation.Guest.Id = _userController.GetLoggedUser().Id;
-            _accommodationReservations.Add(reservation);
-            Save();
+            _accommodationReservationService.BookAccommodation(initialDate,endDate, selectedAccommodation);
         }
-
         public bool PermissionToRate(AccommodationReservation accommodationReservation)
         {
-            DateTime today = DateTime.Now.Date;
-            DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
-            return accommodationReservation.EndDate < todayMidnight && todayMidnight <= accommodationReservation.EndDate.AddDays(5);
+            return _accommodationReservationService.PermissionToRate(accommodationReservation);
         }
-
         public bool PermissionToCancel(AccommodationReservation accommodationReservation)
         {
-            DateTime today = DateTime.Now.Date;
-            DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
-            if(todayMidnight.AddDays(accommodationReservation.Accommodation.CancellationPeriod) <= accommodationReservation.InitialDate)
-            {
-                DeleteReservationFromCSV(accommodationReservation);
-                SendNotification(accommodationReservation);
-                NotifyObservers();
-                return true;
-            }
-
-            return false;
+            return _accommodationReservationService.PermissionToCancel(accommodationReservation);
         }
         public bool DatesOverlaps(DateTime start1, DateTime end1, DateTime start2, DateTime end2)
         {
-            return start1 < end2 && end1 > start2;
+            return _accommodationReservationService.DatesOverlaps(start1, end1, start2, end2);
         }
-
-        private void RemoveCurrentReservation(List<AccommodationReservation> allReservations, RequestAccommodationReservation request)
+        public void RemoveCurrentReservation(List<AccommodationReservation> allReservations, RequestAccommodationReservation request)
         {
-            allReservations.Remove(allReservations.Single(res => res.Id == request.AccommodationReservation.Id));
+            _accommodationReservationService.RemoveCurrentReservation(allReservations, request);
         }
-
-
         public bool IsAvailableToMove(RequestAccommodationReservation request)
         {
-            List<AccommodationReservation> allReservations = _accommodationReservations.ToList();
-            RemoveCurrentReservation(allReservations, request);
-            foreach(var reservation in allReservations)
-            {
-                if (DatesOverlaps(reservation.InitialDate, reservation.EndDate, request.NewArrivalDay, request.NewDeparuteDay))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return _accommodationReservationService.IsAvailableToMove(request);
         }
-
-        
-
         public void DeleteReservationFromCSV(AccommodationReservation accommmodationReservation)
         {
-            List<AccommodationReservation> _reservations = GetAll();
-            _reservations.RemoveAll(n => n.Id == accommmodationReservation.Id);
-            Save();
+            _accommodationReservationService.DeleteReservationFromCSV(accommmodationReservation);
         }
-
         public void SendNotification(AccommodationReservation accommodationReservation)
         {
-            Notification notification = new Notification();
-            notification.Id = _notificationController.GenerateId();
-            notification.UserId = accommodationReservation.Accommodation.Owner.Id;
-            notification.Text = "Reservation for your accommodation " + accommodationReservation.Accommodation.AccommodationName + ", from " + DateConversion.DateToStringAccommodation(accommodationReservation.InitialDate) + ", to " + DateConversion.DateToStringAccommodation(accommodationReservation.EndDate) + " was cancelled!";
-            notification.Read = false;
-            _notificationController.Create(notification);
-            _notificationController.Save();
+            _accommodationReservationService.SendNotification(accommodationReservation);
         }
-
         public List<Notification> GetOwnerNotifications(User owner)
         {
-            List<Notification> notificationsForOwner = new List<Notification>();
-            List<Notification> _notifications = _notificationController.GetAll();
-
-            foreach(Notification notification in _notifications)
-            {
-                if(notification.UserId == owner.Id && notification.Read == false)
-                {
-                    notificationsForOwner.Add(notification);
-                }
-            }
-
-            return notificationsForOwner;
+            return _accommodationReservationService.GetOwnerNotifications(owner);
         }
-
         public void DeleteNotificationFromCSV(Notification notification)
         {
-            List<Notification> _notifications = _notificationController.GetAll();
-            _notifications.RemoveAll(n => n.Id == notification.Id);
-            _notificationController.Save();
+            _accommodationReservationService.DeleteNotificationFromCSV(notification);
         }
-
         public void WriteNotificationAgain(Notification n)
         {
-            Notification notification = new Notification();
-            notification.UserId = n.UserId;
-            notification.Text = n.Text;
-            notification.Read = true;
-            _notificationController.Create(notification);
-            _notificationController.Save();
-        }
-
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
-        }
-
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
+            _accommodationReservationService.WriteNotificationAgain(n);
         }
     }
 }

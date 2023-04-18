@@ -181,14 +181,14 @@ namespace BookingProject.View
             location.Country = Country;
 
             LocationController.Create(location);
-            LocationController.SaveLocation();
+            //LocationController.SaveLocation();
             accommodation.IdLocation = location.Id;
 
             AccommodationController.Create(accommodation);
             AccommodationController.SaveAccommodation();
 
             ImageController.LinkToAccommodation(accommodation.Id);
-            ImageController.SaveImage();
+            //ImageController.SaveImage();
 
 
             

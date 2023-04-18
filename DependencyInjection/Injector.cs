@@ -26,6 +26,13 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationRepository), new TourEvaluationRepository() },
             { typeof(IKeyPointRepository), new KeyPointRepository() },
             { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(IGuestGradeRepository), new GuestGradeRepository() },
+            { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
+            { typeof(IAccommodationImageRepository), new AccommodationImageRepository() },
+            { typeof(IAccommodationLocationRepository), new AccommodationLocationRepository() },
+            { typeof(INotificationRepository), new NotificationRepository() },
+            { typeof(ITourPresenceRepository), new TourPresenceRepository() },
+            { typeof(ITourTimeInstanceRepository), new TourPresenceRepository() },
 
 
             { typeof(ITourService), new TourService() },
@@ -39,6 +46,15 @@ namespace BookingProject.DependencyInjection
             { typeof(IKeyPointService), new KeyPointService() },
             { typeof(ITourStartingTimeService), new TourStartingTimeService() },
             { typeof(INotificationService), new NotificationService() },
+            { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
+            { typeof(IGuestGradeService), new GuestGradeService() },
+            { typeof(IAccommodationReservationService), new AccommodationReservationService() },
+            { typeof(IAccommodationImageService), new AccommodationImageService() },
+            { typeof(INotificationService), new NotificationService() },
+            { typeof(IAccommodationLocationService), new AccommodationLocationService() },
+            { typeof(ITourPresenceService), new TourPresenceService() },
+            { typeof(ITourTimeInstanceService), new TourTimeInstanceService() },
+
 
         };
         public static void Initialize()
@@ -54,6 +70,10 @@ namespace BookingProject.DependencyInjection
             CreateInstance<IKeyPointRepository>().Initialize();
             CreateInstance<ITourStartingTimeRepository>().Initialize();
             CreateInstance<INotificationRepository>().Initialize();
+            CreateInstance<IGuestGradeService>().Initialize();
+            CreateInstance<IAccommodationReservationService>().Initialize();
+            CreateInstance<IAccommodationImageService>().Initialize();
+            CreateInstance<INotificationService>().Initialize();
         }
 
         public static T CreateInstance<T>()

@@ -97,7 +97,7 @@ namespace BookingProject.Controller
 
         public void AccommodationLocationBind()
         {
-            _locationController.Load();
+            //_locationController.Load();
             foreach (Accommodation accommodation in _accommodations)
             {
                 Location location = _locationController.GetByID(accommodation.IdLocation);

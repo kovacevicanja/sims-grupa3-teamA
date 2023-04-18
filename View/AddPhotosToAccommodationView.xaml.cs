@@ -62,7 +62,7 @@ namespace BookingProject.View
             AccommodationImage image = new AccommodationImage();
             image.Url = Url;
             _imageController.Create(image);
-            _imageController.SaveImage();
+            //_imageController.SaveImage();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

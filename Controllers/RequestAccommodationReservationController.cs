@@ -41,7 +41,7 @@ namespace BookingProject.Controllers
 
         public void ReservationRequestsBind()
         {
-            _accommodationReservationController.Load();
+            //_accommodationReservationController.Load();
                 foreach (RequestAccommodationReservation request in _requests)
                 {
                     AccommodationReservation reservation = _accommodationReservationController.GetByID(request.AccommodationReservation.Id);

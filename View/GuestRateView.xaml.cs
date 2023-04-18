@@ -194,7 +194,7 @@ namespace BookingProject.View
             grade.AccommodationReservation.Id = _selectedReservation.Id;
 
             GradeController.Create(grade);
-            GradeController.SaveGrade();
+            GradeController.Save();
 
 
 
