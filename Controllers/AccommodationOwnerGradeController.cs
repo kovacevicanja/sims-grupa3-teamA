@@ -1,5 +1,4 @@
 ﻿using BookingProject.DependencyInjection;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
@@ -20,6 +19,10 @@ namespace BookingProject.Controller
         public AccommodationOwnerGradeController()
         {
             _accommodationOwnerGradeService = Injector.CreateInstance<IAccommodationOwnerGradeService>();
+        }
+        public void Save(List<AccommodationOwnerGrade> grades)
+        {
+            _accommodationOwnerGradeService.Save(grades);
         }
 
         public bool ExistsAccommodationGradeForAccommodationId(int accomomodationId)

@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Model;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,10 @@ namespace BookingProject.Services.Implementations
         public AccommodationDate GetByID(int id)
         {
             return _accommodationDateRepository.GetByID(id);
+        }
+        public void Save(List<AccommodationDate> dates)
+        {
+            _accommodationDateRepository.Save(dates);
         }
     }
 }

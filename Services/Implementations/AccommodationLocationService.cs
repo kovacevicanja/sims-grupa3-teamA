@@ -1,6 +1,7 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Model;
 using BookingProject.Repositories;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
 using System;
@@ -29,10 +30,18 @@ namespace BookingProject.Services.Implementations
         {
             return _locationRepository.GetAll();
         }
+        public void SaveLocation()
+        {
+            _locationRepository.SaveLocation();
+        }
 
         public Location GetByID(int id)
         {
             return _locationRepository.GetByID(id);
+        }
+        public void Save(List<Location> locations)
+        {
+            _locationRepository.Save(locations);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using BookingProject.DependencyInjection;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Services.Interfaces;
@@ -28,6 +27,10 @@ namespace BookingProject.Controller
         public List<GuestGrade> GetAll()
         {
             return _guestGradeService.GetAll(); 
+        }
+        public void Save(List<GuestGrade> grades)
+        {
+            _guestGradeService.Save(grades);
         }
 
         public GuestGrade GetByID(int id)

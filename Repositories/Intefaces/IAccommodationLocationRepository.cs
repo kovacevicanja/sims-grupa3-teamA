@@ -13,5 +13,7 @@ namespace BookingProject.Repositories.Intefaces
         List<Location> GetAll();
         Location GetByID(int id);
         void Initialize();
+        void Save(List<Location> locations);
+        void SaveLocation();
     }
 }

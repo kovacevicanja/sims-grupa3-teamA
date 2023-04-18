@@ -14,5 +14,7 @@ namespace BookingProject.Repositories.Intefaces
         List<Accommodation> GetAllForOwner(int ownerId);
         List<Accommodation> GetAll();
         Accommodation GetByID(int id);
+        void Save(List<Accommodation> accommodations);
+        void SaveAccommodation();
     }
 }

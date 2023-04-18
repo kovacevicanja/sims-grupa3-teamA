@@ -25,7 +25,14 @@ namespace BookingProject.Services.Implementations
         {
             _imageRepository.Create(image);
         }
-
+        public void Save(List<AccommodationImage> images)
+        {
+            _imageRepository.Save(images);
+        }
+        public void SaveImage()
+        {
+            _imageRepository.SaveImage();
+        }
         public List<AccommodationImage> GetAll()
         {
             return _imageRepository.GetAll();

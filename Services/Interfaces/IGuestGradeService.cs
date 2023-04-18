@@ -16,5 +16,6 @@ namespace BookingProject.Services.Interfaces
         bool DoesReservationHaveGrade(int accommodationReservationId);
         bool ExistsGuestGradeForAccommodationId(int accomomodationId);
         int CountGradesForAccommodationAndUser(int accommodationId, int userId);
+        void Save(List<GuestGrade> grades);
     }
 }

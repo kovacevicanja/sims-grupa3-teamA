@@ -18,5 +18,6 @@ namespace BookingProject.Services.Interfaces
         void Create(AccommodationOwnerGrade grade);
         List<AccommodationOwnerGrade> GetAll();
         AccommodationOwnerGrade GetByID(int id);
+        void Save(List<AccommodationOwnerGrade> grades);
     }
 }

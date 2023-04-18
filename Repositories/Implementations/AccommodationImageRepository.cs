@@ -34,6 +34,10 @@ namespace BookingProject.Repositories.Implementations
         {
             _serializer.ToCSV(FilePath, images);
         }
+        public void SaveImage()
+        {
+            _serializer.ToCSV(FilePath, _images);
+        }
         public List<AccommodationImage> GetAll()
         {
             return _images;

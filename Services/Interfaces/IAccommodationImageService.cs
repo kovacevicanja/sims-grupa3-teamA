@@ -16,5 +16,7 @@ namespace BookingProject.Services.Interfaces
         AccommodationImage GetByID(int id);
         void LinkToAccommodation(int id);
         void DeleteUnused();
+        void Save(List<AccommodationImage> images);
+        void SaveImage();
     }
 }

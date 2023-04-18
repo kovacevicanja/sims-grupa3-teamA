@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Model;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
 using System;
@@ -17,6 +18,10 @@ namespace BookingProject.Services.Implementations
         public void Initialize()
         {
             _accommodationOwnerGradeRepository = Injector.CreateInstance<IAccommodationOwnerGradeRepository>();
+        }
+        public void Save(List<AccommodationOwnerGrade> grades)
+        {
+            _accommodationOwnerGradeRepository.Save(grades);
         }
 
         public bool ExistsAccommodationGradeForAccommodationId(int accomomodationId)

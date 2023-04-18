@@ -2,7 +2,6 @@
 using BookingProject.DependencyInjection;
 using BookingProject.Domain;
 using BookingProject.Domain.Enums;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Services.Interfaces;

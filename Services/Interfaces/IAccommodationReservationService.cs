@@ -17,6 +17,7 @@ namespace BookingProject.Services.Interfaces
         void Create(AccommodationReservation reservation);
         List<AccommodationReservation> GetAll();
         AccommodationReservation GetByID(int id);
+        void Save(List<AccommodationReservation> reservations);
         List<AccommodationReservation> getReservationsForGuest(User loggedInUser);
         void Update(AccommodationReservation reservation);
         bool IsReservationAvailable(AccommodationReservation accommodationReservation);

@@ -2,6 +2,7 @@
 using BookingProject.DependencyInjection;
 using BookingProject.Domain;
 using BookingProject.Model;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
 using System;
@@ -34,10 +35,18 @@ namespace BookingProject.Services
 
             return false;
         }
+        public void Save(List<RequestAccommodationReservation> requests)
+        {
+            _requestRepository.Save(requests);
+        }
+        public void SaveRequest()
+        {
+            _requestRepository.SaveRequest();
+        }
         public void SendNotification(RequestAccommodationReservation requestAccommodationReservation)
         {
             Notification notification = new Notification();
-            notification.Id = Injector.CreateInstance<INotificationRepository>().GenerateId();
+            //notification.Id = Injector.CreateInstance<INotificationRepository>().GenerateId();
             notification.UserId = requestAccommodationReservation.AccommodationReservation.Guest.Id;
             notification.Text = "Request to move reservation from " + DateConversion.DateToStringAccommodation(requestAccommodationReservation.AccommodationReservation.InitialDate) +
                 " - " + DateConversion.DateToStringAccommodation(requestAccommodationReservation.AccommodationReservation.EndDate) +

@@ -37,6 +37,10 @@ namespace BookingProject.Repositories.Implementations
         {
             _serializer.ToCSV(FilePath, requests);
         }
+        public void SaveRequest()
+        {
+            _serializer.ToCSV(FilePath, _requests);
+        }
 
         public List<RequestAccommodationReservation> GetAll()
         {

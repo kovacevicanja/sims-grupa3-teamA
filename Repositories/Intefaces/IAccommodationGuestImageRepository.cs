@@ -1,4 +1,5 @@
 ﻿using BookingProject.Domain.Images;
+using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace BookingProject.Repositories.Intefaces
         int GenerateId();
         void Create(AccommodationGuestImage image);
         AccommodationGuestImage GetByID(int id);
+        void Save(List<AccommodationGuestImage> images);
+        void SaveImage();
     }
 }

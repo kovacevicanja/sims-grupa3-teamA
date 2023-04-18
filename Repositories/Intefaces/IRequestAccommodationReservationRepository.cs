@@ -1,4 +1,5 @@
 ﻿using BookingProject.Domain;
+using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace BookingProject.Repositories.Intefaces
         List<RequestAccommodationReservation> GetAll();
         void Create(RequestAccommodationReservation request);
         RequestAccommodationReservation GetByID(int id);
+        void Save(List<RequestAccommodationReservation> requests);
+        void SaveRequest();
     }
 }

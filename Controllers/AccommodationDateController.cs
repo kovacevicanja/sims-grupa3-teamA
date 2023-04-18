@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingProject.DependencyInjection;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
@@ -27,6 +26,10 @@ namespace BookingProject.Controller
         public AccommodationDate GetByID(int id)
         {
             return _accommodationDateService.GetByID(id);
+        }
+        public void Save(List<AccommodationDate> dates)
+        {
+            _accommodationDateService.Save(dates);
         }
     }
 }

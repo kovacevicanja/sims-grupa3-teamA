@@ -1,7 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using System;
 using System.Collections.Generic;
@@ -20,7 +19,6 @@ namespace BookingProject.View
     public partial class SecondGuestMyVouchersView : Window, INotifyPropertyChanged
     {
         public VoucherController VoucherController { get; set; }
-        private VoucherHandler _voucherHandler { get; set; }
         public ObservableCollection<Voucher> _vouchers { get; set; }
         public List<Voucher> _vouchersList { get; set; }
         public Voucher ChosenVoucher { get; set; }

@@ -14,5 +14,6 @@ namespace BookingProject.Repositories.Intefaces
         List<AccommodationOwnerGrade> GetAll();
         AccommodationOwnerGrade GetByID(int id);
         int GenerateId();
+        void Save(List<AccommodationOwnerGrade> grades);
     }
 }

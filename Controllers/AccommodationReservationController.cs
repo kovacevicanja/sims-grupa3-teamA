@@ -2,7 +2,6 @@
 using BookingProject.ConversionHelp;
 using BookingProject.DependencyInjection;
 using BookingProject.Domain;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
@@ -26,6 +25,10 @@ namespace BookingProject.Controller
         public void Create(AccommodationReservation reservation)
         {
             _accommodationReservationService.Create(reservation);
+        }
+        public void Save(List<AccommodationReservation> reservations)
+        {
+            _accommodationReservationService.Save(reservations);
         }
         public List<AccommodationReservation> GetAll()
         {

@@ -23,6 +23,8 @@ namespace BookingProject.Services.Interfaces
         void Create(Accommodation accommodation);
         List<Accommodation> GetAll();
         Accommodation GetByID(int id);
+        void SaveAccommodation();
         List<Accommodation> GetAllForOwner(int ownerId);
+        void Save(List<Accommodation> accommodations);
     }
 }

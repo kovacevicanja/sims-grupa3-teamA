@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingProject.DependencyInjection;
-using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
@@ -29,6 +28,14 @@ namespace BookingProject.Controller
         public Location GetByID(int id)
         {
             return _locationService.GetByID(id);
+        }
+        public void Save(List<Location> locations)
+        {
+            _locationService.Save(locations);
+        }
+        public void SaveLocation()
+        {
+            _locationService.SaveLocation();
         }
     }
 }
