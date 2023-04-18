@@ -69,7 +69,10 @@ namespace BookingProject.View
             _accommodationController = new AccommodationController();
             AllCities = new ObservableCollection<string>();
             _accommodationLocationController = new AccommodationLocationController();
-            _accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
+            //_accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
+            List<Accommodation> accommodations = new List<Accommodation>(_accommodationController.GetAll());
+            List<Accommodation> sortedAccommodations = accommodations.OrderByDescending(a => a.Owner.IsSuper).ToList();
+            _accommodations = new ObservableCollection<Accommodation>(sortedAccommodations);
             AccommodationDataGrid.ItemsSource = _accommodations;
 
             AccommodationTypes = new List<String>();
