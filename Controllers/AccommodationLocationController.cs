@@ -29,5 +29,13 @@ namespace BookingProject.Controller
         {
             return _locationService.GetByID(id);
         }
+        public void Save(List<Location> locations)
+        {
+            _locationService.Save(locations);
+        }
+        public void SaveLocation()
+        {
+            _locationService.SaveLocation();
+        }
     }
 }

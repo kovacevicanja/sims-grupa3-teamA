@@ -14,5 +14,7 @@ namespace BookingProject.Repositories.Intefaces
         List<AccommodationImage> GetAll();
         AccommodationImage GetByID(int id);
         void Initialize();
+        void Save(List<AccommodationImage> images);
+        void SaveImage();
     }
 }

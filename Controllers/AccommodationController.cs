@@ -24,6 +24,10 @@ namespace BookingProject.Controller
         {
             return _accommodationService.CheckType(accommodationTypes, accType);
         }
+        public void SaveAccommodation()
+        {
+            _accommodationService.SaveAccommodation();
+        }
 
         public ObservableCollection<Accommodation> Search(ObservableCollection<Accommodation> _accommodationsView, string name, string city, string state, List<string> types, string numberOfGuests, string minNumDaysOfReservation)
         {
@@ -78,6 +82,10 @@ namespace BookingProject.Controller
         public Accommodation GetByID(int id)
         {
             return _accommodationService.GetByID(id);
+        }
+        public void Save(List<Accommodation> accommodations)
+        {
+            _accommodationService.Save(accommodations);
         }
 
         /* public void SaveAccommodation()

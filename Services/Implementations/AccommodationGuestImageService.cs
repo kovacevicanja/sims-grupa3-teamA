@@ -1,5 +1,7 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain.Images;
+using BookingProject.Model;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
 using System;
@@ -32,6 +34,14 @@ namespace BookingProject.Services.Implementations
         public AccommodationGuestImage GetByID(int id)
         {
             return _accommodationGuestImageRepository.GetByID(id);
+        }
+        public void Save(List<AccommodationGuestImage> images)
+        {
+            _accommodationGuestImageRepository.Save(images);
+        }
+        public void SaveImage()
+        {
+            _accommodationGuestImageRepository.SaveImage();
         }
     }
 }

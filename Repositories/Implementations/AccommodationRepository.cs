@@ -36,11 +36,16 @@ namespace BookingProject.Repositories.Implementations
         {
             return _serializer.FromCSV(FilePath);
         }
+        public void SaveAccommodation()
+        {
+            _serializer.ToCSV(FilePath, _accommodations);
+        }
 
         public void Save(List<Accommodation> accommodations)
         {
             _serializer.ToCSV(FilePath, accommodations);
         }
+
 
         private int GenerateId()
         {

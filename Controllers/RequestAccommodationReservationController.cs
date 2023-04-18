@@ -27,7 +27,14 @@ namespace BookingProject.Controllers
             _requestsService.Initialize();
 
         }
-
+        public void Save(List<RequestAccommodationReservation> requests)
+        {
+            _requestsService.Save(requests);
+        }
+        public void SaveRequest()
+        {
+            _requestsService.SaveRequest();
+        }
         public bool PermissionToAcceptDenyRequest(RequestAccommodationReservation requestAccommodationReservation)
         {
             return _requestsService.PermissionToAcceptDenyRequest(requestAccommodationReservation);

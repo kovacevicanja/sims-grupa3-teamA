@@ -27,5 +27,9 @@ namespace BookingProject.Controller
         {
             return _accommodationDateService.GetByID(id);
         }
+        public void Save(List<AccommodationDate> dates)
+        {
+            _accommodationDateService.Save(dates);
+        }
     }
 }

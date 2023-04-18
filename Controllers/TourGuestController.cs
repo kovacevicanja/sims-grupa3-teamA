@@ -13,13 +13,13 @@ namespace BookingProject.Controller
         /*
             private readonly List<IObserver> observers;
 
-            private readonly TourGuestHandler _tourGuestHandler;
+            //private readonly TourGuestHandler _tourGuestHandler;
 
             private List<TourGuest> _tourGuests;
 
             public TourGuestController()
             {
-                _tourGuestHandler = new TourGuestHandler();
+                //_tourGuestHandler = new TourGuestHandler();
                 _tourGuests = new List<TourGuest>();
                 observers = new List<IObserver>();
                 Load();
@@ -27,7 +27,7 @@ namespace BookingProject.Controller
 
             public void Load()
             {
-                _tourGuests = _tourGuestHandler.Load(); 
+                //_tourGuests = _tourGuestHandler.Load(); 
             }
 
             private int GenerateId()
@@ -52,7 +52,7 @@ namespace BookingProject.Controller
 
             public void Save()
             {
-                _tourGuestHandler.Save(_tourGuests);
+                //_tourGuestHandler.Save(_tourGuests);
                 NotifyObservers();
             }
 

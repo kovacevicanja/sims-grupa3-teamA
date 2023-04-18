@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain.Images;
+using BookingProject.Model;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
@@ -27,6 +28,14 @@ namespace BookingProject.Controllers
         public AccommodationGuestImage GetByID(int id)
         {
             return _accommodationGuestImageService.GetByID(id);
+        }
+        public void Save(List<AccommodationGuestImage> images)
+        {
+            _accommodationGuestImageService.Save(images);
+        }
+        public void SaveImage()
+        {
+            _accommodationGuestImageService.SaveImage();
         }
     }
 }

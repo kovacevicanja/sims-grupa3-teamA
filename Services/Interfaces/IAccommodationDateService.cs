@@ -12,5 +12,6 @@ namespace BookingProject.Services.Interfaces
         void Initialize();
         List<AccommodationDate> GetAll();
         AccommodationDate GetByID(int id);
+        void Save(List<AccommodationDate> dates);
     }
 }

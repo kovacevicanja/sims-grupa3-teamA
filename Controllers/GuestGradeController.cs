@@ -28,6 +28,10 @@ namespace BookingProject.Controller
         {
             return _guestGradeService.GetAll(); 
         }
+        public void Save(List<GuestGrade> grades)
+        {
+            _guestGradeService.Save(grades);
+        }
 
         public GuestGrade GetByID(int id)
         {

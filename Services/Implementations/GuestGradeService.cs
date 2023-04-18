@@ -24,6 +24,10 @@ namespace BookingProject.Services.Implementations
         {
             _guestGradeRepository.Create(grade);
         }
+        public void Save(List<GuestGrade> grades)
+        {
+            _guestGradeRepository.Save(grades);
+        }
 
         public List<GuestGrade> GetAll()
         {

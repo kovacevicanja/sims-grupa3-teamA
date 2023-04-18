@@ -1,7 +1,10 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Model;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
+using BookingProject.Serializer;
 using BookingProject.Services.Interfaces;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +21,14 @@ namespace BookingProject.Services.Implementations
         public void Initialize()
         {
             _accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
+        }
+        public void Save(List<Accommodation> accommodations)
+        {
+            _accommodationRepository.Save(accommodations);
+        }
+        public void SaveAccommodation()
+        {
+            _accommodationRepository.SaveAccommodation();
         }
         public bool CheckType(List<String> accommodationTypes, string accType)
         {

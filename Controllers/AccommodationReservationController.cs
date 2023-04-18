@@ -26,6 +26,10 @@ namespace BookingProject.Controller
         {
             _accommodationReservationService.Create(reservation);
         }
+        public void Save(List<AccommodationReservation> reservations)
+        {
+            _accommodationReservationService.Save(reservations);
+        }
         public List<AccommodationReservation> GetAll()
         {
             return _accommodationReservationService.GetAll();

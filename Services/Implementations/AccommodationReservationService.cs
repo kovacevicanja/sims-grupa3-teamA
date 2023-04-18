@@ -5,6 +5,7 @@ using BookingProject.DependencyInjection;
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Repositories;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
@@ -27,6 +28,10 @@ namespace BookingProject.Services.Implementations
         public void Create(AccommodationReservation reservation)
         {
             _accommodationReservationRepository.Create(reservation);
+        }
+        public void Save(List<AccommodationReservation> reservations)
+        {
+            _accommodationReservationRepository.Save(reservations);
         }
 
         public List<AccommodationReservation> GetAll()
