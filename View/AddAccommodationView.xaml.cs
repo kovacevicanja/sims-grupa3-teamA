@@ -185,13 +185,10 @@ namespace BookingProject.View
             accommodation.IdLocation = location.Id;
 
             AccommodationController.Create(accommodation);
-            AccommodationController.SaveAccommodation();
+            //AccommodationController.SaveAccommodation();
 
             ImageController.LinkToAccommodation(accommodation.Id);
             //ImageController.SaveImage();
-
-
-            
 
             if (IsValid)
             {
@@ -199,7 +196,6 @@ namespace BookingProject.View
             }
             this.Close();
         }
-
         private void Button_Click_Cancel(Object sender, RoutedEventArgs e)
         {
             ImageController.Load();
@@ -225,7 +221,6 @@ namespace BookingProject.View
             AddPhotosToAccommodationView addPhoto = new AddPhotosToAccommodationView();
             addPhoto.Show();
         }
-
         public string this[string columnName]
         {
             get

@@ -12,5 +12,6 @@ namespace BookingProject.Services.Interfaces
         void Create(Notification notification);
         List<Notification> GetAll();
         Notification GetByID(int id);
+        void Initialize();
     }
 }

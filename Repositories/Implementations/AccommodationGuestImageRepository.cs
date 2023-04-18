@@ -57,6 +57,7 @@ namespace BookingProject.Repositories.Implementations
         {
             image.Id = GenerateId();
             _images.Add(image);
+            Save(_images);
         }
 
         public AccommodationGuestImage GetByID(int id)

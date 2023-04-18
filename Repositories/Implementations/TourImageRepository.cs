@@ -50,6 +50,7 @@ namespace BookingProject.Repositories.Implementations
         {
             image.Id = GenerateId();
             _images.Add(image);
+            Save();
         }
       
         public void LinkToTour(int id)

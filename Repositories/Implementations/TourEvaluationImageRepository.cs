@@ -56,6 +56,7 @@ namespace BookingProject.Repositories
         {
             image.Id = GenerateId();
             _images.Add(image);
+            Save(_images);
         }
 
         public void TourEvaluationBind()

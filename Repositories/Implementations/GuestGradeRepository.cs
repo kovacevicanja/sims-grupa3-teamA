@@ -15,10 +15,12 @@ namespace BookingProject.Repositories.Implementations
     {
         private const string FilePath = "../../Resources/Data/guestGrades.csv";
 
-        private readonly Serializer<GuestGrade> _serializer;
+        private Serializer<GuestGrade> _serializer;
 
         public List<GuestGrade> _grades;
-        public GuestGradeRepository()
+        public GuestGradeRepository() { }
+        
+        public void Initialize()
         {
             _serializer = new Serializer<GuestGrade>();
             _grades = Load();

@@ -58,7 +58,7 @@ namespace BookingProject.Services.Implementations
                 {
                     continue;
                 }
-                int gradedForAccUser = Injector.CreateInstance<IGuestGradeRepository>().CountGradesForAccommodationAndUser(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id);
+                int gradedForAccUser = Injector.CreateInstance<IGuestGradeService>().CountGradesForAccommodationAndUser(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id);
                 List<AccommodationOwnerGrade> latestGrades = GetGradesForAccAndUserLastN(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id, gradedForAccUser);
                 bool exists = ExistsAlreadyAccommodationAndUser(accommodationOwnerGrade.Accommodation.Id, accommodationOwnerGrade.User.Id, accommodationOwnerGrades);
                 if (exists)

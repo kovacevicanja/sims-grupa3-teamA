@@ -37,7 +37,7 @@ namespace BookingProject.Services
         public void SendNotification(RequestAccommodationReservation requestAccommodationReservation)
         {
             Notification notification = new Notification();
-            notification.Id = Injector.CreateInstance<INotificationService>().GenerateId();
+            notification.Id = Injector.CreateInstance<INotificationRepository>().GenerateId();
             notification.UserId = requestAccommodationReservation.AccommodationReservation.Guest.Id;
             notification.Text = "Request to move reservation from " + DateConversion.DateToStringAccommodation(requestAccommodationReservation.AccommodationReservation.InitialDate) +
                 " - " + DateConversion.DateToStringAccommodation(requestAccommodationReservation.AccommodationReservation.EndDate) +
@@ -46,7 +46,6 @@ namespace BookingProject.Services
                 + requestAccommodationReservation.Status;
             notification.Read = false;
             Injector.CreateInstance<INotificationService>().Create(notification);
-            Injector.CreateInstance<INotificationService>().Save();
         }
 
         public void AcceptRequest(RequestAccommodationReservation reservationMovingRequest)
@@ -118,13 +117,11 @@ namespace BookingProject.Services
         {
             return _requestRepository.GetAll();
         }
-
         
         public void Create(RequestAccommodationReservation request)
         {
             _requestRepository.Create(request);
         }
-
 
         public RequestAccommodationReservation GetByID(int id)
         {

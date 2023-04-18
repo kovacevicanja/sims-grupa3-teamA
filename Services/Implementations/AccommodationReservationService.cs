@@ -53,7 +53,6 @@ namespace BookingProject.Services.Implementations
             return _accResForGuest;
         }
 
-
         public void Update(AccommodationReservation reservation)
         {
             AccommodationReservation oldReservation = GetByID(reservation.Id);
@@ -65,8 +64,6 @@ namespace BookingProject.Services.Implementations
             oldReservation.EndDate = reservation.EndDate;
             Save();
         }
-
-
 
         public bool IsReservationAvailable(AccommodationReservation accommodationReservation)
         {
@@ -155,7 +152,6 @@ namespace BookingProject.Services.Implementations
             }
             return reservations;
         }
-
 
         public List<DateTime> MakeListOfReservedDates(DateTime initialDate, DateTime endDate)
         {

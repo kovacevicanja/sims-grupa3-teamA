@@ -52,6 +52,7 @@ namespace BookingProject.Repositories.Implementations
         {
             location.Id = GenerateId();
             _locations.Add(location);
+            Save(_locations);
         }
         public List<Location> GetAll()
         {

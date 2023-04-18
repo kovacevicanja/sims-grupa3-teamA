@@ -36,13 +36,10 @@ namespace BookingProject.View
         public AccommodationGuestImageController AccommodationGuestImageController { get; set; }
         public UserController UserController { get; set; }
         public AccommodationOwnerGrade grade;
-
         public ObservableCollection<int> CleanlinessOption { get; set; }
         public int chosenCleanliness { get; set; }
         public ObservableCollection<int> CorectnessOption { get; set; }
         public int chosenCorectness { get; set; }
-
-
         public AccommodationOwnerReview(AccommodationReservation selectedReservation)
         {
             InitializeComponent();
@@ -170,7 +167,6 @@ namespace BookingProject.View
 
             
             AccommodationOwnerGradeController.Create(grade);
-            AccommodationOwnerGradeController.Save();
 
             this.Close();
         }
@@ -180,7 +176,6 @@ namespace BookingProject.View
             if (UrlPicture.Text != "")
             {
                 AccommodationGuestImage Picture = new AccommodationGuestImage();
-                Picture.Id = AccommodationGuestImageController.GenerateId();
                 Picture.Url = UrlPicture.Text;
                 Picture.Guest.Id = UserController.GetLoggedUser().Id;
                 Picture.Grade.Id = grade.Id;

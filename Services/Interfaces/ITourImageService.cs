@@ -14,5 +14,6 @@ namespace BookingProject.Services.Interfaces
         void LinkToTour(int id);
         List<TourImage> GetAll();
         TourImage GetByID(int id);
+        void Initialize();
     }
 }

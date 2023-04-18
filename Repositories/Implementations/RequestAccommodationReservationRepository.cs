@@ -60,8 +60,8 @@ namespace BookingProject.Repositories.Implementations
         {
             request.Id = GenerateId();
             _requests.Add(request);
+            Save(_requests);
         }
-
 
         public RequestAccommodationReservation GetByID(int id)
         {

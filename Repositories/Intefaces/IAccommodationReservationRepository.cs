@@ -12,5 +12,6 @@ namespace BookingProject.Repositories.Intefaces
         void Create(AccommodationReservation reservation);
         List<AccommodationReservation> GetAll();
         AccommodationReservation GetByID(int id);
+        void Initialize();
     }
 }

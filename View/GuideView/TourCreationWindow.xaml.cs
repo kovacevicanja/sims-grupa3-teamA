@@ -1,9 +1,11 @@
 ﻿using BookingProject.Controller;
+using BookingProject.DependencyInjection;
 using BookingProject.FileHandler;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Model.Images;
 using BookingProject.Services;
+using BookingProject.Services.Interfaces;
 using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;

@@ -43,6 +43,5 @@ namespace BookingProject.Services.Interfaces
         List<Notification> GetOwnerNotifications(User owner);
         void DeleteNotificationFromCSV(Notification notification);
         void WriteNotificationAgain(Notification n);
-        
     }
 }

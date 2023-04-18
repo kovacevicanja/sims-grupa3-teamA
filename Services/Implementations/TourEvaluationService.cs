@@ -14,10 +14,7 @@ namespace BookingProject.Services
     public class TourEvaluationService : ITourEvaluationService
     {
         public ITourEvaluationRepository _tourEvaluationRepository { get; set; }
-        public TourEvaluationService() 
-        {
-            //_tourEvaluationRepository = Injector.CreateInstance<ITourEvaluationRepository>();
-        }
+        public TourEvaluationService() { }
         public void Initialize()
         {
             _tourEvaluationRepository = Injector.CreateInstance<ITourEvaluationRepository>();   

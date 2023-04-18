@@ -71,7 +71,6 @@ namespace BookingProject.View
             KeyPoint keyPoint = new KeyPoint();
             keyPoint.Point = KeyPoint;
             KeyPointController.Create(keyPoint);
-            KeyPointController.Save();
 
         }
 

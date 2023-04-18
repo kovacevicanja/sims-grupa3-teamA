@@ -51,6 +51,7 @@ namespace BookingProject.Repositories
         {
             user.Id = GenerateId();
             _users.Add(user);
+            Save();
         }
         public List<User> GetAll()
         {

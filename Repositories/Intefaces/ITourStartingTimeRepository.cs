@@ -10,9 +10,9 @@ namespace BookingProject.Repositories.Intefaces
 {
     public interface ITourStartingTimeRepository
     {
+        void Initialize();
         void Create(TourDateTime date);
         List<TourDateTime> GetAll();
         TourDateTime GetByID(int id);
-        void Initialize();
     }
 }

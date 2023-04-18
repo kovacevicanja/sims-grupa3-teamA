@@ -13,5 +13,6 @@ namespace BookingProject.Repositories.Intefaces
         void Create(AccommodationImage image);
         List<AccommodationImage> GetAll();
         AccommodationImage GetByID(int id);
+        void Initialize();
     }
 }

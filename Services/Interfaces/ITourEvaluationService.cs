@@ -13,6 +13,6 @@ namespace BookingProject.Services.Interfaces
         void Create(TourEvaluation tourEvaluation);
         List<TourEvaluation> GetAll();
         TourEvaluation GetByID(int id);
-        //void Initialize();
+        void Initialize();
     }
 }

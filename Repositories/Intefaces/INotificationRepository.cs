@@ -14,5 +14,6 @@ namespace BookingProject.Repositories.Intefaces
         List<Notification> GetAll();
         Notification GetByID(int id);
         void Initialize();
+        void DeleteNotificationFromCSV(Notification notification);
     }
 }

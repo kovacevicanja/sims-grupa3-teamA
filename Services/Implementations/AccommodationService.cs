@@ -93,6 +93,17 @@ namespace BookingProject.Services.Implementations
         {
             return _accommodationRepository.GetByID(id);
         }
-        
+        public List<Accommodation> GetAllForOwner(int ownerId)
+        {
+            List<Accommodation> accommodations = new List<Accommodation>();
+            foreach (Accommodation accommodation in _accommodationRepository.GetAll())
+            {
+                if (accommodation.Owner.Id == ownerId)
+                {
+                    accommodations.Add(accommodation);
+                }
+            }
+            return accommodations;
+        }
     }
 }

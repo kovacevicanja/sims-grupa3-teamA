@@ -21,7 +21,6 @@ namespace BookingProject.Repositories.Implementations
         public List<AccommodationOwnerGrade> _grades;
 
         public AccommodationOwnerGradeRepository() { }
-
         public void Initialize()
         {
             _serializer = new Serializer<AccommodationOwnerGrade>();
@@ -76,6 +75,7 @@ namespace BookingProject.Repositories.Implementations
         {
             grade.Id = GenerateId();
             _grades.Add(grade);
+            Save(_grades);
         }
         
         public List<AccommodationOwnerGrade> GetAll()

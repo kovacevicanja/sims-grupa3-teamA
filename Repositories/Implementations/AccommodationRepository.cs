@@ -83,6 +83,7 @@ namespace BookingProject.Repositories.Implementations
         {
             accommodation.Id = GenerateId();
             _accommodations.Add(accommodation);
+            Save(_accommodations);
         }
 
         public void AddImageToAccommodation(Accommodation accommodation, AccommodationImage image)

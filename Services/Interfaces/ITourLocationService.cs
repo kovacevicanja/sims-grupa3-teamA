@@ -12,5 +12,6 @@ namespace BookingProject.Services.Interfaces
         void Create(Location location);
         List<Location> GetAll();
         Location GetByID(int id);
+        void Initialize();
     }
 }

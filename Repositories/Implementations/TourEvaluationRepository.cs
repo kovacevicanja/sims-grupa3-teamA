@@ -86,6 +86,7 @@ namespace BookingProject.Services
         {
             tourEvalution.Id = GenerateId();
             _tourEvaluations.Add(tourEvalution);
+            Save();
         }
 
         public TourEvaluation GetByID(int id)

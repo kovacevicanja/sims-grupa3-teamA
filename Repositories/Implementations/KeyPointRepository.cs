@@ -54,6 +54,7 @@ namespace BookingProject.Repositories.Implementations
         {
             keyPoint.Id = GenerateId();
             _keyPoints.Add(keyPoint);
+            Save(_keyPoints);
         }
 
         public List<KeyPoint> GetAll()

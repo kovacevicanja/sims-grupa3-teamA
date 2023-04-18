@@ -21,18 +21,18 @@ namespace BookingProject.Services.Implementations
     {
         private ITourPresenceRepository _tourPresenceRepository;
         private ITourTimeInstanceRepository _tourTimeInstanceRepository;
-        public NotificationController _notificationController;
-        public TourController TourController;
-        public TourTimeInstanceHandler _timeInstanceHandler;
+        private TourService _tourService;
+        private NotificationService _notificationService;
+        private NotificationRepository _notificationRepository;
         public TourPresenceService() { }
 
         public void Initialize()
         {
             _tourPresenceRepository = Injector.CreateInstance<TourPresenceRepository>();
-           _tourTimeInstanceRepository = Injector.CreateInstance<TourTimeInstanceRepository>();
-            _notificationController= new NotificationController();
-            TourController= new TourController();
-            _timeInstanceHandler = new TourTimeInstanceHandler();
+            _tourTimeInstanceRepository = Injector.CreateInstance<TourTimeInstanceRepository>();
+            _tourService = Injector.CreateInstance<TourService>();
+            _notificationService = Injector.CreateInstance<NotificationService>();
+            _notificationRepository = Injector.CreateInstance<NotificationRepository>();
         }
 
         public void Create(TourPresence presence)
@@ -55,18 +55,17 @@ namespace BookingProject.Services.Implementations
         public void SendNotification(User guest)
         {
             Notification notification = new Notification();
-            notification.Id = _notificationController.GenerateId();
+            notification.Id = _notificationRepository.GenerateId();
             notification.UserId = guest.Id;
             notification.Text = "Presence check !!! ";
             notification.Read = false;
-            _notificationController.Create(notification);
-            _notificationController.Save();
+            _notificationService.Create(notification);
         }
 
         public List<Notification> GetGuestNotifications(User guest)
         {
             List<Notification> notificationsForGuest = new List<Notification>();
-            List<Notification> _notifications = _notificationController.GetAll();
+            List<Notification> _notifications = _notificationService.GetAll();
 
             foreach (Notification notification in _notifications)
             {
@@ -102,7 +101,7 @@ namespace BookingProject.Services.Implementations
                     if (id == tti.Id)
                     {
                         Tour tour = new Tour();
-                        tour = TourController.GetByID(tti.TourId);
+                        tour = _tourService.GetByID(tti.TourId);
                         tours.Add(tour);
                     }
                 }
@@ -112,9 +111,7 @@ namespace BookingProject.Services.Implementations
 
         public void DeleteNotificationFromCSV(Notification notification)
         {
-            List<Notification> _notifications = _notificationController.GetAll();
-            _notifications.RemoveAll(n => n.Id == notification.Id);
-            _notificationController.Save();
+            _notificationService.DeleteNotificationFromCSV(notification);
         }
 
         public void WriteNotificationAgain(Notification n)
@@ -123,8 +120,7 @@ namespace BookingProject.Services.Implementations
             notification.UserId = n.UserId;
             notification.Text = n.Text;
             notification.Read = true;
-            _notificationController.Create(notification);
-            _notificationController.Save();
+            _notificationService.Create(notification);
         }
     }
 }

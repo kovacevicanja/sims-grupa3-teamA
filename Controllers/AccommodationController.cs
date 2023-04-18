@@ -103,5 +103,9 @@ namespace BookingProject.Controller
         {
             observers.Remove(observer);
         }*/
+        public List<Accommodation> GetAllForOwner(int ownerId)
+        {
+           return _accommodationService.GetAllForOwner(ownerId);
+        }
     }
 }

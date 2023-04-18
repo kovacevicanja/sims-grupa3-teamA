@@ -13,26 +13,19 @@ namespace BookingProject.Services.Implementations
     public class TourLocationService : ITourLocationService
     {
         public ITourLocationRepository _tourLocationRepository { get; set; }
-        public TourLocationService() 
-        {
-            _tourLocationRepository = Injector.CreateInstance<ITourLocationRepository>();
-        }
-        /*
+        public TourLocationService() { }
         public void Initialize()
         {
             _tourLocationRepository = Injector.CreateInstance<ITourLocationRepository>();
         }
-        */
         public void Create(Location location)
         {
             _tourLocationRepository.Create(location);   
         }
-
         public List<Location> GetAll()
         {
             return _tourLocationRepository.GetAll();
         }
-
         public Location GetByID(int id)
         {
             return _tourLocationRepository.GetByID(id);

@@ -12,5 +12,6 @@ namespace BookingProject.Repositories.Intefaces
         void Create(GuestGrade guestGrade);
         List<GuestGrade> GetAll();
         GuestGrade GetByID(int id);
+        void Initialize();
     }
 }

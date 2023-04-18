@@ -51,7 +51,6 @@ namespace BookingProject.DependencyInjection
             { typeof(IKeyPointService), new KeyPointService() },
             { typeof(ITourStartingTimeService), new TourStartingTimeService() },
             { typeof(INotificationService), new NotificationService() },
-            { typeof(ITourStartingTimeRepository), new TourStartingTimeRepository() },
             { typeof(IGuestGradeService), new GuestGradeService() },
             { typeof(IAccommodationReservationService), new AccommodationReservationService() },
             { typeof(IAccommodationImageService), new AccommodationImageService() },
@@ -69,26 +68,51 @@ namespace BookingProject.DependencyInjection
         };
         public static void Initialize()
         {
-            CreateInstance<IVoucherRepository>().Initialize();
-            CreateInstance<ITourReservationRepository>().Initialize();
-            CreateInstance<IUserRepository>().Initialize();
-            CreateInstance<ITourRepository>().Initialize();
-            CreateInstance<ITourReservationRepository>().Initialize();
-            CreateInstance<ITourLocationRepository>().Initialize();  
-            CreateInstance<ITourEvaluationImageRepository>().Initialize();
-            CreateInstance<ITourEvaluationRepository>().Initialize();
-            CreateInstance<IKeyPointRepository>().Initialize();
-            CreateInstance<ITourStartingTimeRepository>().Initialize();
-            CreateInstance<INotificationRepository>().Initialize();
-            CreateInstance<IGuestGradeService>().Initialize();
-            CreateInstance<IAccommodationReservationService>().Initialize();
-            CreateInstance<IAccommodationImageService>().Initialize();
-            CreateInstance<INotificationService>().Initialize();
-            CreateInstance<IAccommodationRepository>().Initialize();
             CreateInstance<IAccommodationDateRepository>().Initialize();
             CreateInstance<IAccommodationGuestImageRepository>().Initialize();
+            CreateInstance<IAccommodationImageRepository>().Initialize();
+            CreateInstance<IAccommodationLocationRepository>().Initialize();
             CreateInstance<IAccommodationOwnerGradeRepository>().Initialize();
+            CreateInstance<IAccommodationReservationRepository>().Initialize();
+            CreateInstance<IAccommodationRepository>().Initialize();
+            CreateInstance<IGuestGradeRepository>().Initialize();
+            CreateInstance<IKeyPointRepository>().Initialize();
+            CreateInstance<INotificationRepository>().Initialize();
             CreateInstance<IRequestAccommodationReservationRepository>().Initialize();
+            CreateInstance<ITourEvaluationImageRepository>().Initialize();
+            CreateInstance<ITourEvaluationRepository>().Initialize();
+            CreateInstance<ITourImageRepository>().Initialize();
+            CreateInstance<ITourLocationRepository>().Initialize();
+            CreateInstance<ITourPresenceRepository>().Initialize();
+            CreateInstance<ITourReservationRepository>().Initialize();
+            CreateInstance<ITourRepository>().Initialize();
+            CreateInstance<ITourStartingTimeRepository>().Initialize();
+            CreateInstance<ITourTimeInstanceRepository>().Initialize();
+            CreateInstance<IUserRepository>().Initialize();
+            CreateInstance<IVoucherRepository>().Initialize();
+
+            CreateInstance<IAccommodationDateService>().Initialize();
+            CreateInstance<IAccommodationGuestImageService>().Initialize();
+            CreateInstance<IAccommodationImageService>().Initialize();
+            CreateInstance<IAccommodationLocationService>().Initialize();
+            CreateInstance<IAccommodationOwnerGradeService>().Initialize();
+            CreateInstance<IAccommodationReservationService>().Initialize();
+            CreateInstance<IAccommodationService>().Initialize();
+            CreateInstance<IGuestGradeService>().Initialize();
+            CreateInstance<IKeyPointService>().Initialize();
+            CreateInstance<INotificationService>().Initialize();
+            CreateInstance<IRequestAccommodationReservationService>().Initialize();
+            CreateInstance<ITourEvaluationImageService>().Initialize();
+            CreateInstance<ITourEvaluationService>().Initialize();
+            CreateInstance<ITourImageService>().Initialize();
+            CreateInstance<ITourLocationService>().Initialize();
+            CreateInstance<ITourPresenceService>().Initialize();
+            CreateInstance<ITourReservationService>().Initialize();
+            CreateInstance<ITourService>().Initialize();
+            CreateInstance<ITourStartingTimeService>().Initialize();
+            CreateInstance<ITourTimeInstanceService>().Initialize();
+            CreateInstance<IUserService>().Initialize();
+            CreateInstance<IVoucherService>().Initialize();
         }
 
         public static T CreateInstance<T>()

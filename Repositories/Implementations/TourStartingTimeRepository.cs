@@ -53,6 +53,7 @@ namespace BookingProject.Repositories.Implementations
         {
             date.Id = GenerateId();
             _dates.Add(date);
+            Save(_dates);
         }
 
         public List<TourDateTime> GetAll()

@@ -12,11 +12,8 @@ namespace BookingProject.Services.Interfaces
     public interface ITourTimeInstanceService
     {
         void Create(TourTimeInstance instance);
-
         List<TourTimeInstance> GetAll();
-
-
         TourTimeInstance GetByID(int id);
-
+        void Initialize();
     }
 }

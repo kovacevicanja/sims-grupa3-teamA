@@ -53,6 +53,7 @@ namespace BookingProject.Repositories
         {
             notification.Id = GenerateId();
             _notifications.Add(notification);
+            Save(_notifications);
         }
 
         public List<Notification> GetAll()
@@ -63,6 +64,11 @@ namespace BookingProject.Repositories
         public Notification GetByID(int id)
         {
             return _notifications.Find(notification => notification.Id == id);
+        }
+        public void DeleteNotificationFromCSV(Notification notification)
+        {
+            _notifications.RemoveAll(n => n.Id == notification.Id);
+            Save(_notifications);
         }
     }
 }

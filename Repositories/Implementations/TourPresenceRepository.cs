@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingProject.Controllers;
 
 namespace BookingProject.Repositories.Implementations
 {
@@ -17,14 +18,18 @@ namespace BookingProject.Repositories.Implementations
     {
         private const string FilePath = "../../Resources/Data/tourPresence.csv";
 
-        private readonly Serializer<TourPresence> _serializer;
+        private Serializer<TourPresence> _serializer;
 
         public List<TourPresence> _presences;
 
-        public TourPresenceRepository()
+        public INotificationRepository _notificationRepository { get; set; }
+
+        public TourPresenceRepository() { }
+        public void Initialize()
         {
             _serializer = new Serializer<TourPresence>();
             _presences = Load();
+            _notificationRepository = Injector.CreateInstance<INotificationRepository>();
         }
 
         public List<TourPresence> Load()
@@ -64,6 +69,9 @@ namespace BookingProject.Repositories.Implementations
         {
             return _presences.Find(presence => presence.Id == id);
         }
-
+        public void DeleteNotificationFromCSV(Notification notification)
+        {
+            _notificationRepository.DeleteNotificationFromCSV(notification);
+        }
     }
 }

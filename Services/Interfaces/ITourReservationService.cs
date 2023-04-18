@@ -13,6 +13,7 @@ namespace BookingProject.Services.Interfaces
 {
     public interface ITourReservationService
     {
+        void Initialize();
         bool BookingSuccess(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest);
         bool GoThroughReservations(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest);
         bool TryReservation(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest);

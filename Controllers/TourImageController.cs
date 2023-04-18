@@ -14,7 +14,7 @@ namespace BookingProject.Controller
 {
     public class TourImageController
     {
-        private readonly ITourImageService _tourImageService;
+        private ITourImageService _tourImageService;
         public TourImageController()
         {
             _tourImageService = Injector.CreateInstance<ITourImageService>();

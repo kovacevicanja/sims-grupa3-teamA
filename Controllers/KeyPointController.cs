@@ -52,5 +52,9 @@ namespace BookingProject.Controller
         {
             return _tourKeyPointService.GetPassedKeyPoint();
         }
+        public void Save(List<KeyPoint> keyPoints)
+        {
+            _tourKeyPointService.Save(keyPoints);
+        }
     }
 }

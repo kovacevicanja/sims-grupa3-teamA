@@ -30,14 +30,12 @@ namespace BookingProject.Services.Implementations
 
         public void LinkToTour(int id)
         {
-
             foreach (KeyPoint keyPoint in _keyPointRepository.GetAll())
             {
                 if (keyPoint.TourId == -1)
                 {
                     keyPoint.TourId = id;
                 }
-
             }
         }
 
@@ -75,6 +73,26 @@ namespace BookingProject.Services.Implementations
                 }
             }
             return null;
+        }
+
+        public void Create(KeyPoint keyPoint)
+        {
+            _keyPointRepository.Create(keyPoint);
+        }
+
+        public List<KeyPoint> GetAll()
+        {
+            return _keyPointRepository.GetAll();
+        }
+
+        public KeyPoint GetByID(int id)
+        {
+            return _keyPointRepository.GetByID(id); 
+        }
+
+        public void Save(List<KeyPoint> keyPoints)
+        {
+            _keyPointRepository.Save(keyPoints);
         }
     }
 }

@@ -13,6 +13,6 @@ namespace BookingProject.Repositories.Intefaces
         void Create(TourPresence tourPresence);
         List<TourPresence> GetAll();
         TourPresence GetByID(int id);
-
+        void Initialize();
     }
 }

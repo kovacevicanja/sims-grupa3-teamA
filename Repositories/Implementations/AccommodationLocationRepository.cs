@@ -13,11 +13,13 @@ namespace BookingProject.Repositories.Implementations
     {
         private const string FilePath = "../../Resources/Data/accommodationLocations.csv";
 
-        private readonly Serializer<Location> _serializer;
+        private Serializer<Location> _serializer;
 
         public List<Location> _locations;
 
-        public AccommodationLocationRepository()
+        public AccommodationLocationRepository() { }
+
+        public void Initialize()
         {
             _serializer = new Serializer<Location>();
             _locations = Load();
@@ -46,6 +48,7 @@ namespace BookingProject.Repositories.Implementations
         {
             location.Id = GenerateId();
             _locations.Add(location);
+            Save(_locations);
         }
 
         public int GenerateId()

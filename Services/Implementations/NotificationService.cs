@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
 using System;
@@ -13,7 +14,8 @@ namespace BookingProject.Services
     internal class NotificationService : INotificationService
     {
         public INotificationRepository _notificationRepository { get; set; }
-        public NotificationService()
+        public NotificationService() { }
+        public void Initialize()
         {
             _notificationRepository = Injector.CreateInstance<INotificationRepository>();
         }
@@ -30,6 +32,10 @@ namespace BookingProject.Services
         public Notification GetByID(int id)
         {
             return _notificationRepository.GetByID(id);    
+        }
+        public void DeleteNotificationFromCSV(Notification notification)
+        {
+            _notificationRepository.DeleteNotificationFromCSV(notification);
         }
     }
 }

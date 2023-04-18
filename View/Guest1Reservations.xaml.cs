@@ -39,7 +39,6 @@ namespace BookingProject.View
             ReservationsDataGrid.ItemsSource = _reservations;
         }
 
-        
         private void Button_Click_Review(object sender, RoutedEventArgs e)
         {
             if (_accommodationReservationController.PermissionToRate(SelectedReservation)) {

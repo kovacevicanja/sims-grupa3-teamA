@@ -13,11 +13,13 @@ namespace BookingProject.Repositories.Implementations
     {
         private const string FilePath = "../../Resources/Images/accommodationimages.csv";
 
-        private readonly Serializer<AccommodationImage> _serializer;
+        private Serializer<AccommodationImage> _serializer;
 
         public List<AccommodationImage> _images;
 
-        public AccommodationImageRepository()
+        public AccommodationImageRepository() { }
+
+        public void Initialize()
         {
             _serializer = new Serializer<AccommodationImage>();
             _images = Load();
@@ -53,6 +55,7 @@ namespace BookingProject.Repositories.Implementations
         {
             image.Id = GenerateId();
             _images.Add(image);
+            Save(_images);
         }
         public AccommodationImage GetByID(int id)
         {

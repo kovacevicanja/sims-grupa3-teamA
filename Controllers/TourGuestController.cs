@@ -84,6 +84,5 @@ namespace BookingProject.Controller
             {
                 observers.Remove(observer);
             }
-
         }
 }

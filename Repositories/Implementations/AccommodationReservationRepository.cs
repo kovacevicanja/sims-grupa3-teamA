@@ -14,17 +14,17 @@ namespace BookingProject.Repositories.Implementations
     public class AccommodationReservationRepository : IAccommodationReservationRepository
     {
         private const string FilePath = "../../Resources/Data/accommodationReservations.csv";
-        private readonly Serializer<AccommodationReservation> _serializer;
+        private Serializer<AccommodationReservation> _serializer;
         public List<AccommodationReservation> _accommodationReservations;
 
-        public AccommodationReservationRepository()
+        public AccommodationReservationRepository() { }
+        public void Initialize()
         {
             _serializer = new Serializer<AccommodationReservation>();
             _accommodationReservations = Load();
             AccommodationReservationBind();
             ReservationUserBind();
         }
-
         public List<AccommodationReservation> Load()
         {
             return _serializer.FromCSV(FilePath);
@@ -78,6 +78,5 @@ namespace BookingProject.Repositories.Implementations
         {
             return _accommodationReservations.Find(ar => ar.Id == id);
         }
-        
     }
 }
