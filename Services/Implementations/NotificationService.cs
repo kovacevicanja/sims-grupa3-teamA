@@ -1,5 +1,7 @@
-﻿using BookingProject.DependencyInjection;
+﻿using BookingProject.ConversionHelp;
+using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Model;
 using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
@@ -18,6 +20,41 @@ namespace BookingProject.Services
         public void Initialize()
         {
             _notificationRepository = Injector.CreateInstance<INotificationRepository>();
+        }
+
+        public void SendNotification(AccommodationReservation accommodationReservation)
+        {
+            Notification notification = new Notification();
+            //notification.Id = Injector.CreateInstance<INotificationService>().GenerateId();
+            notification.UserId = accommodationReservation.Accommodation.Owner.Id;
+            notification.Text = "Reservation for your accommodation " + accommodationReservation.Accommodation.AccommodationName + ", from " + DateConversion.DateToStringAccommodation(accommodationReservation.InitialDate) + ", to " + DateConversion.DateToStringAccommodation(accommodationReservation.EndDate) + " was cancelled!";
+            notification.Read = false;
+            Injector.CreateInstance<INotificationService>().Create(notification);
+            //_notificationService.Save();
+        }
+
+        public List<Notification> GetOwnerNotifications(User owner)
+        {
+            List<Notification> notificationsForOwner = new List<Notification>();
+            List<Notification> _notifications = Injector.CreateInstance<INotificationService>().GetAll();
+
+            foreach (Notification notification in _notifications)
+            {
+                if (notification.UserId == owner.Id && notification.Read == false)
+                {
+                    notificationsForOwner.Add(notification);
+                }
+            }
+            return notificationsForOwner;
+        }
+        public void WriteNotificationAgain(Notification n)
+        {
+            Notification notification = new Notification();
+            notification.UserId = n.UserId;
+            notification.Text = n.Text;
+            notification.Read = true;
+            Injector.CreateInstance<INotificationService>().Create(notification);
+            //_notificationService.Save();
         }
         public void Create(Notification notification)
         {

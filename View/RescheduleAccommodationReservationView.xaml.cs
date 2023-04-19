@@ -87,15 +87,7 @@ namespace BookingProject.View
 
         private void Button_Click_Send_Request(object sender, RoutedEventArgs e)
         {
-            RequestAccommodationReservation request = new RequestAccommodationReservation();
-            request.AccommodationReservation = SelectedReservation;
-            request.GuestComment = Comment;
-            request.NewArrivalDay = NewInitialDate;
-            request.NewDeparuteDay = NewEndDate;
-            request.Status = Domain.Enums.RequestStatus.PENDING;
-
-            RequestAccommodationReservationController.Create(request);
-            RequestAccommodationReservationController.SaveRequest();
+            RequestAccommodationReservationController.SendRequest(SelectedReservation, Comment, NewInitialDate, NewEndDate);
             this.Close();
         }
     }

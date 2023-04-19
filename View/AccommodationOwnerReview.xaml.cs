@@ -24,9 +24,6 @@ using System.Windows.Shapes;
 
 namespace BookingProject.View
 {
-    /// <summary>
-    /// Interaction logic for AccommodationOwnerReview.xaml
-    /// </summary>
     public partial class AccommodationOwnerReview : Window
     {
         public AccommodationOwnerGradeController AccommodationOwnerGradeController { get; set; }
@@ -157,17 +154,8 @@ namespace BookingProject.View
 
         private void Button_Click_Review(object sender, RoutedEventArgs e)
         {
-           
-            grade.Accommodation.Id = _selectedReservation.Accommodation.Id;
-            grade.Cleanliness = chosenCleanliness;
-            grade.OwnerCorectness = chosenCorectness;
-            grade.AdditionalComment = Comment;
-            grade.Reccommendation = Reccommendation;
-            grade.User.Id = UserController.GetLoggedUser().Id;
 
-            
-            AccommodationOwnerGradeController.Create(grade);
-
+            AccommodationOwnerGradeController.MakeGrade(grade, _selectedReservation, chosenCleanliness, chosenCorectness, Comment, Reccommendation);
             this.Close();
         }
 
@@ -189,6 +177,27 @@ namespace BookingProject.View
             }
 
             UrlPicture.Text = string.Empty;
+        }
+
+        private void Button_Click_Homepage(object sender, RoutedEventArgs e)
+        {
+            var Guest1Homepage = new Guest1Homepage();
+            Guest1Homepage.Show();
+            this.Close();
+        }
+
+        private void Button_Click_MyReservations(object sender, RoutedEventArgs e)
+        {
+            var Guest1Reservations = new Guest1Reservations();
+            Guest1Reservations.Show();
+            this.Close();
+        }
+
+        private void Button_Click_Logout(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            this.Close();
         }
     }
 }

@@ -72,8 +72,12 @@
                 <Label Height="150"></Label>
 
             </StackPanel>
+            
             <Border Grid.Column="1" Background="Beige">
                 <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Resources/Images/backgroundguest1.jpg" />
+                    </Grid.Background>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="64*"/>
                         <ColumnDefinition Width="8*"/>

@@ -45,23 +45,6 @@ namespace BookingProject.View
         public Boolean IsCheckedHouse { get; set; } = false;
 
         public List<string> AccommodationTypes;
-
-        private void FindCities(object sender, SelectionChangedEventArgs e)
-        {
-
-            AllCities.Clear();
-
-            var locations = _accommodationLocationController.GetAll().Where(l => l.Country.Equals(State));
-
-            foreach (Location location in locations)
-            {
-                AllCities.Add(location.City);
-            }
-
-            comboBoxCity.IsEnabled = true;
-
-        }
-
         public Guest1View()
         {
             InitializeComponent();
@@ -106,6 +89,21 @@ namespace BookingProject.View
 
             }
         }
+        private void FindCities(object sender, SelectionChangedEventArgs e)
+        {
+
+            AllCities.Clear();
+
+            var locations = _accommodationLocationController.GetAll().Where(l => l.Country.Equals(State));
+
+            foreach (Location location in locations)
+            {
+                AllCities.Add(location.City);
+            }
+
+            comboBoxCity.IsEnabled = true;
+
+        }
 
         private void Button_Click_Search(object sender, RoutedEventArgs e)
         {
@@ -140,6 +138,7 @@ namespace BookingProject.View
         {
             Guest1Reservations g1r = new Guest1Reservations();
             g1r.Show();
+            this.Close();
         }
     }
 }

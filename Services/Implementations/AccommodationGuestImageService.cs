@@ -35,10 +35,12 @@ namespace BookingProject.Services.Implementations
         {
             return _accommodationGuestImageRepository.GetByID(id);
         }
+
         public void Save(List<AccommodationGuestImage> images)
         {
             _accommodationGuestImageRepository.Save(images);
         }
+
         public void SaveImage()
         {
             _accommodationGuestImageRepository.SaveImage();

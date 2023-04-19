@@ -137,5 +137,19 @@ namespace BookingProject.Services
             return _requestRepository.GetByID(id);
         }
 
+        public void SendRequest(AccommodationReservation SelectedReservation, String Comment, DateTime NewInitialDate, DateTime NewEndDate)
+        {
+            RequestAccommodationReservation request = new RequestAccommodationReservation();
+            request.AccommodationReservation = SelectedReservation;
+            request.GuestComment = Comment;
+            request.OwnerComment = String.Empty;
+            request.NewArrivalDay = NewInitialDate;
+            request.NewDeparuteDay = NewEndDate;
+            request.Status = Domain.Enums.RequestStatus.PENDING;
+
+            Create(request);
+            SaveRequest();
+        }
+
     }
 }

@@ -84,5 +84,10 @@ namespace BookingProject.Controllers
         {
             return _requestsService.GetByID(id);
         }
+
+        public void SendRequest(AccommodationReservation SelectedReservation, String Comment, DateTime NewInitialDate, DateTime NewEndDate)
+        {
+            _requestsService.SendRequest(SelectedReservation, Comment, NewInitialDate, NewEndDate); 
+        }
     }
 }

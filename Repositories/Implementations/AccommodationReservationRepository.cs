@@ -43,8 +43,8 @@ namespace BookingProject.Repositories.Implementations
         {
             foreach (AccommodationReservation reservation in _accommodationReservations)
             {
-                //Accommodation accommodation = Injector.CreateInstance<IAccommodationRepository>().GetBuId(reservation.Accommodation.Id);
-                //reservation.Accommodation = accommodation;
+                Accommodation accommodation = Injector.CreateInstance<IAccommodationRepository>().GetByID(reservation.Accommodation.Id);
+                reservation.Accommodation = accommodation;
             }
         }
 

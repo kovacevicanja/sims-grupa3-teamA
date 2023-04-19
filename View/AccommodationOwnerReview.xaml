@@ -13,7 +13,7 @@
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button>
+                <Button Click="Button_Click_Homepage">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
@@ -29,7 +29,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button>
+                <Button Click="Button_Click_MyReservations">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/bedroom.png"/>
@@ -69,10 +69,20 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
+                <Button Click="Button_Click_Logout">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Logout" Margin="5,5,0,0" FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
                 <Label Height="150"></Label>
             </StackPanel>
             <Border Grid.Column="1" Background="White">
                 <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Resources/Images/backgroundguest1.jpg" />
+                    </Grid.Background>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="64*"/>
                         <ColumnDefinition Width="8*"/>
@@ -133,7 +143,7 @@
                         <WrapPanel Grid.Row="7" Grid.ColumnSpan="2"  FlowDirection="LeftToRight" Orientation="Horizontal" Margin="10" Width="300" >
                             <Button IsDefault="True" Margin="20" Click="Button_Click_Review">Review</Button>
                             <Button Content="View tutorial" Margin="20"></Button>
-                            <Button Content="Homepage" Margin="20"></Button>
+                            <Button Content="Homepage" Click="Button_Click_Homepage" Margin="20"></Button>
                         </WrapPanel>
                     </Grid>
                 </Grid>

@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
         Title="Guest1" Height="600" Width="900">
-
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -81,7 +80,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            
+
         </Grid>
 
         <WrapPanel Grid.Row="3">

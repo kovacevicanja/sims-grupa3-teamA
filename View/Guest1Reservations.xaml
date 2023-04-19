@@ -14,7 +14,7 @@
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button>
+                <Button Click="Button_Click_Homepage">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
@@ -30,7 +30,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button>
+                <Button Click="Button_Click_MyReservations">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/bedroom.png"/>
@@ -70,6 +70,13 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
+                <Button Click="Button_Click_Logout">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Logout" Margin="5,5,0,0" FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
                 <Label Height="150"></Label>
             </StackPanel>
             <Border Grid.Column="1" Background="Beige">
@@ -95,7 +102,7 @@
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="60" IsDefault="True" Margin="15" Click="Button_Click_Review">Review</Button>
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="15" Click="Button_Click_See_Requests">See requests</Button>
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="15">View tutorial</Button>
-                        <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="70" IsDefault="True" Margin="15 15 15 20">Homepage</Button>
+                        <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="70" IsDefault="True" Margin="15 15 15 20" Click="Button_Click_Homepage">Homepage</Button>
                     </WrapPanel>
                 </StackPanel>
                 
