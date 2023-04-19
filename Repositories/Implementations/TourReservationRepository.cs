@@ -97,6 +97,7 @@ namespace BookingProject.Repositories.Implementations
         }
         public void SaveSameReservationToFile(Tour chosenTour, TourReservation tourReservation, string numberOfGuests, DateTime selectedDate, User guest)
         {
+            int flag = 0;
             foreach (TourReservation tr in GetAll())
             {
                 if (tr.Id == tourReservation.Id)
@@ -114,6 +115,10 @@ namespace BookingProject.Repositories.Implementations
                 {
                     reservationsToRemove.Add(tr);
                 }
+                else if (tr.Guest.Id != guest.Id)
+                {
+                    flag = 1;
+                }
             }
 
             foreach (TourReservation tr in reservationsToRemove)
@@ -121,8 +126,18 @@ namespace BookingProject.Repositories.Implementations
                 reservationsCopy.Remove(tr);
             }
 
-            TourReservation newReservation = new TourReservation(tourReservation.Id, chosenTour, tourReservation.GuestsNumberPerReservation, selectedDate, guest);
-            reservationsCopy.Add(newReservation);
+            if (flag == 1)
+            {
+                TourReservation newRes = new TourReservation(GenerateId(), chosenTour, tourReservation.GuestsNumberPerReservation, selectedDate, guest);
+                reservationsCopy.Add(newRes);
+
+            }
+            else
+            {
+                TourReservation newReservation = new TourReservation(tourReservation.Id, chosenTour, tourReservation.GuestsNumberPerReservation, selectedDate, guest);
+                reservationsCopy.Add(newReservation);
+            }
+
             Save(reservationsCopy);
         }
     }

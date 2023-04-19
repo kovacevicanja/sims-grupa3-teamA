@@ -34,5 +34,9 @@ namespace BookingProject.Controller
         {
             return _tourEvaluationImageService.GetByID(id);
         }
+        public void Save(List<TourEvaluationImage> images)
+        {
+            _tourEvaluationImageService.Save(images);
+        }
     }
 }

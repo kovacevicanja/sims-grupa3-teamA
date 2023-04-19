@@ -31,7 +31,7 @@ namespace BookingProject.Repositories.Implementations
         {
             _serializer.ToCSV(FilePath, _images);
         }
-        private int GenerateId()
+        public int GenerateId()
         {
             int maxId = 0;
             foreach (TourImage image in _images)

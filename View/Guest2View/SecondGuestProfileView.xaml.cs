@@ -81,6 +81,7 @@ namespace BookingProject.View
         private void Button_Click_MonitoringActiveTours(object sender, RoutedEventArgs e)
         {
             List<TourReservation> tourReservations = new List<TourReservation>();
+            tourReservations = TourReservationController.GetAll();
             int flag = 0;
             List<TourReservation> activeTours = new List<TourReservation>(); 
             List<int> activeToursIds = new List<int>();

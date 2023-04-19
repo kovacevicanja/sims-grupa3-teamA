@@ -1,13 +1,19 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
+using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Domain.Images;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Repositories.Implementations;
+using BookingProject.Repositories.Intefaces;
+using BookingProject.Services;
 using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -38,6 +44,7 @@ namespace BookingProject.View
         public int ChosenInterestigness { get; set; }
         public TourEvaluation tourEvaluation { get; set; }
         public List<TourEvaluationImage> Images { get; set; }
+        public ITourEvaluationRepository TourEvaluationRepository { get; set; }
         public TourEvaluationImageController TourEvaluationImageController { get; set; }
         public Tour ChosenTour { get; set; }
         public TourReservationController TourReservationController { get; set; }
@@ -59,6 +66,9 @@ namespace BookingProject.View
 
             Images = new List<TourEvaluationImage>();
             TourEvaluationImageController = new TourEvaluationImageController();
+
+            TourEvaluationRepository = new TourEvaluationRepository();
+            tourEvaluation.Id = Injector.CreateInstance<ITourEvaluationRepository>().GenerateId();
 
             GuideKnowledgeOption = new ObservableCollection<int>();
             GuideLanguageOption = new ObservableCollection<int>();
@@ -147,6 +157,7 @@ namespace BookingProject.View
         {
             TourEvaluationImage TourImage = new TourEvaluationImage();
             TourImage.Url = ImageUrl;
+            TourImage.TourEvaluation.Id = tourEvaluation.Id;
             tourEvaluation.Images.Add(TourImage);
             TourEvaluationImageController.Create(TourImage);
 
@@ -164,6 +175,7 @@ namespace BookingProject.View
             tourEvaluation.Guest.Id = GuestId;
 
             TourEvaluationController.Create(tourEvaluation);
+
             this.Close();
         }
     }

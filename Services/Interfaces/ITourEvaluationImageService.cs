@@ -13,5 +13,6 @@ namespace BookingProject.Services.Interfaces
         List<TourEvaluationImage> GetAll();
         TourEvaluationImage GetByID(int id);
         void Initialize();
+        void Save(List<TourEvaluationImage> images);
     }
 }

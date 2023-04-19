@@ -212,7 +212,7 @@
     <Compile Include="View\AccommodationRequestsView.xaml.cs">
       <DependentUpon>AccommodationRequestsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ActiveToursView.xaml.cs">
+    <Compile Include="View\Guest2View\ActiveToursView.xaml.cs">
       <DependentUpon>ActiveToursView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddAccommodationView.xaml.cs">
@@ -360,7 +360,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ActiveToursView.xaml">
+    <Page Include="View\Guest2View\ActiveToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
