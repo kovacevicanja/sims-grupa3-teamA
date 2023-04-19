@@ -81,5 +81,11 @@ namespace BookingProject.Controller
         {
             _tourService.GoThroughBookedToursDates(tour, selectedDate, tdt);
         }
+
+        public void BindLastTour()
+        {
+            _tourService.BindLastTour();
+        }
+
     }
 }

@@ -119,7 +119,7 @@ namespace BookingProject.Services
             oldRequest.NewArrivalDay = reservationMovingRequest.NewArrivalDay;
             oldRequest.NewDeparuteDay = reservationMovingRequest.NewDeparuteDay;
             oldRequest.Status = reservationMovingRequest.Status;
-            // SaveRequest(); -- NE RADI TI ?????????
+            SaveRequest(); //-- NE RADI TI ?????????
         }
 
         public List<RequestAccommodationReservation> GetAll()
@@ -135,6 +135,20 @@ namespace BookingProject.Services
         public RequestAccommodationReservation GetByID(int id)
         {
             return _requestRepository.GetByID(id);
+        }
+
+        public void SendRequest(AccommodationReservation SelectedReservation, String Comment, DateTime NewInitialDate, DateTime NewEndDate)
+        {
+            RequestAccommodationReservation request = new RequestAccommodationReservation();
+            request.AccommodationReservation = SelectedReservation;
+            request.GuestComment = Comment;
+            request.OwnerComment = String.Empty;
+            request.NewArrivalDay = NewInitialDate;
+            request.NewDeparuteDay = NewEndDate;
+            request.Status = Domain.Enums.RequestStatus.PENDING;
+
+            Create(request);
+            SaveRequest();
         }
 
     }

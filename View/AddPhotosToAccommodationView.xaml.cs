@@ -32,9 +32,10 @@ namespace BookingProject.View
         public AddPhotosToAccommodationView()
         {
             InitializeComponent();
-            var app = Application.Current as App;
+            //var app = Application.Current as App;
             this.DataContext = this;
-            _imageController = app.AccommodationImageController;
+            //_imageController = app.AccommodationImageController;
+            _imageController = new AccommodationImageController();
 
         }
         private string _url;

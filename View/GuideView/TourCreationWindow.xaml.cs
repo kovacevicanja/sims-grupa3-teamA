@@ -45,15 +45,14 @@ namespace BookingProject.View
             this.DataContext = this;
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
-            /*var app = Application.Current as App;
-            TourController = app.TourController;
-            LocationController = app.LocationController;
-            KeyPointController = app.KeyPointController;
-            ImageController = app.ImageController;
-            StartingDateController = app.StartingDateController;
-            TourTimeInstanceController = app.TourTimeInstanceController;
-            UserController = app.UserController;
-            */
+            TourController = new TourController();
+            LocationController = new TourLocationController();
+            KeyPointController = new KeyPointController();
+            ImageController = new TourImageController();
+            StartingDateController = new TourStartingTimeController();
+            TourTimeInstanceController = new TourTimeInstanceController();
+            UserController = new UserController();
+
         }
 
         //public string this[string columnName] => throw new NotImplementedException();
@@ -184,18 +183,19 @@ namespace BookingProject.View
             StartingDateController.LinkToTour(tour.Id);
             StartingDateController.Save();
             //prave se instance
-            saveInstance();
+            TourController.BindLastTour();
+            SaveInstance();
         }
-        public void saveInstance()
+        public void SaveInstance()
         {
-            makeTimeInstances(TourController.GetLastTour());
+            MakeTimeInstances(TourController.GetLastTour());
         }
         //use of this function is necessary if a tour has multiple dates   
-        public void makeTimeInstances(Tour tour)
+        public void MakeTimeInstances(Tour tour)
         {
-            foreach(TourDateTime time in tour.StartingTime)
+            foreach (TourDateTime time in tour.StartingTime)
             {
-                TourTimeInstance instance= new TourTimeInstance();
+                TourTimeInstance instance = new TourTimeInstance();
                 instance.TourId = tour.Id;
                 instance.DateId = time.Id;
                 TourTimeInstanceController.Create(instance);
@@ -209,7 +209,7 @@ namespace BookingProject.View
             ImageController.CleanUnused();
             ImageController.Save();
             StartingDateController.CleanUnused();
-            StartingDateController.Save();              
+            StartingDateController.Save();
             MyToursWindow myToursWindow = new MyToursWindow();
             myToursWindow.Show();
             Close();
@@ -259,20 +259,20 @@ namespace BookingProject.View
 
                 else if (columnName == "Duration")
                 {
-                    if (!validDuration())
+                    if (!ValidDuration())
                         return "You must enter a number!";
                 }
 
                 else if (columnName == "MaxGuests")
                 {
-                    if (!validMaxGuests())
+                    if (!ValidMaxGuests())
                         return "You must enter a number!";
                 }
                 return null;
             }
         }
         private readonly string[] _validatedProperties = { "TourName", "Description", "Country", "City", "Duration", "MaxGuests" };
-        public bool validDuration()
+        public bool ValidDuration()
         {
             string testString = Duration.ToString();
 
@@ -282,7 +282,7 @@ namespace BookingProject.View
             }
             return true;
         }
-        public bool validMaxGuests()
+        public bool ValidMaxGuests()
         {
             string testString = MaxGuests.ToString();
 
@@ -292,7 +292,7 @@ namespace BookingProject.View
             }
             return true;
         }
-        public bool validKeyPoint()
+        public bool ValidKeyPoint()
         {
             int keyPointNumber = 0;
             KeyPointController keyPointController = new KeyPointController();
@@ -309,7 +309,7 @@ namespace BookingProject.View
             }
             return true;
         }
-        public bool validTourImage()
+        public bool ValidTourImage()
         {
             TourImageController tourImageController = new TourImageController();
             foreach (TourImage tourImage in tourImageController.GetAll())
@@ -321,7 +321,7 @@ namespace BookingProject.View
             }
             return false;
         }
-        public bool validTourDateTime()
+        public bool ValidTourDateTime()
         {
             TourStartingTimeController tourStartingTimeController = new TourStartingTimeController();
             foreach (TourDateTime tourDate in tourStartingTimeController.GetAll())
@@ -343,7 +343,7 @@ namespace BookingProject.View
                         return false;
                 }
 
-                return (validMaxGuests() && validDuration() && validKeyPoint() && validTourDateTime() && validTourImage());
+                return (ValidMaxGuests() && ValidDuration() && ValidKeyPoint() && ValidTourDateTime() && ValidTourImage());
             }
         }
         private void Window_LayoutUpdated(object sender, System.EventArgs e)

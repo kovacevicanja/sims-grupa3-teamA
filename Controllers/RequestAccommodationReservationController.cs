@@ -54,7 +54,7 @@ namespace BookingProject.Controllers
         }
         public List<RequestAccommodationReservation> GetAllRequestForOwner(int ownerId)
         {
-            return GetAllRequestForOwner(ownerId);
+            return _requestsService.GetAllRequestForOwner(ownerId);
         }
         public void Update(RequestAccommodationReservation reservationMovingRequest)
         {
@@ -71,6 +71,11 @@ namespace BookingProject.Controllers
         public RequestAccommodationReservation GetByID(int id)
         {
             return _requestsService.GetByID(id);
+        }
+
+        public void SendRequest(AccommodationReservation SelectedReservation, String Comment, DateTime NewInitialDate, DateTime NewEndDate)
+        {
+            _requestsService.SendRequest(SelectedReservation, Comment, NewInitialDate, NewEndDate); 
         }
     }
 }

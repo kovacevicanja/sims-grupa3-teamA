@@ -48,13 +48,13 @@ namespace BookingProject.View.GuideView
         }
         public string GetGuestKeyPoint()
         {
-            foreach(TourPresence presence in _tourPresenceController.GetAll())
-            {
-                if(presence.UserId==ChosenEvaluation.TourReservation.Guest.Id && ChosenTour.Id == presence.TourId)
-                {
-                    return _keyPointController.GetByID(presence.KeyPointId).Point;
-                }
-            }
+            //foreach(TourPresence presence in _tourPresenceController.GetAll())
+           // {
+           //     if(presence.UserId==ChosenEvaluation.TourReservation.Guest.Id && ChosenTour.Id == presence.TourId)
+          //      {
+           //         return _keyPointController.GetByID(presence.KeyPointId).Point;
+           //     }
+          //  }
             return "LOREM IPSUM";
         }
         private void Button_Click_Close(object sender, RoutedEventArgs e)

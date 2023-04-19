@@ -42,7 +42,6 @@ namespace BookingProject.DependencyInjection
 
 
 
-
             { typeof(ITourService), new TourService() },
             { typeof(ITourReservationService), new TourReservationService() },
             { typeof(ITourLocationService), new TourLocationService() },

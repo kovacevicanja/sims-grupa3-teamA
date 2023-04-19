@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Model;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
@@ -16,6 +17,18 @@ namespace BookingProject.Controllers
         public NotificationController()
         {
             _notificationService = Injector.CreateInstance<INotificationService>();
+        }
+        public void SendNotification(AccommodationReservation accommodationReservation)
+        {
+            _notificationService.SendNotification(accommodationReservation);
+        }
+        public List<Notification> GetOwnerNotifications(User owner)
+        {
+            return _notificationService.GetOwnerNotifications(owner);
+        }
+        public void WriteNotificationAgain(Notification n)
+        {
+            _notificationService.WriteNotificationAgain(n);
         }
         public void Create(Notification notification)
         {

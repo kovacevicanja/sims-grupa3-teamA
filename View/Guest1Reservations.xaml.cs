@@ -49,6 +49,7 @@ namespace BookingProject.View
             {
                 MessageBox.Show("You don't have permission to review this accommodation and owner!");
             }
+            this.Close();
         }
 
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
@@ -67,6 +68,7 @@ namespace BookingProject.View
         {
             var RescheduleAccommodationReservation = new RescheduleAccommodationReservationView(SelectedReservation);
             RescheduleAccommodationReservation.Show();
+            this.Close();
         }
 
         public void Update()
@@ -82,6 +84,28 @@ namespace BookingProject.View
         {
             var reqAccView = new AccommodationRequestsView();
             reqAccView.Show();
+            this.Close();
+        }
+
+        private void Button_Click_Homepage(object sender, RoutedEventArgs e)
+        {
+            var Guest1Homepage = new Guest1Homepage();
+            Guest1Homepage.Show();
+            this.Close();
+        }
+
+        private void Button_Click_MyReservations(object sender, RoutedEventArgs e)
+        {
+            var Guest1Reservations = new Guest1Reservations();
+            Guest1Reservations.Show();
+            this.Close();
+        }
+
+        private void Button_Click_Logout(object sender, RoutedEventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            this.Close();
         }
     }
 }

@@ -69,7 +69,7 @@ namespace BookingProject.Domain
                 Status.ToString(),
                 GuestComment,
                 OwnerComment
-        };
+            };
             return csvValues;
         }
     }

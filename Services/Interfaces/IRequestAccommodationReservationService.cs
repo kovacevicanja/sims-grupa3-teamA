@@ -23,6 +23,6 @@ namespace BookingProject.Services.Interfaces
         RequestAccommodationReservation GetByID(int id);
         void Save(List<RequestAccommodationReservation> requests);
         void SaveRequest();
-
+        void SendRequest(AccommodationReservation SelectedReservation, String Comment, DateTime NewInitialDate, DateTime NewEndDate);
     }
 }

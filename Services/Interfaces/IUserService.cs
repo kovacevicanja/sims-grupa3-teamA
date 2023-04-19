@@ -1,4 +1,5 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.Domain;
+using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,7 @@ namespace BookingProject.Services.Interfaces
         User GetByID(int id);
         void Initialize();
         void Save();
+        User IsUserSuperUser(User user);
+        void Update(User user);
     }
 }

@@ -19,5 +19,6 @@ namespace BookingProject.Services.Interfaces
         List<AccommodationOwnerGrade> GetAll();
         AccommodationOwnerGrade GetByID(int id);
         void Save(List<AccommodationOwnerGrade> grades);
+        void MakeGrade(AccommodationOwnerGrade grade, AccommodationReservation _selectedReservation, int chosenCleanliness, int chosenCorectness, String Comment, String Reccommendation);
     }
 }

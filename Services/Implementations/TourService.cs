@@ -168,5 +168,12 @@ namespace BookingProject.Services
 
             return filteredTours;
         }
+
+        public void BindLastTour()
+        {
+            _tourRepository.BindLastTour();
+        }
+
+
     }
 }

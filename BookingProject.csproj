@@ -78,6 +78,7 @@
     <Compile Include="Controllers\TourTimeInstanceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
+    <Compile Include="ConversionHelp\BooleanToVisibilityConverter.cs" />
     <Compile Include="DependencyInjection\Injector.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Domain\AccommodationOwnerGrade.cs" />

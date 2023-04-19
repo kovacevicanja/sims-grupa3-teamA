@@ -20,9 +20,9 @@ namespace BookingProject.Repositories
         private const string FilePath = "../../Resources/Data/tours.csv";
         private Serializer<Tour> _serializer;
         public List<Tour> _tours;
-        public ITourStartingTimeRepository _tourStartingTimeRepository; 
+        public ITourStartingTimeRepository _tourStartingTimeRepository;
 
-        public TourRepository() 
+        public TourRepository()
         {
             _serializer = new Serializer<Tour>();
             _tours = Load();
@@ -61,6 +61,29 @@ namespace BookingProject.Repositories
             _tours.Add(tour);
             Save(_tours);
         }
+
+        public void BindLastTour()
+        {
+            if (_tours.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                Tour tour = _tours.Last();
+                List<TourDateTime> dates = Injector.CreateInstance<ITourStartingTimeRepository>().GetAll();
+                foreach (TourDateTime date in dates)
+                {
+                    if (tour.Id == date.TourId)
+                    {
+                        tour.StartingTime.Add(date);
+                    }
+                }
+
+
+            }
+        }
+
         public List<Tour> GetAll()
         {
             return _tours.ToList();

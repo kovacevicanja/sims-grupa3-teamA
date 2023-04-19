@@ -82,17 +82,17 @@ namespace BookingProject.View
                         _controller.Save();
                         OwnerView ownerView = new OwnerView();
                         ownerView.Show();
-                        List<Notification> notifications = _accResController.GetOwnerNotifications(owner);
+                        List<Notification> notifications = _notificationController.GetOwnerNotifications(owner);
                         List<Notification> notificationsCopy = new List<Notification>();
                         foreach (Notification notification in notifications)
                         {
                             MessageBox.Show(notification.Text);
                             notificationsCopy.Add(notification);
-                            _accResController.DeleteNotificationFromCSV(notification);
+                            _notificationController.DeleteNotificationFromCSV(notification);
                         }
                         foreach (Notification notification1 in notificationsCopy)
                         {
-                            _accResController.WriteNotificationAgain(notification1);
+                            _notificationController.WriteNotificationAgain(notification1);
                         }
                         NotGradedView not_view = new NotGradedView();
                         int row_num = not_view.RowNum();
@@ -109,7 +109,7 @@ namespace BookingProject.View
                         Model.User guest = _controller.GetByUsername(Username);
                         guest.IsLoggedIn = true;
                         _controller.Save();
-                        Guest1View guest1View = new Guest1View();
+                        Guest1Homepage guest1View = new Guest1Homepage();
                         guest1View.Show();
                         List<Notification> notifications = new List<Notification>();
                         notifications = _requestController.GetGuest1Notifications(guest);
@@ -122,7 +122,7 @@ namespace BookingProject.View
                         }
                         foreach (Notification notification1 in notificationsCopy)
                         {
-                            _accResController.WriteNotificationAgain(notification1);
+                            _notificationController.WriteNotificationAgain(notification1);
                         }
                     }
                     else if (user.UserType == UserType.GUEST2)

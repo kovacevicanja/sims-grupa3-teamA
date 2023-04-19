@@ -23,7 +23,9 @@ namespace BookingProject.Repositories.Implementations
             _serializer = new Serializer<GuestGrade>();
             _grades = Load();
         }
-        public void Initialize() { }
+        public void Initialize() {
+            AccommodationGradeBind();
+        }
         public List<GuestGrade> Load()
         {
             return _serializer.FromCSV(FilePath);
@@ -63,8 +65,8 @@ namespace BookingProject.Repositories.Implementations
         {
             foreach (GuestGrade grade in _grades)
             {
-                //AccommodationReservation accommodation = Injector.CreateInstance<IAccommodationReservation>().GetById(grade.AccommodationReservation.Id);
-                //grade.AccommodationReservation = accommodation;
+                AccommodationReservation accommodation = Injector.CreateInstance<IAccommodationReservationRepository>().GetByID(grade.AccommodationReservation.Id);
+                grade.AccommodationReservation = accommodation;
             }
         }
     }

@@ -37,8 +37,7 @@ namespace BookingProject.View
             InitializeComponent();
             this.DataContext = this;
 
-            var app = Application.Current as App;
-            StartingDateController = app.StartingDateController;
+            StartingDateController = new TourStartingTimeController();
 
         }
 

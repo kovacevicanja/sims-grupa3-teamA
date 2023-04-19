@@ -13,7 +13,7 @@
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button>
+                <Button Click="Button_Click_Homepage">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
@@ -29,7 +29,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button>
+                <Button Click="Button_Click_MyReservations">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/bedroom.png"/>
@@ -69,6 +69,13 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
+                <Button Click="Button_Click_Logout">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Logout" Margin="5,5,0,0" FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
                 <Label Height="150"></Label>
             </StackPanel>
             <Border Grid.Column="1" Background="Beige">
@@ -84,13 +91,13 @@
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="New initial date" Width="80" Binding="{Binding NewArrivalDay, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="New end date" Width="80" Binding="{Binding NewDeparuteDay, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Status" Width="60" Binding="{Binding Status}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Comment from owner" Width="120" ></DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Comment from owner" Width="120" Binding="{Binding OwnerComment}"></DataGridTextColumn>
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Owner username" Width="100" Binding="{Binding AccommodationReservation.Accommodation.Owner.Username}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <WrapPanel VerticalAlignment="Bottom">
                         <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="15">View tutorial</Button>
-                        <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="70" IsDefault="True" Margin="15 15 15 20">Homepage</Button>
+                        <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="70" IsDefault="True" Margin="15 15 15 20" Click="Button_Click_Homepage">Homepage</Button>
                     </WrapPanel>
                 </StackPanel>
 

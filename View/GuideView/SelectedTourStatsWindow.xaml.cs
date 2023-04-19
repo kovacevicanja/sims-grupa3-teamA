@@ -25,7 +25,7 @@ namespace BookingProject.View.GuideView
     /// </summary>
     public partial class SelectedTourStatsWindow : Window
     {
-        public string TeenGuests { get; set; }="LOREM IPSUM";
+        public string TeenGuests { get; set; } = "LOREM IPSUM";
         public string AdultGuests { get; set; } = "LOREM IPSUM";
         public string OldGuests { get; set; } = "LOREM IPSUM";
         public string VoucherGuests { get; set; } = "LOREM IPSUM";
@@ -42,10 +42,9 @@ namespace BookingProject.View.GuideView
             InitializeComponent();
             this.DataContext = this;
             ChosenTour = chosenTour;
-            var app = Application.Current as App;
-            _userControler = app.UserController;
-            _tourReservationController = app.TourReservationController;
-            _voucherController = app.VoucherController;
+            _userControler = new UserController();
+            _tourReservationController = new TourReservationController();
+            _voucherController = new VoucherController();
             GuestNumbers = GetGuestNumbers();
             vouchersPercentage = GetVoucherPercentage();
             SetValues();
@@ -53,25 +52,25 @@ namespace BookingProject.View.GuideView
         public void SetValues()
         {
             TeenGuests = GuestNumbers[0].ToString();
-            AdultGuests= GuestNumbers[1].ToString();
+            AdultGuests = GuestNumbers[1].ToString();
             OldGuests = GuestNumbers[2].ToString();
-            VoucherGuests = Math.Round(vouchersPercentage,2).ToString() + "%";
+            VoucherGuests = Math.Round(vouchersPercentage, 2).ToString() + "%";
             VoucherlessGuests = Math.Round((100 - vouchersPercentage), 2).ToString() + "%";
         }
         public double GetVoucherPercentage()
-        { 
+        {
             double voucherCount = 0;
             double guestCount = GuestNumbers[0] + GuestNumbers[1] + GuestNumbers[2];
             foreach (Voucher voucher in _voucherController.GetAll())
             {
-                if(voucher.Tour.Id == ChosenTour.TourId && voucher.State == VoucherState.USED)
+                if (voucher.Tour.Id == ChosenTour.TourId && voucher.State == VoucherState.USED)
                 {
                     voucherCount += 1;
                 }
             }
             return voucherCount / guestCount * 100;
         }
-       
+
         public List<int> GetGuestNumbers()
         {
             List<int> guestNumbers = new List<int>();
@@ -85,7 +84,7 @@ namespace BookingProject.View.GuideView
                 {
                     guestNumbers[0] += 1;
                 }
-                else if(_userControler.GetByID(reservation.Guest.Id).Age > 50)
+                else if (_userControler.GetByID(reservation.Guest.Id).Age > 50)
                 {
                     guestNumbers[2] += 1;
                 }
@@ -98,10 +97,10 @@ namespace BookingProject.View.GuideView
         }
         public List<TourReservation> FilterTourReservations(List<TourReservation> reservations)
         {
-            List<TourReservation> filteredReservations= new List<TourReservation>();
-            foreach(TourReservation reservation in reservations)
+            List<TourReservation> filteredReservations = new List<TourReservation>();
+            foreach (TourReservation reservation in reservations)
             {
-                if(reservation.Tour.Id == ChosenTour.TourId)
+                if (reservation.Tour.Id == ChosenTour.TourId)
                 {
                     filteredReservations.Add(reservation);
                 }

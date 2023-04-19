@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Media3D;
 
 namespace BookingProject.Services.Implementations
 {
@@ -93,6 +94,17 @@ namespace BookingProject.Services.Implementations
             }
             double average = sum / counter;
             return counter > 5 && average > 4.5;
+        }
+
+        public void MakeGrade(AccommodationOwnerGrade grade, AccommodationReservation _selectedReservation, int chosenCleanliness, int chosenCorectness, String Comment, String Reccommendation)
+        {
+            grade.Accommodation.Id = _selectedReservation.Accommodation.Id;
+            grade.Cleanliness = chosenCleanliness;
+            grade.OwnerCorectness = chosenCorectness;
+            grade.AdditionalComment = Comment;
+            grade.Reccommendation = Reccommendation;
+            grade.User.Id = Injector.CreateInstance<IUserService>().GetLoggedUser().Id;
+            Create(grade);
         }
 
         public void Create(AccommodationOwnerGrade grade)
