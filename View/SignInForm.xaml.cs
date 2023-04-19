@@ -109,7 +109,7 @@ namespace BookingProject.View
                         Model.User guest = _controller.GetByUsername(Username);
                         guest.IsLoggedIn = true;
                         _controller.Save();
-                        Guest1Homepage guest1View = new Guest1Homepage();
+                        Guest1View guest1View = new Guest1View();
                         guest1View.Show();
                         List<Notification> notifications = new List<Notification>();
                         notifications = _requestController.GetGuest1Notifications(guest);

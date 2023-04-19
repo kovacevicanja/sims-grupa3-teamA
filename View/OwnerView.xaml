@@ -26,6 +26,8 @@
             <Button Content="Guest Grades" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
                Click="Button_Click_Review"/>
             <Image Name="SuperOwnerImage" Source="../Resources/Images/star.jpg"/>
+            <Button Content="Log out" IsCancel="True"
+                Click="Button_Click_LogOut"/>
         </StackPanel>
         <Grid Grid.Row="1">
 
