@@ -48,11 +48,9 @@ namespace BookingProject.Controller
         {
             _tourReservationService.FullyBookedTours(chosenTour, selectedDate, guest);
         }
-<<<<<<< HEAD
+
         public void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour) 
-=======
-        public void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour)
->>>>>>> d2627674c824f45bb58aa62a6de4d98d327c1446
+
         {
             _tourReservationService.SuccessfulReservationMessage(numberOfGuests, guest, chosenTour);
         }
