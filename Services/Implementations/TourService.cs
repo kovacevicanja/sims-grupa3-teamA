@@ -103,5 +103,12 @@ namespace BookingProject.Services
         {
             return _tourRepository.GetAll().Last();
         }
+
+        public void BindLastTour()
+        {
+            _tourRepository.BindLastTour();
+        }
+
+
     }
 }

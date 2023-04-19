@@ -26,8 +26,7 @@ namespace BookingProject.View.GuideView
         public GuideHomeWindow()
         {
             InitializeComponent();
-            var app = Application.Current as App;
-            _userController = app.UserController;
+            _userController = new UserController();
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {

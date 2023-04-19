@@ -43,5 +43,9 @@ namespace BookingProject.Controller
         {
             _userService.Save();
         }
+        //public bool isUserSuperUser(User user)
+        //{
+        //    return _userService.IsUserSuperUser(user);
+        //}
     }
 }

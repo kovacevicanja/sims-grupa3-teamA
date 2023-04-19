@@ -3,6 +3,7 @@ using BookingProject.DependencyInjection;
 using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
+using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;

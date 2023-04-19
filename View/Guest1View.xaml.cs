@@ -43,6 +43,7 @@ namespace BookingProject.View
         public Boolean IsCheckedApartment { get; set; } = false;
         public Boolean IsCheckedCottage { get; set; } = false;
         public Boolean IsCheckedHouse { get; set; } = false;
+        public ObservableCollection<Accommodation> FilteredAccommodations { get; set; }
 
         public List<string> AccommodationTypes;
         public Guest1View()
@@ -52,7 +53,11 @@ namespace BookingProject.View
             _accommodationController = new AccommodationController();
             AllCities = new ObservableCollection<string>();
             _accommodationLocationController = new AccommodationLocationController();
-            _accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
+            //_accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAll());
+            FilteredAccommodations = new ObservableCollection<Accommodation>();
+            List<Accommodation> accommodations = new List<Accommodation>(_accommodationController.GetAll());
+            List<Accommodation> sortedAccommodations = accommodations.OrderByDescending(a => a.Owner.IsSuper).ToList();
+            _accommodations = new ObservableCollection<Accommodation>(sortedAccommodations);
             AccommodationDataGrid.ItemsSource = _accommodations;
 
             AccommodationTypes = new List<String>();
@@ -107,6 +112,8 @@ namespace BookingProject.View
 
         private void Button_Click_Search(object sender, RoutedEventArgs e)
         {
+            List<Accommodation> Filtered = new List<Accommodation>();
+            List<Accommodation> SortedFiltered = new List<Accommodation>();
             AccommodationTypes.Clear();
             if (IsCheckedHouse)
             {
@@ -120,7 +127,15 @@ namespace BookingProject.View
             {
                 AccommodationTypes.Add("APARTMENT");
             }
-            _accommodationController.Search(_accommodations, AccName, City, State, AccommodationTypes, NumberOfGuests, MinNumDaysOfReservation);
+            FilteredAccommodations.Clear();
+            Filtered = _accommodationController.Search(_accommodations, AccName, City, State, AccommodationTypes, NumberOfGuests, MinNumDaysOfReservation).ToList();
+            SortedFiltered = Filtered.OrderByDescending(a => a.Owner.IsSuper).ToList();
+            foreach (var accommodation in SortedFiltered)
+            {
+                FilteredAccommodations.Add(accommodation);
+            }
+            AccommodationDataGrid.ItemsSource = FilteredAccommodations;
+
         }
 
         private void Button_Click_Book(object sender, RoutedEventArgs e)

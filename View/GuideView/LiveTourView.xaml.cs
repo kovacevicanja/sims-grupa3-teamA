@@ -40,22 +40,21 @@ namespace BookingProject.View.GuideView
         {
             InitializeComponent();
             this.DataContext = this;
-            var app = Application.Current as App;
-            _tourTimeInstanceController = app.TourTimeInstanceController;
-            _tourPresenceController= app.TourPresenceController;
-            _keyPointController = app.KeyPointController;
-            _userControler = app.UserController;
+            _tourTimeInstanceController = new TourTimeInstanceController();
+            _tourPresenceController = new TourPresenceController();
+            _keyPointController = new KeyPointController();
+            _userControler = new UserController();
             _keyPoints = new ObservableCollection<KeyPoint>(chosenTour.Tour.KeyPoints);
             InitState();
             KeyPointDataGrid.ItemsSource = _keyPoints;
-            ChosenTour= chosenTour;
+            ChosenTour = chosenTour;
             TourStarting();
             SaveStates();
             SavePresence();
-            if (_keyPoints.Last().State == KeyPointState.CURRENT) 
-            { 
-            IsValid = true;
-            } 
+            if (_keyPoints.Last().State == KeyPointState.CURRENT)
+            {
+                IsValid = true;
+            }
             else
             {
                 IsValid = false;
@@ -80,12 +79,12 @@ namespace BookingProject.View.GuideView
         }
         public void CurrentState()
         {
-            foreach(KeyPoint keyPoint in _keyPoints) 
+            foreach (KeyPoint keyPoint in _keyPoints)
             {
-                if (keyPoint.Id == ChosenKeyPoint.Id && keyPoint.State==KeyPointState.EMPTY)
+                if (keyPoint.Id == ChosenKeyPoint.Id && keyPoint.State == KeyPointState.EMPTY)
                 {
                     keyPoint.State = KeyPointState.CURRENT;
-                }           
+                }
             }
             _keyPointController.Save();
         }
@@ -106,7 +105,7 @@ namespace BookingProject.View.GuideView
             {
                 PassedState();
                 CurrentState();
-                if(_keyPoints.Last().State == KeyPointState.CURRENT) { IsValid= true; }
+                if (_keyPoints.Last().State == KeyPointState.CURRENT) { IsValid = true; }
                 _keyPointController.Save();
                 GuestListView guestListView = new GuestListView(ChosenTour, ChosenKeyPoint);
                 guestListView.Show();
@@ -120,7 +119,7 @@ namespace BookingProject.View.GuideView
         }
         public void SaveStates()
         {
-            foreach(KeyPoint keyPoint in _keyPoints)
+            foreach (KeyPoint keyPoint in _keyPoints)
             {
                 _keyPointController.GetByID(keyPoint.Id).State = keyPoint.State;
             }
@@ -162,7 +161,7 @@ namespace BookingProject.View.GuideView
         }
         public bool PresenceCheck(TourPresence presence)
         {
-            if(_userControler.GetByID(presence.UserId).IsPresent && (presence.KeyPointId== -1))
+            if (_userControler.GetByID(presence.UserId).IsPresent && (presence.KeyPointId == -1))
             {
                 return true;
             }
@@ -170,9 +169,9 @@ namespace BookingProject.View.GuideView
         }
         public void SavePresence()
         {
-            foreach(TourPresence presence in _tourPresenceController.GetAll())
+            foreach (TourPresence presence in _tourPresenceController.GetAll())
             {
-                if (PresenceCheck(presence) && _keyPointController.GetCurrentKeyPoint()!=null)
+                if (PresenceCheck(presence) && _keyPointController.GetCurrentKeyPoint() != null)
                 {
                     _tourPresenceController.GetByID(presence.Id).KeyPointId = _keyPointController.GetCurrentKeyPoint().Id;
                 }
