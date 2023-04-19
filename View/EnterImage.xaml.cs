@@ -38,8 +38,7 @@ namespace BookingProject.View
             InitializeComponent();
             this.DataContext = this;
 
-            var app = Application.Current as App;
-            ImageController = app.ImageController;
+            ImageController = new TourImageController();
 
         }
 

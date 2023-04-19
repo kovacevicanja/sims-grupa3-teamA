@@ -46,7 +46,7 @@ namespace BookingProject.View.GuideView
             List<TourEvaluation> filteredGrades = new List<TourEvaluation>();
             foreach (TourEvaluation grade in grades)
             {
-                if (grade.TourReservation.Tour.Id == ChosenTour.TourId)
+                if (grade.Tour.Id == ChosenTour.TourId)
                 {
                     filteredGrades.Add(grade);
                 }

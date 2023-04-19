@@ -68,5 +68,11 @@ namespace BookingProject.Controller
         {
             return _tourService.GetLastTour();
         }
+
+        public void BindLastTour()
+        {
+            _tourService.BindLastTour();
+        }
+
     }
 }

@@ -32,11 +32,10 @@ namespace BookingProject.View.GuideView
         public GuestPreseanceCheck(TourTimeInstance chosenTour, KeyPoint chosenKeyPoint, User chosenGuest)
         {
             InitializeComponent();
-            var app = Application.Current as App;
             ChosenKeyPoint = chosenKeyPoint;
             ChosenTour = chosenTour;
             ChosenGuest = chosenGuest;
-            _tourPresenceController= app.TourPresenceController;
+            _tourPresenceController = new TourPresenceController();
         }
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -45,8 +44,8 @@ namespace BookingProject.View.GuideView
 
         private void Button_Click_Ask(object sender, RoutedEventArgs e)
         {
-            TourPresence tourPresence= new TourPresence();
-            tourPresence.TourId = ChosenTour.Id; 
+            TourPresence tourPresence = new TourPresence();
+            tourPresence.TourId = ChosenTour.Id;
             tourPresence.UserId = ChosenGuest.Id;
             _tourPresenceController.Create(tourPresence);
             _tourPresenceController.Save();
