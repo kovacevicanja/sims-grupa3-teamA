@@ -40,8 +40,6 @@ namespace BookingProject.DependencyInjection
             { typeof(IRequestAccommodationReservationRepository), new RequestAccommodationReservationRepository() },
             { typeof(ITourEvaluationImageRepository), new TourEvaluationImageRepository() },
 
-
-
             { typeof(ITourService), new TourService() },
             { typeof(ITourReservationService), new TourReservationService() },
             { typeof(ITourLocationService), new TourLocationService() },
@@ -64,9 +62,6 @@ namespace BookingProject.DependencyInjection
             { typeof(IAccommodationOwnerGradeService), new AccommodationOwnerGradeService() },
             { typeof(IRequestAccommodationReservationService), new RequestAccommodationReservationService() },
             { typeof(ITourImageService), new TourImageService() },
-
-
-
         };
         public static void Initialize()
         {
@@ -116,7 +111,6 @@ namespace BookingProject.DependencyInjection
             CreateInstance<IUserService>().Initialize();
             CreateInstance<IVoucherService>().Initialize();
         }
-
         public static T CreateInstance<T>()
         {
             Type type = typeof(T);

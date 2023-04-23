@@ -33,3 +33,7 @@
 41|1|Request to move reservation from 01.05.2023. - 10.05.2023. to 15.06.2023. - 22.06.2023. is DECLINED|True
 42|7|Reservation for your accommodation Hotel Mona, from 29.04.2023., to 05.05.2023. was cancelled!|True
 43|7|Reservation for your accommodation Hotel Moskva, from 29.04.2023., to 07.05.2023. was cancelled!|True
+44|5|Presence check !!! |True
+45|1|Request to move reservation from 01.05.2023. - 10.05.2023. to 18.05.2023. - 25.05.2023. is APPROVED|True
+46|1|Request to move reservation from 18.05.2023. - 25.05.2023. to 18.05.2023. - 25.05.2023. is DECLINED|True
+47|2|Reservation for your accommodation Hotel Park, from 18.05.2023., to 25.05.2023. was cancelled!|True
