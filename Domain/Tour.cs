@@ -23,16 +23,12 @@ namespace BookingProject.Model
         public List<TourDateTime> StartingTime { get; set; }
         public double DurationInHours { get; set; }
         public List<TourImage> Images { get; set; }
-        //public List<Guest2> TourGuests { get; set; } = new List<Guest2>();  
-
-        //u turi id vodica
         public int GuideId { get; set; }
 
         public Tour() { 
             KeyPoints = new List<KeyPoint>();
             StartingTime = new List<TourDateTime>();
             Images = new List<TourImage>();
-            //TourGuests = new List<Guest2>();
         }
 
         public Tour(int id, string name, int locationId, Location location, string description, LanguageEnum language, int maxGuests, List<KeyPoint> keyPoints, List<TourDateTime> startingTime, double durationInHours, List<TourImage> images, int guideId)

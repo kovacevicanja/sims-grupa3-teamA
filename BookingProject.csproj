@@ -72,6 +72,7 @@
     <Compile Include="Controllers\KeyPointController.cs" />
     <Compile Include="Controllers\TourLocationController.cs" />
     <Compile Include="Controllers\TourPresenceController.cs" />
+    <Compile Include="Controllers\TourRequestController.cs" />
     <Compile Include="Controllers\TourReservationController.cs" />
     <Compile Include="Controllers\TourStartingTimeController.cs" />
     <Compile Include="Controllers\TourController.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Domain\AccommodationOwnerGrade.cs" />
     <Compile Include="Domain\Enums\GuideType.cs" />
     <Compile Include="Domain\Enums\RequestStatus.cs" />
+    <Compile Include="Domain\Enums\TourRequestStatus.cs" />
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Guide.cs" />
     <Compile Include="Domain\Images\AccommodationGuestImage.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\TourEvaluation.cs" />
     <Compile Include="Domain\TourPresence.cs" />
+    <Compile Include="Domain\TourRequest.cs" />
     <Compile Include="Domain\Voucher.cs" />
     <Compile Include="Domain\Accommodation.cs" />
     <Compile Include="Domain\AccommodationDate.cs" />
@@ -127,6 +130,7 @@
     <Compile Include="Repositories\Implementations\NotificationRepository.cs" />
     <Compile Include="Repositories\Implementations\TourPresenceRepository.cs" />
     <Compile Include="Repositories\Implementations\RequestAccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourRequestRepository.cs" />
     <Compile Include="Repositories\Implementations\TourStartingTimeRepository.cs" />
     <Compile Include="Repositories\Implementations\TourEvaluationImageRepository.cs" />
     <Compile Include="Repositories\Implementations\TourEvaluationRepository.cs" />
@@ -155,6 +159,7 @@
     <Compile Include="Repositories\Intefaces\ITourLocationRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourPresenceRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourRequestRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourReservationRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourStartingTimeRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourTimeInstanceRepository.cs" />
@@ -178,6 +183,7 @@
     <Compile Include="Services\Implementations\TourImageService.cs" />
     <Compile Include="Services\Implementations\TourLocationService.cs" />
     <Compile Include="Services\Implementations\TourPresenceService.cs" />
+    <Compile Include="Services\Implementations\TourRequestService.cs" />
     <Compile Include="Services\Implementations\TourReservationService.cs" />
     <Compile Include="Services\Implementations\TourService.cs" />
     <Compile Include="Services\Implementations\TourStartingTimeService.cs" />
@@ -200,6 +206,7 @@
     <Compile Include="Services\Interfaces\ITourImageService.cs" />
     <Compile Include="Services\Interfaces\ITourLocationService.cs" />
     <Compile Include="Services\Interfaces\ITourPresenceService.cs" />
+    <Compile Include="Services\Interfaces\ITourRequestService.cs" />
     <Compile Include="Services\Interfaces\ITourReservationService.cs" />
     <Compile Include="Services\Interfaces\ITourService.cs" />
     <Compile Include="Services\Interfaces\ITourStartingTimeService.cs" />
@@ -243,6 +250,9 @@
     </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\CreateTourRequestView.xaml.cs">
+      <DependentUpon>CreateTourRequestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\ChangeStatsYearWindow.xaml.cs">
       <DependentUpon>ChangeStatsYearWindow.xaml</DependentUpon>
@@ -397,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest1View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\CreateTourRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -559,6 +573,7 @@
     <None Include="Resources\Data\accommodationDates.csv" />
     <None Include="Resources\Data\accommodationLocations.csv" />
     <None Include="Resources\Data\notifications.csv" />
+    <None Include="Resources\Data\tourRequests.csv" />
     <None Include="Resources\Data\tourGuests.csv" />
     <None Include="Resources\Data\guestGrades.csv" />
     <None Include="Resources\Data\tourImages.csv" />

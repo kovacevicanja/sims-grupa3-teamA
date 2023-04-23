@@ -16,7 +16,6 @@ namespace BookingProject.Services
     public class VoucherService : IVoucherService
     {
         private IVoucherRepository _voucherRepository;
-
         public VoucherService() { }
         public void Initialize()
         {

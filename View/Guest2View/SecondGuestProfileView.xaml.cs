@@ -105,5 +105,10 @@ namespace BookingProject.View
                 activeToursView.ShowDialog();
             }
         }
+        private void Button_Click_CreateTourRequest(object sender, RoutedEventArgs e) 
+        { 
+            CreateTourRequestView createTourRequestView = new CreateTourRequestView();
+            createTourRequestView.ShowDialog();
+        }
     }
 }

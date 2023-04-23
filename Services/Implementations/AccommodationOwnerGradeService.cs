@@ -121,6 +121,5 @@ namespace BookingProject.Services.Implementations
         {
             return _accommodationOwnerGradeRepository.GetByID(id);
         }
-
     }
 }

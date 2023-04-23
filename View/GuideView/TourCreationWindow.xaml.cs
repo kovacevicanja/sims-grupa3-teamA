@@ -52,7 +52,6 @@ namespace BookingProject.View
             StartingDateController = new TourStartingTimeController();
             TourTimeInstanceController = new TourTimeInstanceController();
             UserController = new UserController();
-
         }
 
         //public string this[string columnName] => throw new NotImplementedException();
