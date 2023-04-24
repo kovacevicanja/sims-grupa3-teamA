@@ -21,13 +21,15 @@ namespace BookingProject.Domain
         public int GuestsNumber { get; set; }   
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public User Guest { get; set; }
 
         public TourRequest()
         {
             Location = new Location();
             GuideId = -1;
+            Guest = new User();
         }
-        public TourRequest (int id, int guideId, TourRequestStatus status, Location location, string description, LanguageEnum language, int guestsNumber, DateTime startDate, DateTime endDate)
+        public TourRequest (int id, int guideId, TourRequestStatus status, Location location, string description, LanguageEnum language, int guestsNumber, DateTime startDate, DateTime endDate, User guest)
         {
             Id = id;
             GuideId = guideId;
@@ -38,6 +40,7 @@ namespace BookingProject.Domain
             GuestsNumber = guestsNumber;
             StartDate = startDate;
             EndDate = endDate;
+            Guest = guest;
         }
         public void FromCSV(string[] values)
         {
@@ -68,6 +71,7 @@ namespace BookingProject.Domain
             GuestsNumber = int.Parse(values[6]);
             StartDate = DateConversion.StringToDateTour(values[7]);
             EndDate = DateConversion.StringToDateTour(values[8]);
+            Guest.Id = int.Parse(values[9]);    
         }
         public string[] ToCSV()
         {
@@ -81,7 +85,8 @@ namespace BookingProject.Domain
                 Language.ToString(),
                 GuestsNumber.ToString(),
                 DateConversion.DateToStringTour(StartDate),
-                DateConversion.DateToStringTour(EndDate)
+                DateConversion.DateToStringTour(EndDate),
+                Guest.Id.ToString()
             };
             return csvValues;
         }

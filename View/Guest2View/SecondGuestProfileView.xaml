@@ -14,5 +14,6 @@
         <Button Content="Log out" HorizontalAlignment="Left" Height="50" Margin="600,350,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_LogOut"/>
         <Button Content="Monitoring active tours" HorizontalAlignment="Left" Height="50" Margin="600,274,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MonitoringActiveTours"/>
         <Button Content="Create tour request" HorizontalAlignment="Left" Height="50" Margin="410,107,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_CreateTourRequest"/>
+        <Button Content="My tour requests" HorizontalAlignment="Left" Height="50" Margin="410,187,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MyTourRequests"/>
     </Grid>
 </Window>

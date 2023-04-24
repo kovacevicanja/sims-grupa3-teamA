@@ -38,5 +38,9 @@ namespace BookingProject.Services.Implementations
         {
             _tourRequestRepository.Save();
         }
+        public List<TourRequest> GetGuestRequests (int guestId)
+        {
+            return _tourRequestRepository.GetGuestRequests(guestId);
+        }
     }
 }

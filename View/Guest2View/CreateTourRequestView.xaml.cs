@@ -3,6 +3,7 @@ using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,8 +33,10 @@ namespace BookingProject.View
         public TourLocationController _tourLocationController { get; set; }
         public TourRequestController _tourRequestController { get; set; }
         public UserController _userController { get; set; }
+        public int GuestId { get; set; }
+        public CustomMessageBox CustomMessageBox; 
 
-        public CreateTourRequestView()
+        public CreateTourRequestView(int guestId)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -45,8 +48,11 @@ namespace BookingProject.View
             _tourLocationController = new TourLocationController();
             _userController = new UserController();
 
-            StartDate = DateTime.Now;
-            EndDate = DateTime.Now;
+            GuestId = guestId;
+            CustomMessageBox = new CustomMessageBox();
+
+            StartDate = DateTime.Today;
+            EndDate = DateTime.Today;
         }
 
         private DateTime _startDate;
@@ -164,8 +170,18 @@ namespace BookingProject.View
             tourRequest.Language = ChosenLanguage;
             tourRequest.GuestsNumber = GuestsNumber;
             tourRequest.Status = Domain.Enums.TourRequestStatus.PENDING;
+            tourRequest.Guest.Id = GuestId;
 
             _tourRequestController.Create(tourRequest);
+
+            CustomMessageBox.ShowCustomMessageBox("You have successfully created a tour request. If you want, you can create more of them.");
+            
+            txtCity.Text = "";
+            txtCountry.Text = "";
+            txtDescription.Text = "";
+            txtGuestsNumber.Text = "";
+            datePickerStartDate.SelectedDate = null;
+            datePickerEndDate.SelectedDate = null;
         }
         private void Button_Click_Cancel(object sender, RoutedEventArgs e) 
         {

@@ -254,6 +254,9 @@
     <Compile Include="View\Guest2View\CreateTourRequestView.xaml.cs">
       <DependentUpon>CreateTourRequestView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Guest2View\TourRequestsView.xaml.cs">
+      <DependentUpon>TourRequestsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\ChangeStatsYearWindow.xaml.cs">
       <DependentUpon>ChangeStatsYearWindow.xaml</DependentUpon>
     </Compile>
@@ -411,6 +414,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest2View\CreateTourRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\TourRequestsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

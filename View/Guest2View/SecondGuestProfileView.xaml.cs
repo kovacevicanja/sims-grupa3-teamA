@@ -4,6 +4,7 @@ using BookingProject.DependencyInjection;
 using BookingProject.Model;
 using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
+using BookingProject.View.Guest2View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -107,8 +108,13 @@ namespace BookingProject.View
         }
         private void Button_Click_CreateTourRequest(object sender, RoutedEventArgs e) 
         { 
-            CreateTourRequestView createTourRequestView = new CreateTourRequestView();
+            CreateTourRequestView createTourRequestView = new CreateTourRequestView(GuestId);
             createTourRequestView.ShowDialog();
+        }
+        private void Button_Click_MyTourRequests(object sender, RoutedEventArgs e) 
+        {
+            TourRequestsView tourRequestsView = new TourRequestsView(GuestId);
+            tourRequestsView.ShowDialog();
         }
     }
 }

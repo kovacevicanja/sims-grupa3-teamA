@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,6 @@ namespace BookingProject.Services.Interfaces
         TourRequest GetByID(int id);
         void Save(List<TourRequest> tourRequests);
         void SaveTourRequest();
+        List<TourRequest> GetGuestRequests(int guestId);
     }
 }

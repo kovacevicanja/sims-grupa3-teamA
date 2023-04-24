@@ -13,7 +13,7 @@
             <RowDefinition Height="0*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0" Margin="150,23,150,27">
+        <Grid Grid.Row="0" Grid.Column="0" Margin="150,23,150,87">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -35,27 +35,29 @@
             <Label Grid.Row="5" Grid.Column="0" Height="30" Content="Start date"></Label>
             <Label Grid.Row="6" Grid.Column="0" Height="30" Content="End date"></Label>
 
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            <TextBox x:Name="txtCity" Grid.Row="0" Grid.Column="1" Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Height="25"></TextBox>
 
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            <TextBox x:Name="txtCountry" Grid.Row="1" Grid.Column="1" Text="{Binding Path=Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Height="25"></TextBox>
 
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            <TextBox x:Name="txtDescription" Grid.Row="2" Grid.Column="1" Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Height="25"></TextBox>
 
             <ComboBox Height="25" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding Path=ChosenLanguage, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
 
-            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=GuestsNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"                  
+            <TextBox x:Name="txtGuestsNumber" Grid.Row="4" Grid.Column="1" Text="{Binding Path=GuestsNumber, UpdateSourceTrigger=PropertyChanged}"                  
                      Height="25"></TextBox>
-            <DatePicker Grid.Row="5" Grid.Column="1" SelectedDate="{Binding Path=StartDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="25" 
+
+            <DatePicker x:Name="datePickerStartDate" Grid.Row="5" Grid.Column="1" SelectedDate="{Binding Path=StartDate, UpdateSourceTrigger=PropertyChanged}" Height="25" 
                 SelectedDateFormat="Long" DisplayDateStart="{x:Static sys:DateTime.Today}" />
-            <DatePicker Grid.Row="6" Grid.Column="1" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="25" 
+
+            <DatePicker x:Name="datePickerEndDate" Grid.Row="6" Grid.Column="1" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged}" Height="25" 
                 SelectedDateFormat="Long" DisplayDateStart="{x:Static sys:DateTime.Today}" />
         </Grid>
-        <WrapPanel FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="609,404,0,0" Height="30" Width="158" >
-            <Button Content="Zatvori" IsCancel="True" Click="Button_Click_Cancel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button Content="Kreiraj" IsDefault="True" Click="Button_Click_CreateTourRequest"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.467,0.393" Height="20"/>
-        </WrapPanel>
+        <Grid>
+            <Button Content="Cancel" IsCancel="True" Click="Button_Click_Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,374,0,0" RenderTransformOrigin="0.471,0.663"/>
+            <Button Content="Create" IsDefault="True" Click="Button_Click_CreateTourRequest"  HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.467,0.393" Height="20" Margin="278,374,0,0"/>
+        </Grid>
     </Grid>
 </Window>

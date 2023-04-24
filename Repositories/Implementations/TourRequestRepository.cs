@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingProject.Domain;
+using BookingProject.Domain.Enums;
+using System.Windows.Media.Animation;
 
 namespace BookingProject.Repositories.Implementations
 {
@@ -28,7 +30,6 @@ namespace BookingProject.Repositories.Implementations
         public void Initialize()
         {
             TourRequestLocationBind();
-            //TourRequestGuideBind();
         }
         public List<TourRequest> Load()
         {
@@ -58,7 +59,6 @@ namespace BookingProject.Repositories.Implementations
         {
             return _tourRequests.Find(tourRequest => tourRequest.Id == id);
         }
-
         public List<TourRequest> GetAll()
         {
             return _tourRequests;
@@ -77,14 +77,34 @@ namespace BookingProject.Repositories.Implementations
                 tourRequest.Location = location;
             }
         }
-        /*public void TourRequestGuideBind()
+        public void CheckRequestStatus()
         {
+            List<TourRequest> requestsCopy = new List<TourRequest>(GetAll());
+            foreach (TourRequest tourRequest in requestsCopy)
+            {
+                if (DateTime.Now >= tourRequest.EndDate.AddHours(-48) && tourRequest.Status == TourRequestStatus.PENDING)
+                {
+                    TourRequest newRequestStatus = new TourRequest(tourRequest.Id, -1, TourRequestStatus.INVALID, 
+                        tourRequest.Location, tourRequest.Description, tourRequest.Language, tourRequest.GuestsNumber, tourRequest.StartDate, tourRequest.EndDate, tourRequest.Guest);
+                    _tourRequests.Remove(tourRequest);
+                    _tourRequests.Add(newRequestStatus);
+                }
+            }
+            SaveTourRequest(_tourRequests);
+        }
+        public List<TourRequest> GetGuestRequests(int guestId)
+        {
+            CheckRequestStatus();
+
+            List<TourRequest> guestRequests = new List<TourRequest>();
             foreach (TourRequest tourRequest in _tourRequests)
             {
-                User guide = Injector.CreateInstance<IUserRepository>().GetByID(tourRequest.Guide.Id);
-                tourRequest.Guide = guide;
+                if (tourRequest.Guest.Id == guestId)
+                {
+                    guestRequests.Add(tourRequest);
+                }
             }
+            return guestRequests;
         }
-        */
     }
 }
