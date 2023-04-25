@@ -1,0 +1,26 @@
+﻿<Window x:Class="BookingProject.View.Guest2View.TourRequestStatisticsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View.Guest2View" xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
+        mc:Ignorable="d"
+        Title="TourRequestStatisticsView" Height="450" Width="800">
+    <Grid Margin="0,0,0,-6">
+        <Label Content="Percentage of accepted requests:" FontSize="18" FontWeight="Bold" Margin="9,10,365,364" />
+        <Label Content="{Binding AccpetedRequestsPercentageDisplay}" FontSize="18" FontWeight="Bold" Margin="435,10,180,364" />
+        <Label Content="Percentage of unaccepted requests:" FontSize="18" FontWeight="Bold" Margin="14,96,360,295" />
+        <Label Content="{Binding UnacceptedRequestsPercentageDisplay}" FontSize="18" FontWeight="Bold" Margin="430,96,185,295" />
+        <ComboBox ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding Path=ChosenLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="19,156,422,217"/>
+        <Label Content="Number of requests for the selected language:" FontSize="18" FontWeight="Bold" Margin="19,245,243,123" />
+        <Label Content="{Binding NumberRequestsLanguage}" FontSize="18" FontWeight="Bold" Margin="557,245,58,123" />
+        <Button Content="Count" HorizontalAlignment="Left" Height="50" Margin="383,162,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_CountNumberForLanguage"/>
+        <Label Content="Number of requests for the entered location:" FontSize="18" FontWeight="Bold" Margin="19,377,243,-9" />
+        <TextBox x:Name="txtCountry" Text="{Binding Path=EnteredCountry, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="222,304,445,63"/>
+        <TextBox x:Name="txtCity" Text="{Binding Path=EnteredCity, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="14,306,596,79"/>
+        <Label Content="{Binding NumberRequestsLocation}" FontSize="18" FontWeight="Bold" Margin="562,377,53,-9" />
+        <Button Content="Count" HorizontalAlignment="Left" Height="50" Margin="383,311,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_CountNumberForLocation"/>
+        <Label Content="Avarage number of people in accepted requests:" FontSize="18" FontWeight="Bold" Margin="386,60,-124,307" />
+        <Label Content="{Binding AvarageNumberOfPeopleInAcceptedRequests}" FontSize="18" FontWeight="Bold" Margin="615,133,0,233" HorizontalAlignment="Left" Width="185" />
+    </Grid>
+</Window>

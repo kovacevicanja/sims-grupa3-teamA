@@ -116,5 +116,10 @@ namespace BookingProject.View
             TourRequestsView tourRequestsView = new TourRequestsView(GuestId);
             tourRequestsView.ShowDialog();
         }
+        private void Button_Click_RequestStatistics(object sender, RoutedEventArgs e)
+        {
+            TourRequestStatisticsView tourRequestStatisticsView = new TourRequestStatisticsView(GuestId);
+            tourRequestStatisticsView.ShowDialog();
+        }
     }
 }

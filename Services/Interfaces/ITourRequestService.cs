@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Model.Enums;
 using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using System;
@@ -19,5 +20,10 @@ namespace BookingProject.Services.Interfaces
         void Save(List<TourRequest> tourRequests);
         void SaveTourRequest();
         List<TourRequest> GetGuestRequests(int guestId);
+        double GetUnacceptedRequestsPercentage(int guestId);
+        double GetAcceptedRequestsPercentage(int guestId);
+        int GetNumberRequestsLanguage(int guestId, LanguageEnum language);
+        int GetNumberRequestsLocation(int guestId, string country, string city);
+        double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId);
     }
 }
