@@ -41,7 +41,7 @@ namespace BookingProject.View.GuideView
                 }
             }
         }
-        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
+        private void Cancel_Button_Click(object sender, RoutedEventArgs e) 
         {
             TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow("all");
             tourStatisticsWindow.Show();
@@ -59,7 +59,5 @@ namespace BookingProject.View.GuideView
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
     }
 }

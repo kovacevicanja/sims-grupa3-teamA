@@ -40,99 +40,144 @@ namespace BookingProject.Services.Implementations
         {
             _tourRequestRepository.Save();
         }
-        public List<TourRequest> GetGuestRequests (int guestId)
+        public List<TourRequest> GetGuestRequests (int guestId, string enteredYear = "")
         {
-            return _tourRequestRepository.GetGuestRequests(guestId);
+            return _tourRequestRepository.GetGuestRequests(guestId, enteredYear);
         }
-        public double GetAcceptedRequestsPercentage(int guestId)
+        public double GetAcceptedRequestsPercentage(int guestId, string enteredYear = "")
         {
-            int requestsTotalNumber = _tourRequestRepository.GetGuestRequests(guestId).Count;
-            int acceptedRequestsNumber = AcceptedRequestsNumber(guestId);
+            int requestsTotalNumber = _tourRequestRepository.GetGuestRequests(guestId, enteredYear).Count;
+            int acceptedRequestsNumber = AcceptedRequestsNumber(guestId, enteredYear);
+
+            if (requestsTotalNumber == 0) { return 0; }
 
             return ((double)acceptedRequestsNumber / requestsTotalNumber) * 100;
         }
-        public int AcceptedRequestsNumber(int guestId)
+        public int AcceptedRequestsNumber(int guestId, string enteredYear = "")
         {
             int acceptedRequestsNumber = 0;
 
-            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId))
+            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
                 if (tourRequest.Status == TourRequestStatus.ACCEPTED)
                 {
-                    acceptedRequestsNumber++;
+                    if (enteredYear == "")
+                    {
+                        acceptedRequestsNumber++;
+                    }
+                    else if (tourRequest.StartDate.Year.ToString().Equals(enteredYear) && tourRequest.EndDate.Year.ToString().Equals(enteredYear))
+                    { 
+                        acceptedRequestsNumber++;
+                    }
                 }
             }
 
             return acceptedRequestsNumber;
         }
-        public double GetUnacceptedRequestsPercentage(int guestId)
+        public double GetUnacceptedRequestsPercentage(int guestId, string enteredYear = "")
         {
-            int requestsTotalNumber = _tourRequestRepository.GetGuestRequests(guestId).Count;
-            int unacceptedRequestsNumber = UnacceptedRequestsNumber(guestId);
+            int requestsTotalNumber = _tourRequestRepository.GetGuestRequests(guestId, enteredYear).Count;
+            int unacceptedRequestsNumber = UnacceptedRequestsNumber(guestId, enteredYear);
+
+            if (requestsTotalNumber == 0) { return 0; }
 
             return ((double)unacceptedRequestsNumber / requestsTotalNumber) * 100;
         }
-        private int UnacceptedRequestsNumber (int guestId)
+        private int UnacceptedRequestsNumber (int guestId, string enteredYear = "")
         {
             int unacceptedRequestsNumber = 0;
             
-            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId))
+            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
                 if (tourRequest.Status == TourRequestStatus.INVALID)
                 {
-                    unacceptedRequestsNumber++;
+                    if (enteredYear == "")
+                    {
+                        unacceptedRequestsNumber++;
+                    }
+                    else if (tourRequest.StartDate.Year.ToString().Equals(enteredYear) && tourRequest.EndDate.Year.ToString().Equals(enteredYear))
+                    {
+                        unacceptedRequestsNumber++;
+                    }
                 }
             }
 
             return unacceptedRequestsNumber;
         }
-        public int GetNumberRequestsLanguage(int guestId, LanguageEnum language)
+        public int GetNumberRequestsLanguage(int guestId, LanguageEnum language, string enteredYear = "")
         {
             int numberRequestsLanguage = 0;
 
-            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId))
+            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
                 if (tourRequest.Language == language)
                 {
-                    numberRequestsLanguage++;
+                    if (enteredYear == "")
+                    {
+                        numberRequestsLanguage++;
+                    }
+                    else if (tourRequest.StartDate.Year.ToString() == enteredYear && tourRequest.EndDate.Year.ToString() == enteredYear)
+                    {
+                        numberRequestsLanguage++;
+                    }
                 }
             }
             
             return numberRequestsLanguage;
         }
-        public int GetNumberRequestsLocation(int guestId, string country, string city)
+        public int GetNumberRequestsLocation(int guestId, string country, string city, string enteredYear = "")
         {
             int numberRequestsLocation = 0;
 
-            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId))
+            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
                 if (tourRequest.Location.City == city && tourRequest.Location.Country == country)
                 {
-                    numberRequestsLocation++;
+                    if (enteredYear == "")
+                    {
+                        numberRequestsLocation++;
+                    }
+                    else if (tourRequest.StartDate.Year.ToString() == enteredYear && tourRequest.EndDate.Year.ToString() == enteredYear)
+                    {
+                        numberRequestsLocation++;
+                    }
                 }
             }
 
             return numberRequestsLocation;
         }
-        public double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId)
+        public double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear = "")
         {
-            int totalNumberOfPeople = FindTotalNumber(guestId)[0];
-            int totalNumberOfAcceptedRequests = FindTotalNumber(guestId)[1];
+            int totalNumberOfPeople = FindTotalNumber(guestId, enteredYear)[0];
+            int totalNumberOfAcceptedRequests = FindTotalNumber(guestId, enteredYear)[1];
+
+            if (totalNumberOfAcceptedRequests == 0)
+            {
+                return 0;
+            }
 
             return (double)(totalNumberOfPeople / totalNumberOfAcceptedRequests);
         }
-        private List<int> FindTotalNumber(int guestId)
+        private List<int> FindTotalNumber(int guestId, string enteredYear = "")
         {
             List<int> totalNumberList = new List<int>();
             int people = 0;
             int acceptedRequests = 0;
 
-            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId))
+            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
                 if (tourRequest.Status == TourRequestStatus.ACCEPTED)
                 {
-                    people += tourRequest.GuestsNumber;
-                    acceptedRequests++;
+                    if (enteredYear == "")
+                    {
+                        people += tourRequest.GuestsNumber;
+                        acceptedRequests++;
+                    }
+                    else if (tourRequest.StartDate.Year.ToString().Equals(enteredYear) && tourRequest.EndDate.Year.ToString().Equals(enteredYear))
+                    {
+                        people += tourRequest.GuestsNumber;
+                        acceptedRequests++;
+                    }
                 }
             }
 

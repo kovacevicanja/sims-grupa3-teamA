@@ -39,7 +39,7 @@ namespace BookingProject.View.Guest2View
             GuestId = guestId;
 
             _tourRequestController = new TourRequestController();
-            _tourRequests = new ObservableCollection<TourRequest>(_tourRequestController.GetGuestRequests(guestId));
+            _tourRequests = new ObservableCollection<TourRequest>(_tourRequestController.GetGuestRequests(guestId, ""));
             MyRequestsDataGrid.ItemsSource = _tourRequests;
         }
         private void Button_Cancel(object sender, RoutedEventArgs e)

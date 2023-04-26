@@ -37,29 +37,29 @@ namespace BookingProject.Controllers
         {
             _tourRequestService.SaveTourRequest();
         }
-        public List<TourRequest> GetGuestRequests (int guestId)
+        public List<TourRequest> GetGuestRequests (int guestId, string enteredYear)
         {
-            return _tourRequestService.GetGuestRequests(guestId);
+            return _tourRequestService.GetGuestRequests(guestId, enteredYear);
         }
-        public double GetUnacceptedRequestsPercentage(int guestId)
+        public double GetUnacceptedRequestsPercentage(int guestId, string enteredYear)
         {
-            return _tourRequestService.GetUnacceptedRequestsPercentage(guestId);
+            return _tourRequestService.GetUnacceptedRequestsPercentage(guestId, enteredYear);
         }
-        public double GetAcceptedRequestsPercentage(int guestId)
+        public double GetAcceptedRequestsPercentage(int guestId, string enteredYear)
         {
-            return _tourRequestService.GetAcceptedRequestsPercentage(guestId);
+            return _tourRequestService.GetAcceptedRequestsPercentage(guestId, enteredYear);
         }
-        public int GetNumberRequestsLanguage(int guestId, LanguageEnum language) 
+        public int GetNumberRequestsLanguage(int guestId, LanguageEnum language, string enteredYear) 
         {
-            return _tourRequestService.GetNumberRequestsLanguage(guestId, language);
+            return _tourRequestService.GetNumberRequestsLanguage(guestId, language, enteredYear);
         }
-        public int GetNumberRequestsLocation(int guestId, string country, string city)
+        public int GetNumberRequestsLocation(int guestId, string country, string city, string enteredYear)
         {
-            return _tourRequestService.GetNumberRequestsLocation(guestId, country, city);
+            return _tourRequestService.GetNumberRequestsLocation(guestId, country, city, enteredYear);
         }
-        public double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId)
+        public double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear)
         {
-            return _tourRequestService.GetAvarageNumberOfPeopleInAcceptedRequests(guestId);
+            return _tourRequestService.GetAvarageNumberOfPeopleInAcceptedRequests(guestId, enteredYear);
         }
     }
 }

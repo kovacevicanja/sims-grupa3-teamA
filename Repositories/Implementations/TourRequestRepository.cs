@@ -92,16 +92,27 @@ namespace BookingProject.Repositories.Implementations
             }
             SaveTourRequest(_tourRequests);
         }
-        public List<TourRequest> GetGuestRequests(int guestId)
+        public List<TourRequest> GetGuestRequests(int guestId, string enteredYear = "")
         {
             CheckRequestStatus();
 
             List<TourRequest> guestRequests = new List<TourRequest>();
+
             foreach (TourRequest tourRequest in _tourRequests)
             {
                 if (tourRequest.Guest.Id == guestId)
                 {
-                    guestRequests.Add(tourRequest);
+                    if (enteredYear == "")
+                    {
+                        guestRequests.Add(tourRequest);
+                    }
+                    else
+                    {
+                        if (tourRequest.StartDate.Year.ToString().Equals(enteredYear) && tourRequest.EndDate.Year.ToString().Equals(enteredYear)) 
+                        {
+                            guestRequests.Add(tourRequest);
+                        }
+                    }
                 }
             }
             return guestRequests;

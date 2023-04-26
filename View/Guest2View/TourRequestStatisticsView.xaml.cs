@@ -35,8 +35,9 @@ namespace BookingProject.View.Guest2View
         public ObservableCollection<LanguageEnum> Languages { get; set; }
         public LanguageEnum ChosenLanguage { get; set; }
         public double AvarageNumberOfPeopleInAcceptedRequests { get; set; }
+        public string EnteredYear { get; set; }
 
-        public TourRequestStatisticsView(int guestId)
+        public TourRequestStatisticsView(int guestId, string enteredYear = "")
         {
             InitializeComponent();
             this.DataContext = this;
@@ -45,19 +46,21 @@ namespace BookingProject.View.Guest2View
 
             _tourRequestController = new TourRequestController();
 
-            UnacceptedRequestsPercentage = _tourRequestController.GetUnacceptedRequestsPercentage(GuestId);
+            EnteredYear = enteredYear;
+
+            UnacceptedRequestsPercentage = _tourRequestController.GetUnacceptedRequestsPercentage(GuestId, EnteredYear);
             UnacceptedRequestsPercentageDisplay = Math.Round(UnacceptedRequestsPercentage, 2).ToString() + " %";
 
-            AccpetedRequestsPercentage = _tourRequestController.GetAcceptedRequestsPercentage(GuestId);
+            AccpetedRequestsPercentage = _tourRequestController.GetAcceptedRequestsPercentage(GuestId, EnteredYear);
             AccpetedRequestsPercentageDisplay = Math.Round(AccpetedRequestsPercentage, 2).ToString() + " %";
 
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
 
-            NumberRequestsLanguage = _tourRequestController.GetNumberRequestsLanguage(GuestId, ChosenLanguage);
+            NumberRequestsLanguage = _tourRequestController.GetNumberRequestsLanguage(GuestId, ChosenLanguage, EnteredYear);
             NumberRequestsLocation = 0;
 
-            AvarageNumberOfPeopleInAcceptedRequests = _tourRequestController.GetAvarageNumberOfPeopleInAcceptedRequests(GuestId);
+            AvarageNumberOfPeopleInAcceptedRequests = _tourRequestController.GetAvarageNumberOfPeopleInAcceptedRequests(GuestId, EnteredYear);
         }
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -124,11 +127,17 @@ namespace BookingProject.View.Guest2View
         }
         private void Button_Click_CountNumberForLanguage(object sender, EventArgs e) 
         {
-            NumberRequestsLanguage = _tourRequestController.GetNumberRequestsLanguage(GuestId, ChosenLanguage);
+            NumberRequestsLanguage = _tourRequestController.GetNumberRequestsLanguage(GuestId, ChosenLanguage, EnteredYear);
         }
-        private void Button_Click_CountNumberForLocation(object sender, EventArgs e) 
+        private void Button_Click_CountNumberForLocation(object sender, EventArgs e)
         {
-            NumberRequestsLocation = _tourRequestController.GetNumberRequestsLocation(GuestId, EnteredCountry, EnteredCity);
+            NumberRequestsLocation = _tourRequestController.GetNumberRequestsLocation(GuestId, EnteredCountry, EnteredCity, EnteredYear);
+
+        }
+        private void Button_Click_ChangeTheYear(object sender, EventArgs e) 
+        { 
+            ChangeYearTourStatisticsView changeYearTourStatisticsView = new ChangeYearTourStatisticsView(GuestId);
+            changeYearTourStatisticsView.ShowDialog();
         }
     }
 }

@@ -19,11 +19,11 @@ namespace BookingProject.Services.Interfaces
         TourRequest GetByID(int id);
         void Save(List<TourRequest> tourRequests);
         void SaveTourRequest();
-        List<TourRequest> GetGuestRequests(int guestId);
-        double GetUnacceptedRequestsPercentage(int guestId);
-        double GetAcceptedRequestsPercentage(int guestId);
-        int GetNumberRequestsLanguage(int guestId, LanguageEnum language);
-        int GetNumberRequestsLocation(int guestId, string country, string city);
-        double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId);
+        List<TourRequest> GetGuestRequests(int guestId, string enteredYear);
+        double GetUnacceptedRequestsPercentage(int guestId, string enteredYear);
+        double GetAcceptedRequestsPercentage(int guestId, string enteredYear);
+        int GetNumberRequestsLanguage(int guestId, LanguageEnum language, string enteredYear);
+        int GetNumberRequestsLocation(int guestId, string country, string city, string enteredYear);
+        double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear);
     }
 }
