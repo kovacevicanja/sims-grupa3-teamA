@@ -59,7 +59,7 @@ namespace BookingProject.Repositories.Implementations
         {
             return _presences.ToList();
         }
-        public TourPresence GetByID(int id)
+        public TourPresence GetById(int id)
         {
             return _presences.Find(presence => presence.Id == id);
         }

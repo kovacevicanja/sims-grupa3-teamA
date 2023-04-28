@@ -52,9 +52,9 @@ namespace BookingProject.Controller
         {
             return _accommodationOwnerGradeService.GetAll();
         }
-        public AccommodationOwnerGrade GetByID(int id)
+        public AccommodationOwnerGrade GetById(int id)
         {
-            return _accommodationOwnerGradeService.GetByID(id);
+            return _accommodationOwnerGradeService.GetById(id);
         }
 
         public void MakeGrade(AccommodationOwnerGrade grade, AccommodationReservation _selectedReservation, int chosenCleanliness, int chosenCorectness, String Comment, String Reccommendation)

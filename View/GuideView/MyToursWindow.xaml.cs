@@ -74,7 +74,7 @@ namespace BookingProject.View.GuideView
         private bool IsNotLate(TourTimeInstance tour)
         {
             TourDateTime tourDate = new TourDateTime();
-            tourDate = _tourStartingTimeController.GetByID(tour.DateId);
+            tourDate = _tourStartingTimeController.GetById(tour.DateId);
             TimeSpan ts = tourDate.StartingDateTime - DateTime.Now;
             if (ts> TimeSpan.FromHours(48))
             {

@@ -28,9 +28,9 @@ namespace BookingProject.Services
         {
             return _tourEvaluationRepository.GetAll();
         }
-        public TourEvaluation GetByID(int id)
+        public TourEvaluation GetById(int id)
         {
-            return _tourEvaluationRepository.GetByID(id);
+            return _tourEvaluationRepository.GetById(id);
         }
         public void Save()
         {

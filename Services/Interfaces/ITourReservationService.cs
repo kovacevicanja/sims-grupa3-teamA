@@ -22,7 +22,7 @@ namespace BookingProject.Services.Interfaces
         void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour);
         void FreePlaceMessage(int maxGuests);
         List<TourReservation> GetAll();
-        TourReservation GetByID(int id);
+        TourReservation GetById(int id);
         List<TourReservation> GetUserReservations(int guestId);
     }
 }

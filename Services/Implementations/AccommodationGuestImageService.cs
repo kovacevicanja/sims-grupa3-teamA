@@ -31,9 +31,9 @@ namespace BookingProject.Services.Implementations
             _accommodationGuestImageRepository.Create(image);
         }
 
-        public AccommodationGuestImage GetByID(int id)
+        public AccommodationGuestImage GetById(int id)
         {
-            return _accommodationGuestImageRepository.GetByID(id);
+            return _accommodationGuestImageRepository.GetById(id);
         }
 
         public void Save(List<AccommodationGuestImage> images)

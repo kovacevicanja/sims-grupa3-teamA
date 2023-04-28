@@ -67,9 +67,9 @@ namespace BookingProject.View.CustomMessageBoxes
                 {
                     if (notification.UserId == userGuest.Id)
                     {
-                        _userController.GetByID(userGuest.Id).IsPresent = true;
+                        _userController.GetById(userGuest.Id).IsPresent = true;
                         _userController.Save();
-                        _notificationController.GetByID(notification.Id).Read = true;
+                        _notificationController.GetById(notification.Id).Read = true;
                         _notificationController.Save();
                     }
                 }
@@ -92,7 +92,7 @@ namespace BookingProject.View.CustomMessageBoxes
                 {
                     if (notification.UserId == userGuest.Id)
                     {
-                        _userController.GetByID(userGuest.Id).IsPresent = false;
+                        _userController.GetById(userGuest.Id).IsPresent = false;
                         _userController.Save();
                     }
                 }

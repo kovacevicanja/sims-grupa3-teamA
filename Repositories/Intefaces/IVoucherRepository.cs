@@ -12,7 +12,7 @@ namespace BookingProject.Repositories.Intefaces
     {
         void Create(Voucher voucher);
         List<Voucher> GetAll();
-        Voucher GetByID(int id);
+        Voucher GetById(int id);
         void Initialize();
         void Save(List<Voucher> vouchers);
         void SaveVouchers();

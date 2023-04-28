@@ -13,7 +13,7 @@ namespace BookingProject.Repositories.Intefaces
         void Initialize();
         void Create(TourDateTime date);
         List<TourDateTime> GetAll();
-        TourDateTime GetByID(int id);
+        TourDateTime GetById(int id);
         void Save();
     }
 }

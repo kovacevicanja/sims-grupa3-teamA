@@ -120,11 +120,6 @@ namespace BookingProject.View.Guest2View
                 }
             }
         }
-        private void Button_Click_Chart(object sender, EventArgs e)
-        {
-            TourRequestsChartView chart = new TourRequestsChartView(GuestId);
-            chart.ShowDialog();
-        }
         private void Button_Click_CountNumberForLanguage(object sender, EventArgs e) 
         {
             NumberRequestsLanguage = _tourRequestController.GetNumberRequestsLanguage(GuestId, ChosenLanguage, EnteredYear);
@@ -135,8 +130,8 @@ namespace BookingProject.View.Guest2View
 
         }
         private void Button_Click_ChangeTheYear(object sender, EventArgs e) 
-        { 
-            ChangeYearTourStatisticsView changeYearTourStatisticsView = new ChangeYearTourStatisticsView(GuestId);
+        {
+            ChangeYearTourRequestsStatisticsView changeYearTourStatisticsView = new ChangeYearTourRequestsStatisticsView(GuestId);
             changeYearTourStatisticsView.ShowDialog();
         }
     }

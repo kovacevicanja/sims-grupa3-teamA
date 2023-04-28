@@ -44,7 +44,7 @@ namespace BookingProject.Repositories.Implementations
         {
             foreach (AccommodationReservation reservation in _accommodationReservations)
             {
-                Accommodation accommodation = Injector.CreateInstance<IAccommodationRepository>().GetByID(reservation.Accommodation.Id);
+                Accommodation accommodation = Injector.CreateInstance<IAccommodationRepository>().GetById(reservation.Accommodation.Id);
                 reservation.Accommodation = accommodation;
             }
         }
@@ -54,7 +54,7 @@ namespace BookingProject.Repositories.Implementations
 
             foreach (AccommodationReservation reservation in _accommodationReservations)
             {
-                User user = Injector.CreateInstance<IUserRepository>().GetByID(reservation.Guest.Id);
+                User user = Injector.CreateInstance<IUserRepository>().GetById(reservation.Guest.Id);
                 reservation.Guest = user;
             }
         }
@@ -80,7 +80,7 @@ namespace BookingProject.Repositories.Implementations
             }
             return maxId + 1;
         }
-        public AccommodationReservation GetByID(int id)
+        public AccommodationReservation GetById(int id)
         {
             return _accommodationReservations.Find(ar => ar.Id == id);
         }

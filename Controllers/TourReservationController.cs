@@ -62,9 +62,9 @@ namespace BookingProject.Controller
         {
             return _tourReservationService.GetAll();
         }
-        public TourReservation GetByID(int id)
+        public TourReservation GetById(int id)
         {
-            return _tourReservationService.GetByID(id);
+            return _tourReservationService.GetById(id);
         }
         public List<TourReservation> GetUserReservations(int guestId)
         {

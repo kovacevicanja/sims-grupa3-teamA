@@ -78,7 +78,7 @@ namespace BookingProject.View.GuideView
         public bool TodayCheck(TourTimeInstance tour)
         {
             TourDateTime tourDate = new TourDateTime();
-            tourDate = _tourStartingTimeController.GetByID(tour.DateId);
+            tourDate = _tourStartingTimeController.GetById(tour.DateId);
                 if (tourDate == null)
                 {
                     return false;

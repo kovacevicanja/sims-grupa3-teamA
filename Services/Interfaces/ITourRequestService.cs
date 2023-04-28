@@ -16,7 +16,7 @@ namespace BookingProject.Services.Interfaces
         void Initialize();
         void Create(TourRequest tourRequest);
         List<TourRequest> GetAll();
-        TourRequest GetByID(int id);
+        TourRequest GetById(int id);
         void Save(List<TourRequest> tourRequests);
         void SaveTourRequest();
         List<TourRequest> GetGuestRequests(int guestId, string enteredYear);

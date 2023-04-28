@@ -12,7 +12,7 @@ namespace BookingProject.Repositories.Intefaces
     {
         void Create(User user);
         List<User> GetAll();
-        User GetByID(int id);
+        User GetById(int id);
         void Initialize();
         void Save();
     }

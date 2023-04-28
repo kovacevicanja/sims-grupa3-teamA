@@ -47,9 +47,9 @@ namespace BookingProject.Services
             return _userRepository.GetAll();
         }
 
-        public User GetByID(int id)
+        public User GetById(int id)
         {
-            return _userRepository.GetByID(id);
+            return _userRepository.GetById(id);
         }
 
         public void Save()
@@ -71,13 +71,13 @@ namespace BookingProject.Services
         }
         public void Update(User user)
         {
-            User oldUser = _userRepository.GetByID(user.Id);
+            User oldUser = _userRepository.GetById(user.Id);
             if (oldUser == null)
             {
                 return;
             }
             oldUser.IsSuper = user.IsSuper;
-            Save(); //-- NE RADI TI ?????????
+            Save();
         }
     }
 }

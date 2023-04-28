@@ -52,7 +52,7 @@ namespace BookingProject.Repositories.Implementations
         {
             return _keyPoints;
         }
-        public KeyPoint GetByID(int id)
+        public KeyPoint GetById(int id)
         {
             return _keyPoints.Find(keyPoint => keyPoint.Id == id);
         }

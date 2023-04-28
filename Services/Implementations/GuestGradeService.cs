@@ -34,9 +34,9 @@ namespace BookingProject.Services.Implementations
             return _guestGradeRepository.GetAll();
         }
 
-        public GuestGrade GetByID(int id)
+        public GuestGrade GetById(int id)
         {
-            return _guestGradeRepository.GetByID(id);
+            return _guestGradeRepository.GetById(id);
         }
         public bool DoesReservationHaveGrade(int accommodationReservationId)
         {

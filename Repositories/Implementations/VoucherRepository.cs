@@ -57,7 +57,7 @@ namespace BookingProject.Repository
         {
             return _vouchers.ToList();
         }
-        public Voucher GetByID(int id)
+        public Voucher GetById(int id)
         {
             return _vouchers.Find(voucher => voucher.Id == id);
         }

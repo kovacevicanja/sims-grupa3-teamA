@@ -61,7 +61,7 @@ namespace BookingProject.Repositories
         {
             foreach (TourEvaluationImage image in _images)
             {
-                TourEvaluation tourEvaluation = Injector.CreateInstance<ITourEvaluationRepository>().GetByID(image.TourEvaluation.Id);
+                TourEvaluation tourEvaluation = Injector.CreateInstance<ITourEvaluationRepository>().GetById(image.TourEvaluation.Id);
                 image.TourEvaluation = tourEvaluation;
             }
         }
@@ -69,7 +69,7 @@ namespace BookingProject.Repositories
         {
             return _images.ToList();
         }
-        public TourEvaluationImage GetByID(int id)
+        public TourEvaluationImage GetById(int id)
         {
             return _images.Find(image => image.Id == id);
         }

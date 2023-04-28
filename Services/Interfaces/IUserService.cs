@@ -14,7 +14,7 @@ namespace BookingProject.Services.Interfaces
         User GetLoggedUser();
         void Create(User user);
         List<User> GetAll();
-        User GetByID(int id);
+        User GetById(int id);
         void Initialize();
         void Save();
         User IsUserSuperUser(User user);

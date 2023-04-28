@@ -30,9 +30,9 @@ namespace BookingProject.Services.Implementations
         {
             return _tourTimeInstanceRepository.GetAll();
         }
-        public TourTimeInstance GetByID(int id)
+        public TourTimeInstance GetById(int id)
         {
-            return _tourTimeInstanceRepository.GetByID(id);
+            return _tourTimeInstanceRepository.GetById(id);
         }
         public void Save()
         {

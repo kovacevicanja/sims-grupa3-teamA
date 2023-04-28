@@ -55,7 +55,7 @@ namespace BookingProject.Repositories.Implementations
             }
             return maxId + 1;
         }
-        public TourRequest GetByID(int id)
+        public TourRequest GetById(int id)
         {
             return _tourRequests.Find(tourRequest => tourRequest.Id == id);
         }
@@ -73,7 +73,7 @@ namespace BookingProject.Repositories.Implementations
         {
             foreach (TourRequest tourRequest in _tourRequests)
             {
-                Location location = Injector.CreateInstance<ITourLocationRepository>().GetByID(tourRequest.Location.Id);
+                Location location = Injector.CreateInstance<ITourLocationRepository>().GetById(tourRequest.Location.Id);
                 tourRequest.Location = location;
             }
         }
@@ -85,7 +85,8 @@ namespace BookingProject.Repositories.Implementations
                 if (DateTime.Now >= tourRequest.EndDate.AddHours(-48) && tourRequest.Status == TourRequestStatus.PENDING)
                 {
                     TourRequest newRequestStatus = new TourRequest(tourRequest.Id, -1, TourRequestStatus.INVALID, 
-                        tourRequest.Location, tourRequest.Description, tourRequest.Language, tourRequest.GuestsNumber, tourRequest.StartDate, tourRequest.EndDate, tourRequest.Guest);
+                        tourRequest.Location, tourRequest.Description, tourRequest.Language, 
+                        tourRequest.GuestsNumber, tourRequest.StartDate, tourRequest.EndDate, tourRequest.Guest);
                     _tourRequests.Remove(tourRequest);
                     _tourRequests.Add(newRequestStatus);
                 }
@@ -98,22 +99,11 @@ namespace BookingProject.Repositories.Implementations
 
             List<TourRequest> guestRequests = new List<TourRequest>();
 
-            foreach (TourRequest tourRequest in _tourRequests)
+            foreach (TourRequest request in _tourRequests)
             {
-                if (tourRequest.Guest.Id == guestId)
-                {
-                    if (enteredYear == "")
-                    {
-                        guestRequests.Add(tourRequest);
-                    }
-                    else
-                    {
-                        if (tourRequest.StartDate.Year.ToString().Equals(enteredYear) && tourRequest.EndDate.Year.ToString().Equals(enteredYear)) 
-                        {
-                            guestRequests.Add(tourRequest);
-                        }
-                    }
-                }
+                if (request.Guest.Id == guestId && string.IsNullOrEmpty(enteredYear) ||
+                         (request.StartDate.Year.ToString().Equals(enteredYear) && request.EndDate.Year.ToString().Equals(enteredYear)))
+                { guestRequests.Add(request); }         
             }
             return guestRequests;
         }

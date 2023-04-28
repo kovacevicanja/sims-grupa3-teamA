@@ -287,14 +287,11 @@
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Guest2View\ChangeYearTourStatisticsView.xaml.cs">
-      <DependentUpon>ChangeYearTourStatisticsView.xaml</DependentUpon>
+    <Compile Include="View\Guest2View\ChangeYearTourRequestsStatisticsView.xaml.cs">
+      <DependentUpon>ChangeYearTourRequestsStatisticsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\CreateTourRequestView.xaml.cs">
       <DependentUpon>CreateTourRequestView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Guest2View\TourRequestsChartView.xaml.cs">
-      <DependentUpon>TourRequestsChartView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\TourRequestStatisticsView.xaml.cs">
       <DependentUpon>TourRequestStatisticsView.xaml</DependentUpon>
@@ -458,15 +455,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Guest2View\ChangeYearTourStatisticsView.xaml">
+    <Page Include="View\Guest2View\ChangeYearTourRequestsStatisticsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest2View\CreateTourRequestView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Guest2View\TourRequestsChartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

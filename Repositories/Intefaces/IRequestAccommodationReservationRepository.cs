@@ -13,7 +13,7 @@ namespace BookingProject.Repositories.Intefaces
         void Initialize();
         List<RequestAccommodationReservation> GetAll();
         void Create(RequestAccommodationReservation request);
-        RequestAccommodationReservation GetByID(int id);
+        RequestAccommodationReservation GetById(int id);
         void Save(List<RequestAccommodationReservation> requests);
         void SaveRequest();
     }

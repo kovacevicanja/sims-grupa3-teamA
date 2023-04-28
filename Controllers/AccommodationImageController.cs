@@ -30,9 +30,9 @@ namespace BookingProject.Controller
         {
             _imageService.SaveImage();
         }
-        public AccommodationImage GetByID(int id)
+        public AccommodationImage GetById(int id)
         {
-            return _imageService.GetByID(id);
+            return _imageService.GetById(id);
         }
         public void LinkToAccommodation(int id)
         {

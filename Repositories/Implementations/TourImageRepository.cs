@@ -63,7 +63,7 @@ namespace BookingProject.Repositories.Implementations
         {
             return _images.ToList();
         }
-        public TourImage GetByID(int id)
+        public TourImage GetById(int id)
         {
             return _images.Find(image => image.Id == id);
         }

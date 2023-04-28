@@ -12,7 +12,7 @@ namespace BookingProject.Repositories.Intefaces
     {
        void Create(KeyPoint keyPoint);
        List<KeyPoint> GetAll();
-       KeyPoint GetByID(int id);
+       KeyPoint GetById(int id);
        void Initialize();
        void Save();
     }

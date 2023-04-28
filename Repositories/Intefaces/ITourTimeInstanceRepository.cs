@@ -11,7 +11,7 @@ namespace BookingProject.Repositories.Intefaces
     {
         void Create(TourTimeInstance instance);
         List<TourTimeInstance> GetAll();
-        TourTimeInstance GetByID(int id);
+        TourTimeInstance GetById(int id);
         void InstanceDateBind();
         void InstanceTourBind();
         void Initialize();

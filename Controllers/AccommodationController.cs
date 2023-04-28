@@ -67,9 +67,9 @@ namespace BookingProject.Controller
         {
             return _accommodationService.GetAll();
         }
-        public Accommodation GetByID(int id)
+        public Accommodation GetById(int id)
         {
-            return _accommodationService.GetByID(id);
+            return _accommodationService.GetById(id);
         }
         public void Save(List<Accommodation> accommodations)
         {

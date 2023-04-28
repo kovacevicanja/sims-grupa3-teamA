@@ -80,11 +80,11 @@ namespace BookingProject.View.GuideView
 
             foreach (TourReservation reservation in FilterTourReservations(_tourReservationController.GetAll()))
             {
-                if (_userControler.GetByID(reservation.Guest.Id).Age < 18)
+                if (_userControler.GetById(reservation.Guest.Id).Age < 18)
                 {
                     guestNumbers[0] += 1;
                 }
-                else if (_userControler.GetByID(reservation.Guest.Id).Age > 50)
+                else if (_userControler.GetById(reservation.Guest.Id).Age > 50)
                 {
                     guestNumbers[2] += 1;
                 }

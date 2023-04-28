@@ -13,7 +13,7 @@ namespace BookingProject.Services.Interfaces
         void Initialize();
         List<AccommodationGuestImage> GetAll();
         void Create(AccommodationGuestImage image);
-        AccommodationGuestImage GetByID(int id);
+        AccommodationGuestImage GetById(int id);
         void Save(List<AccommodationGuestImage> images);
         void SaveImage();
     }

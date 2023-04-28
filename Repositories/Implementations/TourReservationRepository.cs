@@ -44,7 +44,7 @@ namespace BookingProject.Repositories.Implementations
         {
             return _reservations.ToList();
         }
-        public TourReservation GetByID(int id)
+        public TourReservation GetById(int id)
         {
             return _reservations.Find(date => date.Id == id);
         }
@@ -58,7 +58,7 @@ namespace BookingProject.Repositories.Implementations
         {
             foreach (TourReservation reservation in _reservations)
             {
-                Tour tour = Injector.CreateInstance<ITourRepository>().GetByID(reservation.Tour.Id);
+                Tour tour = Injector.CreateInstance<ITourRepository>().GetById(reservation.Tour.Id);
                 reservation.Tour = tour;
             }
         }

@@ -58,16 +58,15 @@ namespace BookingProject.Repositories.Implementations
         {
             return _instances.ToList();
         }
-        public TourTimeInstance GetByID(int id)
+        public TourTimeInstance GetById(int id)
         {
             return _instances.Find(presence => presence.Id == id);
         }
         public void InstanceTourBind()
         {
-            //_tourController.Load();
             foreach (TourTimeInstance tourTimeInstance in _instances)
             {
-                Tour tour = Injector.CreateInstance<ITourRepository>().GetByID(tourTimeInstance.TourId);
+                Tour tour = Injector.CreateInstance<ITourRepository>().GetById(tourTimeInstance.TourId);
                 tourTimeInstance.Tour = tour;
             }
         }
@@ -75,7 +74,7 @@ namespace BookingProject.Repositories.Implementations
         {
             foreach (TourTimeInstance tourTimeInstance in _instances)
             {
-                TourDateTime tourTime = Injector.CreateInstance<ITourStartingTimeRepository>().GetByID(tourTimeInstance.DateId);
+                TourDateTime tourTime = Injector.CreateInstance<ITourStartingTimeRepository>().GetById(tourTimeInstance.DateId);
                 tourTimeInstance.TourTime = tourTime;
             }
         }

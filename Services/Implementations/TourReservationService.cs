@@ -141,9 +141,9 @@ namespace BookingProject.Services
         {
             return _tourReservationRepository.GetAll();
         }
-        public TourReservation GetByID(int id)
+        public TourReservation GetById(int id)
         {
-            return _tourReservationRepository.GetByID(id);  
+            return _tourReservationRepository.GetById(id);  
         }
         public List<TourReservation> GetUserReservations(int guestId)
         {

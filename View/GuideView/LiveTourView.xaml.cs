@@ -121,7 +121,7 @@ namespace BookingProject.View.GuideView
         {
             foreach (KeyPoint keyPoint in _keyPoints)
             {
-                _keyPointController.GetByID(keyPoint.Id).State = keyPoint.State;
+                _keyPointController.GetById(keyPoint.Id).State = keyPoint.State;
             }
             _keyPointController.Save();
         }
@@ -129,7 +129,7 @@ namespace BookingProject.View.GuideView
         {
             foreach (KeyPoint keyPoint in _keyPoints)
             {
-                _keyPointController.GetByID(keyPoint.Id).State = KeyPointState.EMPTY;
+                _keyPointController.GetById(keyPoint.Id).State = KeyPointState.EMPTY;
             }
             _keyPointController.Save();
         }
@@ -137,7 +137,7 @@ namespace BookingProject.View.GuideView
         {
             foreach (User user in _userControler.GetAll())
             {
-                _userControler.GetByID(user.Id).IsPresent = false;
+                _userControler.GetById(user.Id).IsPresent = false;
             }
             _userControler.Save();
         }
@@ -150,18 +150,18 @@ namespace BookingProject.View.GuideView
         }
         public void TourEnding()
         {
-            _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.COMPLETED;
+            _tourTimeInstanceController.GetById(ChosenTour.Id).State = TourState.COMPLETED;
             _tourTimeInstanceController.Save();
         }
         public void TourStarting()
         {
-            _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.STARTED;
+            _tourTimeInstanceController.GetById(ChosenTour.Id).State = TourState.STARTED;
             _tourTimeInstanceController.Save();
 
         }
         public bool PresenceCheck(TourPresence presence)
         {
-            if (_userControler.GetByID(presence.UserId).IsPresent && (presence.KeyPointId == -1))
+            if (_userControler.GetById(presence.UserId).IsPresent && (presence.KeyPointId == -1))
             {
                 return true;
             }
@@ -173,7 +173,7 @@ namespace BookingProject.View.GuideView
             {
                 if (PresenceCheck(presence) && _keyPointController.GetCurrentKeyPoint() != null)
                 {
-                    _tourPresenceController.GetByID(presence.Id).KeyPointId = _keyPointController.GetCurrentKeyPoint().Id;
+                    _tourPresenceController.GetById(presence.Id).KeyPointId = _keyPointController.GetCurrentKeyPoint().Id;
                 }
             }
             _tourPresenceController.Save();

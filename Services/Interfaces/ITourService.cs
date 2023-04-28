@@ -13,7 +13,7 @@ namespace BookingProject.Services.Interfaces
     {
         void Create(Tour tour);
         List<Tour> GetAll();
-        Tour GetByID(int id);
+        Tour GetById(int id);
         bool WantedTour(Tour tour, string city, string country, string duration, string choosenLanguage, string numOfGuests);
         bool RequestedCity(Tour tour, string city);
         bool RequestedCountry(Tour tour, string country);

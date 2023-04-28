@@ -79,9 +79,9 @@ namespace BookingProject.Services.Implementations
         {
             return _keyPointRepository.GetAll();
         }
-        public KeyPoint GetByID(int id)
+        public KeyPoint GetById(int id)
         {
-            return _keyPointRepository.GetByID(id); 
+            return _keyPointRepository.GetById(id); 
         }
         public void Save()
         {

@@ -27,9 +27,9 @@ namespace BookingProject.Controller
         {
             return _tourTimeInstanceService.GetAll();
         }
-        public TourTimeInstance GetByID(int id)
+        public TourTimeInstance GetById(int id)
         {
-            return _tourTimeInstanceService.GetByID(id);
+            return _tourTimeInstanceService.GetById(id);
         }
         public void Save()
         {

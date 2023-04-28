@@ -12,7 +12,7 @@ namespace BookingProject.Services.Interfaces
     {
         void Create(KeyPoint keyPoint);
         List<KeyPoint> GetAll();
-        KeyPoint GetByID(int id);
+        KeyPoint GetById(int id);
         void CleanUnused();
         void LinkToTour(int id);
         KeyPoint GetCurrentKeyPoint();

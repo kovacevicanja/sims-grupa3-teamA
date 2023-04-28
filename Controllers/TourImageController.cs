@@ -34,9 +34,9 @@ namespace BookingProject.Controller
         {
             return _tourImageService.GetAll();
         }
-        public TourImage GetByID(int id)
+        public TourImage GetById(int id)
         {
-            return _tourImageService.GetByID(id);   
+            return _tourImageService.GetById(id);   
         }
         public void Save()
         {

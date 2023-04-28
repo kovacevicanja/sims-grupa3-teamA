@@ -51,7 +51,7 @@ namespace BookingProject.View.GuideView
             {
                 if (reservation.Tour.Id == ChosenTour.TourId)
                 {
-                    users.Add(_userController.GetByID(reservation.Guest.Id));
+                    users.Add(_userController.GetById(reservation.Guest.Id));
                 }
             }
             return users;

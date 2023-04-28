@@ -30,9 +30,9 @@ namespace BookingProject.Controller
         {
             _guestGradeService.Save(grades);
         }
-        public GuestGrade GetByID(int id)
+        public GuestGrade GetById(int id)
         {
-            return _guestGradeService.GetByID(id);
+            return _guestGradeService.GetById(id);
         }
         public bool DoesReservationHaveGrade(int accommodationReservationId)
         {

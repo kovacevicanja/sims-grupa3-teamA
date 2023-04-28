@@ -72,7 +72,7 @@ namespace BookingProject.View.GuideView
                 int pickedYear = int.Parse(PickedYear);
                 foreach (TourTimeInstance tour in tours)
                 {
-                    if (_tourStartingTimeController.GetByID(tour.DateId).StartingDateTime.Year == pickedYear)
+                    if (_tourStartingTimeController.GetById(tour.DateId).StartingDateTime.Year == pickedYear)
                     {
                         filteredTours.Add(tour);
                     }
@@ -90,7 +90,7 @@ namespace BookingProject.View.GuideView
                 if (guestCount < countTourGuests(instance.TourId))
                 {
                     guestCount = countTourGuests(instance.TourId);
-                    maxTourName = _tourController.GetByID(instance.TourId).Name;
+                    maxTourName = _tourController.GetById(instance.TourId).Name;
                 }
             }
             return maxTourName;

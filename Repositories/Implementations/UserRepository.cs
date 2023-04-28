@@ -33,7 +33,7 @@ namespace BookingProject.Repositories
             IVoucherRepository voucherRepository = Injector.CreateInstance<IVoucherRepository>();
             foreach (Voucher voucher in voucherRepository.GetAll())
             {
-                User user = GetByID(voucher.Guest.Id);
+                User user = GetById(voucher.Guest.Id);
                 user.Vouchers.Add(voucher);
             }
         }
@@ -67,7 +67,7 @@ namespace BookingProject.Repositories
         {
             return _users.ToList();
         }
-        public User GetByID(int id)
+        public User GetById(int id)
         {
             return _users.Find(user => user.Id == id);
         } 

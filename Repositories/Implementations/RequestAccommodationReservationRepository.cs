@@ -69,7 +69,7 @@ namespace BookingProject.Repositories.Implementations
             Save(_requests);
         }
 
-        public RequestAccommodationReservation GetByID(int id)
+        public RequestAccommodationReservation GetById(int id)
         {
             return _requests.Find(image => image.Id == id);
         }
@@ -79,7 +79,7 @@ namespace BookingProject.Repositories.Implementations
 
             foreach (RequestAccommodationReservation request in _requests)
             {
-                AccommodationReservation accommodation = Injector.CreateInstance<IAccommodationReservationRepository>().GetByID(request.AccommodationReservation.Id); // DODATI KAD PULUJEM OD ANJE
+                AccommodationReservation accommodation = Injector.CreateInstance<IAccommodationReservationRepository>().GetById(request.AccommodationReservation.Id); // DODATI KAD PULUJEM OD ANJE
                 request.AccommodationReservation = accommodation;
             }
         }

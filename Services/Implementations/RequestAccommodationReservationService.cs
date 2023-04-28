@@ -59,7 +59,7 @@ namespace BookingProject.Services
 
         public void AcceptRequest(RequestAccommodationReservation reservationMovingRequest)
         {
-            AccommodationReservation res = Injector.CreateInstance<IAccommodationReservationService>().GetByID(reservationMovingRequest.AccommodationReservation.Id);
+            AccommodationReservation res = Injector.CreateInstance<IAccommodationReservationService>().GetById(reservationMovingRequest.AccommodationReservation.Id);
             res.InitialDate = reservationMovingRequest.NewArrivalDay;
             res.EndDate = reservationMovingRequest.NewDeparuteDay;
             Injector.CreateInstance<IAccommodationReservationService>().Update(res);
@@ -110,7 +110,7 @@ namespace BookingProject.Services
 
         public void Update(RequestAccommodationReservation reservationMovingRequest)
         {
-            RequestAccommodationReservation oldRequest = _requestRepository.GetByID(reservationMovingRequest.Id);
+            RequestAccommodationReservation oldRequest = _requestRepository.GetById(reservationMovingRequest.Id);
             if (oldRequest == null)
             {
                 return;
@@ -119,7 +119,7 @@ namespace BookingProject.Services
             oldRequest.NewArrivalDay = reservationMovingRequest.NewArrivalDay;
             oldRequest.NewDeparuteDay = reservationMovingRequest.NewDeparuteDay;
             oldRequest.Status = reservationMovingRequest.Status;
-            SaveRequest(); //-- NE RADI TI ?????????
+            SaveRequest();
         }
 
         public List<RequestAccommodationReservation> GetAll()
@@ -132,9 +132,9 @@ namespace BookingProject.Services
             _requestRepository.Create(request);
         }
 
-        public RequestAccommodationReservation GetByID(int id)
+        public RequestAccommodationReservation GetById(int id)
         {
-            return _requestRepository.GetByID(id);
+            return _requestRepository.GetById(id);
         }
 
         public void SendRequest(AccommodationReservation SelectedReservation, String Comment, DateTime NewInitialDate, DateTime NewEndDate)

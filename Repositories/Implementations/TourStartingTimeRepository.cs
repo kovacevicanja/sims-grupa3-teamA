@@ -52,7 +52,7 @@ namespace BookingProject.Repositories.Implementations
         {
             return _dates.ToList();
         }
-        public TourDateTime GetByID(int id)
+        public TourDateTime GetById(int id)
         {
             return _dates.Find(date => date.Id == id);
         }

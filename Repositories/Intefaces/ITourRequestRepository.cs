@@ -15,7 +15,7 @@ namespace BookingProject.Repositories.Intefaces
         void Initialize();
         void Create(TourRequest tourRequest);
         List<TourRequest> GetAll();
-        TourRequest GetByID(int id);
+        TourRequest GetById(int id);
         List<TourRequest> GetGuestRequests(int guestId, string enteredYear);
     }
 }

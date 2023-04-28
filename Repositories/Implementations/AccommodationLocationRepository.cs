@@ -43,7 +43,7 @@ namespace BookingProject.Repositories.Implementations
             return _locations;
         }
 
-        public Location GetByID(int id)
+        public Location GetById(int id)
         {
             return _locations.Find(location => location.Id == id);
         }

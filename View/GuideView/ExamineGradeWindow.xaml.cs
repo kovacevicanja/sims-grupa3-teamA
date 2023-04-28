@@ -43,7 +43,7 @@ namespace BookingProject.View.GuideView
         }
         public void MarkAsInvalid()
         {
-            _tourEvaluationController.GetByID(ChosenEvaluation.Id).IsValid = false;
+            _tourEvaluationController.GetById(ChosenEvaluation.Id).IsValid = false;
             _tourEvaluationController.Save();
         }
         public string GetGuestKeyPoint()
@@ -52,7 +52,7 @@ namespace BookingProject.View.GuideView
             {
                 if(presence.UserId==ChosenEvaluation.Guest.Id && ChosenTour.Id == presence.TourId)
                 {
-                   return _keyPointController.GetByID(presence.KeyPointId).Point;
+                   return _keyPointController.GetById(presence.KeyPointId).Point;
                 }
             }
             return "LOREM IPSUM";

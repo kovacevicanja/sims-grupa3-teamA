@@ -61,7 +61,7 @@ namespace BookingProject.View.GuideView
         }
         private void Yes_Click(object sender, RoutedEventArgs e)
         {
-            _tourTimeInstanceController.GetByID(ChosenTour.Id).State = TourState.CANCELLED;
+            _tourTimeInstanceController.GetById(ChosenTour.Id).State = TourState.CANCELLED;
             _tourTimeInstanceController.Save();
             SendVouchers();
             MyToursWindow myToursWindow = new MyToursWindow();

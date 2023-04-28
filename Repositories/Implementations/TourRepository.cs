@@ -88,7 +88,7 @@ namespace BookingProject.Repositories
         {
             return _tours.ToList();
         }
-        public Tour GetByID(int id)
+        public Tour GetById(int id)
         {
             return _tours.Find(tour => tour.Id == id);
         }
@@ -96,7 +96,7 @@ namespace BookingProject.Repositories
         {
             foreach (Tour tour in _tours)
             {
-                Location location = Injector.CreateInstance<ITourLocationRepository>().GetByID(tour.LocationId);
+                Location location = Injector.CreateInstance<ITourLocationRepository>().GetById(tour.LocationId);
                 tour.Location = location;
             }
         }
@@ -105,7 +105,7 @@ namespace BookingProject.Repositories
             ITourImageRepository tourImageRepository = Injector.CreateInstance<ITourImageRepository>();
             foreach (TourImage image in tourImageRepository.GetAll())
             {
-                Tour tour = GetByID(image.Tour.Id);
+                Tour tour = GetById(image.Tour.Id);
                 tour.Images.Add(image);
 
             }

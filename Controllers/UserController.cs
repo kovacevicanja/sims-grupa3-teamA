@@ -35,9 +35,9 @@ namespace BookingProject.Controller
         {
             return _userService.GetAll();   
         }
-        public User GetByID(int id)
+        public User GetById(int id)
         {
-            return _userService.GetByID(id);
+            return _userService.GetById(id);
         }
         public void Save()
         {

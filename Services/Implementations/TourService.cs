@@ -99,9 +99,9 @@ namespace BookingProject.Services
         {
             return _tourRepository.GetAll();
         }
-        public Tour GetByID(int id)
+        public Tour GetById(int id)
         {
-            return _tourRepository.GetByID(id);
+            return _tourRepository.GetById(id);
         }
         public Tour GetLastTour()
         {

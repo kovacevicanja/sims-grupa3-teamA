@@ -13,7 +13,7 @@ namespace BookingProject.Repositories.Intefaces
     {
         void Initialize();
         List<TourReservation> GetAll();
-        TourReservation GetByID(int id);
+        TourReservation GetById(int id);
         void ReservationGuestBind(int id);
         List<TourReservation> GetUserReservations(int guestId);
         void SaveReservationToFile(Tour choosenTour, string numberOfGuests, DateTime selectedDate, User guest);

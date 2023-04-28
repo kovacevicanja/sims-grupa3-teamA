@@ -39,9 +39,9 @@ namespace BookingProject.Services.Implementations
         {
             return _tourStartingTimeRepository.GetAll();
         }
-        public TourDateTime GetByID(int id)
+        public TourDateTime GetById(int id)
         {
-            return _tourStartingTimeRepository.GetByID(id);
+            return _tourStartingTimeRepository.GetById(id);
         }
         public void Save()
         {

@@ -61,7 +61,7 @@ namespace BookingProject.Repositories
             return _notifications.ToList();
         }
 
-        public Notification GetByID(int id)
+        public Notification GetById(int id)
         {
             return _notifications.Find(notification => notification.Id == id);
         }

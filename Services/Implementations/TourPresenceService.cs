@@ -41,10 +41,9 @@ namespace BookingProject.Services.Implementations
         {
             return _tourPresenceRepository.GetAll();
         }
-
-        public TourPresence GetByID(int id)
+        public TourPresence GetById(int id)
         {
-            return _tourPresenceRepository.GetByID(id);
+            return _tourPresenceRepository.GetById(id);
         }
         public void SendNotification(User guest)
         {
@@ -92,7 +91,7 @@ namespace BookingProject.Services.Implementations
                     if (id == tti.Id)
                     {
                         Tour tour = new Tour();
-                        tour = _tourService.GetByID(tti.TourId);
+                        tour = _tourService.GetById(tti.TourId);
                         tours.Add(tour);
                     }
                 }

@@ -18,10 +18,10 @@ namespace BookingProject.View.Guest2View
     /// <summary>
     /// Interaction logic for ChangeYearTourStatistics.xaml
     /// </summary>
-    public partial class ChangeYearTourStatisticsView : Window, INotifyPropertyChanged
+    public partial class ChangeYearTourRequestsStatisticsView : Window, INotifyPropertyChanged
     {
         public int GuestId { get; set; }    
-        public ChangeYearTourStatisticsView(int guestId)
+        public ChangeYearTourRequestsStatisticsView(int guestId)
         {
             InitializeComponent();
             this.DataContext = this;

@@ -29,9 +29,9 @@ namespace BookingProject.Controller
         {
             return _tourService.GetAll();
         }
-        public Tour GetByID(int id)
+        public Tour GetById(int id)
         {
-            return _tourService.GetByID(id);
+            return _tourService.GetById(id);
         }
         public bool WantedTour(Tour tour, string city, string country, string duration, string chosenLanguage, string numOfGuests)
         {

@@ -12,7 +12,7 @@ namespace BookingProject.Repositories.Intefaces
     {
         void Create(AccommodationReservation reservation);
         List<AccommodationReservation> GetAll();
-        AccommodationReservation GetByID(int id);
+        AccommodationReservation GetById(int id);
         void Initialize();
         void Subscribe(IObserver observer);
         void SaveParam(List<AccommodationReservation> reservations);

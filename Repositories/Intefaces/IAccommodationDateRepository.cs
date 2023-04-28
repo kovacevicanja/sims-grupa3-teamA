@@ -11,7 +11,7 @@ namespace BookingProject.Repositories.Intefaces
     {
         void Initialize();
         List<AccommodationDate> GetAll();
-        AccommodationDate GetByID(int id);
+        AccommodationDate GetById(int id);
         void Save(List<AccommodationDate> dates);
     }
 }

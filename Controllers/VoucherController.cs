@@ -38,9 +38,9 @@ namespace BookingProject.Controllers
         {
             return _voucherService.GetAll();    
         }
-        public Voucher GetByID(int id)
+        public Voucher GetById(int id)
         {
-            return _voucherService.GetByID(id);
+            return _voucherService.GetById(id);
         }
         public void Save(List<Voucher> _vouchers)
         {

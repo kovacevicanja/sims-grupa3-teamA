@@ -7,6 +7,7 @@ using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,9 +29,9 @@ namespace BookingProject.Services.Implementations
         {
             return _tourRequestRepository.GetAll();
         }
-        public TourRequest GetByID(int id)
+        public TourRequest GetById(int id)
         {
-            return _tourRequestRepository.GetByID(id);
+            return _tourRequestRepository.GetById(id);
         }
         public void Save(List<TourRequest> tourRequests)
         {
@@ -53,23 +54,22 @@ namespace BookingProject.Services.Implementations
 
             return ((double)acceptedRequestsNumber / requestsTotalNumber) * 100;
         }
+        private bool IsMatchingYear (int guestId, string enteredYear = "")
+        {
+            foreach (var request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
+            {
+                return string.IsNullOrEmpty(enteredYear) ||
+                         (request.StartDate.Year.ToString().Equals(enteredYear) && request.EndDate.Year.ToString().Equals(enteredYear));
+            }
+            return false;
+        }
         public int AcceptedRequestsNumber(int guestId, string enteredYear = "")
         {
             int acceptedRequestsNumber = 0;
 
-            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
+            foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
-                if (tourRequest.Status == TourRequestStatus.ACCEPTED)
-                {
-                    if (enteredYear == "")
-                    {
-                        acceptedRequestsNumber++;
-                    }
-                    else if (tourRequest.StartDate.Year.ToString().Equals(enteredYear) && tourRequest.EndDate.Year.ToString().Equals(enteredYear))
-                    { 
-                        acceptedRequestsNumber++;
-                    }
-                }
+                if (request.Status == TourRequestStatus.ACCEPTED && IsMatchingYear(guestId, enteredYear)) { acceptedRequestsNumber++; }
             }
 
             return acceptedRequestsNumber;
@@ -83,23 +83,13 @@ namespace BookingProject.Services.Implementations
 
             return ((double)unacceptedRequestsNumber / requestsTotalNumber) * 100;
         }
-        private int UnacceptedRequestsNumber (int guestId, string enteredYear = "")
+        private int UnacceptedRequestsNumber(int guestId, string enteredYear = "")
         {
             int unacceptedRequestsNumber = 0;
-            
-            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
+
+            foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
-                if (tourRequest.Status == TourRequestStatus.INVALID)
-                {
-                    if (enteredYear == "")
-                    {
-                        unacceptedRequestsNumber++;
-                    }
-                    else if (tourRequest.StartDate.Year.ToString().Equals(enteredYear) && tourRequest.EndDate.Year.ToString().Equals(enteredYear))
-                    {
-                        unacceptedRequestsNumber++;
-                    }
-                }
+                if (request.Status == TourRequestStatus.INVALID && IsMatchingYear(guestId, enteredYear)) { unacceptedRequestsNumber++; }
             }
 
             return unacceptedRequestsNumber;
@@ -108,19 +98,9 @@ namespace BookingProject.Services.Implementations
         {
             int numberRequestsLanguage = 0;
 
-            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
+            foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
-                if (tourRequest.Language == language)
-                {
-                    if (enteredYear == "")
-                    {
-                        numberRequestsLanguage++;
-                    }
-                    else if (tourRequest.StartDate.Year.ToString() == enteredYear && tourRequest.EndDate.Year.ToString() == enteredYear)
-                    {
-                        numberRequestsLanguage++;
-                    }
-                }
+                if (request.Language == language && IsMatchingYear(guestId, enteredYear)) { numberRequestsLanguage++; }
             }
             
             return numberRequestsLanguage;
@@ -129,62 +109,36 @@ namespace BookingProject.Services.Implementations
         {
             int numberRequestsLocation = 0;
 
-            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
+            foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
-                if (tourRequest.Location.City == city && tourRequest.Location.Country == country)
-                {
-                    if (enteredYear == "")
-                    {
-                        numberRequestsLocation++;
-                    }
-                    else if (tourRequest.StartDate.Year.ToString() == enteredYear && tourRequest.EndDate.Year.ToString() == enteredYear)
-                    {
-                        numberRequestsLocation++;
-                    }
-                }
+                if (request.Location.City == city && request.Location.Country == country && IsMatchingYear(guestId, enteredYear)) 
+                { numberRequestsLocation++; }
             }
 
             return numberRequestsLocation;
         }
         public double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear = "")
-        {
-            int totalNumberOfPeople = FindTotalNumber(guestId, enteredYear)[0];
-            int totalNumberOfAcceptedRequests = FindTotalNumber(guestId, enteredYear)[1];
+        { 
+            int totalNumberOfPeople = 0, totalNumberOfAcceptedRequests = 0;
+            FindTotalNumber(guestId, out totalNumberOfPeople, out totalNumberOfAcceptedRequests, enteredYear);
 
-            if (totalNumberOfAcceptedRequests == 0)
-            {
-                return 0;
-            }
+            if (totalNumberOfAcceptedRequests == 0) { return 0; }
 
             return (double)(totalNumberOfPeople / totalNumberOfAcceptedRequests);
         }
-        private List<int> FindTotalNumber(int guestId, string enteredYear = "")
+        private void FindTotalNumber(int guestId, out int totalGuests, out int acceptedRequests, string enteredYear = "")
         {
-            List<int> totalNumberList = new List<int>();
-            int people = 0;
-            int acceptedRequests = 0;
+            totalGuests = 0;
+            acceptedRequests = 0;
 
-            foreach (TourRequest tourRequest in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
+            foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
-                if (tourRequest.Status == TourRequestStatus.ACCEPTED)
+                if (request.Status == TourRequestStatus.ACCEPTED && IsMatchingYear(guestId, enteredYear))
                 {
-                    if (enteredYear == "")
-                    {
-                        people += tourRequest.GuestsNumber;
-                        acceptedRequests++;
-                    }
-                    else if (tourRequest.StartDate.Year.ToString().Equals(enteredYear) && tourRequest.EndDate.Year.ToString().Equals(enteredYear))
-                    {
-                        people += tourRequest.GuestsNumber;
-                        acceptedRequests++;
-                    }
+                    totalGuests += request.GuestsNumber;
+                    acceptedRequests++;
                 }
             }
-
-            totalNumberList.Add(people);
-            totalNumberList.Add(acceptedRequests);
-
-            return totalNumberList;
         }
     }
 }

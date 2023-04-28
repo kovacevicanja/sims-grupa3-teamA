@@ -54,9 +54,9 @@ namespace BookingProject.Services
         {
             return _voucherRepository.GetAll();
         }
-        public Voucher GetByID(int id)
+        public Voucher GetById(int id)
         {
-            return _voucherRepository.GetByID(id);
+            return _voucherRepository.GetById(id);
         }
         public void Save(List<Voucher> vouchers)
         {

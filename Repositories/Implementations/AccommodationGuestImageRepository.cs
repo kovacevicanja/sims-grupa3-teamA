@@ -62,7 +62,7 @@ namespace BookingProject.Repositories.Implementations
             Save(_images);
         }
 
-        public AccommodationGuestImage GetByID(int id)
+        public AccommodationGuestImage GetById(int id)
         {
             return _images.Find(image => image.Id == id);
         }

@@ -25,9 +25,9 @@ namespace BookingProject.Controllers
         {
             return _tourRequestService.GetAll();
         }
-        public TourRequest GetByID(int id)
+        public TourRequest GetById(int id)
         {
-            return _tourRequestService.GetByID(id);
+            return _tourRequestService.GetById(id);
         }
         public void Save(List<TourRequest> _tourRequests)
         {

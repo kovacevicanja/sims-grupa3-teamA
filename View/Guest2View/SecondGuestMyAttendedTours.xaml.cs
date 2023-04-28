@@ -42,8 +42,8 @@ namespace BookingProject.View
             Guest = new User();
             UserController = new UserController();
             GuestId = guestId;
-            Guest = UserController.GetByID(GuestId);
-            Guest.MyTours = UserController.GetByID(GuestId).MyTours;
+            Guest = UserController.GetById(GuestId);
+            Guest.MyTours = UserController.GetById(GuestId).MyTours;
             _tourPresenceController = new TourPresenceController();
             _toursReservation = new ObservableCollection<Tour>(_tourPresenceController.FindAttendedTours(Guest));
             MyToursDataGrid.ItemsSource = _toursReservation;

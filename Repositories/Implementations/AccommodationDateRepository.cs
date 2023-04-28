@@ -40,7 +40,7 @@ namespace BookingProject.Repositories.Implementations
             return _dates;
         }
 
-        public AccommodationDate GetByID(int id)
+        public AccommodationDate GetById(int id)
         {
             return _dates.Find(date => date.Id == id);
         }

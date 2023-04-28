@@ -13,7 +13,7 @@ namespace BookingProject.Services.Interfaces
     {
         void Create(TourTimeInstance instance);
         List<TourTimeInstance> GetAll();
-        TourTimeInstance GetByID(int id);
+        TourTimeInstance GetById(int id);
         void Initialize();
         void Save();
     }

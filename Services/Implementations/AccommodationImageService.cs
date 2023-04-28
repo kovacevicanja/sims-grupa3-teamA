@@ -38,9 +38,9 @@ namespace BookingProject.Services.Implementations
             return _imageRepository.GetAll();
         }
 
-        public AccommodationImage GetByID(int id)
+        public AccommodationImage GetById(int id)
         {
-            return _imageRepository.GetByID(id);
+            return _imageRepository.GetById(id);
         }
 
         public void LinkToAccommodation(int id)
