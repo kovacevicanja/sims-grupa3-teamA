@@ -19,45 +19,12 @@ namespace BookingProject.View.Guest2View
     /// <summary>
     /// Interaction logic for ChangeYearTourStatistics.xaml
     /// </summary>
-    public partial class ChangeYearTourRequestsStatisticsView : Window, INotifyPropertyChanged
+    public partial class ChangeYearTourRequestsStatisticsView : Window
     {
-        public int GuestId { get; set; }    
         public ChangeYearTourRequestsStatisticsView(int guestId)
         {
             InitializeComponent();
-            this.DataContext = this;
-
-            GuestId = guestId;
-        }
-        public void Button_Click_ChangeYear(object sender, RoutedEventArgs e)
-        {
-            TourRequestStatisticsView tourRequestStatisticsView = new TourRequestStatisticsView(GuestId, EnteredYear);
-            tourRequestStatisticsView.Show();
-
-            this.Close();
-        }
-        public void Button_Click_Cancel(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private string _enteredYear;
-        public string EnteredYear
-        {
-            get => _enteredYear;
-            set
-            {
-                if (value != _enteredYear)
-                {
-                    _enteredYear = value;
-                    OnPropertyChanged(nameof(EnteredYear));
-                }
-            }
+            this.DataContext = new ChangeYearTourRequestsStatisticsViewModel(guestId);
         }
     }
 }

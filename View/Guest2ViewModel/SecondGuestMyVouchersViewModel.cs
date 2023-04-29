@@ -35,7 +35,6 @@ namespace BookingProject.View.Guest2ViewModel
             Vouchers = new ObservableCollection<Voucher>(VoucherController.GetUserVouhers(guestId));  
             CustomMessageBox = new CustomMessageBox();
 
-            ChosenVoucher = new Voucher();
             ChosenTour = chosenTour;
             TourReservationController = new TourReservationController();
 
@@ -44,24 +43,27 @@ namespace BookingProject.View.Guest2ViewModel
 
             _vouchersList = new List<Voucher>();
 
-            UseVoucherCommand = new RelayCommand(Button_UseVoucher, CanExecute);
+            UseVoucherCommand = new RelayCommand(Button_UseVoucher, CanUse);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
         }
 
         private bool CanExecute(object param) { return true; }
+        
+        private bool CanUse(object param)
+        {
+            if (ChosenVoucher != null) { return true; }
+            else { return false;  }
+        }
 
         private void Button_UseVoucher(object param)
         {
-            if (ChosenVoucher != null)
-            {
-                _vouchersList = VoucherController.GetAll();
-                CustomMessageBox.ShowCustomMessageBox("You have successfully used your voucher to book this tour.");
-                ChosenVoucher.State = VoucherState.USED;
-                ChosenVoucher.Tour = ChosenTour;
-                VoucherController.Save(_vouchersList);
+            _vouchersList = VoucherController.GetAll();
+            CustomMessageBox.ShowCustomMessageBox("You have successfully used your voucher to book this tour.");
+            ChosenVoucher.State = VoucherState.USED;
+            ChosenVoucher.Tour = ChosenTour;
+            VoucherController.Save(_vouchersList);
 
-                CloseWindow();
-            }
+            CloseWindow();
         }
         private void Button_Cancel(object param)
         {

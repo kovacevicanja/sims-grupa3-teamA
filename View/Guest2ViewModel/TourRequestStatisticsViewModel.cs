@@ -130,7 +130,7 @@ namespace BookingProject.View.Guest2ViewModel
         private void Button_Click_ChangeTheYear(object param)
         {
             ChangeYearTourRequestsStatisticsView changeYearTourStatisticsView = new ChangeYearTourRequestsStatisticsView(GuestId);
-            changeYearTourStatisticsView.ShowDialog();
+            changeYearTourStatisticsView.Show();
             CloseWindow();
         }
 

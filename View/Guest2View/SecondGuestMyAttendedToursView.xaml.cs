@@ -1,4 +1,6 @@
 ﻿using BookingProject.Controller;
+using BookingProject.Controllers;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.View.Guest2ViewModel;
@@ -8,7 +10,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.Remoting;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,14 +25,14 @@ using System.Windows.Shapes;
 namespace BookingProject.View
 {
     /// <summary>
-    /// Interaction logic for ActiveToursView.xaml
+    /// Interaction logic for SecondGuestMyTours.xaml
     /// </summary>
-    public partial class ActiveToursView : Window
+    public partial class SecondGuestMyAttendedToursView : Window
     {
-        public ActiveToursView(List<int> activeToursIds)
+        public SecondGuestMyAttendedToursView(int guestId)
         {
             InitializeComponent();
-            this.DataContext = new ActiveToursViewModel(activeToursIds);
+            this.DataContext = new SecondGuestMyAttendedToursViewModel(guestId);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace BookingProject.View.Guest2ViewModel
         {
             _tourReservationController.TryToBook(ChosenTour, EnteredGuests, SelectedDate.StartingDateTime, User);
         }
-        
+
         private void Button_Click_Close(object param)
         {
             CloseWindow();

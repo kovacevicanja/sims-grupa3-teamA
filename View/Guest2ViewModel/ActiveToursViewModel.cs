@@ -1,62 +1,77 @@
 ﻿using BookingProject.Controller;
-using BookingProject.Controllers;
-using BookingProject.Domain;
-using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.ComponentModel;
+using BookingProject.Commands;
+using BookingProject.View.GuideView;
+using BookingProject.View.Guest2View;
 
-namespace BookingProject.View
+namespace BookingProject.View.Guest2ViewModel
 {
-    /// <summary>
-    /// Interaction logic for SecondGuestMyTours.xaml
-    /// </summary>
-    public partial class SecondGuestMyAttendedTours : Window, INotifyPropertyChanged
+    public class ActiveToursViewModel
     {
-        public Tour ChosenTour { get; set; } 
-        public User Guest;                     
-        private ObservableCollection<Tour> _toursReservation; 
-        private TourPresenceController _tourPresenceController { get; set; }
-        public UserController UserController { get; set; }
-        public int GuestId { get; set; }
-        public SecondGuestMyAttendedTours(int guestId)
-        {
-            InitializeComponent();
-            this.DataContext = this;
+        public ObservableCollection<Tour> ActiveToursCollection { get; set; }
+        public TourController TourController { get; set; }
+        public List<Tour> Tours { get; set; }
+        public List<int> ActiveToursIds { get; set; }
+        public Tour ChosenTour { get; set; }
+        public RelayCommand CancelCommand { get; }
+        public RelayCommand FollowTourCommand { get; }
 
-            Guest = new User();
-            UserController = new UserController();
-            GuestId = guestId;
-            Guest = UserController.GetById(GuestId);
-            Guest.MyTours = UserController.GetById(GuestId).MyTours;
-            _tourPresenceController = new TourPresenceController();
-            _toursReservation = new ObservableCollection<Tour>(_tourPresenceController.FindAttendedTours(Guest));
-            MyToursDataGrid.ItemsSource = _toursReservation;
-        }
-        private void Button_Rate(object sender, RoutedEventArgs e)
+        public ActiveToursViewModel(List<int> activeToursIds)
         {
-            if (ChosenTour != null)
+            ActiveToursIds = activeToursIds;
+            List<Tour> activeTours = new List<Tour>();
+
+            TourController = new TourController();
+            Tours = TourController.GetAll();
+
+            foreach (Tour tour in Tours)
             {
-                ToursAndGuidesEvaluationView toursAndGuidesEvaluationView = new ToursAndGuidesEvaluationView(ChosenTour, GuestId);
-                toursAndGuidesEvaluationView.Show();
+                foreach (int id in ActiveToursIds)
+                {
+                    if (tour.Id == id)
+                    {
+                        activeTours.Add(tour);
+                    }
+                }
             }
 
+            ActiveToursCollection = new ObservableCollection<Tour>(activeTours);
+
+            CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
+            FollowTourCommand = new RelayCommand(Button_Click_FollowTour, CanExecute);
         }
+
+        private bool CanExecute(object param) { return true; }
+
+        private void CloseWindow()
+        {
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.GetType() == typeof(ActiveToursView)) { window.Close(); }
+            }
+        }
+
+        public void Button_Click_Cancel(object param)
+        {
+            CloseWindow();
+        }
+
+        private void Button_Click_FollowTour(object param)
+        {
+            MonitoringActiveToursView monitoringActiveToursView = new MonitoringActiveToursView(ChosenTour);
+            monitoringActiveToursView.Show();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -148,6 +163,7 @@ namespace BookingProject.View
         }
 
         private List<DateTime> _startingTime;
+
         public List<DateTime> StartingTime
         {
             get => _startingTime;

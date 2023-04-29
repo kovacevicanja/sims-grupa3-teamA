@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Model;
+using BookingProject.View.Guest2ViewModel;
 
 namespace BookingProject.View
 {
@@ -23,30 +24,10 @@ namespace BookingProject.View
     /// </summary>
     public partial class ReservationTourOtherOffersView : Window
     {
-        private ObservableCollection<Tour> _tours;
-        private TourController _tourController;
-        public Tour ChosenTour { get; set; } 
-        public int GuestId { get; set; }
         public ReservationTourOtherOffersView(Tour chosenTour, DateTime selectedDate, int guestId)
         {
             InitializeComponent();
-            this.DataContext = this;
-
-            ChosenTour = chosenTour;
-            _tourController = new TourController(); 
-            _tours = new ObservableCollection<Tour>(_tourController.GetFilteredTours(chosenTour.Location, selectedDate)); 
-            TourDataGrid.ItemsSource = _tours;
-            GuestId = guestId;
-        }
-        private void Button_Click_Close(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        private void Button_Click_TryToBook(object sender, RoutedEventArgs e)
-        {
-            ReservationTourView reservationTourView = new ReservationTourView(ChosenTour, GuestId);
-            reservationTourView.Show();
-
+            this.DataContext = new ReservationTourOtherOffersViewModel(chosenTour, selectedDate, guestId);
         }
     }
 }

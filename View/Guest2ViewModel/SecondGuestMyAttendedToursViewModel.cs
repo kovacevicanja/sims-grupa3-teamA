@@ -1,5 +1,4 @@
-﻿using BookingProject.Commands;
-using BookingProject.Controller;
+﻿using BookingProject.Controller;
 using BookingProject.Model.Enums;
 using BookingProject.Model;
 using System;
@@ -11,77 +10,58 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
+using BookingProject.Commands;
 
 namespace BookingProject.View.Guest2ViewModel
 {
-    public class SearchAndReservationToursViewModel
+    public class SecondGuestMyAttendedToursViewModel
     {
-        private TourController _tourController;
-        public string City { get; set; } = string.Empty;
-        public string Country { get; set; } = string.Empty;
-        public string Duration { get; set; } = string.Empty;
-        public string ChosenLanguage { get; set; } = string.Empty;
-        public string NumOfGuests { get; set; } = string.Empty;
         public Tour ChosenTour { get; set; }
+        public User Guest;
+        public ObservableCollection<Tour> AttendedTours { get; set; }
+        private TourPresenceController _tourPresenceController { get; set; }
+        public UserController UserController { get; set; }
         public int GuestId { get; set; }
-        public User User { get; set; }
-        public RelayCommand SearchCommand { get; }
+        public RelayCommand RateCommand { get; }
         public RelayCommand CancelCommand { get; }
-        public RelayCommand BookTourCommand { get; }
-        public RelayCommand LogOutCommand { get; }
-        public RelayCommand ShowAllToursCommand { get; }
-        public ObservableCollection<LanguageEnum> Languages { get; set; }
-        public ObservableCollection<Tour> Tours { get; set; }
-        public SearchAndReservationToursViewModel(int guestId)
+        public SecondGuestMyAttendedToursViewModel(int guestId)
         {
-            _tourController = new TourController();
-            Tours = new ObservableCollection<Tour>(_tourController.GetAll());
-
+            Guest = new User();
+            UserController = new UserController();
             GuestId = guestId;
-            User = new User();
+            Guest = UserController.GetById(GuestId);
+            Guest.MyTours = UserController.GetById(GuestId).MyTours;
+            _tourPresenceController = new TourPresenceController();
+            AttendedTours = new ObservableCollection<Tour>(_tourPresenceController.FindAttendedTours(Guest));
 
-            SearchCommand = new RelayCommand(Button_Click_Search, CanExecute);
-            BookTourCommand = new RelayCommand(Button_Click_Book, CanExecute);
-            LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
-            ShowAllToursCommand = new RelayCommand(Button_Click_ShowAll, CanExecute);
-            CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
-
-            var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
-            Languages = new ObservableCollection<LanguageEnum>(languages);
-        }
-
-        private bool CanExecute(object param) { return true; }
-
-        private void Button_Click_Search(object param)
-        {
-            _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
-        }
-
-        private void Button_Click_ShowAll(object param)
-        {
-            _tourController.ShowAll(Tours);
-        }
-
-        private void Button_Click_Cancel(object param)
-        {
-            CloseWindow();
+            RateCommand = new RelayCommand(Button_Rate, CanExecute);
+            CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
         }
 
         private void CloseWindow()
         {
             foreach (Window window in App.Current.Windows)
             {
-                if (window.GetType() == typeof(SerachAndReservationToursView)) { window.Close(); }
+                if (window.GetType() == typeof(SecondGuestMyAttendedToursView)) { window.Close(); }
             }
         }
 
-        private void Button_Click_Book(object param)
+        private bool CanExecute(object param) { return true; }
+
+        private void Button_Cancel(object param)
         {
-            ReservationTourView reservationTourView = new ReservationTourView(ChosenTour, GuestId);
-            reservationTourView.Show();
             CloseWindow();
         }
 
+        private void Button_Rate(object param)
+        {
+            if (ChosenTour != null)
+            {
+                ToursAndGuidesEvaluationView toursAndGuidesEvaluationView = new ToursAndGuidesEvaluationView(ChosenTour, GuestId);
+                toursAndGuidesEvaluationView.Show();
+                CloseWindow();
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -171,6 +151,7 @@ namespace BookingProject.View.Guest2ViewModel
                 }
             }
         }
+
         private List<DateTime> _startingTime;
         public List<DateTime> StartingTime
         {
@@ -180,14 +161,6 @@ namespace BookingProject.View.Guest2ViewModel
                 _startingTime = value;
                 OnPropertyChanged();
             }
-        }
-        private void Button_Click_LogOut(object param)
-        {
-            User.Id = GuestId;
-            User.IsLoggedIn = false;
-            SignInForm signInForm = new SignInForm();
-            signInForm.ShowDialog();
-            CloseWindow();
         }
     }
 }

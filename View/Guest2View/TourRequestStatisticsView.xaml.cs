@@ -30,7 +30,7 @@ namespace BookingProject.View.Guest2View
         public TourRequestStatisticsView(int guestId, string enteredYear = "")
         {
             InitializeComponent();
-            this.DataContext = new TourRequestStatisticsViewModel(guestId, enteredYear = "");
+            this.DataContext = new TourRequestStatisticsViewModel(guestId, enteredYear);
         }  
     }
 }

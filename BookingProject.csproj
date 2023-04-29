@@ -256,11 +256,17 @@
     <Compile Include="View\AccommodationRequestsView.xaml.cs">
       <DependentUpon>AccommodationRequestsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Guest2ViewModel\ActiveToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ChangeYearTourRequestsStatisticsViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\CreateTourRequestViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\MonitoringActiveToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ReservationTourOtherOffersViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ReservationTourViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SearchAndReservationToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SecondGuestMyAttendedToursViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyReservationsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyVouchersViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SecondGuestProfileViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\TourRequestStatisticsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\TourRequestsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ToursAndGuidesEvaluationViewModel.cs" />
@@ -386,8 +392,8 @@
     <Compile Include="View\Guest2View\ReservationTourView.xaml.cs">
       <DependentUpon>ReservationTourView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Guest2View\SecondGuestMyAttendedTours.xaml.cs">
-      <DependentUpon>SecondGuestMyAttendedTours.xaml</DependentUpon>
+    <Compile Include="View\Guest2View\SecondGuestMyAttendedToursView.xaml.cs">
+      <DependentUpon>SecondGuestMyAttendedToursView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\SecondGuestMyVouchersView.xaml.cs">
       <DependentUpon>SecondGuestMyVouchersView.xaml</DependentUpon>
@@ -587,7 +593,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Guest2View\SecondGuestMyAttendedTours.xaml">
+    <Page Include="View\Guest2View\SecondGuestMyAttendedToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -765,6 +771,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\star.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\gift.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\masna.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\gift2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\masnica.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

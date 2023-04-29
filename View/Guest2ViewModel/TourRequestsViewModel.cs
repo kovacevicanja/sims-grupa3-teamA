@@ -20,7 +20,6 @@ namespace BookingProject.View.Guest2ViewModel
         public int GuestId { get; set; }
         public TourRequestController _tourRequestController;
         public ObservableCollection<TourRequest> TourRequests { get; set; }
-
         public RelayCommand CancelCommand { get; }
 
         public TourRequestsViewModel(int guestId)

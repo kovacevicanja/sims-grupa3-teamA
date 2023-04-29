@@ -34,7 +34,7 @@
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center"
                 IsDefault="True"
-                Click="Button_Click_ChangeYear"/>
+                Command="{Binding ChangeYearCommand}"/>
 
         <Button Content="Cancel" 
                 Width="71" 
@@ -43,6 +43,6 @@
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center"
                 IsDefault="True" 
-                Click="Button_Click_Cancel" RenderTransformOrigin="0.528,0.65"/>
+                Command="{Binding CancelCommand}" RenderTransformOrigin="0.528,0.65"/>
     </Grid>
 </Window>

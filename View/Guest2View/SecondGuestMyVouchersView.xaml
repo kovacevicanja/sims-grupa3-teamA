@@ -5,12 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="SecondGuestMyVouchersView" Height="450" Width="800">
-    <Grid>
+        Title="SecondGuestMyVouchersView" Height="761" Width="1024">
+
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="BoldAndLargeTextBoxStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="0,0,0,6">
+        <Image Source="ToursImages/gift2.jpg" Margin="655,397,-1,-27" />
+        <Image Source="ToursImages/masnica.jpg" Margin="-1,0,618,337" />
+
+        <Label Content="My Vouchers" FontSize="35" FontWeight="Bold" Foreground="Black" Margin="108,148,588,509" />
         <DataGrid DockPanel.Dock="Bottom"
                               SelectedItem="{Binding Path=ChosenVoucher, UpdateSourceTrigger=PropertyChanged}"
                               Name="MyVouchersDataGrid" ItemsSource="{Binding Path=Vouchers, UpdateSourceTrigger=PropertyChanged}"
-                              AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,6,70" RenderTransformOrigin="0.5,0.5">
+                              AutoGenerateColumns="False" IsReadOnly="True" Margin="115,234,116,287" RenderTransformOrigin="0.5,0.5">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -20,14 +44,12 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Beginning of the voucher validity" Width="*" Binding="{Binding StartDate}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Expiry date" Width="*" Binding="{Binding EndDate}"></DataGridTextColumn>
-                <DataGridTextColumn Header="State of the voucher" Width="*" Binding="{Binding State}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Beginning of the voucher validity" Width="340" Binding="{Binding StartDate}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Expiry date" Width="230" Binding="{Binding EndDate}"></DataGridTextColumn>
+                <DataGridTextColumn Header="State of the voucher" Width="200" Binding="{Binding State}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid>
-            <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="195,374,0,0" VerticalAlignment="Top" Width="169" Command="{Binding UseVoucherCommand}"/>
-            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="458,374,0,0" VerticalAlignment="Top" Width="169" Command="{Binding CancelCommand}"/>
-        </Grid>
+        <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="272,624,0,0" VerticalAlignment="Top" Width="169" Command="{Binding UseVoucherCommand}" Background="CornflowerBlue"/>
+        <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="561,624,0,0" VerticalAlignment="Top" Width="169" Command="{Binding CancelCommand}" RenderTransformOrigin="0.142,0.501"/>
     </Grid>
 </Window>

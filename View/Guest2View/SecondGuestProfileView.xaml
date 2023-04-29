@@ -1,4 +1,4 @@
-﻿<Window x:Class="BookingProject.View.SecondGuestProfile"
+﻿<Window x:Class="BookingProject.View.SecondGuestProfileView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="SecondGuestProfile" Height="450" Width="800">
     <Grid>
-        <Button Content="My attended tours" HorizontalAlignment="Left" Height="50" Margin="600,30,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MyAttendedTours"/>
-        <Button Content="My reservations" HorizontalAlignment="Left" Height="50" Margin="410,30,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MyReservations"/>
-        <Button Content="Search and reservation of tours" HorizontalAlignment="Left" Height="50" Margin="600,107,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_SerachAndReservationTours"/>
-        <Button Content="My vouchers" HorizontalAlignment="Left" Height="50" Margin="600,187,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MyVouchers"/>
-        <Button Content="Log out" HorizontalAlignment="Left" Height="50" Margin="600,350,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_LogOut"/>
-        <Button Content="Monitoring active tours" HorizontalAlignment="Left" Height="50" Margin="600,274,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MonitoringActiveTours"/>
-        <Button Content="Create tour request" HorizontalAlignment="Left" Height="50" Margin="410,107,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_CreateTourRequest"/>
-        <Button Content="My tour requests" HorizontalAlignment="Left" Height="50" Margin="410,187,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_MyTourRequests"/>
-        <Button Content="Request statistics" HorizontalAlignment="Left" Height="50" Margin="410,274,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Click="Button_Click_RequestStatistics"/>
+        <Button Content="My attended tours" HorizontalAlignment="Left" Height="50" Margin="600,30,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding MyAttendedToursCommand}"/>
+        <Button Content="My reservations" HorizontalAlignment="Left" Height="50" Margin="410,30,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding MyReservationsCommand}"/>
+        <Button Content="Search and reservation of tours" HorizontalAlignment="Left" Height="50" Margin="600,107,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding SerachAndReservationToursCommand}"/>
+        <Button Content="My vouchers" HorizontalAlignment="Left" Height="50" Margin="600,187,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding MyVouchersCommand}"/>
+        <Button Content="Log out" HorizontalAlignment="Left" Height="50" Margin="600,350,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding LogOutCommand}"/>
+        <Button Content="Monitoring active tours" HorizontalAlignment="Left" Height="50" Margin="600,274,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding MonitoringActiveToursCommand}"/>
+        <Button Content="Create tour request" HorizontalAlignment="Left" Height="50" Margin="410,107,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding CreateTourRequestCommand}"/>
+        <Button Content="My tour requests" HorizontalAlignment="Left" Height="50" Margin="410,187,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding MyTourRequestsCommand}"/>
+        <Button Content="Request statistics" HorizontalAlignment="Left" Height="50" Margin="410,274,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding RequestStatisticsCommand}"/>
     </Grid>
 </Window>
