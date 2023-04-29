@@ -8,9 +8,8 @@
         Title="SecondGuestMyTours" Height="494" Width="1115">
     <Grid>
         <DataGrid DockPanel.Dock="Bottom"
-                              ItemsSource="{Binding Path=ToursReservation, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding Path=ChoosenReservation, UpdateSourceTrigger=PropertyChanged}"
-                              Name="MyToursDataGrid"
+                              Name="MyToursDataGrid" ItemsSource="{Binding Path=MyReservations, UpdateSourceTrigger=PropertyChanged}"
                               AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,6,70" RenderTransformOrigin="0.5,0.5">
             <DataGrid.RenderTransform>
                 <TransformGroup>
@@ -58,7 +57,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Grid>
-            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="309,418,0,0" VerticalAlignment="Top" Width="169" Click="Button_Cancel"/>
+            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="309,418,0,0" VerticalAlignment="Top" Width="169" Command="{Binding CancelCommand}"/>
         </Grid>
     </Grid>
 </Window>

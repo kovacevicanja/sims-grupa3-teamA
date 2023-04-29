@@ -8,9 +8,8 @@
         Title="SecondGuestMyVouchersView" Height="450" Width="800">
     <Grid>
         <DataGrid DockPanel.Dock="Bottom"
-                              ItemsSource="{Binding Path=Voucher, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding Path=ChosenVoucher, UpdateSourceTrigger=PropertyChanged}"
-                              Name="MyVouchersDataGrid"
+                              Name="MyVouchersDataGrid" ItemsSource="{Binding Path=Vouchers, UpdateSourceTrigger=PropertyChanged}"
                               AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,6,70" RenderTransformOrigin="0.5,0.5">
             <DataGrid.RenderTransform>
                 <TransformGroup>
@@ -27,8 +26,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <Grid>
-            <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="195,374,0,0" VerticalAlignment="Top" Width="169" Click="Button_UseVoucher"/>
-            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="458,374,0,0" VerticalAlignment="Top" Width="169" Click="Button_Cancel"/>
+            <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="195,374,0,0" VerticalAlignment="Top" Width="169" Command="{Binding UseVoucherCommand}"/>
+            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="458,374,0,0" VerticalAlignment="Top" Width="169" Command="{Binding CancelCommand}"/>
         </Grid>
     </Grid>
 </Window>

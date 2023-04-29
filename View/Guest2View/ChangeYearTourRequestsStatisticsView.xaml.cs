@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingProject.View.Guest2ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;

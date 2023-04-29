@@ -8,9 +8,8 @@
         Title="TourRequestsView" Height="450" Width="800">
     <Grid>
         <DataGrid DockPanel.Dock="Bottom"
-                              ItemsSource="{Binding Path=TourRequests, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding Path=ChosenRequest, UpdateSourceTrigger=PropertyChanged}"
-                              Name="MyRequestsDataGrid"
+                              Name="MyRequestsDataGrid" ItemsSource="{Binding Path=TourRequests, UpdateSourceTrigger=PropertyChanged}"
                               AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,6,70" RenderTransformOrigin="0.5,0.5">
             <DataGrid.RenderTransform>
                 <TransformGroup>
@@ -32,7 +31,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Grid>
-            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="266,374,0,0" VerticalAlignment="Top" Width="169" Click="Button_Cancel"/>
+            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="266,374,0,0" VerticalAlignment="Top" Width="169" Command="{Binding CancelCommand}"/>
         </Grid>
     </Grid>
 </Window>

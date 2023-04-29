@@ -73,10 +73,10 @@
         </Grid>
 
         <Grid FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="0,22,0,0" Grid.Row="1" Width="565" Height="65" Grid.ColumnSpan="2" >
-            <Button Content="Close" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightBlue"
-              Click="Button_Click_Close" Height="46" Width="104" Margin="56,0,0,0" RenderTransformOrigin="0.873,0.658" />
+            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightBlue"
+              Command="{Binding CancelCommand}" Height="46" Width="104" Margin="56,0,0,0" RenderTransformOrigin="0.873,0.658" />
             <Button Content="Book tour" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightBlue"
-               Click="Button_Click_TryToBook" Height="46" Width="228" Margin="282,0,0,0"/>
+              Command="{Binding TryToBookCommand}" Height="46" Width="228" Margin="282,0,0,0"/>
         </Grid>
         <Grid/>
     </Grid>

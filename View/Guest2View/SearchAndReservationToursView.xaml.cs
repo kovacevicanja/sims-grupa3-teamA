@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -14,24 +15,26 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BookingProject.Controller;
-using BookingProject.Model;
-using BookingProject.ConversionHelp;
-using BookingProject.Controllers;
 using BookingProject.Commands;
+using BookingProject.Controller;
+using BookingProject.Controllers;
+using BookingProject.Model;
+using BookingProject.Model.Enums;
+using BookingProject.Model.Images;
 using BookingProject.View.Guest2ViewModel;
+using Microsoft.VisualBasic.FileIO;
 
 namespace BookingProject.View
 {
     /// <summary>
-    /// Interaction logic for ReservationTourView.xaml
+    /// Interaction logic for SecondGuestView.xaml
     /// </summary>
-    public partial class ReservationTourView : Window
+    public partial class SerachAndReservationToursView : Window
     {
-        public ReservationTourView(Tour chosenTour, int guestId)
+        public SerachAndReservationToursView(int guestId)
         {
             InitializeComponent();
-            this.DataContext = new ReservationTourViewModel(chosenTour, guestId);
+            this.DataContext = new SearchAndReservationToursViewModel(guestId);
         }
     }
 }

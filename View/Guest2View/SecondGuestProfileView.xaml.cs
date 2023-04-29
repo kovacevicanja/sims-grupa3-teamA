@@ -61,8 +61,8 @@ namespace BookingProject.View
 
         private void Button_Click_SerachAndReservationTours(object sender, RoutedEventArgs e)
         {
-            SecondGuestSerachAndReservationTours secondGuestSerachAndReservationTours = new SecondGuestSerachAndReservationTours(GuestId);
-            secondGuestSerachAndReservationTours.Show();
+            SerachAndReservationToursView serachAndReservationTours = new SerachAndReservationToursView(GuestId);
+            serachAndReservationTours.Show();
         }
 
         private void Button_Click_MyVouchers (object sender, RoutedEventArgs e)

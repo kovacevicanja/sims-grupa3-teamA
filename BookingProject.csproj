@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Controllers\AccommodationController.cs" />
     <Compile Include="Controllers\AccommodationDateController.cs" />
     <Compile Include="Controllers\AccommodationGuestImageController.cs" />
@@ -255,6 +256,14 @@
     <Compile Include="View\AccommodationRequestsView.xaml.cs">
       <DependentUpon>AccommodationRequestsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Guest2ViewModel\MonitoringActiveToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ReservationTourViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SearchAndReservationToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SecondGuestMyReservationsViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SecondGuestMyVouchersViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\TourRequestStatisticsViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\TourRequestsViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ToursAndGuidesEvaluationViewModel.cs" />
     <Compile Include="View\Guest2View\ActiveToursView.xaml.cs">
       <DependentUpon>ActiveToursView.xaml</DependentUpon>
     </Compile>
@@ -292,6 +301,9 @@
     </Compile>
     <Compile Include="View\Guest2View\CreateTourRequestView.xaml.cs">
       <DependentUpon>CreateTourRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\TourRequestsChartView.xaml.cs">
+      <DependentUpon>TourRequestsChartView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\TourRequestStatisticsView.xaml.cs">
       <DependentUpon>TourRequestStatisticsView.xaml</DependentUpon>
@@ -383,8 +395,8 @@
     <Compile Include="View\Guest2View\SecondGuestProfileView.xaml.cs">
       <DependentUpon>SecondGuestProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Guest2View\SecondGuestSearchAndReservationTours.xaml.cs">
-      <DependentUpon>SecondGuestSearchAndReservationTours.xaml</DependentUpon>
+    <Compile Include="View\Guest2View\SearchAndReservationToursView.xaml.cs">
+      <DependentUpon>SearchAndReservationToursView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
@@ -460,6 +472,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest2View\CreateTourRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\TourRequestsChartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -583,7 +599,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Guest2View\SecondGuestSearchAndReservationTours.xaml">
+    <Page Include="View\Guest2View\SearchAndReservationToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

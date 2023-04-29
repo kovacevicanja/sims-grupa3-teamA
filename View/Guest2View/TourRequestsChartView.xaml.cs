@@ -1,12 +1,5 @@
-﻿using BookingProject.Controller;
-using BookingProject.Controllers;
-using BookingProject.Domain;
-using BookingProject.Model;
-using BookingProject.View.Guest2ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,14 +15,13 @@ using System.Windows.Shapes;
 namespace BookingProject.View.Guest2View
 {
     /// <summary>
-    /// Interaction logic for TourRequestsView.xaml
+    /// Interaction logic for TourRequestsChartView.xaml
     /// </summary>
-    public partial class TourRequestsView : Window
+    public partial class TourRequestsChartView : Window
     {
-        public TourRequestsView(int guestId)
+        public TourRequestsChartView()
         {
             InitializeComponent();
-            this.DataContext = new TourRequestsViewModel(guestId);
         }
     }
 }

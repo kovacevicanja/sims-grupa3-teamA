@@ -31,7 +31,7 @@
 
             <DataGrid DockPanel.Dock="Bottom"
                               SelectedItem="{Binding Path=ChosenKeyPoint, UpdateSourceTrigger=PropertyChanged}"
-                              Name="KeyPointDataGrid"
+                              Name="KeyPointDataGrid" ItemsSource="{Binding Path=KeyPoints, UpdateSourceTrigger=PropertyChanged}"
                               AutoGenerateColumns="False" IsReadOnly="True" Margin="297,22,300,67" RenderTransformOrigin="0.5,0.5">
                 <DataGrid.RenderTransform>
                     <TransformGroup>
@@ -50,7 +50,7 @@
         </Grid>
 
         <WrapPanel Grid.Row = "2" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="414,318,0,0" >
-            <Button Width="120" IsDefault="True" Click="Button_Click_Cancel" Content="Cancel"/>
+            <Button Width="120" IsDefault="True" Command="{Binding CancelCommand}"  Content="Cancel"/>
         </WrapPanel>
     </Grid>
 </Window>

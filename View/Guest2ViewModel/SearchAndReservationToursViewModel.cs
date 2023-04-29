@@ -1,36 +1,22 @@
-﻿using System;
+﻿using BookingProject.Commands;
+using BookingProject.Controller;
+using BookingProject.Model.Enums;
+using BookingProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using BookingProject.Controller;
-using BookingProject.Controllers;
-using BookingProject.Model;
-using BookingProject.Model.Enums;
-using BookingProject.Model.Images;
-using Microsoft.VisualBasic.FileIO;
+using System.ComponentModel;
 
-namespace BookingProject.View
+namespace BookingProject.View.Guest2ViewModel
 {
-    /// <summary>
-    /// Interaction logic for SecondGuestView.xaml
-    /// </summary>
-    public partial class SecondGuestSerachAndReservationTours : Window
+    public class SearchAndReservationToursViewModel
     {
         private TourController _tourController;
-        private ObservableCollection<Tour> _tours;
         public string City { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
@@ -38,50 +24,60 @@ namespace BookingProject.View
         public string NumOfGuests { get; set; } = string.Empty;
         public Tour ChosenTour { get; set; }
         public int GuestId { get; set; }
-        public User User { get; set; }  
-        public SecondGuestSerachAndReservationTours(int guestId)
+        public User User { get; set; }
+        public RelayCommand SearchCommand { get; }
+        public RelayCommand CancelCommand { get; }
+        public RelayCommand BookTourCommand { get; }
+        public RelayCommand LogOutCommand { get; }
+        public RelayCommand ShowAllToursCommand { get; }
+        public ObservableCollection<LanguageEnum> Languages { get; set; }
+        public ObservableCollection<Tour> Tours { get; set; }
+        public SearchAndReservationToursViewModel(int guestId)
         {
-            InitializeComponent();
-            this.DataContext = this;
             _tourController = new TourController();
-            _tours = new ObservableCollection<Tour>(_tourController.GetAll());
+            Tours = new ObservableCollection<Tour>(_tourController.GetAll());
 
-            TourDataGrid.ItemsSource = _tours;
             GuestId = guestId;
             User = new User();
 
-            languageComboBox.ItemsSource = new List<string>() { "ENGLISH", "SERBIAN", "GERMAN" };
+            SearchCommand = new RelayCommand(Button_Click_Search, CanExecute);
+            BookTourCommand = new RelayCommand(Button_Click_Book, CanExecute);
+            LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
+            ShowAllToursCommand = new RelayCommand(Button_Click_ShowAll, CanExecute);
+            CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
+
+            var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
+            Languages = new ObservableCollection<LanguageEnum>(languages);
         }
 
-        private void Button_Click_Search(object sender, RoutedEventArgs e)
-        {
-            _tourController.Search(_tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
+        private bool CanExecute(object param) { return true; }
 
+        private void Button_Click_Search(object param)
+        {
+            _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
         }
 
-        private void Button_Click_ShowAll(object sender, RoutedEventArgs e)
+        private void Button_Click_ShowAll(object param)
         {
-
-            _tourController.ShowAll(_tours);
+            _tourController.ShowAll(Tours);
         }
-
-        private void Button_Click_Cancel_Search(object sender, RoutedEventArgs e)
+        private void Button_Click_Cancel(object param)
         {
-            this.Close();
+            CloseWindow();
         }
-
-        private void Button_Click_Book(object sender, RoutedEventArgs e)
+        private void CloseWindow()
         {
-            if (ChosenTour != null)
+            foreach (Window window in App.Current.Windows)
             {
-                ReservationTourView reservationTourView = new ReservationTourView(ChosenTour, GuestId);
-                reservationTourView.Show();
+                if (window.GetType() == typeof(SerachAndReservationToursView)) { window.Close(); }
             }
         }
 
-        private void Button_Click_Cancel(object sender, RoutedEventArgs e)
+        private void Button_Click_Book(object param)
         {
-            this.Close();
+            ReservationTourView reservationTourView = new ReservationTourView(ChosenTour, GuestId);
+            reservationTourView.Show();
+            CloseWindow();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -132,7 +128,7 @@ namespace BookingProject.View
             }
         }
 
-        private LanguageEnum _tourLanguage; 
+        private LanguageEnum _tourLanguage;
         public LanguageEnum TourLanguage
         {
             get => _tourLanguage;
@@ -173,8 +169,8 @@ namespace BookingProject.View
                 }
             }
         }
-        private List<DateTime> _startingTime; 
-        public List <DateTime> StartingTime
+        private List<DateTime> _startingTime;
+        public List<DateTime> StartingTime
         {
             get => _startingTime;
             set
@@ -183,12 +179,13 @@ namespace BookingProject.View
                 OnPropertyChanged();
             }
         }
-        private void Button_Click_LogOut(object sender, RoutedEventArgs e)
+        private void Button_Click_LogOut(object param)
         {
             User.Id = GuestId;
             User.IsLoggedIn = false;
             SignInForm signInForm = new SignInForm();
             signInForm.ShowDialog();
+            CloseWindow();
         }
     }
 }
