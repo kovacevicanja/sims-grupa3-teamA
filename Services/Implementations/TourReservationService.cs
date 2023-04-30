@@ -121,7 +121,7 @@ namespace BookingProject.Services
             }
             UnusedVouchers(guest, chosenTour);
         }
-        public void UnusedVouchers (User guest, Tour chosenTour)
+        public void UnusedVouchers(User guest, Tour chosenTour)
         {
             guest.Vouchers = Injector.CreateInstance<IVoucherService>().GetUserVouhers(guest.Id);
 
@@ -129,7 +129,7 @@ namespace BookingProject.Services
             {
                 CustomMessageBox.ShowCustomMessageBox("The system has detected that you have an unused voucher. You can use them now.");
                 SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(guest.Id, chosenTour);
-                secondGuestMyVouchers.ShowDialog();
+                secondGuestMyVouchers.Show();
             }
         }
         public void FreePlaceMessage (int maxGuests)

@@ -29,6 +29,7 @@
     <Grid Margin="0,0,0,6">
         <Image Source="ToursImages/gift2.jpg" Margin="655,397,-1,-27" />
         <Image Source="ToursImages/masnica.jpg" Margin="-1,0,618,337" />
+        <Image Source="ToursImages/profilepic.png" Margin="727,10,224,649" />
 
         <Label Content="My Vouchers" FontSize="35" FontWeight="Bold" Foreground="Black" Margin="108,148,588,509" />
         <DataGrid DockPanel.Dock="Bottom"
@@ -44,12 +45,12 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Beginning of the voucher validity" Width="340" Binding="{Binding StartDate}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Expiry date" Width="230" Binding="{Binding EndDate}"></DataGridTextColumn>
-                <DataGridTextColumn Header="State of the voucher" Width="200" Binding="{Binding State}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Beginning of the voucher validity" Width="*" Binding="{Binding StartDate}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Expiry date" Width="*" Binding="{Binding EndDate}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="272,624,0,0" VerticalAlignment="Top" Width="169" Command="{Binding UseVoucherCommand}" Background="CornflowerBlue"/>
+        <Button Content="Back to profile" IsCancel="True" Height="35" Margin="779,21,55,0" VerticalAlignment="Top" Command="{Binding ProfileCommand}" Background="CornflowerBlue"/>
         <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="561,624,0,0" VerticalAlignment="Top" Width="169" Command="{Binding CancelCommand}" RenderTransformOrigin="0.142,0.501"/>
     </Grid>
 </Window>

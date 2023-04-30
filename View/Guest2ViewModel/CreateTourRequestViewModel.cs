@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.WebPages;
 using System.Windows;
 
 namespace BookingProject.View.Guest2ViewModel
@@ -28,6 +29,8 @@ namespace BookingProject.View.Guest2ViewModel
         public CustomMessageBox CustomMessageBox;
         public RelayCommand CancelCommand { get; }
         public RelayCommand CreateTourRequestCommand { get; }
+        public RelayCommand LogOutCommand { get; }
+        public User User { get; set; }
 
         public CreateTourRequestViewModel(int guestId)
         {
@@ -46,6 +49,9 @@ namespace BookingProject.View.Guest2ViewModel
 
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
             CreateTourRequestCommand = new RelayCommand(Button_Click_CreateTourRequest, CanExecute);
+            LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
+
+            User = new User();
         }
 
         private bool CanExecute(object param) { return true; }
@@ -186,8 +192,20 @@ namespace BookingProject.View.Guest2ViewModel
             StartDate = DateTime.Today;
             EndDate = DateTime.Today;
         }
+
         private void Button_Click_Cancel(object param)
         {
+            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
+            profile.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_LogOut(object param)
+        {
+            User.Id = GuestId;
+            User.IsLoggedIn = false;
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
             CloseWindow();
         }
     }

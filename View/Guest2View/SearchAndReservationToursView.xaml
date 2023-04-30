@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
 
-        Title="Second Guest" Height="761" Width="1024">
+        Title="" Height="761" Width="1024">
 
     <Window.Resources>
         <Style TargetType="Label">
@@ -113,55 +113,59 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Width="184" IsDefault="True" Command="{Binding BookTourCommand}" Content="Book tour" Grid.Column="1" Margin="193,11,-377,31"/>
-            <Button Width="184" IsDefault="True" Command="{Binding CancelCommand}" Content="Cancel" Margin="649,11,-833,31" Grid.Column="1"/>
+            <Button Background="LightBlue" Width="184" IsDefault="True" Command="{Binding BookTourCommand}" Content="Book tour" Grid.Column="1" Margin="193,11,-377,31"/>
+            <Button Background="LightBlue" Width="184" IsDefault="True" Command="{Binding CancelCommand}" Content="Cancel" Margin="649,11,-833,31" Grid.Column="1"/>
+            <Button Background="LightBlue" IsDefault="True" Command="{Binding ProfileCommand}" Content="Back to profile" Margin="14,-635,-113,684" Grid.Column="1"/>
         </Grid>
         <Grid Grid.ColumnSpan="2" Margin="40,5,40,5" Grid.RowSpan="2" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="201*"/>
-                <ColumnDefinition Width="77*"/>
+                <ColumnDefinition Width="27*"/>
+                <ColumnDefinition Width="49*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="279*"/>
                 <ColumnDefinition Width="49*"/>
-                <ColumnDefinition Width="338*"/>
+                <ColumnDefinition Width="36*"/>
+                <ColumnDefinition Width="302*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="33*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <Image Source="ToursImages/6.png" Margin="-38,77,78,-10" Grid.ColumnSpan="3" Grid.RowSpan="2" />
-            <Image Source="ToursImages/6.png" Margin="145,67,-40,-10" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="3" />
+            <Image Source="ToursImages/6.png" Margin="-38,77,78,-10" Grid.ColumnSpan="5" Grid.RowSpan="2" />
+            <Image Source="ToursImages/6.png" Margin="145,67,-40,-10" Grid.Column="4" Grid.RowSpan="2" Grid.ColumnSpan="4" />
 
 
-            <Label Content="Discover Tours Wherever You Imagine" FontSize="35" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="5" Margin="125,-43,150,181" />
+            <Label Content="Discover Tours Wherever You Imagine" FontSize="35" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="8" Margin="164,-33,112,171" />
 
             <Label Content="City:" Margin="-23,10,165,0" VerticalAlignment="Top"/>
             <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Height="40" Text="{Binding City}" Margin="-25,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145"/>
-            <Label Content="Country:" Margin="125,10,0,0" RenderTransformOrigin="0.514,0.615" HorizontalAlignment="Left" VerticalAlignment="Top" Width="113" Grid.ColumnSpan="2"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding Country}" Margin="125,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="40" Grid.ColumnSpan="2"/>
-            <Label Width="178" Content="Tour duration:" Margin="75,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="75,57,0,0" Text="{Binding Duration}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="40" Grid.Column="1" Grid.ColumnSpan="2"/>
-            <Label Width="139" Content="Language:" Margin="72,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4"/>
-            <ComboBox Margin="72,57,0,0" ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding ChosenLanguage}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Height="40" FontSize="16" FontWeight="Bold" Grid.Column="4"/>
-            <Label Content="Number of guests:" Margin="176,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" Grid.Column="2" Grid.ColumnSpan="3"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="181,57,0,0" Text="{Binding NumOfGuests}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="40" Grid.Column="2" Grid.ColumnSpan="3"/>
-            <Grid Margin="0,77,0,-47" Grid.ColumnSpan="5" Grid.RowSpan="2">
+            <Label Content="Country:" Margin="125,10,0,0" RenderTransformOrigin="0.514,0.615" HorizontalAlignment="Left" VerticalAlignment="Top" Width="113" Grid.ColumnSpan="3"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding Country}" Margin="125,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="40" Grid.ColumnSpan="3"/>
+            <Label Width="178" Content="Tour duration:" Margin="48,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="3"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="48,57,0,0" Text="{Binding Duration}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="40" Grid.Column="2" Grid.ColumnSpan="3"/>
+            <Label Width="139" Content="Language:" Margin="36,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="7"/>
+            <ComboBox Margin="36,57,0,0" ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding ChosenLanguage}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Height="40" FontSize="16" FontWeight="Bold" Grid.Column="7"/>
+            <Label Content="Number of guests:" Margin="176,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" Grid.Column="4" Grid.ColumnSpan="4"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="181,57,0,0" Text="{Binding NumOfGuests}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="40" Grid.Column="4" Grid.ColumnSpan="4"/>
+            <Grid Margin="0,77,0,-47" Grid.ColumnSpan="8" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="85*"/>
                     <RowDefinition Height="113*"/>
                 </Grid.RowDefinitions>
             </Grid>
-            <Grid Margin="-25,133,-77,-134" Grid.RowSpan="2" Grid.ColumnSpan="5">
+            <Grid Margin="-25,133,-77,-134" Grid.RowSpan="2" Grid.ColumnSpan="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Search" IsCancel="True" Command="{Binding SearchCommand}" Margin="851,-76,-900,265" Grid.Column="2" RenderTransformOrigin="0.629,0.701"/>
-                <Button Content="Show all tours" IsDefault="True" Command="{Binding ShowAllToursCommand}" Width="173" Margin="38,428,-135,-245" Grid.Column="2"/>
-                <Button Content="Log out" IsDefault="True" Command="{Binding LogOutCommand}" Margin="851,-160,-867,351" Grid.Column="2"/>
+                <Button Background="LightBlue" Content="Search" IsCancel="True" Command="{Binding SearchCommand}" Margin="851,-76,-900,265" Grid.Column="2" RenderTransformOrigin="0.629,0.701"/>
+                <Button Background="LightBlue" Content="Show all tours" IsDefault="True" Command="{Binding ShowAllToursCommand}" Width="173" Margin="38,428,-135,-245" Grid.Column="2"/>
+                <Button Background="LightBlue" Content="Log out" IsDefault="True" Command="{Binding LogOutCommand}" Margin="851,-160,-867,351" Grid.Column="2"/>
             </Grid>
-            <Grid Margin="36,149,40,-118" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Grid Margin="36,149,39,-118" Grid.ColumnSpan="3" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="41*"/>
                     <ColumnDefinition Width="161*"/>

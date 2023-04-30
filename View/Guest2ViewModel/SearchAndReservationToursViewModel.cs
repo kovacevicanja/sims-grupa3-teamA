@@ -30,6 +30,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand BookTourCommand { get; }
         public RelayCommand LogOutCommand { get; }
         public RelayCommand ShowAllToursCommand { get; }
+        public RelayCommand ProfileCommand { get; }
         public ObservableCollection<LanguageEnum> Languages { get; set; }
         public ObservableCollection<Tour> Tours { get; set; }
         public SearchAndReservationToursViewModel(int guestId)
@@ -45,12 +46,20 @@ namespace BookingProject.View.Guest2ViewModel
             LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
             ShowAllToursCommand = new RelayCommand(Button_Click_ShowAll, CanExecute);
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
+            ProfileCommand = new RelayCommand(Button_BackToProfile, CanExecute);
 
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
         }
 
         private bool CanExecute(object param) { return true; }
+
+        private void Button_BackToProfile(object param)
+        {
+            SecondGuestProfileView secondGuestProfile = new SecondGuestProfileView(GuestId);
+            secondGuestProfile.Show();
+            CloseWindow();
+        }
 
         private void Button_Click_Search(object param)
         {
@@ -186,7 +195,7 @@ namespace BookingProject.View.Guest2ViewModel
             User.Id = GuestId;
             User.IsLoggedIn = false;
             SignInForm signInForm = new SignInForm();
-            signInForm.ShowDialog();
+            signInForm.Show();
             CloseWindow();
         }
     }

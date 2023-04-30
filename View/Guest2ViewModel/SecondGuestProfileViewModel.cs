@@ -69,23 +69,27 @@ namespace BookingProject.View.Guest2ViewModel
         {
             SecondGuestMyAttendedToursView secondGuestMyAttendedTours = new SecondGuestMyAttendedToursView(GuestId);
             secondGuestMyAttendedTours.Show();
+            CloseWindow();
         }
         private void Button_Click_MyReservations(object param)
         {
             SecondGuestMyReservations secondGuestMyReservations = new SecondGuestMyReservations(GuestId);
             secondGuestMyReservations.Show();
+            CloseWindow();
         }
 
         private void Button_Click_SerachAndReservationTours(object param)
         {
             SerachAndReservationToursView serachAndReservationTours = new SerachAndReservationToursView(GuestId);
             serachAndReservationTours.Show();
+            CloseWindow();
         }
 
         private void Button_Click_MyVouchers(object param)
         {
             SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(GuestId, Tour);
-            secondGuestMyVouchers.ShowDialog();
+            secondGuestMyVouchers.Show();
+            CloseWindow();
         }
 
         private void Button_Click_LogOut(object param)
@@ -121,23 +125,27 @@ namespace BookingProject.View.Guest2ViewModel
             else
             {
                 ActiveToursView activeToursView = new ActiveToursView(activeToursIds);
-                activeToursView.ShowDialog();
+                activeToursView.Show();
+                CloseWindow();
             }
         }
         private void Button_Click_CreateTourRequest(object param)
         {
             CreateTourRequestView createTourRequestView = new CreateTourRequestView(GuestId);
-            createTourRequestView.ShowDialog();
+            createTourRequestView.Show();
+            CloseWindow();
         }
         private void Button_Click_MyTourRequests(object param)
         {
             TourRequestsView tourRequestsView = new TourRequestsView(GuestId);
-            tourRequestsView.ShowDialog();
+            tourRequestsView.Show();
+            CloseWindow();
         }
         private void Button_Click_RequestStatistics(object param)
         {
             TourRequestStatisticsView tourRequestStatisticsView = new TourRequestStatisticsView(GuestId);
-            tourRequestStatisticsView.ShowDialog();
+            tourRequestStatisticsView.Show();
+            CloseWindow();
         }
     }
 }

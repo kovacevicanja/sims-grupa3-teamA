@@ -27,8 +27,10 @@ namespace BookingProject.View.Guest2ViewModel
         public TourReservationController TourReservationController { get; set; }
         public Tour ChosenTour { get; set; }
         public CustomMessageBox CustomMessageBox { get; set; }
-        public RelayCommand UseVoucherCommand { get; set; }
-        public RelayCommand CancelCommand { get; set; }
+        public RelayCommand UseVoucherCommand { get; }
+        public RelayCommand CancelCommand { get; }
+        public RelayCommand ProfileCommand { get; }
+        public int GuestId { get; set; }
         public SecondGuestMyVouchersViewModel(int guestId, Tour chosenTour)
         {
             VoucherController = new VoucherController();
@@ -38,13 +40,15 @@ namespace BookingProject.View.Guest2ViewModel
             ChosenTour = chosenTour;
             TourReservationController = new TourReservationController();
 
-
             VoucherController.DeleteExpiredVouchers();
 
             _vouchersList = new List<Voucher>();
 
             UseVoucherCommand = new RelayCommand(Button_UseVoucher, CanUse);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
+            ProfileCommand = new RelayCommand(Button_BackToProfile, CanExecute);
+
+            GuestId = guestId;
         }
 
         private bool CanExecute(object param) { return true; }
@@ -53,6 +57,13 @@ namespace BookingProject.View.Guest2ViewModel
         {
             if (ChosenVoucher != null) { return true; }
             else { return false;  }
+        }
+
+        private void Button_BackToProfile(object param)
+        {
+            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
+            profile.Show();
+            CloseWindow();
         }
 
         private void Button_UseVoucher(object param)

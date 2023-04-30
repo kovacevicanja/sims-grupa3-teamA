@@ -45,6 +45,8 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_Close(object param)
         {
+            SerachAndReservationToursView searchAndReservation = new SerachAndReservationToursView(GuestId);
+            searchAndReservation.Show();
             CloseWindow();
         }
         private void CloseWindow()
