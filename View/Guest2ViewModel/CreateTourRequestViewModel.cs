@@ -31,6 +31,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand CreateTourRequestCommand { get; }
         public RelayCommand LogOutCommand { get; }
         public User User { get; set; }
+        public int Flag { get; set; }
 
         public CreateTourRequestViewModel(int guestId)
         {
@@ -40,6 +41,8 @@ namespace BookingProject.View.Guest2ViewModel
             _tourRequestController = new TourRequestController();
             _tourLocationController = new TourLocationController();
             _userController = new UserController();
+
+            Flag = 0;
 
             GuestId = guestId;
             CustomMessageBox = new CustomMessageBox();
@@ -55,7 +58,7 @@ namespace BookingProject.View.Guest2ViewModel
         }
 
         private bool CanExecute(object param) { return true; }
- 
+
         private void CloseWindow()
         {
             foreach (Window window in App.Current.Windows)
@@ -176,8 +179,6 @@ namespace BookingProject.View.Guest2ViewModel
             Location location = new Location();
             location.City = City;
             location.Country = Country;
-            _tourLocationController.Create(location);
-            tourRequest.Location = location;
 
             tourRequest.Description = Description;
             tourRequest.StartDate = StartDate;
@@ -187,16 +188,30 @@ namespace BookingProject.View.Guest2ViewModel
             tourRequest.Status = Domain.Enums.TourRequestStatus.PENDING;
             tourRequest.Guest.Id = GuestId;
 
-            _tourRequestController.Create(tourRequest);
+            if (tourRequest.Description.IsEmpty() || location.City.IsEmpty() || location.Country.IsEmpty() || (tourRequest.StartDate == DateTime.Today
+                && tourRequest.EndDate == DateTime.Today) || tourRequest.GuestsNumber == default(int))
+            {
+                CustomMessageBox.ShowCustomMessageBox("You can not create a tour request. Some of the required fields are not filled out.");
+            }
+            else
+            {
+                if (!(location.City.IsEmpty() || location.Country.IsEmpty()))
+                {
+                    _tourLocationController.Create(location);
+                    tourRequest.Location = location;
+                }
 
-            CustomMessageBox.ShowCustomMessageBox("You have successfully created a tour request. If you want, you can create more of them.");
+                _tourRequestController.Create(tourRequest);
+    
+                CustomMessageBox.ShowCustomMessageBox("You have successfully created a tour request. If you want, you can create more of them.");
 
-            City = "";
-            Country = "";
-            Description = "";
-            GuestsNumber = 0;
-            StartDate = DateTime.Today;
-            EndDate = DateTime.Today;
+                City = "";
+                Country = "";
+                Description = "";
+                GuestsNumber = 0;
+                StartDate = DateTime.Today;
+                EndDate = DateTime.Today;
+            }
         }
 
         private void Button_Click_Cancel(object param)

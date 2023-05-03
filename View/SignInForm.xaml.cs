@@ -10,7 +10,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BookingProject.Controller;
 using BookingProject.Model;
 using BookingProject.Domain;
 using BookingProject.View.CustomMessageBoxes;

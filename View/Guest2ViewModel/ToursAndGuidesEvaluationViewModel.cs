@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows;
+using System.Web.WebPages;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -153,12 +154,21 @@ namespace BookingProject.View.Guest2ViewModel
         {
             TourEvaluationImage TourImage = new TourEvaluationImage();
             TourImage.Url = ImageUrl;
-            TourImage.TourEvaluation.Id = tourEvaluation.Id;
-            tourEvaluation.Images.Add(TourImage);
-            TourEvaluationImageController.Create(TourImage);
 
-            CustomMessageBox.ShowCustomMessageBox("You have successfully added a picture, if you want you can add more.");
-            ImageUrl = "";
+            if (TourImage.Url.IsEmpty())
+            {
+                CustomMessageBox.ShowCustomMessageBox("You cannot add an image if you have not entered a url.");
+            }
+            else
+            {
+                TourImage.TourEvaluation.Id = tourEvaluation.Id;
+                tourEvaluation.Images.Add(TourImage);
+
+                TourEvaluationImageController.Create(TourImage);
+
+                CustomMessageBox.ShowCustomMessageBox("You have successfully added a picture, if you want you can add more.");
+                ImageUrl = "";
+            }
         }
         private void Button_Click_Rate(object param)
         {
@@ -170,13 +180,20 @@ namespace BookingProject.View.Guest2ViewModel
             tourEvaluation.Tour.Id = ChosenTour.Id;
             tourEvaluation.Guest.Id = GuestId;
 
-            TourEvaluationController.Create(tourEvaluation);
+            if (tourEvaluation.GuideKnowledge == 0 || tourEvaluation.GuideLanguage == 0 || tourEvaluation.TourInterestigness == 0)
+            {
+                CustomMessageBox.ShowCustomMessageBox("Your rating cannot be accepted. You have left some rating fields empty.");
+            }
+            else
+            {
+                TourEvaluationController.Create(tourEvaluation);
 
-            CustomMessageBox.ShowCustomMessageBox("We appreciate your opinion. Thank you for helping us improve.");
+                CustomMessageBox.ShowCustomMessageBox("We appreciate your opinion. Thank you for helping us improve.");
 
-            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
-            profile.Show();
-            CloseWindow();
+                SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
+                profile.Show();
+                CloseWindow();
+            }
         }
         private void CloseWindow()
         {

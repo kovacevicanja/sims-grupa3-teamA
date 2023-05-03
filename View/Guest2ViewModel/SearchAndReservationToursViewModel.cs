@@ -11,10 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace BookingProject.View.Guest2ViewModel
 {
-    public class SearchAndReservationToursViewModel
+    public class SearchAndReservationToursViewModel : INotifyPropertyChanged
     {
         private TourController _tourController;
         public string City { get; set; } = string.Empty;
@@ -42,7 +43,7 @@ namespace BookingProject.View.Guest2ViewModel
             User = new User();
 
             SearchCommand = new RelayCommand(Button_Click_Search, CanExecute);
-            BookTourCommand = new RelayCommand(Button_Click_Book, CanExecute);
+            BookTourCommand = new RelayCommand(Button_Click_Book, CanBook);
             LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
             ShowAllToursCommand = new RelayCommand(Button_Click_ShowAll, CanExecute);
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
@@ -54,6 +55,12 @@ namespace BookingProject.View.Guest2ViewModel
 
         private bool CanExecute(object param) { return true; }
 
+        private bool CanBook(object param)
+        {
+            if (ChosenTour == null) { return false; }
+            else { return true; }
+        }
+
         private void Button_BackToProfile(object param)
         {
             SecondGuestProfileView secondGuestProfile = new SecondGuestProfileView(GuestId);
@@ -63,7 +70,18 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_Search(object param)
         {
-            _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
+            try
+            {
+                if (Convert.ToInt32(NumOfGuests) <= 0) 
+                {
+                    MessageBox.Show("You have not entered a reasonable value to search by number of guests111.");
+                }
+                 _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
+            }
+            catch
+            {
+                MessageBox.Show("You have not entered a reasonable value to search by number of guests222.");
+            }
         }
 
         private void Button_Click_ShowAll(object param)

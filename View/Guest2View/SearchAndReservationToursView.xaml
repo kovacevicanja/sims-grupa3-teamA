@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookingProject.View"
+        xmlns:local="clr-namespace:BookingProject.View" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
 
         Title="" Height="761" Width="1024">
@@ -148,7 +148,23 @@
             <Label Width="139" Content="Language:" Margin="36,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="7"/>
             <ComboBox Margin="36,57,0,0" ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding ChosenLanguage}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Height="40" FontSize="16" FontWeight="Bold" Grid.Column="7"/>
             <Label Content="Number of guests:" Margin="176,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" Grid.Column="4" Grid.ColumnSpan="4"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="181,57,0,0" Text="{Binding NumOfGuests}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="40" Grid.Column="4" Grid.ColumnSpan="4"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="181,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="40" Grid.Column="4" Grid.ColumnSpan="4">
+                <TextBox.Text>
+                    <Binding Path="NumOfGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <val:IntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Black" FontSize="18" VerticalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Width="{Binding ActualWidth, ElementName=textBox}"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
             <Grid Margin="0,77,0,-47" Grid.ColumnSpan="8" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="85*"/>

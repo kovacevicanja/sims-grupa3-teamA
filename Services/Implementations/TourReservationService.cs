@@ -91,17 +91,7 @@ namespace BookingProject.Services
         }
         public void TryToBook(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest)
         {
-            if (int.Parse(numberOfGuests) <= 0)
-            {
-                CustomMessageBox.ShowCustomMessageBox("If you want to make a reservation, you must enter the reasonable number of people.");
-            }
-            else
-            {
-                if (BookingSuccess(chosenTour, numberOfGuests, selectedDate, guest))
-                {
-                    SuccessfulReservationMessage(numberOfGuests, guest, chosenTour);
-                }
-            }
+            if (BookingSuccess(chosenTour, numberOfGuests, selectedDate, guest)) SuccessfulReservationMessage(numberOfGuests, guest, chosenTour);
         }
         public void FullyBookedTours(Tour choosenTour, DateTime selectedDate, User guest)
         {

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookingProject.View"
+        xmlns:local="clr-namespace:BookingProject.View" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
         Title="ReservationTourView" Height="552" Width="1024">
 
@@ -55,7 +55,30 @@
                 <ColumnDefinition Width="233*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Margin="-1,82,357,195" Content="Enter the number of guests:" Grid.ColumnSpan="2"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Grid.Row="0" Text="{Binding EnteredGuests}" Margin="0,88,328,219" Grid.Column="1" RenderTransformOrigin="0.486,0.596"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" x:Name ="EnteredGuests" Margin="0,89,319,0" Height="32" VerticalAlignment="Top" Grid.Column="1">
+                <TextBox.Text>
+                    <Binding Path="EnteredGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <val:IntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Foreground="Gray" FontSize="18"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
             <Label Grid.Row="0" Grid.Column="0" Margin="-1,176,10,100" Content="Select the date and time:"/>
             <ComboBox x:Name="TourDatesComboBox" Background="LightBlue"
               ItemsSource="{Binding ChosenTour.StartingTime}"

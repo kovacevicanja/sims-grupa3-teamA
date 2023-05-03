@@ -3,12 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookingProject.View"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
         Title="CreateTourRequestView" Height="761" Width="1024">
 
     <Window.Resources>
+        <Style x:Key="ValidationMessageStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -98,15 +101,38 @@
             <Label Grid.Row="4" Grid.Column="0" Content="Start date" Margin="232,20,354,15" RenderTransformOrigin="0.887,1.009" Grid.ColumnSpan="2"/>
             <Label Grid.Row="5" Grid.Column="0" Content="End date" Margin="244,7,0,33" RenderTransformOrigin="0.565,0.545"/>
 
-            <TextBox x:Name="txtCity" Grid.Row="0" Grid.Column="1" Text="{Binding City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0,12,186,12"/>
+            <TextBox x:Name="txtCity" Grid.Row="0" Grid.Column="1" Text="{Binding City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0,14,186,12"/>
 
-            <TextBox x:Name="txtCountry" Grid.Column="1" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="181,12,0,12"/>
+            <TextBox x:Name="txtCountry" Grid.Column="1" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="181,14,0,12"/>
 
             <TextBox x:Name="txtDescription" Grid.Row="1" Grid.Column="1" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="76" VerticalAlignment="Center"/>
 
             <ComboBox Background="LightBlue" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Languages}" SelectedItem="{Binding ChosenLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="0,20,0,10"/>
 
-            <TextBox x:Name="txtGuestsNumber" Grid.Row="3" Grid.Column="1" Text="{Binding GuestsNumber, UpdateSourceTrigger=PropertyChanged}" Margin="0,16,290,15"/>
+            <TextBox x:Name ="GuestsNumber" Grid.Column="1" Grid.Row="3" Margin="0,0,274,0" Height="41" VerticalAlignment="Center">
+                <TextBox.Text>
+                    <Binding Path="GuestsNumber" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <val:IntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Foreground="Gray" FontSize="18"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
 
             <DatePicker x:Name="datePickerStartDate" Grid.Row="4" Grid.Column="1" SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" 
             SelectedDateFormat="Long" DisplayDateStart="{x:Static sys:DateTime.Today}" Margin="0,23,0,17">
