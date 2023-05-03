@@ -5,66 +5,121 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="ToursAndGuidesEvaluationView" Height="450" Width="800">
-    <Grid>
+        Title="ToursAndGuidesEvaluationView" Height="761" Width="1024">
+
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="BoldAndLargeTextBoxStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="MyComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid Margin="10,193,-10,-193">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="64*"/>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="473*"/>
+            <ColumnDefinition Width="120*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="182*"/>
+            <ColumnDefinition Width="707*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="183.04"></RowDefinition>
+            <RowDefinition Height="184.828"/>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="2" Height="300" Margin="28,25,121,25">
+
+
+
+        <Image Source="ToursImages/review1.jpg" Margin="112,24,132,72" RenderTransformOrigin="0.456,-0.21" Grid.ColumnSpan="3"/>
+        <Image Source="ToursImages/review2.jpg" Margin="29,82,598,21" RenderTransformOrigin="0.456,-0.21" Grid.Column="3"/>
+        <Image Source="ToursImages/review133.png" Margin="108,-249,0,89" RenderTransformOrigin="0.456,-0.21" Grid.Column="3" Grid.RowSpan="2"/>
+        <Image Source="ToursImages/review142.png" Margin="-55,8,361,191" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
+        <Image Source="ToursImages/review13.png" Margin="59,-74,650,165" RenderTransformOrigin="0.456,-0.21" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Image Source="ToursImages/review141.png" Margin="223,128,-154,187" RenderTransformOrigin="0.456,-0.21" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-12.502"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+        <Grid>
+            <Button FontSize="28" Content="+" Background="LightBlue" Command="{Binding AddImageCommand}" Margin="905,289,-833,-148" RenderTransformOrigin="1.649,0.552"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="2" Height="300" Margin="31,34,118,34" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Height="30" >Guide knowledge</Label>
-            <Label Grid.Row="1" Grid.Column="0" Height="30" >Guide language</Label>
-            <Label Grid.Row="2" Grid.Column="0" Height="30" >Tour interestigness</Label>
-            <Label Grid.Row="3" Grid.Column="0" Height="30" >Additional comment</Label>
-            <Label Grid.Row="4" Grid.Column="0" Height="30" >Images</Label>
+            <Label Grid.Row="0" Grid.Column="0" Margin="0,10,10,5" Content="Guide knowledge" />
+            <Label Grid.Row="1" Grid.Column="0" Margin="0,8,30,8" Content="Guide language" />
+            <Label Grid.Row="2" Grid.Column="0" Margin="-1,8,10,8" Content="Tour interestigness" />
+            <Label Grid.Row="3" Grid.Column="0" Margin="0,7,30,57" Grid.RowSpan="2" Content="Additional comment" />
+            <Label Grid.Row="4" Grid.Column="0" Margin="0,8,30,2" Content="Images" />
+            <ComboBox Style="{StaticResource MyComboBoxStyle}" Grid.Row="0" ItemsSource="{Binding GuideKnowledgeOption}" HorizontalAlignment="Left" Width="50"  SelectedItem="{Binding ChosenGuideKnowledge, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,10" Grid.Column="1" />
+            <ComboBox Style="{StaticResource MyComboBoxStyle}" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding GuideLanguageOption}" HorizontalAlignment="Left" Width="49"  SelectedItem="{Binding ChosenGuideLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,10" />
+            <ComboBox Style="{StaticResource MyComboBoxStyle}" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding TourInterestignessOption}" HorizontalAlignment="Left" Width="50"  SelectedItem="{Binding ChosenInterestigness, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,10" RenderTransformOrigin="0.5,0.5" >
+                <ComboBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </ComboBox.RenderTransform>
+            </ComboBox>
 
-            <TextBox Grid.Row="0" Grid.Column="1" 
-                     Text="{Binding Path=GuideKnowledge, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Height="30"></TextBox>
-            <ComboBox  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path=GuideKnowledgeOption}" HorizontalAlignment="Center" Width="272" Height="30"  SelectedItem="{Binding Path=ChosenGuideKnowledge, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
+            <TextBox FontSize="24" FontWeight="Bold" Grid.Row="3" Grid.Column="1" 
+                     Text="{Binding AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="46" VerticalAlignment="Center"/>
 
-            <TextBox Grid.Row="1" Grid.Column="1" 
-                     Text="{Binding Path=GuideLanguage, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Height="30"></TextBox>
-            <ComboBox  Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=GuideLanguageOption}" HorizontalAlignment="Center" Width="272" Height="30"  SelectedItem="{Binding Path=ChosenGuideLanguage, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
-
-            <TextBox Grid.Row="2" Grid.Column="1" 
-                     Text="{Binding Path=TourInterestigness, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Height="30"></TextBox>
-            <ComboBox  Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Path=TourInterestignessOption}" HorizontalAlignment="Center" Width="270" Height="30"  SelectedItem="{Binding Path=ChosenInterestigness, UpdateSourceTrigger=PropertyChanged}" ></ComboBox>
-
-            <TextBox Grid.Row="3" Grid.Column="1" 
-                     Text="{Binding Path=AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0,10,0,10"/>
-
-            <TextBox Grid.Row="5" Grid.Column="1" x:Name="TourImageTextBox"
-                     Text="{Binding Path=ImageUrl, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Height="20"></TextBox>
-            <Button Content="+" Command="{Binding AddImageCommand}"  Grid.Row="4" Grid.Column="1" Height="20" Margin="272,20,-26,20" RenderTransformOrigin="1.649,0.552"/>
+            <TextBox FontSize="24" FontWeight="Bold" Grid.Row="4" Grid.Column="1" x:Name="TourImageTextBox"
+                     Text="{Binding ImageUrl, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0,15,0,2"/>
 
         </Grid>
-        <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Width="171" Height="42" Margin="215,0,0,0" Grid.Column="2" >
-            <Button Content="Rate" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-              Command="{Binding RateCommand}"  Height="30" Width="154" />
+        <Label Content="Review" FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="67,-128,25,254" Grid.ColumnSpan="3" />
+        <Label Content="Your opinion means to us" FontSize="28" FontWeight="Bold" Foreground="LightBlue" Margin="101,-91,541,214" Grid.ColumnSpan="4" />
+
+
+        <WrapPanel Grid.Row = "2" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Height="42" Margin="39,92,0,0" Grid.Column="3" >
+            <Button Background="LightBlue" Content="Rate" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
+              Command="{Binding RateCommand}"  Height="42" Width="164" />
         </WrapPanel>
-        <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Width="171" Height="42" Margin="425,0,0,0" Grid.Column="2" />
-        <Button Content="Cancel" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top"
-              Command="{Binding CancelCommand}"  Height="30" Width="154" Grid.Column="2" Margin="400,21,0,0" Grid.Row="1" />
+        <WrapPanel FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Height="42" Margin="503,-184,0,0" Grid.Column="3" >
+            <Button Background="LightBlue" Content="Log out" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
+              Command="{Binding LogOutCommand}"  Height="42" Width="111" />
+        </WrapPanel>
+        <WrapPanel Grid.Row = "2" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Width="171" Height="42" Margin="249,92,0,0" Grid.Column="3" />
+        <Button Background="LightBlue" Content="Cancel" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top"
+              Command="{Binding CancelCommand}"  Height="42" Width="154" Grid.Column="3" Margin="249,92,0,0" Grid.Row="2" />
+        <Image Source="ToursImages/review6.jpg" Margin="89,11,554,106" RenderTransformOrigin="0.456,-0.21" Grid.Column="3" Grid.Row="1"/>
+        <Image Source="ToursImages/review5.jpg" Margin="0,161,144,144" RenderTransformOrigin="0.456,-0.21" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="1"/>
     </Grid>
 </Window>

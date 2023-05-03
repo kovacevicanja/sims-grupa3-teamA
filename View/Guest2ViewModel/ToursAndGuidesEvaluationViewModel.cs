@@ -40,6 +40,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand AddImageCommand { get; }
         public RelayCommand RateCommand { get; }
         public RelayCommand CancelCommand { get; }
+        public RelayCommand LogOutCommand { get; }
         public ToursAndGuidesEvaluationViewModel(Tour chosenTour, int guestId)
         {
             GuestId = guestId;
@@ -73,6 +74,7 @@ namespace BookingProject.View.Guest2ViewModel
             AddImageCommand = new RelayCommand(Button_Click_AddImage, CanExecute);
             RateCommand = new RelayCommand(Button_Click_Rate, CanExecute);
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
+            LogOutCommand = new RelayCommand(Button_LogOut, CanExecute);
         }
 
         private bool CanExecute(object param) { return true; }
@@ -170,6 +172,10 @@ namespace BookingProject.View.Guest2ViewModel
 
             TourEvaluationController.Create(tourEvaluation);
 
+            CustomMessageBox.ShowCustomMessageBox("We appreciate your opinion. Thank you for helping us improve.");
+
+            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
+            profile.Show();
             CloseWindow();
         }
         private void CloseWindow()
@@ -181,6 +187,15 @@ namespace BookingProject.View.Guest2ViewModel
         }
         private void Button_Click_Cancel(object param)
         {
+            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
+            profile.Show();
+            CloseWindow();
+        }
+
+        private void Button_LogOut(object param)
+        {
+            SignInForm logOut = new SignInForm();
+            logOut.Show();
             CloseWindow();
         }
     }

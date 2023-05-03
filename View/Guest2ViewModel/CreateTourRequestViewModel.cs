@@ -77,6 +77,7 @@ namespace BookingProject.View.Guest2ViewModel
                 }
             }
         }
+
         private DateTime _endDate;
         public DateTime EndDate
         {
@@ -90,6 +91,7 @@ namespace BookingProject.View.Guest2ViewModel
                 }
             }
         }
+
         private string _description;
         public string Description
         {
@@ -103,6 +105,7 @@ namespace BookingProject.View.Guest2ViewModel
                 }
             }
         }
+
         private string _tourLanguage;
         public string TourLanguage
         {
@@ -116,6 +119,7 @@ namespace BookingProject.View.Guest2ViewModel
                 }
             }
         }
+
         private int _guestsNumber;
         public int GuestsNumber
         {
@@ -129,6 +133,7 @@ namespace BookingProject.View.Guest2ViewModel
                 }
             }
         }
+
         private string _country;
         public string Country
         {
@@ -142,6 +147,7 @@ namespace BookingProject.View.Guest2ViewModel
                 }
             }
         }
+
         private string _city;
         public string City
         {
