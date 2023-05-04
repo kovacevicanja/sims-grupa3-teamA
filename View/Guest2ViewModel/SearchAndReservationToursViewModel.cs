@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Controls;
+using BookingProject.View.Guest2View;
+using System.Web.WebPages;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -32,6 +34,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand LogOutCommand { get; }
         public RelayCommand ShowAllToursCommand { get; }
         public RelayCommand ProfileCommand { get; }
+        public RelayCommand SeeMoreCommand { get; }
         public ObservableCollection<LanguageEnum> Languages { get; set; }
         public ObservableCollection<Tour> Tours { get; set; }
         public SearchAndReservationToursViewModel(int guestId)
@@ -43,11 +46,12 @@ namespace BookingProject.View.Guest2ViewModel
             User = new User();
 
             SearchCommand = new RelayCommand(Button_Click_Search, CanExecute);
-            BookTourCommand = new RelayCommand(Button_Click_Book, CanBook);
+            BookTourCommand = new RelayCommand(Button_Click_Book, CanWhenSelected);
             LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
             ShowAllToursCommand = new RelayCommand(Button_Click_ShowAll, CanExecute);
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
             ProfileCommand = new RelayCommand(Button_BackToProfile, CanExecute);
+            SeeMoreCommand = new RelayCommand(Button_Click_SeeMore, CanWhenSelected);
 
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
@@ -55,7 +59,14 @@ namespace BookingProject.View.Guest2ViewModel
 
         private bool CanExecute(object param) { return true; }
 
-        private bool CanBook(object param)
+        private void Button_Click_SeeMore(object param)
+        {
+            SeeMoreAboutTourView seeMore = new SeeMoreAboutTourView(ChosenTour, GuestId);
+            seeMore.Show();
+            CloseWindow();
+        }
+
+        private bool CanWhenSelected(object param)
         {
             if (ChosenTour == null) { return false; }
             else { return true; }
@@ -70,18 +81,26 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_Search(object param)
         {
+            int flag = 0;
             try
             {
-                if (Convert.ToInt32(NumOfGuests) <= 0) 
+                if (NumOfGuests.IsEmpty())
+                {
+                    flag = 1;
+                }
+                else if (Convert.ToInt32(NumOfGuests) <= 0 && flag == 0 ) 
                 {
                     MessageBox.Show("You have not entered a reasonable value to search by number of guests111.");
                 }
+             
                  _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
             }
             catch
             {
                 MessageBox.Show("You have not entered a reasonable value to search by number of guests222.");
             }
+
+            NumOfGuests = string.Empty;
         }
 
         private void Button_Click_ShowAll(object param)

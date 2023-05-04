@@ -20,10 +20,10 @@ namespace BookingProject.View
     /// </summary>
     public partial class SecondGuestMyVouchersView : Window
     {
-        public SecondGuestMyVouchersView(int guestId, Tour chosenTour)
+        public SecondGuestMyVouchersView(int guestId, int chosenTourId)
         {
             InitializeComponent();
-            this.DataContext = new SecondGuestMyVouchersViewModel(guestId, chosenTour);
+            this.DataContext = new SecondGuestMyVouchersViewModel(guestId, chosenTourId);
         }
     }
 }

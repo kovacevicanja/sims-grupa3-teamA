@@ -87,7 +87,7 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_MyVouchers(object param)
         {
-            SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(GuestId, Tour);
+            SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(GuestId, -1);
             secondGuestMyVouchers.Show();
             CloseWindow();
         }

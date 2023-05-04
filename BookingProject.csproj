@@ -268,6 +268,7 @@
     <Compile Include="View\Guest2ViewModel\SecondGuestMyReservationsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyVouchersViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestProfileViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SeeMoreAboutTourViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\TourRequestStatisticsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\TourRequestsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ToursAndGuidesEvaluationViewModel.cs" />
@@ -308,6 +309,9 @@
     </Compile>
     <Compile Include="View\Guest2View\CreateTourRequestView.xaml.cs">
       <DependentUpon>CreateTourRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\SeeMoreAboutTourView.xaml.cs">
+      <DependentUpon>SeeMoreAboutTourView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\TourRequestsChartView.xaml.cs">
       <DependentUpon>TourRequestsChartView.xaml</DependentUpon>
@@ -479,6 +483,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest2View\CreateTourRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\SeeMoreAboutTourView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -860,6 +868,36 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Guest2View\ToursImages\review142.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore11.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

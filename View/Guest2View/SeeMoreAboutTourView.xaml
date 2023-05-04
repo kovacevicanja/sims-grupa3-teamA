@@ -1,0 +1,198 @@
+﻿<Window x:Class="BookingProject.View.Guest2View.SeeMoreAboutTourView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View.Guest2View"
+        mc:Ignorable="d"
+        Title="" Height="761" Width="1024">
+    <Window.Resources>
+        <Style x:Key="ValidationMessageStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="BoldAndLargeTextBoxStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="434.04"></RowDefinition>
+            <RowDefinition Height="0*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Margin="0,9,0,-311" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="95*"/>
+                <ColumnDefinition Width="929*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="241*"/>
+                <RowDefinition Height="495*"/>
+            </Grid.RowDefinitions>
+
+            <Image Source="ToursImages/seeMore9.png" Margin="550,0,-12,50" RenderTransformOrigin="0.456,-0.21" Height="166" VerticalAlignment="Bottom" Grid.Column="1">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="22.9"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+            <Image Source="ToursImages/seeMore1.png" Margin="457,208,408,486" RenderTransformOrigin="0.926,1.446" Grid.RowSpan="2" Grid.Column="1" />
+            <Image Source="ToursImages/seeMore2.png" Margin="464,126,415,60" RenderTransformOrigin="0.456,-0.21" Grid.Column="1" />
+            <Image Source="ToursImages/seeMore3.png" Margin="539,-41,306,222" Grid.Column="1" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-179.271"/>
+                        <TranslateTransform Y="298.018"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="ToursImages/createTour7.jpg" Margin="453,0,404,330" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Height="76" VerticalAlignment="Bottom" Grid.Column="1"/>
+            <Image Source="ToursImages/seeMore4.png" Margin="467,0,415,265" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Height="44" VerticalAlignment="Bottom" Grid.Column="1"/>
+            <Image Source="ToursImages/seeMore5.png" Margin="461,0,416,191" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Height="48" VerticalAlignment="Bottom" Grid.Column="1"/>
+            <Image Source="ToursImages/seeMore7.png" Margin="14,0,34,319" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Height="42" VerticalAlignment="Bottom"/>
+
+            <Label Content="{Binding ChosenTour.Name}" FontSize="35" FontWeight="Bold" Foreground="Black" Margin="0,10,336,0" Height="65" VerticalAlignment="Top" Grid.Column="1" />
+
+            <Button Background="LightBlue" Content="Cancel" IsCancel="True" Command="{Binding CancelCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="504,409,0,0" RenderTransformOrigin="0.481,1.455" Height="42" Width="138" Grid.Row="1" Grid.Column="1"/>
+            <Button Background="LightBlue" Content="Log out" IsDefault="True" Command="{Binding LogOutCommand}" Margin="770,24,39,171" Grid.Column="1"/>
+            <Button Background="LightBlue" IsDefault="True" Command="{Binding BookTourCommand}" Content="Book tour" Margin="203,409,0,44" Grid.Row="1" HorizontalAlignment="Left" Width="164" Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="0" Margin="512,144,10,-156" Grid.RowSpan="2">
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="FontSize" Value="24" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Setter Property="FontSize" Value="24" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+                <Style TargetType="{x:Type DatePicker}">
+                    <Setter Property="FontSize" Value="24" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="City:" Margin="86,0,3,0" Height="74" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Content="Country:" Margin="86,74,5,4" Grid.RowSpan="2"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Langugage:" Margin="86,1,3,5"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Maximum guests:" Margin="86,1,160,1" Grid.ColumnSpan="2"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Duration:" Margin="86,1,0,74" Grid.RowSpan="2" HorizontalAlignment="Left" Width="165"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="Description:" Margin="86,0,3,0"/>
+
+            <Label x:Name="txtCity" Grid.Row="0" Content="{Binding ChosenTour.Location.City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="158,0,93,0" Grid.ColumnSpan="2"/>
+
+            <Label x:Name="txtCountry" Content="{Binding ChosenTour.Location.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="200,74,51,4" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Margin="241,0,10,-131" Grid.Row="5">
+                <TextBlock FontSize="24" FontWeight="Bold" Grid.Row="5" Grid.Column="1" Text="{Binding ChosenTour.Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+               Height="198" Margin="2,0,0,0" TextWrapping="Wrap" Width="241"/>
+            </ScrollViewer>
+            <Label Grid.Row="2" Content="{Binding LanguageDisplay}" Margin="234,1,17,0" Grid.ColumnSpan="2"/>
+
+            <Label x:Name ="GuestsNumber" Content="{Binding ChosenTour.MaxGuests, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="3" Height="73" VerticalAlignment="Center" Margin="53,0,38,0"/>
+
+            <Label Grid.Row="4" Content="{Binding DurationDisplay}" Margin="210,1,38,1" Grid.ColumnSpan="2"/>
+
+            <Grid Margin="-442,-47,273,66" Grid.RowSpan="4">
+                <Image Source="{Binding CurrentImage.Url}" Margin="-8,0,-8,0" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Button Background="White" Command="{Binding MoveToPreviousImageCommand}" VerticalAlignment="Top" Margin="-58,140,437,0" Height="28">
+                    <Button.Content>
+                        <Image Source="ToursImages/seeMore10.png" Width="33" Height="22" />
+                    </Button.Content>
+                </Button>
+                <Button Background="White" Command="{Binding MoveToNextImageCommand}" Margin="432,139,-53,110">
+                    <Button.Content>
+                        <Image Source="ToursImages/seeMore10.png" Width="46" Height="22" RenderTransformOrigin="0.5,0.5" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="-1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Button.Content>
+                </Button>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Column="0" Margin="36,389,499,-221" Grid.RowSpan="2">
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="FontSize" Value="24" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Setter Property="FontSize" Value="24" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+                <Style TargetType="{x:Type DatePicker}">
+                    <Setter Property="FontSize" Value="24" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="16*"/>
+                <ColumnDefinition Width="228*"/>
+                <ColumnDefinition Width="245*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" Content="Starting time:" Margin="4,0,10,0" Height="41" VerticalAlignment="Top"/>
+
+            <Label FontSize="24" RenderTransformOrigin="0.5,0.5" Margin="173,0,10,0" Grid.ColumnSpan="2" Grid.Column="1">
+                <ItemsControl ItemsSource="{Binding ChosenTour.StartingTime}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding StartingDateTime, StringFormat='{}{0:dd/MM/yyy   HH:mm:ss} '}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Label>
+        </Grid>
+    </Grid>
+</Window>

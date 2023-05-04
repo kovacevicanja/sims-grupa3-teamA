@@ -31,13 +31,14 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand CancelCommand { get; }
         public RelayCommand ProfileCommand { get; }
         public int GuestId { get; set; }
-        public SecondGuestMyVouchersViewModel(int guestId, Tour chosenTour)
+        public SecondGuestMyVouchersViewModel(int guestId, int chosenTourId)
         {
             VoucherController = new VoucherController();
             Vouchers = new ObservableCollection<Voucher>(VoucherController.GetUserVouhers(guestId));  
             CustomMessageBox = new CustomMessageBox();
 
-            ChosenTour = chosenTour;
+            ChosenTour = new Tour();
+            ChosenTour.Id = chosenTourId;
             TourReservationController = new TourReservationController();
 
             VoucherController.DeleteExpiredVouchers();
@@ -69,14 +70,22 @@ namespace BookingProject.View.Guest2ViewModel
         private void Button_UseVoucher(object param)
         {
             _vouchersList = VoucherController.GetAll();
-            CustomMessageBox.ShowCustomMessageBox("You have successfully used your voucher to book this tour.");
-            ChosenVoucher.State = VoucherState.USED;
-            ChosenVoucher.Tour = ChosenTour;
-            VoucherController.Save(_vouchersList);
+            if (ChosenTour.Id == -1)
+            {
+                CustomMessageBox.ShowCustomMessageBox("You cannot use the voucher, you have not selected any tour for booking.");
+            }
+            else
+            {
+                CustomMessageBox.ShowCustomMessageBox("You have successfully used your voucher to book this tour.");
+                ChosenVoucher.State = VoucherState.USED;
+                ChosenVoucher.Tour = ChosenTour;
+                VoucherController.Save(_vouchersList);
 
-            CloseWindow();
+                CloseWindow();
+            }
         }
         private void Button_Cancel(object param)
+
         {
             CloseWindow();
         }

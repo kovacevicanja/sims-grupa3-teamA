@@ -116,6 +116,7 @@
             <Button Background="LightBlue" Width="184" IsDefault="True" Command="{Binding BookTourCommand}" Content="Book tour" Grid.Column="1" Margin="193,11,-377,31"/>
             <Button Background="LightBlue" Width="184" IsDefault="True" Command="{Binding CancelCommand}" Content="Cancel" Margin="649,11,-833,31" Grid.Column="1"/>
             <Button Background="LightBlue" IsDefault="True" Command="{Binding ProfileCommand}" Content="Back to profile" Margin="14,-635,-113,684" Grid.Column="1"/>
+            <Button Background="LightBlue" IsDefault="True" Command="{Binding SeeMoreCommand}" Content="See more" Margin="799,-52,-898,101" Grid.Column="1"/>
         </Grid>
         <Grid Grid.ColumnSpan="2" Margin="40,5,40,5" Grid.RowSpan="2" Grid.Row="1">
             <Grid.ColumnDefinitions>

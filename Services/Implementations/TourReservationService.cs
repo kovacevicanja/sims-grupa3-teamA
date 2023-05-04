@@ -118,7 +118,7 @@ namespace BookingProject.Services
             if (guest.Vouchers.Count != 0)
             {
                 CustomMessageBox.ShowCustomMessageBox("The system has detected that you have an unused voucher. You can use them now.");
-                SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(guest.Id, chosenTour);
+                SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(guest.Id, chosenTour.Id);
                 secondGuestMyVouchers.Show();
             }
         }
