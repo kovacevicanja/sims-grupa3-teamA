@@ -70,7 +70,7 @@
             <Image Source="ToursImages/createTour7.jpg" Margin="453,0,404,330" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Height="76" VerticalAlignment="Bottom" Grid.Column="1"/>
             <Image Source="ToursImages/seeMore4.png" Margin="467,0,415,265" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Height="44" VerticalAlignment="Bottom" Grid.Column="1"/>
             <Image Source="ToursImages/seeMore5.png" Margin="461,0,416,191" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Height="48" VerticalAlignment="Bottom" Grid.Column="1"/>
-            <Image Source="ToursImages/seeMore7.png" Margin="14,0,34,319" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Height="42" VerticalAlignment="Bottom"/>
+            <Image Source="ToursImages/seeMore12.png" Margin="14,0,34,319" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Height="42" VerticalAlignment="Bottom"/>
 
             <Label Content="{Binding ChosenTour.Name}" FontSize="35" FontWeight="Bold" Foreground="Black" Margin="0,10,336,0" Height="65" VerticalAlignment="Top" Grid.Column="1" />
 
@@ -128,14 +128,6 @@
 
             <Grid Margin="-442,-47,273,66" Grid.RowSpan="4">
                 <Image Source="{Binding CurrentImage.Url}" Margin="-8,0,-8,0" RenderTransformOrigin="0.5,0.5">
-                    <Image.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Image.RenderTransform>
                 </Image>
                 <Button Background="White" Command="{Binding MoveToPreviousImageCommand}" VerticalAlignment="Top" Margin="-58,140,437,0" Height="28">
                     <Button.Content>

@@ -15,6 +15,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.WebPages;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -188,7 +190,7 @@ namespace BookingProject.View.Guest2ViewModel
             tourRequest.Status = Domain.Enums.TourRequestStatus.PENDING;
             tourRequest.Guest.Id = GuestId;
 
-            if (tourRequest.Description.IsEmpty() || location.City.IsEmpty() || location.Country.IsEmpty() || (tourRequest.StartDate == DateTime.Today
+            if (location.City.IsEmpty() || location.Country.IsEmpty() || (tourRequest.StartDate == DateTime.Today
                 && tourRequest.EndDate == DateTime.Today) || tourRequest.GuestsNumber == default(int))
             {
                 CustomMessageBox.ShowCustomMessageBox("You can not create a tour request. Some of the required fields are not filled out.");
@@ -228,6 +230,27 @@ namespace BookingProject.View.Guest2ViewModel
             SignInForm signInForm = new SignInForm();
             signInForm.Show();
             CloseWindow();
+        }
+        private void Validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+            {
+                var inputControl = e.OriginalSource as Control;
+                if (inputControl != null)
+                {
+                    inputControl.BorderBrush = new SolidColorBrush(Colors.LightBlue);
+                    inputControl.BorderThickness = new Thickness(1);
+                }
+            }
+            else if (e.Action == ValidationErrorEventAction.Removed)
+            {
+                var inputControl = e.OriginalSource as Control;
+                if (inputControl != null)
+                {
+                    inputControl.ClearValue(Control.BorderBrushProperty);
+                    inputControl.ClearValue(Control.BorderThicknessProperty);
+                }
+            }
         }
     }
 }

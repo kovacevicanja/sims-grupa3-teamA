@@ -251,9 +251,11 @@
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\Interfaces\IVoucherService.cs" />
     <Compile Include="Validation\IntegerNumberValidationRule.cs" />
+    <Compile Include="Validation\RequiredFieldValidationRule .cs" />
     <Compile Include="View\AccommodationOwnerReview.xaml.cs">
       <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AccommodationOwnerReviewViewModel.cs" />
     <Compile Include="View\AccommodationRequestsView.xaml.cs">
       <DependentUpon>AccommodationRequestsView.xaml</DependentUpon>
     </Compile>
@@ -898,6 +900,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Guest2View\ToursImages\seeMore11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore12.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

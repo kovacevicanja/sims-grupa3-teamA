@@ -21,7 +21,7 @@ namespace BookingProject.Validation
                 }
                 else
                 {
-                    return new ValidationResult(false, "Number of guests should be an integer value1111.");
+                    return new ValidationResult(false, "Number of guests should be an integer value11111.");
                 }
             }
             catch
