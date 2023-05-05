@@ -35,9 +35,9 @@ namespace BookingProject.Services.Implementations
             _locationRepository.SaveLocation();
         }
 
-        public Location GetByID(int id)
+        public Location GetById(int id)
         {
-            return _locationRepository.GetByID(id);
+            return _locationRepository.GetById(id);
         }
         public void Save(List<Location> locations)
         {

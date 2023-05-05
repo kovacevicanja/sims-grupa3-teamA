@@ -27,9 +27,9 @@ namespace BookingProject.Controller
         {
             return _tourKeyPointService.GetAll();
         }
-        public KeyPoint GetByID(int id)
+        public KeyPoint GetById(int id)
         {
-            return _tourKeyPointService.GetByID(id);
+            return _tourKeyPointService.GetById(id);
         }
         public void CleanUnused()
         {

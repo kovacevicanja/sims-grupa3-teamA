@@ -12,7 +12,7 @@ namespace BookingProject.Services.Interfaces
         void Initialize();
         void Create(GuestGrade guestGrade);
         List<GuestGrade> GetAll();
-        GuestGrade GetByID(int id);
+        GuestGrade GetById(int id);
         bool DoesReservationHaveGrade(int accommodationReservationId);
         bool ExistsGuestGradeForAccommodationId(int accomomodationId);
         int CountGradesForAccommodationAndUser(int accommodationId, int userId);

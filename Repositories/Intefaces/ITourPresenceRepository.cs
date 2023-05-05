@@ -12,7 +12,7 @@ namespace BookingProject.Repositories.Intefaces
     {
         void Create(TourPresence tourPresence);
         List<TourPresence> GetAll();
-        TourPresence GetByID(int id);
+        TourPresence GetById(int id);
         void Initialize();
         void Save();
     }

@@ -14,9 +14,7 @@ namespace BookingProject.Repositories.Implementations
     public class KeyPointRepository : IKeyPointRepository
     {
         private const string FilePath = "../../Resources/Data/keyPoints.csv";
-
         private Serializer<KeyPoint> _serializer;
-
         public List<KeyPoint> _keyPoints;
 
         public KeyPointRepository() {
@@ -24,17 +22,14 @@ namespace BookingProject.Repositories.Implementations
             _keyPoints = Load();
         }
         public void Initialize() { }
-
         public List<KeyPoint> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save()
         {
             _serializer.ToCSV(FilePath, _keyPoints);
         }
-
         private int GenerateId()
         {
             int maxId = 0;
@@ -47,23 +42,19 @@ namespace BookingProject.Repositories.Implementations
             }
             return maxId + 1;
         }
-
         public void Create(KeyPoint keyPoint)
         {
             keyPoint.Id = GenerateId();
             _keyPoints.Add(keyPoint);
             Save();
         }
-
         public List<KeyPoint> GetAll()
         {
             return _keyPoints;
         }
-
-        public KeyPoint GetByID(int id)
+        public KeyPoint GetById(int id)
         {
             return _keyPoints.Find(keyPoint => keyPoint.Id == id);
         }
     }
 }
-

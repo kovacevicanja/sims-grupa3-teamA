@@ -35,9 +35,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetProjects.DataVisualization.Toolkit, Version=6.1.94.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetProjects.WpfToolkit.DataVisualization.6.1.94\lib\net40\DotNetProjects.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -50,12 +71,28 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Controllers\AccommodationController.cs" />
     <Compile Include="Controllers\AccommodationDateController.cs" />
     <Compile Include="Controllers\AccommodationGuestImageController.cs" />
@@ -66,13 +103,13 @@
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\RequestAccommodationReservationController.cs" />
     <Compile Include="Controllers\TourEvaluationController.cs" />
-    <Compile Include="Controllers\TourGuestController.cs" />
     <Compile Include="Controllers\GuestGradeController.cs" />
     <Compile Include="Controllers\TourEvaluationImageController.cs" />
     <Compile Include="Controllers\TourImageController.cs" />
     <Compile Include="Controllers\KeyPointController.cs" />
     <Compile Include="Controllers\TourLocationController.cs" />
     <Compile Include="Controllers\TourPresenceController.cs" />
+    <Compile Include="Controllers\TourRequestController.cs" />
     <Compile Include="Controllers\TourReservationController.cs" />
     <Compile Include="Controllers\TourStartingTimeController.cs" />
     <Compile Include="Controllers\TourController.cs" />
@@ -85,6 +122,7 @@
     <Compile Include="Domain\AccommodationOwnerGrade.cs" />
     <Compile Include="Domain\Enums\GuideType.cs" />
     <Compile Include="Domain\Enums\RequestStatus.cs" />
+    <Compile Include="Domain\Enums\TourRequestStatus.cs" />
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Guide.cs" />
     <Compile Include="Domain\Images\AccommodationGuestImage.cs" />
@@ -95,6 +133,7 @@
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\TourEvaluation.cs" />
     <Compile Include="Domain\TourPresence.cs" />
+    <Compile Include="Domain\TourRequest.cs" />
     <Compile Include="Domain\Voucher.cs" />
     <Compile Include="Domain\Accommodation.cs" />
     <Compile Include="Domain\AccommodationDate.cs" />
@@ -112,7 +151,6 @@
     <Compile Include="Domain\Images\TourImages.cs" />
     <Compile Include="Domain\Location.cs" />
     <Compile Include="Domain\Tour.cs" />
-    <Compile Include="Domain\TourGuest.cs" />
     <Compile Include="Domain\TourReservation.cs" />
     <Compile Include="Domain\TourTimeInstance.cs" />
     <Compile Include="Domain\User.cs" />
@@ -129,6 +167,7 @@
     <Compile Include="Repositories\Implementations\NotificationRepository.cs" />
     <Compile Include="Repositories\Implementations\TourPresenceRepository.cs" />
     <Compile Include="Repositories\Implementations\RequestAccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Implementations\TourRequestRepository.cs" />
     <Compile Include="Repositories\Implementations\TourStartingTimeRepository.cs" />
     <Compile Include="Repositories\Implementations\TourEvaluationImageRepository.cs" />
     <Compile Include="Repositories\Implementations\TourEvaluationRepository.cs" />
@@ -157,6 +196,7 @@
     <Compile Include="Repositories\Intefaces\ITourLocationRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourPresenceRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ITourRequestRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourReservationRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourStartingTimeRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourTimeInstanceRepository.cs" />
@@ -180,6 +220,7 @@
     <Compile Include="Services\Implementations\TourImageService.cs" />
     <Compile Include="Services\Implementations\TourLocationService.cs" />
     <Compile Include="Services\Implementations\TourPresenceService.cs" />
+    <Compile Include="Services\Implementations\TourRequestService.cs" />
     <Compile Include="Services\Implementations\TourReservationService.cs" />
     <Compile Include="Services\Implementations\TourService.cs" />
     <Compile Include="Services\Implementations\TourStartingTimeService.cs" />
@@ -202,19 +243,38 @@
     <Compile Include="Services\Interfaces\ITourImageService.cs" />
     <Compile Include="Services\Interfaces\ITourLocationService.cs" />
     <Compile Include="Services\Interfaces\ITourPresenceService.cs" />
+    <Compile Include="Services\Interfaces\ITourRequestService.cs" />
     <Compile Include="Services\Interfaces\ITourReservationService.cs" />
     <Compile Include="Services\Interfaces\ITourService.cs" />
     <Compile Include="Services\Interfaces\ITourStartingTimeService.cs" />
     <Compile Include="Services\Interfaces\ITourTimeInstanceService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\Interfaces\IVoucherService.cs" />
+    <Compile Include="Validation\IntegerNumberValidationRule.cs" />
+    <Compile Include="Validation\RequiredFieldValidationRule .cs" />
     <Compile Include="View\AccommodationOwnerReview.xaml.cs">
       <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AccommodationOwnerReviewViewModel.cs" />
     <Compile Include="View\AccommodationRequestsView.xaml.cs">
       <DependentUpon>AccommodationRequestsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ActiveToursView.xaml.cs">
+    <Compile Include="View\Guest2ViewModel\ActiveToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ChangeYearTourRequestsStatisticsViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\CreateTourRequestViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\MonitoringActiveToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ReservationTourOtherOffersViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ReservationTourViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SearchAndReservationToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SecondGuestMyAttendedToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SecondGuestMyReservationsViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SecondGuestMyVouchersViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SecondGuestProfileViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SeeMoreAboutTourViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\TourRequestStatisticsViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\TourRequestsViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ToursAndGuidesEvaluationViewModel.cs" />
+    <Compile Include="View\Guest2View\ActiveToursView.xaml.cs">
       <DependentUpon>ActiveToursView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddAccommodationView.xaml.cs">
@@ -224,6 +284,7 @@
       <DependentUpon>AddPhotosToAccommodationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CustomMessageBoxes\CustomMessageBox.cs" />
+    <Compile Include="View\CustomMessageBoxes\CustomNotificationMessageBox.cs" />
     <Compile Include="View\EnterDate.xaml.cs">
       <DependentUpon>EnterDate.xaml</DependentUpon>
     </Compile>
@@ -244,6 +305,24 @@
     </Compile>
     <Compile Include="View\Guest1View.xaml.cs">
       <DependentUpon>Guest1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\ChangeYearTourRequestsStatisticsView.xaml.cs">
+      <DependentUpon>ChangeYearTourRequestsStatisticsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\CreateTourRequestView.xaml.cs">
+      <DependentUpon>CreateTourRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\SeeMoreAboutTourView.xaml.cs">
+      <DependentUpon>SeeMoreAboutTourView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\TourRequestsChartView.xaml.cs">
+      <DependentUpon>TourRequestsChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\TourRequestStatisticsView.xaml.cs">
+      <DependentUpon>TourRequestStatisticsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\TourRequestsView.xaml.cs">
+      <DependentUpon>TourRequestsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\ChangeStatsYearWindow.xaml.cs">
       <DependentUpon>ChangeStatsYearWindow.xaml</DependentUpon>
@@ -272,7 +351,7 @@
     <Compile Include="View\GuideView\SelectedTourStatsWindow.xaml.cs">
       <DependentUpon>SelectedTourStatsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SecondGuestMyReservationsView.xaml.cs">
+    <Compile Include="View\Guest2View\SecondGuestMyReservationsView.xaml.cs">
       <DependentUpon>SecondGuestMyReservationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\TourCancellationWindow.xaml.cs">
@@ -290,7 +369,7 @@
     <Compile Include="View\GuestRateView.xaml.cs">
       <DependentUpon>GuestRateView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MonitoringActiveToursView.xaml.cs">
+    <Compile Include="View\Guest2View\MonitoringActiveToursView.xaml.cs">
       <DependentUpon>MonitoringActiveToursView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuView.xaml.cs">
@@ -314,23 +393,23 @@
     <Compile Include="View\ReservationAccommodationView.xaml.cs">
       <DependentUpon>ReservationAccommodationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ReservationTourOtherOffersView.xaml.cs">
+    <Compile Include="View\Guest2View\ReservationTourOtherOffersView.xaml.cs">
       <DependentUpon>ReservationTourOtherOffersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ReservationTourView.xaml.cs">
+    <Compile Include="View\Guest2View\ReservationTourView.xaml.cs">
       <DependentUpon>ReservationTourView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SecondGuestMyAttendedTours.xaml.cs">
-      <DependentUpon>SecondGuestMyAttendedTours.xaml</DependentUpon>
+    <Compile Include="View\Guest2View\SecondGuestMyAttendedToursView.xaml.cs">
+      <DependentUpon>SecondGuestMyAttendedToursView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SecondGuestMyVouchersView.xaml.cs">
+    <Compile Include="View\Guest2View\SecondGuestMyVouchersView.xaml.cs">
       <DependentUpon>SecondGuestMyVouchersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SecondGuestProfileView.xaml.cs">
+    <Compile Include="View\Guest2View\SecondGuestProfileView.xaml.cs">
       <DependentUpon>SecondGuestProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SecondGuestSearchAndReservationTours.xaml.cs">
-      <DependentUpon>SecondGuestSearchAndReservationTours.xaml</DependentUpon>
+    <Compile Include="View\Guest2View\SearchAndReservationToursView.xaml.cs">
+      <DependentUpon>SearchAndReservationToursView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
@@ -338,7 +417,7 @@
     <Compile Include="View\GuideView\TourCreationWindow.xaml.cs">
       <DependentUpon>TourCreationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ToursAndGuidesEvaluationView.xaml.cs">
+    <Compile Include="View\Guest2View\ToursAndGuidesEvaluationView.xaml.cs">
       <DependentUpon>ToursAndGuidesEvaluationView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -361,7 +440,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ActiveToursView.xaml">
+    <Page Include="View\Guest2View\ActiveToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -401,6 +480,30 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Guest2View\ChangeYearTourRequestsStatisticsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\CreateTourRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\SeeMoreAboutTourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\TourRequestsChartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\TourRequestStatisticsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\TourRequestsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\ChangeStatsYearWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -433,7 +536,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SecondGuestMyReservationsView.xaml">
+    <Page Include="View\Guest2View\SecondGuestMyReservationsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -461,7 +564,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MonitoringActiveToursView.xaml">
+    <Page Include="View\Guest2View\MonitoringActiveToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -493,27 +596,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ReservationTourOtherOffersView.xaml">
+    <Page Include="View\Guest2View\ReservationTourOtherOffersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ReservationTourView.xaml">
+    <Page Include="View\Guest2View\ReservationTourView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SecondGuestMyAttendedTours.xaml">
+    <Page Include="View\Guest2View\SecondGuestMyAttendedToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SecondGuestMyVouchersView.xaml">
+    <Page Include="View\Guest2View\SecondGuestMyVouchersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SecondGuestProfileView.xaml">
+    <Page Include="View\Guest2View\SecondGuestProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SecondGuestSearchAndReservationTours.xaml">
+    <Page Include="View\Guest2View\SearchAndReservationToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -525,7 +628,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ToursAndGuidesEvaluationView.xaml">
+    <Page Include="View\Guest2View\ToursAndGuidesEvaluationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -548,6 +651,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -560,6 +664,7 @@
     <None Include="Resources\Data\accommodationDates.csv" />
     <None Include="Resources\Data\accommodationLocations.csv" />
     <None Include="Resources\Data\notifications.csv" />
+    <None Include="Resources\Data\tourRequests.csv" />
     <None Include="Resources\Data\tourGuests.csv" />
     <None Include="Resources\Data\guestGrades.csv" />
     <None Include="Resources\Data\tourImages.csv" />
@@ -582,8 +687,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\6.png" />
-    <Resource Include="View\ToursImages\tour.png" />
+    <Resource Include="View\Guest2View\ToursImages\6.png" />
+    <Resource Include="View\Guest2View\ToursImages\review11.png" />
+    <Resource Include="View\Guest2View\ToursImages\review133.png" />
+    <Resource Include="View\Guest2View\ToursImages\review2.jpg" />
+    <Resource Include="View\Guest2View\ToursImages\review4.jpg" />
+    <Resource Include="View\Guest2View\ToursImages\tour.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\super.png" />
@@ -631,53 +740,169 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
-    <Folder Include="View\SecondGuestView\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\backgroundguest1.jpg" />
-    <Resource Include="View\ToursImages\1.png" />
+    <Resource Include="View\Guest2View\ToursImages\1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\2.png" />
+    <Resource Include="View\Guest2View\ToursImages\2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\3.png" />
+    <Resource Include="View\Guest2View\ToursImages\3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\4.png" />
+    <Resource Include="View\Guest2View\ToursImages\4.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\7.png" />
+    <Resource Include="View\Guest2View\ToursImages\7.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\8.png" />
+    <Resource Include="View\Guest2View\ToursImages\8.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\9.jpg" />
+    <Resource Include="View\Guest2View\ToursImages\9.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\10.png" />
+    <Resource Include="View\Guest2View\ToursImages\10.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\NumberOfGuests.png" />
+    <Resource Include="View\Guest2View\ToursImages\NumberOfGuests.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\calendar.png" />
+    <Resource Include="View\Guest2View\ToursImages\calendar.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\calendar2.png" />
+    <Resource Include="View\Guest2View\ToursImages\calendar2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\gosti2.png" />
+    <Resource Include="View\Guest2View\ToursImages\gosti2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\ToursImages\logOut.png" />
+    <Resource Include="View\Guest2View\ToursImages\logOut.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\menu.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\star.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\gift.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\masna.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\gift2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\masnica.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\profilepic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\createTour1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\createTour2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\createTour3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\createTour4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\createTour5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\createTour6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\createTour7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\createTour8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review131.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review132.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review14.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review141.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\review142.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore12.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,9 +18,7 @@ namespace BookingProject.Repositories
     public class TourRepository : ITourRepository
     {
         private const string FilePath = "../../Resources/Data/tours.csv";
-
         private Serializer<Tour> _serializer;
-
         public List<Tour> _tours;
         public ITourStartingTimeRepository _tourStartingTimeRepository;
 
@@ -29,7 +27,6 @@ namespace BookingProject.Repositories
             _serializer = new Serializer<Tour>();
             _tours = Load();
         }
-
         public void Initialize()
         {
             _tourStartingTimeRepository = Injector.CreateInstance<ITourStartingTimeRepository>();
@@ -38,18 +35,14 @@ namespace BookingProject.Repositories
             TourKeyPointBind();
             TourDateBind();
         }
-
-
         public List<Tour> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save(List<Tour> tours)
         {
             _serializer.ToCSV(FilePath, tours);
         }
-
         private int GenerateId()
         {
             int maxId = 0;
@@ -95,7 +88,7 @@ namespace BookingProject.Repositories
         {
             return _tours.ToList();
         }
-        public Tour GetByID(int id)
+        public Tour GetById(int id)
         {
             return _tours.Find(tour => tour.Id == id);
         }
@@ -103,22 +96,20 @@ namespace BookingProject.Repositories
         {
             foreach (Tour tour in _tours)
             {
-                Location location = Injector.CreateInstance<ITourLocationRepository>().GetByID(tour.LocationId);
+                Location location = Injector.CreateInstance<ITourLocationRepository>().GetById(tour.LocationId);
                 tour.Location = location;
             }
         }
-
         public void BindTourImage()
         {
             ITourImageRepository tourImageRepository = Injector.CreateInstance<ITourImageRepository>();
             foreach (TourImage image in tourImageRepository.GetAll())
             {
-                Tour tour = GetByID(image.Tour.Id);
+                Tour tour = GetById(image.Tour.Id);
                 tour.Images.Add(image);
 
             }
         }
-
         public void AddKeyPointToTour(Tour tour, List<KeyPoint> keyPoints)
         {
             foreach (KeyPoint keyPoint in keyPoints)
@@ -141,8 +132,6 @@ namespace BookingProject.Repositories
             List<KeyPoint> keyPoints = Injector.CreateInstance<IKeyPointRepository>().GetAll();
             BindTourKeyPoint(keyPoints);
         }
-        //
-        //TourDate bind
         public void AddStartingTimesToTour(Tour tour, List<TourDateTime> dates)
         {
             foreach (TourDateTime date in dates)
@@ -165,6 +154,5 @@ namespace BookingProject.Repositories
             List<TourDateTime> dates = Injector.CreateInstance<ITourStartingTimeRepository>().GetAll();
             BindTourStartingTimes(dates);
         }
-        //
     }
 }

@@ -38,9 +38,9 @@ namespace BookingProject.Controllers
         {
             return _notificationService.GetAll();
         }
-        public Notification GetByID(int id)
+        public Notification GetById(int id)
         {
-            return _notificationService.GetByID(id);
+            return _notificationService.GetById(id);
         }
         public void Save()
         {

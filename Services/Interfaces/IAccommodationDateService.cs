@@ -11,7 +11,7 @@ namespace BookingProject.Services.Interfaces
     {
         void Initialize();
         List<AccommodationDate> GetAll();
-        AccommodationDate GetByID(int id);
+        AccommodationDate GetById(int id);
         void Save(List<AccommodationDate> dates);
         bool CheckEnteredDates(DateTime initialDate, DateTime endDate);
         bool CompareWithToday(DateTime initialDate);

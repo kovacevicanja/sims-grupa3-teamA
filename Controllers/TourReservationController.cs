@@ -58,25 +58,13 @@ namespace BookingProject.Controller
         {
             _tourReservationService.FreePlaceMessage(maxGuests);
         }
-        public List<Tour> GetFilteredTours(Location location, DateTime selectedDate)
-        {
-            return _tourReservationService.GetFilteredTours(location, selectedDate);   
-        }
-        public void GoThroughTourDates(Tour tour, DateTime selectedDate)
-        {
-            _tourReservationService.GoThroughTourDates(tour, selectedDate);
-        }
-        public void GoThroughBookedToursDates(Tour tour, DateTime selectedDate, TourDateTime tdt)
-        {
-            _tourReservationService.GoThroughBookedToursDates(tour, selectedDate, tdt);
-        }
         public List<TourReservation> GetAll()
         {
             return _tourReservationService.GetAll();
         }
-        public TourReservation GetByID(int id)
+        public TourReservation GetById(int id)
         {
-            return _tourReservationService.GetByID(id);
+            return _tourReservationService.GetById(id);
         }
         public List<TourReservation> GetUserReservations(int guestId)
         {

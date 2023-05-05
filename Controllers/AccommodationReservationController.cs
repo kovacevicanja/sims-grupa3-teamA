@@ -30,9 +30,9 @@ namespace BookingProject.Controller
         {
             return _accommodationReservationService.GetAll();
         }
-        public AccommodationReservation GetByID(int id)
+        public AccommodationReservation GetById(int id)
         {
-            return _accommodationReservationService.GetByID(id);
+            return _accommodationReservationService.GetById(id);
         }
         public List<AccommodationReservation> getReservationsForGuest(User loggedInUser)
         {

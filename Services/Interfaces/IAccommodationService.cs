@@ -22,7 +22,7 @@ namespace BookingProject.Services.Interfaces
         bool MinNumDaysOfReservationOfGuestsMatched(Accommodation accommodation, string minNumDaysOfReservation);
         void Create(Accommodation accommodation);
         List<Accommodation> GetAll();
-        Accommodation GetByID(int id);
+        Accommodation GetById(int id);
         void SaveAccommodation();
         List<Accommodation> GetAllForOwner(int ownerId);
         void Save(List<Accommodation> accommodations);

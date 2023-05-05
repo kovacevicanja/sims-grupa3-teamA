@@ -59,7 +59,7 @@ namespace BookingProject.Repositories.Implementations
 
             foreach (AccommodationOwnerGrade grade in _grades)
             {
-                User user = Injector.CreateInstance<IUserRepository>().GetByID(grade.User.Id);
+                User user = Injector.CreateInstance<IUserRepository>().GetById(grade.User.Id);
                 grade.User = user;
             }
         }
@@ -68,7 +68,7 @@ namespace BookingProject.Repositories.Implementations
 
             foreach (AccommodationOwnerGrade grade in _grades)
             {
-                Accommodation accommodation = Injector.CreateInstance<IAccommodationRepository>().GetByID(grade.Accommodation.Id);
+                Accommodation accommodation = Injector.CreateInstance<IAccommodationRepository>().GetById(grade.Accommodation.Id);
                 grade.Accommodation = accommodation;
             }
         }
@@ -85,7 +85,7 @@ namespace BookingProject.Repositories.Implementations
             return _grades;
         }
 
-        public AccommodationOwnerGrade GetByID(int id)
+        public AccommodationOwnerGrade GetById(int id)
         {
             return _grades.Find(grade => grade.Id == id);
         }

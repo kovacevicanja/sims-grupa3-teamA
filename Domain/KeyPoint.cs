@@ -12,7 +12,6 @@ namespace BookingProject.Model
     public class KeyPoint : ISerializable
     {
         public int Id { get; set; }
-
         public int TourId { get; set; }
         public string Point { get; set; }
 

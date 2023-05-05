@@ -35,9 +35,9 @@ namespace BookingProject.Services.Implementations
             return _accommodationReservationRepository.GetAll();
         }
 
-        public AccommodationReservation GetByID(int id)
+        public AccommodationReservation GetById(int id)
         {
-            return _accommodationReservationRepository.GetByID(id);
+            return _accommodationReservationRepository.GetById(id);
         }
         public List<AccommodationReservation> getReservationsForGuest(User loggedInUser)
         {
@@ -56,7 +56,7 @@ namespace BookingProject.Services.Implementations
 
         public void Update(AccommodationReservation reservation)
         {
-            AccommodationReservation oldReservation = GetByID(reservation.Id);
+            AccommodationReservation oldReservation = GetById(reservation.Id);
             if (oldReservation == null)
             {
                 return;

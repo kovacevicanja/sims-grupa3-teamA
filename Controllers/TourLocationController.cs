@@ -21,25 +21,17 @@ namespace BookingProject.Controller
         {
             _tourLocationService = Injector.CreateInstance<ITourLocationService>();
         }
-        /*
-        public void Initialize()
-        {
-            _tourLocationRepository = Injector.CreateInstance<ITourLocationRepository>();
-        }
-        */
         public void Create(Location location)
         {
             _tourLocationService.Create(location);
         }
-
         public List<Location> GetAll()
         {
             return _tourLocationService.GetAll();
         }
-
-        public Location GetByID(int id)
+        public Location GetById(int id)
         {
-            return _tourLocationService.GetByID(id);
+            return _tourLocationService.GetById(id);
         }
         public void Save()
         {

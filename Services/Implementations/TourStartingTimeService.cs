@@ -11,6 +11,7 @@ namespace BookingProject.Services.Implementations
     public class TourStartingTimeService : ITourStartingTimeService
     {
         public ITourStartingTimeRepository _tourStartingTimeRepository;
+
         public TourStartingTimeService() { }
         public void Initialize()
         {
@@ -30,25 +31,21 @@ namespace BookingProject.Services.Implementations
         {
             _tourStartingTimeRepository.GetAll().RemoveAll(d => d.TourId == -1);
         }
-
         public void Create(TourDateTime date)
         {
             _tourStartingTimeRepository.Create(date);
         }
-
         public List<TourDateTime> GetAll()
         {
             return _tourStartingTimeRepository.GetAll();
         }
-
-        public TourDateTime GetByID(int id)
+        public TourDateTime GetById(int id)
         {
-            return _tourStartingTimeRepository.GetByID(id);
+            return _tourStartingTimeRepository.GetById(id);
         }
         public void Save()
         {
             _tourStartingTimeRepository.Save();
         }
-
     }
 }

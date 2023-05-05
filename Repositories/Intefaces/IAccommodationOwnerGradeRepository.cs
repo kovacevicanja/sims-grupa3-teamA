@@ -12,7 +12,7 @@ namespace BookingProject.Repositories.Intefaces
         void Initialize();
         void Create(AccommodationOwnerGrade grade);
         List<AccommodationOwnerGrade> GetAll();
-        AccommodationOwnerGrade GetByID(int id);
+        AccommodationOwnerGrade GetById(int id);
         int GenerateId();
         void Save(List<AccommodationOwnerGrade> grades);
     }

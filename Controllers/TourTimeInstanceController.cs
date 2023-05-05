@@ -14,34 +14,26 @@ namespace BookingProject.Controller
 {
     public class TourTimeInstanceController
     {
-
         private readonly ITourTimeInstanceService _tourTimeInstanceService;
         public TourTimeInstanceController()
         {
             _tourTimeInstanceService = Injector.CreateInstance<ITourTimeInstanceService>();
         }
-
-
-
         public void Create(TourTimeInstance instance)
         {
             _tourTimeInstanceService.Create(instance);
         }
-
         public List<TourTimeInstance> GetAll()
         {
             return _tourTimeInstanceService.GetAll();
         }
-
-        public TourTimeInstance GetByID(int id)
+        public TourTimeInstance GetById(int id)
         {
-            return _tourTimeInstanceService.GetByID(id);
+            return _tourTimeInstanceService.GetById(id);
         }
-
         public void Save()
         {
             _tourTimeInstanceService.Save();
         }
-
     }
 }

@@ -14,7 +14,7 @@ namespace BookingProject.Services.Interfaces
     {
         void Create(TourPresence presence);
         List<TourPresence> GetAll();
-        TourPresence GetByID(int id);
+        TourPresence GetById(int id);
         void Initialize();
         void SendNotification(User guest);
         List<Notification> GetGuestNotifications(User guest);

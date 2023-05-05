@@ -14,7 +14,6 @@ namespace BookingProject.Controller
     public class GuestGradeController 
     {
         private readonly IGuestGradeService _guestGradeService;
-
         public GuestGradeController()
         {
             _guestGradeService = Injector.CreateInstance<IGuestGradeService>();
@@ -23,7 +22,6 @@ namespace BookingProject.Controller
         {
             _guestGradeService.Create(grade);
         }
-
         public List<GuestGrade> GetAll()
         {
             return _guestGradeService.GetAll(); 
@@ -32,16 +30,14 @@ namespace BookingProject.Controller
         {
             _guestGradeService.Save(grades);
         }
-
-        public GuestGrade GetByID(int id)
+        public GuestGrade GetById(int id)
         {
-            return _guestGradeService.GetByID(id);
+            return _guestGradeService.GetById(id);
         }
         public bool DoesReservationHaveGrade(int accommodationReservationId)
         {
             return _guestGradeService.DoesReservationHaveGrade(accommodationReservationId);
         }
-
         public bool ExistsGuestGradeForAccommodationId(int accomomodationId)
         {
             return _guestGradeService.ExistsGuestGradeForAccommodationId(accomomodationId);
@@ -50,8 +46,5 @@ namespace BookingProject.Controller
         {
             return _guestGradeService.CountGradesForAccommodationAndUser(accommodationId, userId);
         }
-
-
-
     }
 }

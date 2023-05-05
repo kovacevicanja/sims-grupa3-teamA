@@ -13,7 +13,7 @@ namespace BookingProject.Services.Interfaces
         void CleanUnused();
         void Create(TourDateTime date);
         List<TourDateTime> GetAll();
-        TourDateTime GetByID(int id);
+        TourDateTime GetById(int id);
         void Initialize();
         void Save();
     }

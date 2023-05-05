@@ -26,15 +26,17 @@ namespace BookingProject.Controller
         {
             _tourEvaluationImageService.Create(tourEvaluationImage);
         }
-
         public List<TourEvaluationImage> GetAll()
         {
             return _tourEvaluationImageService.GetAll();
         }
-
-        public TourEvaluationImage GetByID(int id)
+        public TourEvaluationImage GetById(int id)
         {
-            return _tourEvaluationImageService.GetByID(id);
+            return _tourEvaluationImageService.GetById(id);
+        }
+        public void Save(List<TourEvaluationImage> images)
+        {
+            _tourEvaluationImageService.Save(images);
         }
     }
 }

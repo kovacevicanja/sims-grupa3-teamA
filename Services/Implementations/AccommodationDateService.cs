@@ -25,9 +25,9 @@ namespace BookingProject.Services.Implementations
             return _accommodationDateRepository.GetAll();
         }
 
-        public AccommodationDate GetByID(int id)
+        public AccommodationDate GetById(int id)
         {
-            return _accommodationDateRepository.GetByID(id);
+            return _accommodationDateRepository.GetById(id);
         }
         public void Save(List<AccommodationDate> dates)
         {

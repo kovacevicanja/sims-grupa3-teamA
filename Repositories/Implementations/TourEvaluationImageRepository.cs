@@ -19,9 +19,7 @@ namespace BookingProject.Repositories
     public class TourEvaluationImageRepository : ITourEvaluationImageRepository
     {
         private const string FilePath = "../../Resources/Data/tourEvaluationImages.csv";
-
         private Serializer<TourEvaluationImage> _serializer;
-
         public List<TourEvaluationImage> _images;
 
         public TourEvaluationImageRepository() 
@@ -37,7 +35,6 @@ namespace BookingProject.Repositories
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save(List<TourEvaluationImage> images)
         {
             _serializer.ToCSV(FilePath, images);
@@ -60,21 +57,19 @@ namespace BookingProject.Repositories
             _images.Add(image);
             Save(_images);
         }
-
         public void TourEvaluationBind()
         {
             foreach (TourEvaluationImage image in _images)
             {
-                TourEvaluation tourEvaluation = Injector.CreateInstance<ITourEvaluationRepository>().GetByID(image.TourEvaluation.Id);
+                TourEvaluation tourEvaluation = Injector.CreateInstance<ITourEvaluationRepository>().GetById(image.TourEvaluation.Id);
                 image.TourEvaluation = tourEvaluation;
             }
         }
-
         public List<TourEvaluationImage> GetAll()
         {
             return _images.ToList();
         }
-        public TourEvaluationImage GetByID(int id)
+        public TourEvaluationImage GetById(int id)
         {
             return _images.Find(image => image.Id == id);
         }

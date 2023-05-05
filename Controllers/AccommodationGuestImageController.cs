@@ -18,16 +18,14 @@ namespace BookingProject.Controllers
         {
             _accommodationGuestImageService = Injector.CreateInstance<IAccommodationGuestImageService>();
         }
-
         public List<AccommodationGuestImage> GetAll()
         {
             return _accommodationGuestImageService.GetAll();
         }
-
         public void Create(AccommodationGuestImage image) { _accommodationGuestImageService.Create(image); }
-        public AccommodationGuestImage GetByID(int id)
+        public AccommodationGuestImage GetById(int id)
         {
-            return _accommodationGuestImageService.GetByID(id);
+            return _accommodationGuestImageService.GetById(id);
         }
         public void Save(List<AccommodationGuestImage> images)
         {

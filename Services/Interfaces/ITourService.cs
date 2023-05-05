@@ -1,4 +1,5 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,7 @@ namespace BookingProject.Services.Interfaces
     {
         void Create(Tour tour);
         List<Tour> GetAll();
-        Tour GetByID(int id);
+        Tour GetById(int id);
         bool WantedTour(Tour tour, string city, string country, string duration, string choosenLanguage, string numOfGuests);
         bool RequestedCity(Tour tour, string city);
         bool RequestedCountry(Tour tour, string country);
@@ -25,5 +26,10 @@ namespace BookingProject.Services.Interfaces
 
         void BindLastTour();
         void Initialize();
+        List<Tour> FilterToursByDate(DateTime selectedDate);
+        void GoThroughTourDates(Tour tour, DateTime selectedDate);
+        void GoThroughBookedToursDates(Tour tour, DateTime selectedDate, TourDateTime tdt);
+        List<Tour> FilterToursByLocation(List<Tour> filteredTours, Location location, DateTime selectedDate);
+        List<Tour> GetFilteredTours(Location location, DateTime selectedDate);
     }
 }

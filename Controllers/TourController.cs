@@ -1,6 +1,7 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Services;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
@@ -28,9 +29,9 @@ namespace BookingProject.Controller
         {
             return _tourService.GetAll();
         }
-        public Tour GetByID(int id)
+        public Tour GetById(int id)
         {
-            return _tourService.GetByID(id);
+            return _tourService.GetById(id);
         }
         public bool WantedTour(Tour tour, string city, string country, string duration, string chosenLanguage, string numOfGuests)
         {
@@ -67,6 +68,18 @@ namespace BookingProject.Controller
         public Tour GetLastTour()
         {
             return _tourService.GetLastTour();
+        }
+        public List<Tour> GetFilteredTours(Location location, DateTime selectedDate)
+        {
+            return _tourService.GetFilteredTours(location, selectedDate);
+        }
+        public void GoThroughTourDates(Tour tour, DateTime selectedDate)
+        {
+            _tourService.GoThroughTourDates(tour, selectedDate);
+        }
+        public void GoThroughBookedToursDates(Tour tour, DateTime selectedDate, TourDateTime tdt)
+        {
+            _tourService.GoThroughBookedToursDates(tour, selectedDate, tdt);
         }
 
         public void BindLastTour()

@@ -66,9 +66,9 @@ namespace BookingProject.Services
             return _notificationRepository.GetAll();
         }
 
-        public Notification GetByID(int id)
+        public Notification GetById(int id)
         {
-            return _notificationRepository.GetByID(id);    
+            return _notificationRepository.GetById(id);    
         }
         public void DeleteNotificationFromCSV(Notification notification)
         {

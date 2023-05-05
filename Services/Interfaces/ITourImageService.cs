@@ -13,7 +13,7 @@ namespace BookingProject.Services.Interfaces
         void Create(TourImage image);
         void LinkToTour(int id);
         List<TourImage> GetAll();
-        TourImage GetByID(int id);
+        TourImage GetById(int id);
         void Initialize();
         void Save();
     }

@@ -26,10 +26,12 @@ namespace BookingProject.View
         private AccommodationController _accommodationController;
         private AccommodationOwnerGradeController _accommodationOwnerGradeController;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
+        public UserController _userController { get; set; }
         public OwnerView()
         {
             InitializeComponent();
             this.DataContext = this;
+            _userController = new UserController();
             _accommodationController = new AccommodationController();
             _accommodationOwnerGradeController = new AccommodationOwnerGradeController();
             if (!_accommodationOwnerGradeController.IsOwnerSuperOwner(SignInForm.LoggedInUser.Id))
@@ -66,6 +68,18 @@ namespace BookingProject.View
         {
             GuestGradesForOwnerView view = new GuestGradesForOwnerView();
             view.Show();
+        }
+
+        private void Button_Click_LogOut(object sender, RoutedEventArgs e)
+        {
+            LogoutUser();
+            SignInForm signInForm = new SignInForm();
+            signInForm.ShowDialog();
+        }
+        public void LogoutUser()
+        {
+            _userController.GetLoggedUser().IsLoggedIn = false;
+            _userController.Save();
         }
     }
 }

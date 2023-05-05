@@ -21,10 +21,17 @@ namespace BookingProject.Services
     public class TourService : ITourService
     {
         private ITourRepository _tourRepository;
-        public TourService() { }
+        private ITourReservationRepository _tourReservationRepository;
+        public CustomMessageBox CustomMessageBox { get; set; }
+
+        public TourService()
+        {
+            CustomMessageBox = new CustomMessageBox();
+        }
         public void Initialize()
         {
             _tourRepository = Injector.CreateInstance<ITourRepository>();
+            _tourReservationRepository = Injector.CreateInstance<ITourReservationRepository>();
         }
         public bool WantedTour(Tour tour, string city, string country, string duration, string choosenLanguage, string numOfGuests)
         {
@@ -84,24 +91,82 @@ namespace BookingProject.Services
                 tourView.Add(tour);
             }
         }
-
         public void Create(Tour tour)
         {
             _tourRepository.Create(tour);
         }
-
         public List<Tour> GetAll()
         {
             return _tourRepository.GetAll();
         }
-
-        public Tour GetByID(int id)
+        public Tour GetById(int id)
         {
-            return _tourRepository.GetByID(id);
+            return _tourRepository.GetById(id);
         }
         public Tour GetLastTour()
         {
             return _tourRepository.GetAll().Last();
+        }
+        public List<Tour> FilterToursByDate(DateTime selectedDate) 
+        {
+            List<Tour> _tours = Injector.CreateInstance<ITourService>().GetAll();
+            List<Tour> filteredTours = new List<Tour>();
+
+            foreach (Tour tour in _tours)
+            {
+                GoThroughTourDates(tour, selectedDate);
+            }
+
+            return filteredTours;
+        }
+        public void GoThroughTourDates(Tour tour, DateTime selectedDate)
+        {
+            List<TourDateTime> startingTimeCopy = tour.StartingTime.ToList();
+
+            foreach (TourDateTime tdt in startingTimeCopy)
+            {
+                if (tdt.StartingDateTime == selectedDate)
+                {
+                    tour.StartingTime.Remove(tdt);
+                }
+                else
+                {
+                    GoThroughBookedToursDates(tour, selectedDate, tdt);
+                }
+            }
+        }
+        public void GoThroughBookedToursDates(Tour tour, DateTime selectedDate, TourDateTime tdt)
+        {
+            foreach (TourReservation tourReservation in _tourReservationRepository.GetAll())
+            {
+                if (tourReservation.GuestsNumberPerReservation == 0 && tourReservation.ReservationStartingTime == tdt.StartingDateTime)
+                {
+                    tour.StartingTime.Remove(tdt);
+                }
+            }
+        }
+        public List<Tour> FilterToursByLocation(List<Tour> filteredTours, Location location, DateTime selectedDate)
+        {
+            List<Tour> filteredToursCopy = new List<Tour>(filteredTours);
+            List<Tour> _tours = Injector.CreateInstance<ITourService>().GetAll();
+
+            foreach (Tour tour in _tours)
+            {
+                if (tour.Location.City == location.City && tour.Location.Country == location.Country && tour.StartingTime.Count != 0)
+                {
+                    filteredTours.Add(tour);
+                }
+            }
+            return filteredTours;
+        }
+        public List<Tour> GetFilteredTours(Location location, DateTime selectedDate)
+        {
+            List<Tour> filteredTours = FilterToursByDate(selectedDate);
+            filteredTours = FilterToursByLocation(filteredTours, location, selectedDate);
+
+            if (filteredTours.Count == 0) { CustomMessageBox.ShowCustomMessageBox("Unfortunately, it is not possible to make a reservation. All tours at that location are booked."); }
+
+            return filteredTours;
         }
 
         public void BindLastTour()

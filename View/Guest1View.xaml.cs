@@ -28,18 +28,13 @@ namespace BookingProject.View
         private ObservableCollection<Accommodation> _accommodations;
         public ObservableCollection<string> AllCities { get; set; }
         public AccommodationLocationController _accommodationLocationController;
-
         public Accommodation selectedAccommodation { get; set; }
-        
-        
-
         public string AccName { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
         public string NumberOfGuests { get; set; } = string.Empty;
         public string MinNumDaysOfReservation { get; set; } = string.Empty;
-
         public Boolean IsCheckedApartment { get; set; } = false;
         public Boolean IsCheckedCottage { get; set; } = false;
         public Boolean IsCheckedHouse { get; set; } = false;

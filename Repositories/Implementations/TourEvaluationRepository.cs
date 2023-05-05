@@ -29,19 +29,16 @@ namespace BookingProject.Repositories.Implementations
             _images = new List<TourEvaluationImage>();
             _tourEvaluations = Load();
         }
-
         public void Initialize() 
         {
             _tourRepository = Injector.CreateInstance<ITourRepository>();
             BindTourEvaluationToTour();
             TourEvaluationImagesBind();
         }
-
         public List<TourEvaluation> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save()
         {
             _serializer.ToCSV(FilePath, _tourEvaluations);
@@ -50,7 +47,7 @@ namespace BookingProject.Repositories.Implementations
         {
             foreach (TourEvaluation evaluation in _tourEvaluations)
             {
-                Tour tour = _tourRepository.GetByID(evaluation.Tour.Id);
+                Tour tour = _tourRepository.GetById(evaluation.Tour.Id);
                 evaluation.Tour = tour;
             }
         }
@@ -92,8 +89,7 @@ namespace BookingProject.Repositories.Implementations
             _tourEvaluations.Add(tourEvalution);
             Save();
         }
-
-        public TourEvaluation GetByID(int id)
+        public TourEvaluation GetById(int id)
         {
             return _tourEvaluations.Find(tourEvalution => tourEvalution.Id == id);
         }

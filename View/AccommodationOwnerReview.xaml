@@ -13,7 +13,7 @@
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button Click="Button_Click_Homepage">
+                <Button Command="{Binding HomePageCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
@@ -29,7 +29,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Click="Button_Click_MyReservations">
+                <Button Command="{Binding MyReservationsCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/bedroom.png"/>
@@ -69,7 +69,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Click="Button_Click_Logout">
+                <Button Command="{Binding LogOutCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Logout" Margin="5,5,0,0" FontWeight="SemiBold" />
@@ -131,9 +131,9 @@
                      Height="20"></TextBox>
 
 
-                        <TextBox x:Name="UrlPicture" Grid.Row="4" Grid.Column="1"
+                        <TextBox x:Name="UrlPicture" Grid.Row="4" Grid.Column="1" Text="{Binding UrlPicture, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Height="20"></TextBox>
-                        <Button Content="+" Click="Button_Click_AddPicture"  Grid.Row="4" Grid.Column="3" Height="20" Width="20"></Button>
+                        <Button Content="+" Command="{Binding AddPictureCommand}"  Grid.Row="4" Grid.Column="3" Height="20" Width="20"></Button>
 
                         <TextBox Grid.Row="5" Grid.Column="1"
                                 Text="{Binding Path=Reccommendation, UpdateSourceTrigger=PropertyChanged}"
@@ -141,9 +141,9 @@
 
                         
                         <WrapPanel Grid.Row="7" Grid.ColumnSpan="2"  FlowDirection="LeftToRight" Orientation="Horizontal" Margin="10" Width="300" >
-                            <Button IsDefault="True" Margin="20" Click="Button_Click_Review">Review</Button>
+                            <Button IsDefault="True" Margin="20" Command="{Binding ReviewCommand}">Review</Button>
                             <Button Content="View tutorial" Margin="20"></Button>
-                            <Button Content="Homepage" Click="Button_Click_Homepage" Margin="20"></Button>
+                            <Button Content="Homepage" Command="{Binding HomePageCommand}" Margin="20"></Button>
                         </WrapPanel>
                     </Grid>
                 </Grid>

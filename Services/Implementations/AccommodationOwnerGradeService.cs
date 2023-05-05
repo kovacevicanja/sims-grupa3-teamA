@@ -84,7 +84,7 @@ namespace BookingProject.Services.Implementations
             double sum = 0;
             foreach (AccommodationOwnerGrade grade in _accommodationOwnerGradeRepository.GetAll())
             {
-                Accommodation accommodation = Injector.CreateInstance<IAccommodationRepository>().GetByID(grade.Accommodation.Id);
+                Accommodation accommodation = Injector.CreateInstance<IAccommodationRepository>().GetById(grade.Accommodation.Id);
                 if (accommodation.Owner.Id == ownerId)
                 // if (grade.User.Id == ownerId)
                 {
@@ -117,10 +117,9 @@ namespace BookingProject.Services.Implementations
             return _accommodationOwnerGradeRepository.GetAll();
         }
 
-        public AccommodationOwnerGrade GetByID(int id)
+        public AccommodationOwnerGrade GetById(int id)
         {
-            return _accommodationOwnerGradeRepository.GetByID(id);
+            return _accommodationOwnerGradeRepository.GetById(id);
         }
-
     }
 }

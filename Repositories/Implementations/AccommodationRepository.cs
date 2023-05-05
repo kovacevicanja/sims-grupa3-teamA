@@ -47,7 +47,6 @@ namespace BookingProject.Repositories.Implementations
             _serializer.ToCSV(FilePath, accommodations);
         }
 
-
         private int GenerateId()
         {
             int maxId = 0;
@@ -61,7 +60,7 @@ namespace BookingProject.Repositories.Implementations
             return maxId + 1;
         }
 
-        public Accommodation GetByID(int id)
+        public Accommodation GetById(int id)
         {
             return _accommodations.Find(accommodation => accommodation.Id == id);
         }
@@ -102,7 +101,7 @@ namespace BookingProject.Repositories.Implementations
         {
             foreach (Accommodation accommodation in _accommodations)
             {
-                Location location = Injector.CreateInstance<IAccommodationLocationRepository>().GetByID(accommodation.IdLocation);
+                Location location = Injector.CreateInstance<IAccommodationLocationRepository>().GetById(accommodation.IdLocation);
                 accommodation.Location = location;
             }
         }
@@ -111,7 +110,7 @@ namespace BookingProject.Repositories.Implementations
 
             foreach (Accommodation accommodation in _accommodations)
             {
-                User user = Injector.CreateInstance<IUserRepository>().GetByID(accommodation.Owner.Id);
+                User user = Injector.CreateInstance<IUserRepository>().GetById(accommodation.Owner.Id);
                 accommodation.Owner = user;
             }
         }
@@ -121,7 +120,7 @@ namespace BookingProject.Repositories.Implementations
             IAccommodationImageRepository accommodationImageRepository = Injector.CreateInstance<IAccommodationImageRepository>();
             foreach(AccommodationImage image in accommodationImageRepository.GetAll())
             {
-                Accommodation accommodation = GetByID(image.AccommodationId);
+                Accommodation accommodation = GetById(image.AccommodationId);
                 accommodation.Images.Add(image);
             }
         }
@@ -130,7 +129,7 @@ namespace BookingProject.Repositories.Implementations
         {
             foreach (Accommodation accommodation in _accommodations)
             {
-                User owner = Injector.CreateInstance<IUserRepository>().GetByID(accommodation.Owner.Id);
+                User owner = Injector.CreateInstance<IUserRepository>().GetById(accommodation.Owner.Id);
                 accommodation.Owner = owner;
             }
         }

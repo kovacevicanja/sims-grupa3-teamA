@@ -14,7 +14,8 @@ namespace BookingProject.Model.Images
         public TourEvaluation TourEvaluation { get; set; }
         public string Url { get; set; }
 
-        public TourEvaluationImage() {
+        public TourEvaluationImage() 
+        {
             TourEvaluation = new TourEvaluation();
         }
 

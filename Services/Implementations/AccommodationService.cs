@@ -100,9 +100,9 @@ namespace BookingProject.Services.Implementations
             return _accommodationRepository.GetAll();
         }
 
-        public Accommodation GetByID(int id)
+        public Accommodation GetById(int id)
         {
-            return _accommodationRepository.GetByID(id);
+            return _accommodationRepository.GetById(id);
         }
         public List<Accommodation> GetAllForOwner(int ownerId)
         {

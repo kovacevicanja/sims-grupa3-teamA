@@ -1,4 +1,7 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain;
+using BookingProject.Model;
+using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
 using OisisiProjekat.Observer;
@@ -13,9 +16,7 @@ namespace BookingProject.Repositories
     public class UserRepository : IUserRepository
     {
         private const string FilePath = "../../Resources/Data/users.csv";
-
         private Serializer<User> _serializer;
-
         public List<User> _users;
 
         public UserRepository()
@@ -23,13 +24,23 @@ namespace BookingProject.Repositories
             _serializer = new Serializer<User>();
             _users = Load();
         }
-        public void Initialize() { }
-
+        public void Initialize() 
+        {
+            BindUserVouchers();
+        }
+        public void BindUserVouchers()
+        {
+            IVoucherRepository voucherRepository = Injector.CreateInstance<IVoucherRepository>();
+            foreach (Voucher voucher in voucherRepository.GetAll())
+            {
+                User user = GetById(voucher.Guest.Id);
+                user.Vouchers.Add(voucher);
+            }
+        }
         public List<User> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save()
         {
             _serializer.ToCSV(FilePath, _users);
@@ -56,7 +67,7 @@ namespace BookingProject.Repositories
         {
             return _users.ToList();
         }
-        public User GetByID(int id)
+        public User GetById(int id)
         {
             return _users.Find(user => user.Id == id);
         } 

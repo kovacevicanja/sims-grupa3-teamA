@@ -17,7 +17,7 @@ namespace BookingProject.Services.Interfaces
         bool IsOwnerSuperOwner(int ownerId);
         void Create(AccommodationOwnerGrade grade);
         List<AccommodationOwnerGrade> GetAll();
-        AccommodationOwnerGrade GetByID(int id);
+        AccommodationOwnerGrade GetById(int id);
         void Save(List<AccommodationOwnerGrade> grades);
         void MakeGrade(AccommodationOwnerGrade grade, AccommodationReservation _selectedReservation, int chosenCleanliness, int chosenCorectness, String Comment, String Reccommendation);
     }

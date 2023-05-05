@@ -19,35 +19,29 @@ namespace BookingProject.Services.Implementations
         {
             _tourImageRepository = Injector.CreateInstance<ITourImageRepository>();
         }
-
         public void CleanUnused()
         {
             _tourImageRepository.GetAll().RemoveAll(i => i.Tour.Id == -1);
         }
-
         public void Create(TourImage image)
         {
             _tourImageRepository.Create(image);
         }
-
         public void LinkToTour(int id)
         {
             _tourImageRepository.LinkToTour(id);
         }
-
         public List<TourImage> GetAll()
         {
             return _tourImageRepository.GetAll();
         }
-
-        public TourImage GetByID(int id)
+        public TourImage GetById(int id)
         {
-            return _tourImageRepository.GetByID(id);    
+            return _tourImageRepository.GetById(id);    
         }
         public void Save()
         {
             _tourImageRepository.Save();
         }
-
     }
 }

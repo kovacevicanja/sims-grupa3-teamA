@@ -12,7 +12,7 @@ namespace BookingProject.Repositories.Intefaces
     {
         void Create(Notification notification);
         List<Notification> GetAll();
-        Notification GetByID(int id);
+        Notification GetById(int id);
         void Initialize();
         void DeleteNotificationFromCSV(Notification notification);
         void Save();

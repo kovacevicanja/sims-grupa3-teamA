@@ -29,16 +29,10 @@ namespace BookingProject.Controllers
         {
             return _tourEvaluationService.GetAll();
         }
-        public TourEvaluation GetByID(int id)
+        public TourEvaluation GetById(int id)
         {
-            return _tourEvaluationService.GetByID(id);
+            return _tourEvaluationService.GetById(id);
         }
-        /*
-        public void Initialize()
-        {
-            _tourEvaluationRepository.Initialize();
-        }
-        */
         public void Save()
         {
             _tourEvaluationService.Save();

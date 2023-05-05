@@ -27,9 +27,9 @@ namespace BookingProject.Services.Implementations
         {
             return _tourLocationRepository.GetAll();
         }
-        public Location GetByID(int id)
+        public Location GetById(int id)
         {
-            return _tourLocationRepository.GetByID(id);
+            return _tourLocationRepository.GetById(id);
         }
         public void Save()
         {

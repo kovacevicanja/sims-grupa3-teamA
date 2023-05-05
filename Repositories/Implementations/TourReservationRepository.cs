@@ -20,9 +20,7 @@ namespace BookingProject.Repositories.Implementations
     public class TourReservationRepository : ITourReservationRepository
     {
         private const string FilePath = "../../Resources/Data/tourReservations.csv";
-
         private  Serializer<TourReservation> _serializer;
-
         public List<TourReservation> _reservations;
 
         public TourReservationRepository() 
@@ -30,32 +28,26 @@ namespace BookingProject.Repositories.Implementations
             _serializer = new Serializer<TourReservation>();
             _reservations = Load();
         }
-
         public void Initialize()
         {
             TourReservationBind();
         }
-
         public List<TourReservation> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
-
         public void Save(List<TourReservation> dates)
         {
             _serializer.ToCSV(FilePath, dates);
         }
-
         public List<TourReservation> GetAll()
         {
             return _reservations.ToList();
         }
-
-        public TourReservation GetByID(int id)
+        public TourReservation GetById(int id)
         {
             return _reservations.Find(date => date.Id == id);
         }
-       
         public int GenerateId()
         {
             if (_reservations.Count == 0) return 0;
@@ -66,7 +58,7 @@ namespace BookingProject.Repositories.Implementations
         {
             foreach (TourReservation reservation in _reservations)
             {
-                Tour tour = Injector.CreateInstance<ITourRepository>().GetByID(reservation.Tour.Id);
+                Tour tour = Injector.CreateInstance<ITourRepository>().GetById(reservation.Tour.Id);
                 reservation.Tour = tour;
             }
         }
@@ -105,6 +97,7 @@ namespace BookingProject.Repositories.Implementations
         }
         public void SaveSameReservationToFile(Tour chosenTour, TourReservation tourReservation, string numberOfGuests, DateTime selectedDate, User guest)
         {
+            int flag = 0;
             foreach (TourReservation tr in GetAll())
             {
                 if (tr.Id == tourReservation.Id)
@@ -122,6 +115,10 @@ namespace BookingProject.Repositories.Implementations
                 {
                     reservationsToRemove.Add(tr);
                 }
+                else if (tr.Guest.Id != guest.Id)
+                {
+                    flag = 1;
+                }
             }
 
             foreach (TourReservation tr in reservationsToRemove)
@@ -129,8 +126,18 @@ namespace BookingProject.Repositories.Implementations
                 reservationsCopy.Remove(tr);
             }
 
-            TourReservation newReservation = new TourReservation(tourReservation.Id, chosenTour, tourReservation.GuestsNumberPerReservation, selectedDate, guest);
-            reservationsCopy.Add(newReservation);
+            if (flag == 1)
+            {
+                TourReservation newRes = new TourReservation(GenerateId(), chosenTour, tourReservation.GuestsNumberPerReservation, selectedDate, guest);
+                reservationsCopy.Add(newRes);
+
+            }
+            else
+            {
+                TourReservation newReservation = new TourReservation(tourReservation.Id, chosenTour, tourReservation.GuestsNumberPerReservation, selectedDate, guest);
+                reservationsCopy.Add(newReservation);
+            }
+
             Save(reservationsCopy);
         }
     }

@@ -15,7 +15,7 @@ namespace BookingProject.Services.Interfaces
         void WriteNotificationAgain(Notification n);
         void Create(Notification notification);
         List<Notification> GetAll();
-        Notification GetByID(int id);
+        Notification GetById(int id);
         void Initialize();
         void Save();
         void DeleteNotificationFromCSV(Notification notification);
