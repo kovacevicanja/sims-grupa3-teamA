@@ -3,10 +3,26 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
         Title="GuestReviewsWindow" Height="480" Width="615">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Enter">
+            <i:InvokeCommandAction Command="{Binding EnterCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Close">
+            <i:InvokeCommandAction Command="{Binding CancelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.InputBindings>
+        <KeyBinding Key="E"  Command="{Binding EnterCommand}" />
+        <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
+    </Window.InputBindings>
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
@@ -14,7 +30,7 @@
         </Grid.RowDefinitions>
 
 
-        <Button Margin="40,59,335,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Click="Button_Click_Examine" Content="Examine grade &#xa;       (Enter)" Height="46"/>
+        <Button Margin="40,59,335,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding EnterCommand}" Content="Examine grade &#xa;           (E)" Height="46"/>
 
         <Grid Grid.Row="1">
             <DataGrid
@@ -34,7 +50,7 @@
                     <DataGridTextColumn Header="GuideKnowlege" Width="100" Binding="{Binding GuideKnowledge}"></DataGridTextColumn>
                     <DataGridTextColumn Header="GuideLanguage" Width="100" Binding="{Binding GuideKnowledge}"></DataGridTextColumn>
                     <DataGridTextColumn Header="TourAppeal" Width="100" Binding="{Binding TourInterestigness}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Images" Width="140">
+                    <DataGridTemplateColumn Header="Images" Width="115">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ItemsControl ItemsSource="{Binding Images}">
@@ -53,7 +69,7 @@
             </DataGrid>
             <Label  Content="Select grade to examine: "  FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top"/>
         </Grid>
-        <Button Margin="313,59,62,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Click="Button_Click_Close" Content="   Close &#xA;    (Esc)" Height="46"/>
+        <Button Margin="313,59,62,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding CancelCommand}" Content="   Close &#xA;    (Esc)" Height="46"/>
         <Border BorderBrush="Black" BorderThickness="5" Margin="10,40,25,0">
             <Label Content="Options"  FontWeight="Bold" FontSize="22" Margin="30,-51,445,101"/>
         </Border>

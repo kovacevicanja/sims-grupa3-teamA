@@ -82,7 +82,6 @@ namespace BookingProject.View.GuideViewModel
         private void Button_Click_Set(object param)
         {
             if (!IsButtonEnabled) {
-                Cancel_Button_Click(param);
                 return;
             }
             TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow(PickedYear);
