@@ -61,7 +61,7 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_SeeMore(object param)
         {
-            SeeMoreAboutTourView seeMore = new SeeMoreAboutTourView(ChosenTour, GuestId);
+            SeeMoreAboutTourView seeMore = new SeeMoreAboutTourView(ChosenTour, GuestId, "SearchAndReservationTours");
             seeMore.Show();
             CloseWindow();
         }
@@ -81,23 +81,24 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_Search(object param)
         {
-            int flag = 0;
             try
             {
                 if (NumOfGuests.IsEmpty())
                 {
-                    flag = 1;
+                    _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
                 }
-                else if (Convert.ToInt32(NumOfGuests) <= 0 && flag == 0 ) 
+                else if (Convert.ToInt32(NumOfGuests) <= 0)
                 {
-                    MessageBox.Show("You have not entered a reasonable value to search by number of guests111.");
+                    MessageBox.Show("You have not entered a reasonable value to search by number of guests.");
                 }
-             
-                 _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
+                else
+                {
+                    _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
+                }
             }
             catch
             {
-                MessageBox.Show("You have not entered a reasonable value to search by number of guests222.");
+                MessageBox.Show("You have not entered a reasonable value to search by number of guests.");
             }
 
             NumOfGuests = string.Empty;

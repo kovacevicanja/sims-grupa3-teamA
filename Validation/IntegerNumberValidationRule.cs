@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,21 +14,17 @@ namespace BookingProject.Validation
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            try
+            string input = value as string;
+            Regex regex = new Regex("^[1-9]\\d*$");
+
+            if (regex.IsMatch(input))
             {
-                if (Convert.ToInt32(value) > 0)
-                {
-                    return ValidationResult.ValidResult;
-                }
-                else
-                {
-                    return new ValidationResult(false, "Number of guests should be an integer value11111.");
-                }
+                return ValidationResult.ValidResult;
             }
-            catch
+            else
             {
-                return new ValidationResult(false, "Number of guests should be an integer value22222.");
-            }
+                return new ValidationResult(false, "Number of guests should be a positive integer value.");
+            }         
         }
     }
 }

@@ -93,10 +93,10 @@ namespace BookingProject.Services
         {
             if (BookingSuccess(chosenTour, numberOfGuests, selectedDate, guest)) SuccessfulReservationMessage(numberOfGuests, guest, chosenTour);
         }
-        public void FullyBookedTours(Tour choosenTour, DateTime selectedDate, User guest)
+        public void FullyBookedTours(Tour chosenTour, DateTime selectedDate, User guest)
         {
             CustomMessageBox.ShowCustomMessageBox("The tour is fully booked. The system will offer you tours at the same location.");
-            ReservationTourOtherOffersView reservationTourOtherOffersView = new ReservationTourOtherOffersView(choosenTour, selectedDate, guest.Id);
+            ReservationTourOtherOffersView reservationTourOtherOffersView = new ReservationTourOtherOffersView(chosenTour, selectedDate, guest.Id);
             reservationTourOtherOffersView.Show();
         }
         public void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour)

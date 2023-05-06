@@ -5,12 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="SecondGuestMyTours" Height="494" Width="1115">
+        Title="SecondGuestMyTours"  Height="761" Width="1024">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="BoldAndLargeTextBoxStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <DataGrid DockPanel.Dock="Bottom"
-                              SelectedItem="{Binding Path=ChosenTour, UpdateSourceTrigger=PropertyChanged}"
-                              Name="MyToursDataGrid" ItemsSource="{Binding Path=AttendedTours, UpdateSourceTrigger=PropertyChanged}"
-                              AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,6,70" RenderTransformOrigin="0.5,0.5">
+        <Grid>
+            <Label Margin="44,85,44,586" Foreground="Gray" FontSize="38" Content="Your memories."/>
+            <Label Margin="88,122,0,553" Foreground="LightBlue" FontSize="30" Content="These are the tours you have visited."/>
+            <Image Source="ToursImages/myTours2.png" Margin="10,482,577,-28" RenderTransformOrigin="0.876,-0.176" />
+            <Image Source="ToursImages/myTours3.png" Margin="637,10,0,490" RenderTransformOrigin="0.876,-0.176" HorizontalAlignment="Left" Width="383" />
+            <Image Source="ToursImages/myTours5.png" Margin="670,467,0,19" RenderTransformOrigin="0.876,-0.176" HorizontalAlignment="Left" Width="346" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-5.038"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+
+
+        </Grid>
+        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top"
+            DockPanel.Dock="Bottom"
+            SelectedItem="{Binding Path=ChosenTour, UpdateSourceTrigger=PropertyChanged}"
+            Name="TourDataGrid" ItemsSource="{Binding Path=AttendedTours, UpdateSourceTrigger=PropertyChanged}"
+            AutoGenerateColumns="False" IsReadOnly="True" Margin="14,237,0,0" RenderTransformOrigin="0.5,0.5" Height="252" Width="971">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -20,45 +58,24 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Tour name" Width="70" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="City" Width="70" Binding="{Binding Location.City}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Country" Width="70" Binding="{Binding Location.Country}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Description" Width="170" Binding="{Binding Description}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tour duration" Width="85" Binding="{Binding DurationInHours}"></DataGridTextColumn>
-                <DataGridTemplateColumn Header="Key points" Width="120">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding KeyPoints}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Point}" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Language" Width="65" Binding="{Binding Language}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Starting time" Width="*" Binding="{Binding ReservationStartingTime}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Number of possible guests" Width="155" Binding="{Binding MaxGuests}"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Images" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding Images}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding Url}" Width="80" Height="80" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                            <Image Source="{Binding Images[0].Url}" Width="Auto" Height="Auto" Stretch="Uniform" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Tour name" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Language" Width="150" Binding="{Binding Language}"></DataGridTextColumn>
+                <DataGridTextColumn Header="City" Width="150" Binding="{Binding Location.City}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Country" Width="*" Binding="{Binding Location.Country}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+
         <Grid>
-            <Button Content="Rate tour and guide" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="309,418,0,0" VerticalAlignment="Top" Width="169" Command="{Binding RateCommand}"/>
-            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="706,418,0,0" VerticalAlignment="Top" Width="169" Command="{Binding CancelCommand}"/>
+            <Button Background="LightGray" Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="789,493,0,0" VerticalAlignment="Top" Width="169" Command="{Binding SeeMoreCommand}"/>
+            <Button Background="LightGray" Content="Rate tour and guide" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="184,544,0,0" VerticalAlignment="Top" Width="297" Command="{Binding RateCommand}"/>
+            <Button Background="LightGray" Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="541,544,0,0" VerticalAlignment="Top" Width="170" Command="{Binding CancelCommand}"/>
         </Grid>
     </Grid>
 </Window>

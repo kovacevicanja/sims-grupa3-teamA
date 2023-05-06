@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Markup.Localizer;
+using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -25,8 +27,9 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand BookTourCommand { get; set; }
         public string DurationDisplay { get; set; }
         public string LanguageDisplay { get; set; }
+        public string PreviousWindow { get; set; }
 
-        public SeeMoreAboutTourViewModel(Tour chosenTour, int guestId)
+        public SeeMoreAboutTourViewModel(Tour chosenTour, int guestId, string previousWindow)
         {
             ChosenTour = chosenTour;
             GuestId = guestId;
@@ -39,6 +42,8 @@ namespace BookingProject.View.Guest2ViewModel
             DurationDisplay = ChosenTour.DurationInHours.ToString() + " h";
             string language = ChosenTour.Language.ToString();
             LanguageDisplay = char.ToUpper(language[0]) + language.Substring(1).ToLower();
+
+            PreviousWindow = previousWindow;
         }
 
         private void Button_Click_LogOut(object param)
@@ -59,8 +64,25 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_Cancel(object param)
         {
-            SerachAndReservationToursView searchAndReservation = new SerachAndReservationToursView(GuestId);
-            searchAndReservation.Show();
+            switch(PreviousWindow)
+            {
+                case "SearchAndReservationTours":
+                    SerachAndReservationToursView searchAndReservation = new SerachAndReservationToursView(GuestId);
+                    searchAndReservation.Show();
+                    break;
+                case "ReservationToursOtherOffers":
+                    ReservationTourOtherOffersView otherOffers = new ReservationTourOtherOffersView(ChosenTour, DateTime.Now, GuestId);
+                    otherOffers.Show();
+                    break;
+                case "MyAttendedTours":
+                    SecondGuestMyAttendedToursView myAttendedTours = new SecondGuestMyAttendedToursView(GuestId);
+                    myAttendedTours.Show();
+                    break;
+                default:
+                    SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
+                    profile.Show();
+                    break;
+            }
             CloseWindow();
         }
 

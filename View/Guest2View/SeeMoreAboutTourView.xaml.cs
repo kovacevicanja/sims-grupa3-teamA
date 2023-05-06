@@ -22,10 +22,10 @@ namespace BookingProject.View.Guest2View
     public partial class SeeMoreAboutTourView : Window
     {
         public Tour ChosenTour { get; set; }
-        public SeeMoreAboutTourView(Tour chosenTour, int guestId)
+        public SeeMoreAboutTourView(Tour chosenTour, int guestId, string previousWindow)
         {
             InitializeComponent();
-            this.DataContext = new SeeMoreAboutTourViewModel(chosenTour, guestId);
+            this.DataContext = new SeeMoreAboutTourViewModel(chosenTour, guestId, previousWindow);
         }
     }
 }

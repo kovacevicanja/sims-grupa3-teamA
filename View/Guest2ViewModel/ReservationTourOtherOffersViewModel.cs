@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.Guest2View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,9 +17,11 @@ namespace BookingProject.View.Guest2ViewModel
         public ObservableCollection<Tour> Tours { get; set; }
         private TourController _tourController;
         public Tour ChosenTour { get; set; }
+        public Tour NewlyChosenTour { get; set; }
         public int GuestId { get; set; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand TryToBookCommand { get; }
+        public RelayCommand SeeMoreCommand { get; }
         public ReservationTourOtherOffersViewModel(Tour chosenTour, DateTime selectedDate, int guestId)
         {
             ChosenTour = chosenTour;
@@ -27,7 +30,14 @@ namespace BookingProject.View.Guest2ViewModel
             GuestId = guestId;
 
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
-            TryToBookCommand = new RelayCommand(Button_Click_TryToBook, CanExecute);
+            TryToBookCommand = new RelayCommand(Button_Click_TryToBook, CanWhenSelected);
+            SeeMoreCommand = new RelayCommand(Button_Click_SeeMore, CanWhenSelected);
+        }
+
+        private bool CanWhenSelected(object param)
+        {
+            if (NewlyChosenTour == null) { return false; }
+            else { return true; }
         }
 
         private void CloseWindow()
@@ -38,6 +48,13 @@ namespace BookingProject.View.Guest2ViewModel
             }
         }
 
+        private void Button_Click_SeeMore(object param)
+        {
+            SeeMoreAboutTourView seeMore = new SeeMoreAboutTourView(NewlyChosenTour, GuestId, "ReservationToursOtherOffers");
+            seeMore.Show();
+            CloseWindow();
+        }
+
         private void Button_Click_Cancel(object param)
         {
             CloseWindow();
@@ -45,7 +62,7 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_TryToBook(object param)
         {
-            ReservationTourView reservationTourView = new ReservationTourView(ChosenTour, GuestId);
+            ReservationTourView reservationTourView = new ReservationTourView(NewlyChosenTour, GuestId);
             reservationTourView.Show();
             CloseWindow(); 
         }

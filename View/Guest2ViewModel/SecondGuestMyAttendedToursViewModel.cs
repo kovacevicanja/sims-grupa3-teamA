@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
 using BookingProject.Commands;
+using BookingProject.View.Guest2View;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -24,6 +25,7 @@ namespace BookingProject.View.Guest2ViewModel
         public int GuestId { get; set; }
         public RelayCommand RateCommand { get; }
         public RelayCommand CancelCommand { get; }
+        public RelayCommand SeeMoreCommand { get; }
         public SecondGuestMyAttendedToursViewModel(int guestId)
         {
             Guest = new User();
@@ -34,8 +36,22 @@ namespace BookingProject.View.Guest2ViewModel
             _tourPresenceController = new TourPresenceController();
             AttendedTours = new ObservableCollection<Tour>(_tourPresenceController.FindAttendedTours(Guest));
 
-            RateCommand = new RelayCommand(Button_Rate, CanExecute);
+            RateCommand = new RelayCommand(Button_Rate, CanWhenSelected);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
+            SeeMoreCommand = new RelayCommand(Button_Click_SeeMore, CanWhenSelected);
+        }
+
+        private bool CanWhenSelected (object param)
+        {
+            if (ChosenTour == null) { return false; }
+            else { return true; }
+        }
+
+        private void Button_Click_SeeMore(object param)
+        {
+            SeeMoreAboutTourView seeMore = new SeeMoreAboutTourView(ChosenTour, GuestId, "MyAttendedTours");
+            seeMore.Show();
+            CloseWindow();
         }
 
         private void CloseWindow()

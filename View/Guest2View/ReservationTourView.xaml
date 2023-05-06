@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
-        Title="ReservationTourView" Height="552" Width="1024">
+        Title="" Height="552" Width="1024">
 
     <Window.Resources>
         <Style TargetType="Label">
@@ -38,13 +38,16 @@
         </Grid.RowDefinitions>
 
         <Grid>
-            <Label Margin="36,10,-340,304" Foreground="Black" FontSize="36">Make your reservation</Label>
+            <Label Margin="33,10,-337,304" Foreground="Black" FontSize="36">Make your reservation</Label>
         </Grid>
         <Image Source="ToursImages/tour.png" Margin="363,178,-158,-19" RenderTransformOrigin="0.876,-0.176" Grid.Column="2" Grid.RowSpan="2" />
 
         <Grid Grid.ColumnSpan="3" Margin="23,-10,735,10">
-            <Image Source="ToursImages/gosti2.png" Margin="-21,79,-41,163" RenderTransformOrigin="0.876,-0.176" />
-            <Image Source="ToursImages/calendar2.png" Margin="28,187,0,102" RenderTransformOrigin="0.876,-0.176" />
+            <Image Source="ToursImages/reservation22.png" Margin="4,42,-66,186" RenderTransformOrigin="0.876,-0.176" />
+            <Image Source="ToursImages/reservation222.png" Margin="565,41,-635,187" RenderTransformOrigin="0.876,-0.176" />
+            <Image Source="ToursImages/reservation3.png" Margin="57,175,-66,135" RenderTransformOrigin="0.876,-0.176" />
+            <Image Source="ToursImages/reservation1.png" Margin="10,290,-313,-64" RenderTransformOrigin="0.876,-0.176" />
+
         </Grid>
         <Grid Grid.Row="0" Grid.Column="2" Margin="10,25,22,10">
             <Grid.RowDefinitions>
@@ -54,11 +57,12 @@
                 <ColumnDefinition Width="202*"/>
                 <ColumnDefinition Width="233*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Margin="-1,82,357,195" Content="Enter the number of guests:" Grid.ColumnSpan="2"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" x:Name ="EnteredGuests" Margin="0,89,319,0" Height="32" VerticalAlignment="Top" Grid.Column="1">
+            <Label Grid.Row="0" Grid.Column="0" Margin="66,86,290,191" Content="Enter the number of guests:" Grid.ColumnSpan="2"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" x:Name ="EnteredGuests" Margin="67,93,252,0" Height="32" VerticalAlignment="Top" Grid.Column="1">
                 <TextBox.Text>
-                    <Binding Path="EnteredGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                    <Binding Path="EnteredGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
                         <Binding.ValidationRules>
+                            <val:RequiredFieldValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
                             <val:IntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
@@ -68,22 +72,23 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
-                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Foreground="Gray" FontSize="18"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Gray" FontSize="14" Margin="0,2,0,0"/>
                         </Grid>
                     </ControlTemplate>
                 </Validation.ErrorTemplate>
             </TextBox>
-            <Label Grid.Row="0" Grid.Column="0" Margin="-1,176,10,100" Content="Select the date and time:"/>
+            <Label Grid.Row="0" Grid.Column="0" Margin="66,176,325,97" Content="Select the date and time:" Grid.ColumnSpan="2"/>
             <ComboBox x:Name="TourDatesComboBox" Background="LightBlue"
               ItemsSource="{Binding ChosenTour.StartingTime}"
               SelectedItem="{Binding SelectedDate}"
-              DisplayMemberPath="StartingDateTime" Margin="299,187,137,126" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+              DisplayMemberPath="StartingDateTime" Margin="57,187,98,147" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
                 <ComboBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -95,7 +100,7 @@
             </ComboBox>
         </Grid>
 
-        <Grid FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="0,22,0,0" Grid.Row="1" Width="565" Height="65" Grid.ColumnSpan="2" >
+        <Grid FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Width="565" Height="65" Grid.ColumnSpan="2" >
             <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightBlue"
               Command="{Binding CancelCommand}" Height="46" Width="104" Margin="56,0,0,0" RenderTransformOrigin="0.873,0.658" />
             <Button Content="Book tour" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightBlue"
