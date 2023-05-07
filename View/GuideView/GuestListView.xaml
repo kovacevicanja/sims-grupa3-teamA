@@ -5,11 +5,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="GuestListView" Height="510" Width="350">
+        Title="GuestListView" Height="490" Width="300">
 
-    <Grid Margin="0,0,0,13">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Mark">
+            <i:InvokeCommandAction Command="{Binding MarkCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Close">
+            <i:InvokeCommandAction Command="{Binding CancelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.InputBindings>
+        <KeyBinding Key="M" Command="{Binding MarkCommand}" />
+        <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
+    </Window.InputBindings>
+
+    <Grid Margin="0,0,0,-16">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -18,20 +32,20 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="348"/>
-            <RowDefinition Height="52"/>
+            <RowDefinition Height="329"/>
+            <RowDefinition Height="71"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="450, 12,450,18" Grid.RowSpan="2">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="450,12,-100,18" Grid.RowSpan="2">
             <Label Width="200">LIST OF GUESTS</Label>
         </StackPanel>
 
         <StackPanel Grid.Row = "1" Orientation="Horizontal" Margin="50,0,50,0">
-            <Button Content="Mark Guest" IsDefault="True"
-                Click="Button_Click_Mark" Width="90" Height="19" />
+            <Button Content="Mark (M)" FontWeight="Bold" FontSize="10" IsDefault="True"
+                Command="{Binding MarkCommand}" Width="90" Height="19" />
         </StackPanel>
 
-        <Grid Grid.Row="2" Margin="0,0,0,41" Grid.RowSpan="2">
+        <Grid Grid.Row="2" Margin="0,0,0,24">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -45,7 +59,7 @@
                               ItemsSource="{Binding Path=User, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding Path=ChosenGuest, UpdateSourceTrigger=PropertyChanged}"
                               Name="GuestDataGrid"
-                              AutoGenerateColumns="False" IsReadOnly="True" Margin="24,11,22,78" RenderTransformOrigin="0.5,0.5">
+                              AutoGenerateColumns="False" IsReadOnly="True" Margin="24,11,22,19" RenderTransformOrigin="0.5,0.5">
                 <DataGrid.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -56,15 +70,15 @@
                 </DataGrid.RenderTransform>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Width="98" Binding="{Binding Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Surname" Width="98" Binding="{Binding Surname}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Surname" Width="78" Binding="{Binding Surname}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Present" Width="106" Binding="{Binding IsPresent}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
         </Grid>
 
-        <WrapPanel Grid.Row = "3" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center" >
-            <Button Width="120" IsDefault="True" Click="Button_Click_Cancell" Content="Exit"/>
+        <WrapPanel Grid.Row = "3" FlowDirection="LeftToRight" HorizontalAlignment="Center" VerticalAlignment="Center" Height="54" Width="136" >
+            <Button Width="136" IsDefault="True" FontWeight="Bold" FontSize="20" Command="{Binding CancelCommand}" Content="Cancel (Esc)" Height="54"/>
         </WrapPanel>
     </Grid>
 </Window>
