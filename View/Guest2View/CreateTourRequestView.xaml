@@ -5,7 +5,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
-        Title="CreateTourRequestView" Height="761" Width="1024">
+        Title="" Height="761" Width="1024">
 
     <Window.Resources>
         <Style TargetType="Label">
@@ -98,7 +98,7 @@
             <Label Grid.Row="4" Grid.Column="0" Content="Start date" Margin="230,23,0,13" RenderTransformOrigin="0.887,1.009"/>
             <Label Grid.Row="5" Grid.Column="0" Content="End date" Margin="239,7,0,33" RenderTransformOrigin="0.565,0.545"/>
 
-            <TextBox x:Name="txtCity" Grid.Row="0" Grid.Column="1" Margin="0,0,186,26">
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="0,0,186,26">
                 <TextBox.Text>
                     <Binding Path="City" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
@@ -126,7 +126,7 @@
                 </Validation.ErrorTemplate>
             </TextBox>
 
-            <TextBox x:Name="txtCountry" Grid.Column="1" Margin="176,0,0,26">
+            <TextBox Grid.Column="1" Margin="176,0,0,26">
                 <TextBox.Text>
                     <Binding Path="Country" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>

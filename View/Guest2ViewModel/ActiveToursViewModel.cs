@@ -25,8 +25,12 @@ namespace BookingProject.View.Guest2ViewModel
         public Tour ChosenTour { get; set; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand FollowTourCommand { get; }
+        public RelayCommand LogOutCommand { get; }
+        public string DisplayTodaysDay { get; set; }
+        public User User { get; set; }
+        public int GuestId { get; set; }
 
-        public ActiveToursViewModel(List<int> activeToursIds)
+        public ActiveToursViewModel(List<int> activeToursIds, int guestId)
         {
             ActiveToursIds = activeToursIds;
             List<Tour> activeTours = new List<Tour>();
@@ -48,7 +52,27 @@ namespace BookingProject.View.Guest2ViewModel
             ActiveToursCollection = new ObservableCollection<Tour>(activeTours);
 
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
-            FollowTourCommand = new RelayCommand(Button_Click_FollowTour, CanExecute);
+            FollowTourCommand = new RelayCommand(Button_Click_FollowTour, CanWhenSelected);
+            LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
+
+            DisplayTodaysDay = DateTime.Now.Date.ToString("dd/MM/yyyy");
+
+            User = new User();
+            GuestId = guestId;
+        }
+
+        private bool CanWhenSelected(object param)
+        {
+            if (ChosenTour == null) return false;
+            else return true;   
+        }
+        private void Button_Click_LogOut(object param)
+        {
+            User.Id = GuestId;
+            User.IsLoggedIn = false;
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            CloseWindow();
         }
 
         private bool CanExecute(object param) { return true; }
@@ -63,13 +87,16 @@ namespace BookingProject.View.Guest2ViewModel
 
         public void Button_Click_Cancel(object param)
         {
+            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
+            profile.Show();
             CloseWindow();
         }
 
         private void Button_Click_FollowTour(object param)
         {
-            MonitoringActiveToursView monitoringActiveToursView = new MonitoringActiveToursView(ChosenTour);
+            MonitoringActiveToursView monitoringActiveToursView = new MonitoringActiveToursView(ChosenTour, ActiveToursIds, GuestId);
             monitoringActiveToursView.Show();
+            CloseWindow();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

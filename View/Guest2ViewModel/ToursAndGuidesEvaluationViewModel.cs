@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows;
 using System.Web.WebPages;
+using System.Windows.Media.Animation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -204,6 +205,7 @@ namespace BookingProject.View.Guest2ViewModel
         }
         private void Button_Click_Cancel(object param)
         {
+            TourEvaluationImageController.DeleteImageIfEvaluationNotCreated(tourEvaluation.Id);
             SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
             profile.Show();
             CloseWindow();

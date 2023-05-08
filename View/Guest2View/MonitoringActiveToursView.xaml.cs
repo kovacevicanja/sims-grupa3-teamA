@@ -24,10 +24,10 @@ namespace BookingProject.View
     /// </summary>
     public partial class MonitoringActiveToursView : Window
     {
-        public MonitoringActiveToursView(Tour tour)
+        public MonitoringActiveToursView(Tour tour, List<int> activeToursIds, int guestId)
         {
             InitializeComponent();
-            this.DataContext = new MonitoringActiveToursViewModel(tour);
+            this.DataContext = new MonitoringActiveToursViewModel(tour, activeToursIds, guestId);
         }
     }
 }

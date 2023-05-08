@@ -5,7 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="MonitoringActiveToursView" Height="450" Width="800">
+        Title="" Height="600" Width="1024">
+
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="BoldAndLargeTextBoxStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
     <Grid Margin="0,0,0,13">
 
         <Grid.ColumnDefinitions>
@@ -19,7 +38,9 @@
             <RowDefinition Height="52"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="2" Margin="0,0,0,41" Grid.RowSpan="2">
+        <Image Source="ToursImages/keyPoints1.png" Margin="-34,0,56,-96" RenderTransformOrigin="0.876,-0.176" Grid.RowSpan="4" />
+
+        <Grid Grid.Row="2" Margin="72,43,0,41" Grid.RowSpan="2">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -29,28 +50,32 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <DataGrid DockPanel.Dock="Bottom"
-                              SelectedItem="{Binding Path=ChosenKeyPoint, UpdateSourceTrigger=PropertyChanged}"
-                              Name="KeyPointDataGrid" ItemsSource="{Binding Path=KeyPoints, UpdateSourceTrigger=PropertyChanged}"
-                              AutoGenerateColumns="False" IsReadOnly="True" Margin="297,22,300,67" RenderTransformOrigin="0.5,0.5">
-                <DataGrid.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.126"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-0.998"/>
-                    </TransformGroup>
-                </DataGrid.RenderTransform>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Key point" Width="98" Binding="{Binding Point}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Status" Width="117" Binding="{Binding State}"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+            <Border BorderThickness="0" Margin="10" CornerRadius="15">
+                <Border.BitmapEffect>
+                    <DropShadowBitmapEffect/>
+                </Border.BitmapEffect>
+                <Grid>
+                    <Border x:Name="BDRounded" BorderThickness="0" CornerRadius="15" Background="White" Margin="116,148,527,-61" />
+                    <DataGrid BorderBrush="{x:Null}" DockPanel.Dock="Bottom"
+                              SelectedItem="{Binding ChosenKeyPoint, UpdateSourceTrigger=PropertyChanged}"
+                              x:Name="KeyPointDataGrid" ItemsSource="{Binding KeyPoints, UpdateSourceTrigger=PropertyChanged}"
+                              AutoGenerateColumns="False" IsReadOnly="True" Margin="126,160,538,-48" RenderTransformOrigin="0.5,0.5">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Key point" Width="*" Binding="{Binding Point}"/>
+                            <DataGridTextColumn Header="Status" Width="*" Binding="{Binding State}"/>
+                        </DataGrid.Columns>
+                        <DataGrid.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=BDRounded}" />
+                        </DataGrid.OpacityMask>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
 
         </Grid>
 
-        <WrapPanel Grid.Row = "2" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="414,318,0,0" >
-            <Button Width="120" IsDefault="True" Command="{Binding CancelCommand}"  Content="Cancel"/>
-        </WrapPanel>
+        <Button IsDefault="True" Command="{Binding CancelCommand}" Content="Cancel" Margin="535,101,353,-86" Grid.Row="3"/>
+        <Button IsDefault="True" Command="{Binding LogOutCommand}" Content="Log out" Margin="861,23,27,0" Grid.RowSpan="2"/>
+
     </Grid>
 </Window>

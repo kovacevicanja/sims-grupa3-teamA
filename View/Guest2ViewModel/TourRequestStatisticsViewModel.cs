@@ -1,5 +1,6 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controllers;
+using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.View.Guest2View;
 using System;
@@ -29,6 +30,8 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand CountNumberForLocationCommand { get; }
         public RelayCommand ChangeYearCommand { get; }
         public RelayCommand CancelCommand { get; }
+        public RelayCommand LogOutCommand { get; }
+        public User User { get; }
 
         public TourRequestStatisticsViewModel(int guestId, string enteredYear = "")
         {
@@ -56,6 +59,18 @@ namespace BookingProject.View.Guest2ViewModel
             CountNumberForLocationCommand = new RelayCommand(Button_Click_CountNumberForLocation, CanExecute);
             ChangeYearCommand = new RelayCommand(Button_Click_ChangeTheYear, CanExecute);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
+            LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
+
+            User = new User();
+        }
+
+        private void Button_Click_LogOut(object param)
+        {
+            User.Id = GuestId;
+            User.IsLoggedIn = false;
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            CloseWindow();
         }
 
         private bool CanExecute(object param) { return true; }
@@ -136,6 +151,8 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Cancel(object param)
         {
+            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
+            profile.Show();
             CloseWindow();
         }
         private void CloseWindow()

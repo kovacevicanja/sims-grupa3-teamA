@@ -3,46 +3,79 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookingProject.View.Guest2View"
+        xmlns:local="clr-namespace:BookingProject.View.Guest2View" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
-        Title="ChangeYearTourStatistics"
-        Height="450"
-        Width="800"
+        Title=""
+        Height="300"
+        Width="741"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize">
 
-    <Grid Margin="44,157,136,170">
-        <Label Content="Change the year:" 
-               FontSize="12" 
+    <Grid Margin="30,10,10,11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="248*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Image Source="ToursImages/statistics13.png" Margin="-40,-16,217,-24" RenderTransformOrigin="0.876,-0.176" Grid.RowSpan="2" />
+
+        <Label Content="Change the year" 
+               FontSize="24" 
                FontWeight="Bold" 
                HorizontalAlignment="Left"
-               Margin="157,0,0,0"
-               VerticalAlignment="Center" Height="30"/>
+               Margin="340,29,0,0"
+               VerticalAlignment="Top" Height="42" Width="232"/>
 
-        <TextBox Text="{Binding EnteredYear, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                 Margin="272,0,0,0"
-                 Width="100"
+        <TextBox Margin="372,71,0,0"
+                 Width="141"
+                 FontSize="24" 
+                 FontWeight="Bold" 
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Center" Height="25" RenderTransformOrigin="0.5,0.5">
+                 VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Gray" FontSize="14" Margin="0,2,0,0"/>
+                    </Grid>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+            <Binding Path="EnteredYear" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
+                <Binding.ValidationRules>
+                    <val:YearValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                </Binding.ValidationRules>
+            </Binding>
         </TextBox>
 
         <Button Content="Count" 
-                Width="71" 
-                Height="22" 
-                Margin="391,0,0,0"
+                Width="104" 
+                Height="44" 
+                FontSize="24" 
+                FontWeight="Bold" 
+                Margin="246,179,0,0"
                 HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
+                VerticalAlignment="Top"
                 IsDefault="True"
-                Command="{Binding ChangeYearCommand}"/>
+                Command="{Binding ChangeYearCommand}" RenderTransformOrigin="0.513,0.587"/>
 
         <Button Content="Cancel" 
-                Width="71" 
-                Height="22" 
-                Margin="467,0,0,0"
+                Width="120" 
+                Height="44" 
+                Margin="414,179,0,0"
+                FontSize="24" 
+                FontWeight="Bold" 
                 HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
+                VerticalAlignment="Top"
                 IsDefault="True" 
-                Command="{Binding CancelCommand}" RenderTransformOrigin="0.528,0.65"/>
+                Background="LightBlue"
+                Command="{Binding CancelCommand}" RenderTransformOrigin="0.4,0.551"/>
     </Grid>
 </Window>

@@ -5,12 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="ActiveToursView" Height="450" Width="800">
-    <Grid>
-        <DataGrid DockPanel.Dock="Bottom"
-                              SelectedItem="{Binding Path=ChosenTour, UpdateSourceTrigger=PropertyChanged}"
-                              Name="ActiveToursDataGrid" ItemsSource="{Binding Path=ActiveToursCollection, UpdateSourceTrigger=PropertyChanged}"
-                              AutoGenerateColumns="False" IsReadOnly="True" Margin="7,9,6,70" RenderTransformOrigin="0.5,0.5">
+        Title="" Height="600" Width="1024">
+
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="BoldAndLargeTextBoxStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,10,10,16">
+        <Label Content="Active tours today" FontSize="35" FontWeight="Bold" Foreground="Gray" Margin="106,29,582,443" />
+        <Label Content="{Binding DisplayTodaysDay}" Foreground="LightBlue" Margin="178,72,433,422"/>
+        <Image Source="ToursImages/activeTours1.png" Margin="800,209,0,-66" RenderTransformOrigin="0.876,-0.176" />
+        <Image Source="ToursImages/activeTours3.png" Margin="134,74,817,424" RenderTransformOrigin="0.876,-0.176" />
+        <Image Source="ToursImages/activeTours4.png" Margin="421,-18,299,379" RenderTransformOrigin="0.876,-0.176" />
+        <Image Source="ToursImages/activeTours5.png" Margin="807,5,147,485" RenderTransformOrigin="0.876,-0.176" />
+
+        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top"
+            DockPanel.Dock="Bottom"
+            SelectedItem="{Binding Path=ChosenTour, UpdateSourceTrigger=PropertyChanged}"
+            Name="TourDataGrid" ItemsSource="{Binding Path=ActiveToursCollection, UpdateSourceTrigger=PropertyChanged}"
+            AutoGenerateColumns="False" IsReadOnly="True" Margin="41,158,0,0" RenderTransformOrigin="0.5,0.5" Height="259" Width="759">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -20,12 +47,23 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Tour name" Width="70" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="City" Width="70" Binding="{Binding Location.City}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Country" Width="70" Binding="{Binding Location.Country}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Description" Width="170" Binding="{Binding Description}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tour duration" Width="85" Binding="{Binding DurationInHours}"></DataGridTextColumn>
-                <DataGridTemplateColumn Header="Key points" Width="120">
+                <DataGridTemplateColumn Header="Images" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Images[0].Url}" Width="Auto" Height="Auto" Stretch="Uniform" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Tour name" Width="*" Binding="{Binding Name}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="City" Width="*" Binding="{Binding Location.City}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Country" Width="*" Binding="{Binding Location.Country}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Key points" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ItemsControl ItemsSource="{Binding KeyPoints}">
@@ -38,25 +76,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Language" Width="65" Binding="{Binding Language}"></DataGridTextColumn>
-                <DataGridTemplateColumn Header="Images" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding Images}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding Url}" Width="80" Height="80" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid>
-            <Button Width="184" IsDefault="True" Command="{Binding FollowTourCommand}" Content="Follow the tour" Margin="216,390,400,10"/>
-            <Button Width="184" IsDefault="True" Command="{Binding CancelCommand}" Content="Cancel" Margin="433,390,183,10"/>
-        </Grid>
+        <Button IsDefault="True" Background="LightBlue" Command="{Binding FollowTourCommand}" Content="Follow the tour" Margin="166,465,602,27"/>
+        <Button IsDefault="True" Background="LightBlue" Command="{Binding CancelCommand}" Content="Cancel" Margin="531,465,338,27"/>
+        <Button IsDefault="True" Background="LightBlue" Command="{Binding LogOutCommand}" Content="Log out" Margin="858,6,10,486"/>
     </Grid>
 </Window>

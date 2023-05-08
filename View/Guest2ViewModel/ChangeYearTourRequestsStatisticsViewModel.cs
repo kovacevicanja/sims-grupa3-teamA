@@ -44,6 +44,8 @@ namespace BookingProject.View.Guest2ViewModel
 
         public void Button_Click_Cancel(object param)
         {
+            TourRequestStatisticsView requestStatistcis = new TourRequestStatisticsView(GuestId, EnteredYear);
+            requestStatistcis.Show(); 
             CloseWindow();
         }
 

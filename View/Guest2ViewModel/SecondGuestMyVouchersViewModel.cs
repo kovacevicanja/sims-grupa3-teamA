@@ -85,7 +85,6 @@ namespace BookingProject.View.Guest2ViewModel
             }
         }
         private void Button_Cancel(object param)
-
         {
             CloseWindow();
         }

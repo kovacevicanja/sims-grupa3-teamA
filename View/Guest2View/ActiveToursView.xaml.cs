@@ -27,10 +27,10 @@ namespace BookingProject.View
     /// </summary>
     public partial class ActiveToursView : Window
     {
-        public ActiveToursView(List<int> activeToursIds)
+        public ActiveToursView(List<int> activeToursIds, int guestId)
         {
             InitializeComponent();
-            this.DataContext = new ActiveToursViewModel(activeToursIds);
+            this.DataContext = new ActiveToursViewModel(activeToursIds, guestId);
         }
     }
 }

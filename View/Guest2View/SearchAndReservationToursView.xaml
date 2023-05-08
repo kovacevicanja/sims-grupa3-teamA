@@ -135,15 +135,15 @@
             <Label Content="Discover Tours Wherever You Imagine" FontSize="35" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="8" Margin="164,-33,112,171" />
 
             <Label Content="City:" Margin="-23,10,135,0" VerticalAlignment="Top"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Height="40" Text="{Binding City}" Margin="-25,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding City}" Height="40" Margin="-25,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145"/>
             <Label Content="Country:" Margin="125,10,0,0" RenderTransformOrigin="0.514,0.615" HorizontalAlignment="Left" VerticalAlignment="Top" Width="127" Grid.ColumnSpan="3"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding Country}" Margin="125,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="40" Grid.ColumnSpan="3"/>
-            <Label Width="178" Content="Tour duration:" Margin="48,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="3"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="48,57,0,0" Text="{Binding Duration}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="40" Grid.Column="2" Grid.ColumnSpan="3"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding Country}" Margin="125,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="195" Height="40" Grid.ColumnSpan="5"/>
+            <Label Width="125" Content="Duration:" Margin="51,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="51,57,0,0" Text="{Binding Duration}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="40" Grid.Column="4"/>
             <Label Width="139" Content="Language:" Margin="36,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="7"/>
             <ComboBox Margin="36,57,0,0" ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding ChosenLanguage}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Height="40" FontSize="16" FontWeight="Bold" Grid.Column="7"/>
             <Label Content="Number of guests:" Margin="176,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" Grid.Column="4" Grid.ColumnSpan="4"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding NumOfGuests}" Margin="181,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="40" Grid.Column="4" Grid.ColumnSpan="4" />
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding NumOfGuests}" Margin="181,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="207" Height="40" Grid.Column="4" Grid.ColumnSpan="4" />
             <Grid Margin="0,77,0,-47" Grid.ColumnSpan="8" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="85*"/>

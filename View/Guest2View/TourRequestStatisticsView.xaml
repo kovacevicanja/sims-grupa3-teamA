@@ -3,76 +3,109 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookingProject.View.Guest2View" xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
+        xmlns:local="clr-namespace:BookingProject.View.Guest2View" xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
-        Title="TourRequestStatisticsView" Height="450" Width="800">
+        Title="" Height="761" Width="1024">
     <Grid Margin="0,0,0,16">
         <Grid.RowDefinitions>
             <RowDefinition Height="311"/>
             <RowDefinition Height="66"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0" Margin="150,7,150,0" Height="360" VerticalAlignment="Top" Grid.RowSpan="2">
+        <Image Source="ToursImages/statistics12.png" Margin="0,131,0,131" RenderTransformOrigin="0.704,0.433" HorizontalAlignment="Left" Width="104" Grid.Row="2" />
+        <Image Source="ToursImages/statistics7.png" Margin="0,230,896,3" RenderTransformOrigin="0.512,0.706" Grid.RowSpan="2" HorizontalAlignment="Right" Width="86" />
+        <Image Source="ToursImages/statistics11.png" Margin="90,26,878,7" RenderTransformOrigin="0.691,0.713" Grid.Row="1" />
+        <Image Source="ToursImages/statistics11.png" Margin="82,95,870,203" RenderTransformOrigin="0.691,0.713" Grid.Row="2" />
+        <Image Source="ToursImages/statistics9.png" Margin="20,64,909,265" RenderTransformOrigin="0.691,0.713" Grid.RowSpan="2" Grid.Row="1" />
+        <Image Source="ToursImages/statistics8.png" Margin="0,110,915,85" RenderTransformOrigin="0.512,0.706" />
+        <Image Source="ToursImages/statistics3.png" Margin="471,28,0,262" RenderTransformOrigin="0.512,0.706" Grid.RowSpan="3" />
+        <Label Margin="36,33,770,207" Foreground="Gray" FontWeight="Bold" FontSize="45" Content="Statistics"/>
+        <Label Margin="245,33,255,207" Foreground="LightBlue" FontWeight="Bold" FontSize="45" Content="about tour requests"/>
+
+        <Grid Grid.Row="0" Grid.Column="0" Margin="73,128,73,0" Height="474" VerticalAlignment="Top" Grid.RowSpan="3">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="277*"></ColumnDefinition>
-                <ColumnDefinition Width="223*"></ColumnDefinition>
+                <ColumnDefinition Width="277*"/>
+                <ColumnDefinition Width="223*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Percentage of accepted requests:" FontSize="12" FontWeight="Bold" Margin="28,8,24,11" />
-            <Label Content="{Binding AccpetedRequestsPercentageDisplay}" FontSize="12" FontWeight="Bold" Margin="28,8,24,11" Grid.Column="1" />
-            <Label Content="Percentage of unaccepted requests:" FontSize="12" FontWeight="Bold" Margin="12,8,12,8" Grid.Row="1" />
-            <Label Content="{Binding UnacceptedRequestsPercentageDisplay}" FontSize="12" FontWeight="Bold" Margin="19,8,34,10" Grid.Row="1" Grid.Column="1" />
-            <Label Content="Select the language:" FontSize="12" FontWeight="Bold" Margin="12,10,66,6" Grid.Row="2" />
-            <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding ChosenLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="9,8,118,9" Grid.Row="2" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
-                <ComboBox.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="-1" ScaleX="-1"/>
-                        <SkewTransform AngleY="0.721"/>
-                        <RotateTransform Angle="-180.583"/>
-                        <TranslateTransform X="-0.014" Y="-1.416"/>
-                    </TransformGroup>
-                </ComboBox.RenderTransform>
-            </ComboBox>
-            <Label Content="Number of requests for the selected language:" FontSize="12" FontWeight="Bold" Margin="0,10,2,8" Grid.Row="3" />
-            <Label Content="{Binding NumberRequestsLanguage}" FontSize="12" FontWeight="Bold" Margin="28,8,24,11" Grid.Row="3" Grid.Column="1" />
-            <Button Content="Count" HorizontalAlignment="Left" Height="34" Margin="125,7,0,0" VerticalAlignment="Top" Width="88" IsDefault="True" Command="{Binding CountNumberForLanguagesCommand}" Grid.Column="1" Grid.Row="2" />
-            <Label Content="Number of requests for the entered location:" FontSize="12" FontWeight="Bold" Margin="24,125,0,44" Grid.Row="5" />
-            <Label Content="Enter the city and the country:" FontSize="12" FontWeight="Bold" Margin="15,11,69,12" Grid.Row="4" RenderTransformOrigin="0.5,0.5" >
-                <Label.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="-1" ScaleX="-1"/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-180.273"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Label.RenderTransform>
-            </Label>
-            <TextBox x:Name="txtCountry" Text="{Binding EnteredCountry, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="56,10,100,12" Grid.Row="4" Grid.Column="1" />
-            <TextBox x:Name="txtCity" Text="{Binding EnteredCity, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="1,8,167,10" Grid.Row="4" RenderTransformOrigin="0.5,0.5" Grid.Column="1" ></TextBox>
-            <Button Content="Count" HorizontalAlignment="Left" Height="41" Margin="135,0,0,0" VerticalAlignment="Center" Width="88" IsDefault="True" Command="{Binding CountNumberForLocationCommand}" Grid.Row="4" Grid.Column="1" />
-            <Label Content="{Binding NumberRequestsLocation}" FontSize="12" FontWeight="Bold" Margin="18,9,34,10" Grid.Row="5" Grid.Column="1" />
-            <Label Content="Number of the requests for the entered location" FontSize="12" FontWeight="Bold" Margin="-2,8,5,17" Grid.Row="5" RenderTransformOrigin="0.5,0.5" >
-                <Label.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="-1" ScaleX="-1"/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-180.273"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Label.RenderTransform>
-            </Label>
-            <Label Content="Avarage number of people in accepted requests:" FontSize="12" FontWeight="Bold" Margin="0,10,2,8" Grid.Row="6" />
-            <Label Content="{Binding AvarageNumberOfPeopleInAcceptedRequests}" FontSize="12" FontWeight="Bold" Margin="19,8,33,10" Grid.Row="6" Grid.Column="1"/>
+            <Label Content="Percentage of accepted requests:" FontSize="24" FontWeight="Bold" Margin="2,0,84,67" Grid.RowSpan="2" />
+            <Label Content="{Binding AccpetedRequestsPercentageDisplay}" FontSize="24" FontWeight="Bold" Margin="407,0,0,67" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            <Label Content="Percentage of unaccepted requests:" FontSize="24" FontWeight="Bold" Margin="0,0,47,0" Grid.Row="1" />
+            <Label Content="{Binding UnacceptedRequestsPercentageDisplay}" FontSize="24" FontWeight="Bold" Margin="439,0,0,0" Grid.Row="1" Grid.ColumnSpan="2" />
+            <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding ChosenLanguage, UpdateSourceTrigger=PropertyChanged}"
+                Margin="276,5,10,22" Grid.Row="2" RenderTransformOrigin="0.5,0.5" FontSize="24" FontWeight="Bold"/>
+            <Label Content="Number of requests for the selected language:" FontSize="24" FontWeight="Bold" Margin="44,67,271,68" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="2" />
+            <Label Content="{Binding NumberRequestsLanguage}" FontSize="24" FontWeight="Bold" Margin="121,68,0,68" Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" />
+            <Button  Content="Count" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold" Height="37" Margin="10,7,0,0" VerticalAlignment="Top" Width="103" IsDefault="True" Command="{Binding CountNumberForLanguagesCommand}" Grid.Row="2" Grid.Column="1" />
+            <Label Content="Enter the city and the country:" FontSize="24" FontWeight="Bold" Margin="0,67,111,1" Grid.Row="3" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" />
+            <TextBox x:Name="txtCountry" FontSize="24" FontWeight="Bold" Margin="113,0,75,25" Grid.Row="4" Grid.Column="1" >
+                <TextBox.Text>
+                    <Binding Path="EnteredCountry" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
+                        <Binding.ValidationRules>
+                            <val:CorrectInputCountryStatisticsValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Gray" FontSize="14" Margin="0,2,0,0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+            <TextBox x:Name="txtCity" Margin="375,0,279,25" FontSize="24" FontWeight="Bold" Grid.Row="4" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Height="43" VerticalAlignment="Bottom" >
+                <TextBox.Text>
+                    <Binding Path="EnteredCity" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
+                        <Binding.ValidationRules>
+                            <val:CorrectInputCityStatisticsValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Gray" FontSize="14" Margin="0,2,0,0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+            <Label Content="{Binding NumberRequestsLocation}" FontSize="24" FontWeight="Bold" Margin="141,0,0,0" Grid.Row="5" Grid.Column="1" />
+            <Label Content="Number of the requests for the entered location:" FontSize="24" FontWeight="Bold" Margin="44,0,251,67" Grid.Row="5" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+            <Label Content="Avarage number of people in accepted requests:" FontSize="24" FontWeight="Bold" Margin="0,67,301,0" Grid.Row="5" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            <Label Content="{Binding AvarageNumberOfPeopleInAcceptedRequests}" FontSize="24" FontWeight="Bold" Margin="91,67,0,0" Grid.Row="5" Grid.Column="1" Grid.RowSpan="2"/>
+            <Label Content="Select the language:" FontSize="24" FontWeight="Bold" Margin="2,66,239,1" Grid.Row="1" Grid.RowSpan="2" />
         </Grid>
-        <Button Content="Change the year" HorizontalAlignment="Left" Height="22" Margin="678,17,0,0" VerticalAlignment="Top" Width="112" IsDefault="True" Command="{Binding ChangeYearCommand}"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Height="22" Margin="622,0,0,0" VerticalAlignment="Center" Width="112" IsDefault="True" Command="{Binding CancelCommand}" Grid.Row="2"/>
+
+        <Button Background="LightBlue" FontWeight="Bold" FontSize="24" Content="Change the year" HorizontalAlignment="Left" Height="59" Margin="258,254,0,0" VerticalAlignment="Top" Width="254" IsDefault="True" Command="{Binding ChangeYearCommand}" Grid.Row="2"/>
+        <Button Background="LightBlue" FontWeight="Bold" FontSize="24" Content="Cancel" HorizontalAlignment="Left" Height="59" Margin="620,254,0,0" VerticalAlignment="Top" Width="149" IsDefault="True" Command="{Binding CancelCommand}" Grid.Row="2"/>
+        <Button FontWeight="Bold" FontSize="24" Content="Count" HorizontalAlignment="Left" Height="37" Margin="881,24,0,0" VerticalAlignment="Top" Width="103" IsDefault="True" Command="{Binding CountNumberForLocationCommand}" Grid.Row="2" />
+        <Button Background="LightBlue" FontWeight="Bold" FontSize="24" Content="Log out" HorizontalAlignment="Left" Height="43" Margin="884,25,0,0" VerticalAlignment="Top" Width="100" IsDefault="True" Command="{Binding LogOutCommand}"/>
     </Grid>
 </Window>

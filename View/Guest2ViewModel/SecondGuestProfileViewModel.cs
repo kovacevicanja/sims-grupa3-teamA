@@ -124,7 +124,7 @@ namespace BookingProject.View.Guest2ViewModel
             }
             else
             {
-                ActiveToursView activeToursView = new ActiveToursView(activeToursIds);
+                ActiveToursView activeToursView = new ActiveToursView(activeToursIds, GuestId);
                 activeToursView.Show();
                 CloseWindow();
             }

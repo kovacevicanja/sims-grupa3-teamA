@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using BookingProject.View.Guest2View;
 using System.Web.WebPages;
+using BookingProject.View.CustomMessageBoxes;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -37,6 +38,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand SeeMoreCommand { get; }
         public ObservableCollection<LanguageEnum> Languages { get; set; }
         public ObservableCollection<Tour> Tours { get; set; }
+        public CustomMessageBox CustomMessageBox { get; set; }
         public SearchAndReservationToursViewModel(int guestId)
         {
             _tourController = new TourController();
@@ -55,6 +57,8 @@ namespace BookingProject.View.Guest2ViewModel
 
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
+
+            CustomMessageBox = new CustomMessageBox();
         }
 
         private bool CanExecute(object param) { return true; }
@@ -68,8 +72,8 @@ namespace BookingProject.View.Guest2ViewModel
 
         private bool CanWhenSelected(object param)
         {
-            if (ChosenTour == null) { return false; }
-            else { return true; }
+            if (ChosenTour == null) return false; 
+            else return true; 
         }
 
         private void Button_BackToProfile(object param)
@@ -83,13 +87,13 @@ namespace BookingProject.View.Guest2ViewModel
         {
             try
             {
-                if (NumOfGuests.IsEmpty())
+                if (NumOfGuests.IsEmpty() && Duration.IsEmpty())
                 {
                     _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
                 }
-                else if (Convert.ToInt32(NumOfGuests) <= 0)
+                else if (Convert.ToInt32(NumOfGuests) <= 0 || Convert.ToInt32(Duration) <= 0)
                 {
-                    MessageBox.Show("You have not entered a reasonable value to search by number of guests.");
+                    CustomMessageBox.ShowCustomMessageBox("Check that you have correctly entered the number of guests and the duration of the tour.");
                 }
                 else
                 {
@@ -98,7 +102,7 @@ namespace BookingProject.View.Guest2ViewModel
             }
             catch
             {
-                MessageBox.Show("You have not entered a reasonable value to search by number of guests.");
+                CustomMessageBox.ShowCustomMessageBox("Check that you have correctly entered the number of guests and the duration of the tour.");
             }
 
             NumOfGuests = string.Empty;

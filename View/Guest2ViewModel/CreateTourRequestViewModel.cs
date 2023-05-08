@@ -67,7 +67,7 @@ namespace BookingProject.View.Guest2ViewModel
             correctInputCityvalidationRule = new CorrectInputCityValidationRule();
         }
 
-        private bool CanExecute(object param) { return true; }
+        private bool CanExecute(object param) { return true; } 
 
         private void CloseWindow()
         {
@@ -196,28 +196,6 @@ namespace BookingProject.View.Guest2ViewModel
             tourRequest.GuestsNumber = GuestsNumber;
             tourRequest.Status = Domain.Enums.TourRequestStatus.PENDING;
             tourRequest.Guest.Id = GuestId;
-
-            /*string input = GuestsNumber.ToString();
-            ValidationResult result = validationRule.Validate(input, CultureInfo.CurrentCulture);
-
-            if (result.IsValid)
-            {
-                _tourRequestController.Create(tourRequest);
-
-                CustomMessageBox.ShowCustomMessageBox("You have successfully created a tour request. If you want, you can create more of them.");
-
-                City = "";
-                Country = "";
-                Description = "";
-                GuestsNumber = 0;
-                StartDate = DateTime.Today;
-                EndDate = DateTime.Today;
-            }
-            else
-            { 
-                CustomMessageBox.ShowCustomMessageBox(result.ErrorContent.ToString());
-            }
-            */
 
             ValidationResult resultCity = correctInputCityvalidationRule.Validate(location.City, CultureInfo.CurrentCulture);
 
