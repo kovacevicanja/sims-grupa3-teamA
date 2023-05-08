@@ -85,7 +85,7 @@
         </Grid>
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="15,22,0,0" Width="560" >
             <Button Content="Rate" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
-              Click="Button_Click_Rate" />
+              Command="{Binding RateCommand}" />
         </WrapPanel>
     </Grid>
     

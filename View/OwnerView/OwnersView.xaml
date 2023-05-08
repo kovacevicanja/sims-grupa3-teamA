@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="Owner" Height="500" Width="1000" Closed="Window_Closed">
+        Title="Owner" Height="500" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -18,16 +18,16 @@
 
         <StackPanel Grid.Row = "0" Orientation="Horizontal">
             <Button Content="Add accommodation" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
-               Click="Button_Click_Add"/>
+               Command="{Binding AddAccommodationCommand}"/>
             <Button Content="Rate Guests" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
-               Click="Button_Click_Rate"/>
+               Command="{Binding RateGuestsCommand}"/>
             <Button Content="Requests" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
-               Click="Button_Click_Request"/>
+                Command="{Binding RequestsCommand}"/>
             <Button Content="Guest Grades" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 5, 20, 5"
-               Click="Button_Click_Review"/>
+                Command="{Binding GuestGradesCommand}"/>
             <Image Name="SuperOwnerImage" Source="../Resources/Images/star.jpg"/>
             <Button Content="Log out" IsCancel="True"
-                Click="Button_Click_LogOut"/>
+                 Command="{Binding LogoutCommand}"/>
         </StackPanel>
         <Grid Grid.Row="1">
 
@@ -76,7 +76,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button  Click="Button_Click_Close" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
+            <Button  Command="{Binding CloseCommand}" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
         </Grid>
 
 

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="OwnersRequestView" Height="600" Width="356">
     <Grid>
-        <Button Name="btn5" Width="50" Height="30" Click="Button_Click_Menu" Margin="250,-531,-41,0" >
+        <Button Name="btn5" Width="50" Height="30" Command="{Binding MenuCommand}" Margin="250,-531,-41,0" >
             <Image Source="..\Resources/Images/menu.png"/>
         </Button>
         <DataGrid ItemsSource ="{Binding Path=Requests, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedMovingRequest}"
@@ -19,6 +19,6 @@
                 <DataGridTextColumn Header="Wanted End" Width="100" Binding="{Binding NewDeparuteDay}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button  Click="Button_Click_View" Content="View" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
+        <Button  Command="{Binding ViewCommand}" Content="View" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
     </Grid>
 </Window>

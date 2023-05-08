@@ -79,9 +79,9 @@
                      Height="30" IsEnabled="False"></TextBox>
         </Grid>
         <Button x:Name ="Button_Comment" Content="Accept" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top"
-              Click="Button_Click_Accept" RenderTransformOrigin="0.5,0.5" Width="46" Grid.Column="2" Margin="256,10,0,0" Grid.Row="1" >
+               Command="{Binding AcceptCommand}" RenderTransformOrigin="0.5,0.5" Width="46" Grid.Column="2" Margin="256,10,0,0" Grid.Row="1" >
         </Button>
         <Button  Content="Decline" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="253,50,0,0"
-               Click="Button_Click_Decline" Grid.Column="2" Width="49" Grid.Row="1"/>
+                Command="{Binding DeclineCommand}" Grid.Column="2" Width="49" Grid.Row="1"/>
     </Grid>
 </Window>

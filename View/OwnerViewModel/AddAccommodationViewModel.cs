@@ -1,31 +1,21 @@
 ﻿using BookingProject.Controller;
-using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Model.Images;
+using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.ComponentModel;
+using BookingProject.Commands;
 
 namespace BookingProject.View
 {
-    /// <summary>
-    /// Interaction logic for AddAccommodationView.xaml
-    /// </summary>
-    public partial class AddAccommodationView : Window, IDataErrorInfo
+    public class AddAccommodationViewModel
     {
         public Accommodation accommodation { get; set; }
         public ObservableCollection<AccommodationType> accommodationTypes { get; set; }
@@ -35,11 +25,12 @@ namespace BookingProject.View
         public AccommodationImageController ImageController { get; set; }
         public ObservableCollection<AccommodationImage> Images { get; set; }
         public AccommodationImage AccommodationImage { get; set; }
-        
-        public AddAccommodationView()
+        public RelayCommand AddImageCommand { get; }
+        public RelayCommand AddAccommodationCommand { get; }
+        public RelayCommand CancelCommand { get; }
+
+        public AddAccommodationViewModel()
         {
-            InitializeComponent();
-            this.DataContext= this;
             var types = Enum.GetValues(typeof(AccommodationType)).Cast<AccommodationType>();
             accommodationTypes = new ObservableCollection<AccommodationType>(types);
 
@@ -50,7 +41,11 @@ namespace BookingProject.View
             //AccommodationController = app.AccommodationController;
             //LocationController = app.AccommodationLocationController;
             //ImageController= app.AccommodationImageController;
+            AddImageCommand = new RelayCommand(Button_Click_Add_Image, CanExecute);
+            AddAccommodationCommand = new RelayCommand(Button_Click_Add, CanExecute);
+            CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
         }
+        private bool CanExecute(object param) { return true; }
 
         private string _accommodationName;
 
@@ -170,7 +165,7 @@ namespace BookingProject.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void Button_Click_Add(object sender, RoutedEventArgs e)
+        private void Button_Click_Add(object param)
         {
             Accommodation accommodation = new Accommodation();
             accommodation.AccommodationName = AccommodationName;
@@ -178,7 +173,7 @@ namespace BookingProject.View
             accommodation.MaxGuestNumber = MaxGuestNumber;
             accommodation.MinDays = MinDays;
             accommodation.CancellationPeriod = CancellationPeriod;
-            accommodation.Owner.Id=SignInForm.LoggedInUser.Id;
+            accommodation.Owner.Id = SignInForm.LoggedInUser.Id;
 
             Location location = new Location();
             location.City = City;
@@ -198,13 +193,20 @@ namespace BookingProject.View
             {
                 AccommodationController.Create(accommodation);
             }
-            this.Close();
+            CloseWindow();
         }
-        private void Button_Click_Cancel(Object sender, RoutedEventArgs e)
+        private void CloseWindow()
+        {
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.GetType() == typeof(AddAccommodationView)) { window.Close(); }
+            }
+        }
+        private void Button_Click_Cancel(object param)
         {
             ImageController.DeleteUnused();
             ImageController.SaveImage();
-            this.Close();
+            CloseWindow();
         }
         public bool IsValid
         {
@@ -219,7 +221,7 @@ namespace BookingProject.View
                 return true;
             }
         }
-        private void Button_Click_Add_Image(object sender, RoutedEventArgs e)
+        private void Button_Click_Add_Image(object param)
         {
             AddPhotosToAccommodationView addPhoto = new AddPhotosToAccommodationView();
             addPhoto.Show();

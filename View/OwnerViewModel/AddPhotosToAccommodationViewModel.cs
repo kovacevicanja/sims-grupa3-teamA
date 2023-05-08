@@ -1,43 +1,33 @@
-﻿using BookingProject.Controller;
-using BookingProject.Model;
+﻿using BookingProject.Commands;
+using BookingProject.Controller;
 using BookingProject.Model.Images;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace BookingProject.View
+namespace BookingProject.View.OwnerViewModel
 {
-    /// <summary>
-    /// Interaction logic for AddPhotosToAccommodationView.xaml
-    /// </summary>
-    public partial class AddPhotosToAccommodationView : Window
+    public class AddPhotosToAccommodationViewModel
     {
         public AccommodationImageController _imageController;
+        public RelayCommand AddCommand { get; }
+        public RelayCommand CloseCommand { get; }
 
-
-        public AddPhotosToAccommodationView()
+        public AddPhotosToAccommodationViewModel()
         {
-            InitializeComponent();
-            //var app = Application.Current as App;
-            this.DataContext = this;
+            
             //_imageController = app.AccommodationImageController;
             _imageController = new AccommodationImageController();
+            AddCommand = new RelayCommand(Button_Click_Add, CanExecute);
+            CloseCommand = new RelayCommand(CancelButton_Click, CanExecute);
 
         }
+        private bool CanExecute(object param) { return true; }
         private string _url;
         public string Url
         {
@@ -58,7 +48,7 @@ namespace BookingProject.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void Button_Click_Add(object sender, RoutedEventArgs e)
+        public void Button_Click_Add(object param)
         {
             AccommodationImage image = new AccommodationImage();
             image.Url = Url;
@@ -66,10 +56,16 @@ namespace BookingProject.View
             //_imageController.SaveImage();
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void CancelButton_Click(object param)
         {
-            Close();
+            CloseWindow();
         }
-
+        private void CloseWindow()
+        {
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.GetType() == typeof(AddPhotosToAccommodationView)) { window.Close(); }
+            }
+        }
     }
 }

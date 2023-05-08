@@ -15,7 +15,7 @@
                 <DataGridTextColumn Header="End Date" Width="100" Binding="{Binding EndDate}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button  Click="Button_Grade" Content="Grade" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
-        <Button  Click="Button_Cancel" Content="Cancel" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
+        <Button  Command="{Binding GradeCommand}" Content="Grade" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
+        <Button  Command="{Binding CancelCommand}" Content="Cancel" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
     </Grid>
 </Window>

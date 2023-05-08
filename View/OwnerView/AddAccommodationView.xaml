@@ -78,13 +78,13 @@
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="30"></TextBox>
             <Button Grid.Row="7" Grid.Column="1" Content="Add image"
-                    IsDefault="True" Click="Button_Click_Add_Image" Height="30"></Button>
+                    IsDefault="True"  Height="30" Command="{Binding AddImageCommand}" ></Button>
         </Grid>
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="15,22,0,0" Width="560" >
             <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
-              Click="Button_Click_Cancel" />
+               Command="{Binding CancelCommand}" />
             <Button Content="Add accommodation" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
-               Click="Button_Click_Add"/>
+               Command="{Binding AddAccommodationCommand}"/>
 
 
         </WrapPanel>

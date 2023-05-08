@@ -29,11 +29,11 @@
             <TextBox Grid.Row="0" Text="{Binding Path=Url, UpdateSourceTrigger=PropertyChanged}"  Margin="30,10,59,260" Grid.Column="1"/>
             <WrapPanel Grid.Row = "0" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="10,10,0,0" Height="26" Width="72" >
                 <Button Content="Add" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-              Click="Button_Click_Add" Height="50" Width="92" />
+              Command="{Binding AddCommand}" Height="50" Width="92" />
             </WrapPanel>
             <WrapPanel Grid.Row = "0" Grid.Column="3" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="72" >
                 <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-              Click="CancelButton_Click" Height="50" Width="92" />
+              Command="{Binding CloseCommand}" Height="50" Width="92" />
             </WrapPanel>
         </Grid>
 
