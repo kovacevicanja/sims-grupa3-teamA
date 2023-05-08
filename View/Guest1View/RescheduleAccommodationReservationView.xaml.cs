@@ -1,6 +1,7 @@
 ﻿using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.Model;
+using BookingProject.View.Guest1ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,71 +25,10 @@ namespace BookingProject.View
     /// </summary>
     public partial class RescheduleAccommodationReservationView : Window
     {
-        public RequestAccommodationReservationController RequestAccommodationReservationController  { get; set;}
-        public AccommodationReservation SelectedReservation;
         public RescheduleAccommodationReservationView(AccommodationReservation selectedReservation)
         {
             InitializeComponent();
-            this.DataContext = this;
-            RequestAccommodationReservationController = new RequestAccommodationReservationController();
-            SelectedReservation = new AccommodationReservation();
-            SelectedReservation = selectedReservation;
-            NewInitialDate = DateTime.Now;
-            NewEndDate = DateTime.Now;
-        }
-
-        public DateTime _newInitialDate;
-        public DateTime NewInitialDate
-        {
-            get => _newInitialDate;
-            set
-            {
-                if (_newInitialDate != value)
-                {
-                    _newInitialDate = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public DateTime _newEndDate;
-        public DateTime NewEndDate
-        {
-            get => _newEndDate;
-            set
-            {
-                if (_newEndDate != value)
-                {
-                    _newEndDate = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public String _comment;
-        public String Comment
-        {
-            get => _comment;
-            set
-            {
-                if (_comment != value)
-                {
-                    _comment = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void Button_Click_Send_Request(object sender, RoutedEventArgs e)
-        {
-            RequestAccommodationReservationController.SendRequest(SelectedReservation, Comment, NewInitialDate, NewEndDate);
-            this.Close();
+            this.DataContext = new RescheduleAccommodationReservationViewModel(selectedReservation);
         }
     }
 }

@@ -160,7 +160,8 @@ namespace BookingProject.View
         private void Button_Click_Review(object param)
         {
             AccommodationOwnerGradeController.MakeGrade(grade, _selectedReservation, chosenCleanliness, chosenCorectness, Comment, Reccommendation);
-            CloseWindow(); //ovo je umesto this.Close()
+            MessageBox.Show("You have successfully reviewed this accommodation!");
+            CloseWindow();
         }
         private void CloseWindow()
         {

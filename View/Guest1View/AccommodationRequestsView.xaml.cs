@@ -1,6 +1,7 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Domain;
+using BookingProject.View.Guest1ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,37 +24,10 @@ namespace BookingProject.View
     /// </summary>
     public partial class AccommodationRequestsView : Window
     {
-        public ObservableCollection<RequestAccommodationReservation> _requests;
-        public RequestAccommodationReservationController requestAccommodationReservationController;
-        public UserController userController;
         public AccommodationRequestsView()
         {
             InitializeComponent();
-            this.DataContext = this;
-            requestAccommodationReservationController = new RequestAccommodationReservationController();
-            userController = new UserController();
-            _requests = new ObservableCollection<RequestAccommodationReservation>(requestAccommodationReservationController.GetAllForUser(userController.GetLoggedUser()));
-            RequestsDataGrid.ItemsSource = _requests;
-        }
-        private void Button_Click_Homepage(object sender, RoutedEventArgs e)
-        {
-            var Guest1Homepage = new Guest1Homepage();
-            Guest1Homepage.Show();
-            this.Close();
-        }
-
-        private void Button_Click_MyReservations(object sender, RoutedEventArgs e)
-        {
-            var Guest1Reservations = new Guest1Reservations();
-            Guest1Reservations.Show();
-            this.Close();
-        }
-
-        private void Button_Click_Logout(object sender, RoutedEventArgs e)
-        {
-            SignInForm signInForm = new SignInForm();
-            signInForm.Show();
-            this.Close();
+            this.DataContext = new AccommodationRequestsViewModel();
         }
     }
 }

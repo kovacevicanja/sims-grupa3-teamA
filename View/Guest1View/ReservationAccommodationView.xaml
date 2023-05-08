@@ -42,9 +42,9 @@
         
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Margin="121,0,0,0" >
             <Button Content="Close" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
-              Click="Button_Click_Close" />
+              Command="{Binding CloseCommand}"/>
             <Button Content="Try to book accommodation" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
-               Click="Button_Click_Book"/>
+               Command="{Binding BookCommand}"/>
         </WrapPanel>
     </Grid>
 </Window>

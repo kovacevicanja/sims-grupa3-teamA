@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="Guest1Homepage" Height="450" Width="800">
-  
-        <DockPanel LastChildFill="True">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20*" />
-                    <ColumnDefinition Width="80*" />
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0">
-                <Button Click="Button_Click_Homepage">
+        Title="Guest1Homepage" Height="720" Width="1280">
+
+    <DockPanel LastChildFill="True">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="80*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Button Command="{Binding HomepageCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
@@ -30,7 +30,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Click="Button_Click_MyReservations">
+                <Button Command="{Binding MyReservationsCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/bedroom.png"/>
@@ -70,7 +70,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Click="Button_Click_Logout">
+                <Button Command="{Binding LogoutCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Logout" Margin="5,5,0,0" FontWeight="SemiBold" />
@@ -78,16 +78,16 @@
                     </Button.Content>
                 </Button>
                 <Label Height="150"></Label>
-                </StackPanel>
-                <Border Grid.Column="1" Background="White">
-                    <!-- Content will be displayed here -->
+            </StackPanel>
+            <Border Grid.Column="1" Background="White">
+                <!-- Content will be displayed here -->
                 <StackPanel>
                     <StackPanel.Background>
-                    <ImageBrush ImageSource="/Resources/Images/backgroundguest1.jpg" />
-                </StackPanel.Background>
+                        <ImageBrush ImageSource="/Resources/Images/backgroundguest1.jpg" />
+                    </StackPanel.Background>
                 </StackPanel>
             </Border>
-            </Grid>
-        </DockPanel>
- 
+        </Grid>
+    </DockPanel>
+
 </Window>

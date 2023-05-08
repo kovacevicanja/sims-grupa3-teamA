@@ -5,74 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="AccommodationRequestsView" Height="450" Width="800">
-    <DockPanel LastChildFill="True" Background="LightGray">
-        <Grid>
+        Title="AccommodationRequestsView" Height="720" Width="1280">
+    <DockPanel LastChildFill="True">
+        <Grid Background="Honeydew">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*" />
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button Click="Button_Click_Homepage">
+                <Button Command="{Binding HomepageCommand}" Background="Honeydew">
                     <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
-                            <TextBlock Text="Homepage" Margin="5,5,0,0" FontWeight="SemiBold" />
+                        <StackPanel Orientation="Horizontal" >
+                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
+                            <TextBlock Text="Homepage" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button>
+                <Button Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/acc.png"/>
-                            <TextBlock Text="Accommodations" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/acc.png"/>
+                            <TextBlock Text="Accommodations" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Click="Button_Click_MyReservations">
+                <Button Command="{Binding MyReservationsCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/bedroom.png"/>
-                            <TextBlock Text="My reservations" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/bedroom.png"/>
+                            <TextBlock Text="My reservations" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button>
+                <Button Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <Image  Width="27" Height="27" Margin="0" Source="/View/ImagesGuest1/reviews.png"/>
-                            <TextBlock Text="My reviews" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/reviews.png"/>
+                            <TextBlock Text="My reviews" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button>
+                <Button Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <Image  Width="27" Height="27" Margin="0" Source="/View/ImagesGuest1/createforum.png"/>
-                            <TextBlock Text="Create forum" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/createforum.png"/>
+                            <TextBlock Text="Create forum" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button>
+                <Button Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <Image  Width="20" Height="20" Margin="0" Source="/View/ImagesGuest1/quicksearch.png"/>
-                            <TextBlock Text="Quick search" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/quicksearch.png"/>
+                            <TextBlock Text="Quick search" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button>
+                <Button Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <Image  Width="25" Height="25" Margin="0" Source="/View/ImagesGuest1/help2.png"/>
-                            <TextBlock Text="Help" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/help2.png"/>
+                            <TextBlock Text="Help" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Click="Button_Click_Logout">
+                <StackPanel Height="340" Background="Honeydew" Orientation="Vertical">
+                    <Image  Width="100" Height="100" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
+                    <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+                <Button Command="{Binding LogoutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Logout" Margin="5,5,0,0" FontWeight="SemiBold" />
+                            <TextBlock Text="Logout" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -81,10 +85,13 @@
             <Border Grid.Column="1" Background="Beige">
                 <StackPanel>
                     <StackPanel.Background>
-                        <ImageBrush ImageSource="/Resources/Images/backgroundguest1.jpg" />
+                        <ImageBrush ImageSource="/Resources/Images/Guest1Images/background4.jpg" />
                     </StackPanel.Background>
-                    <Label FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Foreground="Black" FontWeight="Bold">All requests</Label>
-                    <DataGrid SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="20 10 20 20" Name="RequestsDataGrid" FontSize="10">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Margin="300 50 0 0" Height="80" HorizontalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="DarkGreen">All requests</Label>
+                        <Image  Width="60" Height="60" Margin="30 30 30 0" Source="/Resources/Images/Guest1Images/request.png"/>
+                    </StackPanel>
+                    <DataGrid SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="20 10 20 20" Name="RequestsDataGrid" FontSize="10" ItemsSource="{Binding Path=MyRequests, UpdateSourceTrigger=PropertyChanged}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Old initial date" Width="90" Binding="{Binding AccommodationReservation.InitialDate, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Old end date" Width="80" Binding="{Binding AccommodationReservation.EndDate, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
@@ -95,9 +102,9 @@
                             <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Owner username" Width="100" Binding="{Binding AccommodationReservation.Accommodation.Owner.Username}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <WrapPanel VerticalAlignment="Bottom">
-                        <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="80" IsDefault="True" Margin="15">View tutorial</Button>
-                        <Button Opacity="10" BorderThickness="2" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Width="70" IsDefault="True" Margin="15 15 15 20" Click="Button_Click_Homepage">Homepage</Button>
+                    <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <Button Width="120" IsDefault="True" Margin="15" Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen">View tutorial</Button>
+                        <Button Opacity="10" Width="120" IsDefault="True" Margin="15 15 15 20" Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Command="{Binding HomepageCommand}">Homepage</Button>
                     </WrapPanel>
                 </StackPanel>
 
