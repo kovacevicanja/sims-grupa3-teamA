@@ -37,3 +37,8 @@
 45|1|Request to move reservation from 01.05.2023. - 10.05.2023. to 18.05.2023. - 25.05.2023. is APPROVED|True
 46|1|Request to move reservation from 18.05.2023. - 25.05.2023. to 18.05.2023. - 25.05.2023. is DECLINED|True
 47|2|Reservation for your accommodation Hotel Park, from 18.05.2023., to 25.05.2023. was cancelled!|True
+48|1|Request to move reservation from 10.05.2023. - 15.05.2023. to 26.05.2023. - 28.05.2023. is APPROVED|True
+49|1|Request to move reservation from 26.05.2023. - 28.05.2023. to 02.06.2023. - 03.06.2023. is APPROVED|False
+50|1|Request to move reservation from 02.06.2023. - 03.06.2023. to 02.06.2023. - 03.06.2023. is APPROVED|False
+51|1|Request to move reservation from 02.06.2023. - 03.06.2023. to 02.06.2023. - 03.06.2023. is APPROVED|False
+52|1|Request to move reservation from 02.06.2023. - 03.06.2023. to 02.06.2023. - 03.06.2023. is DECLINED|False

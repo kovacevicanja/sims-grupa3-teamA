@@ -805,7 +805,7 @@
     <Resource Include="View\Guest2View\ToursImages\logOut.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\menu.png" />
+    <Resource Include="View\ImagesOwner\menu.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\star.jpg" />
@@ -962,6 +962,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Guest1Images\availabledates.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\backgroundOwner.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\ImagesOwner\backArrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

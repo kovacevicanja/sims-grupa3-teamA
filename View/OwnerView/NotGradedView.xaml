@@ -5,17 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="NotGradedView" Height="450" Width="400">
+        Title="NotGradedView" Height="600" Width="356">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Images/backgroundOwner.jpg" Opacity="0.60"/>
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Background="#261799">
+            <Label Margin="10 0 0 0" Height="40" FontSize="20" FontWeight="Bold" Foreground="Black">Guests</Label>
+            <Button Name="btn5" Width="50" Height="30" Margin="200,0,0,0" BorderBrush="#261799" Background="#261799" Command="{Binding MenuCommand}">
+                <Image Source="../ImagesOwner/menu.png"/>
+            </Button>
+        </StackPanel>
         <DataGrid ItemsSource ="{Binding Path=Reservations, UpdateSourceTrigger=PropertyChanged}"
-                     SelectedItem="{Binding SelectedReservation}" Margin="16,12,16,104" SelectionMode="Single" AutoGenerateColumns="False" Name="ReservationsDataGrid" IsReadOnly="True">
+                     SelectedItem="{Binding SelectedReservation}" Background="LightGray" Margin="16,100,16,300" SelectionMode="Single" AutoGenerateColumns="False" Name="ReservationsDataGrid" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Initial Date" Width="100" Binding="{Binding InitialDate}"></DataGridTextColumn>
                 <DataGridTextColumn Header="End Date" Width="100" Binding="{Binding EndDate}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button  Command="{Binding GradeCommand}" Content="Grade" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
-        <Button  Command="{Binding CancelCommand}" Content="Cancel" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
+        <Button  Command="{Binding GradeCommand}" Content="Grade" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Width="60" Margin="0,504,0,0"/>
+        <Button  Command="{Binding CancelCommand}" Content="Cancel" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="20" Width="60" Margin="0,540,0,0"/>
     </Grid>
 </Window>

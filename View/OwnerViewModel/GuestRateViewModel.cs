@@ -30,6 +30,8 @@ namespace BookingProject.View.OwnerViewModel
         public ObservableCollection<int> NoisinessOption { get; set; }
         public int ChosenNoisiness { get; set; }
         public RelayCommand RateCommand { get; }
+        public RelayCommand MenuCommand { get; }
+        public RelayCommand BackCommand { get; }
         public GuestRateViewModel(AccommodationReservation selectedReservation)
         {
             GradeController = new GuestGradeController();
@@ -49,6 +51,8 @@ namespace BookingProject.View.OwnerViewModel
                 NoisinessOption.Add(i);
             }
             RateCommand = new RelayCommand(Button_Click_Rate, CanExecute);
+            MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
+            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
 
@@ -56,6 +60,18 @@ namespace BookingProject.View.OwnerViewModel
         {
             get { return _selectedReservation; }
             set { _selectedReservation = value; OnPropertyChanged(); }
+        }
+        private void Button_Click_Menu(object param)
+        {
+            MenuView view = new MenuView();
+            view.Show();
+            CloseWindow();
+        }
+        private void Button_Click_Back(object param)
+        {
+            var view = new NotGradedView();
+            view.Show();
+            CloseWindow();
         }
 
         private int _cleanliness;
@@ -159,7 +175,9 @@ namespace BookingProject.View.OwnerViewModel
             grade.AccommodationReservation.Id = _selectedReservation.Id;
 
             GradeController.Create(grade);
-
+            MessageBox.Show("You have rated a guest!");
+            var view = new NotGradedView();
+            view.Show();
 
 
 

@@ -19,6 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace BookingProject.View
 {
@@ -32,5 +33,7 @@ namespace BookingProject.View
             InitializeComponent();
             this.DataContext = new AddAccommodationViewModel();
         }
+
+        
     }
 }

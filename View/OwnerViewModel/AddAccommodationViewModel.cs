@@ -28,6 +28,8 @@ namespace BookingProject.View
         public RelayCommand AddImageCommand { get; }
         public RelayCommand AddAccommodationCommand { get; }
         public RelayCommand CancelCommand { get; }
+        public RelayCommand MenuCommand { get; }
+        public RelayCommand BackCommand { get; }
 
         public AddAccommodationViewModel()
         {
@@ -44,11 +46,25 @@ namespace BookingProject.View
             AddImageCommand = new RelayCommand(Button_Click_Add_Image, CanExecute);
             AddAccommodationCommand = new RelayCommand(Button_Click_Add, CanExecute);
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
+            MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
+            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
 
         private string _accommodationName;
 
+        private void Button_Click_Menu(object param)
+        {
+            MenuView view = new MenuView();
+            view.Show();
+            CloseWindow();
+        }
+        private void Button_Click_Back(object param)
+        {
+            var view = new OwnerView();
+            view.Show();
+            CloseWindow();
+        }
         public string AccommodationName
         {
             get => _accommodationName;
@@ -192,6 +208,9 @@ namespace BookingProject.View
             if (IsValid)
             {
                 AccommodationController.Create(accommodation);
+                MessageBox.Show("You have succesfully added new accommodation");
+                var view = new OwnerView();
+                view.Show();
             }
             CloseWindow();
         }

@@ -19,6 +19,7 @@ namespace BookingProject.View.OwnerViewModel
         public AccommodationReservation SelectedReservation { get; set; }
         public RelayCommand GradeCommand { get; }
         public RelayCommand CancelCommand { get; }
+        public RelayCommand MenuCommand { get; }
         public NotGradedViewModel()
         {
             
@@ -31,6 +32,7 @@ namespace BookingProject.View.OwnerViewModel
             Reservations = new ObservableCollection<AccommodationReservation>(_accommodationController.GetAllNotGradedReservations(SignInForm.LoggedInUser.Id));
             GradeCommand = new RelayCommand(Button_Grade, CanExecute);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
+            MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
         }
         //private void selectedIndexChanged(object sender, EventArgs e)
         //{
@@ -39,6 +41,12 @@ namespace BookingProject.View.OwnerViewModel
         //    window2.SelectedObject = selectedItem;
         //    window2.Show();
         //}
+        private void Button_Click_Menu(object param)
+        {
+            MenuView view = new MenuView();
+            view.Show();
+            CloseWindow();
+        }
         private bool CanExecute(object param) { return true; }
         private void Button_Grade(object param)
         {
@@ -46,10 +54,13 @@ namespace BookingProject.View.OwnerViewModel
             {
                 GuestRateView view = new GuestRateView(SelectedReservation);
                 view.Show();
+                CloseWindow();
             }
         }
         private void Button_Cancel(object param)
         {
+            var view = new OwnerView();
+            view.Show();
             CloseWindow();
         }
         private void CloseWindow()

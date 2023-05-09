@@ -17,6 +17,7 @@ namespace BookingProject.View.OwnerViewModel
         public AccommodationImageController _imageController;
         public RelayCommand AddCommand { get; }
         public RelayCommand CloseCommand { get; }
+        public RelayCommand MenuCommand { get; }
 
         public AddPhotosToAccommodationViewModel()
         {
@@ -25,7 +26,14 @@ namespace BookingProject.View.OwnerViewModel
             _imageController = new AccommodationImageController();
             AddCommand = new RelayCommand(Button_Click_Add, CanExecute);
             CloseCommand = new RelayCommand(CancelButton_Click, CanExecute);
+            MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
 
+        }
+        private void Button_Click_Menu(object param)
+        {
+            MenuView view = new MenuView();
+            view.Show();
+            CloseWindow();
         }
         private bool CanExecute(object param) { return true; }
         private string _url;

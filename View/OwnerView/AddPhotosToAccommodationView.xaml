@@ -5,37 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="AddPhotosToAccommodationView" Height="450" Width="800">
+        Title="AddPhotosToAccommodationView" Height="600" Width="356">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="473*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.Column="1" Margin="30,25,30,738">
+        <StackPanel Grid.Row="0" Height="40" Orientation="Horizontal" VerticalAlignment="Top" Background="#261799">
+            <Label Margin="0 0 0 0" Height="53" FontSize="20" FontWeight="Bold" Foreground="Black">My Accommodations</Label>
+            <Button Name="btn5" Width="50" Height="30" Margin="90,0,0,0" BorderBrush="#261799" Background="#261799" Command="{Binding MenuCommand}">
+                <Image Source="../ImagesOwner/menu.png"/>
+            </Button>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Resources/Images/backgroundOwner.jpg" Opacity="0.60"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="473*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="81*"></ColumnDefinition>
-                <ColumnDefinition Width="379.604"></ColumnDefinition>
-                <ColumnDefinition Width="133*"></ColumnDefinition>
-                <ColumnDefinition Width="133*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Margin="0,10,10,260">Photo url:</Label>
-            <TextBox Grid.Row="0" Text="{Binding Path=Url, UpdateSourceTrigger=PropertyChanged}"  Margin="30,10,59,260" Grid.Column="1"/>
-            <WrapPanel Grid.Row = "0" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="10,10,0,0" Height="26" Width="72" >
-                <Button Content="Add" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-              Command="{Binding AddCommand}" Height="50" Width="92" />
-            </WrapPanel>
-            <WrapPanel Grid.Row = "0" Grid.Column="3" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="72" >
-                <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-              Command="{Binding CloseCommand}" Height="50" Width="92" />
-            </WrapPanel>
+            <Grid Grid.Row="0" Grid.Column="1" Margin="30,25,30,738">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="81*"></ColumnDefinition>
+                    <ColumnDefinition Width="379.604"></ColumnDefinition>
+                    <ColumnDefinition Width="133*"></ColumnDefinition>
+                    <ColumnDefinition Width="133*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="1" Margin="118,18,190,252">Photo url:</Label>
+                <TextBox Grid.Row="0" Text="{Binding Path=Url, UpdateSourceTrigger=PropertyChanged}"  Margin="0,60,102,210" Grid.Column="1"/>
+                <WrapPanel Grid.Row = "0" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="10,10,0,0" Height="26" Width="72" />
+                <WrapPanel Grid.Row = "0" Grid.Column="3" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="72" />
+                <Button Content="Add" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top"
+              Command="{Binding AddCommand}" Height="26" Width="51" RenderTransformOrigin="0.632,1.254" Grid.Column="1" Margin="227,122,0,0" />
+                <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"
+              Command="{Binding CloseCommand}" Height="29" Width="55" Grid.Column="1" Margin="227,165,0,0" />
+            </Grid>
         </Grid>
-
     </Grid>
 </Window>

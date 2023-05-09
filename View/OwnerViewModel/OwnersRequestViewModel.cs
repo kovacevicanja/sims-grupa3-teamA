@@ -35,11 +35,20 @@ namespace BookingProject.View.OwnerViewModel
             }
             OwnersApprovingDenyingRequestView view = new OwnersApprovingDenyingRequestView(SelectedMovingRequest);
             view.Show();
+            CloseWindow();
         }
         private void Button_Click_Menu(object param)
         {
             MenuView view = new MenuView();
             view.Show();
+            CloseWindow();
+        }
+        private void CloseWindow()
+        {
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.GetType() == typeof(OwnersRequestView)) { window.Close(); }
+            }
         }
     }
 }
