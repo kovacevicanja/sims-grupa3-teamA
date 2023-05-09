@@ -93,9 +93,22 @@ namespace BookingProject.View.Guest1ViewModel
 
         private void Button_Click_Send_Request(object param)
         {
-            RequestAccommodationReservationController.SendRequest(SelectedReservation, Comment, NewInitialDate, NewEndDate);
-            MessageBox.Show("Successfully rescheduled reservation!");
-            CloseWindow();
+            if(NewInitialDate == null || NewEndDate == null)
+            {
+                MessageBox.Show("You must enter new initial and new end date!");
+            }else if (NewInitialDate > NewEndDate)
+            {
+                MessageBox.Show("New initial date must be before new end date!");
+            }else if(NewInitialDate == DateTime.Now.AddHours(0).AddMinutes(0).AddSeconds(0))
+            {
+                MessageBox.Show("New initial date must be after today!");
+            }
+            else
+            {
+                RequestAccommodationReservationController.SendRequest(SelectedReservation, Comment, NewInitialDate, NewEndDate);
+                MessageBox.Show("Successfully rescheduled reservation!");
+                CloseWindow();
+            }
         }
         private void Button_Click_See_Requests(object param)
         {
@@ -106,7 +119,7 @@ namespace BookingProject.View.Guest1ViewModel
 
         private void Button_Click_Homepage(object param)
         {
-            var Guest1Homepage = new Guest1Homepage();
+            var Guest1Homepage = new Guest1View();
             Guest1Homepage.Show();
             CloseWindow();
         }

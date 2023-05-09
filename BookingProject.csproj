@@ -256,8 +256,10 @@
     <Compile Include="Services\Interfaces\ITourTimeInstanceService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\Interfaces\IVoucherService.cs" />
+    <Compile Include="Validation\Guest1IntegerNumberValidationRule.cs" />
     <Compile Include="Validation\IntegerNumberValidationRule.cs" />
     <Compile Include="Validation\RequiredFieldValidationRule .cs" />
+    <Compile Include="Validation\SearchAccommodationValidationRule.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1HomepageViewModel.cs" />
@@ -953,6 +955,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Guest1Images\availabledates.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\background8.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

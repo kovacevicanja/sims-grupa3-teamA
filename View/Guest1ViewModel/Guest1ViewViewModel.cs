@@ -55,7 +55,7 @@ namespace BookingProject.View.Guest1ViewModel
             CountryComboBox = new ObservableCollection<string>();
             
             SearchCommand = new RelayCommand(Button_Click_Search, CanExecute);
-            BookCommand = new RelayCommand(Button_Click_Book, CanExecute);
+            BookCommand = new RelayCommand(Button_Click_Book, CanIfSelected);
             CancelSearchCommand = new RelayCommand(Button_Click_Cancel_Search, CanExecute);
             HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
@@ -92,6 +92,12 @@ namespace BookingProject.View.Guest1ViewModel
             {
                 if (window.GetType() == typeof(Guest1View)) { window.Close(); }
             }
+        }
+
+        private bool CanIfSelected(object param)
+        {
+            if (selectedAccommodation == null) { return false; }
+            else { return true; }
         }
 
         public void FindAllStates()
@@ -184,6 +190,7 @@ namespace BookingProject.View.Guest1ViewModel
         {
             ReservationAccommodationView reservationAccommodationView = new ReservationAccommodationView(selectedAccommodation);
             reservationAccommodationView.Show();
+            CloseWindow();
         }
 
         private void Button_Click_Cancel_Search(object param)
@@ -197,7 +204,7 @@ namespace BookingProject.View.Guest1ViewModel
 
         private void Button_Click_Homepage(object param)
         {
-            var ghp = new Guest1Homepage();
+            var ghp = new Guest1View();
             ghp.Show();
             CloseWindow();
         }

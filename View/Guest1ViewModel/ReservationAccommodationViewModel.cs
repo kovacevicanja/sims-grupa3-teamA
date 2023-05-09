@@ -22,6 +22,9 @@ namespace BookingProject.View.Guest1ViewModel
 
         public RelayCommand BookCommand { get; }
         public RelayCommand CloseCommand { get; }
+        public RelayCommand HomepageCommand { get; }
+        public RelayCommand MyReservationsCommand { get; }
+        public RelayCommand LogoutCommand { get; }
 
         public ReservationAccommodationViewModel(Accommodation selectedAccommodation)
         {
@@ -33,6 +36,9 @@ namespace BookingProject.View.Guest1ViewModel
             EndDate = DateTime.Now;
             BookCommand = new RelayCommand(Button_Click_Book, CanExecute);
             CloseCommand = new RelayCommand(Button_Click_Close, CanExecute);
+            HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
+            MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
+            LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
         }
 
         private bool CanExecute(object param) { return true; }
@@ -99,20 +105,21 @@ namespace BookingProject.View.Guest1ViewModel
         {
             int NumberOfDaysToStay = (EndDate - InitialDate).Days;
 
-            if (!accommodationDateController.CheckEnteredDates(InitialDate, EndDate))
+            if (EndDate == null || InitialDate == null)
+            {
+                MessageBox.Show("First you need to enter initial and end date!");
+            }
+            else if (!accommodationDateController.CheckEnteredDates(InitialDate, EndDate))
             {
                 MessageBox.Show("You didn't enter valid date!");
-                CloseWindow();
             }
             else if (!accommodationReservationController.CheckNumberOfGuests(_selectedAccommodation, NumberOfGuests))
             {
                 MessageBox.Show("Maximum number of guests in this accommodation is " + _selectedAccommodation.MaxGuestNumber + " !");
-                CloseWindow();
             }
             else if (_selectedAccommodation.MinDays > NumberOfDaysToStay)
             {
-                MessageBox.Show("this accommodation requires a minimum stay of " + _selectedAccommodation.MinDays + " days!");
-                CloseWindow();
+                MessageBox.Show("This accommodation requires a minimum stay of " + _selectedAccommodation.MinDays + " days!");
             }
             else if (accommodationDateController.CheckAvailableDate(_selectedAccommodation, InitialDate, EndDate, NumberOfDaysToStay, NumberOfGuests))
             {
@@ -126,11 +133,33 @@ namespace BookingProject.View.Guest1ViewModel
                 List<(DateTime, DateTime)> ranges = accommodationDateController.FindAvailableDates(_selectedAccommodation, InitialDate, EndDate, NumberOfDaysToStay);
                 FindAvailableDatesForAccommodation findAvailableDatesForAccommodation = new FindAvailableDatesForAccommodation(ranges, _selectedAccommodation);
                 findAvailableDatesForAccommodation.Show();
+                CloseWindow();
             }
         }
 
         private void Button_Click_Close(object param)
         {
+            CloseWindow();
+        }
+
+        private void Button_Click_Homepage(object param)
+        {
+            var Guest1Homepage = new Guest1View();
+            Guest1Homepage.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_MyReservations(object param)
+        {
+            var Guest1Reservations = new Guest1Reservations();
+            Guest1Reservations.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_Logout(object param)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
             CloseWindow();
         }
     }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         xmlns:local1="clr-namespace:BookingProject.ConversionHelp"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
         Title="Guest1" Height="720" Width="1280">
     <Window.Resources>
@@ -74,14 +74,14 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <StackPanel Height="340" Background="Honeydew" Orientation="Vertical">
-                    <Image  Width="100" Height="100" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
+                <StackPanel Height="320" Background="Honeydew" Orientation="Vertical">
+                    <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
                     <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
                 </StackPanel>
                 <Button Command="{Binding LogoutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Logout" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                            <TextBlock Text="Logout" Margin="5,0,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -131,8 +131,60 @@
                             <CheckBox IsChecked="{Binding Path=IsCheckedCottage}" Height="25" Content="COTTAGE" Foreground="DarkGreen" FontWeight="Bold"/>
                             <CheckBox IsChecked="{Binding Path=IsCheckedHouse}" Height="25" Content="HOUSE" Foreground="DarkGreen" FontWeight="Bold"/>
             </StackPanel>
-            <TextBox Width="150" Height="50" Margin="5" Text="{Binding Path = NumberOfGuests}"></TextBox>
-            <TextBox Width="200" Height="50" Margin="5" Text="{Binding Path = MinNumDaysOfReservation}"></TextBox>
+            <TextBox Width="150" Height="50" Margin="5" x:Name="txtNumber">
+                            <TextBox.Text>
+                                <Binding Path="NumberOfGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <val:SearchAccommodationValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                            <Validation.ErrorTemplate>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border BorderBrush="Red" BorderThickness="1"
+                        Width="{Binding ActualWidth, ElementName=txtNumber}"
+                        Height="{Binding ActualHeight, ElementName=txtNumber}"/>
+                                        <AdornedElementPlaceholder x:Name="textBox"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Validation.ErrorTemplate>
+                        </TextBox>
+            <TextBox Width="200" Height="50" Margin="5" x:Name="txtMinNum">
+                            <TextBox.Text>
+                                <Binding Path="MinNumDaysOfReservation" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <val:SearchAccommodationValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                            <Validation.ErrorTemplate>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border BorderBrush="Red" BorderThickness="1"
+                        Width="{Binding ActualWidth, ElementName=txtMinNum}"
+                        Height="{Binding ActualHeight, ElementName=txtMinNum}"/>
+                                        <AdornedElementPlaceholder x:Name="textBox"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Validation.ErrorTemplate>
+                        </TextBox>
             <Button Content="Search" IsCancel="True" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="20, 30, 20, 5"
                     Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew"
                Command="{Binding SearchCommand}"/>

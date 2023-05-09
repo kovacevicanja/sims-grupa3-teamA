@@ -32,9 +32,9 @@ namespace BookingProject.View.Guest1ViewModel
             Reservations = new ObservableCollection<AccommodationReservation>(_accommodationReservationController.getReservationsForGuest(_userController.GetLoggedUser()));
             //_accommodationReservationController.Subscribe(this);
             // ReservationsDataGrid.ItemsSource = _reservations;
-            ReviewCommand = new RelayCommand(Button_Click_Review, CanExecute);
-            CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
-            RescheduleCommand = new RelayCommand(Button_Click_Reschedule, CanExecute);
+            ReviewCommand = new RelayCommand(Button_Click_Review, CanIfSelected);
+            CancelCommand = new RelayCommand(Button_Click_Cancel, CanIfSelected);
+            RescheduleCommand = new RelayCommand(Button_Click_Reschedule, CanIfSelected);
             SeeRequestsCommand = new RelayCommand(Button_Click_See_Requests, CanExecute);
             HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
@@ -48,6 +48,12 @@ namespace BookingProject.View.Guest1ViewModel
             {
                 if (window.GetType() == typeof(Guest1Reservations)) { window.Close(); }
             }
+        }
+
+        private bool CanIfSelected(object param)
+        {
+            if (SelectedReservation == null) { return false; }
+            else { return true; }
         }
 
         private void Button_Click_Review(object param)
@@ -110,7 +116,7 @@ namespace BookingProject.View.Guest1ViewModel
 
         private void Button_Click_Homepage(object param)
         {
-            var Guest1Homepage = new Guest1Homepage();
+            var Guest1Homepage = new Guest1View();
             Guest1Homepage.Show();
             CloseWindow();
         }

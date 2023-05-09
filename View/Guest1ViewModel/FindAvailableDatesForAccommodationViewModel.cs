@@ -22,13 +22,19 @@ namespace BookingProject.View.Guest1ViewModel
         public Range selectedDates { get; set; }
         public Accommodation _selectedAccommodation { get; set; }
         public RelayCommand BookCommand { get; }
+        public RelayCommand HomePageCommand { get; }
+        public RelayCommand LogOutCommand { get; }
+        public RelayCommand MyReservationsCommand { get; }
 
         public FindAvailableDatesForAccommodationViewModel(List<(DateTime, DateTime)> ranges, Accommodation selectedAccommodation)
         {
             accommodationReservationController = new AccommodationReservationController();
             _selectedAccommodation = selectedAccommodation;
             Ranges = new ObservableCollection<Range>(ranges.Select(r => new Range { StartDate = r.Item1, EndDate = r.Item2 }).ToList());
-            BookCommand = new RelayCommand(Button_Click_Book, CanExecute);
+            BookCommand = new RelayCommand(Button_Click_Book, CanIfSelected);
+            HomePageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
+            LogOutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
+            MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
         private void CloseWindow()
@@ -37,6 +43,11 @@ namespace BookingProject.View.Guest1ViewModel
             {
                 if (window.GetType() == typeof(FindAvailableDatesForAccommodation)) { window.Close(); }
             }
+        }
+        private bool CanIfSelected(object param)
+        {
+            if (selectedDates == null) { return false; }
+            else { return true; }
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -79,6 +90,26 @@ namespace BookingProject.View.Guest1ViewModel
                 MessageBox.Show("Successfully reserved accommodation!");
             }
 
+        }
+        private void Button_Click_Homepage(object param)
+        {
+            var Guest1Homepage = new Guest1View();
+            Guest1Homepage.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_MyReservations(object param)
+        {
+            var Guest1Reservations = new Guest1Reservations();
+            Guest1Reservations.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_Logout(object param)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.Show();
+            CloseWindow();
         }
     }
 }
