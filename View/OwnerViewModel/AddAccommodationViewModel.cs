@@ -199,7 +199,7 @@ namespace BookingProject.View
             LocationController.SaveLocation();
             accommodation.IdLocation = location.Id;
 
-            AccommodationController.Create(accommodation);
+            //AccommodationController.Create(accommodation);
             //AccommodationController.SaveAccommodation();
 
             ImageController.LinkToAccommodation(accommodation.Id);

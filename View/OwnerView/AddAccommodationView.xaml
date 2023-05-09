@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookingProject.View"
+        xmlns:local="clr-namespace:BookingProject.View" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
         Title="AddAccommodationView" Height="600" Width="356">
     <Window.Resources>
@@ -67,33 +67,159 @@
             <Label Grid.Row="5" Grid.Column="0" Height="30" >Min number of days</Label>
             <Label Grid.Row="6" Grid.Column="0" Height="30" >Cancellation period</Label>
             <Label Grid.Row="7" Grid.Column="0" Height="30">Photo url</Label>
-            <TextBox x:Name="textBoxName" Grid.Row="0" Grid.Column="1"
-                     Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" 
-                     Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="1" 
-                     Text="{Binding Path=Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=TypeOfAccommodation, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox x:Name="textBoxName" Grid.Row="0" Grid.Column="1" Height="30">
+                 <TextBox.Text>
+                      <Binding Path="AccommodationName" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <val:RequiredFieldValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                 </TextBox.Text>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border BorderBrush="Red" BorderThickness="1"/>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+            </TextBox>
+                <TextBox x:Name="txtCity" Grid.Row="1" Grid.Column="1" Height="30" >
+                    <TextBox.Text>
+                        <Binding Path="City" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <val:RequiredFieldValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border BorderBrush="Red" BorderThickness="1"/>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+                <TextBox x:Name="txtCountry" Grid.Row="2" Grid.Column="1" Height="30">
+                    <TextBox.Text>
+                        <Binding Path="Country" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <val:RequiredFieldValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border BorderBrush="Red" BorderThickness="1"/>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=TypeOfAccommodation, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
             <ComboBox  Height="30" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=accommodationTypes}" SelectedItem="{Binding Path=chosenType, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
-            <TextBox Grid.Row="4" Grid.Column="1" 
-                     Text="{Binding Path=MaxGuestNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="5" Grid.Column="1" 
-                     Text="{Binding Path=MinDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="6" Grid.Column="1" 
-                     Text="{Binding Path=CancellationPeriod, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-                     Height="30"></TextBox>
+                <TextBox x:Name="txtGuest" Grid.Row="4" Grid.Column="1" Height="30">
+                    <TextBox.Text>
+                        <Binding Path="MaxGuestNumber" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <val:OwnerIntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border BorderBrush="Red" BorderThickness="1"/>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+                <TextBox x:Name="txtDays" Grid.Row="5" Grid.Column="1" Height="30">
+                    <TextBox.Text>
+                        <Binding Path="MinDays" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <val:OwnerIntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border BorderBrush="Red" BorderThickness="1"/>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+                <TextBox x:Name="txtCancellationPeriod" Grid.Row="6" Grid.Column="1" Height="30">
+                    <TextBox.Text>
+                        <Binding Path="CancellationPeriod" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <val:OwnerIntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border BorderBrush="Red" BorderThickness="1"/>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
             <Button Grid.Row="7" Grid.Column="1" Content="Add image"
                     IsDefault="True"  Height="30" Command="{Binding AddImageCommand}" ></Button>
         </Grid>

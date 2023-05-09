@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.WebPages;
 using System.Windows;
 
 namespace BookingProject.View.OwnerViewModel
@@ -60,7 +61,14 @@ namespace BookingProject.View.OwnerViewModel
         {
             AccommodationImage image = new AccommodationImage();
             image.Url = Url;
-            _imageController.Create(image);
+            if (image.Url.IsEmpty())
+            {
+                MessageBox.Show("Photo url can not be empty!");
+            } else
+            {
+                _imageController.Create(image);
+            }
+            
             //_imageController.SaveImage();
         }
 

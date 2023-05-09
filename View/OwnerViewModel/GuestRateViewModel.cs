@@ -165,6 +165,11 @@ namespace BookingProject.View.OwnerViewModel
         }
         private void Button_Click_Rate(object param)
         {
+            if(ChosenCleanliness ==0 || ChosenCommunication==0 || ChosenDecency==0 || ChosenNoisiness==0 || ChosenObservance==0)
+            {
+                MessageBox.Show("You must select one of dropdown options for grade!");
+                return;
+            }
             GuestGrade grade = new GuestGrade();
             grade.Cleanliness = ChosenCleanliness;
             grade.Communication = ChosenCommunication;
