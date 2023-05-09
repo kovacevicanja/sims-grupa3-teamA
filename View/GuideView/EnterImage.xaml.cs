@@ -1,12 +1,6 @@
 ﻿using BookingProject.Controller;
-using BookingProject.DependencyInjection;
-using BookingProject.Domain;
 using BookingProject.Domain.Enums;
-using BookingProject.Domain.Images;
-using BookingProject.Services;
-using BookingProject.Services.Interfaces;
-using BookingProject.View.GuideView;
-using BookingProject.View.GuideViewModel;
+using BookingProject.Domain;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,19 +17,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BookingProject.Domain.Images;
+using System.Text.RegularExpressions;
+using BookingProject.Model.Images;
+using BookingProject.View.GuideViewModel;
 
 namespace BookingProject.View.GuideView
 {
     /// <summary>
-    /// Interaction logic for TourCreationView.xaml
+    /// Interaction logic for EnterImage.xaml
     /// </summary>
-    public partial class TourCreationWindow : Window
+    public partial class EnterImage : Window
     {
-        public TourCreationWindow()
+
+        public EnterImage()
         {
             InitializeComponent();
-            this.DataContext = new TourCreationViewModel();
-
+            this.DataContext = new EnterImageViewModel();
         }
     }
 }

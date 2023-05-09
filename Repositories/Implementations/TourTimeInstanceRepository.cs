@@ -56,7 +56,7 @@ namespace BookingProject.Repositories.Implementations
         }
         public List<TourTimeInstance> GetAll()
         {
-            return _instances.ToList();
+            return _instances;
         }
         public TourTimeInstance GetById(int id)
         {

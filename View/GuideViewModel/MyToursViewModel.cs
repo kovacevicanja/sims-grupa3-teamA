@@ -12,10 +12,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using BookingProject.Commands;
 using System.ComponentModel.Design;
+using System.ComponentModel;
 
 namespace BookingProject.View.GuideViewModel
 {
-    public class MyToursViewModel
+    public class MyToursViewModel: INotifyPropertyChanged
     {
         private TourTimeInstanceController _tourTimeInstanceController;
         private TourStartingTimeController _tourStartingTimeController;
@@ -44,6 +45,12 @@ namespace BookingProject.View.GuideViewModel
                 }
             }
             return filteredTours;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private void Button_Click_Close(object param)
         {

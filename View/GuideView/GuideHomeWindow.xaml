@@ -57,7 +57,7 @@
         <Border BorderBrush="Black" BorderThickness="5" Margin="10,72,0,430"/>
         <Label Content="Extra Options" FontWeight="Bold" FontSize="24" Margin="29,13,337,686"/>
         <Button Content="Resign (R)" Margin="160,723,177,0" FontSize="20" FontWeight="Bold"  Height="43" VerticalAlignment="Top"/>
-        <Button Content="Logout (Esc)" Margin="160,661,177,0" FontSize="20" FontWeight="Bold" Command="{Binding LogoutCommand}" VerticalAlignment="Top" Height="43"/>
+        <Button Content="Logout (Esc)" Margin="160,659,177,0" FontSize="20" FontWeight="Bold" Command="{Binding LogoutCommand}" VerticalAlignment="Top" Height="45"/>
         <Image Source="../../Resources/Images/guide.png" Margin="14,398,275,242"/>
         <Image Source="../../Resources/Images/super.png" Margin="80,524,334,166"/>
         <Label Content="Name:" FontWeight="Bold" FontSize="24" Margin="285,398,137,302"/>

@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="ExamineGradeWindow" Height="450" Width="800">
     <Grid>
-        <TextBox TextWrapping="Wrap" FontSize="24" Text="{Binding ChosenEvaluation.AdditionalComment}" Margin="0,74,270,0"/>
+        <TextBox  IsReadOnly="True" TextWrapping="Wrap" FontSize="24" Text="{Binding ChosenEvaluation.AdditionalComment}" Margin="0,74,270,0"/>
         <Button Content="Mark" Command="{Binding MarkCommand}" FontWeight="Bold" FontSize="34" Margin="560,132,40,217" />
         <Button Content="Close" Command="{Binding CancelCommand}" FontWeight="Bold" FontSize="34" Margin="560,254,40,95" />
         <Label Content="Joined at:" FontWeight="Bold" FontSize="32" Margin="0,0,615,365"/>

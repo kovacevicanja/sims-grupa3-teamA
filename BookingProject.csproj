@@ -270,13 +270,16 @@
     </Compile>
     <Compile Include="View\CustomMessageBoxes\CustomMessageBox.cs" />
     <Compile Include="View\CustomMessageBoxes\CustomNotificationMessageBox.cs" />
-    <Compile Include="View\EnterDate.xaml.cs">
+    <Compile Include="View\GuideViewModel\EnterDateViewModel.cs" />
+    <Compile Include="View\GuideViewModel\EnterImageViewModel.cs" />
+    <Compile Include="View\GuideViewModel\EnterKeyPointViewModel.cs" />
+    <Compile Include="View\GuideView\EnterDate.xaml.cs">
       <DependentUpon>EnterDate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EnterImage.xaml.cs">
+    <Compile Include="View\GuideView\EnterImage.xaml.cs">
       <DependentUpon>EnterImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EnterKeyPoint.xaml.cs">
+    <Compile Include="View\GuideView\EnterKeyPoint.xaml.cs">
       <DependentUpon>EnterKeyPoint.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FindAvailableDatesForAccommodation.xaml.cs">
@@ -444,15 +447,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EnterDate.xaml">
+    <Page Include="View\GuideView\EnterDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EnterImage.xaml">
+    <Page Include="View\GuideView\EnterImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EnterKeyPoint.xaml">
+    <Page Include="View\GuideView\EnterKeyPoint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
