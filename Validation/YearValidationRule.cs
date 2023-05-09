@@ -13,27 +13,29 @@ namespace BookingProject.Validation
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
-            {
-                return new ValidationResult(false, "Please enter a year.");
-            }
+           if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
+        {
+            return new ValidationResult(false, "Please enter a year.");
+        }
 
-            string yearStr = value.ToString();
+        string yearStr = value.ToString();
 
-            string pattern = @"^(?!0)\d{4}$";
-            if (!Regex.IsMatch(yearStr, pattern))
-            {
-                return new ValidationResult(false, "Invalid year format. Try: 1999, 2023...");
-            }
+        if (yearStr.Length > 4)
+        {
+            return new ValidationResult(false, "Invalid year format. Try: 1999, 2023...");
+        }
 
-            int year = int.Parse(yearStr);
+        if (!int.TryParse(yearStr, out int year))
+        {
+            return new ValidationResult(false, "Invalid year format. Try: 1999, 2023...");
+        }
 
-            if (year > DateTime.Now.Year)
-            {
-                return new ValidationResult(false, "Year cannot be in the future.");
-            }
+        if (year > DateTime.Now.Year)
+        {
+            return new ValidationResult(false, "Year cannot be in the future.");
+        }
 
-            return ValidationResult.ValidResult;
+        return ValidationResult.ValidResult;
         }
     }
 }

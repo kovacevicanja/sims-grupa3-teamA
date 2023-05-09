@@ -4,17 +4,20 @@ using BookingProject.DependencyInjection;
 using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.View.Guest2View;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace BookingProject.View.Guest2ViewModel
 {
-    public class SecondGuestProfileViewModel
+    public class SecondGuestProfileViewModel : INotifyPropertyChanged
     {
         private int GuestId { get; set; }
         public UserController UserController { get; set; }
@@ -32,6 +35,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand MyTourRequestsCommand { get; }
         public RelayCommand RequestStatisticsCommand { get; }
         public TourReservation TourReservation { get; set; }
+        public string UsernameDisplay { get; set; } 
 
         public SecondGuestProfileViewModel(int idGuest)
         {
@@ -53,6 +57,38 @@ namespace BookingProject.View.Guest2ViewModel
             CreateTourRequestCommand = new RelayCommand(Button_Click_CreateTourRequest, CanExecute);
             MyTourRequestsCommand = new RelayCommand(Button_Click_MyTourRequests, CanExecute);
             RequestStatisticsCommand = new RelayCommand(Button_Click_RequestStatistics, CanExecute);
+
+            if (GuestId == 5)
+            {
+                PictureSource = new Uri("https://birthdayinspire.com/wp-content/uploads/2019/05/gifts-for-65-years-old-women.jpg");
+            }
+            else if (GuestId == 3)
+            {
+                PictureSource = new Uri("https://media.istockphoto.com/id/1347942558/photo/portrait-of-mature-man-standing-in-garden-in-front-of-dream-home-in-countryside.jpg?s=612x612&w=0&k=20&c=amykj2RUwq1LpNVHtXuCbmylIsfNSCV6GYUIzBptgPI=");
+            }
+            UsernameDisplay = UserController.GetById(GuestId).Username;
+
+        }
+
+        private Uri pictureSource;
+
+        public Uri PictureSource
+        {
+            get { return pictureSource; }
+            set
+            {
+                if (pictureSource != value)
+                {
+                    pictureSource = value;
+                    OnPropertyChanged(nameof(PictureSource));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void CloseWindow()

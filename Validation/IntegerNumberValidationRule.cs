@@ -15,16 +15,13 @@ namespace BookingProject.Validation
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             string input = value as string;
-            Regex regex = new Regex("^[1-9]\\d*$");
 
-            if (regex.IsMatch(input))
-            {
-                return ValidationResult.ValidResult;
-            }
-            else
+            if (string.IsNullOrWhiteSpace(input) || !int.TryParse(input, out int result) || result <= 0)
             {
                 return new ValidationResult(false, "Number of guests should be a positive integer value.");
-            }         
+            }
+
+            return ValidationResult.ValidResult;
         }
     }
 }

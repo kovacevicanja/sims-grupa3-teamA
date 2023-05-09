@@ -109,7 +109,7 @@
 
             <Button Background="LightBlue" Width="184" IsDefault="True" Command="{Binding BookTourCommand}" Content="Book tour" Grid.Column="1" Margin="193,11,-377,31"/>
             <Button Background="LightBlue" Width="184" IsDefault="True" Command="{Binding CancelCommand}" Content="Cancel" Margin="649,11,-833,31" Grid.Column="1"/>
-            <Button Background="LightBlue" IsDefault="True" Command="{Binding ProfileCommand}" Content="Back to profile" Margin="14,-635,-113,684" Grid.Column="1"/>
+            <Button Background="LightBlue" IsDefault="True" Command="{Binding ProfileCommand}" Content="Back to profile" Margin="-20,-688,-79,737" Grid.Column="1"/>
             <Button Background="LightBlue" IsDefault="True" Command="{Binding SeeMoreCommand}" Content="See more" Margin="799,-52,-898,101" Grid.Column="1"/>
         </Grid>
         <Grid Grid.ColumnSpan="2" Margin="40,5,40,5" Grid.RowSpan="2" Grid.Row="1">
@@ -131,10 +131,8 @@
             <Image Source="ToursImages/6.png" Margin="-38,77,78,-10" Grid.ColumnSpan="5" Grid.RowSpan="2" />
             <Image Source="ToursImages/6.png" Margin="145,67,-40,-10" Grid.Column="4" Grid.RowSpan="2" Grid.ColumnSpan="4" />
 
-
-            <Label Content="Discover Tours Wherever You Imagine" FontSize="35" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="8" Margin="164,-33,112,171" />
-
             <Label Content="City:" Margin="-23,10,135,0" VerticalAlignment="Top"/>
+            <Label Content="Discover Tours Wherever You Imagine" FontSize="35" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="8" Margin="164,-33,112,171" />
             <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding City}" Height="40" Margin="-25,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145"/>
             <Label Content="Country:" Margin="125,10,0,0" RenderTransformOrigin="0.514,0.615" HorizontalAlignment="Left" VerticalAlignment="Top" Width="127" Grid.ColumnSpan="3"/>
             <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding Country}" Margin="125,57,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="195" Height="40" Grid.ColumnSpan="5"/>
@@ -165,6 +163,21 @@
                     <ColumnDefinition Width="41*"/>
                     <ColumnDefinition Width="161*"/>
                 </Grid.ColumnDefinitions>
+            </Grid>
+            <Grid>
+                <Menu Margin="-39,-35,145,191" Background="LightBlue">
+                    <Menu.Resources>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="FontSize" Value="24" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Style>
+                    </Menu.Resources>
+                    <MenuItem Header="Profile">
+                        <MenuItem Header="Back to profile" Command="{Binding ProfileCommand}" />
+                        <Separator />
+                        <MenuItem Header="Log Out" Command="{Binding LogOutCommand}" />
+                    </MenuItem>
+                </Menu>
             </Grid>
         </Grid>
     </Grid>

@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web.WebPages;
 using System.Windows;
 
 namespace BookingProject.View.Guest2ViewModel
@@ -20,8 +22,20 @@ namespace BookingProject.View.Guest2ViewModel
         {
             GuestId = guestId;
 
-            ChangeYearCommand = new RelayCommand(Button_Click_ChangeYear, CanExecute);
+            ChangeYearCommand = new RelayCommand(Button_Click_ChangeYear, CanWhenEntered); 
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
+        }
+
+        private bool CanWhenEntered(object param)
+        {
+            string trimmedYear = EnteredYear?.Trim();
+            if (string.IsNullOrEmpty(trimmedYear))
+            {
+                return false;
+            }
+
+            string pattern = @"^(?!0)\d{4}$";
+            return Regex.IsMatch(trimmedYear, pattern);
         }
 
         private bool CanExecute(object param) { return true; }
@@ -65,6 +79,7 @@ namespace BookingProject.View.Guest2ViewModel
                 {
                     _enteredYear = value;
                     OnPropertyChanged(nameof(EnteredYear));
+                    OnPropertyChanged(nameof(CanWhenEntered));
                 }
             }
         }

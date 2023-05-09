@@ -1015,5 +1015,14 @@
   <ItemGroup>
     <Resource Include="View\Guest2View\ToursImages\statistics13.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\profile1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\profile2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\profile3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,18 +3,61 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookingProject.View"
+        xmlns:local="clr-namespace:BookingProject.View" xmlns:guest2viewmodel="clr-namespace:BookingProject.View.Guest2ViewModel" d:DataContext="{d:DesignInstance Type=guest2viewmodel:SecondGuestProfileViewModel}"
         mc:Ignorable="d"
-        Title="SecondGuestProfile" Height="450" Width="800">
+        Title="" Height="761" Width="1024">
+    <Window.Background>
+        <SolidColorBrush Color="white" />
+    </Window.Background>
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Button Content="My attended tours" HorizontalAlignment="Left" Height="50" Margin="600,30,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding MyAttendedToursCommand}"/>
-        <Button Content="My reservations" HorizontalAlignment="Left" Height="50" Margin="410,30,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding MyReservationsCommand}"/>
-        <Button Content="Search and reservation of tours" HorizontalAlignment="Left" Height="50" Margin="600,107,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding SerachAndReservationToursCommand}"/>
-        <Button Content="My vouchers" HorizontalAlignment="Left" Height="50" Margin="600,187,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding MyVouchersCommand}"/>
-        <Button Content="Log out" HorizontalAlignment="Left" Height="50" Margin="600,350,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding LogOutCommand}"/>
-        <Button Content="Monitoring active tours" HorizontalAlignment="Left" Height="50" Margin="600,274,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding MonitoringActiveToursCommand}"/>
-        <Button Content="Create tour request" HorizontalAlignment="Left" Height="50" Margin="410,107,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding CreateTourRequestCommand}"/>
-        <Button Content="My tour requests" HorizontalAlignment="Left" Height="50" Margin="410,187,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding MyTourRequestsCommand}"/>
-        <Button Content="Request statistics" HorizontalAlignment="Left" Height="50" Margin="410,274,0,0" VerticalAlignment="Top" Width="173" IsDefault="True" Command="{Binding RequestStatisticsCommand}"/>
+        <Label Content="{Binding UsernameDisplay}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="51" Width="231" Margin="410,440,0,0" />
+        <Image Source="ToursImages/profile3.png" Margin="0,-1,0,0" RenderTransformOrigin="0.876,-0.176" Height="425" VerticalAlignment="Top" />
+        <Grid Margin="82,313,614,209">
+            <Border BorderBrush="White" BorderThickness="2" Background="White" Margin="10">
+                <Image Source="{Binding PictureSource}" Stretch="Uniform" Margin="12,10,12,10" />
+            </Border>
+        </Grid>
+
+        <Menu Margin="0,-1,0,688">
+            <Menu.Resources>
+                <Style TargetType="MenuItem">
+                    <Setter Property="FontSize" Value="24" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </Menu.Resources>
+            <MenuItem Header="Profile">
+                <MenuItem Header="My Attended Tours" Command="{Binding MyAttendedToursCommand}" />
+                <MenuItem Header="My Reservations" Command="{Binding MyReservationsCommand}" />
+                <MenuItem Header="Search and Reservation Tours" Command="{Binding SerachAndReservationToursCommand}" />
+                <MenuItem Header="My Vouchers" Command="{Binding MyVouchersCommand}" />
+                <Separator />
+                <MenuItem Header="Log Out" Command="{Binding LogOutCommand}" />
+            </MenuItem>
+            <MenuItem Header="Tour Requests">
+                <MenuItem Header="Monitoring Active Tours" Command="{Binding MonitoringActiveToursCommand}" />
+                <MenuItem Header="Create Tour Request" Command="{Binding CreateTourRequestCommand}" />
+                <MenuItem Header="My Tour Requests" Command="{Binding MyTourRequestsCommand}" />
+                <Separator />
+                <MenuItem Header="Request Statistics" Command="{Binding RequestStatisticsCommand}" />
+            </MenuItem>
+        </Menu>
+
+        <Button Background="LightBlue" Content="My attended tours" HorizontalAlignment="Left" Height="50" Margin="648,355,0,0" VerticalAlignment="Top" Width="344" IsDefault="True" Command="{Binding MyAttendedToursCommand}"/>
+        <Button Content="My reservations" HorizontalAlignment="Left" Height="50" Margin="648,630,0,0" VerticalAlignment="Top" Width="345" IsDefault="True" Command="{Binding MyReservationsCommand}"/>
+        <Button Background="LightBlue" Content="Search and reservation tours" HorizontalAlignment="Left" Height="50" Margin="649,300,0,0" VerticalAlignment="Top" Width="344" IsDefault="True" Command="{Binding SerachAndReservationToursCommand}" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="My vouchers" HorizontalAlignment="Left" Height="50" Margin="648,575,0,0" VerticalAlignment="Top" Width="344" IsDefault="True" Command="{Binding MyVouchersCommand}" RenderTransformOrigin="0.492,0.569"/>
+        <Button Content="Log out" HorizontalAlignment="Left" Height="50" Margin="452,675,0,0" VerticalAlignment="Top" Width="172" IsDefault="True" Command="{Binding LogOutCommand}"/>
+        <Button Content="Monitoring active tours" HorizontalAlignment="Left" Height="50" Margin="648,410,0,0" VerticalAlignment="Top" Width="345" IsDefault="True" Command="{Binding MonitoringActiveToursCommand}"/>
+        <Button Content="Create tour request" HorizontalAlignment="Left" Height="51" Margin="648,465,0,0" VerticalAlignment="Top" Width="345" IsDefault="True" Command="{Binding CreateTourRequestCommand}"/>
+        <Button Content="My tour requests" HorizontalAlignment="Left" Height="50" Margin="648,520,0,0" VerticalAlignment="Top" Width="345" IsDefault="True" Command="{Binding MyTourRequestsCommand}"/>
+        <Button Content="Request statistics" HorizontalAlignment="Left" Height="50" Margin="648,685,0,0" VerticalAlignment="Top" Width="344" IsDefault="True" Command="{Binding RequestStatisticsCommand}"/>
     </Grid>
 </Window>
