@@ -86,6 +86,15 @@ namespace BookingProject.Controller
         {
             _accommodationReservationService.Subscribe(observer);
         }
+        public void Unsubscribe(IObserver observer)
+        {
+            _accommodationReservationService.Unsubscribe(observer);
+        }
+
+        public void NotifyObservers()
+        {
+            _accommodationReservationService.NotifyObservers();
+        }
         public void SaveParam(List<AccommodationReservation> reservations)
         {
             _accommodationReservationService.SaveParam(reservations);

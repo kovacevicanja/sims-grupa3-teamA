@@ -24,7 +24,7 @@ namespace BookingProject.View
         public Guest1Reservations()
         {
             InitializeComponent();
-            this.DataContext = new Guest1ReservationsViewModel();
+            this.DataContext = new Guest1ReservationsViewModel(this);
         }
 
     }

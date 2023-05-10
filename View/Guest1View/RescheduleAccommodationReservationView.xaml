@@ -82,7 +82,7 @@
                 </Button>
                 <Label Height="150"></Label>
             </StackPanel>
-            
+
             <Border Grid.Column="1" Background="Beige">
                 <Grid>
                     <Grid.Background>
@@ -135,13 +135,12 @@
                />
                         <Button Content="See requests" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
                                  Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150"
-                                Command="{Binding RequestsCommand}"
+                                Command="{Binding SeeRequestsCommand}"
                />
-                       
-                        <Button Content="Reschedule" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
-               Command="{Binding SendRequestCommand}"
-                                 Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150"/>
                     </WrapPanel>
+                    <Button Content="Reschedule" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="128,0,0,0"
+               Command="{Binding SendRequestCommand}"
+                                 Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150" Grid.Row="1" Grid.Column="2"/>
                 </Grid>
 
             </Border>

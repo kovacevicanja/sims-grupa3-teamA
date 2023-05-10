@@ -105,9 +105,9 @@ namespace BookingProject.View.Guest1ViewModel
         {
             int NumberOfDaysToStay = (EndDate - InitialDate).Days;
 
-            if (EndDate == null || InitialDate == null)
+            if (EndDate == null || InitialDate == null || NumberOfGuests == null)
             {
-                MessageBox.Show("First you need to enter initial and end date!");
+                MessageBox.Show("First you need to fill all fields!");
             }
             else if (!accommodationDateController.CheckEnteredDates(InitialDate, EndDate))
             {

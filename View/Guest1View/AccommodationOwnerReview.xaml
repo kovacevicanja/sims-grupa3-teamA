@@ -74,7 +74,7 @@
                     <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
                     <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
                 </StackPanel>
-                <Button Command="{Binding LogoutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
+                <Button Command="{Binding LogOutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Logout" Margin="5,0,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>

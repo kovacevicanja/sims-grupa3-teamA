@@ -177,7 +177,7 @@ namespace BookingProject.View.Guest1ViewModel
                 AccommodationTypes.Add("APARTMENT");
             }
             Accommodations.Clear();
-            Filtered = _accommodationController.Search(Accommodations, AccName, City, State, AccommodationTypes, NumberOfGuests, MinNumDaysOfReservation).ToList();
+            Filtered = _accommodationController.Search(Accommodations, AccName, City, State, AccommodationTypes, NumberOfGuests, MinNumDaysOfReservation).Distinct().ToList();
             SortedFiltered = Filtered.OrderByDescending(a => a.Owner.IsSuper).ToList();
             foreach (var accommodation in SortedFiltered)
             {

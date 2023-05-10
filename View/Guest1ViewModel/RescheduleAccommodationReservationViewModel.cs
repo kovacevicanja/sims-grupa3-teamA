@@ -107,7 +107,6 @@ namespace BookingProject.View.Guest1ViewModel
             {
                 RequestAccommodationReservationController.SendRequest(SelectedReservation, Comment, NewInitialDate, NewEndDate);
                 MessageBox.Show("Successfully rescheduled reservation!");
-                CloseWindow();
             }
         }
         private void Button_Click_See_Requests(object param)

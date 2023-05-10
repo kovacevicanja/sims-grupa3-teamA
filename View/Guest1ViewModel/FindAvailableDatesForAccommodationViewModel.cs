@@ -44,11 +44,7 @@ namespace BookingProject.View.Guest1ViewModel
                 if (window.GetType() == typeof(FindAvailableDatesForAccommodation)) { window.Close(); }
             }
         }
-        private bool CanIfSelected(object param)
-        {
-            if (selectedDates == null) { return false; }
-            else { return true; }
-        }
+        
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -77,12 +73,17 @@ namespace BookingProject.View.Guest1ViewModel
             public DateTime EndDate { get; set; }
         }
 
+        private bool CanIfSelected(object param)
+        {
+            if (selectedDates == null || NumberOfGuests == null) { return false; }
+            else { return true; }
+        }
+
         private void Button_Click_Book(object param)
         {
             if (!accommodationReservationController.CheckNumberOfGuests(_selectedAccommodation, NumberOfGuests))
             {
                 MessageBox.Show("Maximum number of guests in this accommodation is " + _selectedAccommodation.MaxGuestNumber + " !");
-                CloseWindow();
             }
             else
             {

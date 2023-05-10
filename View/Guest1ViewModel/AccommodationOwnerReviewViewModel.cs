@@ -169,7 +169,6 @@ namespace BookingProject.View
             {
                 AccommodationOwnerGradeController.MakeGrade(grade, _selectedReservation, chosenCleanliness, chosenCorectness, Comment, Reccommendation);
                 MessageBox.Show("You have successfully reviewed this accommodation!");
-                CloseWindow();
             }
         }
         private void CloseWindow()
