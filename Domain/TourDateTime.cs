@@ -21,13 +21,6 @@ namespace BookingProject.Model
             TourId = -1;
         }
 
-        public TourDateTime(int id, int tourId,  DateTime startingDateTime)
-        {
-            Id = id;
-            TourId = tourId;
-            StartingDateTime = startingDateTime;
-        }
-
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);

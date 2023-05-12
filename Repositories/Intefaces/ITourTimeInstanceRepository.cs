@@ -16,5 +16,7 @@ namespace BookingProject.Repositories.Intefaces
         void InstanceTourBind();
         void Initialize();
         void Save();
+
+        void BindLastTour();
     }
 }

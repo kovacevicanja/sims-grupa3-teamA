@@ -1,5 +1,7 @@
-﻿using BookingProject.Controller;
+﻿using BookingProject.Commands;
+using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,35 +10,31 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace BookingProject.View
+namespace BookingProject.View.GuideViewModel
 {
-    /// <summary>
-    /// Interaction logic for EnterImage.xaml
-    /// </summary>
-    public partial class EnterKeyPoint : Window, IDataErrorInfo
+    public class EnterKeyPointViewModel
     {
 
-
+        public RelayCommand CancelCommand { get; }
+        public RelayCommand CreateCommand { get; }
         public KeyPointController KeyPointController { get; set; }
 
-
-
-        public EnterKeyPoint()
+        public EnterKeyPointViewModel()
         {
-            InitializeComponent();
-            this.DataContext = this;
             KeyPointController = new KeyPointController();
-
+            CancelCommand = new RelayCommand(CancelButton_Click, CanExecute);
+            CreateCommand = new RelayCommand(Button_Click_Kreiraj, CanExecute);
         }
+        private bool CanExecute(object param) { return true; }
 
+        private void CloseWindow()
+        {
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.GetType() == typeof(EnterKeyPoint)) { window.Close(); }
+            }
+        }
         public string this[string columnName] => throw new NotImplementedException();
 
         public string Error => throw new NotImplementedException();
@@ -55,16 +53,13 @@ namespace BookingProject.View
                 }
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
-        private void Button_Click_Kreiraj(object sender, RoutedEventArgs e)
+        private void Button_Click_Kreiraj(object param)
         {
             KeyPoint keyPoint = new KeyPoint();
             keyPoint.Point = KeyPoint;
@@ -72,10 +67,10 @@ namespace BookingProject.View
 
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void CancelButton_Click(object param)
         {
-            Close();
+            CloseWindow();
         }
     }
-
 }
+

@@ -1,45 +1,31 @@
-﻿using BookingProject.Controller;
-using BookingProject.Model.Enums;
-using BookingProject.Model;
+﻿using BookingProject.Commands;
+using BookingProject.Controller;
+using BookingProject.Model.Images;
+using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using BookingProject.Model.Images;
-using System.Text.RegularExpressions;
 
-namespace BookingProject.View
+namespace BookingProject.View.GuideViewModel
 {
-    /// <summary>
-    /// Interaction logic for EnterImage.xaml
-    /// </summary>
-    public partial class EnterImage : Window, IDataErrorInfo
+    public class EnterImageViewModel : IDataErrorInfo, INotifyPropertyChanged
     {
-
-
         public TourImageController ImageController { get; set; }
+        public RelayCommand CancelCommand { get; }
+        public RelayCommand CreateCommand { get; }
 
-
-
-        public EnterImage()
+        public EnterImageViewModel()
         {
-            InitializeComponent();
-            this.DataContext = this;
 
             ImageController = new TourImageController();
-
+            CancelCommand = new RelayCommand(CancelButton_Click, CanExecute);
+            CreateCommand = new RelayCommand(Button_Click_Kreiraj, CanExecute);
         }
 
         private string _url;
@@ -52,6 +38,7 @@ namespace BookingProject.View
                 if (value != _url)
                 {
                     _url = value;
+                    IsButtonEnabled = validateUrlRegex.IsMatch(Url);
                     OnPropertyChanged();
                 }
             }
@@ -65,19 +52,27 @@ namespace BookingProject.View
         }
 
 
-        private void Button_Click_Kreiraj(object sender, RoutedEventArgs e)
+        private void Button_Click_Kreiraj(object param)
         {
             TourImage image = new TourImage();
             image.Url = Url;
             ImageController.Create(image);
             ImageController.Save();
-
-
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void CancelButton_Click(object param)
         {
-            Close();
+            CloseWindow();
+        }
+
+        private bool CanExecute(object param) { return true; }
+
+        private void CloseWindow()
+        {
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.GetType() == typeof(EnterImage)) { window.Close(); }
+            }
         }
         public string Error => null;
 
@@ -101,7 +96,19 @@ namespace BookingProject.View
 
         Regex validateUrlRegex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
 
-
+        private bool _isButtonEnabled = false;
+        public bool IsButtonEnabled
+        {
+            get { return _isButtonEnabled; }
+            set
+            {
+                if (_isButtonEnabled != value)
+                {
+                    _isButtonEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public bool IsValid
         {
             get
@@ -116,15 +123,5 @@ namespace BookingProject.View
             }
         }
 
-        private void Window_LayoutUpdated(object sender, System.EventArgs e)
-        {
-            if (IsValid)
-                CreateButton.IsEnabled = true;
-            else
-                CreateButton.IsEnabled = false;
-        }
-
-
     }
-
 }
