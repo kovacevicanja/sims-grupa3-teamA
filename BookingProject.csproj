@@ -273,6 +273,9 @@
     <Compile Include="View\GuideViewModel\EnterDateViewModel.cs" />
     <Compile Include="View\GuideViewModel\EnterImageViewModel.cs" />
     <Compile Include="View\GuideViewModel\EnterKeyPointViewModel.cs" />
+    <Compile Include="View\GuideViewModel\RequestStatisticsChoiceViewModel.cs" />
+    <Compile Include="View\GuideViewModel\SuggestionChoiceViewModel.cs" />
+    <Compile Include="View\GuideViewModel\TourRequestsViewModel.cs" />
     <Compile Include="View\GuideView\EnterDate.xaml.cs">
       <DependentUpon>EnterDate.xaml</DependentUpon>
     </Compile>
@@ -343,14 +346,23 @@
     <Compile Include="View\GuideView\MyToursWindow.xaml.cs">
       <DependentUpon>MyToursWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\RequestStatisticsChoiceView.xaml.cs">
+      <DependentUpon>RequestStatisticsChoiceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\SelectedTourStatsWindow.xaml.cs">
       <DependentUpon>SelectedTourStatsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\SecondGuestMyReservationsView.xaml.cs">
       <DependentUpon>SecondGuestMyReservationsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\SuggestionChoiceView.xaml.cs">
+      <DependentUpon>SuggestionChoiceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\TourCancellationWindow.xaml.cs">
       <DependentUpon>TourCancellationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\TourRequestsView.xaml.cs">
+      <DependentUpon>TourRequestsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\TourStatisticsWindow.xaml.cs">
       <DependentUpon>TourStatisticsWindow.xaml</DependentUpon>
@@ -527,11 +539,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\GuideView\RequestStatisticsChoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\SelectedTourStatsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\GuideView\SuggestionChoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\TourCancellationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\TourRequestsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

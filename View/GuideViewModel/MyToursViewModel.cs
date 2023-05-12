@@ -21,12 +21,14 @@ namespace BookingProject.View.GuideViewModel
         private TourTimeInstanceController _tourTimeInstanceController;
         private TourStartingTimeController _tourStartingTimeController;
         public ObservableCollection<TourTimeInstance> _instances;
+        private TourController _tourController;
         public RelayCommand CancelCommand { get; }
         public RelayCommand CancelTourCommand { get; }
         public RelayCommand CreateCommand { get; }
         public TourTimeInstance ChosenTour { get; set; }
         public MyToursViewModel()
         {
+            _tourController = new TourController();
             _tourTimeInstanceController = new TourTimeInstanceController();
             _tourStartingTimeController = new TourStartingTimeController();
             _instances = new ObservableCollection<TourTimeInstance>(FilterTours(_tourTimeInstanceController.GetAll()));

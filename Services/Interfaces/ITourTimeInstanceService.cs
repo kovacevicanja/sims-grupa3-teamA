@@ -16,5 +16,6 @@ namespace BookingProject.Services.Interfaces
         TourTimeInstance GetById(int id);
         void Initialize();
         void Save();
+        void BindLastTour();
     }
 }

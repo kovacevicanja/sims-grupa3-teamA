@@ -70,6 +70,38 @@ namespace BookingProject.Repositories.Implementations
                 tourTimeInstance.Tour = tour;
             }
         }
+
+        public void BindLastTour()
+        {
+
+            if (_instances.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                TourTimeInstance tourInstance = _instances.Last();
+                List<Tour> tours = Injector.CreateInstance<ITourRepository>().GetAll();
+                foreach (Tour tour in tours)
+                {
+                    if (tourInstance.TourId == tour.Id)
+                    {
+                        tourInstance.Tour=tour;
+                    }
+                }
+                List<TourDateTime> dates = Injector.CreateInstance<ITourStartingTimeRepository>().GetAll();
+                foreach (TourDateTime date in dates)
+                {
+                    if (tourInstance.DateId == date.Id)
+                    {
+                        tourInstance.TourTime = date;
+                    }
+                }
+
+
+            }
+        }
+
         public void InstanceDateBind()
         {
             foreach (TourTimeInstance tourTimeInstance in _instances)

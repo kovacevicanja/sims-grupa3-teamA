@@ -19,6 +19,9 @@ namespace BookingProject.View.GuideViewModel
         public RelayCommand OneCommand { get; }
         public RelayCommand TwoCommand { get; }
         public RelayCommand ThreeCommand { get; }
+        public RelayCommand FiveCommand { get; }
+
+        public RelayCommand SuggestionCommand { get; }
 
         public GuideHomeViewModel()
         {
@@ -27,6 +30,8 @@ namespace BookingProject.View.GuideViewModel
             OneCommand = new RelayCommand(Button_Click_1, CanExecute);
             TwoCommand = new RelayCommand(Button_Click_2, CanExecute);
             ThreeCommand = new RelayCommand(Button_Click_3, CanExecute);
+            FiveCommand = new RelayCommand(Button_Click_5, CanExecute);
+            SuggestionCommand = new RelayCommand(Button_Click_S, CanExecute); 
             GuideRating = 5.5;
             GuideName= _userController.GetLoggedUser().Name;
 
@@ -70,6 +75,20 @@ namespace BookingProject.View.GuideViewModel
         {
             LiveToursList liveTourList = new LiveToursList();
             liveTourList.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_5(object param)
+        {
+            RequestStatisticsChoiceView choiceView = new RequestStatisticsChoiceView();
+            choiceView.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_S(object param)
+        {
+            SuggestionChoiceView choiceView = new SuggestionChoiceView();
+            choiceView.Show();
             CloseWindow();
         }
     }

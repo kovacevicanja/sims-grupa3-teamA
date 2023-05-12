@@ -74,10 +74,7 @@ namespace BookingProject.View.GuideViewModel
                     OnPropertyChanged();
                 }
             }
-        }
-
-
-        
+        }      
     private void ValidationTimer_Tick(object sender, EventArgs e)
     {
         IsValid=FullValid(); // Call your validation method
@@ -174,7 +171,6 @@ namespace BookingProject.View.GuideViewModel
                 }
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -215,6 +211,7 @@ namespace BookingProject.View.GuideViewModel
         public void SaveInstance()
         {
             MakeTimeInstances(TourController.GetLastTour());
+
         }
         //use of this function is necessary if a tour has multiple dates   
         public void MakeTimeInstances(Tour tour)
@@ -223,7 +220,9 @@ namespace BookingProject.View.GuideViewModel
             {
                 TourTimeInstance instance = new TourTimeInstance();
                 instance.TourId = tour.Id;
+                instance.Tour = tour;
                 instance.DateId = time.Id;
+                instance.TourTime= time;
                 TourTimeInstanceController.Create(instance);
                 TourTimeInstanceController.Save();
             }
@@ -241,7 +240,6 @@ namespace BookingProject.View.GuideViewModel
             StopValidationTimer();
             CloseWindow();
         }
-
         private void Button_Click_StartingTime(object param)
         {
             EnterDate enterDate = new EnterDate();
@@ -363,7 +361,6 @@ namespace BookingProject.View.GuideViewModel
             }
             return false;
         }
-
         public bool FullValid()
         {
             foreach (var property in _validatedProperties)
@@ -397,7 +394,6 @@ namespace BookingProject.View.GuideViewModel
                 if (window.GetType() == typeof(TourCreationWindow)) { window.Close(); }
             }
         }
-
     }
 }
 
