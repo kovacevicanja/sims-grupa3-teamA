@@ -1,0 +1,104 @@
+﻿<Window x:Class="BookingProject.View.Guest1View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View"
+        xmlns:local1="clr-namespace:BookingProject.ConversionHelp"
+        mc:Ignorable="d"
+        Title="Guest1" Height="600" Width="900">
+    <Window.Resources>
+        <local1:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" >
+            <Label Width="100">Name:</Label>
+            <Label Width="100">State:</Label>
+            <Label Width="100">City:</Label>
+            <Label Width="100">Type:</Label>
+            <Label Width="110">Number of guests:</Label>
+            <Label Width="200">Number of the days for reservation:</Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row = "1" Orientation="Horizontal" >
+            <TextBox Width="90" Height="50" Margin="5" Text="{Binding Path = AccName}"></TextBox>
+            <ComboBox x:Name="comboBoxState" Width="100" Height="20" Margin="5" SelectionChanged="FindCities"  SelectedItem="{Binding Path=State,UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+            <ComboBox x:Name="comboBoxCity"  Width="100" Height="20" Margin="5"  ItemsSource="{Binding Path=AllCities}" SelectedItem="{Binding Path=City, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+            <StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Bottom" Height="80">
+                <CheckBox IsChecked="{Binding Path=IsCheckedApartment}" Height="25" Content="APARTMENT"/>
+                <CheckBox IsChecked="{Binding Path=IsCheckedCottage}" Height="25" Content="COTTAGE"/>
+                <CheckBox IsChecked="{Binding Path=IsCheckedHouse}" Height="25" Content="HOUSE"/>
+            </StackPanel>
+            <TextBox Width="90" Height="50" Margin="5" Text="{Binding Path = NumberOfGuests}"></TextBox>
+            <TextBox Width="110" Height="50" Margin="5" Text="{Binding Path = MinNumDaysOfReservation}"></TextBox>
+            <Button Content="Search" IsCancel="True" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="20, 40, 20, 5"
+               Click="Button_Click_Search"/>
+            <Button Content="Cancel search" IsDefault="True" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20, 40, 20, 5"
+              Click="Button_Click_Cancel_Search" />
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="5,20,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <DataGrid Margin="5, 0, 5, 16" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True" SelectedItem="{Binding selectedAccommodation}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Name">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="15" Height="15" Margin="0,0,0,90" Source="../Resources/Images/star.jpg" Visibility="{Binding Owner.IsSuper, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    <TextBlock TextAlignment="Right" Text="{Binding AccommodationName}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="City" Width="60" Binding="{Binding Location.City}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="State" Width="60" Binding="{Binding Location.Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Type" Width="60" Binding="{Binding Type}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MaxNumOfGuests" Width="150" Binding="{Binding MaxGuestNumber}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MinNumOfDaysForReservation" Width="200" Binding="{Binding MinDays}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cancellation limit" Width="100" Binding="{Binding CancellationPeriod}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Images" Width="200">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding Images}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Url}" Width="80" Height="80" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+        <WrapPanel Grid.Row="3">
+            <Button Width="120" IsDefault="True" Click="Button_Click_Book" Margin="20 0 20 0">Book accommodation</Button>
+            <Button Content="My reservations" Click="Button_Click_Res"></Button>
+        </WrapPanel>
+    </Grid>
+</Window>
