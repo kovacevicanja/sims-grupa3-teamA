@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookingProject.View.GuideViewModel
 {
-    public class TourRequestsViewModel
+    public class RequestedTourCreationViewModel
     {
     }
 }

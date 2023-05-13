@@ -293,7 +293,7 @@
     <Compile Include="View\GuideViewModel\EnterKeyPointViewModel.cs" />
     <Compile Include="View\GuideViewModel\RequestStatisticsChoiceViewModel.cs" />
     <Compile Include="View\GuideViewModel\SuggestionChoiceViewModel.cs" />
-    <Compile Include="View\GuideViewModel\TourRequestsViewModel.cs" />
+    <Compile Include="View\GuideViewModel\AllTourRequestsViewModel.cs" />
     <Compile Include="View\GuideView\EnterDate.xaml.cs">
       <DependentUpon>EnterDate.xaml</DependentUpon>
     </Compile>
@@ -385,8 +385,8 @@
     <Compile Include="View\GuideView\TourCancellationWindow.xaml.cs">
       <DependentUpon>TourCancellationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\GuideView\TourRequestsView.xaml.cs">
-      <DependentUpon>TourRequestsView.xaml</DependentUpon>
+    <Compile Include="View\GuideView\AllTourRequestsView.xaml.cs">
+      <DependentUpon>AllTourRequestsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\TourStatisticsWindow.xaml.cs">
       <DependentUpon>TourStatisticsWindow.xaml</DependentUpon>
@@ -587,7 +587,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\GuideView\TourRequestsView.xaml">
+    <Page Include="View\GuideView\AllTourRequestsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

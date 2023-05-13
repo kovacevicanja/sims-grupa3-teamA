@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookingProject.View.Guest2ViewModel;
+using BookingProject.View.GuideViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +19,15 @@ namespace BookingProject.View.GuideView
     /// <summary>
     /// Interaction logic for TourRequestsView.xaml
     /// </summary>
-    public partial class TourRequestsView : Window
+    public partial class AllTourRequestsView : Window
     {
-        public TourRequestsView()
+        public AllTourRequestsView()
         {
             InitializeComponent();
+            AllTourRequestsViewModel ViewModel = new AllTourRequestsViewModel();
+            this.DataContext = ViewModel;
+            TourDataGrid.ItemsSource = ViewModel.TourRequests;
         }
+
     }
 }

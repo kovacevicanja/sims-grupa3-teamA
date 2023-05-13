@@ -1,5 +1,4 @@
-﻿using BookingProject.View.GuideViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,15 +15,13 @@ using System.Windows.Shapes;
 namespace BookingProject.View.GuideView
 {
     /// <summary>
-    /// Interaction logic for RequestStatisticsChoiceView.xaml
+    /// Interaction logic for RequestedTourCreation.xaml
     /// </summary>
-    public partial class RequestStatisticsChoiceView : Window
+    public partial class RequestedTourCreation : Window
     {
-        public RequestStatisticsChoiceView()
+        public RequestedTourCreation()
         {
             InitializeComponent();
-            this.DataContext = new RequestStatisticsChoiceViewModel();
-
         }
     }
 }
