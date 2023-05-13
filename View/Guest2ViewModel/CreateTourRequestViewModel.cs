@@ -22,6 +22,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -40,11 +41,14 @@ namespace BookingProject.View.Guest2ViewModel
         public User User { get; set; }
         public int Flag { get; set; }
         public CorrectInputCityValidationRule correctInputCityvalidationRule { get; set; }
+        public NavigationService NavigationService { get; set; }
 
-        public CreateTourRequestViewModel(int guestId)
+        public CreateTourRequestViewModel(int guestId, NavigationService navigationService)
         {
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
+
+            NavigationService = navigationService;
 
             _tourRequestController = new TourRequestController();
             _tourLocationController = new TourLocationController();
@@ -231,9 +235,10 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_Cancel(object param)
         {
-            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
-            profile.Show();
-            CloseWindow();
+            //SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
+            //profile.Show();
+            //CloseWindow();
+            //NavigationService.GoBack();
         }
 
         private void Button_Click_LogOut(object param)

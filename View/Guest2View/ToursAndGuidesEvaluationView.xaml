@@ -1,16 +1,21 @@
-﻿<Window x:Class="BookingProject.View.ToursAndGuidesEvaluationView"
+﻿<Page x:Class="BookingProject.View.ToursAndGuidesEvaluationView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="" Height="761" Width="1024">
+        Title="" Height="761" Width="736">
 
-    <Window.Resources>
+    <Page.Background>
+        <SolidColorBrush Color="White" />
+    </Page.Background>
+
+    <Page.Resources>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Gray" />
         </Style>
         <Style TargetType="DataGrid">
             <Setter Property="FontSize" Value="20"/>
@@ -23,15 +28,17 @@
         <Style TargetType="TextBox" x:Key="BoldAndLargeTextBoxStyle">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Gray" />
         </Style>
         <Style x:Key="MyComboBoxStyle" TargetType="ComboBox">
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Gray" />
         </Style>
-    </Window.Resources>
+    </Page.Resources>
 
 
-    <Grid Margin="10,193,-10,-193">
+    <Grid Margin="10,193,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120*"/>
             <ColumnDefinition Width="15*"/>
@@ -44,30 +51,46 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-
-
-
-        <Image Source="ToursImages/review1.jpg" Margin="112,24,132,72" RenderTransformOrigin="0.456,-0.21" Grid.ColumnSpan="3"/>
-        <Image Source="ToursImages/review2.jpg" Margin="29,82,598,21" RenderTransformOrigin="0.456,-0.21" Grid.Column="3"/>
-        <Image Source="ToursImages/review133.png" Margin="108,-249,0,89" RenderTransformOrigin="0.456,-0.21" Grid.Column="3" Grid.RowSpan="2"/>
-        <Image Source="ToursImages/review142.png" Margin="-55,8,361,191" RenderTransformOrigin="0.456,-0.21" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
-        <Image Source="ToursImages/review13.png" Margin="59,-74,650,165" RenderTransformOrigin="0.456,-0.21" Grid.Column="2" Grid.ColumnSpan="2"/>
-        <Image Source="ToursImages/review141.png" Margin="223,128,-154,187" RenderTransformOrigin="0.456,-0.21" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-12.502"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-
-        <Grid>
-            <Button FontSize="28" Content="+" Background="LightBlue" Command="{Binding AddImageCommand}" Margin="905,289,-833,-148" RenderTransformOrigin="1.649,0.552"/>
+        <Grid Grid.Column="3" Margin="357,71,90,72" Grid.Row="1">
+            <Button Content="+" IsCancel="True" Height="36" Width="44"
+                Command="{Binding AddImageCommand}" FontSize="24">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Gray" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="BorderBrush" Value="Gray" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="2" Height="300" Margin="31,34,118,34" Grid.RowSpan="2" Grid.ColumnSpan="2">
+        <Grid Grid.Row="0" Grid.Column="2" Margin="0,10,149,167" Grid.RowSpan="3" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -82,11 +105,11 @@
             <Label Grid.Row="0" Grid.Column="0" Margin="0,10,10,5" Content="Guide knowledge" />
             <Label Grid.Row="1" Grid.Column="0" Margin="0,8,30,8" Content="Guide language" />
             <Label Grid.Row="2" Grid.Column="0" Margin="-1,8,10,8" Content="Tour interestigness" />
-            <Label Grid.Row="3" Grid.Column="0" Margin="0,7,30,57" Grid.RowSpan="2" Content="Additional comment" />
-            <Label Grid.Row="4" Grid.Column="0" Margin="0,8,30,2" Content="Images" />
-            <ComboBox Style="{StaticResource MyComboBoxStyle}" Grid.Row="0" ItemsSource="{Binding GuideKnowledgeOption}" HorizontalAlignment="Left" Width="50"  SelectedItem="{Binding ChosenGuideKnowledge, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,10" Grid.Column="1" />
-            <ComboBox Style="{StaticResource MyComboBoxStyle}" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding GuideLanguageOption}" HorizontalAlignment="Left" Width="49"  SelectedItem="{Binding ChosenGuideLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,10" />
-            <ComboBox Style="{StaticResource MyComboBoxStyle}" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding TourInterestignessOption}" HorizontalAlignment="Left" Width="50"  SelectedItem="{Binding ChosenInterestigness, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,10" RenderTransformOrigin="0.5,0.5" >
+            <Label Grid.Row="4" Grid.Column="0" Margin="0,13,240,14" Content="Additional comment" Grid.ColumnSpan="2" />
+            <Label Grid.Row="3" Grid.Column="0" Margin="0,8,30,27" Content="Images" />
+            <ComboBox Style="{StaticResource MyComboBoxStyle}" ItemsSource="{Binding GuideKnowledgeOption}" HorizontalAlignment="Left" Width="44"  SelectedItem="{Binding ChosenGuideKnowledge, UpdateSourceTrigger=PropertyChanged}" Margin="10,13,0,22" Grid.Column="1" />
+            <ComboBox Style="{StaticResource MyComboBoxStyle}" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding GuideLanguageOption}" HorizontalAlignment="Left" Width="44"  SelectedItem="{Binding ChosenGuideLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="10,10,0,25" />
+            <ComboBox Style="{StaticResource MyComboBoxStyle}" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding TourInterestignessOption}" HorizontalAlignment="Left" Width="45"  SelectedItem="{Binding ChosenInterestigness, UpdateSourceTrigger=PropertyChanged}" Margin="10,10,0,26" RenderTransformOrigin="0.5,0.5" >
                 <ComboBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="1"/>
@@ -97,29 +120,95 @@
                 </ComboBox.RenderTransform>
             </ComboBox>
 
-            <TextBox FontSize="24" FontWeight="Bold" Grid.Row="3" Grid.Column="1" 
-                     Text="{Binding AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="46" VerticalAlignment="Center"/>
+            <TextBox FontSize="24" Foreground="Gray" FontWeight="Bold" Grid.Row="4" Grid.Column="1" 
+                     Text="{Binding AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Height="78" VerticalAlignment="Center" Margin="10,0,0,0"
+                     AcceptsReturn="True" TextWrapping="Wrap"/>
 
-            <TextBox FontSize="24" FontWeight="Bold" Grid.Row="4" Grid.Column="1" x:Name="TourImageTextBox"
-                     Text="{Binding ImageUrl, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0,15,0,2"/>
+            <TextBox FontSize="24" Foreground="Gray" FontWeight="Bold" Grid.Row="3" Grid.Column="1" x:Name="TourImageTextBox"
+                     Text="{Binding ImageUrl, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10,9,0,27"/>
 
         </Grid>
-        <Label Content="Review" FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="67,-128,25,254" Grid.ColumnSpan="3" />
-        <Label Content="Your opinion means to us" FontSize="28" FontWeight="Bold" Foreground="LightBlue" Margin="101,-91,541,214" Grid.ColumnSpan="4" />
+        <Label Content="Review" FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="67,-128,479,254" Grid.ColumnSpan="4" />
+        <Label Content="Your opinion means to us" FontSize="28" FontWeight="Bold" Foreground="LightBlue" Margin="4,-91,278,214" Grid.ColumnSpan="2" Grid.Column="2" />
 
 
-        <WrapPanel Grid.Row = "2" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Height="42" Margin="39,92,0,0" Grid.Column="3" >
-            <Button Background="LightBlue" Content="Rate" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-              Command="{Binding RateCommand}"  Height="42" Width="164" />
-        </WrapPanel>
-        <WrapPanel FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Height="42" Margin="503,-184,0,0" Grid.Column="3" >
-            <Button Background="LightBlue" Content="Log out" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-              Command="{Binding LogOutCommand}"  Height="42" Width="111" />
-        </WrapPanel>
-        <WrapPanel Grid.Row = "2" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Width="171" Height="42" Margin="249,92,0,0" Grid.Column="3" />
-        <Button Background="LightBlue" Content="Cancel" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top"
-              Command="{Binding CancelCommand}"  Height="42" Width="154" Grid.Column="3" Margin="249,92,0,0" Grid.Row="2" />
+        <Grid Grid.Row = "2" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Width="265" Height="42" Margin="32,89,0,0" Grid.Column="2" Grid.ColumnSpan="2" >
+            <Button Content="Rate tour and guide" IsCancel="True" Height="36" Width="245"
+                Command="{Binding RateCommand}" FontSize="24">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Gray" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="BorderBrush" Value="Gray" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+        <Grid Grid.Row = "2" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Width="171" Height="42" Margin="249,92,0,0" Grid.Column="3" />
+        <Button Content="Cancel" IsCancel="True" Height="36" Width="125"
+                Command="{Binding CancelCommand}" FontSize="24" Grid.Column="3" HorizontalAlignment="Left" Margin="240,92,0,0" VerticalAlignment="Top" Grid.Row="2">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="BorderBrush" Value="Gray" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
         <Image Source="ToursImages/review6.jpg" Margin="89,11,554,106" RenderTransformOrigin="0.456,-0.21" Grid.Column="3" Grid.Row="1"/>
         <Image Source="ToursImages/review5.jpg" Margin="0,161,144,144" RenderTransformOrigin="0.456,-0.21" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="1"/>
     </Grid>
-</Window>
+</Page>

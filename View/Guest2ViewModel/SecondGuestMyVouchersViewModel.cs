@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -31,11 +32,14 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand CancelCommand { get; }
         public RelayCommand ProfileCommand { get; }
         public int GuestId { get; set; }
-        public SecondGuestMyVouchersViewModel(int guestId, int chosenTourId)
+        public NavigationService NavigationService { get; set; }
+        public SecondGuestMyVouchersViewModel(int guestId, int chosenTourId, NavigationService navigationService)
         {
             VoucherController = new VoucherController();
             Vouchers = new ObservableCollection<Voucher>(VoucherController.GetUserVouhers(guestId));  
             CustomMessageBox = new CustomMessageBox();
+
+            NavigationService = navigationService; 
 
             ChosenTour = new Tour();
             ChosenTour.Id = chosenTourId;
@@ -62,9 +66,7 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_BackToProfile(object param)
         {
-            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
-            profile.Show();
-            CloseWindow();
+            NavigationService.GoBack();
         }
 
         private void Button_UseVoucher(object param)
@@ -81,20 +83,12 @@ namespace BookingProject.View.Guest2ViewModel
                 ChosenVoucher.Tour = ChosenTour;
                 VoucherController.Save(_vouchersList);
 
-                CloseWindow();
+                NavigationService.GoBack();
             }
         }
         private void Button_Cancel(object param)
         {
-            CloseWindow();
-        }
-
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(SecondGuestMyVouchersView)) { window.Close(); }
-            }
+            NavigationService.GoBack();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

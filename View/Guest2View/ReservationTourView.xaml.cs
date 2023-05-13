@@ -20,18 +20,19 @@ using BookingProject.ConversionHelp;
 using BookingProject.Controllers;
 using BookingProject.Commands;
 using BookingProject.View.Guest2ViewModel;
+using System.Windows.Navigation;
 
 namespace BookingProject.View
 {
     /// <summary>
     /// Interaction logic for ReservationTourView.xaml
     /// </summary>
-    public partial class ReservationTourView : Window
+    public partial class ReservationTourView : Page
     {
-        public ReservationTourView(Tour chosenTour, int guestId)
+        public ReservationTourView(Tour chosenTour, int guestId, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new ReservationTourViewModel(chosenTour, guestId);
+            this.DataContext = new ReservationTourViewModel(chosenTour, guestId, navigationService);
         }
     }
 }

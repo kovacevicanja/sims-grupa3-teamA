@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -59,6 +60,7 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -257,6 +259,7 @@
     <Compile Include="Validation\IntegerNumberValidationRule.cs" />
     <Compile Include="Validation\RequiredFieldValidationRule .cs" />
     <Compile Include="Validation\YearValidationRule.cs" />
+    <Compile Include="ViewModelBases\ViewModelBase.cs" />
     <Compile Include="View\AccommodationOwnerReview.xaml.cs">
       <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
     </Compile>
@@ -271,11 +274,13 @@
     <Compile Include="View\Guest2ViewModel\ReservationTourOtherOffersViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ReservationTourViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SearchAndReservationToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SecondGuestHomepageViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyAttendedToursViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyReservationsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyVouchersViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestProfileViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SeeMoreAboutTourViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ShowGalleryViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\TourRequestStatisticsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\TourRequestsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ToursAndGuidesEvaluationViewModel.cs" />
@@ -318,6 +323,9 @@
     <Compile Include="View\Guest2View\CreateTourRequestView.xaml.cs">
       <DependentUpon>CreateTourRequestView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Guest2View\SecondGuestHomepageView.xaml.cs">
+      <DependentUpon>SecondGuestHomepageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Guest2View\SeeMoreAboutTourView.xaml.cs">
       <DependentUpon>SeeMoreAboutTourView.xaml</DependentUpon>
     </Compile>
@@ -329,6 +337,9 @@
     </Compile>
     <Compile Include="View\Guest2View\TourRequestsView.xaml.cs">
       <DependentUpon>TourRequestsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\ShowGalleryView.xaml.cs">
+      <DependentUpon>ShowGalleryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\ChangeStatsYearWindow.xaml.cs">
       <DependentUpon>ChangeStatsYearWindow.xaml</DependentUpon>
@@ -494,6 +505,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Guest2View\SecondGuestHomepageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Guest2View\SeeMoreAboutTourView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -507,6 +522,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest2View\TourRequestsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\ShowGalleryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

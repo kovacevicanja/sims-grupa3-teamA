@@ -1,7 +1,6 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Model;
 using BookingProject.Model.Images;
-using BookingProject.View.Guest2View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,49 +8,24 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Markup.Localizer;
 using System.Windows.Navigation;
-using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace BookingProject.View.Guest2ViewModel
 {
-    public class SeeMoreAboutTourViewModel : INotifyPropertyChanged
+    public class ShowGalleryViewModel : INotifyPropertyChanged
     {
-        public Tour ChosenTour { get; set; }
-        public int GuestId { get; set; }
-        public User User { get; set; }
-        public RelayCommand NextCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
-        public RelayCommand BookTourCommand { get; set; }
-        public RelayCommand ViewGalleryCommand { get; set; }
-        public string DurationDisplay { get; set; }
-        public string LanguageDisplay { get; set; }
-        public string PreviousWindow { get; set; }
+        public Tour ChosenTour { get; set;  } 
         public NavigationService NavigationService { get; set; }
-
-        public SeeMoreAboutTourViewModel(Tour chosenTour, int guestId, NavigationService navigationService)
+        public ShowGalleryViewModel(Tour chosenTour, NavigationService navigationService)
         {
             ChosenTour = chosenTour;
-            GuestId = guestId;
-            User = new User();
-
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
-            BookTourCommand = new RelayCommand(Button_Click_BookTour, CanExecute);
-            ViewGalleryCommand = new RelayCommand(Button_Click_ViewGallery, CanExecute);
-
-            DurationDisplay = ChosenTour.DurationInHours.ToString() + "h";
-            string language = ChosenTour.Language.ToString();
-            LanguageDisplay = char.ToUpper(language[0]) + language.Substring(1).ToLower();
-
             NavigationService = navigationService;
         }
 
-        private void Button_Click_BookTour(object param)
-        {
-            NavigationService.Navigate(new ReservationTourView(ChosenTour, GuestId, NavigationService));
-        }
+        private bool CanExecute(object param) { return true; }
 
         private void Button_Click_Cancel(object param)
         {
@@ -102,13 +76,6 @@ namespace BookingProject.View.Guest2ViewModel
             {
                 CurrentImageIndex++;
             }
-        }
-
-        private bool CanExecute(object param) { return true; }
-
-        private void Button_Click_ViewGallery(object param)
-        {
-            NavigationService.Navigate(new ShowGalleryView(ChosenTour, NavigationService));
         }
     }
 }

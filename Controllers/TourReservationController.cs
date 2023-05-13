@@ -18,6 +18,7 @@ using BookingProject.Repositories.Intefaces;
 using BookingProject.DependencyInjection;
 using BookingProject.Services.Interfaces;
 using BookingProject.Repositories.Implementations;
+using System.Windows.Navigation;
 
 namespace BookingProject.Controller
 {
@@ -28,31 +29,31 @@ namespace BookingProject.Controller
         {
             _tourReservationService = Injector.CreateInstance<ITourReservationService>();
         }
-        public bool BookingSuccess(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest)
+        public bool BookingSuccess(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest, NavigationService navigationService)
         {
-            return _tourReservationService.BookingSuccess(chosenTour, numberOfGuests, selectedDate, guest);
+            return _tourReservationService.BookingSuccess(chosenTour, numberOfGuests, selectedDate, guest, navigationService);
         }
-        public bool GoThroughReservations(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest)
+        public bool GoThroughReservations(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest, NavigationService navigationService)
         {
-            return _tourReservationService.GoThroughReservations(chosenTour, numberOfGuests, selectedDate, guest);
+            return _tourReservationService.GoThroughReservations(chosenTour, numberOfGuests, selectedDate, guest, navigationService);
         }
         public bool TryReservation(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest)
         {
             return _tourReservationService.TryReservation(chosenTour, numberOfGuests, selectedDate, guest);
         }
-        public void TryToBook(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest)
+        public void TryToBook(Tour chosenTour, string numberOfGuests, DateTime selectedDate, User guest, NavigationService navigationService)
         {
-            _tourReservationService.TryToBook(chosenTour, numberOfGuests, selectedDate, guest);
+            _tourReservationService.TryToBook(chosenTour, numberOfGuests, selectedDate, guest, navigationService);
         }
-        public void FullyBookedTours(Tour chosenTour, DateTime selectedDate, User guest)
+        public void FullyBookedTours(Tour chosenTour, DateTime selectedDate, User guest, NavigationService navigationService)
         {
-            _tourReservationService.FullyBookedTours(chosenTour, selectedDate, guest);
+            _tourReservationService.FullyBookedTours(chosenTour, selectedDate, guest, navigationService);
         }
 
-        public void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour) 
+        public void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour, NavigationService navigationService) 
 
         {
-            _tourReservationService.SuccessfulReservationMessage(numberOfGuests, guest, chosenTour);
+            _tourReservationService.SuccessfulReservationMessage(numberOfGuests, guest, chosenTour, navigationService);
         }
         public void FreePlaceMessage(int maxGuests)
         {

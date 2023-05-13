@@ -1,28 +1,34 @@
-﻿<Window x:Class="BookingProject.View.Guest2View.TourRequestStatisticsView"
+﻿<Page x:Class="BookingProject.View.Guest2View.TourRequestStatisticsView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.Guest2View" xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
-        Title="" Height="761" Width="1024">
+        Title="" Height="761" Width="736">
+
+    <Page.Background>
+        <SolidColorBrush Color="White" />
+    </Page.Background>
+
+    <Page.Resources>
+        <Style x:Key="CustomControlStyle" TargetType="{x:Type Control}">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+    </Page.Resources>
+
     <Grid Margin="0,0,0,16">
         <Grid.RowDefinitions>
             <RowDefinition Height="311"/>
             <RowDefinition Height="66"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Image Source="ToursImages/statistics12.png" Margin="0,131,0,131" RenderTransformOrigin="0.704,0.433" HorizontalAlignment="Left" Width="104" Grid.Row="2" />
-        <Image Source="ToursImages/statistics7.png" Margin="0,230,896,3" RenderTransformOrigin="0.512,0.706" Grid.RowSpan="2" HorizontalAlignment="Right" Width="86" />
-        <Image Source="ToursImages/statistics11.png" Margin="90,26,878,7" RenderTransformOrigin="0.691,0.713" Grid.Row="1" />
-        <Image Source="ToursImages/statistics11.png" Margin="82,95,870,203" RenderTransformOrigin="0.691,0.713" Grid.Row="2" />
-        <Image Source="ToursImages/statistics9.png" Margin="20,64,909,265" RenderTransformOrigin="0.691,0.713" Grid.RowSpan="2" Grid.Row="1" />
-        <Image Source="ToursImages/statistics8.png" Margin="0,110,915,85" RenderTransformOrigin="0.512,0.706" />
-        <Image Source="ToursImages/statistics3.png" Margin="471,28,0,262" RenderTransformOrigin="0.512,0.706" Grid.RowSpan="3" />
-        <Label Margin="36,33,770,207" Foreground="Gray" FontWeight="Bold" FontSize="45" Content="Statistics"/>
-        <Label Margin="245,33,255,207" Foreground="LightBlue" FontWeight="Bold" FontSize="45" Content="about tour requests"/>
+        <Label Margin="22,33,476,207" Foreground="Gray" FontWeight="Bold" FontSize="45" Content="Statistics"/>
+        <Label Margin="218,33,79,207" Foreground="LightBlue" FontWeight="Bold" FontSize="45" Content="about tour requests"/>
 
-        <Grid Grid.Row="0" Grid.Column="0" Margin="73,128,73,0" Height="474" VerticalAlignment="Top" Grid.RowSpan="3">
+        <Grid Grid.Row="0" Grid.Column="0" Margin="0,136,65,0" Height="474" VerticalAlignment="Top" Grid.RowSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -36,17 +42,67 @@
                 <ColumnDefinition Width="277*"/>
                 <ColumnDefinition Width="223*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Percentage of accepted requests:" FontSize="24" FontWeight="Bold" Margin="2,0,84,67" Grid.RowSpan="2" />
-            <Label Content="{Binding AccpetedRequestsPercentageDisplay}" FontSize="24" FontWeight="Bold" Margin="407,0,0,67" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-            <Label Content="Percentage of unaccepted requests:" FontSize="24" FontWeight="Bold" Margin="0,0,47,0" Grid.Row="1" />
-            <Label Content="{Binding UnacceptedRequestsPercentageDisplay}" FontSize="24" FontWeight="Bold" Margin="439,0,0,0" Grid.Row="1" Grid.ColumnSpan="2" />
-            <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding ChosenLanguage, UpdateSourceTrigger=PropertyChanged}"
-                Margin="276,5,10,22" Grid.Row="2" RenderTransformOrigin="0.5,0.5" FontSize="24" FontWeight="Bold"/>
-            <Label Content="Number of requests for the selected language:" FontSize="24" FontWeight="Bold" Margin="44,67,271,68" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="2" />
-            <Label Content="{Binding NumberRequestsLanguage}" FontSize="24" FontWeight="Bold" Margin="121,68,0,68" Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" />
-            <Button  Content="Count" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold" Height="37" Margin="10,7,0,0" VerticalAlignment="Top" Width="103" IsDefault="True" Command="{Binding CountNumberForLanguagesCommand}" Grid.Row="2" Grid.Column="1" />
-            <Label Content="Enter the city and the country:" FontSize="24" FontWeight="Bold" Margin="0,67,111,1" Grid.Row="3" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" />
-            <TextBox x:Name="txtCountry" FontSize="24" FontWeight="Bold" Margin="113,0,75,25" Grid.Row="4" Grid.Column="1" >
+            <Label Style="{StaticResource CustomControlStyle}" Content="Percentage of accepted requests:" FontSize="24" FontWeight="Bold" Margin="2,0,282,67" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+            <Label Style="{StaticResource CustomControlStyle}" Content="{Binding AccpetedRequestsPercentageDisplay}" FontSize="24" FontWeight="Bold" Margin="17,0,0,67" Grid.RowSpan="2" Grid.Column="1" />
+            <Border Height="2" Background="LightBlue" Margin="2,55,-18,10" Grid.ColumnSpan="2" Grid.Row="5" />
+            <Border Height="2" Background="LightBlue" Margin="0,-7,-18,73" Grid.ColumnSpan="2" />
+
+            <Label Style="{StaticResource CustomControlStyle}" Content="Percentage of unaccepted requests:" FontSize="24" FontWeight="Bold" Margin="0,0,251,0" Grid.Row="1" Grid.ColumnSpan="2" />
+            <Label Style="{StaticResource CustomControlStyle}" Content="{Binding UnacceptedRequestsPercentageDisplay}" FontSize="24" FontWeight="Bold" Margin="48,0,0,0" Grid.Row="1" Grid.Column="1" />
+            <ComboBox Style="{StaticResource CustomControlStyle}" ItemsSource="{Binding Languages}" SelectedItem="{Binding ChosenLanguage, UpdateSourceTrigger=PropertyChanged}"
+                Margin="249,17,240,12" Grid.Row="2" RenderTransformOrigin="0.5,0.5" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <Label Style="{StaticResource CustomControlStyle}" Content="Number of requests:" FontSize="24" FontWeight="Bold" Margin="52,63,77,28" Grid.Row="2" Grid.RowSpan="2" />
+            <Label Style="{StaticResource CustomControlStyle}" Content="{Binding NumberRequestsLanguage}" FontSize="24" FontWeight="Bold" Margin="297,63,278,28" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            <Button Content="Count" IsCancel="True" Height="36" Margin="69,18,0,0" VerticalAlignment="Top" Width="94"
+                 Command="{Binding CountNumberForLanguagesCommand}" FontSize="24" Grid.Row="2" HorizontalAlignment="Left" Grid.Column="1">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Gray" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="BorderBrush" Value="Gray" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Background" Value="LightGray"/>
+                                            <Setter Property="BorderBrush" Value="LightGray"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Label Style="{StaticResource CustomControlStyle}" Content="Enter city and the country:" FontSize="24" FontWeight="Bold" Margin="2,67,52,25" Grid.Row="3" Grid.RowSpan="2" />
+            <TextBox Style="{StaticResource CustomControlStyle}" RenderTransformOrigin="0.5,0.5" x:Name="txtCountry" FontSize="24" FontWeight="Bold" Margin="105,4,58,31" Grid.Row="4" Grid.Column="1">
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
                 <TextBox.Text>
                     <Binding Path="EnteredCountry" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
                         <Binding.ValidationRules>
@@ -59,7 +115,7 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition  />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -71,7 +127,7 @@
                     </ControlTemplate>
                 </Validation.ErrorTemplate>
             </TextBox>
-            <TextBox x:Name="txtCity" Margin="375,0,279,25" FontSize="24" FontWeight="Bold" Grid.Row="4" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Height="43" VerticalAlignment="Bottom" >
+            <TextBox Style="{StaticResource CustomControlStyle}" x:Name="txtCity" Margin="320,0,199,31" FontSize="24" FontWeight="Bold" Grid.Row="4" RenderTransformOrigin="0.5,0.5" Height="33" VerticalAlignment="Bottom" Grid.ColumnSpan="2" >
                 <TextBox.Text>
                     <Binding Path="EnteredCity" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
                         <Binding.ValidationRules>
@@ -96,16 +152,135 @@
                     </ControlTemplate>
                 </Validation.ErrorTemplate>
             </TextBox>
-            <Label Content="{Binding NumberRequestsLocation}" FontSize="24" FontWeight="Bold" Margin="141,0,0,0" Grid.Row="5" Grid.Column="1" />
-            <Label Content="Number of the requests for the entered location:" FontSize="24" FontWeight="Bold" Margin="44,0,251,67" Grid.Row="5" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Grid.ColumnSpan="2" />
-            <Label Content="Avarage number of people in accepted requests:" FontSize="24" FontWeight="Bold" Margin="0,67,301,0" Grid.Row="5" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-            <Label Content="{Binding AvarageNumberOfPeopleInAcceptedRequests}" FontSize="24" FontWeight="Bold" Margin="91,67,0,0" Grid.Row="5" Grid.Column="1" Grid.RowSpan="2"/>
-            <Label Content="Select the language:" FontSize="24" FontWeight="Bold" Margin="2,66,239,1" Grid.Row="1" Grid.RowSpan="2" />
-        </Grid>
+            <Label Style="{StaticResource CustomControlStyle}" Content="{Binding NumberRequestsLocation}" FontSize="24" FontWeight="Bold" Margin="340,56,242,35" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            <Label Style="{StaticResource CustomControlStyle}" Content="Number of the requests:" FontSize="24" FontWeight="Bold" Margin="51,56,32,34" Grid.Row="4" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" />
+            <Label Style="{StaticResource CustomControlStyle}" Content="Avarage number of people in accepted requests:" FontSize="24" FontWeight="Bold" Margin="0,67,115,0" Grid.Row="5" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            <Label Style="{StaticResource CustomControlStyle}" Content="{Binding AvarageNumberOfPeopleInAcceptedRequests}" FontSize="24" FontWeight="Bold" Margin="184,67,0,0" Grid.Row="5" Grid.Column="1" Grid.RowSpan="2"/>
+            <Label Style="{StaticResource CustomControlStyle}" Content="Select the language:" FontSize="24" FontWeight="Bold" Margin="0,15,129,2" Grid.Row="2" />
+            <Border Height="2" Background="LightBlue" Margin="0,65,-18,0" Grid.ColumnSpan="2" Grid.Row="1" />
+            <Border Height="2" Background="LightBlue" Margin="2,66,-18,0" Grid.ColumnSpan="2" Grid.Row="6" />
 
-        <Button Background="LightBlue" FontWeight="Bold" FontSize="24" Content="Change the year" HorizontalAlignment="Left" Height="59" Margin="258,254,0,0" VerticalAlignment="Top" Width="254" IsDefault="True" Command="{Binding ChangeYearCommand}" Grid.Row="2"/>
-        <Button Background="LightBlue" FontWeight="Bold" FontSize="24" Content="Cancel" HorizontalAlignment="Left" Height="59" Margin="620,254,0,0" VerticalAlignment="Top" Width="149" IsDefault="True" Command="{Binding CancelCommand}" Grid.Row="2"/>
-        <Button FontWeight="Bold" FontSize="24" Content="Count" HorizontalAlignment="Left" Height="37" Margin="881,24,0,0" VerticalAlignment="Top" Width="103" IsDefault="True" Command="{Binding CountNumberForLocationCommand}" Grid.Row="2" />
-        <Button Background="LightBlue" FontWeight="Bold" FontSize="24" Content="Log out" HorizontalAlignment="Left" Height="43" Margin="884,25,0,0" VerticalAlignment="Top" Width="100" IsDefault="True" Command="{Binding LogOutCommand}"/>
+        </Grid>
+        <Button Content="Change the year" IsCancel="True" Height="36" Margin="164,285,0,0" VerticalAlignment="Top" Width="204"
+        Command="{Binding ChangeYearCommand}" FontSize="24" Grid.Row="2" HorizontalAlignment="Left">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="BorderBrush" Value="Gray" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="LightGray"/>
+                                        <Setter Property="BorderBrush" Value="LightGray"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Content="Cancel" IsCancel="True" Height="36" Margin="459,285,0,0" VerticalAlignment="Top" Width="100"
+        Command="{Binding CancelCommand}" FontSize="24" Grid.Row="2" HorizontalAlignment="Left">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="BorderBrush" Value="Gray" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="LightGray"/>
+                                        <Setter Property="BorderBrush" Value="LightGray"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button Content="Count" IsCancel="True" Height="36" Margin="618,32,0,0" VerticalAlignment="Top" Width="94"
+        Command="{Binding CountNumberForLocationCommand}" FontSize="24" Grid.Row="2" HorizontalAlignment="Left">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="BorderBrush" Value="Gray" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="LightGray"/>
+                                        <Setter Property="BorderBrush" Value="LightGray"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
-</Window>
+</Page>

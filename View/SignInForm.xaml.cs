@@ -129,8 +129,8 @@ namespace BookingProject.View
                         _controller.GetByUsername(Username).IsLoggedIn = true;
                         User userGuest = _controller.GetByUsername(Username);
                         _controller.Save();
-                        SecondGuestProfileView secondGuestProfile = new SecondGuestProfileView(userGuest.Id);
-                        secondGuestProfile.Show();
+                        SecondGuestHomepageView homePage = new SecondGuestHomepageView(userGuest.Id);
+                        homePage.Show();
                         List<Notification> notifications = new List<Notification>();
                         notifications = _tourPresenceController.GetGuestNotifications(userGuest);
                         List<Notification> notificationsCopy = new List<Notification>();

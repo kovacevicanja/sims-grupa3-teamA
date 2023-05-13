@@ -1,7 +1,7 @@
-﻿using BookingProject.View.Guest2ViewModel;
+﻿using BookingProject.Model;
+using BookingProject.View.Guest2ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,14 +18,14 @@ using System.Windows.Shapes;
 namespace BookingProject.View.Guest2View
 {
     /// <summary>
-    /// Interaction logic for ChangeYearTourStatistics.xaml
+    /// Interaction logic for ViewGallery.xaml
     /// </summary>
-    public partial class ChangeYearTourRequestsStatisticsView : Page
+    public partial class ShowGalleryView : Page
     {
-        public ChangeYearTourRequestsStatisticsView(int guestId, NavigationService navigationService)
+        public ShowGalleryView(Tour selectedTour, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new ChangeYearTourRequestsStatisticsViewModel(guestId, navigationService);
+            this.DataContext = new ShowGalleryViewModel(selectedTour, navigationService);
         }
     }
 }

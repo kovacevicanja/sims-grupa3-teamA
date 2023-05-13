@@ -1,13 +1,17 @@
-﻿<Window x:Class="BookingProject.View.MonitoringActiveToursView"
+﻿<Page x:Class="BookingProject.View.MonitoringActiveToursView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="" Height="600" Width="1024">
+        d:DesignHeight="761" d:DesignWidth="736">
 
-    <Window.Resources>
+    <Page.Background>
+        <SolidColorBrush Color="White" />
+    </Page.Background>
+
+    <Page.Resources>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -24,58 +28,88 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
-    </Window.Resources>
-    <Grid Margin="0,0,0,13">
+    </Page.Resources>
+    <Grid>
+        <Label Content="Follow" FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="36,103,510,559" />
+        <Label Content="the key points" FontSize="40" FontWeight="Bold" Foreground="LightBlue" Margin="170,103,112,559" />
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Margin="64,260,70,188">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
+            </Border.Effect>
+            <ListView DockPanel.Dock="Bottom"
+              SelectedItem="{Binding Path=ChosenKeyPoint, UpdateSourceTrigger=PropertyChanged}"
+              ItemsSource="{Binding Path=KeyPoints, UpdateSourceTrigger=PropertyChanged}"
+              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+              ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Foreground" Value="Gray"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="TextAlignment" Value="Center"/>
+                    </Style>
+                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Foreground" Value="Gray"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="10,0,0,0"/>
+                    </Style>
+                </ListView.Resources>
+                <ListView.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-0.126"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-0.998"/>
+                    </TransformGroup>
+                </ListView.RenderTransform>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Key point" DisplayMemberBinding="{Binding Point}" Width="300"/>
+                        <GridViewColumn Header="State" DisplayMemberBinding="{Binding State}" Width="300"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="348"/>
-            <RowDefinition Height="52"/>
-        </Grid.RowDefinitions>
-
-        <Image Source="ToursImages/keyPoints1.png" Margin="-34,0,56,-96" RenderTransformOrigin="0.876,-0.176" Grid.RowSpan="4" />
-
-        <Grid Grid.Row="2" Margin="72,43,0,41" Grid.RowSpan="2">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Border BorderThickness="0" Margin="10" CornerRadius="15">
-                <Border.BitmapEffect>
-                    <DropShadowBitmapEffect/>
-                </Border.BitmapEffect>
-                <Grid>
-                    <Border x:Name="BDRounded" BorderThickness="0" CornerRadius="15" Background="White" Margin="116,148,527,-61" />
-                    <DataGrid BorderBrush="{x:Null}" DockPanel.Dock="Bottom"
-                              SelectedItem="{Binding ChosenKeyPoint, UpdateSourceTrigger=PropertyChanged}"
-                              x:Name="KeyPointDataGrid" ItemsSource="{Binding KeyPoints, UpdateSourceTrigger=PropertyChanged}"
-                              AutoGenerateColumns="False" IsReadOnly="True" Margin="126,160,538,-48" RenderTransformOrigin="0.5,0.5">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Key point" Width="*" Binding="{Binding Point}"/>
-                            <DataGridTextColumn Header="Status" Width="*" Binding="{Binding State}"/>
-                        </DataGrid.Columns>
-                        <DataGrid.OpacityMask>
-                            <VisualBrush Visual="{Binding ElementName=BDRounded}" />
-                        </DataGrid.OpacityMask>
-                    </DataGrid>
-                </Grid>
-            </Border>
-
-
-        </Grid>
-
-        <Button IsDefault="True" Command="{Binding CancelCommand}" Content="Cancel" Margin="535,101,353,-86" Grid.Row="3"/>
-        <Button IsDefault="True" Command="{Binding LogOutCommand}" Content="Log out" Margin="861,23,27,0" Grid.RowSpan="2"/>
-
+        <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="483,626,0,0" VerticalAlignment="Top" Width="114"
+                Command="{Binding CancelCommand}" FontSize="24">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Gray" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="BorderBrush" Value="Gray" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
-</Window>
+</Page>

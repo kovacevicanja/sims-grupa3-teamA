@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingProject.Controller;
 using BookingProject.Controllers;
@@ -22,12 +23,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for ReservationTourOtherOffersView.xaml
     /// </summary>
-    public partial class ReservationTourOtherOffersView : Window
+    public partial class ReservationTourOtherOffersView : Page
     {
-        public ReservationTourOtherOffersView(Tour chosenTour, DateTime selectedDate, int guestId)
+        public ReservationTourOtherOffersView(Tour chosenTour, DateTime selectedDate, int guestId, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new ReservationTourOtherOffersViewModel(chosenTour, selectedDate, guestId);
+            this.DataContext = new ReservationTourOtherOffersViewModel(chosenTour, selectedDate, guestId, navigationService);
         }
     }
 }

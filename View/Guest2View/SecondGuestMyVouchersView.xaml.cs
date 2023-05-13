@@ -12,18 +12,20 @@ using BookingProject.Domain.Enums;
 using BookingProject.View.CustomMessageBoxes;
 using BookingProject.Commands;
 using BookingProject.View.Guest2ViewModel;
+using System.Windows.Navigation;
+using System.Windows.Controls;
 
 namespace BookingProject.View
 {
     /// <summary>
     /// Interaction logic for SecondGuestMyVouchersView.xaml
     /// </summary>
-    public partial class SecondGuestMyVouchersView : Window
+    public partial class SecondGuestMyVouchersView : Page
     {
-        public SecondGuestMyVouchersView(int guestId, int chosenTourId)
+        public SecondGuestMyVouchersView(int guestId, int chosenTourId, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new SecondGuestMyVouchersViewModel(guestId, chosenTourId);
+            this.DataContext = new SecondGuestMyVouchersViewModel(guestId, chosenTourId, navigationService);
         }
     }
 }

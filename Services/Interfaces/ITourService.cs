@@ -23,7 +23,6 @@ namespace BookingProject.Services.Interfaces
         ObservableCollection<Tour> Search(ObservableCollection<Tour> tourView, string city, string country, string duration, string choosenLanguage, string numOfGuests);
         void ShowAll(ObservableCollection<Tour> tourView);
         Tour GetLastTour();
-
         void BindLastTour();
         void Initialize();
         List<Tour> FilterToursByDate(DateTime selectedDate);
@@ -31,5 +30,6 @@ namespace BookingProject.Services.Interfaces
         void GoThroughBookedToursDates(Tour tour, DateTime selectedDate, TourDateTime tdt);
         List<Tour> FilterToursByLocation(List<Tour> filteredTours, Location location, DateTime selectedDate);
         List<Tour> GetFilteredTours(Location location, DateTime selectedDate);
+        List<Tour> LoadAgain();
     }
 }

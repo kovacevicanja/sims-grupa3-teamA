@@ -14,5 +14,6 @@ namespace BookingProject.Repositories.Intefaces
         Tour GetById(int id);
         void BindLastTour();
         void Initialize();
+        List<Tour> LoadAgain();
     }
 }

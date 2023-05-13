@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -22,7 +23,8 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand CancelCommand { get; }
         public RelayCommand TryToBookCommand { get; }
         public RelayCommand SeeMoreCommand { get; }
-        public ReservationTourOtherOffersViewModel(Tour chosenTour, DateTime selectedDate, int guestId)
+        public NavigationService NavigationService { get; set; }
+        public ReservationTourOtherOffersViewModel(Tour chosenTour, DateTime selectedDate, int guestId, NavigationService navigationService)
         {
             ChosenTour = chosenTour;
             _tourController = new TourController();
@@ -32,6 +34,8 @@ namespace BookingProject.View.Guest2ViewModel
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
             TryToBookCommand = new RelayCommand(Button_Click_TryToBook, CanWhenSelected);
             SeeMoreCommand = new RelayCommand(Button_Click_SeeMore, CanWhenSelected);
+
+            NavigationService = navigationService;
         }
 
         private bool CanWhenSelected(object param)
@@ -50,21 +54,17 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_SeeMore(object param)
         {
-            SeeMoreAboutTourView seeMore = new SeeMoreAboutTourView(NewlyChosenTour, GuestId, "ReservationToursOtherOffers");
-            seeMore.Show();
-            CloseWindow();
+            NavigationService.Navigate(new SeeMoreAboutTourView(NewlyChosenTour, GuestId, NavigationService));
         }
 
         private void Button_Click_Cancel(object param)
         {
-            CloseWindow();
+            NavigationService.GoBack();
         }
 
         private void Button_Click_TryToBook(object param)
         {
-            ReservationTourView reservationTourView = new ReservationTourView(NewlyChosenTour, GuestId);
-            reservationTourView.Show();
-            CloseWindow(); 
+            NavigationService.Navigate(new ReservationTourView(NewlyChosenTour, GuestId, NavigationService));
         }
 
         private bool CanExecute(object param) { return true; }

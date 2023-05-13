@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -32,8 +33,9 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand CancelCommand { get; }
         public RelayCommand LogOutCommand { get; }
         public User User { get; }
+        public NavigationService NavigationService { get; set; }
 
-        public TourRequestStatisticsViewModel(int guestId, string enteredYear = "")
+        public TourRequestStatisticsViewModel(int guestId, NavigationService navigationService, string enteredYear = "")
         {
             GuestId = guestId;
 
@@ -59,18 +61,9 @@ namespace BookingProject.View.Guest2ViewModel
             CountNumberForLocationCommand = new RelayCommand(Button_Click_CountNumberForLocation, CanExecute);
             ChangeYearCommand = new RelayCommand(Button_Click_ChangeTheYear, CanExecute);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
-            LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
 
             User = new User();
-        }
-
-        private void Button_Click_LogOut(object param)
-        {
-            User.Id = GuestId;
-            User.IsLoggedIn = false;
-            SignInForm signInForm = new SignInForm();
-            signInForm.Show();
-            CloseWindow();
+            NavigationService = navigationService;
         }
 
         private bool CanExecute(object param) { return true; }
@@ -144,23 +137,12 @@ namespace BookingProject.View.Guest2ViewModel
         }
         private void Button_Click_ChangeTheYear(object param)
         {
-            ChangeYearTourRequestsStatisticsView changeYearTourStatisticsView = new ChangeYearTourRequestsStatisticsView(GuestId);
-            changeYearTourStatisticsView.Show();
-            CloseWindow();
+            NavigationService.Navigate(new ChangeYearTourRequestsStatisticsView(GuestId, NavigationService));
         }
 
         private void Button_Cancel(object param)
         {
-            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
-            profile.Show();
-            CloseWindow();
-        }
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(TourRequestStatisticsView)) { window.Close(); }
-            }
+            NavigationService.GoBack();
         }
     }
 }

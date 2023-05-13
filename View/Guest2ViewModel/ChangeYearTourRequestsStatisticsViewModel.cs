@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.WebPages;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -17,13 +18,16 @@ namespace BookingProject.View.Guest2ViewModel
         public int GuestId { get; set; }
         public RelayCommand ChangeYearCommand { get; }
         public RelayCommand CancelCommand { get; }
+        public NavigationService NavigationService { get; set; }    
 
-        public ChangeYearTourRequestsStatisticsViewModel(int guestId)
+        public ChangeYearTourRequestsStatisticsViewModel(int guestId, NavigationService navigationService)
         {
             GuestId = guestId;
 
             ChangeYearCommand = new RelayCommand(Button_Click_ChangeYear, CanWhenEntered); 
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
+
+            NavigationService = navigationService;
         }
 
         private bool CanWhenEntered(object param)
@@ -40,27 +44,14 @@ namespace BookingProject.View.Guest2ViewModel
 
         private bool CanExecute(object param) { return true; }
 
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(ChangeYearTourRequestsStatisticsView)) { window.Close(); }
-            }
-        }
-
         public void Button_Click_ChangeYear(object param)
         {
-            TourRequestStatisticsView tourRequestStatisticsView = new TourRequestStatisticsView(GuestId, EnteredYear);
-            tourRequestStatisticsView.Show();
-
-            CloseWindow();
+            NavigationService.Navigate(new TourRequestStatisticsView(GuestId, NavigationService, EnteredYear));
         }
 
         public void Button_Click_Cancel(object param)
         {
-            TourRequestStatisticsView requestStatistcis = new TourRequestStatisticsView(GuestId, EnteredYear);
-            requestStatistcis.Show(); 
-            CloseWindow();
+            NavigationService.GoBack();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

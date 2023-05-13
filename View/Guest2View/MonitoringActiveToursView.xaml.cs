@@ -15,6 +15,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View
@@ -22,12 +23,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for MonitoringActiveToursView.xaml
     /// </summary>
-    public partial class MonitoringActiveToursView : Window
+    public partial class MonitoringActiveToursView : Page
     {
-        public MonitoringActiveToursView(Tour tour, List<int> activeToursIds, int guestId)
+        public MonitoringActiveToursView(Tour tour, List<int> activeToursIds, int guestId, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new MonitoringActiveToursViewModel(tour, activeToursIds, guestId);
+            this.DataContext = new MonitoringActiveToursViewModel(tour, activeToursIds, guestId, navigationService);
         }
     }
 }

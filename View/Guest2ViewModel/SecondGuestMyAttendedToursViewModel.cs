@@ -12,13 +12,14 @@ using System.Windows;
 using System.ComponentModel;
 using BookingProject.Commands;
 using BookingProject.View.Guest2View;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
     public class SecondGuestMyAttendedToursViewModel
     {
         public Tour ChosenTour { get; set; }
-        public User Guest;
+        public User Guest { get; set; }
         public ObservableCollection<Tour> AttendedTours { get; set; }
         private TourPresenceController _tourPresenceController { get; set; }
         public UserController UserController { get; set; }
@@ -26,8 +27,10 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand RateCommand { get; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand SeeMoreCommand { get; }
-        public SecondGuestMyAttendedToursViewModel(int guestId)
+        public NavigationService NavigationService { get; set; }
+        public SecondGuestMyAttendedToursViewModel(int guestId, NavigationService navigationService)
         {
+            NavigationService = navigationService;
             Guest = new User();
             UserController = new UserController();
             GuestId = guestId;
@@ -39,6 +42,7 @@ namespace BookingProject.View.Guest2ViewModel
             RateCommand = new RelayCommand(Button_Rate, CanWhenSelected);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
             SeeMoreCommand = new RelayCommand(Button_Click_SeeMore, CanWhenSelected);
+
         }
 
         private bool CanWhenSelected (object param)
@@ -49,33 +53,21 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_SeeMore(object param)
         {
-            SeeMoreAboutTourView seeMore = new SeeMoreAboutTourView(ChosenTour, GuestId, "MyAttendedTours");
-            seeMore.Show();
-            CloseWindow();
-        }
-
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(SecondGuestMyAttendedToursView)) { window.Close(); }
-            }
+            NavigationService.Navigate(new SeeMoreAboutTourView(ChosenTour, GuestId, NavigationService));
         }
 
         private bool CanExecute(object param) { return true; }
 
         private void Button_Cancel(object param)
         {
-            CloseWindow();
+            NavigationService.GoBack();
         }
 
         private void Button_Rate(object param)
         {
             if (ChosenTour != null)
             {
-                ToursAndGuidesEvaluationView toursAndGuidesEvaluationView = new ToursAndGuidesEvaluationView(ChosenTour, GuestId);
-                toursAndGuidesEvaluationView.Show();
-                CloseWindow();
+                NavigationService.Navigate(new ToursAndGuidesEvaluationView(ChosenTour, GuestId, NavigationService));
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
