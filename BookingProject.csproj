@@ -300,13 +300,19 @@
     </Compile>
     <Compile Include="View\CustomMessageBoxes\CustomMessageBox.cs" />
     <Compile Include="View\CustomMessageBoxes\CustomNotificationMessageBox.cs" />
-    <Compile Include="View\EnterDate.xaml.cs">
+    <Compile Include="View\GuideViewModel\EnterDateViewModel.cs" />
+    <Compile Include="View\GuideViewModel\EnterImageViewModel.cs" />
+    <Compile Include="View\GuideViewModel\EnterKeyPointViewModel.cs" />
+    <Compile Include="View\GuideViewModel\RequestStatisticsChoiceViewModel.cs" />
+    <Compile Include="View\GuideViewModel\SuggestionChoiceViewModel.cs" />
+    <Compile Include="View\GuideViewModel\TourRequestsViewModel.cs" />
+    <Compile Include="View\GuideView\EnterDate.xaml.cs">
       <DependentUpon>EnterDate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EnterImage.xaml.cs">
+    <Compile Include="View\GuideView\EnterImage.xaml.cs">
       <DependentUpon>EnterImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EnterKeyPoint.xaml.cs">
+    <Compile Include="View\GuideView\EnterKeyPoint.xaml.cs">
       <DependentUpon>EnterKeyPoint.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest1View\FindAvailableDatesForAccommodation.xaml.cs">
@@ -339,6 +345,19 @@
     <Compile Include="View\Guest2View\TourRequestsView.xaml.cs">
       <DependentUpon>TourRequestsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideViewModel\ChangeStatsYearViewModel.cs" />
+    <Compile Include="View\GuideViewModel\ExamineGradeViewModel.cs" />
+    <Compile Include="View\GuideViewModel\GuestListViewModel.cs" />
+    <Compile Include="View\GuideViewModel\GuestPresenceCheckViewModel.cs" />
+    <Compile Include="View\GuideViewModel\GuestReviewsViewModel.cs" />
+    <Compile Include="View\GuideViewModel\GuideHomeViewModel.cs" />
+    <Compile Include="View\GuideViewModel\LiveToursListViewModel.cs" />
+    <Compile Include="View\GuideViewModel\LiveTourViewModel.cs" />
+    <Compile Include="View\GuideViewModel\MyToursViewModel.cs" />
+    <Compile Include="View\GuideViewModel\SelectedTourStatsViewModel.cs" />
+    <Compile Include="View\GuideViewModel\TourCancellationViewModel.cs" />
+    <Compile Include="View\GuideViewModel\TourCreationViewModel.cs" />
+    <Compile Include="View\GuideViewModel\TourStatisticsViewModel.cs" />
     <Compile Include="View\GuideView\ChangeStatsYearWindow.xaml.cs">
       <DependentUpon>ChangeStatsYearWindow.xaml</DependentUpon>
     </Compile>
@@ -363,14 +382,23 @@
     <Compile Include="View\GuideView\MyToursWindow.xaml.cs">
       <DependentUpon>MyToursWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\RequestStatisticsChoiceView.xaml.cs">
+      <DependentUpon>RequestStatisticsChoiceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\SelectedTourStatsWindow.xaml.cs">
       <DependentUpon>SelectedTourStatsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\SecondGuestMyReservationsView.xaml.cs">
       <DependentUpon>SecondGuestMyReservationsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\SuggestionChoiceView.xaml.cs">
+      <DependentUpon>SuggestionChoiceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\TourCancellationWindow.xaml.cs">
       <DependentUpon>TourCancellationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\TourRequestsView.xaml.cs">
+      <DependentUpon>TourRequestsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\TourStatisticsWindow.xaml.cs">
       <DependentUpon>TourStatisticsWindow.xaml</DependentUpon>
@@ -467,15 +495,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EnterDate.xaml">
+    <Page Include="View\GuideView\EnterDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EnterImage.xaml">
+    <Page Include="View\GuideView\EnterImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EnterKeyPoint.xaml">
+    <Page Include="View\GuideView\EnterKeyPoint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -555,11 +583,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\GuideView\RequestStatisticsChoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\SelectedTourStatsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\GuideView\SuggestionChoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\TourCancellationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\TourRequestsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

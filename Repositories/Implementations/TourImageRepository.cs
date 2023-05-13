@@ -61,7 +61,7 @@ namespace BookingProject.Repositories.Implementations
         }
         public List<TourImage> GetAll()
         {
-            return _images.ToList();
+            return _images;
         }
         public TourImage GetById(int id)
         {

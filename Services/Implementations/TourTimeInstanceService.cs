@@ -38,5 +38,15 @@ namespace BookingProject.Services.Implementations
         {
             _tourTimeInstanceRepository.Save();
         }
+
+        public TourTimeInstance GetLastTour()
+        {
+            return _tourTimeInstanceRepository.GetAll().Last();
+        }
+
+        public void BindLastTour()
+        {
+            _tourTimeInstanceRepository.BindLastTour();
+        }
     }
 }
