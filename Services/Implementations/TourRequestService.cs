@@ -23,11 +23,15 @@ namespace BookingProject.Services.Implementations
     {
         private ITourRequestRepository _tourRequestRepository;
         private INotificationService _notificationService;
+        private IUserService _userService;
+        private ITourLocationService _locationService;
         public TourRequestService() { }
         public void Initialize()
         {
             _tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             _notificationService = Injector.CreateInstance<INotificationService>();
+            _userService= Injector.CreateInstance<IUserService>();
+            _locationService= Injector.CreateInstance<ITourLocationService>();
         }
         public void Create(TourRequest tourRequest)
         {
@@ -122,6 +126,37 @@ namespace BookingProject.Services.Implementations
             
             return numberRequestsLanguage;
         }
+
+        public int GetNumberAllRequestsLanguage(LanguageEnum language, string enteredYear = "")
+        {
+            int numberAllRequestsLanguage = 0;
+            foreach (User user in _userService.GetAll())
+            {
+                if (user.UserType == UserType.GUEST2)
+                {
+                    numberAllRequestsLanguage += GetNumberRequestsLanguage(user.Id, language, enteredYear);
+                }
+            }
+            return numberAllRequestsLanguage;
+        }
+
+        public LanguageEnum GetTopLanguage(string enteredYear = "")
+        {
+            LanguageEnum TopLanguage = LanguageEnum.SERBIAN;
+            int numberAllRequestsLanguage = GetNumberAllRequestsLanguage(LanguageEnum.SERBIAN, enteredYear);
+            if(numberAllRequestsLanguage<GetNumberAllRequestsLanguage(LanguageEnum.GERMAN, enteredYear))
+            {
+                TopLanguage = LanguageEnum.GERMAN;
+                numberAllRequestsLanguage = GetNumberAllRequestsLanguage(LanguageEnum.GERMAN, enteredYear);
+            }
+            if(numberAllRequestsLanguage < GetNumberAllRequestsLanguage(LanguageEnum.ENGLISH, enteredYear))
+            {
+                TopLanguage = LanguageEnum.ENGLISH;
+            }
+
+            return TopLanguage;
+        }
+     
         public int GetNumberRequestsLocation(int guestId, string country, string city, string enteredYear = "")
         {
             int numberRequestsLocation = 0;
@@ -133,6 +168,38 @@ namespace BookingProject.Services.Implementations
             }
 
             return numberRequestsLocation;
+        }
+
+        public int GetNumberAllRequestsLocation(string country, string city, string enteredYear = "")
+        {
+            int numberAllRequestsLocation = 0;
+            foreach (User user in _userService.GetAll())
+            {
+                if (user.UserType == UserType.GUEST2)
+                {
+                    numberAllRequestsLocation += GetNumberRequestsLocation(user.Id, country, city, enteredYear);
+                }
+            }
+            return numberAllRequestsLocation;
+        }
+
+        public Location GetTopLocation(string enteredYear = "")
+        {
+            Location topLocation = new Location();
+            topLocation.Country = "Default";
+            topLocation.City = "Default";
+
+            int numberAllRequestsLanguage = 0;
+            foreach (Location location in _locationService.GetAll())
+            {
+                if (numberAllRequestsLanguage < GetNumberAllRequestsLocation(location.Country, location.City, enteredYear))
+                {
+                    numberAllRequestsLanguage = GetNumberAllRequestsLocation(location.Country, location.City, enteredYear);
+                    topLocation.Country = location.Country;
+                    topLocation.City = location.City;
+                }
+            }
+            return topLocation;
         }
 
         public bool WantedTour(TourRequest tour, string city, string country, string choosenLanguage, string numOfGuests, string startDate, string endDate)

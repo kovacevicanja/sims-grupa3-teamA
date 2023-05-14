@@ -37,6 +37,9 @@ namespace BookingProject.Services.Interfaces
         bool RequestedEndDate(TourRequest tour, string endDate);
         ObservableCollection<TourRequest> Search(ObservableCollection<TourRequest> tourView, string city, string country, string choosenLanguage, string numOfGuests, string startDate, string endDate);
         void ShowAll(ObservableCollection<TourRequest> tourView);
-
+        int GetNumberAllRequestsLanguage(LanguageEnum language, string enteredYear);
+        int GetNumberAllRequestsLocation(string country, string city, string enteredYear);
+        Location GetTopLocation(string enteredYear);
+        LanguageEnum GetTopLanguage(string enteredYear);
     }
 }

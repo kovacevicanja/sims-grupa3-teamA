@@ -1,7 +1,7 @@
-1|GUEST1|Pera|pera123|Petar|Petrovic|44|False|True|False
+1|GUEST1|Pera|pera123|Petar|Petrovic|44|False|False|False
 2|OWNER|Zika|zika123|Zika|Zikic|25|True|False|False
 3|GUEST2|Mile|mile123|Milenko|Krasavcic|21|False|False|False
-4|GUIDE|Mato|mato123|Matija|Maksimovic|21|False|False|False
+4|GUIDE|Mato|mato123|Matija|Maksimovic|21|False|True|False
 5|GUEST2|Ana|anci123|Ana|Radov|22|False|True|True
 6|GUIDE|Baba|baba123|Baba|Babic|63|False|False|False
 7|OWNER|Anja|anja123|Anja|Kovacevic|25|False|False|False

@@ -15,6 +15,8 @@ using System.ComponentModel;
 using BookingProject.Commands;
 using System.Windows.Threading;
 using System.Windows.Threading;
+using BookingProject.Controllers;
+
 namespace BookingProject.View.GuideViewModel
 {
     public class TourCreationViewModel: INotifyPropertyChanged, IDataErrorInfo
@@ -27,19 +29,25 @@ namespace BookingProject.View.GuideViewModel
         public TourStartingTimeController StartingDateController { get; set; }
         public TourImageController ImageController { get; set; }
         public UserController UserController { get; set; }
+        public TourRequestController RequestController { get; set; }
+
+        public bool IsSuggested { get; set; } = false;
         public LanguageEnum ChosenLanguage { get; set; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand CreateCommand { get; }
         public RelayCommand ImageCommand { get; }
         public RelayCommand DateCommand { get; }
         public RelayCommand KeyPointCommand { get; }
-
+        public bool IsLocationPicked;
+        public bool IsLanguagePicked;
 
         private DispatcherTimer _validationTimer;
         public bool IsEnabled { get; }
 
-        public TourCreationViewModel()
+        public TourCreationViewModel(bool isLanguagePicked, bool isLocationPicked)
         {
+            IsLanguagePicked = isLanguagePicked;
+            IsLocationPicked= isLocationPicked;
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
             TourController = new TourController();
@@ -48,7 +56,9 @@ namespace BookingProject.View.GuideViewModel
             ImageController = new TourImageController();
             StartingDateController = new TourStartingTimeController();
             TourTimeInstanceController = new TourTimeInstanceController();
+            RequestController = new TourRequestController();
             UserController = new UserController();
+            IsSuggested = SuggestionSetter();
             KeyPointCommand = new RelayCommand(Button_Click_KeyPoint, CanExecute);
             ImageCommand = new RelayCommand(Button_Click_Image, CanExecute);
             DateCommand = new RelayCommand(Button_Click_StartingTime, CanExecute);
@@ -177,11 +187,31 @@ namespace BookingProject.View.GuideViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public bool SuggestionSetter()
+        {
+            if (IsLanguagePicked)
+            {
+                LanguageEnum TopLanguage = RequestController.GetTopLanguage(DateTime.Now.Year.ToString());
+                TourLanguage = TopLanguage.ToString();
+                return true;
+            }
+            else if (IsLocationPicked)
+            {
+                Location pickedLocation = RequestController.GetTopLocation(DateTime.Now.Year.ToString());
+                Country = pickedLocation.Country;
+                City = pickedLocation.City;
+                return true;
+            }
+            return false;
+        }
+
         private void Button_Click_Kreiraj(object param)
         {
             IsValid= FullValid();
             if (IsValid == false) { return; }
             Tour tour = new Tour();
+            tour.IsSuggestion = IsSuggested;
             tour.Name = TourName;
             tour.Description = Description;
             tour.MaxGuests = MaxGuests;

@@ -80,6 +80,16 @@ namespace BookingProject.Controllers
             _tourRequestService.ShowAll(tourRequestView);
         }
 
+        public LanguageEnum GetTopLanguage(string year)
+        {
+            return _tourRequestService.GetTopLanguage(year);
+        }
+
+        public Location GetTopLocation(string year)
+        {
+
+            return _tourRequestService.GetTopLocation(year);
+        }
 
     }
 }

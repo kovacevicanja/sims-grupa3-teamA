@@ -105,7 +105,7 @@ namespace BookingProject.View.GuideViewModel
         }
         private void Button_Click_N(object param)
         {
-            TourCreationWindow view = new TourCreationWindow();
+            TourCreationWindow view = new TourCreationWindow(false, false);
             view.Show();
             CloseWindow();
 

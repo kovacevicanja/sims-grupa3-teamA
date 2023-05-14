@@ -28,8 +28,8 @@ namespace BookingProject.View.GuideViewModel
             _tourTimeInstanceController = new TourTimeInstanceController();
             _voucherController = new VoucherController();
             _tourReservationController = new TourReservationController();
-            YesCommand = new RelayCommand(No_Click, CanExecute);
-            NoCommand = new RelayCommand(Yes_Click, CanExecute);
+            YesCommand = new RelayCommand(Yes_Click, CanExecute);
+            NoCommand = new RelayCommand(No_Click, CanExecute);
         }
 
         private bool CanExecute(object param) { return true; }
@@ -44,15 +44,15 @@ namespace BookingProject.View.GuideViewModel
         private void No_Click(object param)
         {
             IsLocation = false;
-            GuideHomeWindow guideHomeWindow= new GuideHomeWindow();
-            guideHomeWindow.Show();
+            TourCreationWindow view = new TourCreationWindow(true, false);
+            view.Show();
             CloseWindow();
         }
         private void Yes_Click(object param)
         {
-            IsLocation = false;
-            GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
-            guideHomeWindow.Show();
+            IsLocation = true;
+            TourCreationWindow view = new TourCreationWindow(false, true);
+            view.Show();
             CloseWindow();
         }
 

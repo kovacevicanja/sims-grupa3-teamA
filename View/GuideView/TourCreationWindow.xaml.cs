@@ -31,10 +31,10 @@ namespace BookingProject.View.GuideView
     /// </summary>
     public partial class TourCreationWindow : Window
     {
-        public TourCreationWindow()
+        public TourCreationWindow(bool isLanguagePicked, bool isLocationPicked )
         {
             InitializeComponent();
-            this.DataContext = new TourCreationViewModel();
+            this.DataContext = new TourCreationViewModel(isLanguagePicked, isLocationPicked);
 
         }
     }
