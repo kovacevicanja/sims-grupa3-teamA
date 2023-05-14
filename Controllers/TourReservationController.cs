@@ -18,6 +18,7 @@ using BookingProject.Repositories.Intefaces;
 using BookingProject.DependencyInjection;
 using BookingProject.Services.Interfaces;
 using BookingProject.Repositories.Implementations;
+using BookingProject.Services;
 
 namespace BookingProject.Controller
 {

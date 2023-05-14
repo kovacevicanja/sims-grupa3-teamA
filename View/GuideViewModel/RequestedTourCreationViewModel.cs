@@ -1,4 +1,5 @@
-﻿using BookingProject.Controller;
+﻿using BookingProject.Commands;
+using BookingProject.Controller;
 using BookingProject.Model.Enums;
 using BookingProject.Model.Images;
 using BookingProject.Model;
@@ -6,18 +7,20 @@ using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using System.Windows;
-using System.ComponentModel;
-using BookingProject.Commands;
-using System.Windows.Threading;
-using System.Windows.Threading;
+using BookingProject.Domain;
+using BookingProject.Controllers;
+
 namespace BookingProject.View.GuideViewModel
 {
-    public class TourCreationViewModel: INotifyPropertyChanged, IDataErrorInfo
+
+    public class RequestedTourCreationViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         public ObservableCollection<LanguageEnum> Languages { get; set; }
         public TourController TourController { get; set; }
@@ -25,27 +28,33 @@ namespace BookingProject.View.GuideViewModel
         public TourLocationController LocationController { get; set; }
         public KeyPointController KeyPointController { get; set; }
         public TourStartingTimeController StartingDateController { get; set; }
+        public TourRequestController TourRequestController { get; set; }
         public TourImageController ImageController { get; set; }
         public UserController UserController { get; set; }
         public LanguageEnum ChosenLanguage { get; set; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand CreateCommand { get; }
+        public RelayCommand DetailsCommand { get; }
         public RelayCommand ImageCommand { get; }
         public RelayCommand DateCommand { get; }
         public RelayCommand KeyPointCommand { get; }
+
+        public TourRequest ChosenRequest{get;}
 
 
         private DispatcherTimer _validationTimer;
         public bool IsEnabled { get; }
 
-        public TourCreationViewModel()
+        public RequestedTourCreationViewModel(TourRequest chosenRequest)
         {
+            ChosenRequest= chosenRequest;
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
             TourController = new TourController();
             LocationController = new TourLocationController();
             KeyPointController = new KeyPointController();
             ImageController = new TourImageController();
+            TourRequestController = new TourRequestController();
             StartingDateController = new TourStartingTimeController();
             TourTimeInstanceController = new TourTimeInstanceController();
             UserController = new UserController();
@@ -53,6 +62,7 @@ namespace BookingProject.View.GuideViewModel
             ImageCommand = new RelayCommand(Button_Click_Image, CanExecute);
             DateCommand = new RelayCommand(Button_Click_StartingTime, CanExecute);
             CancelCommand = new RelayCommand(CancelButton_Click, CanExecute);
+            DetailsCommand = new RelayCommand(DetailsButton_Click, CanExecute);
             CreateCommand = new RelayCommand(Button_Click_Kreiraj, CanExecute);
             _validationTimer = new DispatcherTimer();
             _validationTimer.Interval = TimeSpan.FromSeconds(1); // Adjust the interval as needed
@@ -74,11 +84,11 @@ namespace BookingProject.View.GuideViewModel
                     OnPropertyChanged();
                 }
             }
-        }      
-    private void ValidationTimer_Tick(object sender, EventArgs e)
-    {
-        IsValid=FullValid(); // Call your validation method
-    }
+        }
+        private void ValidationTimer_Tick(object sender, EventArgs e)
+        {
+            IsValid = FullValid(); // Call your validation method
+        }
         private void StartValidationTimer()
         {
             _validationTimer.Start();
@@ -101,34 +111,6 @@ namespace BookingProject.View.GuideViewModel
                 }
             }
         }
-        private string _tourLanguage;
-        public string TourLanguage
-        {
-            get => _tourLanguage;
-            set
-            {
-                if (value != _tourLanguage)
-                {
-                    _tourLanguage = value;
-                    IsValid = FullValid();
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private int _maxGuests;
-        public int MaxGuests
-        {
-            get => _maxGuests;
-            set
-            {
-                if (value != _maxGuests)
-                {
-                    _maxGuests = value;
-                    IsValid = FullValid();
-                    OnPropertyChanged();
-                }
-            }
-        }
         private double _duration;
         public double Duration
         {
@@ -143,34 +125,6 @@ namespace BookingProject.View.GuideViewModel
                 }
             }
         }
-        private string _country;
-        public string Country
-        {
-            get => _country;
-            set
-            {
-                if (value != _country)
-                {
-                    _country = value;
-                    IsValid = FullValid();
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private string _city;
-        public string City
-        {
-            get => _city;
-            set
-            {
-                if (value != _city)
-                {
-                    _city = value;
-                    IsValid = FullValid();
-                    OnPropertyChanged();
-                }
-            }
-        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -179,18 +133,18 @@ namespace BookingProject.View.GuideViewModel
         }
         private void Button_Click_Kreiraj(object param)
         {
-            IsValid= FullValid();
+            IsValid = FullValid();
             if (IsValid == false) { return; }
             Tour tour = new Tour();
             tour.Name = TourName;
             tour.Description = Description;
-            tour.MaxGuests = MaxGuests;
+            tour.MaxGuests = ChosenRequest.GuestsNumber;
             tour.DurationInHours = Duration;
-            tour.Language = ChosenLanguage;
+            tour.Language = ChosenRequest.Language;
             tour.GuideId = UserController.GetLoggedUser().Id;
             Location location = new Location();
-            location.City = City;
-            location.Country = Country;
+            location.City = ChosenRequest.Location.City;
+            location.Country = ChosenRequest.Location.Country;
             //uvezivanje sa lokacijom
             LocationController.Create(location);
             LocationController.Save();
@@ -207,6 +161,15 @@ namespace BookingProject.View.GuideViewModel
             //prave se instance
             TourController.BindLastTour();
             SaveInstance();
+            sendINFO(TourController.GetLastTour());
+        }
+
+        public void sendINFO(Tour tour)
+        {
+            TourRequestController.GetById(ChosenRequest.Id).Status = Domain.Enums.TourRequestStatus.ACCEPTED;
+            TourRequestController.GetById(ChosenRequest.Id).GuideId = UserController.GetLoggedUser().Id;
+            TourRequestController.SaveTourRequest();
+            TourRequestController.SendNotification(ChosenRequest.Guest, tour);
         }
         public void SaveInstance()
         {
@@ -222,7 +185,7 @@ namespace BookingProject.View.GuideViewModel
                 instance.TourId = tour.Id;
                 instance.Tour = tour;
                 instance.DateId = time.Id;
-                instance.TourTime= time;
+                instance.TourTime = time;
                 TourTimeInstanceController.Create(instance);
                 TourTimeInstanceController.Save();
             }
@@ -235,15 +198,20 @@ namespace BookingProject.View.GuideViewModel
             KeyPointController.Save();
             ImageController.CleanUnused();
             ImageController.Save();
-            GuideHomeWindow view = new GuideHomeWindow();
-            view.Show();
+            AllTourRequestsView allTourRequestsView = new AllTourRequestsView();
+            allTourRequestsView.Show();
             StopValidationTimer();
             CloseWindow();
         }
+        private void DetailsButton_Click(object param)
+        {
+            RequestDetailsView view = new RequestDetailsView(ChosenRequest);
+            view.Show();
+        }
         private void Button_Click_StartingTime(object param)
         {
-            EnterDate enterDate = new EnterDate();
-            enterDate.Show();
+            EnterRequestDate enterRequestDate = new EnterRequestDate(ChosenRequest);
+            enterRequestDate.Show();
             IsValid = FullValid();
         }
         private void Button_Click_KeyPoint(object param)
@@ -274,32 +242,15 @@ namespace BookingProject.View.GuideViewModel
                     if (string.IsNullOrEmpty(Description))
                         return "You must enter a description!";
                 }
-                else if (columnName == "Country")
-                {
-                    if (string.IsNullOrEmpty(Country))
-                        return "You must enter a country!";
-                }
-                else if (columnName == "City")
-                {
-                    if (string.IsNullOrEmpty(City))
-                        return "You must enter a city!";
-                }
-
                 else if (columnName == "Duration")
                 {
                     if (!ValidDuration())
                         return "You must enter a number!";
                 }
-
-                else if (columnName == "MaxGuests")
-                {
-                    if (!ValidMaxGuests())
-                        return "You must enter a number!";
-                }
                 return null;
             }
         }
-        private readonly string[] _validatedProperties = { "TourName", "Description", "Country", "City", "Duration", "MaxGuests" };
+        private readonly string[] _validatedProperties = { "TourName", "Description", "Duration" };
         public bool ValidDuration()
         {
             string testString = Duration.ToString();
@@ -310,16 +261,7 @@ namespace BookingProject.View.GuideViewModel
             }
             return true;
         }
-        public bool ValidMaxGuests()
-        {
-            string testString = MaxGuests.ToString();
 
-            if (string.IsNullOrEmpty(testString) || MaxGuests == 0)
-            {
-                return false;
-            }
-            return true;
-        }
         public bool ValidKeyPoint()
         {
             int keyPointNumber = 0;
@@ -369,7 +311,7 @@ namespace BookingProject.View.GuideViewModel
                     return false;
             }
 
-            return (ValidMaxGuests() && ValidDuration() && ValidKeyPoint() && ValidTourDateTime() && ValidTourImage());
+            return (ValidDuration() && ValidKeyPoint() && ValidTourDateTime() && ValidTourImage());
         }
 
         private bool _isValid = false;
@@ -391,9 +333,8 @@ namespace BookingProject.View.GuideViewModel
         {
             foreach (Window window in App.Current.Windows)
             {
-                if (window.GetType() == typeof(TourCreationWindow)) { window.Close(); }
+                if (window.GetType() == typeof(RequestedTourCreation)) { window.Close(); }
             }
         }
     }
 }
-

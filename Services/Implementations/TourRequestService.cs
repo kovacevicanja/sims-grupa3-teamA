@@ -1,25 +1,33 @@
-﻿using BookingProject.DependencyInjection;
+﻿using BookingProject.ConversionHelp;
+using BookingProject.DependencyInjection;
 using BookingProject.Domain;
 using BookingProject.Domain.Enums;
+using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.Repositories;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Resources;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.WebPages;
 
 namespace BookingProject.Services.Implementations
 {
     public class TourRequestService : ITourRequestService
     {
         private ITourRequestRepository _tourRequestRepository;
+        private INotificationService _notificationService;
         public TourRequestService() { }
         public void Initialize()
         {
             _tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
+            _notificationService = Injector.CreateInstance<INotificationService>();
         }
         public void Create(TourRequest tourRequest)
         {
@@ -40,6 +48,15 @@ namespace BookingProject.Services.Implementations
         public void SaveTourRequest()
         {
             _tourRequestRepository.Save();
+        }
+
+        public void SendNotification(User guest, Tour createdTour)
+        {
+            Notification notification = new Notification();
+            notification.UserId = guest.Id;
+            notification.Text = "A tour you requested was created, go search it out, first instance of this tour will be held on  "+createdTour.StartingTime[0].StartingDateTime+"!";
+            notification.Read = false;
+            _notificationService.Create(notification);
         }
         public List<TourRequest> GetGuestRequests (int guestId, string enteredYear = "")
         {
@@ -117,6 +134,93 @@ namespace BookingProject.Services.Implementations
 
             return numberRequestsLocation;
         }
+
+        public bool WantedTour(TourRequest tour, string city, string country, string choosenLanguage, string numOfGuests, string startDate, string endDate)
+        {
+            if (RequestedCity(tour, city)
+                && RequestedCountry(tour, country)               
+                && RequestedLanguage(tour, choosenLanguage)
+                && RequestedNumOfGuests(tour, numOfGuests)
+                && (RequestedStartDate(tour, startDate)
+                && RequestedEndDate(tour, endDate)))
+            { return true; }
+            else { return false; }
+        }
+        public bool RequestedCity(TourRequest tour, string city)
+        {
+            if (city.Equals("") || tour.Location.City.ToLower().Contains(city.ToLower())) { return true; }
+            else { return false; }
+        }
+        public bool RequestedCountry(TourRequest tour, string country)
+        {
+            if (country.Equals("") || tour.Location.Country.ToLower().Contains(country.ToLower())) { return true; }
+            else { return false; }
+        }
+        public bool RequestedLanguage(TourRequest tour, string choosenLanguage)
+        {
+            string languageEnum = tour.Language.ToString().ToLower();
+
+            if (choosenLanguage.Equals("") || languageEnum.Equals(choosenLanguage.ToLower())) { return true; }
+            else { return false; }
+        }
+        public bool RequestedNumOfGuests(TourRequest tour, string numOfGuests)
+        {
+            if (numOfGuests.Equals("") || int.Parse(numOfGuests) <= tour.GuestsNumber) { return true; }
+            else { return false; }
+        }
+
+        public bool RequestedStartDate(TourRequest tour, string startDate)
+        {
+            if (startDate.IsEmpty())
+            {
+                return true;
+            }
+            if (!(DateTime.TryParse(startDate, out DateTime result) && startDate.Length == 19))
+            {
+                return false;
+            }
+
+            if (DateConversion.StringToDateTour(startDate)<=tour.StartDate) { return true; }
+            else { return false; }
+        }
+
+        public bool RequestedEndDate(TourRequest tour, string endDate)
+        {
+            if (endDate.IsEmpty())
+            {
+                return true;
+            }
+            if (!(DateTime.TryParse(endDate, out DateTime result) && endDate.Length == 19))
+            {
+                return false;
+            }
+            if (DateConversion.StringToDateTour(endDate)>=tour.EndDate) { return true; }
+            else { return false; }
+        }
+
+        public ObservableCollection<TourRequest> Search(ObservableCollection<TourRequest> tourView, string city, string country, string choosenLanguage, string numOfGuests, string endDate, string startDate)
+        {
+            tourView.Clear();
+
+            foreach (TourRequest tour in _tourRequestRepository.GetAll())
+            {
+                if (WantedTour(tour, city, country, choosenLanguage, numOfGuests, endDate, startDate))
+                {
+                    tourView.Add(tour);
+                }
+            }
+            return tourView;
+        }
+        public void ShowAll(ObservableCollection<TourRequest> tourView)
+        {
+            tourView.Clear();
+
+            foreach (TourRequest tour in _tourRequestRepository.GetAll())
+            {
+                tourView.Add(tour);
+            }
+        }
+
         public double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear = "")
         { 
             int totalNumberOfPeople = 0, totalNumberOfAcceptedRequests = 0;

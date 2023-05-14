@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.ConversionHelp;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.View.GuideView;
 using System;
@@ -8,14 +9,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace BookingProject.View.GuideViewModel
 {
-    public class EnterDateViewModel:IDataErrorInfo,INotifyPropertyChanged
+    public class EnterRequestDateViewModel : IDataErrorInfo, INotifyPropertyChanged
     {
 
 
@@ -25,10 +25,13 @@ namespace BookingProject.View.GuideViewModel
         public RelayCommand CancelCommand { get; }
         public RelayCommand CreateCommand { get; }
 
-        public EnterDateViewModel()
+        public TourRequest ChosenRequest { get; set; }
+
+        public EnterRequestDateViewModel(TourRequest request)
         {
 
             StartingDateController = new TourStartingTimeController();
+            ChosenRequest = request;
             CancelCommand = new RelayCommand(CancelButton_Click, CanExecute);
             CreateCommand = new RelayCommand(Button_Click_Kreiraj, CanExecute);
         }
@@ -43,7 +46,7 @@ namespace BookingProject.View.GuideViewModel
                 if (value != _startingDate)
                 {
                     _startingDate = value;
-                    IsButtonEnabled = ValidateTime();
+                    IsButtonEnabled = IsBetween();
                     OnPropertyChanged();
                 }
             }
@@ -79,8 +82,8 @@ namespace BookingProject.View.GuideViewModel
                 if (columnName == "StartingDate")
                 {
                     if (!(DateTime.TryParse(StartingDate, out DateTime result)) || (StartingDate.Length != 19))
-                        return "Format dd/mm/yyyy hh:mm:ss";
-
+                        return "Format dd/mm/yyyy hh:mm:ss (" +ChosenRequest.StartDate +"--"+ChosenRequest.EndDate +")";
+                    
                 }
 
                 return null;
@@ -103,6 +106,21 @@ namespace BookingProject.View.GuideViewModel
             }
         }
 
+        public bool IsBetween()
+        {
+            if (!ValidateTime())
+            {
+                return false;
+            }
+            if(ChosenRequest.StartDate <= DateConversion.StringToDateTour(StartingDate)  && DateConversion.StringToDateTour(StartingDate) <= ChosenRequest.EndDate)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool ValidateTime()
         {
             if (DateTime.TryParse(StartingDate, out DateTime result) && StartingDate.Length == 19)
@@ -136,10 +154,9 @@ namespace BookingProject.View.GuideViewModel
         {
             foreach (Window window in App.Current.Windows)
             {
-                if (window.GetType() == typeof(EnterDate)) { window.Close(); }
+                if (window.GetType() == typeof(EnterRequestDate)) { window.Close(); }
             }
         }
 
     }
 }
-

@@ -19,6 +19,7 @@ namespace BookingProject.View.GuideViewModel
     {
         private TourTimeInstanceController _tourTimeInstanceController;
         private TourStartingTimeController _tourStartingTimeController;
+        private UserController _userController;
         public ObservableCollection<TourTimeInstance> _instances;
         public TourTimeInstance ChosenTour { get; set; }
 
@@ -26,6 +27,7 @@ namespace BookingProject.View.GuideViewModel
         public RelayCommand EnterCommand { get; }
         public LiveToursListViewModel()
         {
+            _userController= new UserController();  
             _tourTimeInstanceController = new TourTimeInstanceController();
             _tourStartingTimeController = new TourStartingTimeController();
             _instances = new ObservableCollection<TourTimeInstance>(FilterTours(_tourTimeInstanceController.GetAll()));
@@ -82,7 +84,7 @@ namespace BookingProject.View.GuideViewModel
             {
                 return false;
             }
-            if (tourDate.StartingDateTime.Date == DateTime.Now.Date && tour.State != TourState.COMPLETED && tour.State != TourState.CANCELLED)
+            if (tourDate.StartingDateTime.Date == DateTime.Now.Date && tour.State != TourState.COMPLETED && tour.State != TourState.CANCELLED && tour.Tour.GuideId == _userController.GetLoggedUser().Id)
             {
                 return true;
             }

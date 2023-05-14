@@ -19,9 +19,11 @@ namespace BookingProject.View.GuideViewModel
         public RelayCommand OneCommand { get; }
         public RelayCommand TwoCommand { get; }
         public RelayCommand ThreeCommand { get; }
+        public RelayCommand FourCommand { get; }
         public RelayCommand FiveCommand { get; }
 
         public RelayCommand SuggestionCommand { get; }
+        public RelayCommand CreateCommand { get; }
 
         public GuideHomeViewModel()
         {
@@ -30,8 +32,10 @@ namespace BookingProject.View.GuideViewModel
             OneCommand = new RelayCommand(Button_Click_1, CanExecute);
             TwoCommand = new RelayCommand(Button_Click_2, CanExecute);
             ThreeCommand = new RelayCommand(Button_Click_3, CanExecute);
+            FourCommand = new RelayCommand(Button_Click_4, CanExecute);
             FiveCommand = new RelayCommand(Button_Click_5, CanExecute);
-            SuggestionCommand = new RelayCommand(Button_Click_S, CanExecute); 
+            SuggestionCommand = new RelayCommand(Button_Click_S, CanExecute);
+            CreateCommand = new RelayCommand(Button_Click_N, CanExecute);
             GuideRating = 5.5;
             GuideName= _userController.GetLoggedUser().Name;
 
@@ -78,6 +82,14 @@ namespace BookingProject.View.GuideViewModel
             CloseWindow();
         }
 
+
+        private void Button_Click_4(object param)
+        {
+            AllTourRequestsView allTourRequestsView = new AllTourRequestsView();
+            allTourRequestsView.Show();
+            CloseWindow();
+        }
+
         private void Button_Click_5(object param)
         {
             RequestStatisticsChoiceView choiceView = new RequestStatisticsChoiceView();
@@ -90,6 +102,13 @@ namespace BookingProject.View.GuideViewModel
             SuggestionChoiceView choiceView = new SuggestionChoiceView();
             choiceView.Show();
             CloseWindow();
+        }
+        private void Button_Click_N(object param)
+        {
+            TourCreationWindow view = new TourCreationWindow();
+            view.Show();
+            CloseWindow();
+
         }
     }
 }
