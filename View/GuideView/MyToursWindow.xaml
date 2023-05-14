@@ -105,7 +105,7 @@
         </Grid>
 
         <WrapPanel Grid.Row="2" Margin="20,41,5,-85">
-            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding CreateCommand}" Content="Create New Tour &#xa;            (N)" Height="46"/>
+            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding CreateCommand}" Content="Create New Report &#xa;            (N)" Height="46"/>
             <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelTourCommand}" Content="Cancel Selected Tour &#xa;               (C)" Height="46"/>
             <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="Close &#xa; (Esc)" Height="46"/>
         </WrapPanel>

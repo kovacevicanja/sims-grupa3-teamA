@@ -17,16 +17,15 @@ using System.Windows.Shapes;
 namespace BookingProject.View.GuideView
 {
     /// <summary>
-    /// Interaction logic for RequestedTourCreation.xaml
+    /// Interaction logic for EnterRequestDate.xaml
     /// </summary>
-    public partial class RequestedTourCreation : Window
+    public partial class EnterRequestDate : Window
     {
-        public RequestedTourCreation(TourRequest tourRequest)
+        public EnterRequestDate(TourRequest request)
         {
             InitializeComponent();
-            this.DataContext = new RequestedTourCreationViewModel(tourRequest);
+            this.DataContext = new EnterRequestDateViewModel(request);
 
         }
-
     }
 }

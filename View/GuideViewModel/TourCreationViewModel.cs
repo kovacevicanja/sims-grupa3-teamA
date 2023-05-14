@@ -235,8 +235,8 @@ namespace BookingProject.View.GuideViewModel
             KeyPointController.Save();
             ImageController.CleanUnused();
             ImageController.Save();
-            MyToursWindow myToursWindow = new MyToursWindow();
-            myToursWindow.Show();
+            GuideHomeWindow view = new GuideHomeWindow();
+            view.Show();
             StopValidationTimer();
             CloseWindow();
         }

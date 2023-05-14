@@ -28,8 +28,8 @@ namespace BookingProject.View.GuideViewModel
             _voucherController = new VoucherController();
             _tourReservationController = new TourReservationController();
             ChosenTour = chosenTour;
-            YesCommand = new RelayCommand(No_Click, CanExecute);
-            NoCommand = new RelayCommand(Yes_Click, CanExecute);
+            YesCommand = new RelayCommand(Yes_Click, CanExecute);
+            NoCommand = new RelayCommand(No_Click, CanExecute);
         }
         public void SendVouchers()
         {

@@ -3,6 +3,7 @@ using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Services;
+using BookingProject.Services.Implementations;
 using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,11 @@ namespace BookingProject.Controllers
         {
             _tourRequestService.SaveTourRequest();
         }
+        public void SendNotification(User guest, Tour tour)
+        {
+            _tourRequestService.SendNotification(guest, tour);
+        }
+
         public List<TourRequest> GetGuestRequests (int guestId, string enteredYear)
         {
             return _tourRequestService.GetGuestRequests(guestId, enteredYear);

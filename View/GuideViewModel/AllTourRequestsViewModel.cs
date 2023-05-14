@@ -2,6 +2,7 @@
 using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Domain;
+using BookingProject.Domain.Enums;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.View.Guest2View;
@@ -36,17 +37,32 @@ namespace BookingProject.View.GuideViewModel
         public RelayCommand CancelCommand { get; }
         public RelayCommand SearchCommand { get; }
         public RelayCommand ShowAllCommand { get; }
+        public RelayCommand PickCommand { get; }
+        public TourRequest ChosenRequest { get; set; }
         public AllTourRequestsViewModel()
         {
             _tourRequestController = new TourRequestController();
-            TourRequests = new ObservableCollection<TourRequest>(_tourRequestController.GetAll());
+            TourRequests = new ObservableCollection<TourRequest>(FilterRequests(_tourRequestController.GetAll()));
 
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
             SearchCommand = new RelayCommand(Button_Click_Search, CanExecute);
             ShowAllCommand = new RelayCommand(Button_Click_Show, CanExecute);
+            PickCommand = new RelayCommand(Button_Click_Pick, CanExecute);
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
 
+        }
+
+        public List<TourRequest> FilterRequests(List<TourRequest> requests)
+        {
+            List<TourRequest> filtered = new List<TourRequest>();
+            foreach (var request in requests) {
+                if (request.Status == TourRequestStatus.PENDING)
+                {
+                    filtered.Add(request);
+                }
+            }
+            return filtered;
         }
 
         private bool CanExecute(object param) { return true; }
@@ -93,6 +109,18 @@ namespace BookingProject.View.GuideViewModel
 
 
             _tourRequestController.ShowAll(TourRequests);
+
+        }
+        private void Button_Click_Pick(object param)
+        {
+            if (ChosenRequest == null)
+            {
+                return;
+            }
+
+            RequestedTourCreation creation = new RequestedTourCreation(ChosenRequest);
+            creation.Show();
+            CloseWindow();
 
         }
         public event PropertyChangedEventHandler PropertyChanged;

@@ -22,10 +22,12 @@ namespace BookingProject.Services.Implementations
     public class TourRequestService : ITourRequestService
     {
         private ITourRequestRepository _tourRequestRepository;
+        private INotificationService _notificationService;
         public TourRequestService() { }
         public void Initialize()
         {
             _tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
+            _notificationService = Injector.CreateInstance<INotificationService>();
         }
         public void Create(TourRequest tourRequest)
         {
@@ -46,6 +48,15 @@ namespace BookingProject.Services.Implementations
         public void SaveTourRequest()
         {
             _tourRequestRepository.Save();
+        }
+
+        public void SendNotification(User guest, Tour createdTour)
+        {
+            Notification notification = new Notification();
+            notification.UserId = guest.Id;
+            notification.Text = "A tour you requested was created, go search it out, first instance of this tour will be held on  "+createdTour.StartingTime[0].StartingDateTime+"!";
+            notification.Read = false;
+            _notificationService.Create(notification);
         }
         public List<TourRequest> GetGuestRequests (int guestId, string enteredYear = "")
         {

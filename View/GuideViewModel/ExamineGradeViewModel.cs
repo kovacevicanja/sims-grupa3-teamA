@@ -74,8 +74,5 @@ namespace BookingProject.View.GuideViewModel
             guestReviewsWindow.Show();
             CloseWindow();
         }
-
-
-
     }
 }

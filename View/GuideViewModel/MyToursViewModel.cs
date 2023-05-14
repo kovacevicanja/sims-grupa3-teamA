@@ -20,6 +20,7 @@ namespace BookingProject.View.GuideViewModel
     {
         private TourTimeInstanceController _tourTimeInstanceController;
         private TourStartingTimeController _tourStartingTimeController;
+        private UserController _userController;
         public ObservableCollection<TourTimeInstance> _instances;
         private TourController _tourController;
         public RelayCommand CancelCommand { get; }
@@ -31,6 +32,7 @@ namespace BookingProject.View.GuideViewModel
             _tourController = new TourController();
             _tourTimeInstanceController = new TourTimeInstanceController();
             _tourStartingTimeController = new TourStartingTimeController();
+            _userController = new UserController();
             _instances = new ObservableCollection<TourTimeInstance>(FilterTours(_tourTimeInstanceController.GetAll()));
             CancelCommand = new RelayCommand(Button_Click_Close, CanExecute);
             CancelTourCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
@@ -41,7 +43,7 @@ namespace BookingProject.View.GuideViewModel
             List<TourTimeInstance> filteredTours = new List<TourTimeInstance>();
             foreach (TourTimeInstance tour in tours)
             {
-                if (tour.State != TourState.CANCELLED)
+                if (tour.State != TourState.CANCELLED && tour.Tour.GuideId==_userController.GetLoggedUser().Id)
                 {
                     filteredTours.Add(tour);
                 }
@@ -90,9 +92,9 @@ namespace BookingProject.View.GuideViewModel
         }
         private void Button_Click_Create(object param)
         {
-            TourCreationWindow tourCreationWindow = new TourCreationWindow();
-            tourCreationWindow.Show();
-            CloseWindow();
+            //TourCreationWindow tourCreationWindow = new TourCreationWindow();
+            //tourCreationWindow.Show();
+            //CloseWindow();
         }
     }
 }

@@ -291,6 +291,9 @@
     <Compile Include="View\GuideViewModel\EnterDateViewModel.cs" />
     <Compile Include="View\GuideViewModel\EnterImageViewModel.cs" />
     <Compile Include="View\GuideViewModel\EnterKeyPointViewModel.cs" />
+    <Compile Include="View\GuideViewModel\EnterRequestDateViewModel.cs" />
+    <Compile Include="View\GuideViewModel\RequestDetailsViewModel.cs" />
+    <Compile Include="View\GuideViewModel\RequestedTourCreationViewModel.cs" />
     <Compile Include="View\GuideViewModel\RequestStatisticsChoiceViewModel.cs" />
     <Compile Include="View\GuideViewModel\SuggestionChoiceViewModel.cs" />
     <Compile Include="View\GuideViewModel\AllTourRequestsViewModel.cs" />
@@ -349,6 +352,9 @@
     <Compile Include="View\GuideView\ChangeStatsYearWindow.xaml.cs">
       <DependentUpon>ChangeStatsYearWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\EnterRequestDate.xaml.cs">
+      <DependentUpon>EnterRequestDate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\ExamineGradeWindow.xaml.cs">
       <DependentUpon>ExamineGradeWindow.xaml</DependentUpon>
     </Compile>
@@ -369,6 +375,12 @@
     </Compile>
     <Compile Include="View\GuideView\MyToursWindow.xaml.cs">
       <DependentUpon>MyToursWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\RequestDetailsView.xaml.cs">
+      <DependentUpon>RequestDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\RequestedTourCreation.xaml.cs">
+      <DependentUpon>RequestedTourCreation.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\RequestStatisticsChoiceView.xaml.cs">
       <DependentUpon>RequestStatisticsChoiceView.xaml</DependentUpon>
@@ -539,6 +551,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\GuideView\EnterRequestDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\ExamineGradeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -570,6 +586,14 @@
     <Page Include="View\Guest2View\SecondGuestMyReservationsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\GuideView\RequestDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\RequestedTourCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GuideView\RequestStatisticsChoiceView.xaml">
       <SubType>Designer</SubType>
