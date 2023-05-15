@@ -5,12 +5,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
         Title="SelectedTourStatsWindow" Height="490" Width="615">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Enter">
+            <i:InvokeCommandAction Command="{Binding OkCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding OkCommand}" />
+    </Window.InputBindings>
+
+
+
     <Grid>
         <Label Content="Number of guests(teen):  " FontSize="24" FontWeight="Bold" Margin="0,55,307,345" />
-        <Button Content="OK (Enter)" FontSize="26" FontWeight="Bold" Margin="218,404,217,10" Click="Button_Click"/>
+        <Button Content="OK (Enter)" Command="{Binding OkCommand}" FontSize="26" FontWeight="Bold" Margin="218,404,217,10" />
         <Label Content="Number of guests(adult):  " FontSize="24" FontWeight="Bold" Margin="0,129,307,270" />
         <Label Content="Number of guests(senior):  " FontSize="24" FontWeight="Bold" Margin="0,204,283,199" />
         <Label Content="Percent of guests with voucher:  " FontSize="24" FontWeight="Bold" Margin="0,270,217,139" />

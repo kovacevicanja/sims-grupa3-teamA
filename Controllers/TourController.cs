@@ -21,6 +21,12 @@ namespace BookingProject.Controller
         {
             _tourService = Injector.CreateInstance<ITourService>();
         }
+
+        public void FullBind()
+        {
+            _tourService.FullBind();
+        }
+
         public void Create(Tour tour)
         {
             _tourService.Create(tour);

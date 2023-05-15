@@ -45,5 +45,20 @@ namespace BookingProject.Services.Implementations
         {
             _accommodationGuestImageRepository.SaveImage();
         }
+
+        public void DeletePictureForNotExistingGrade(int AccommodationOwnerGradeId)
+        {
+            List<AccommodationGuestImage> images = GetAll();
+            List<AccommodationGuestImage> imagesCopy = new List<AccommodationGuestImage>(images);
+
+            foreach (AccommodationGuestImage image in imagesCopy)
+            {
+                if (image.Grade.Id == AccommodationOwnerGradeId)
+                {
+                    images.Remove(image);
+                }
+            }
+            Save(images);
+        }
     }
 }

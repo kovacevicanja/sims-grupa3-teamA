@@ -19,6 +19,7 @@ using BookingProject.DependencyInjection;
 using BookingProject.Services.Interfaces;
 using BookingProject.Repositories.Implementations;
 using System.Windows.Navigation;
+using BookingProject.Services;
 
 namespace BookingProject.Controller
 {

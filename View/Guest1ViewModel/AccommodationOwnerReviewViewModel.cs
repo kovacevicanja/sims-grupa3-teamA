@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.WebPages;
 using System.Windows;
 
 namespace BookingProject.View
@@ -49,6 +50,7 @@ namespace BookingProject.View
             CleanlinessOption = new ObservableCollection<int>();
             CorectnessOption = new ObservableCollection<int>();
             fillOptions(CleanlinessOption, CorectnessOption);
+            UrlPicture = String.Empty;
 
             HomePageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             LogOutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
@@ -159,8 +161,15 @@ namespace BookingProject.View
 
         private void Button_Click_Review(object param)
         {
-            AccommodationOwnerGradeController.MakeGrade(grade, _selectedReservation, chosenCleanliness, chosenCorectness, Comment, Reccommendation);
-            CloseWindow(); //ovo je umesto this.Close()
+            if (chosenCleanliness == 0 || chosenCorectness == 0)
+            {
+                MessageBox.Show("You must select one of dropdown options for grade!");
+            }
+            else
+            {
+                AccommodationOwnerGradeController.MakeGrade(grade, _selectedReservation, chosenCleanliness, chosenCorectness, Comment, Reccommendation);
+                MessageBox.Show("You have successfully reviewed this accommodation!");
+            }
         }
         private void CloseWindow()
         {
@@ -172,27 +181,29 @@ namespace BookingProject.View
 
         private void Button_Click_AddPicture(object param)
         {
-            if (UrlPicture != "")
+            AccommodationGuestImage Picture = new AccommodationGuestImage();
+            Picture.Url = UrlPicture;
+            if (Picture.Url.IsEmpty())
             {
-                AccommodationGuestImage Picture = new AccommodationGuestImage();
-                Picture.Url = UrlPicture;
+                MessageBox.Show("Photo url can not be empty!");
+            }
+            else
+            {
                 Picture.Guest.Id = UserController.GetLoggedUser().Id;
                 Picture.Grade.Id = grade.Id;
                 grade.guestImages.Add(Picture);
                 AccommodationGuestImageController.Create(Picture);
                 AccommodationGuestImageController.SaveImage();
-            }
-            else
-            {
-                MessageBox.Show("Photo url can not be empty");
+                MessageBox.Show("Successfully added picture!");
+                UrlPicture = string.Empty;
             }
 
-            UrlPicture = string.Empty;
         }
 
         private void Button_Click_Homepage(object param)
         {
-            var Guest1Homepage = new Guest1Homepage();
+            AccommodationGuestImageController.DeletePictureForNotExistingGrade(grade.Id);
+            var Guest1Homepage = new Guest1View();
             Guest1Homepage.Show();
             CloseWindow();
         }

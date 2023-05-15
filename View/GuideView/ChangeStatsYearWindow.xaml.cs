@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingProject.View.GuideViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -24,40 +25,7 @@ namespace BookingProject.View.GuideView
         public ChangeStatsYearWindow()
         {
             InitializeComponent();
-            this.DataContext = this;
-            PickedYear = "all";
-        }
-
-        private string _pickedYear;
-        public string PickedYear
-        {
-            get => _pickedYear;
-            set
-            {
-                if (value != _pickedYear)
-                {
-                    _pickedYear = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private void Cancel_Button_Click(object sender, RoutedEventArgs e) 
-        {
-            TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow("all");
-            tourStatisticsWindow.Show();
-            Close();
-        }
-        private void Button_Click_Set(object sender, RoutedEventArgs e)
-        {
-            TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow(PickedYear);
-            tourStatisticsWindow.Show();
-            Close();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.DataContext = new ChangeStatsYearViewModel();
         }
     }
 }

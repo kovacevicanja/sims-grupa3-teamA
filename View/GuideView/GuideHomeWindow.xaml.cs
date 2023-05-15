@@ -1,5 +1,6 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.GuideViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,42 +23,10 @@ namespace BookingProject.View.GuideView
     /// 
     public partial class GuideHomeWindow : Window
     {
-        private readonly UserController _userController;
         public GuideHomeWindow()
         {
             InitializeComponent();
-            _userController = new UserController();
-        }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            MyToursWindow myToursWindow= new MyToursWindow();
-            myToursWindow.Show();
-            Close();
-        }
-        public void LogoutUser()
-        {
-            _userController.GetLoggedUser().IsLoggedIn = false;
-            _userController.Save();
-        }
-        private void Button_Click_Logout(object sender, RoutedEventArgs e)
-        {
-            LogoutUser();
-            SignInForm signInForm = new SignInForm();
-            signInForm.Show();
-            Close();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow("all");
-            tourStatisticsWindow.Show();
-            Close();
-        }
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            LiveToursList liveTourList= new LiveToursList();
-            liveTourList.Show();
-            Close(); 
+            this.DataContext = new GuideHomeViewModel();
         }
     }
 }

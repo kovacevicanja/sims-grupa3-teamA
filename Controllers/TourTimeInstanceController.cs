@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using BookingProject.Services.Interfaces;
 using BookingProject.DependencyInjection;
 using BookingProject.Serializer;
+using BookingProject.Services;
 
 namespace BookingProject.Controller
 {
@@ -35,5 +36,11 @@ namespace BookingProject.Controller
         {
             _tourTimeInstanceService.Save();
         }
+
+        public void BindLastInstance()
+        {
+            _tourTimeInstanceService.BindLastTour();
+        }
+
     }
 }

@@ -13,16 +13,16 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Repositories.Implementations
 {
-    public class AccommodationReservationRepository : IAccommodationReservationRepository, ISubject
+    public class AccommodationReservationRepository : IAccommodationReservationRepository
     {
         private const string FilePath = "../../Resources/Data/accommodationReservations.csv";
         private Serializer<AccommodationReservation> _serializer;
         public List<AccommodationReservation> _accommodationReservations;
-        private  List<IObserver> observers;
+        //private  List<IObserver> observers;
         public AccommodationReservationRepository() 
         {
             _serializer = new Serializer<AccommodationReservation>();
-            observers = new List<IObserver>();
+            //observers = new List<IObserver>();
             _accommodationReservations = Load();
         }
         public void Initialize()
@@ -84,19 +84,22 @@ namespace BookingProject.Repositories.Implementations
         {
             return _accommodationReservations.Find(ar => ar.Id == id);
         }
-        public void Subscribe(IObserver observer)
+       /* public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
         }
         public void Unsubscribe(IObserver observer)
         {
-            throw new NotImplementedException();
+            observers.Remove(observer);
         }
 
         public void NotifyObservers()
         {
-            throw new NotImplementedException();
-        }
+            foreach(var observer in observers)
+            {
+                observer.Update();
+            }
+        }*/
 
         public void SaveParam(List<AccommodationReservation> reservations)
         {

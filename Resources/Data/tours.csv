@@ -1,31 +1,42 @@
-0|bgt|0|Kratka tura Beogradom duhue dhueihquw dhuiehiuhi|SERBIAN|5|4|0
-1|nst1|1|Kratka tura Novim Sadom|SERBIAN|10|3|0
-2|nst2|2|Jos kraca tura Novim Sadom|GERMAN|4|6|0
-3|Tura3|3|BLABLA|ENGLISH|10|2|0
-4|Tura4|4|blabla|ENGLISH|10|6|0
-5|Valid|5|Valid|GERMAN|5|7|0
-6|TURA|6|TROJA|SERBIAN|300|4|0
-7|A|7|A|ENGLISH|5|5|0
-8|B|8|B|SERBIAN|10|8|0
-9|C|9|C|SERBIAN|4|55|0
-10|D|10|D|GERMAN|10|11|0
-11|TURA|11|TURA|ENGLISH|5|5|0
-12|HEHE|12|HE|ENGLISH|3|3|0
-13|TUra|13|Neka tura|SERBIAN|5|5|0
-14|Pera|14|ss|SERBIAN|33|3|0
-15|PROBNATURA1|15|B|SERBIAN|5|4|0
-16|PROBNATURA1|16|B|SERBIAN|5|4|0
-17|Nova tura|17|blabaklnbalhdfuhrieq|SERBIAN|10|5|0
-18|Tura Novi Sad|18|hgujrhghew;fhuikr|GERMAN|10|3|0
-19|Proba|19|Proba|ENGLISH|4|4|0
-20|A|20|A|ENGLISH|23|3|0
-21|B|21|B|ENGLISH|4|3|0
-22|A|22|A|ENGLISH|4|4|4
-23|test|23|test|ENGLISH|4|4|6
-24|T|24|T|ENGLISH|4|4|4
-25|TestTura|25|dfgbewerjewqoejht|ENGLISH|5|5|4
-26|KE|26|KE|ENGLISH|5|5|4
-27|TEST1|27|G|ENGLISH|5|5|4
-28|TEST2|28|G|ENGLISH|5|5|4
-29|XX|29|XX|ENGLISH|3|3|3
-30|Tura - Pracenje ture uzivo1|57|FHDJFGHFJKDFJ|GERMAN|10|4|1
+0|bgt|0|Kratka tura Beogradom duhue dhueihquw dhuiehiuhi|SERBIAN|5|4|0|False
+1|nst1|1|Kratka tura Novim Sadom|SERBIAN|10|3|0|False
+2|nst2|2|Jos kraca tura Novim Sadom|GERMAN|4|6|0|False
+3|Tura3|3|BLABLA|ENGLISH|10|2|0|False
+4|Tura4|4|blabla|ENGLISH|10|6|0|False
+5|Valid|5|Valid|GERMAN|5|7|0|False
+6|TURA|6|TROJA|SERBIAN|300|4|0|False
+7|A|7|A|ENGLISH|5|5|0|False
+8|B|8|B|SERBIAN|10|8|0|False
+9|C|9|C|SERBIAN|4|55|0|False
+10|D|10|D|GERMAN|10|11|0|False
+11|TURA|11|TURA|ENGLISH|5|5|0|False
+12|HEHE|12|HE|ENGLISH|3|3|0|False
+13|TUra|13|Neka tura|SERBIAN|5|5|0|False
+14|Pera|14|ss|SERBIAN|33|3|0|False
+15|PROBNATURA1|15|B|SERBIAN|5|4|0|False
+16|PROBNATURA1|16|B|SERBIAN|5|4|0|False
+17|Nova tura|17|blabaklnbalhdfuhrieq|SERBIAN|10|5|0|False
+18|Tura Novi Sad|18|hgujrhghew;fhuikr|GERMAN|10|3|0|False
+19|Proba|19|Proba|ENGLISH|4|4|0|False
+20|A|20|A|ENGLISH|23|3|0|False
+21|B|21|B|ENGLISH|4|3|0|False
+22|A|22|A|ENGLISH|4|4|4|False
+23|test|23|test|ENGLISH|4|4|6|False
+24|T|24|T|ENGLISH|4|4|4|False
+25|TestTura|25|dfgbewerjewqoejht|ENGLISH|5|5|4|False
+26|KE|26|KE|ENGLISH|5|5|4|False
+27|TEST1|27|G|ENGLISH|5|5|4|False
+28|TEST2|28|G|ENGLISH|5|5|4|False
+29|XX|29|XX|ENGLISH|3|3|3|False
+30|Tura - Pracenje ture uzivo1|57|FHDJFGHFJKDFJ|GERMAN|10|4|1|False
+31|X|82|X|GERMAN|4|4|4|False
+32|D|83|D|ENGLISH|5|5|4|False
+33|TEST|84|TEST|ENGLISH|4|4|4|False
+34|A|85|A4|ENGLISH|4|4|4|False
+35|X|86|X|ENGLISH|4|4|4|False
+36|NIS|87|NIS|ENGLISH|8|5|4|False
+37|S|88|S|SERBIAN|6|3|4|False
+38|X|89|X|ENGLISH|5|3|4|False
+39|G|90|G|ENGLISH|7|4|4|False
+40|X|91|X|ENGLISH|4|4|4|True
+41|W|92|W|GERMAN|4|4|4|False

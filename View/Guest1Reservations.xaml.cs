@@ -66,8 +66,17 @@ namespace BookingProject.View
 
         private void Button_Click_Reschedule(object sender, RoutedEventArgs e)
         {
-            var RescheduleAccommodationReservation = new RescheduleAccommodationReservationView(SelectedReservation);
-            RescheduleAccommodationReservation.Show();
+            DateTime today = DateTime.Now.Date;
+            DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
+            if (SelectedReservation.InitialDate > todayMidnight)
+            {
+                var RescheduleAccommodationReservation = new RescheduleAccommodationReservationView(SelectedReservation);
+                RescheduleAccommodationReservation.Show();
+            }
+            else
+            {
+                MessageBox.Show("You can't reschedule finished reservations!");
+            }
             this.Close();
         }
 

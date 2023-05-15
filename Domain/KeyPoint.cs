@@ -22,13 +22,7 @@ namespace BookingProject.Model
             State = KeyPointState.EMPTY;
         }
 
-        public KeyPoint(int id, int tourId, string point)
-        {
-            Id = id;
-            TourId = tourId;
-            Point = point;
-            State = KeyPointState.EMPTY;
-        }
+        
 
         public void FromCSV(string[] values)
         {

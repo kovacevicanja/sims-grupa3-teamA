@@ -37,6 +37,15 @@
 45|1|Request to move reservation from 01.05.2023. - 10.05.2023. to 18.05.2023. - 25.05.2023. is APPROVED|True
 46|1|Request to move reservation from 18.05.2023. - 25.05.2023. to 18.05.2023. - 25.05.2023. is DECLINED|True
 47|2|Reservation for your accommodation Hotel Park, from 18.05.2023., to 25.05.2023. was cancelled!|True
-48|5|Presence check !!! |True
-49|5|Presence check !!! |True
-50|5|Presence check !!! |True
+48|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+49|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+50|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+51|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+52|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+53|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+54|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+55|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+56|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+57|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+58|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+59|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False

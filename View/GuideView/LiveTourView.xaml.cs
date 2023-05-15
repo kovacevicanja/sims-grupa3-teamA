@@ -2,6 +2,7 @@
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.View.GuideViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,171 +29,13 @@ namespace BookingProject.View.GuideView
     /// 
     public partial class LiveTourView : Window
     {
-        public bool IsValid { get; set; }
-        public KeyPoint ChosenKeyPoint { get; set; }
-        public TourTimeInstance ChosenTour { get; set; }
-        private TourTimeInstanceController _tourTimeInstanceController;
-        private KeyPointController _keyPointController;
-        private UserController _userControler;
-        private ObservableCollection<KeyPoint> _keyPoints;
-        private TourPresenceController _tourPresenceController;
         public LiveTourView(TourTimeInstance chosenTour)
         {
             InitializeComponent();
-            this.DataContext = this;
-            _tourTimeInstanceController = new TourTimeInstanceController();
-            _tourPresenceController = new TourPresenceController();
-            _keyPointController = new KeyPointController();
-            _userControler = new UserController();
-            _keyPoints = new ObservableCollection<KeyPoint>(chosenTour.Tour.KeyPoints);
-            InitState();
-            KeyPointDataGrid.ItemsSource = _keyPoints;
-            ChosenTour = chosenTour;
-            TourStarting();
-            SaveStates();
-            SavePresence();
-            if (_keyPoints.Last().State == KeyPointState.CURRENT)
-            {
-                IsValid = true;
-            }
-            else
-            {
-                IsValid = false;
-            }
-        }
-        public void InitState()
-        {
-            bool initState = true;
-            foreach (KeyPoint keyPoint in _keyPoints)
-            {
-                if (keyPoint.State != KeyPointState.EMPTY)
-                {
-                    _keyPoints[0].State = KeyPointState.PASSED;
-                    initState = false;
-                }
-            }
-            if (initState)
-            {
-                _keyPoints[0].State = KeyPointState.CURRENT;
-            }
-            _keyPointController.Save();
-        }
-        public void CurrentState()
-        {
-            foreach (KeyPoint keyPoint in _keyPoints)
-            {
-                if (keyPoint.Id == ChosenKeyPoint.Id && keyPoint.State == KeyPointState.EMPTY)
-                {
-                    keyPoint.State = KeyPointState.CURRENT;
-                }
-            }
-            _keyPointController.Save();
-        }
-        public void PassedState()
-        {
-            foreach (KeyPoint keyPoint in _keyPoints)
-            {
-                if (keyPoint.State == KeyPointState.CURRENT && keyPoint != _keyPoints[_keyPoints.Count - 1])
-                {
-                    keyPoint.State = KeyPointState.PASSED;
-                }
-            }
-            _keyPointController.Save();
-        }
-        private void Button_Click_Mark(object sender, RoutedEventArgs e)
-        {
-            if (ChosenKeyPoint != null)
-            {
-                PassedState();
-                CurrentState();
-                if (_keyPoints.Last().State == KeyPointState.CURRENT) { IsValid = true; }
-                _keyPointController.Save();
-                GuestListView guestListView = new GuestListView(ChosenTour, ChosenKeyPoint);
-                guestListView.Show();
-                Close();
-            }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        public void SaveStates()
-        {
-            foreach (KeyPoint keyPoint in _keyPoints)
-            {
-                _keyPointController.GetById(keyPoint.Id).State = keyPoint.State;
-            }
-            _keyPointController.Save();
-        }
-        public void RevertStates()
-        {
-            foreach (KeyPoint keyPoint in _keyPoints)
-            {
-                _keyPointController.GetById(keyPoint.Id).State = KeyPointState.EMPTY;
-            }
-            _keyPointController.Save();
-        }
-        public void RevertUsers()
-        {
-            foreach (User user in _userControler.GetAll())
-            {
-                _userControler.GetById(user.Id).IsPresent = false;
-            }
-            _userControler.Save();
-        }
-        private void Button_Click_Cancell(object sender, RoutedEventArgs e)
-        {
-            SaveStates();
-            LiveToursList liveTourList = new LiveToursList();
-            liveTourList.Show();
-            Close();
-        }
-        public void TourEnding()
-        {
-            _tourTimeInstanceController.GetById(ChosenTour.Id).State = TourState.COMPLETED;
-            _tourTimeInstanceController.Save();
-        }
-        public void TourStarting()
-        {
-            _tourTimeInstanceController.GetById(ChosenTour.Id).State = TourState.STARTED;
-            _tourTimeInstanceController.Save();
+            LiveTourViewModel ViewModel = new LiveTourViewModel(chosenTour);
+            this.DataContext = ViewModel;
+            KeyPointDataGrid.ItemsSource = ViewModel._keyPoints;
 
-        }
-        public bool PresenceCheck(TourPresence presence)
-        {
-            if (_userControler.GetById(presence.UserId).IsPresent && (presence.KeyPointId == -1))
-            {
-                return true;
-            }
-            return false;
-        }
-        public void SavePresence()
-        {
-            foreach (TourPresence presence in _tourPresenceController.GetAll())
-            {
-                if (PresenceCheck(presence) && _keyPointController.GetCurrentKeyPoint() != null)
-                {
-                    _tourPresenceController.GetById(presence.Id).KeyPointId = _keyPointController.GetCurrentKeyPoint().Id;
-                }
-            }
-            _tourPresenceController.Save();
-        }
-        private void Button_Click_End(object sender, RoutedEventArgs e)
-        {
-            TourEnding();
-            RevertStates();
-            RevertUsers();
-            LiveToursList liveTourList = new LiveToursList();
-            liveTourList.Show();
-            Close();
-        }
-        private void Window_LayoutUpdated(object sender, System.EventArgs e)
-        {
-            if (IsValid)
-                EndButton.IsEnabled = true;
-            else
-                EndButton.IsEnabled = false;
         }
     }
 }

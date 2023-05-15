@@ -1,49 +1,37 @@
-﻿using BookingProject.Controller;
-using BookingProject.Model;
+﻿using BookingProject.Commands;
+using BookingProject.Controller;
 using BookingProject.ConversionHelp;
+using BookingProject.Model;
+using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Text.RegularExpressions;
 
-namespace BookingProject.View
+namespace BookingProject.View.GuideViewModel
 {
-    /// <summary>
-    /// Interaction logic for EnterDate.xaml
-    /// </summary>
-    public partial class EnterDate : Window, IDataErrorInfo
+    public class EnterDateViewModel:IDataErrorInfo,INotifyPropertyChanged
     {
 
 
         public TourStartingTimeController StartingDateController { get; set; }
 
         public DateConversion DateConversion { get; set; }
+        public RelayCommand CancelCommand { get; }
+        public RelayCommand CreateCommand { get; }
 
-
-        public EnterDate()
+        public EnterDateViewModel()
         {
-            InitializeComponent();
-            this.DataContext = this;
 
             StartingDateController = new TourStartingTimeController();
-
+            CancelCommand = new RelayCommand(CancelButton_Click, CanExecute);
+            CreateCommand = new RelayCommand(Button_Click_Kreiraj, CanExecute);
         }
-
-        // public string this[string columnName] => throw new NotImplementedException();
-
-        // public string Error => throw new NotImplementedException();
 
         private string _startingDate;
 
@@ -55,6 +43,7 @@ namespace BookingProject.View
                 if (value != _startingDate)
                 {
                     _startingDate = value;
+                    IsButtonEnabled = ValidateTime();
                     OnPropertyChanged();
                 }
             }
@@ -67,7 +56,7 @@ namespace BookingProject.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void Button_Click_Kreiraj(object sender, RoutedEventArgs e)
+        private void Button_Click_Kreiraj(object param)
         {
             TourDateTime startingDate = new TourDateTime();
             startingDate.StartingDateTime = DateConversion.StringToDateTour(StartingDate);
@@ -76,9 +65,9 @@ namespace BookingProject.View
 
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void CancelButton_Click(object param)
         {
-            Close();
+            CloseWindow();
         }
 
         public string Error => null;
@@ -100,6 +89,29 @@ namespace BookingProject.View
 
         private readonly string[] _validatedProperties = { "StartingDate" };
 
+        private bool _isButtonEnabled = false;
+        public bool IsButtonEnabled
+        {
+            get { return _isButtonEnabled; }
+            set
+            {
+                if (_isButtonEnabled != value)
+                {
+                    _isButtonEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool ValidateTime()
+        {
+            if (DateTime.TryParse(StartingDate, out DateTime result) && StartingDate.Length == 19)
+            {
+                return true;
+            }
+
+            return false;
+        }
         public bool IsValid
         {
             get
@@ -118,13 +130,16 @@ namespace BookingProject.View
                 return false;
             }
         }
+        private bool CanExecute(object param) { return true; }
 
-        private void Window_LayoutUpdated(object sender, System.EventArgs e)
+        private void CloseWindow()
         {
-            if (IsValid)
-                CreateButton.IsEnabled = true;
-            else
-                CreateButton.IsEnabled = false;
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.GetType() == typeof(EnterDate)) { window.Close(); }
+            }
         }
+
     }
 }
+
