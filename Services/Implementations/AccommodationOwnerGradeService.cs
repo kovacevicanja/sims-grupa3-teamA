@@ -96,13 +96,12 @@ namespace BookingProject.Services.Implementations
             return counter > 5 && average > 4.5;
         }
 
-        public void MakeGrade(AccommodationOwnerGrade grade, AccommodationReservation _selectedReservation, int chosenCleanliness, int chosenCorectness, String Comment, String Reccommendation)
+        public void MakeGrade(AccommodationOwnerGrade grade, AccommodationReservation _selectedReservation, int chosenCleanliness, int chosenCorectness, String Comment)
         {
             grade.Accommodation.Id = _selectedReservation.Accommodation.Id;
             grade.Cleanliness = chosenCleanliness;
             grade.OwnerCorectness = chosenCorectness;
             grade.AdditionalComment = Comment;
-            grade.Reccommendation = Reccommendation;
             grade.User.Id = Injector.CreateInstance<IUserService>().GetLoggedUser().Id;
             grade.AccommodationReservation.Id = _selectedReservation.Id;
             Create(grade);

@@ -26,6 +26,7 @@ namespace BookingProject.View.Guest1ViewModel
         public RelayCommand HomePageCommand { get; }
         public RelayCommand LogOutCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
+        public RelayCommand MyReviewsCommand { get; }
 
         public FindAvailableDatesForAccommodationViewModel(List<(DateTime, DateTime)> ranges, Accommodation selectedAccommodation)
         {
@@ -36,6 +37,7 @@ namespace BookingProject.View.Guest1ViewModel
             HomePageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             LogOutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
+            MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
         private void CloseWindow()
@@ -111,6 +113,13 @@ namespace BookingProject.View.Guest1ViewModel
         {
             SignInForm signInForm = new SignInForm();
             signInForm.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_MyReviews(object param)
+        {
+            var reviews = new Guest1ReviewsView();
+            reviews.Show();
             CloseWindow();
         }
     }

@@ -21,6 +21,7 @@ namespace BookingProject.View.Guest1ViewModel
         public RelayCommand HomepageCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
         public RelayCommand LogoutCommand { get; }
+        public RelayCommand MyReviewsCommand { get; }
         public AccommodationRequestsViewModel()
         {
             requestAccommodationReservationController = new RequestAccommodationReservationController();
@@ -56,6 +57,13 @@ namespace BookingProject.View.Guest1ViewModel
         {
             SignInForm signInForm = new SignInForm();
             signInForm.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_MyReviews(object param)
+        {
+            var reviews = new Guest1ReviewsView();
+            reviews.Show();
             CloseWindow();
         }
     }

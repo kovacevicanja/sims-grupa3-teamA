@@ -57,9 +57,9 @@ namespace BookingProject.Controller
             return _accommodationOwnerGradeService.GetById(id);
         }
 
-        public void MakeGrade(AccommodationOwnerGrade grade, AccommodationReservation _selectedReservation, int chosenCleanliness, int chosenCorectness, String Comment, String Reccommendation)
+        public void MakeGrade(AccommodationOwnerGrade grade, AccommodationReservation _selectedReservation, int chosenCleanliness, int chosenCorectness, String Comment)
         {
-           _accommodationOwnerGradeService.MakeGrade(grade, _selectedReservation, chosenCleanliness, chosenCorectness, Comment, Reccommendation);
+           _accommodationOwnerGradeService.MakeGrade(grade, _selectedReservation, chosenCleanliness, chosenCorectness, Comment);
         }
     }
 }

@@ -38,6 +38,7 @@ namespace BookingProject.View
         public RelayCommand MyReservationsCommand { get; }
         public RelayCommand AddPictureCommand { get; }
         public RelayCommand ReviewCommand { get; }
+        public RelayCommand MyReviewsCommand { get; }
         public AccommodationOwnerReviewViewModel(AccommodationReservation selectedReservation)
         {
             AccommodationOwnerGradeController = new AccommodationOwnerGradeController();
@@ -58,6 +59,7 @@ namespace BookingProject.View
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
             AddPictureCommand = new RelayCommand(Button_Click_AddPicture, CanExecute);
             ReviewCommand = new RelayCommand(Button_Click_Review, CanExecute);
+            MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
 
         }
         private bool CanExecute(object param) { return true; }
@@ -140,19 +142,6 @@ namespace BookingProject.View
             }
         }
 
-        private string _reccommendation;
-        public string Reccommendation
-        {
-            get => _reccommendation;
-            set
-            {
-                if (value != _reccommendation)
-                {
-                    _reccommendation = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -168,8 +157,26 @@ namespace BookingProject.View
             }
             else
             {
-                AccommodationOwnerGradeController.MakeGrade(grade, _selectedReservation, chosenCleanliness, chosenCorectness, Comment, Reccommendation);
-                MessageBox.Show("You have successfully reviewed this accommodation!");
+                AccommodationOwnerGradeController.MakeGrade(grade, _selectedReservation, chosenCleanliness, chosenCorectness, Comment);
+                ShowMessageBox();
+            }
+        }
+
+        public void ShowMessageBox()
+        {
+            MessageBoxResult result = MessageBox.Show("Do you want to add recommendation for renovation?", "Confirmation", MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                var reccommendation = new RecommendationRenovationView();
+                reccommendation.Show();
+                CloseWindow();
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                var homepage = new Guest1HomepageView();
+                homepage.Show();
+                CloseWindow();
             }
         }
         private void CloseWindow()
@@ -220,6 +227,13 @@ namespace BookingProject.View
         {
             SignInForm signInForm = new SignInForm();
             signInForm.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_MyReviews(object param)
+        {
+            var reviews = new Guest1ReviewsView();
+            reviews.Show();
             CloseWindow();
         }
     }

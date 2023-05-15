@@ -1,12 +1,11 @@
-﻿<Window x:Class="BookingProject.View.ReservationAccommodationView"
+﻿<Window x:Class="BookingProject.View.Guest1View.RecommendationRenovationView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookingProject.View"
-        xmlns:val="clr-namespace:BookingProject.Validation"
+        xmlns:local="clr-namespace:BookingProject.View.Guest1View"
         mc:Ignorable="d"
-        Title="ReservationAccommodation" Height="720" Width="1280">
+        Title="RecommendationRenovationView" Height="720" Width="1280">
     <DockPanel LastChildFill="True">
         <Grid Background="Honeydew">
             <Grid.ColumnDefinitions>
@@ -83,11 +82,10 @@
                 </Button>
                 <Label Height="150"></Label>
             </StackPanel>
-
-            <Border Grid.Column="1" Background="Beige">
+            <Border Grid.Column="1">
                 <Grid>
                     <Grid.Background>
-                        <ImageBrush ImageSource="/Resources/Images/Guest1Images/background8.jpg" />
+                        <ImageBrush ImageSource="/Resources/Images/Guest1Images/background10.jpg"/>
                     </Grid.Background>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="64*"/>
@@ -99,66 +97,64 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Grid.Column="2" Height="300" Margin="28,25,121,25">
+                    <Grid Grid.Row="0" Grid.Column="2" Height="600" Margin="15" Width="800">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
+                            <RowDefinition Height="200"></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="80"></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="300"></ColumnDefinition>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Height="30" Foreground="DarkGreen" FontSize="13" FontWeight="Bold">Initial date:</Label>
-                        <Label Grid.Row="1" Grid.Column="0" Height="30" Foreground="DarkGreen" FontSize="13" FontWeight="Bold">End date:</Label>
-                        <Label Grid.Row="2" Grid.Column="0" Height="30" Foreground="DarkGreen" FontSize="13" FontWeight="Bold">Number of guests:</Label>
-                        <DatePicker Grid.Row="0" Grid.Column="1" SelectedDate="{Binding Path=InitialDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
-                     Height="30"></DatePicker>
-                        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
-                     Height="30"></DatePicker>
-                        <TextBox x:Name="txtNumber" Grid.Row="2" Grid.Column="1" Height="30" Width="350">
-                            <TextBox.Text>
-                                <Binding Path="NumberOfGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
-                                    <Binding.ValidationRules>
-                                        <val:Guest1IntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                            <Validation.ErrorTemplate>
-                                <ControlTemplate>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <Border BorderBrush="Red" BorderThickness="1"/>
-                                        <AdornedElementPlaceholder x:Name="textBox"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
-                                    </Grid>
-                                </ControlTemplate>
-                            </Validation.ErrorTemplate>
-                        </TextBox>
+                        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                            <Label Margin="15" Height="80" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="DarkGreen">Recommend renovation</Label>
+                            <Image  Width="50" Height="50" Margin="10" Source="/Resources/Images/Guest1Images/renovation.png"/>
+                        </StackPanel>
+                        <Label Grid.Row="1" Grid.Column="0" Height="30" FontSize="18" FontWeight="Bold" Foreground="DarkGreen">Description</Label>
+                        <Label Grid.Row="2" Grid.Column="0" Height="30" FontSize="18" FontWeight="Bold" Foreground="DarkGreen" Margin="0 0 0 150">Urgency level</Label>
 
+                        <TextBox Grid.Row="1" Grid.Column="1" 
+                     Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}"
+                     Height="20"></TextBox>
 
+                        <StackPanel Grid.Column="1" Grid.Row="2">
+                            <StackPanel Margin="0,10,10,0">
+                                <RadioButton GroupName="Levels" Content="Level 1 - Nice to have" Margin="3" FontSize="18"
+                                             FontWeight="Bold" Foreground="DarkGreen"
+                 IsChecked="{Binding SelectedFirst}" />
+                                <RadioButton GroupName="Levels" Content="Level 2 - Minor complaints" Margin="3" FontSize="18"
+                                             FontWeight="Bold" Foreground="DarkGreen"
+                 IsChecked="{Binding SelectedSecond}" />
+                                <RadioButton GroupName="Levels" Content="Level 3 - Really bothersome" Margin="3" FontSize="18"
+                                             FontWeight="Bold" Foreground="DarkGreen"
+                 IsChecked="{Binding SelectedThird}" />
+                                <RadioButton GroupName="Levels" Content="Level 4 - Really necessary" Margin="3" FontSize="18"
+                                             FontWeight="Bold" Foreground="DarkGreen"
+                 IsChecked="{Binding SelectedFourth}" />
+                                <RadioButton GroupName="Levels" Content="Level 5 - Very bad condition" Margin="3" FontSize="18"
+                                             FontWeight="Bold" Foreground="DarkGreen"
+                 IsChecked="{Binding SelectedFifth}" />
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <WrapPanel Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10" Width="300" >
+                            <Button IsDefault="True" Margin="0 20 0 20" Command="{Binding ReviewCommand}"
+                                     Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen">Review</Button>
+                            <Button Content="View tutorial" Margin="20 20 0 20"
+                                     Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen"></Button>
+                            <Button Content="Homepage" Command="{Binding HomePageCommand}" Margin="20 20 0 20"
+                                     Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen"></Button>
+                        </WrapPanel>
                     </Grid>
-
-                    <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Margin="121,0,0,0" Width="668" >
-                        <Button Content="Homepage" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
-                                 Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150"
-                                Command="{Binding HomepageCommand}"
-               />
-                        <Button Content="View tutorial" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
-                                 Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150"
-               />
-                        <Button Content="Book" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"  Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150"
-               Command="{Binding BookCommand}"/>
-                    </WrapPanel>
                 </Grid>
-
             </Border>
         </Grid>
     </DockPanel>
