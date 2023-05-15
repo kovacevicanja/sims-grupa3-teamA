@@ -148,7 +148,7 @@
                                 Text="{Binding Path=Reccommendation, UpdateSourceTrigger=PropertyChanged}"
                      Height="20"></TextBox>
 
-                        
+
                         <WrapPanel Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10" Width="300" >
                             <Button IsDefault="True" Margin="0 20 0 20" Command="{Binding ReviewCommand}"
                                      Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen">Review</Button>
