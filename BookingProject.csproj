@@ -278,9 +278,6 @@
     </Compile>
     <Compile Include="Validation\YearValidationRule.cs" />
     <Compile Include="ViewModelBases\ViewModelBase.cs" />
-    <Compile Include="View\AccommodationOwnerReview.xaml.cs">
-      <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Guest1ViewModel\AccommodationOwnerReviewViewModel.cs" />
     <Compile Include="View\Guest1View\AccommodationRequestsView.xaml.cs">
       <DependentUpon>AccommodationRequestsView.xaml</DependentUpon>
