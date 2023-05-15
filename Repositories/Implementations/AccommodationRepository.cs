@@ -90,11 +90,11 @@ namespace BookingProject.Repositories.Implementations
             Save(_accommodations);
         }
 
-        public void AddImageToAccommodation(Accommodation accommodation, AccommodationImage image)
-        {
-            accommodation.Images.Add(image);
-            image.AccommodationId = accommodation.Id;
-        }
+        //public void AddImageToAccommodation(Accommodation accommodation, AccommodationImage image)
+        //{
+        //    accommodation.Images.Add(image);
+        //    image.AccommodationId = accommodation.Id;
+        //}
 
 
         public void AccommodationLocationBind()
