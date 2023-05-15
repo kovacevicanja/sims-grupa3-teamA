@@ -4,10 +4,27 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
         Title="MyToursWindow" Height="515" Width="1105">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Create">
+            <i:InvokeCommandAction Command="{Binding CreateCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Cancel">
+            <i:InvokeCommandAction Command="{Binding CancelTourCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Close">
+            <i:InvokeCommandAction Command="{Binding CancelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Command="{Binding CreateCommand}" />
+        <KeyBinding Key="C" Command="{Binding CancelTourCommand}" />
+        <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
+    </Window.InputBindings>
 
     <Grid>
 
@@ -88,12 +105,12 @@
         </Grid>
 
         <WrapPanel Grid.Row="2" Margin="20,41,5,-85">
-            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Click="Button_Click_Create" Content="Create New Tour &#xa;          (Ins)" Height="46"/>
-            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Click="Button_Click_Cancel" Content="Cancel Selected Tour &#xa;             (Del)" Height="46"/>
-            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Click="Button_Click_Close" Content="Close &#xa; (Esc)" Height="46"/>
+            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding CreateCommand}" Content="Create New Report &#xa;            (N)" Height="46"/>
+            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelTourCommand}" Content="Cancel Selected Tour &#xa;               (C)" Height="46"/>
+            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="Close &#xa; (Esc)" Height="46"/>
         </WrapPanel>
         <Label Content="My Tours" FontWeight="Bold" FontSize="26"  Margin="10,0,816,0"/>
-        <Label Content="Options" FontWeight="Bold" FontSize="26"  Margin="30,308,816,-14" Grid.Row="1" Grid.RowSpan="2"/>
+        <Label Content="Options" FontWeight="Bold" FontSize="26"  Margin="30,308,816,-19" Grid.Row="1" Grid.RowSpan="2"/>
     </Grid>
 </Window>
 

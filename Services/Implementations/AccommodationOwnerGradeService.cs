@@ -104,6 +104,7 @@ namespace BookingProject.Services.Implementations
             grade.AdditionalComment = Comment;
             grade.Reccommendation = Reccommendation;
             grade.User.Id = Injector.CreateInstance<IUserService>().GetLoggedUser().Id;
+            grade.AccommodationReservation.Id = _selectedReservation.Id;
             Create(grade);
         }
 

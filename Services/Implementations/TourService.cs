@@ -99,6 +99,18 @@ namespace BookingProject.Services
         {
             return _tourRepository.GetAll();
         }
+
+        public void FullBind()
+        {
+
+            _tourRepository.TourLocationBind();
+            _tourRepository.BindTourImage();
+            _tourRepository.TourKeyPointBind();
+            _tourRepository.TourDateBind();
+
+        }
+
+
         public Tour GetById(int id)
         {
             return _tourRepository.GetById(id);
@@ -174,6 +186,9 @@ namespace BookingProject.Services
             _tourRepository.BindLastTour();
         }
 
-
+        public List<Tour> LoadAgain()
+        {
+            return _tourRepository.LoadAgain();
+        }
     }
 }

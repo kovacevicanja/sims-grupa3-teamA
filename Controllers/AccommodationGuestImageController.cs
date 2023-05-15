@@ -35,5 +35,9 @@ namespace BookingProject.Controllers
         {
             _accommodationGuestImageService.SaveImage();
         }
+        public void DeletePictureForNotExistingGrade(int AccommodationOwnerGradeId)
+        {
+            _accommodationGuestImageService.DeletePictureForNotExistingGrade(AccommodationOwnerGradeId);
+        }
     }
 }

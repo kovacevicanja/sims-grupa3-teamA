@@ -69,20 +69,20 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <StackPanel Height="340" Background="Honeydew" Orientation="Vertical">
-                    <Image  Width="100" Height="100" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
+                <StackPanel Height="320" Background="Honeydew" Orientation="Vertical">
+                    <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
                     <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
                 </StackPanel>
                 <Button Command="{Binding LogoutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Logout" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                            <TextBlock Text="Logout" Margin="5,0,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
                 <Label Height="150"></Label>
             </StackPanel>
-            
+
             <Border Grid.Column="1" Background="Beige">
                 <Grid>
                     <Grid.Background>
@@ -135,13 +135,12 @@
                />
                         <Button Content="See requests" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
                                  Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150"
-                                Command="{Binding RequestsCommand}"
+                                Command="{Binding SeeRequestsCommand}"
                />
-                       
-                        <Button Content="Reschedule" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
-               Command="{Binding SendRequestCommand}"
-                                 Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150"/>
                     </WrapPanel>
+                    <Button Content="Reschedule" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="128,0,0,0"
+               Command="{Binding SendRequestCommand}"
+                                 Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150" Grid.Row="1" Grid.Column="2"/>
                 </Grid>
 
             </Border>

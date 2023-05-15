@@ -31,6 +31,8 @@ namespace BookingProject.Services.Interfaces
         bool IsAvailableToMove(RequestAccommodationReservation request);
         void DeleteReservationFromCSV(AccommodationReservation accommmodationReservation);
         void Subscribe(IObserver observer);
+        void Unsubscribe(IObserver observer);
+        void NotifyObservers();
         void SaveParam(List<AccommodationReservation> reservations);
         void Save();
     }

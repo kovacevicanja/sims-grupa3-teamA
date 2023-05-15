@@ -3,6 +3,7 @@ using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.View.GuideViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,43 +28,13 @@ namespace BookingProject.View.GuideView
 
     public partial class GuestReviewsWindow : Window
     {
-        private TourEvaluationController _tourEvaluationController;
-        private ObservableCollection<TourEvaluation> _grades;
-        public TourTimeInstance ChosenTour { get; set; }
-        public TourEvaluation ChosenEvaluation { get; set; }
-
         public GuestReviewsWindow(TourTimeInstance chosenTour)
         {
             InitializeComponent();
-            this.DataContext = this;
-            _tourEvaluationController= new TourEvaluationController();
-            ChosenTour = chosenTour;
-            _grades = new ObservableCollection<TourEvaluation>(FilterGrades(_tourEvaluationController.GetAll()));
-            TourDataGrid.ItemsSource = _grades;
+            GuestReviewsViewModel ViewModel = new GuestReviewsViewModel(chosenTour);
+            this.DataContext = ViewModel;
+            TourDataGrid.ItemsSource = ViewModel._grades;
         }
-        public List<TourEvaluation> FilterGrades(List<TourEvaluation> grades)
-        {
-            List<TourEvaluation> filteredGrades = new List<TourEvaluation>();
-            foreach (TourEvaluation grade in grades)
-            {
-                if (grade.Tour.Id == ChosenTour.TourId)
-                {
-                    filteredGrades.Add(grade);
-                }
-            }
-            return filteredGrades;
-        }
-        private void Button_Click_Close(object sender, RoutedEventArgs e)
-        {
-            TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow("all");
-            tourStatisticsWindow.Show();
-            Close();
-        }
-        private void Button_Click_Examine(object sender, RoutedEventArgs e)
-        {
-            ExamineGradeWindow examineGradeWindow = new ExamineGradeWindow(ChosenEvaluation, ChosenTour);
-            examineGradeWindow.Show();
-            Close();
-        }
+
     }
 }

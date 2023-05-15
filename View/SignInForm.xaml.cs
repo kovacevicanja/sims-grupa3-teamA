@@ -13,6 +13,8 @@ using System.Windows.Shapes;
 using BookingProject.Model;
 using BookingProject.Domain;
 using BookingProject.View.CustomMessageBoxes;
+using BookingProject.View.Guest1View;
+using BookingProject.ConversionHelp;
 using BookingProject.View.OwnerViewModel;
 
 namespace BookingProject.View
@@ -109,7 +111,7 @@ namespace BookingProject.View
                         Model.User guest = _controller.GetByUsername(Username);
                         guest.IsLoggedIn = true;
                         _controller.Save();
-                        Guest1View guest1View = new Guest1View();
+                        Guest1HomepageView guest1View = new Guest1HomepageView();
                         guest1View.Show();
                         List<Notification> notifications = new List<Notification>();
                         notifications = _requestController.GetGuest1Notifications(guest);
@@ -130,8 +132,8 @@ namespace BookingProject.View
                         _controller.GetByUsername(Username).IsLoggedIn = true;
                         User userGuest = _controller.GetByUsername(Username);
                         _controller.Save();
-                        SecondGuestProfileView secondGuestProfile = new SecondGuestProfileView(userGuest.Id);
-                        secondGuestProfile.Show();
+                        SecondGuestHomepageView homePage = new SecondGuestHomepageView(userGuest.Id);
+                        homePage.Show();
                         List<Notification> notifications = new List<Notification>();
                         notifications = _tourPresenceController.GetGuestNotifications(userGuest);
                         List<Notification> notificationsCopy = new List<Notification>();

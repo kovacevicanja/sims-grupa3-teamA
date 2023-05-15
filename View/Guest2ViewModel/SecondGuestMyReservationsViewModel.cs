@@ -12,6 +12,7 @@ using System.Windows;
 using System.ComponentModel;
 using BookingProject.View.Guest2View;
 using BookingProject.Commands;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -20,29 +21,38 @@ namespace BookingProject.View.Guest2ViewModel
         private TourReservationController _tourReservationController;
         public ObservableCollection<TourReservation> MyReservations { get; set; }
         public RelayCommand CancelCommand { get; set; }
+        public RelayCommand SeeMoreCommand { get; set; }
         public int GuestId { get; set; }
+        public NavigationService NavigationService { get; set; }
+        public TourReservation ChosenReservation { get; set; }
 
-        public SecondGuestMyReservationsViewModel(int guestId)
+        public SecondGuestMyReservationsViewModel(int guestId, NavigationService navigationService)
         {
             GuestId = guestId;
             _tourReservationController = new TourReservationController();
             MyReservations = new ObservableCollection<TourReservation>(_tourReservationController.GetUserReservations(guestId));
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
-        }
+            SeeMoreCommand = new RelayCommand(Button_SeeMore, CanWhenSelected);
 
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(SecondGuestMyReservations)) { window.Close(); }
-            }
+            NavigationService = navigationService;
         }
 
         private bool CanExecute(object param) { return true; } 
 
+        private bool CanWhenSelected(object param) 
+        {
+            if (ChosenReservation == null) return false;
+            else return true;   
+        }
+
+        private void Button_SeeMore(object param)
+        {
+            NavigationService.Navigate(new SeeMoreAboutTourView(ChosenReservation.Tour, GuestId, NavigationService));
+        }
+
         private void Button_Cancel(object param)
         {
-            CloseWindow();
+            NavigationService.GoBack();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

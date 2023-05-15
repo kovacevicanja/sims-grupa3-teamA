@@ -4,19 +4,25 @@ using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.Validation;
 using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.WebPages;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -34,11 +40,15 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand LogOutCommand { get; }
         public User User { get; set; }
         public int Flag { get; set; }
+        public CorrectInputCityValidationRule correctInputCityvalidationRule { get; set; }
+        public NavigationService NavigationService { get; set; }
 
-        public CreateTourRequestViewModel(int guestId)
+        public CreateTourRequestViewModel(int guestId, NavigationService navigationService)
         {
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
+
+            NavigationService = navigationService;
 
             _tourRequestController = new TourRequestController();
             _tourLocationController = new TourLocationController();
@@ -57,9 +67,11 @@ namespace BookingProject.View.Guest2ViewModel
             LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
 
             User = new User();
+
+            correctInputCityvalidationRule = new CorrectInputCityValidationRule();
         }
 
-        private bool CanExecute(object param) { return true; }
+        private bool CanExecute(object param) { return true; } 
 
         private void CloseWindow()
         {
@@ -156,14 +168,12 @@ namespace BookingProject.View.Guest2ViewModel
         private string _city;
         public string City
         {
-            get => _city;
+            get { return _city; }
             set
             {
-                if (value != _city)
-                {
-                    _city = value;
-                    OnPropertyChanged();
-                }
+                _city = value;
+                OnPropertyChanged(nameof(City));
+
             }
         }
 
@@ -179,6 +189,7 @@ namespace BookingProject.View.Guest2ViewModel
             TourRequest tourRequest = new TourRequest();
 
             Location location = new Location();
+
             location.City = City;
             location.Country = Country;
 
@@ -190,37 +201,44 @@ namespace BookingProject.View.Guest2ViewModel
             tourRequest.Status = Domain.Enums.TourRequestStatus.PENDING;
             tourRequest.Guest.Id = GuestId;
 
-            if (location.City.IsEmpty() || location.Country.IsEmpty() || (tourRequest.StartDate == DateTime.Today
-                && tourRequest.EndDate == DateTime.Today) || tourRequest.GuestsNumber == default(int))
+            ValidationResult resultCity = correctInputCityvalidationRule.Validate(location.City, CultureInfo.CurrentCulture);
+
+            if (string.IsNullOrEmpty(location.City) || string.IsNullOrEmpty(location.Country) || (tourRequest.StartDate == DateTime.Today
+                && tourRequest.EndDate == DateTime.Today) || tourRequest.GuestsNumber == 0)
             {
                 CustomMessageBox.ShowCustomMessageBox("You can not create a tour request. Some of the required fields are not filled out.");
             }
             else
             {
-                if (!(location.City.IsEmpty() || location.Country.IsEmpty()))
+                if (!(location.City.IsEmpty() || location.Country.IsEmpty()) && resultCity.IsValid)
                 {
                     _tourLocationController.Create(location);
                     tourRequest.Location = location;
-                }
 
-                _tourRequestController.Create(tourRequest);
+                    _tourRequestController.Create(tourRequest);
     
-                CustomMessageBox.ShowCustomMessageBox("You have successfully created a tour request. If you want, you can create more of them.");
+                    CustomMessageBox.ShowCustomMessageBox("You have successfully created a tour request. If you want, you can create more of them.");
 
-                City = "";
-                Country = "";
-                Description = "";
-                GuestsNumber = 0;
-                StartDate = DateTime.Today;
-                EndDate = DateTime.Today;
+                    City = "";
+                    Country = "";
+                    Description = "";
+                    GuestsNumber = 0;
+                    StartDate = DateTime.Today;
+                    EndDate = DateTime.Today;
+                }
+                else
+                {
+                    MessageBox.Show("Niste uneli pravilno grad.");
+                }
             }
         }
 
         private void Button_Click_Cancel(object param)
         {
-            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
-            profile.Show();
-            CloseWindow();
+            //SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
+            //profile.Show();
+            //CloseWindow();
+            //NavigationService.GoBack();
         }
 
         private void Button_Click_LogOut(object param)
@@ -230,27 +248,6 @@ namespace BookingProject.View.Guest2ViewModel
             SignInForm signInForm = new SignInForm();
             signInForm.Show();
             CloseWindow();
-        }
-        private void Validation_Error(object sender, ValidationErrorEventArgs e)
-        {
-            if (e.Action == ValidationErrorEventAction.Added)
-            {
-                var inputControl = e.OriginalSource as Control;
-                if (inputControl != null)
-                {
-                    inputControl.BorderBrush = new SolidColorBrush(Colors.LightBlue);
-                    inputControl.BorderThickness = new Thickness(1);
-                }
-            }
-            else if (e.Action == ValidationErrorEventAction.Removed)
-            {
-                var inputControl = e.OriginalSource as Control;
-                if (inputControl != null)
-                {
-                    inputControl.ClearValue(Control.BorderBrushProperty);
-                    inputControl.ClearValue(Control.BorderThicknessProperty);
-                }
-            }
         }
     }
 }

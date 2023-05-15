@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -65,6 +66,7 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -256,22 +258,36 @@
     <Compile Include="Services\Interfaces\ITourTimeInstanceService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\Interfaces\IVoucherService.cs" />
+    <Compile Include="Validation\CorrectInputCityStatisticsValidationRule.cs" />
+    <Compile Include="Validation\CorrectInputCountryStatisticsValidationRule.cs" />
+    <Compile Include="Validation\CorrectInputCountryValidationRule.cs" />
+    <Compile Include="Validation\CorrectInputCityValidationRule.cs" />
+    <Compile Include="Validation\Guest1IntegerNumberValidationRule.cs" />
     <Compile Include="Validation\IntegerNumberValidationRule.cs" />
     <Compile Include="Validation\OwnerIntegerNumberValidationRule.cs" />
     <Compile Include="Validation\RequiredFieldValidationRule .cs" />
+    <Compile Include="Validation\SearchAccommodationValidationRule.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
-    <Compile Include="View\Guest1ViewModel\Guest1HomepageViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ReservationsViewModel.cs" />
-    <Compile Include="View\Guest1ViewModel\Guest1ViewViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\Guest1ReviewsViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\Guest1HomepageViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\RescheduleAccommodationReservationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\ReservationAccommodationViewModel.cs" />
     <Compile Include="View\Guest1View\AccommodationOwnerReview.xaml.cs">
       <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Validation\YearValidationRule.cs" />
+    <Compile Include="ViewModelBases\ViewModelBase.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationOwnerReviewViewModel.cs" />
     <Compile Include="View\Guest1View\AccommodationRequestsView.xaml.cs">
       <DependentUpon>AccommodationRequestsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Guest1HomepageView.xaml.cs">
+      <DependentUpon>Guest1HomepageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Guest1ReviewsView.xaml.cs">
+      <DependentUpon>Guest1ReviewsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2ViewModel\ActiveToursViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ChangeYearTourRequestsStatisticsViewModel.cs" />
@@ -280,14 +296,17 @@
     <Compile Include="View\Guest2ViewModel\ReservationTourOtherOffersViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ReservationTourViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SearchAndReservationToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\SecondGuestHomepageViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyAttendedToursViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyReservationsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyVouchersViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestProfileViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SeeMoreAboutTourViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ShowGalleryViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\TourRequestStatisticsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\TourRequestsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ToursAndGuidesEvaluationViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ValidationContext.cs" />
     <Compile Include="View\Guest2View\ActiveToursView.xaml.cs">
       <DependentUpon>ActiveToursView.xaml</DependentUpon>
     </Compile>
@@ -304,32 +323,39 @@
     </Compile>
     <Compile Include="View\CustomMessageBoxes\CustomMessageBox.cs" />
     <Compile Include="View\CustomMessageBoxes\CustomNotificationMessageBox.cs" />
-    <Compile Include="View\EnterDate.xaml.cs">
+    <Compile Include="View\GuideViewModel\EnterDateViewModel.cs" />
+    <Compile Include="View\GuideViewModel\EnterImageViewModel.cs" />
+    <Compile Include="View\GuideViewModel\EnterKeyPointViewModel.cs" />
+    <Compile Include="View\GuideViewModel\EnterRequestDateViewModel.cs" />
+    <Compile Include="View\GuideViewModel\RequestDetailsViewModel.cs" />
+    <Compile Include="View\GuideViewModel\RequestedTourCreationViewModel.cs" />
+    <Compile Include="View\GuideViewModel\RequestStatisticsChoiceViewModel.cs" />
+    <Compile Include="View\GuideViewModel\RequestStatisticsViewModel.cs" />
+    <Compile Include="View\GuideViewModel\SuggestionChoiceViewModel.cs" />
+    <Compile Include="View\GuideViewModel\AllTourRequestsViewModel.cs" />
+    <Compile Include="View\GuideView\EnterDate.xaml.cs">
       <DependentUpon>EnterDate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EnterImage.xaml.cs">
+    <Compile Include="View\GuideView\EnterImage.xaml.cs">
       <DependentUpon>EnterImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EnterKeyPoint.xaml.cs">
+    <Compile Include="View\GuideView\EnterKeyPoint.xaml.cs">
       <DependentUpon>EnterKeyPoint.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest1View\FindAvailableDatesForAccommodation.xaml.cs">
       <DependentUpon>FindAvailableDatesForAccommodation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Guest1View\Guest1Homepage.xaml.cs">
-      <DependentUpon>Guest1Homepage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Guest1View\Guest1Reservations.xaml.cs">
       <DependentUpon>Guest1Reservations.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Guest1View\Guest1View.xaml.cs">
-      <DependentUpon>Guest1View.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\ChangeYearTourRequestsStatisticsView.xaml.cs">
       <DependentUpon>ChangeYearTourRequestsStatisticsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\CreateTourRequestView.xaml.cs">
       <DependentUpon>CreateTourRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\SecondGuestHomepageView.xaml.cs">
+      <DependentUpon>SecondGuestHomepageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\SeeMoreAboutTourView.xaml.cs">
       <DependentUpon>SeeMoreAboutTourView.xaml</DependentUpon>
@@ -343,8 +369,27 @@
     <Compile Include="View\Guest2View\TourRequestsView.xaml.cs">
       <DependentUpon>TourRequestsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideViewModel\ChangeStatsYearViewModel.cs" />
+    <Compile Include="View\GuideViewModel\ExamineGradeViewModel.cs" />
+    <Compile Include="View\GuideViewModel\GuestListViewModel.cs" />
+    <Compile Include="View\GuideViewModel\GuestPresenceCheckViewModel.cs" />
+    <Compile Include="View\GuideViewModel\GuestReviewsViewModel.cs" />
+    <Compile Include="View\GuideViewModel\GuideHomeViewModel.cs" />
+    <Compile Include="View\GuideViewModel\LiveToursListViewModel.cs" />
+    <Compile Include="View\GuideViewModel\LiveTourViewModel.cs" />
+    <Compile Include="View\GuideViewModel\MyToursViewModel.cs" />
+    <Compile Include="View\GuideViewModel\SelectedTourStatsViewModel.cs" />
+    <Compile Include="View\GuideViewModel\TourCancellationViewModel.cs" />
+    <Compile Include="View\GuideViewModel\TourCreationViewModel.cs" />
+    <Compile Include="View\GuideViewModel\TourStatisticsViewModel.cs" />
+    <Compile Include="View\Guest2View\ShowGalleryView.xaml.cs">
+      <DependentUpon>ShowGalleryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\ChangeStatsYearWindow.xaml.cs">
       <DependentUpon>ChangeStatsYearWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\EnterRequestDate.xaml.cs">
+      <DependentUpon>EnterRequestDate.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\ExamineGradeWindow.xaml.cs">
       <DependentUpon>ExamineGradeWindow.xaml</DependentUpon>
@@ -364,14 +409,32 @@
     <Compile Include="View\GuideView\MyToursWindow.xaml.cs">
       <DependentUpon>MyToursWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\RequestDetailsView.xaml.cs">
+      <DependentUpon>RequestDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\RequestedTourCreation.xaml.cs">
+      <DependentUpon>RequestedTourCreation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\RequestStatisticsChoiceView.xaml.cs">
+      <DependentUpon>RequestStatisticsChoiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\RequestStatisticsView.xaml.cs">
+      <DependentUpon>RequestStatisticsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\SelectedTourStatsWindow.xaml.cs">
       <DependentUpon>SelectedTourStatsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\SecondGuestMyReservationsView.xaml.cs">
       <DependentUpon>SecondGuestMyReservationsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GuideView\SuggestionChoiceView.xaml.cs">
+      <DependentUpon>SuggestionChoiceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideView\TourCancellationWindow.xaml.cs">
       <DependentUpon>TourCancellationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideView\AllTourRequestsView.xaml.cs">
+      <DependentUpon>AllTourRequestsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideView\TourStatisticsWindow.xaml.cs">
       <DependentUpon>TourStatisticsWindow.xaml</DependentUpon>
@@ -463,6 +526,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Guest1View\Guest1HomepageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Guest1ReviewsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Guest2View\ActiveToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -471,15 +542,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EnterDate.xaml">
+    <Page Include="View\GuideView\EnterDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EnterImage.xaml">
+    <Page Include="View\GuideView\EnterImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EnterKeyPoint.xaml">
+    <Page Include="View\GuideView\EnterKeyPoint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -487,15 +558,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Guest1View\Guest1Homepage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Guest1View\Guest1Reservations.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Guest1View\Guest1View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -504,6 +567,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest2View\CreateTourRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\SecondGuestHomepageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -523,7 +590,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Guest2View\ShowGalleryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\ChangeStatsYearWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\EnterRequestDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -555,11 +630,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\GuideView\RequestDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\RequestedTourCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\RequestStatisticsChoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\RequestStatisticsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\SelectedTourStatsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\GuideView\SuggestionChoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GuideView\TourCancellationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\AllTourRequestsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -929,6 +1028,120 @@
     <Resource Include="View\Guest2View\ToursImages\seeMore12.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\otherOffers1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\otherOffers2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\otherOffers3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\otherOffers4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\reservation1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\reservation2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\reservation3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\reservation22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\reservation222.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\myTours1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\seeMore8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\myTours2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\myTours3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\myTours4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\myTours5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\myTours6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\activeTours1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\activeTours2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\activeTours3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\activeTours4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\activeTours5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\keyPoints1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\statistics13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\profile1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\profile2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Guest2View\ToursImages\profile3.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\Images\Guest1Images\background1.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -963,6 +1176,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Guest1Images\availabledates.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\background8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\background9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\review1.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\backgroundOwner.jpg" />

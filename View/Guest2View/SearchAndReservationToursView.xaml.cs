@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingProject.Commands;
 using BookingProject.Controller;
@@ -29,12 +30,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for SecondGuestView.xaml
     /// </summary>
-    public partial class SerachAndReservationToursView : Window
+    public partial class SerachAndReservationToursView : Page
     {
-        public SerachAndReservationToursView(int guestId)
+        public SerachAndReservationToursView(int guestId, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new SearchAndReservationToursViewModel(guestId);
+            this.DataContext = new SearchAndReservationToursViewModel(guestId, navigationService);
         }
     }
 }

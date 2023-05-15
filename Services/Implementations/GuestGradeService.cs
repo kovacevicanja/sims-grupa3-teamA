@@ -15,10 +15,14 @@ namespace BookingProject.Services.Implementations
     public class GuestGradeService : IGuestGradeService
     {
         private IGuestGradeRepository _guestGradeRepository;
+        private IUserService _userService;
+        private IAccommodationOwnerGradeRepository _accOwnerGradeRepository;
         public GuestGradeService() { }
         public void Initialize()
         {
             _guestGradeRepository = Injector.CreateInstance<IGuestGradeRepository>();
+            _userService = Injector.CreateInstance<IUserService>();
+            _accOwnerGradeRepository = Injector.CreateInstance<IAccommodationOwnerGradeRepository>();
         }
         public void Create(GuestGrade grade)
         {
@@ -72,6 +76,24 @@ namespace BookingProject.Services.Implementations
                 }
             }
             return count;
+        }
+        public List<GuestGrade> GetSeeableGrades()
+        {
+            List<GuestGrade> _seeableGrades = new List<GuestGrade>();
+            foreach (var g in _guestGradeRepository.GetAll())
+            {
+                if (g.AccommodationReservation.Guest.Id == _userService.GetLoggedUser().Id)
+                {
+                    foreach (var g1 in _accOwnerGradeRepository.GetAll())
+                    {
+                        if (g.AccommodationReservation.Id == g1.AccommodationReservation.Id)
+                        {
+                            _seeableGrades.Add(g);
+                        }
+                    }
+                }
+            }
+            return _seeableGrades;
         }
     }
 }

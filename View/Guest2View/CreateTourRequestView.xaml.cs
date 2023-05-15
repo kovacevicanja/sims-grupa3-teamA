@@ -20,6 +20,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View
@@ -27,12 +28,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for CreateTourRequestView.xaml
     /// </summary>
-    public partial class CreateTourRequestView : Window
+    public partial class CreateTourRequestView : Page
     {
-        public CreateTourRequestView(int guestId)
+        public CreateTourRequestView(int guestId, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new CreateTourRequestViewModel(guestId);
+            this.DataContext = new CreateTourRequestViewModel(guestId, navigationService);
         }
     }
 }

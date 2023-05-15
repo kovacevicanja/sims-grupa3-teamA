@@ -35,6 +35,17 @@ namespace BookingProject.Repositories
             TourKeyPointBind();
             TourDateBind();
         }
+        public List<Tour> LoadAgain()
+        {
+            _tours = Load();
+
+            TourLocationBind();
+            BindTourImage();
+            TourKeyPointBind();
+            TourDateBind();
+
+            return _tours;
+        }
         public List<Tour> Load()
         {
             return _serializer.FromCSV(FilePath);
@@ -64,27 +75,54 @@ namespace BookingProject.Repositories
 
         public void BindLastTour()
         {
-            if (_tours.Count == 0)
-            {
-                return;
-            }
-            else
-            {
-                Tour tour = _tours.Last();
+            
+             if (_tours.Count == 0)
+             {
+                 return;
+             }
+             else
+             {
+                 Tour tour = _tours.Last();
                 List<TourDateTime> dates = Injector.CreateInstance<ITourStartingTimeRepository>().GetAll();
+                List<KeyPoint> keyPoints = Injector.CreateInstance<IKeyPointRepository>().GetAll();
+                List<TourImage> images = Injector.CreateInstance<ITourImageRepository>().GetAll();
+                List<Location> locations = Injector.CreateInstance<ITourLocationRepository>().GetAll();
                 foreach (TourDateTime date in dates)
+                 {
+                     if (tour.Id == date.TourId)
+                     {
+                         tour.StartingTime.Add(date);
+                     }
+                 }
+
+                foreach (KeyPoint keyPoint in keyPoints)
                 {
-                    if (tour.Id == date.TourId)
+                    if (tour.Id == keyPoint.TourId)
                     {
-                        tour.StartingTime.Add(date);
+                        tour.KeyPoints.Add(keyPoint);
                     }
                 }
 
+                foreach (TourImage image in images)
+                {
+                    if (tour.Id == image.Tour.Id)
+                    {
+                        tour.Images.Add(image);
+                    }
+                }
+
+                foreach (Location location in locations)
+                {
+                    if (tour.LocationId == location.Id)
+                    {
+                        tour.Location=location;
+                    }
+                }
 
             }
-        }
+         }
 
-        public List<Tour> GetAll()
+            public List<Tour> GetAll()
         {
             return _tours.ToList();
         }

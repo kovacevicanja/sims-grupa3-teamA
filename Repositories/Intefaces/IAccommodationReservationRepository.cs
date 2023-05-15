@@ -14,7 +14,10 @@ namespace BookingProject.Repositories.Intefaces
         List<AccommodationReservation> GetAll();
         AccommodationReservation GetById(int id);
         void Initialize();
-        void Subscribe(IObserver observer);
+        /*void Subscribe(IObserver observer);
+        void Unsubscribe(IObserver observer);
+        void NotifyObservers();*/
+        List<AccommodationReservation> Load();
         void SaveParam(List<AccommodationReservation> reservations);
         void Save();
     }

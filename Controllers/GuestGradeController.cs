@@ -46,5 +46,9 @@ namespace BookingProject.Controller
         {
             return _guestGradeService.CountGradesForAccommodationAndUser(accommodationId, userId);
         }
+        public List<GuestGrade> GetSeeableGrades()
+        {
+            return _guestGradeService.GetSeeableGrades();
+        }
     }
 }

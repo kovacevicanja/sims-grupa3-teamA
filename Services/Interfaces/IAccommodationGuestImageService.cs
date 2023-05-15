@@ -16,5 +16,6 @@ namespace BookingProject.Services.Interfaces
         AccommodationGuestImage GetById(int id);
         void Save(List<AccommodationGuestImage> images);
         void SaveImage();
+        void DeletePictureForNotExistingGrade(int AccommodationOwnerGradeId);
     }
 }

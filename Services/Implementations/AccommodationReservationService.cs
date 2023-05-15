@@ -17,13 +17,16 @@ using System.Threading.Tasks;
 
 namespace BookingProject.Services.Implementations
 {
-    public class AccommodationReservationService : IAccommodationReservationService
+    public class AccommodationReservationService : IAccommodationReservationService, ISubject
     {
         private IAccommodationReservationRepository _accommodationReservationRepository;
+        private List<IObserver> observers;
         public AccommodationReservationService() { }
         public void Initialize()
         {
             _accommodationReservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+            observers = new List<IObserver>();
+
         }
         public void Create(AccommodationReservation reservation)
         {
@@ -157,11 +160,24 @@ namespace BookingProject.Services.Implementations
             List<AccommodationReservation> _reservations = _accommodationReservationRepository.GetAll();
             _reservations.RemoveAll(n => n.Id == accommmodationReservation.Id);
             SaveParam(_reservations);
+            NotifyObservers();
         }
 
         public void Subscribe(IObserver observer)
         {
-            _accommodationReservationRepository.Subscribe(observer);
+            observers.Add(observer);
+        }
+        public void Unsubscribe(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public void NotifyObservers()
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update();
+            }
         }
         public void SaveParam(List<AccommodationReservation> reservations)
         {

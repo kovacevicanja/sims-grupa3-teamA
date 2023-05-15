@@ -18,6 +18,8 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows;
 using System.Web.WebPages;
+using System.Windows.Media.Animation;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -42,7 +44,8 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand RateCommand { get; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand LogOutCommand { get; }
-        public ToursAndGuidesEvaluationViewModel(Tour chosenTour, int guestId)
+        public NavigationService NavigationService { get; set; }
+        public ToursAndGuidesEvaluationViewModel(Tour chosenTour, int guestId, NavigationService navigationService)
         {
             GuestId = guestId;
 
@@ -76,6 +79,8 @@ namespace BookingProject.View.Guest2ViewModel
             RateCommand = new RelayCommand(Button_Click_Rate, CanExecute);
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
             LogOutCommand = new RelayCommand(Button_LogOut, CanExecute);
+
+            NavigationService = navigationService;
         }
 
         private bool CanExecute(object param) { return true; }
@@ -190,9 +195,7 @@ namespace BookingProject.View.Guest2ViewModel
 
                 CustomMessageBox.ShowCustomMessageBox("We appreciate your opinion. Thank you for helping us improve.");
 
-                SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
-                profile.Show();
-                CloseWindow();
+                NavigationService.GoBack();
             }
         }
         private void CloseWindow()
@@ -204,9 +207,8 @@ namespace BookingProject.View.Guest2ViewModel
         }
         private void Button_Click_Cancel(object param)
         {
-            SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
-            profile.Show();
-            CloseWindow();
+            TourEvaluationImageController.DeleteImageIfEvaluationNotCreated(tourEvaluation.Id);
+            NavigationService.GoBack();
         }
 
         private void Button_LogOut(object param)

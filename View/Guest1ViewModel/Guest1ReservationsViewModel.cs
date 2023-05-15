@@ -1,9 +1,12 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.Guest1View;
+using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +14,11 @@ using System.Windows;
 
 namespace BookingProject.View.Guest1ViewModel
 {
-    public class Guest1ReservationsViewModel
+    public class Guest1ReservationsViewModel : IObserver
     {
         public ObservableCollection<AccommodationReservation> Reservations { get; set; }
         public AccommodationReservationController _accommodationReservationController;
+
         public AccommodationReservation SelectedReservation { get; set; }
         public UserController _userController { get; set; }
         public RelayCommand ReviewCommand { get; }
@@ -25,16 +29,16 @@ namespace BookingProject.View.Guest1ViewModel
         public RelayCommand MyReservationsCommand { get; }
         public RelayCommand LogoutCommand { get; }
 
-        public Guest1ReservationsViewModel()
+        public Guest1ReservationsViewModel(Window window)
         {
             _accommodationReservationController = new AccommodationReservationController();
             _userController = new UserController();
+            _accommodationReservationController.Subscribe(this);
             Reservations = new ObservableCollection<AccommodationReservation>(_accommodationReservationController.getReservationsForGuest(_userController.GetLoggedUser()));
-            //_accommodationReservationController.Subscribe(this);
             // ReservationsDataGrid.ItemsSource = _reservations;
-            ReviewCommand = new RelayCommand(Button_Click_Review, CanExecute);
-            CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
-            RescheduleCommand = new RelayCommand(Button_Click_Reschedule, CanExecute);
+            ReviewCommand = new RelayCommand(Button_Click_Review, CanIfSelected);
+            CancelCommand = new RelayCommand(Button_Click_Cancel, CanIfSelected);
+            RescheduleCommand = new RelayCommand(Button_Click_Reschedule, CanIfSelected);
             SeeRequestsCommand = new RelayCommand(Button_Click_See_Requests, CanExecute);
             HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
@@ -48,6 +52,12 @@ namespace BookingProject.View.Guest1ViewModel
             {
                 if (window.GetType() == typeof(Guest1Reservations)) { window.Close(); }
             }
+        }
+
+        private bool CanIfSelected(object param)
+        {
+            if (SelectedReservation == null) { return false; }
+            else { return true; }
         }
 
         private void Button_Click_Review(object param)
@@ -84,12 +94,13 @@ namespace BookingProject.View.Guest1ViewModel
             {
                 var RescheduleAccommodationReservation = new RescheduleAccommodationReservationView(SelectedReservation);
                 RescheduleAccommodationReservation.Show();
+                CloseWindow();
             }
             else
             {
                 MessageBox.Show("You can't reschedule finished reservations!");
             }
-            CloseWindow();
+            
         }
 
         public void Update()
@@ -110,7 +121,7 @@ namespace BookingProject.View.Guest1ViewModel
 
         private void Button_Click_Homepage(object param)
         {
-            var Guest1Homepage = new Guest1Homepage();
+            var Guest1Homepage = new Guest1HomepageView();
             Guest1Homepage.Show();
             CloseWindow();
         }
