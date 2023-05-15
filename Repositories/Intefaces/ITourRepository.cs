@@ -14,11 +14,11 @@ namespace BookingProject.Repositories.Intefaces
         Tour GetById(int id);
         void BindLastTour();
         void Initialize();
-
         void TourLocationBind();
         void BindTourImage();
         void TourKeyPointBind();
         void TourDateBind();
         List<Tour> LoadAgain();
+        List<Tour> FindToursCreatedByStatistcis();
     }
 }

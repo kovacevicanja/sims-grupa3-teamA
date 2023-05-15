@@ -266,6 +266,7 @@
     <Compile Include="Validation\IntegerNumberValidationRule.cs" />
     <Compile Include="Validation\RequiredFieldValidationRule .cs" />
     <Compile Include="Validation\SearchAccommodationValidationRule.cs" />
+    <Compile Include="View\CustomMessageBoxes\CustomNotificationMessageBoxNewlyCreatedTours.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ReservationsViewModel.cs" />
@@ -292,6 +293,7 @@
     <Compile Include="View\Guest2ViewModel\ChangeYearTourRequestsStatisticsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\CreateTourRequestViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\MonitoringActiveToursViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\NewlyCreatedToursOfNeverAcceptedRequestsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ReservationTourOtherOffersViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ReservationTourViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SearchAndReservationToursViewModel.cs" />
@@ -317,6 +319,9 @@
     </Compile>
     <Compile Include="View\CustomMessageBoxes\CustomMessageBox.cs" />
     <Compile Include="View\CustomMessageBoxes\CustomNotificationMessageBox.cs" />
+    <Compile Include="View\Guest2View\NewlyCreatedToursOfNeverAcceptedRequestsView.xaml.cs">
+      <DependentUpon>NewlyCreatedToursOfNeverAcceptedRequestsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GuideViewModel\EnterDateViewModel.cs" />
     <Compile Include="View\GuideViewModel\EnterImageViewModel.cs" />
     <Compile Include="View\GuideViewModel\EnterKeyPointViewModel.cs" />
@@ -533,6 +538,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddPhotosToAccommodationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\NewlyCreatedToursOfNeverAcceptedRequestsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

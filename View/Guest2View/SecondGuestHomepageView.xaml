@@ -52,19 +52,20 @@
 
     <Grid>
         <StackPanel Orientation="Vertical" Background="LightGray" Margin="0,0,736,0">
-            <Grid Height="418" Width="276">
-                <Button Content="Search and reservation" Click="Button_Click_SearchAndReservation" CommandParameter="2" Width="233" Margin="0,53,0,325" HorizontalAlignment="Center"/>
-                <Button Content="My attended tours" Click="Button_Click_MyAttendedTours" CommandParameter="3" Width="233" Margin="0,144,0,234" HorizontalAlignment="Center"/>
-                <Button Content="My reservations" Click="Button_Click_MyReservations" CommandParameter="4" Width="232" Margin="0,98,0,280" HorizontalAlignment="Center"/>
-                <Button Content="My vouchers" Click="Button_Click_MyVouchers" CommandParameter="5" Width="234" Margin="0,234,0,144" HorizontalAlignment="Center"/>
-                <Button Content="Monitoring active tours" Click="Button_Click_ActiveTours" CommandParameter="6" Width="234" Margin="0,189,0,189" HorizontalAlignment="Center"/>
-                <Button Content="Create tour request" Click="Button_Click_CreateTourRequest" CommandParameter="7" Width="234" Margin="0,278,0,100" HorizontalAlignment="Center"/>
-                <Button Content="My tour requests" Command="{Binding NextPageCommand}" CommandParameter="8" Width="234" Margin="0,323,0,55" HorizontalAlignment="Center"/>
-                <Button Content="Request statistics" Click="Button_Click_RequestStatistcis" CommandParameter="9" Width="233" Margin="0,368,0,10" HorizontalAlignment="Center"/>
+            <Grid Height="504" Width="276">
+                <Button Content="Search and reservation" Click="Button_Click_SearchAndReservation" CommandParameter="2" Width="232" Margin="0,27,0,437" HorizontalAlignment="Center"/>
+                <Button Content="My attended tours" Click="Button_Click_MyAttendedTours" CommandParameter="3" Width="232" Margin="0,118,0,346" HorizontalAlignment="Center"/>
+                <Button Content="My reservations" Click="Button_Click_MyReservations" CommandParameter="4" Width="232" Margin="0,72,0,392" HorizontalAlignment="Center"/>
+                <Button Content="My vouchers" Click="Button_Click_MyVouchers" CommandParameter="5" Width="234" Margin="0,208,0,256" HorizontalAlignment="Center"/>
+                <Button Content="Monitoring active tours" Click="Button_Click_ActiveTours" CommandParameter="6" Width="234" Margin="0,163,0,301" HorizontalAlignment="Center"/>
+                <Button Content="Create tour request" Click="Button_Click_CreateTourRequest" CommandParameter="7" Width="234" Margin="0,252,0,212" HorizontalAlignment="Center"/>
+                <Button Content="My tour requests" Command="{Binding NextPageCommand}" CommandParameter="8" Width="234" Margin="0,297,0,167" HorizontalAlignment="Center"/>
+                <Button Content="Request statistics" Click="Button_Click_RequestStatistcis" CommandParameter="9" Width="232" Margin="0,342,0,122" HorizontalAlignment="Center"/>
+                <Button Content="Newly created tours" Click="Button_Click_NewlyCreatedTours" CommandParameter="9" Width="232" Margin="0,387,0,77" HorizontalAlignment="Center"/>
             </Grid>
-            <Grid Height="328" Width="276">
-                <Button Content="My profile" Click="Button_Click_MyProfile" CommandParameter="0" Width="234" Margin="0,198,0,85" HorizontalAlignment="Center"/>
-                <Button Content="Log out" Click="Button_Click_LogOut" CommandParameter="1" Width="234" Margin="0,243,0,40" HorizontalAlignment="Center"/>
+            <Grid Height="243" Width="276">
+                <Button Content="My profile" Click="Button_Click_MyProfile" CommandParameter="0" Width="234" Margin="0,104,0,99" HorizontalAlignment="Center"/>
+                <Button Content="Log out" Click="Button_Click_LogOut" CommandParameter="1" Width="234" Margin="0,149,0,54" HorizontalAlignment="Center"/>
             </Grid>
         </StackPanel>
 

@@ -1,51 +1,8 @@
-6|2|Reservation for your accommodation Ruby Sofie Hotel was cancelled!|True
-7|2|Reservation for your accommodation Ruby Sofie Hotel was cancelled!|True
-8|2|Reservation for your accommodation Ruby Sofie Hotel was cancelled!|True
-9|5|Presence check !!! |True
-10|3|Presence check !!! |True
-11|5|Presence check !!! |True
-12|5|Presence check !!! |True
-13|5|test za da ili ne|True
-14|5|test za da ili ne2|True
-15|5|test za da ili ne3|True
-18|5|Presence check !!! |True
-19|5|Presence check !!! |True
-20|3|Presence check !!! |True
-21|5|Presence check !!! |True
-22|5|Presence check !!! |True
-23|5|Presence check !!! |True
-24|5|Presence check !!! |True
-25|5|Presence check !!! |True
-26|5|Presence check !!! |True
-28|1|Request to move reservation from 19.04.2023. - 20.04.2023. to 14.04.2023. - 29.04.2023. is DECLINED|True
-29|1|Request to move reservation from 19.04.2023. - 20.04.2023. to 20.04.2023. - 24.04.2023. is DECLINED|True
-30|1|Request to move reservation from 19.04.2023. - 29.04.2023. to 14.04.2023. - 29.04.2023. is APPROVED|True
-31|5|Novo obavestenje test|True
-32|0|Reservation for your accommodation , from 19.04.2023., to 20.04.2023. was cancelled!|False
-33|1|Request to move reservation from 20.04.2023. - 23.04.2023. to 14.04.2023. - 29.04.2023. is APPROVED|True
-34|1|Request to move reservation from 20.04.2023. - 23.04.2023. to 14.04.2023. - 29.04.2023. is APPROVED|True
-35|1|Request to move reservation from 20.04.2023. - 23.04.2023. to 14.04.2023. - 29.04.2023. is APPROVED|True
-36|7|Reservation for your accommodation Hotel Mona, from 29.04.2023., to 05.05.2023. was cancelled!|True
-37|3|Presence check !!! |True
-38|5|Presence check !!! |True
-39|5|Presence check !!! |True
-40|3|Presence check !!! |True
-41|1|Request to move reservation from 01.05.2023. - 10.05.2023. to 15.06.2023. - 22.06.2023. is DECLINED|True
-42|7|Reservation for your accommodation Hotel Mona, from 29.04.2023., to 05.05.2023. was cancelled!|True
-43|7|Reservation for your accommodation Hotel Moskva, from 29.04.2023., to 07.05.2023. was cancelled!|True
-44|5|Presence check !!! |True
-45|1|Request to move reservation from 01.05.2023. - 10.05.2023. to 18.05.2023. - 25.05.2023. is APPROVED|True
-46|1|Request to move reservation from 18.05.2023. - 25.05.2023. to 18.05.2023. - 25.05.2023. is DECLINED|True
-47|2|Reservation for your accommodation Hotel Park, from 18.05.2023., to 25.05.2023. was cancelled!|True
-48|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-49|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-50|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-51|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-52|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-53|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-54|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-55|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-56|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-57|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-58|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
-59|2|Reservation for your accommodation Hotel Park, from 20.05.2023., to 25.05.2023. was cancelled!|False
+1|5|A tour you requested was created, go search it out, first instance of this tour will be held on  18/05/2023 15:00:00!|True|
+2|5|A tour you requested was created, go search it out, first instance of this tour will be held on  20/05/2023 10:00:00!|True|
+3|5|The tour you always wanted was made. View the offer in newly created tours.|True|
+4|5|The tour you always wanted was made. View the offer in newly created tours.|True|
+5|5|The tour you always wanted was made. View the offer in newly created tours.|True|
+6|5|The tour you always wanted was made. View the offer in newly created tours.|True|
+7|5|The tour you always wanted was made. View the offer in newly created tours.|True|
+8|3|The tour you always wanted was made. View the offer in newly created tours.|True|

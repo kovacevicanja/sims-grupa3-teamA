@@ -45,5 +45,7 @@ namespace BookingProject.Services.Interfaces
         int GetNumberAllRequestsLocation(string country, string city, string enteredYear);
         Location GetTopLocation(string enteredYear);
         LanguageEnum GetTopLanguage(string enteredYear);
+        void SystemSendingNotification(int guestId);
+        List<TourRequest> FindUnacceptedRequestsForGuests(int guestId);
     }
 }

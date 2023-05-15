@@ -15,6 +15,7 @@ using BookingProject.DependencyInjection;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Repositories.Implementations;
 using BookingProject.View.CustomMessageBoxes;
+using BookingProject.Domain;
 
 namespace BookingProject.Services
 {
@@ -22,6 +23,7 @@ namespace BookingProject.Services
     {
         private ITourRepository _tourRepository;
         private ITourReservationRepository _tourReservationRepository;
+        private ITourRequestService _tourRequestService;
         public CustomMessageBox CustomMessageBox { get; set; }
 
         public TourService()
@@ -32,6 +34,7 @@ namespace BookingProject.Services
         {
             _tourRepository = Injector.CreateInstance<ITourRepository>();
             _tourReservationRepository = Injector.CreateInstance<ITourReservationRepository>();
+            _tourRequestService = Injector.CreateInstance<ITourRequestService>();
         }
         public bool WantedTour(Tour tour, string city, string country, string duration, string choosenLanguage, string numOfGuests)
         {
@@ -102,15 +105,11 @@ namespace BookingProject.Services
 
         public void FullBind()
         {
-
             _tourRepository.TourLocationBind();
             _tourRepository.BindTourImage();
             _tourRepository.TourKeyPointBind();
             _tourRepository.TourDateBind();
-
         }
-
-
         public Tour GetById(int id)
         {
             return _tourRepository.GetById(id);
@@ -119,6 +118,30 @@ namespace BookingProject.Services
         {
             return _tourRepository.GetAll().Last();
         }
+
+        public List<Tour> FindToursCreatedByStatistcis()
+        {
+            return _tourRepository.FindToursCreatedByStatistcis();
+        }
+
+        public List<Tour> FindToursCreatedByStatistcisForGuest(int guestId)
+        {
+            List<Tour> tours = new List<Tour>();
+
+            foreach (Tour tour in FindToursCreatedByStatistcis())
+            {
+                foreach (TourRequest request in _tourRequestService.FindUnacceptedRequestsForGuests(guestId))
+                {
+                    if (request.Language == tour.Language)
+                    {
+                        tours.Add(tour);
+                    }
+                }
+            }
+
+            return tours;
+        }
+
         public List<Tour> FilterToursByDate(DateTime selectedDate) 
         {
             List<Tour> _tours = Injector.CreateInstance<ITourService>().GetAll();

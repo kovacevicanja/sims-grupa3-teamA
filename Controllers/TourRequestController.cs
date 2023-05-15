@@ -45,7 +45,10 @@ namespace BookingProject.Controllers
         {
             _tourRequestService.SendNotification(guest, tour);
         }
-
+        public void SystemSendingNotification(int guestId)
+        { 
+            _tourRequestService.SystemSendingNotification(guestId);
+        }
         public List<TourRequest> GetGuestRequests (int guestId, string enteredYear)
         {
             return _tourRequestService.GetGuestRequests(guestId, enteredYear);

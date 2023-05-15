@@ -192,5 +192,20 @@ namespace BookingProject.Repositories
             List<TourDateTime> dates = Injector.CreateInstance<ITourStartingTimeRepository>().GetAll();
             BindTourStartingTimes(dates);
         }
+
+        public List<Tour> FindToursCreatedByStatistcis()
+        {
+            List<Tour> tours = new List<Tour>();
+
+            foreach (Tour tour in _tours)
+            {
+                if (tour.IsSuggestion == true)
+                {
+                    tours.Add(tour);
+                }
+            }
+
+            return tours;
+        }
     }
 }

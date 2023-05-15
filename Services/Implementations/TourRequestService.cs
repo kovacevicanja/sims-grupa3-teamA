@@ -16,6 +16,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.WebPages;
+using System.Windows.Input;
 
 namespace BookingProject.Services.Implementations
 {
@@ -25,6 +26,7 @@ namespace BookingProject.Services.Implementations
         private INotificationService _notificationService;
         private IUserService _userService;
         private ITourLocationService _locationService;
+        private ITourService _tourService;
         public TourRequestService() { }
         public void Initialize()
         {
@@ -32,6 +34,7 @@ namespace BookingProject.Services.Implementations
             _notificationService = Injector.CreateInstance<INotificationService>();
             _userService= Injector.CreateInstance<IUserService>();
             _locationService= Injector.CreateInstance<ITourLocationService>();
+            _tourService = Injector.CreateInstance<ITourService>();
         }
         public void Create(TourRequest tourRequest)
         {
@@ -60,8 +63,81 @@ namespace BookingProject.Services.Implementations
             notification.UserId = guest.Id;
             notification.Text = "A tour you requested was created, go search it out, first instance of this tour will be held on  "+createdTour.StartingTime[0].StartingDateTime+"!";
             notification.Read = false;
+            notification.RelatedTo = "Creating a tour on demand";
             _notificationService.Create(notification);
+            //ovde bi bilo najbolje organiciti ovu notifikaciju na zahteve koji su pending, i onda samo takvim gostima poslati notifikaciju 
+            //poslati gostu ciji je zahtev prihvacen notifikaciju, ako je njegov zahtev bio pending
         }
+
+        public void SystemSendingNotification(int guestId)
+        {
+            foreach (int id in GuestsForNotification().ToList()) 
+            {
+                if (guestId == id)
+                {
+                    Notification notification = new Notification();
+                    notification.UserId = id;
+                    notification.Text = "The tour you always wanted was made. View the offer in newly created tours.";
+                    notification.Read = false;
+                    notification.RelatedTo = "System notification about new tours";
+                    _notificationService.Create(notification);
+                }
+            }
+        }
+
+        private List<int> GuestsForNotification()
+        {
+            //LANGUAGE
+            List<int> guests = new List<int>();
+            foreach (Tour tour in FindToursCreatedByStatistcis().ToList())
+            {
+                foreach (TourRequest request in FindUnacceptedRequests().ToList())
+                {
+                    if (tour.Language == request.Language)
+                    {
+                        guests.Add(request.Guest.Id);
+                    }
+                }
+            }
+
+            return guests.Distinct().ToList();
+        }
+
+        private List<Tour> FindToursCreatedByStatistcis()
+        {
+            return _tourService.FindToursCreatedByStatistcis();
+        }
+
+        public List<TourRequest> FindUnacceptedRequestsForGuests(int guestId)
+        {
+            List<TourRequest> unacceptedRequests = new List<TourRequest>();
+
+            foreach (TourRequest request in FindUnacceptedRequests())
+            {
+                if (request.Guest.Id == guestId)
+                {
+                    unacceptedRequests.Add(request);
+                }
+            }
+            return unacceptedRequests;
+        }
+
+        private List<TourRequest> FindUnacceptedRequests()
+        {
+            List<TourRequest> unacceptedRequests = new List<TourRequest>();
+
+            foreach (TourRequest tourRequest in GetAll())
+            {
+                if (tourRequest.Status == TourRequestStatus.INVALID)
+                {
+                    unacceptedRequests.Add(tourRequest);
+                }
+            }
+
+            return unacceptedRequests;
+        }
+
+
         public List<TourRequest> GetGuestRequests (int guestId, string enteredYear = "")
         {
             return _tourRequestRepository.GetGuestRequests(guestId, enteredYear);
@@ -144,14 +220,18 @@ namespace BookingProject.Services.Implementations
         {
             LanguageEnum TopLanguage = LanguageEnum.SERBIAN;
             int numberAllRequestsLanguage = GetNumberAllRequestsLanguage(LanguageEnum.SERBIAN, enteredYear);
-            if(numberAllRequestsLanguage<GetNumberAllRequestsLanguage(LanguageEnum.GERMAN, enteredYear))
+            if (numberAllRequestsLanguage < GetNumberAllRequestsLanguage(LanguageEnum.GERMAN, enteredYear))
             {
                 TopLanguage = LanguageEnum.GERMAN;
                 numberAllRequestsLanguage = GetNumberAllRequestsLanguage(LanguageEnum.GERMAN, enteredYear);
             }
-            if(numberAllRequestsLanguage < GetNumberAllRequestsLanguage(LanguageEnum.ENGLISH, enteredYear))
+            if (numberAllRequestsLanguage < GetNumberAllRequestsLanguage(LanguageEnum.ENGLISH, enteredYear))
             {
                 TopLanguage = LanguageEnum.ENGLISH;
+            }
+            if (numberAllRequestsLanguage < GetNumberAllRequestsLanguage(LanguageEnum.SPANISH, enteredYear))
+            {
+                TopLanguage = LanguageEnum.SPANISH;
             }
 
             return TopLanguage;
@@ -240,22 +320,13 @@ namespace BookingProject.Services.Implementations
         {
             int parsedMonth;
 
-            if (month.Equals(""))
+            if (month.Equals("")) return true;
+            else if (int.TryParse(month, out parsedMonth))
             {
-                return true;
+                if (month.Equals("") || (tour.StartDate.Month <= parsedMonth && tour.EndDate.Month >= parsedMonth)) return true;
+                else return false;
             }
-            else if(int.TryParse(month, out parsedMonth))
-            {
-                if (month.Equals("") || (tour.StartDate.Month <= parsedMonth && tour.EndDate.Month >= parsedMonth)) { return true; }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
+            else return false;
         }
 
         public bool RequestedCountry(TourRequest tour, string country)

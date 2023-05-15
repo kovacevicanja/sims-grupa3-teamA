@@ -112,5 +112,10 @@ namespace BookingProject.View
         {
             FrameHomePage.Content = new SecondGuestMyReservations(GuestId, this.FrameHomePage.NavigationService);
         }
+
+        private void Button_Click_NewlyCreatedTours(object sender, RoutedEventArgs e)
+        {
+            FrameHomePage.Content = new NewlyCreatedToursOfNeverAcceptedRequestsView(GuestId, this.FrameHomePage.NavigationService);
+        }
     }
 }
