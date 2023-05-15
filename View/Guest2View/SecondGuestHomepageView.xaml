@@ -55,7 +55,7 @@
             <Grid Height="418" Width="276">
                 <Button Content="Search and reservation" Click="Button_Click_SearchAndReservation" CommandParameter="2" Width="233" Margin="0,53,0,325" HorizontalAlignment="Center"/>
                 <Button Content="My attended tours" Click="Button_Click_MyAttendedTours" CommandParameter="3" Width="233" Margin="0,144,0,234" HorizontalAlignment="Center"/>
-                <Button Content="My reservations" Command="{Binding NextPageCommand}" CommandParameter="4" Width="232" Margin="0,98,0,280" HorizontalAlignment="Center"/>
+                <Button Content="My reservations" Click="Button_Click_MyReservations" CommandParameter="4" Width="232" Margin="0,98,0,280" HorizontalAlignment="Center"/>
                 <Button Content="My vouchers" Click="Button_Click_MyVouchers" CommandParameter="5" Width="234" Margin="0,234,0,144" HorizontalAlignment="Center"/>
                 <Button Content="Monitoring active tours" Click="Button_Click_ActiveTours" CommandParameter="6" Width="234" Margin="0,189,0,189" HorizontalAlignment="Center"/>
                 <Button Content="Create tour request" Click="Button_Click_CreateTourRequest" CommandParameter="7" Width="234" Margin="0,278,0,100" HorizontalAlignment="Center"/>

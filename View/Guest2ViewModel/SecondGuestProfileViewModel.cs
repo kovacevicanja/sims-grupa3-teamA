@@ -122,8 +122,8 @@ namespace BookingProject.View.Guest2ViewModel
         }
         private void Button_Click_MyReservations(object param)
         {
-            SecondGuestMyReservations secondGuestMyReservations = new SecondGuestMyReservations(GuestId);
-            secondGuestMyReservations.Show();
+            //SecondGuestMyReservations secondGuestMyReservations = new SecondGuestMyReservations(GuestId);
+            //secondGuestMyReservations.Show();
             CloseWindow();
         }
 

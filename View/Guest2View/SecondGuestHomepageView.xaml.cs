@@ -107,5 +107,10 @@ namespace BookingProject.View
                 FrameHomePage.Content = new ActiveToursView(activeToursIds, GuestId, this.FrameHomePage.NavigationService);                
             }
         }
+
+        private void Button_Click_MyReservations(object sender, RoutedEventArgs e)
+        {
+            FrameHomePage.Content = new SecondGuestMyReservations(GuestId, this.FrameHomePage.NavigationService);
+        }
     }
 }

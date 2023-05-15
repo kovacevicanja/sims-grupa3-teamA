@@ -1,12 +1,17 @@
-﻿<Window x:Class="BookingProject.View.SecondGuestMyReservations"
+﻿<Page x:Class="BookingProject.View.SecondGuestMyReservations"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="" Height="761" Width="1024">
-    <Window.Resources>
+  d:DesignHeight="761" d:DesignWidth="736">
+
+    <Page.Background>
+        <SolidColorBrush Color="White" />
+    </Page.Background>
+    <Page.Resources>
+
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -23,36 +28,140 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
-    </Window.Resources>
+    </Page.Resources>
     <Grid>
-        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top"
-            DockPanel.Dock="Bottom"
-            SelectedItem="{Binding Path=ChosenReservation, UpdateSourceTrigger=PropertyChanged}"
-            Name="TourDataGrid" ItemsSource="{Binding Path=MyReservations, UpdateSourceTrigger=PropertyChanged}"
-            AutoGenerateColumns="False" IsReadOnly="True" Margin="17,179,0,0" RenderTransformOrigin="0.5,0.5" Height="397" Width="971">
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-0.126"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="-0.998"/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Images" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding Tour.Images[0].Url}" Width="Auto" Height="Auto" Stretch="Uniform" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Tour name" Width="*" Binding="{Binding Tour.Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Language" Width="150" Binding="{Binding Tour.Language}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Starting time" Width="*" Binding="{Binding ReservationStartingTime}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Label Margin="50,32,368,629" Foreground="Gray" FontSize="40" Content="My"/>
+        <Label Margin="123,32,198,629" Foreground="LightBlue" FontSize="40" Content="reservations"/>
+        <ListView HorizontalAlignment="Center" VerticalAlignment="Center"
+          SelectedItem="{Binding Path=ChosenReservation, UpdateSourceTrigger=PropertyChanged}"
+          ItemsSource="{Binding Path=MyReservations, UpdateSourceTrigger=PropertyChanged}" Height="466" Width="624">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Tour.Images[0].Url}" Width="150" Height="150" Stretch="Uniform" />
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Tour.Name}" FontSize="24" FontWeight="Bold" Foreground="Gray" Margin="10,0,0,0" />
+                            <TextBlock Text="{Binding Tour.Language}" FontSize="24" FontWeight="Bold" Foreground="Gray" Margin="10,5,0,0" />
+                            <TextBlock Text="{Binding ReservationStartingTime, StringFormat='dd/MM/yyyy HH:mm'}" FontSize="24" FontWeight="Bold" Foreground="Gray" Margin="10,5,0,0" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Resources>
+                <Style TargetType="ListView">
+                    <Setter Property="BorderBrush" Value="Gray" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListView">
+                                <Grid>
+                                    <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="0"
+                                    Margin="-10">
+                                        <Border.Effect>
+                                            <BlurEffect Radius="5" />
+                                        </Border.Effect>
+                                    </Border>
+                                    <ScrollViewer>
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <BlurEffect x:Key="BlurredEffect" Radius="5" />
+            </ListView.Resources>
+        </ListView>
         <Grid>
-            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="50" Margin="258,648,0,0" VerticalAlignment="Top" Width="169" Command="{Binding CancelCommand}"/>
+            <Button Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="162,658,0,0" VerticalAlignment="Top" Width="125"
+        Command="{Binding SeeMoreCommand}" FontSize="24">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Gray" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="BorderBrush" Value="Gray" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Background" Value="LightGray"/>
+                                            <Setter Property="BorderBrush" Value="LightGray"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="434,658,0,0" Width="125"
+                Command="{Binding CancelCommand}" FontSize="24" VerticalAlignment="Top">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Gray" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="BorderBrush" Value="Gray" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
     </Grid>
-</Window>
+</Page>

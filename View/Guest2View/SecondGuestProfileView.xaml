@@ -11,45 +11,13 @@
         <SolidColorBrush Color="White" />
     </Page.Background>
 
-    <Page.Resources>
-        <Style TargetType="Button">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="10,5"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Background" Value="Gray"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="Gray"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightBlue"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="BorderBrush" Value="LightBlue"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Page.Resources>
-    
     <Grid>
-        <Label> PROFIL GOSTA </Label>
-        
+        <Label Content="{Binding UsernameDisplay}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="51" Width="232" Margin="328,119,0,0" />
+        <Grid Margin="42,50,408,472">
+            <Border BorderBrush="White" BorderThickness="2" Background="White" Margin="10">
+                <Image Source="{Binding PictureSource}" Stretch="Uniform" Margin="12,10,12,10" />
+            </Border>
+        </Grid>
     </Grid>
-    
+
 </Page>
