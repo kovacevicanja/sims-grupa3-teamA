@@ -168,7 +168,7 @@ namespace BookingProject.View
 
             if (result == MessageBoxResult.Yes)
             {
-                var reccommendation = new RecommendationRenovationView();
+                var reccommendation = new RecommendationRenovationView(_selectedReservation);
                 reccommendation.Show();
                 CloseWindow();
             }

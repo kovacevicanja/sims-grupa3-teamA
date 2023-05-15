@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookingProject.Model;
+using BookingProject.View.Guest1ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +16,12 @@ using System.Windows.Shapes;
 
 namespace BookingProject.View.Guest1View
 {
-    /// <summary>
-    /// Interaction logic for RecommendationRenovationView.xaml
-    /// </summary>
     public partial class RecommendationRenovationView : Window
     {
-        public RecommendationRenovationView()
+        public RecommendationRenovationView(AccommodationReservation selectedReservation)
         {
             InitializeComponent();
+            this.DataContext = new RecommendationRenovationViewModel(selectedReservation);
         }
     }
 }
