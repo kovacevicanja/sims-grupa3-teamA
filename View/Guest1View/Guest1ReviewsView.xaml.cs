@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingProject.View.Guest1ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,16 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace BookingProject.View
+namespace BookingProject.View.Guest1View
 {
-    /// <summary>
-    /// Interaction logic for ToursForCancellation.xaml
-    /// </summary>
-    public partial class ToursForCancellation : Window
+    public partial class Guest1ReviewsView : Window
     {
-        public ToursForCancellation()
+        public Guest1ReviewsView()
         {
             InitializeComponent();
+            this.DataContext = new Guest1ReviewsViewModel();
         }
     }
 }

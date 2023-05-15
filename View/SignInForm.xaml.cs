@@ -13,6 +13,8 @@ using System.Windows.Shapes;
 using BookingProject.Model;
 using BookingProject.Domain;
 using BookingProject.View.CustomMessageBoxes;
+using BookingProject.View.Guest1View;
+using BookingProject.ConversionHelp;
 
 namespace BookingProject.View
 {
@@ -108,7 +110,7 @@ namespace BookingProject.View
                         Model.User guest = _controller.GetByUsername(Username);
                         guest.IsLoggedIn = true;
                         _controller.Save();
-                        Guest1View guest1View = new Guest1View();
+                        Guest1HomepageView guest1View = new Guest1HomepageView();
                         guest1View.Show();
                         List<Notification> notifications = new List<Notification>();
                         notifications = _requestController.GetGuest1Notifications(guest);

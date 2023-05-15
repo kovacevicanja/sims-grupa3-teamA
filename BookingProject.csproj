@@ -262,9 +262,9 @@
     <Compile Include="Validation\SearchAccommodationValidationRule.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
-    <Compile Include="View\Guest1ViewModel\Guest1HomepageViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ReservationsViewModel.cs" />
-    <Compile Include="View\Guest1ViewModel\Guest1ViewViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\Guest1ReviewsViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\Guest1HomepageViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\RescheduleAccommodationReservationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\ReservationAccommodationViewModel.cs" />
     <Compile Include="View\Guest1View\AccommodationOwnerReview.xaml.cs">
@@ -273,6 +273,12 @@
     <Compile Include="View\Guest1ViewModel\AccommodationOwnerReviewViewModel.cs" />
     <Compile Include="View\Guest1View\AccommodationRequestsView.xaml.cs">
       <DependentUpon>AccommodationRequestsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Guest1HomepageView.xaml.cs">
+      <DependentUpon>Guest1HomepageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Guest1ReviewsView.xaml.cs">
+      <DependentUpon>Guest1ReviewsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2ViewModel\ActiveToursViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ChangeYearTourRequestsStatisticsViewModel.cs" />
@@ -318,14 +324,8 @@
     <Compile Include="View\Guest1View\FindAvailableDatesForAccommodation.xaml.cs">
       <DependentUpon>FindAvailableDatesForAccommodation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Guest1View\Guest1Homepage.xaml.cs">
-      <DependentUpon>Guest1Homepage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Guest1View\Guest1Reservations.xaml.cs">
       <DependentUpon>Guest1Reservations.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Guest1View\Guest1View.xaml.cs">
-      <DependentUpon>Guest1View.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\ChangeYearTourRequestsStatisticsView.xaml.cs">
       <DependentUpon>ChangeYearTourRequestsStatisticsView.xaml</DependentUpon>
@@ -483,6 +483,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Guest1View\Guest1HomepageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Guest1ReviewsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Guest2View\ActiveToursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -511,15 +519,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Guest1View\Guest1Homepage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Guest1View\Guest1Reservations.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Guest1View\Guest1View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -998,6 +998,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Guest1Images\background8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\background9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\review1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

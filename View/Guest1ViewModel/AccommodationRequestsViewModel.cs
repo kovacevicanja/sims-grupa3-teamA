@@ -2,6 +2,7 @@
 using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Domain;
+using BookingProject.View.Guest1View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,7 @@ namespace BookingProject.View.Guest1ViewModel
         }
         private void Button_Click_Homepage(object param)
         {
-            var Guest1Homepage = new Guest1Homepage();
+            var Guest1Homepage = new Guest1HomepageView();
             Guest1Homepage.Show();
             CloseWindow();
         }

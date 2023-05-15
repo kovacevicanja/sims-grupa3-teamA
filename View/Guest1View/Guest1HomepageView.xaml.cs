@@ -1,11 +1,6 @@
-﻿using BookingProject.Controller;
-using BookingProject.Model;
-using BookingProject.Model.Enums;
-using BookingProject.View.Guest1ViewModel;
+﻿using BookingProject.View.Guest1ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,15 +12,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BookingProject.ConversionHelp;
 
-namespace BookingProject.View
+namespace BookingProject.View.Guest1View
 {
-    public partial class Guest1View : Window
+    public partial class Guest1HomepageView : Window
     {
-        public Guest1View()
+        public Guest1HomepageView()
         {
             InitializeComponent();
-            this.DataContext = new Guest1ViewViewModel();
+            this.DataContext = new Guest1HomepageViewMddel();
         }
     }
 }
