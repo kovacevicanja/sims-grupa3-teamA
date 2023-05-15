@@ -213,11 +213,51 @@ namespace BookingProject.Services.Implementations
             { return true; }
             else { return false; }
         }
+
+        public bool WantedFilteredTour(TourRequest tour, string city, string country, string choosenLanguage, string year, string month)
+        {
+            if (RequestedCity(tour, city)
+                && RequestedCountry(tour, country)
+                && RequestedLanguage(tour, choosenLanguage)
+                && RequestedYear(tour, year)
+                && RequestedMonth(tour, month))
+            { return true; }
+            else { return false; }
+        }
         public bool RequestedCity(TourRequest tour, string city)
         {
             if (city.Equals("") || tour.Location.City.ToLower().Contains(city.ToLower())) { return true; }
             else { return false; }
         }
+
+        public bool RequestedYear(TourRequest tour, string year)
+        {
+            if (year.Equals("") || tour.StartDate.Year.ToString().Equals(year)) { return true; }
+            else { return false; }
+        }
+
+        public bool RequestedMonth(TourRequest tour, string month)
+        {
+            int parsedMonth;
+
+            if (month.Equals(""))
+            {
+                return true;
+            }
+            else if(int.TryParse(month, out parsedMonth))
+            {
+                if (month.Equals("") || (tour.StartDate.Month <= parsedMonth && tour.EndDate.Month >= parsedMonth)) { return true; }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool RequestedCountry(TourRequest tour, string country)
         {
             if (country.Equals("") || tour.Location.Country.ToLower().Contains(country.ToLower())) { return true; }
@@ -272,6 +312,20 @@ namespace BookingProject.Services.Implementations
             foreach (TourRequest tour in _tourRequestRepository.GetAll())
             {
                 if (WantedTour(tour, city, country, choosenLanguage, numOfGuests, endDate, startDate))
+                {
+                    tourView.Add(tour);
+                }
+            }
+            return tourView;
+        }
+
+        public ObservableCollection<TourRequest> Filter(ObservableCollection<TourRequest> tourView, string city, string country, string choosenLanguage, string year, string month)
+        {
+            tourView.Clear();
+
+            foreach (TourRequest tour in _tourRequestRepository.GetAll())
+            {
+                if (WantedFilteredTour(tour, city, country, choosenLanguage, year, month))
                 {
                     tourView.Add(tour);
                 }

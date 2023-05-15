@@ -92,8 +92,8 @@ namespace BookingProject.View.GuideViewModel
 
         private void Button_Click_5(object param)
         {
-            RequestStatisticsChoiceView choiceView = new RequestStatisticsChoiceView();
-            choiceView.Show();
+            RequestStatisticsView view= new RequestStatisticsView();
+            view.Show();
             CloseWindow();
         }
 

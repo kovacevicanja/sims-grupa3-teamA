@@ -75,6 +75,11 @@ namespace BookingProject.Controllers
         {
             return _tourRequestService.Search(tourView, city, country, chosenLanguage, numOfGuests, startDate, endDate);
         }
+
+        public ObservableCollection<TourRequest> Filter(ObservableCollection<TourRequest> tourView, string city, string country, string chosenLanguage, string year, string month)
+        {
+            return _tourRequestService.Filter(tourView, city, country, chosenLanguage, year, month);
+        }
         public void ShowAll(ObservableCollection<TourRequest> tourRequestView)
         {
             _tourRequestService.ShowAll(tourRequestView);

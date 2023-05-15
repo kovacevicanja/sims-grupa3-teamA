@@ -33,10 +33,10 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.InputBindings>
-        <KeyBinding Key="S" Command="{Binding ShowAllCommand}" />
-        <KeyBinding Key="F" Command="{Binding SearchCommand}" />
+        <KeyBinding Key="Backspace" Command="{Binding ShowAllCommand}" />
+        <KeyBinding Key="Ins" Command="{Binding SearchCommand}" />
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
-        <KeyBinding Key="A" Command="{Binding PickCommand}" />
+        <KeyBinding Key="Space" Command="{Binding PickCommand}" />
     </Window.InputBindings>
 
     <Grid Margin="0,0,0,49">
@@ -99,9 +99,9 @@
         </Grid>
 
         <WrapPanel Grid.Row="2" Margin="0,41,5,-145" RenderTransformOrigin="0.5,0.773">
-            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding PickCommand}"  Content="Accept Request &#xa;          (A)" Height="46"/>
-            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding ShowAllCommand}" Content="Show All Requests&#xa;             (S)" Height="46"/>
-            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding SearchCommand}" Content="Filter &#xa;  (F)" Height="46"/>
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding PickCommand}"  Content="Accept Request &#xa;        (Space)" Height="46"/>
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding ShowAllCommand}" Content="Show All Requests&#xa;      (Backspace)" Height="46" />
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding SearchCommand}" Content="Filter &#xa; (Ins)" Height="46"/>
             <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="Close &#xA; (Esc)" Height="46"/>
         </WrapPanel>
         <Label Content="My Requests : Filtering" FontWeight="Bold" FontSize="26"  Margin="10,0,770,0"/>
