@@ -38,5 +38,9 @@ namespace BookingProject.Controller
         {
             _tourEvaluationImageService.Save(images);
         }
+        public void DeleteImageIfEvaluationNotCreated(int tourEvaluationId)
+        {
+            _tourEvaluationImageService.DeleteImageIfEvaluationNotCreated(tourEvaluationId);
+        }
     }
 }

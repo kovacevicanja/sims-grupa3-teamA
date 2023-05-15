@@ -13,6 +13,7 @@ using System.ComponentModel;
 using BookingProject.Commands;
 using BookingProject.View.GuideView;
 using BookingProject.View.Guest2View;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -25,8 +26,12 @@ namespace BookingProject.View.Guest2ViewModel
         public Tour ChosenTour { get; set; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand FollowTourCommand { get; }
+        public string DisplayTodaysDay { get; set; }
+        public User User { get; set; }
+        public int GuestId { get; set; }
+        public NavigationService NavigationService { get; set; }
 
-        public ActiveToursViewModel(List<int> activeToursIds)
+        public ActiveToursViewModel(List<int> activeToursIds, int guestId, NavigationService navigationService)
         {
             ActiveToursIds = activeToursIds;
             List<Tour> activeTours = new List<Tour>();
@@ -48,7 +53,20 @@ namespace BookingProject.View.Guest2ViewModel
             ActiveToursCollection = new ObservableCollection<Tour>(activeTours);
 
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
-            FollowTourCommand = new RelayCommand(Button_Click_FollowTour, CanExecute);
+            FollowTourCommand = new RelayCommand(Button_Click_FollowTour, CanWhenSelected);
+
+            DisplayTodaysDay = DateTime.Now.Date.ToString("dd/MM/yyyy");
+
+            User = new User();
+            GuestId = guestId;
+
+            NavigationService = navigationService;
+        }
+
+        private bool CanWhenSelected(object param)
+        {
+            if (ChosenTour == null) return false;
+            else return true;   
         }
 
         private bool CanExecute(object param) { return true; }
@@ -63,13 +81,12 @@ namespace BookingProject.View.Guest2ViewModel
 
         public void Button_Click_Cancel(object param)
         {
-            CloseWindow();
+            NavigationService.GoBack();
         }
 
         private void Button_Click_FollowTour(object param)
         {
-            MonitoringActiveToursView monitoringActiveToursView = new MonitoringActiveToursView(ChosenTour);
-            monitoringActiveToursView.Show();
+            NavigationService.Navigate(new MonitoringActiveToursView(ChosenTour, ActiveToursIds, GuestId, NavigationService));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

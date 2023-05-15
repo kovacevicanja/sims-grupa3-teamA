@@ -18,6 +18,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View.Guest2View
@@ -25,12 +26,12 @@ namespace BookingProject.View.Guest2View
     /// <summary>
     /// Interaction logic for TourRequestStatisticsView.xaml
     /// </summary>
-    public partial class TourRequestStatisticsView : Window
+    public partial class TourRequestStatisticsView : Page
     {
-        public TourRequestStatisticsView(int guestId, string enteredYear = "")
+        public TourRequestStatisticsView(int guestId, NavigationService navigationService, string enteredYear = "")
         {
             InitializeComponent();
-            this.DataContext = new TourRequestStatisticsViewModel(guestId, enteredYear);
+            this.DataContext = new TourRequestStatisticsViewModel(guestId, navigationService, enteredYear);
         }  
     }
 }

@@ -1,4 +1,6 @@
-﻿using BookingProject.DependencyInjection;
+﻿using BookingProject.Controller;
+using BookingProject.DependencyInjection;
+using BookingProject.Domain;
 using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
@@ -34,6 +36,20 @@ namespace BookingProject.Services
         public void Save(List<TourEvaluationImage> images) 
         { 
             _tourEvaluationImageRepository.Save(images);    
+        }
+        public void DeleteImageIfEvaluationNotCreated(int tourEvaluationId)
+        {
+            List<TourEvaluationImage> images = GetAll();
+            List <TourEvaluationImage> imagesCopy = new List<TourEvaluationImage>(images);
+
+            foreach (TourEvaluationImage image in imagesCopy)
+            {
+                if (image.TourEvaluation.Id == tourEvaluationId)
+                {
+                    images.Remove(image);
+                }
+            }
+            Save(images);
         }
     }
 }

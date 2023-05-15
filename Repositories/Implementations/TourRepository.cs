@@ -35,6 +35,17 @@ namespace BookingProject.Repositories
             TourKeyPointBind();
             TourDateBind();
         }
+        public List<Tour> LoadAgain()
+        {
+            _tours = Load();
+
+            TourLocationBind();
+            BindTourImage();
+            TourKeyPointBind();
+            TourDateBind();
+
+            return _tours;
+        }
         public List<Tour> Load()
         {
             return _serializer.FromCSV(FilePath);

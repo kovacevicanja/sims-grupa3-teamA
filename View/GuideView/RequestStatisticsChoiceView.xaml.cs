@@ -24,6 +24,7 @@ namespace BookingProject.View.GuideView
         {
             InitializeComponent();
             this.DataContext = new RequestStatisticsChoiceViewModel();
+
         }
     }
 }

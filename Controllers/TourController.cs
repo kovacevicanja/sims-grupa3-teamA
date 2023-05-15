@@ -93,5 +93,9 @@ namespace BookingProject.Controller
             _tourService.BindLastTour();
         }
 
+        public List<Tour> LoadAgain()
+        {
+            return _tourService.LoadAgain();
+        }
     }
 }

@@ -19,5 +19,6 @@ namespace BookingProject.Repositories.Intefaces
         void BindTourImage();
         void TourKeyPointBind();
         void TourDateBind();
+        List<Tour> LoadAgain();
     }
 }

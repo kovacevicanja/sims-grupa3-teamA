@@ -186,6 +186,9 @@ namespace BookingProject.Services
             _tourRepository.BindLastTour();
         }
 
-
+        public List<Tour> LoadAgain()
+        {
+            return _tourRepository.LoadAgain();
+        }
     }
 }

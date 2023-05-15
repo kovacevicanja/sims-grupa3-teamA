@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.WebPages;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -25,8 +26,9 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand TryToBookCommand { get; }
         public RelayCommand CancelCommand { get; }
         public CustomMessageBox CustomMessageBox { get; set; }
+        public NavigationService NavigationService { get; set; }
 
-        public ReservationTourViewModel(Tour chosenTour, int guestId)
+        public ReservationTourViewModel(Tour chosenTour, int guestId, NavigationService navigationService)
         {
             _tourReservationController = new TourReservationController();
             ChosenTour = chosenTour;
@@ -39,6 +41,8 @@ namespace BookingProject.View.Guest2ViewModel
             CancelCommand = new RelayCommand(Button_Click_Close, CanExecute);
 
             CustomMessageBox = new CustomMessageBox();
+
+            NavigationService = navigationService;
         }
         private bool CanExecute(object param) { return true; }
 
@@ -47,7 +51,7 @@ namespace BookingProject.View.Guest2ViewModel
             try
             {
                 if (SelectedDate.StartingDateTime == null || int.Parse(EnteredGuests) <= 0 || EnteredGuests.IsEmpty()) { }
-                _tourReservationController.TryToBook(ChosenTour, EnteredGuests, SelectedDate.StartingDateTime, User);
+                _tourReservationController.TryToBook(ChosenTour, EnteredGuests, SelectedDate.StartingDateTime, User, NavigationService);
             }
             catch
             {
@@ -58,16 +62,7 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_Close(object param)
         {
-            SerachAndReservationToursView searchAndReservation = new SerachAndReservationToursView(GuestId);
-            searchAndReservation.Show();
-            CloseWindow();
-        }
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(ReservationTourView)) { window.Close(); }
-            }
+            NavigationService.GoBack();
         }
     }
 }

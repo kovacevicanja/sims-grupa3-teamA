@@ -1,0 +1,126 @@
+﻿<Window WindowStartupLocation="CenterScreen"
+        x:Class="BookingProject.View.GuideView.AllTourRequestsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View.GuideView" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="AllTourRequestsView" Height="520" Width="1105">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <!-- Placeholder for the TextBox itself -->
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+            </StackPanel>
+
+        </ControlTemplate>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Show">
+            <i:InvokeCommandAction Command="{Binding ShowAllCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Filter">
+            <i:InvokeCommandAction Command="{Binding SearchCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Close">
+            <i:InvokeCommandAction Command="{Binding CancelCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Pick">
+            <i:InvokeCommandAction Command="{Binding PickCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.InputBindings>
+        <KeyBinding Key="Backspace" Command="{Binding ShowAllCommand}" />
+        <KeyBinding Key="Ins" Command="{Binding SearchCommand}" />
+        <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
+        <KeyBinding Key="Space" Command="{Binding PickCommand}" />
+    </Window.InputBindings>
+
+    <Grid Margin="0,0,0,49">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="312"/>
+            <RowDefinition Height="22"/>
+        </Grid.RowDefinitions>
+
+
+
+        <Grid Grid.Row="1" Margin="0,156,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="829*"/>
+                <ColumnDefinition Width="313*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <DataGrid
+                              ItemsSource="{Binding Path=Tours, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding Path=ChosenRequest, UpdateSourceTrigger=PropertyChanged}"
+                              Name="TourDataGrid"
+                              AutoGenerateColumns="False" IsReadOnly="True" Margin="187,12,175,-2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                <DataGrid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-0.126"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-0.998"/>
+                    </TransformGroup>
+                </DataGrid.RenderTransform>
+                <DataGrid.Columns>
+
+
+
+                    <DataGridTextColumn Header="City" Width="100" Binding="{Binding Location.City}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Country" Width="100" Binding="{Binding Location.Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Guest number" Width="100" Binding="{Binding GuestsNumber}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Initial date" Width="200" Binding="{Binding StartDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="End date" Width="200" Binding="{Binding EndDate}"></DataGridTextColumn>
+
+
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+
+
+        </Grid>
+
+        <WrapPanel Grid.Row="2" Margin="0,41,5,-145" RenderTransformOrigin="0.5,0.773">
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding PickCommand}"  Content="Accept Request &#xa;        (Space)" Height="46"/>
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding ShowAllCommand}" Content="Show All Requests&#xa;      (Backspace)" Height="46" />
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding SearchCommand}" Content="Filter &#xa; (Ins)" Height="46"/>
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="Close &#xA; (Esc)" Height="46"/>
+        </WrapPanel>
+        <Label Content="My Requests : Filtering" FontWeight="Bold" FontSize="26"  Margin="10,0,770,0"/>
+        <Label Content="Options" FontWeight="Bold" FontSize="26"  Margin="30,308,816,-19" Grid.Row="1" Grid.RowSpan="2"/>
+        <TextBox TextWrapping="Wrap" Text="{Binding City}" Margin="75,29,747,248" Grid.Row="1"/>
+        <TextBox TextWrapping="Wrap" Text="{Binding Country}" Margin="411,29,411,249" Grid.Row="1"/>
+        <TextBox TextWrapping="Wrap" Text="{Binding NumOfGuests}" Margin="757,29,65,249" Grid.Row="1"/>
+        <ComboBox  Margin="75,99,747,179" Grid.Row="1" ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding Path=ChosenLanguage, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+        <TextBox TextWrapping="Wrap" Text="{Binding StartDate, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Margin="411,100,411,177" Grid.Row="1"
+        Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+        </TextBox>
+        <TextBox TextWrapping="Wrap" Text="{Binding EndDate, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Margin="757,99,65,178" Grid.Row="1"
+        Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+        </TextBox>
+            <Label Content="City:" Margin="75,0,844,283" Grid.Row="1"/>
+        <Label Content="Country:" Margin="411,0,508,283" Grid.Row="1"/>
+        <Label Content="Max Guests:" Margin="757,47,162,286" Grid.RowSpan="2"/>
+        <Label Content="Language:" Margin="75,70,844,213" Grid.Row="1"/>
+        <Label Content="Initial Date:" Margin="411,71,508,212" Grid.Row="1"/>
+        <Label Content="End Date:" Margin="757,70,162,213" Grid.Row="1"/>
+    </Grid>
+</Window>

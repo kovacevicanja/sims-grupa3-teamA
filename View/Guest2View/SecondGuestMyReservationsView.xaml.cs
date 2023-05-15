@@ -8,18 +8,20 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace BookingProject.View
 {
     /// <summary>
     /// Interaction logic for SecondGuestMyTours.xaml
     /// </summary>
-    public partial class SecondGuestMyReservations : Window
+    public partial class SecondGuestMyReservations : Page
     {
-        public SecondGuestMyReservations(int guestId)
+        public SecondGuestMyReservations(int guestId, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new SecondGuestMyReservationsViewModel(guestId);
+            this.DataContext = new SecondGuestMyReservationsViewModel(guestId, navigationService);
         }
     }
 }

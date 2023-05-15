@@ -15,7 +15,7 @@ using System.Windows;
 
 namespace BookingProject.View.GuideViewModel
 {
-    internal class EnterDateViewModel:IDataErrorInfo,INotifyPropertyChanged
+    public class EnterDateViewModel:IDataErrorInfo,INotifyPropertyChanged
     {
 
 

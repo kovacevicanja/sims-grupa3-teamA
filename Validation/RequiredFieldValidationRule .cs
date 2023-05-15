@@ -10,13 +10,11 @@ namespace BookingProject.Validation
 {
     public class RequiredFieldValidationRule : ValidationRule
     {
-        //public string ErrorMessage { get; set; }
-
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             if (string.IsNullOrEmpty((value ?? "").ToString()))
             {
-                return new ValidationResult(false, "This must be filled");
+                return new ValidationResult(false, "Field cannot be left empty.");
             }
 
             return ValidationResult.ValidResult;

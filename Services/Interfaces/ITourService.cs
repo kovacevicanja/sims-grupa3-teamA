@@ -32,5 +32,6 @@ namespace BookingProject.Services.Interfaces
         void GoThroughBookedToursDates(Tour tour, DateTime selectedDate, TourDateTime tdt);
         List<Tour> FilterToursByLocation(List<Tour> filteredTours, Location location, DateTime selectedDate);
         List<Tour> GetFilteredTours(Location location, DateTime selectedDate);
+        List<Tour> LoadAgain();
     }
 }

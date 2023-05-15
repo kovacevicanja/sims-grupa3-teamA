@@ -23,8 +23,14 @@
         <i:EventTrigger EventName="Three">
             <i:InvokeCommandAction Command="{Binding ThreeCommand}" />
         </i:EventTrigger>
+        <i:EventTrigger EventName="Four">
+            <i:InvokeCommandAction Command="{Binding FourCommand}" />
+        </i:EventTrigger>
         <i:EventTrigger EventName="Five">
             <i:InvokeCommandAction Command="{Binding FiveCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Create">
+            <i:InvokeCommandAction Command="{Binding CreateCommand}" />
         </i:EventTrigger>
         <i:EventTrigger EventName="Suggestion">
             <i:InvokeCommandAction Command="{Binding SuggestionCommand}" />
@@ -35,8 +41,10 @@
         <KeyBinding Key="A"  Command="{Binding OneCommand}" />
         <KeyBinding Key="B"  Command="{Binding TwoCommand}" />
         <KeyBinding Key="C"  Command="{Binding ThreeCommand}" />
+        <KeyBinding Key="D"  Command="{Binding FourCommand}" />
         <KeyBinding Key="E"  Command="{Binding FiveCommand}" />
         <KeyBinding Key="S"  Command="{Binding SuggestionCommand}" />
+        <KeyBinding Key="N"  Command="{Binding CreateCommand}" />
     </Window.InputBindings>
 
 
@@ -51,19 +59,19 @@
             <Button Content="My Tours (A)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding OneCommand}"/>
             <Button Content="Tour Statistics (B)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding TwoCommand}"/>
             <Button Content="Live View (C)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding ThreeCommand}"/>
-            <Button Content="Requests (D)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" />
+            <Button Content="Requests (D)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding FourCommand}"/>
             <Button Content="Request Statistics (E)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding FiveCommand}"/>
         </StackPanel>
         <Border BorderBrush="Black" BorderThickness="5" Margin="96,72,10,0" Grid.Column="1"/>
-        <Label Content="Guide Options" FontWeight="Bold" FontSize="24" Margin="140,14,367,685" Grid.Column="1"/>
+        <Label Content="Workflow Options" FontWeight="Bold" FontSize="24" Margin="123,10,319,689" Grid.Column="1"/>
         <WrapPanel Margin="29,110,10,444">
             <Button Content="Language (L)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" />
             <Button Content="Mode (M)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" />
-            <Button Content="Create Report (P)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" />
+            <Button Content="Create New Tour  (N)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding CreateCommand}"/>
             <Button Content="Suggestion (S)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding SuggestionCommand}"/>
         </WrapPanel>
         <Border BorderBrush="Black" BorderThickness="5" Margin="10,72,0,430"/>
-        <Label Content="Extra Options" FontWeight="Bold" FontSize="24" Margin="29,13,337,686"/>
+        <Label Content="Core Options" FontWeight="Bold" FontSize="24" Margin="29,8,337,691"/>
         <Button Content="Resign (R)" Margin="160,723,177,0" FontSize="20" FontWeight="Bold"  Height="43" VerticalAlignment="Top"/>
         <Button Content="Logout (Esc)" Margin="160,659,177,0" FontSize="20" FontWeight="Bold" Command="{Binding LogoutCommand}" VerticalAlignment="Top" Height="45"/>
         <Image Source="../../Resources/Images/guide.png" Margin="14,398,275,242"/>

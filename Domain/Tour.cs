@@ -25,10 +25,13 @@ namespace BookingProject.Model
         public List<TourImage> Images { get; set; }
         public int GuideId { get; set; }
 
+        public bool IsSuggestion { get; set; }
+
         public Tour() { 
             KeyPoints = new List<KeyPoint>();
             StartingTime = new List<TourDateTime>();
             Images = new List<TourImage>();
+            IsSuggestion= false;
         }
 
        
@@ -53,6 +56,7 @@ namespace BookingProject.Model
             MaxGuests = int.Parse(values[5]);
             DurationInHours = int.Parse(values[6]);
             GuideId= int.Parse(values[7]);
+            IsSuggestion = bool.Parse(values[8]);
         }
 
         public string[] ToCSV()
@@ -67,6 +71,7 @@ namespace BookingProject.Model
                 MaxGuests.ToString(),
                 DurationInHours.ToString(),
                 GuideId.ToString(),
+                IsSuggestion.ToString(),
 
             };
             return csvValues;

@@ -14,6 +14,9 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using BookingProject.View.Guest2View;
 using System.Web.WebPages;
+using BookingProject.View.CustomMessageBoxes;
+using System.Windows.Navigation;
+using BookingProject.Repositories;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -31,73 +34,68 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand SearchCommand { get; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand BookTourCommand { get; }
-        public RelayCommand LogOutCommand { get; }
         public RelayCommand ShowAllToursCommand { get; }
-        public RelayCommand ProfileCommand { get; }
         public RelayCommand SeeMoreCommand { get; }
         public ObservableCollection<LanguageEnum> Languages { get; set; }
         public ObservableCollection<Tour> Tours { get; set; }
-        public SearchAndReservationToursViewModel(int guestId)
+        public CustomMessageBox CustomMessageBox { get; set; }
+        public NavigationService NavigationService { get; set; }
+        public SearchAndReservationToursViewModel(int guestId, NavigationService navigationService)
         {
             _tourController = new TourController();
-            Tours = new ObservableCollection<Tour>(_tourController.GetAll());
+
+            Tours = new ObservableCollection<Tour>(_tourController.LoadAgain());
+
+            NavigationService = navigationService;
 
             GuestId = guestId;
             User = new User();
 
             SearchCommand = new RelayCommand(Button_Click_Search, CanExecute);
             BookTourCommand = new RelayCommand(Button_Click_Book, CanWhenSelected);
-            LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
             ShowAllToursCommand = new RelayCommand(Button_Click_ShowAll, CanExecute);
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
-            ProfileCommand = new RelayCommand(Button_BackToProfile, CanExecute);
             SeeMoreCommand = new RelayCommand(Button_Click_SeeMore, CanWhenSelected);
 
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
+
+            CustomMessageBox = new CustomMessageBox();
         }
 
         private bool CanExecute(object param) { return true; }
 
         private void Button_Click_SeeMore(object param)
         {
-            SeeMoreAboutTourView seeMore = new SeeMoreAboutTourView(ChosenTour, GuestId);
-            seeMore.Show();
-            CloseWindow();
+            NavigationService.Navigate(new SeeMoreAboutTourView(ChosenTour, GuestId, NavigationService));
         }
 
         private bool CanWhenSelected(object param)
         {
-            if (ChosenTour == null) { return false; }
-            else { return true; }
-        }
-
-        private void Button_BackToProfile(object param)
-        {
-            SecondGuestProfileView secondGuestProfile = new SecondGuestProfileView(GuestId);
-            secondGuestProfile.Show();
-            CloseWindow();
+            if (ChosenTour == null) return false; 
+            else return true; 
         }
 
         private void Button_Click_Search(object param)
         {
-            int flag = 0;
             try
             {
-                if (NumOfGuests.IsEmpty())
+                if (NumOfGuests.IsEmpty() && Duration.IsEmpty())
                 {
-                    flag = 1;
+                    _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
                 }
-                else if (Convert.ToInt32(NumOfGuests) <= 0 && flag == 0 ) 
+                else if (Convert.ToInt32(NumOfGuests) <= 0 || Convert.ToInt32(Duration) <= 0)
                 {
-                    MessageBox.Show("You have not entered a reasonable value to search by number of guests111.");
+                    CustomMessageBox.ShowCustomMessageBox("Check that you have correctly entered the number of guests and the duration of the tour.");
                 }
-             
-                 _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
+                else
+                {
+                    _tourController.Search(Tours, City, Country, Duration, ChosenLanguage, NumOfGuests);
+                }
             }
             catch
             {
-                MessageBox.Show("You have not entered a reasonable value to search by number of guests222.");
+                CustomMessageBox.ShowCustomMessageBox("Check that you have correctly entered the number of guests and the duration of the tour.");
             }
 
             NumOfGuests = string.Empty;
@@ -110,22 +108,12 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_Cancel(object param)
         {
-            CloseWindow();
-        }
-
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(SerachAndReservationToursView)) { window.Close(); }
-            }
+            NavigationService.GoBack();
         }
 
         private void Button_Click_Book(object param)
         {
-            ReservationTourView reservationTourView = new ReservationTourView(ChosenTour, GuestId);
-            reservationTourView.Show();
-            CloseWindow();
+            NavigationService.Navigate(new ReservationTourView(ChosenTour, GuestId, NavigationService));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -226,14 +214,6 @@ namespace BookingProject.View.Guest2ViewModel
                 _startingTime = value;
                 OnPropertyChanged();
             }
-        }
-        private void Button_Click_LogOut(object param)
-        {
-            User.Id = GuestId;
-            User.IsLoggedIn = false;
-            SignInForm signInForm = new SignInForm();
-            signInForm.Show();
-            CloseWindow();
         }
     }
 }

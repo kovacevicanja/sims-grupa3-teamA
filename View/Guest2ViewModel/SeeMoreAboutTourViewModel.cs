@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Markup.Localizer;
+using System.Windows.Navigation;
+using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -18,50 +21,41 @@ namespace BookingProject.View.Guest2ViewModel
     {
         public Tour ChosenTour { get; set; }
         public int GuestId { get; set; }
-        public User User { get; set; }  
+        public User User { get; set; }
         public RelayCommand NextCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
-        public RelayCommand LogOutCommand { get; set; }
         public RelayCommand BookTourCommand { get; set; }
+        public RelayCommand ViewGalleryCommand { get; set; }
         public string DurationDisplay { get; set; }
         public string LanguageDisplay { get; set; }
+        public string PreviousWindow { get; set; }
+        public NavigationService NavigationService { get; set; }
 
-        public SeeMoreAboutTourViewModel(Tour chosenTour, int guestId)
+        public SeeMoreAboutTourViewModel(Tour chosenTour, int guestId, NavigationService navigationService)
         {
             ChosenTour = chosenTour;
             GuestId = guestId;
             User = new User();
 
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
-            LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
             BookTourCommand = new RelayCommand(Button_Click_BookTour, CanExecute);
+            ViewGalleryCommand = new RelayCommand(Button_Click_ViewGallery, CanExecute);
 
-            DurationDisplay = ChosenTour.DurationInHours.ToString() + " h";
+            DurationDisplay = ChosenTour.DurationInHours.ToString() + "h";
             string language = ChosenTour.Language.ToString();
             LanguageDisplay = char.ToUpper(language[0]) + language.Substring(1).ToLower();
-        }
 
-        private void Button_Click_LogOut(object param)
-        {
-            User.Id = GuestId;
-            User.IsLoggedIn = false;
-            SignInForm signInForm = new SignInForm();
-            signInForm.Show();
-            CloseWindow();
+            NavigationService = navigationService;
         }
 
         private void Button_Click_BookTour(object param)
         {
-            ReservationTourView reservationTourView = new ReservationTourView(ChosenTour, GuestId);
-            reservationTourView.Show();
-            CloseWindow();
+            NavigationService.Navigate(new ReservationTourView(ChosenTour, GuestId, NavigationService));
         }
 
         private void Button_Click_Cancel(object param)
         {
-            SerachAndReservationToursView searchAndReservation = new SerachAndReservationToursView(GuestId);
-            searchAndReservation.Show();
-            CloseWindow();
+            NavigationService.GoBack();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -110,14 +104,11 @@ namespace BookingProject.View.Guest2ViewModel
             }
         }
 
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(SeeMoreAboutTourView)) { window.Close(); }
-            }
-        }
-
         private bool CanExecute(object param) { return true; }
+
+        private void Button_Click_ViewGallery(object param)
+        {
+            NavigationService.Navigate(new ShowGalleryView(ChosenTour, NavigationService));
+        }
     }
 }

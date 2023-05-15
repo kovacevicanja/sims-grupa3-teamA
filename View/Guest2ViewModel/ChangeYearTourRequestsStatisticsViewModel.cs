@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web.WebPages;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
@@ -15,36 +18,40 @@ namespace BookingProject.View.Guest2ViewModel
         public int GuestId { get; set; }
         public RelayCommand ChangeYearCommand { get; }
         public RelayCommand CancelCommand { get; }
+        public NavigationService NavigationService { get; set; }    
 
-        public ChangeYearTourRequestsStatisticsViewModel(int guestId)
+        public ChangeYearTourRequestsStatisticsViewModel(int guestId, NavigationService navigationService)
         {
             GuestId = guestId;
 
-            ChangeYearCommand = new RelayCommand(Button_Click_ChangeYear, CanExecute);
+            ChangeYearCommand = new RelayCommand(Button_Click_ChangeYear, CanWhenEntered); 
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
+
+            NavigationService = navigationService;
+        }
+
+        private bool CanWhenEntered(object param)
+        {
+            string trimmedYear = EnteredYear?.Trim();
+            if (string.IsNullOrEmpty(trimmedYear))
+            {
+                return false;
+            }
+
+            string pattern = @"^(?!0)\d{4}$";
+            return Regex.IsMatch(trimmedYear, pattern);
         }
 
         private bool CanExecute(object param) { return true; }
 
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(ChangeYearTourRequestsStatisticsView)) { window.Close(); }
-            }
-        }
-
         public void Button_Click_ChangeYear(object param)
         {
-            TourRequestStatisticsView tourRequestStatisticsView = new TourRequestStatisticsView(GuestId, EnteredYear);
-            tourRequestStatisticsView.Show();
-
-            CloseWindow();
+            NavigationService.Navigate(new TourRequestStatisticsView(GuestId, NavigationService, EnteredYear));
         }
 
         public void Button_Click_Cancel(object param)
         {
-            CloseWindow();
+            NavigationService.GoBack();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -63,6 +70,7 @@ namespace BookingProject.View.Guest2ViewModel
                 {
                     _enteredYear = value;
                     OnPropertyChanged(nameof(EnteredYear));
+                    OnPropertyChanged(nameof(CanWhenEntered));
                 }
             }
         }

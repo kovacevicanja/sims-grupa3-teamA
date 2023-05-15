@@ -19,6 +19,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View
@@ -26,12 +27,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for SecondGuestProfile.xaml
     /// </summary>
-    public partial class SecondGuestProfileView : Window
+    public partial class SecondGuestProfileView : Page
     {
-        public SecondGuestProfileView(int idGuest)
+        public SecondGuestProfileView(int guestId, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new SecondGuestProfileViewModel(idGuest);
+            this.DataContext = new SecondGuestProfileViewModel(guestId, navigationService);
         }
     }
 }

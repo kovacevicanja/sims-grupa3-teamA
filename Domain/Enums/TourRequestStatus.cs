@@ -8,6 +8,6 @@ namespace BookingProject.Domain.Enums
 {
     public enum TourRequestStatus
     {
-        PENDING,  INVALID, ACCEPTED
+        PENDING, INVALID, ACCEPTED
     }
 }
