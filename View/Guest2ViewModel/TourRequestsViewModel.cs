@@ -22,8 +22,9 @@ namespace BookingProject.View.Guest2ViewModel
         public TourRequestController _tourRequestController;
         public ObservableCollection<TourRequest> TourRequests { get; set; }
         public RelayCommand CancelCommand { get; }
+        public NavigationService NavigationService { get; set; }
 
-        public TourRequestsViewModel(int guestId)
+        public TourRequestsViewModel(int guestId, NavigationService navigationService)
         {
             GuestId = guestId;
 
@@ -31,20 +32,15 @@ namespace BookingProject.View.Guest2ViewModel
             TourRequests = new ObservableCollection<TourRequest>(_tourRequestController.GetGuestRequests(guestId, ""));
 
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
+
+            NavigationService = navigationService;
         }
 
         private bool CanExecute(object param) { return true; }
 
         private void Button_Cancel(object param)
         {
-            CloseWindow();
-        }
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(TourRequestsView)) { window.Close(); }
-            }
+            NavigationService.GoBack();
         }
     }
 }

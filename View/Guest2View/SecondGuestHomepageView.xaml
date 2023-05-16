@@ -59,7 +59,7 @@
                 <Button Content="My vouchers" Click="Button_Click_MyVouchers" CommandParameter="5" Width="234" Margin="0,208,0,256" HorizontalAlignment="Center"/>
                 <Button Content="Monitoring active tours" Click="Button_Click_ActiveTours" CommandParameter="6" Width="234" Margin="0,163,0,301" HorizontalAlignment="Center"/>
                 <Button Content="Create tour request" Click="Button_Click_CreateTourRequest" CommandParameter="7" Width="234" Margin="0,252,0,212" HorizontalAlignment="Center"/>
-                <Button Content="My tour requests" Command="{Binding NextPageCommand}" CommandParameter="8" Width="234" Margin="0,297,0,167" HorizontalAlignment="Center"/>
+                <Button Content="My tour requests" Click="Button_Click_MyTourRequests" CommandParameter="8" Width="234" Margin="0,297,0,167" HorizontalAlignment="Center"/>
                 <Button Content="Request statistics" Click="Button_Click_RequestStatistcis" CommandParameter="9" Width="232" Margin="0,342,0,122" HorizontalAlignment="Center"/>
                 <Button Content="Newly created tours" Click="Button_Click_NewlyCreatedTours" CommandParameter="9" Width="232" Margin="0,387,0,77" HorizontalAlignment="Center"/>
             </Grid>

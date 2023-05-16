@@ -130,5 +130,10 @@ namespace BookingProject.View
                 CustomMessageBox.ShowCustomMessageBox("There are currently no new tours you have always wanted created according to your requirements.");
             }
         }
+
+        private void Button_Click_MyTourRequests(object sender, RoutedEventArgs e)
+        {
+            FrameHomePage.Content = new TourRequestsView(GuestId, this.FrameHomePage.NavigationService);
+        }
     }
 }

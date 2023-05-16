@@ -65,8 +65,6 @@ namespace BookingProject.Services.Implementations
             notification.Read = false;
             notification.RelatedTo = "Creating a tour on demand";
             _notificationService.Create(notification);
-            //ovde bi bilo najbolje organiciti ovu notifikaciju na zahteve koji su pending, i onda samo takvim gostima poslati notifikaciju 
-            //poslati gostu ciji je zahtev prihvacen notifikaciju, ako je njegov zahtev bio pending
         }
 
         public void SystemSendingNotification(int guestId)

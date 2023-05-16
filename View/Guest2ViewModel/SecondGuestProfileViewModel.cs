@@ -186,8 +186,8 @@ namespace BookingProject.View.Guest2ViewModel
         }
         private void Button_Click_MyTourRequests(object param)
         {
-            TourRequestsView tourRequestsView = new TourRequestsView(GuestId);
-            tourRequestsView.Show();
+            //TourRequestsView tourRequestsView = new TourRequestsView(GuestId);
+            //tourRequestsView.Show();
             CloseWindow();
         }
         private void Button_Click_RequestStatistics(object param)
