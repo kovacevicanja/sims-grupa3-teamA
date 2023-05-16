@@ -97,5 +97,15 @@ namespace BookingProject.Controller
         {
             return _tourService.LoadAgain();
         }
+
+        public List<Tour> FindToursCreatedByStatistcis()
+        {
+            return _tourService.FindToursCreatedByStatistcis();
+        }
+        
+        public List<Tour> FindToursCreatedByStatistcisForGuest(int guestId)
+        {
+            return _tourService.FindToursCreatedByStatistcisForGuest(guestId);
+        }
     }
 }

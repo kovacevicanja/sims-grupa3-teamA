@@ -37,7 +37,6 @@ namespace BookingProject.View.Guest2ViewModel
         public CustomMessageBox CustomMessageBox;
         public RelayCommand CancelCommand { get; }
         public RelayCommand CreateTourRequestCommand { get; }
-        public RelayCommand LogOutCommand { get; }
         public User User { get; set; }
         public int Flag { get; set; }
         public CorrectInputCityValidationRule correctInputCityvalidationRule { get; set; }
@@ -64,22 +63,13 @@ namespace BookingProject.View.Guest2ViewModel
 
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
             CreateTourRequestCommand = new RelayCommand(Button_Click_CreateTourRequest, CanExecute);
-            LogOutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
 
             User = new User();
 
             correctInputCityvalidationRule = new CorrectInputCityValidationRule();
         }
 
-        private bool CanExecute(object param) { return true; } 
-
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(CreateTourRequestView)) { window.Close(); }
-            }
-        }
+        private bool CanExecute(object param) { return true; }
 
         private DateTime _startDate;
         public DateTime StartDate
@@ -216,7 +206,7 @@ namespace BookingProject.View.Guest2ViewModel
                     tourRequest.Location = location;
 
                     _tourRequestController.Create(tourRequest);
-    
+
                     CustomMessageBox.ShowCustomMessageBox("You have successfully created a tour request. If you want, you can create more of them.");
 
                     City = "";
@@ -235,19 +225,8 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_Cancel(object param)
         {
-            //SecondGuestProfileView profile = new SecondGuestProfileView(GuestId);
-            //profile.Show();
-            //CloseWindow();
-            //NavigationService.GoBack();
+            NavigationService.GoBack();
         }
 
-        private void Button_Click_LogOut(object param)
-        {
-            User.Id = GuestId;
-            User.IsLoggedIn = false;
-            SignInForm signInForm = new SignInForm();
-            signInForm.Show();
-            CloseWindow();
-        }
     }
 }

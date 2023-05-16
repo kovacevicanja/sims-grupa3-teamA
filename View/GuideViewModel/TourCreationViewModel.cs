@@ -16,6 +16,7 @@ using BookingProject.Commands;
 using System.Windows.Threading;
 using System.Windows.Threading;
 using BookingProject.Controllers;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace BookingProject.View.GuideViewModel
 {
@@ -43,13 +44,18 @@ namespace BookingProject.View.GuideViewModel
 
         private DispatcherTimer _validationTimer;
         public bool IsEnabled { get; }
+        public LanguageEnum TopLanguage { get; set; }
 
         public TourCreationViewModel(bool isLanguagePicked, bool isLocationPicked)
         {
             IsLanguagePicked = isLanguagePicked;
             IsLocationPicked= isLocationPicked;
+
+            TopLanguage = LanguageEnum.ENGLISH;
+
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
+
             TourController = new TourController();
             LocationController = new TourLocationController();
             KeyPointController = new KeyPointController();
@@ -194,6 +200,7 @@ namespace BookingProject.View.GuideViewModel
             {
                 LanguageEnum TopLanguage = RequestController.GetTopLanguage(DateTime.Now.Year.ToString());
                 TourLanguage = TopLanguage.ToString();
+                ChosenLanguage = TopLanguage;
                 return true;
             }
             else if (IsLocationPicked)

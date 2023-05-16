@@ -35,7 +35,9 @@ namespace BookingProject.View
         private readonly AccommodationReservationController _accResController;
         private readonly RequestAccommodationReservationController _requestController;
         private readonly NotificationController _notificationController;
-        public CustomNotificationMessageBox CustomNotificationMessageBox { get; set; }  
+        private readonly TourRequestController _tourRequestController;
+        public CustomNotificationMessageBox CustomNotificationMessageBox { get; set; }
+        CustomNotificationMessageBoxNewlyCreatedTours CustomNotificationMessageBoxNewlyCreatedTours { get; set; }
 
         private string _username;
         public string Username
@@ -68,6 +70,8 @@ namespace BookingProject.View
             _notificationController = new NotificationController();
             NotificationController = new NotificationController();
             CustomNotificationMessageBox = new CustomNotificationMessageBox();
+            CustomNotificationMessageBoxNewlyCreatedTours = new CustomNotificationMessageBoxNewlyCreatedTours();
+            _tourRequestController = new TourRequestController();
         }
         private void SignIn(object sender, RoutedEventArgs e)
         {
@@ -135,15 +139,34 @@ namespace BookingProject.View
                         SecondGuestHomepageView homePage = new SecondGuestHomepageView(userGuest.Id);
                         homePage.Show();
                         List<Notification> notifications = new List<Notification>();
+                        _tourRequestController.SystemSendingNotification(userGuest.Id);
                         notifications = _tourPresenceController.GetGuestNotifications(userGuest);
                         List<Notification> notificationsCopy = new List<Notification>();
 
+                        //kada on jednom klikne da vidi te ture koje su napravljene da mu vise ne iskace to obavestenje, 
+                        //ili kada jednom zakaze te ture da mu vise ne iskace obavestenje 
+                        //il
+
+
                         foreach (Notification notification in notifications)
                         {
-                            CustomNotificationMessageBox.ShowCustomMessageBoxNotification(notification.Text, userGuest);
+                            if (notification.RelatedTo.Equals("Creating a tour on demand"))
+                            {
+                                CustomNotificationMessageBoxNewlyCreatedTours.ShowCustomNotification(notification.Text, userGuest);
+                            }
+                            else if (notification.RelatedTo.Equals("System notification about new tours"))
+                            {
+                                CustomNotificationMessageBoxNewlyCreatedTours.ShowCustomNotification(notification.Text, userGuest);
+                                //ovo cu izmeniti kad se klikne ok da se otvore te nove kreirane ture
+                            }
+                            else
+                            {
+                                CustomNotificationMessageBox.ShowCustomMessageBoxNotification(notification.Text, userGuest);
+                            }
                             notificationsCopy.Add(notification);
                             _tourPresenceController.DeleteNotificationFromCSV(notification);
                         }
+
                         foreach (Notification notification1 in notificationsCopy)
                         {
                             _tourPresenceController.WriteNotificationAgain(notification1);

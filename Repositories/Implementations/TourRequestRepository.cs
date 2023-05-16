@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using BookingProject.Domain;
 using BookingProject.Domain.Enums;
 using System.Windows.Media.Animation;
+using System.Security.Policy;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BookingProject.Repositories.Implementations
 {
@@ -106,6 +108,18 @@ namespace BookingProject.Repositories.Implementations
                 { guestRequests.Add(request); }         
             }
             return guestRequests;
+        }
+
+        public void ChangeStatus(TourRequest request, int guestId)
+        {
+            if (request.Guest.Id == guestId)
+            {
+                _tourRequests.RemoveAll(r => r.Id == request.Id);
+                TourRequest changedStatusRequest = new TourRequest(request.Id, -1, TourRequestStatus.ACCEPTED, request.Location,
+                    request.Description, request.Language, request.GuestsNumber, request.StartDate, request.EndDate, request.Guest);
+                _tourRequests.Add(changedStatusRequest);
+                Save();
+            }
         }
     }
 }

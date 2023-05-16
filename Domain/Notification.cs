@@ -13,14 +13,16 @@ namespace BookingProject.Domain
         public int UserId { get; set; }
         public string Text { get; set; }
         public bool Read { get; set; }
+        public string RelatedTo { get; set; }
 
         public Notification () { }
-        public Notification(int id, int userId, string text, bool read)
+        public Notification(int id, int userId, string text, bool read, string relatedTo)
         {
             Id = id;
             UserId = userId;
             Text = text;
             Read = read;
+            RelatedTo = relatedTo;
         }
 
         public void FromCSV(string[] values)
@@ -29,6 +31,7 @@ namespace BookingProject.Domain
             UserId = int.Parse(values[1]);
             Text = values[2];
             Read = bool.Parse(values[3]);
+            RelatedTo = values[4];
         }
 
         public string[] ToCSV()
@@ -38,7 +41,8 @@ namespace BookingProject.Domain
                 Id.ToString(),
                 UserId.ToString(),
                 Text,
-                Read.ToString()
+                Read.ToString(),
+                RelatedTo
             };
             return csvValues;
         }

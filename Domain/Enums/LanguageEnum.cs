@@ -8,6 +8,6 @@ namespace BookingProject.Model.Enums
 {
     public enum LanguageEnum
     {
-        ENGLISH, SERBIAN, GERMAN
+        ENGLISH, SERBIAN, GERMAN, SPANISH
     }
 }
