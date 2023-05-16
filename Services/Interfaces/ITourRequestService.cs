@@ -25,11 +25,7 @@ namespace BookingProject.Services.Interfaces
         List<TourRequest> GetGuestRequests(int guestId, string enteredYear);
         double GetUnacceptedRequestsPercentage(int guestId, string enteredYear);
         double GetAcceptedRequestsPercentage(int guestId, string enteredYear);
-        int GetNumberRequestsLanguage(int guestId, LanguageEnum language, string enteredYear);
-        int GetNumberRequestsLocation(int guestId, string country, string city, string enteredYear);
         double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear);
-        bool WantedTour(TourRequest tour, string city, string country, string choosenLanguage, string numOfGuests, string startDate, string endDate);
-        bool WantedFilteredTour(TourRequest tour, string city, string country, string choosenLanguage, string year, string month);
         bool RequestedCity(TourRequest tour, string city);
         bool RequestedCountry(TourRequest tour, string country);
         bool RequestedLanguage(TourRequest tour, string choosenLanguage);
@@ -38,13 +34,7 @@ namespace BookingProject.Services.Interfaces
         bool RequestedEndDate(TourRequest tour, string endDate);
         bool RequestedYear(TourRequest tour, string year);
         bool RequestedMonth(TourRequest tour, string month);
-        ObservableCollection<TourRequest> Search(ObservableCollection<TourRequest> tourView, string city, string country, string choosenLanguage, string numOfGuests, string startDate, string endDate);
-        ObservableCollection<TourRequest> Filter(ObservableCollection<TourRequest> tourView, string city, string country, string choosenLanguage, string year, string month);
-        void ShowAll(ObservableCollection<TourRequest> tourView);
-        int GetNumberAllRequestsLanguage(LanguageEnum language, string enteredYear);
-        int GetNumberAllRequestsLocation(string country, string city, string enteredYear);
-        Location GetTopLocation(string enteredYear);
-        LanguageEnum GetTopLanguage(string enteredYear);
+        bool IsMatchingYear(int guestId, string enteredYear = "");
         void SystemSendingNotification(int guestId);
         List<TourRequest> FindUnacceptedRequestsForGuests(int guestId);
         void NewlyAcceptedRequests(int guestId);
