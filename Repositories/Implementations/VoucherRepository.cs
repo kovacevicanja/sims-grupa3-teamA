@@ -61,6 +61,5 @@ namespace BookingProject.Repository
         {
             return _vouchers.Find(voucher => voucher.Id == id);
         }
-       
     }
 }

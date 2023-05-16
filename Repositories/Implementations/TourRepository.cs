@@ -82,7 +82,7 @@ namespace BookingProject.Repositories
              }
              else
              {
-                 Tour tour = _tours.Last();
+                Tour tour = _tours.Last();
                 List<TourDateTime> dates = Injector.CreateInstance<ITourStartingTimeRepository>().GetAll();
                 List<KeyPoint> keyPoints = Injector.CreateInstance<IKeyPointRepository>().GetAll();
                 List<TourImage> images = Injector.CreateInstance<ITourImageRepository>().GetAll();
