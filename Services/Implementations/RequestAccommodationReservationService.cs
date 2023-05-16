@@ -150,6 +150,30 @@ namespace BookingProject.Services
             Create(request);
             SaveRequest();
         }
+        public int CountRescheduledReservationForSpecificYear(int year, int accommodationId)
+        {
+            int number = 0;
+            foreach(RequestAccommodationReservation request in _requestRepository.GetAll())
+            {
+                if(request.AccommodationReservation.Accommodation.Id==accommodationId && request.NewDeparuteDay.Year==year && request.Status == Domain.Enums.RequestStatus.APPROVED)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public int CountRescheduledReservationForSpecificMonth(int year, int month, int accommodationId)
+        {
+            int number = 0;
+            foreach(RequestAccommodationReservation request in _requestRepository.GetAll())
+            {
+                if(request.AccommodationReservation.Accommodation.Id==accommodationId && request.NewDeparuteDay.Month == month && request.NewDeparuteDay.Year==year && request.Status == Domain.Enums.RequestStatus.APPROVED)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
 
     }
 }

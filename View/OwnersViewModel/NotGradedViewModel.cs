@@ -59,7 +59,7 @@ namespace BookingProject.View.OwnerViewModel
         }
         private void Button_Cancel(object param)
         {
-            var view = new OwnerView();
+            var view = new OwnerssView();
             view.Show();
             CloseWindow();
         }

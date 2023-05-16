@@ -27,16 +27,16 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for OwnerView.xaml
     /// </summary>
-    public partial class OwnerView : Window
+    public partial class OwnerssView : Window
     {
-        public OwnerView()
+        public OwnerssView()
         {
             InitializeComponent();
-            this.DataContext = new OwnersViewModel();
-            var view = new OwnersViewModel();
+            this.DataContext = new OwnerssViewModel();
+            var view = new OwnerssViewModel();
             if (!view._accommodationOwnerGradeController.IsOwnerSuperOwner(SignInForm.LoggedInUser.Id))
             {
-                SuperOwnerImage.Visibility = Visibility.Hidden;
+                //SuperOwnerImage.Visibility = Visibility.Hidden;
             }
         }
     }

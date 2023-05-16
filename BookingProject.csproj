@@ -135,6 +135,7 @@
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Guide.cs" />
     <Compile Include="Domain\Images\AccommodationGuestImage.cs" />
+    <Compile Include="Domain\MonthData.cs" />
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\RecommendationRenovation.cs" />
     <Compile Include="Domain\RequestAccommodationReservation.cs" />
@@ -320,15 +321,23 @@
     <Compile Include="View\Guest2View\ActiveToursView.xaml.cs">
       <DependentUpon>ActiveToursView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OwnerViewModel\AddAccommodationViewModel.cs" />
-    <Compile Include="View\OwnerViewModel\AddPhotosToAccommodationViewModel.cs" />
-    <Compile Include="View\OwnerViewModel\GuestGradesForOwnerViewModel.cs" />
-    <Compile Include="View\OwnerViewModel\GuestRateViewModel.cs" />
-    <Compile Include="View\OwnerViewModel\MenuViewModel.cs" />
-    <Compile Include="View\OwnerViewModel\NotGradedViewModel.cs" />
-    <Compile Include="View\OwnerViewModel\OwnersApprovingDenyingRequestViewModel.cs" />
-    <Compile Include="View\OwnerViewModel\OwnersRequestViewModel.cs" />
-    <Compile Include="View\OwnerView\AddAccommodationView.xaml.cs">
+    <Compile Include="View\OwnersViewModel\AccommodationStatisticsByMonthViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\AccommodationStatisticsByYearViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\AddAccommodationViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\AddPhotosToAccommodationViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\GuestGradesForOwnerViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\GuestRateViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\MenuViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\NotGradedViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\OwnersApprovingDenyingRequestViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\OwnersRequestViewModel.cs" />
+    <Compile Include="View\OwnersView\AccommodationStatisticsByMonthView.xaml.cs">
+      <DependentUpon>AccommodationStatisticsByMonthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\AccommodationStatisticsByYearView.xaml.cs">
+      <DependentUpon>AccommodationStatisticsByYearView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\AddAccommodationView.xaml.cs">
       <DependentUpon>AddAccommodationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CustomMessageBoxes\CustomMessageBox.cs" />
@@ -458,7 +467,7 @@
     <Compile Include="View\Guest2View\MonitoringActiveToursView.xaml.cs">
       <DependentUpon>MonitoringActiveToursView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OwnerViewModel\OwnerViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\OwnerssViewModel.cs" />
     <Compile Include="View\Guest1View\RescheduleAccommodationReservationView.xaml.cs">
       <DependentUpon>RescheduleAccommodationReservationView.xaml</DependentUpon>
     </Compile>
@@ -483,28 +492,28 @@
     <Compile Include="View\Guest2View\SearchAndReservationToursView.xaml.cs">
       <DependentUpon>SearchAndReservationToursView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OwnerView\AddPhotosToAccommodationView.xaml.cs">
+    <Compile Include="View\OwnersView\AddPhotosToAccommodationView.xaml.cs">
       <DependentUpon>AddPhotosToAccommodationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OwnerView\GuestGradesForOwnerView.xaml.cs">
+    <Compile Include="View\OwnersView\GuestGradesForOwnerView.xaml.cs">
       <DependentUpon>GuestGradesForOwnerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OwnerView\GuestRateView.xaml.cs">
+    <Compile Include="View\OwnersView\GuestRateView.xaml.cs">
       <DependentUpon>GuestRateView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OwnerView\MenuView.xaml.cs">
+    <Compile Include="View\OwnersView\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OwnerView\NotGradedView.xaml.cs">
+    <Compile Include="View\OwnersView\NotGradedView.xaml.cs">
       <DependentUpon>NotGradedView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OwnerView\OwnersApprovingDenyingRequestView.xaml.cs">
+    <Compile Include="View\OwnersView\OwnersApprovingDenyingRequestView.xaml.cs">
       <DependentUpon>OwnersApprovingDenyingRequestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OwnerView\OwnersRequestView.xaml.cs">
+    <Compile Include="View\OwnersView\OwnersRequestView.xaml.cs">
       <DependentUpon>OwnersRequestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OwnerView\OwnersView.xaml.cs">
+    <Compile Include="View\OwnersView\OwnersView.xaml.cs">
       <DependentUpon>OwnersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SignInForm.xaml.cs">
@@ -552,7 +561,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\OwnerView\AddAccommodationView.xaml">
+    <Page Include="View\OwnersView\AccommodationStatisticsByMonthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\AccommodationStatisticsByYearView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\AddAccommodationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -724,35 +741,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\OwnerView\AddPhotosToAccommodationView.xaml">
+    <Page Include="View\OwnersView\AddPhotosToAccommodationView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="View\OwnerView\GuestGradesForOwnerView.xaml">
+    <Page Include="View\OwnersView\GuestGradesForOwnerView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="View\OwnerView\GuestRateView.xaml">
+    <Page Include="View\OwnersView\GuestRateView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="View\OwnerView\MenuView.xaml">
+    <Page Include="View\OwnersView\MenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="View\OwnerView\NotGradedView.xaml">
+    <Page Include="View\OwnersView\NotGradedView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="View\OwnerView\OwnersApprovingDenyingRequestView.xaml">
+    <Page Include="View\OwnersView\OwnersApprovingDenyingRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="View\OwnerView\OwnersRequestView.xaml">
+    <Page Include="View\OwnersView\OwnersRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="View\OwnerView\OwnersView.xaml">
+    <Page Include="View\OwnersView\OwnersView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
@@ -1212,6 +1229,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Guest1Images\renovation1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\backgroundOwner.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

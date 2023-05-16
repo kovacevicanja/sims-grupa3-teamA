@@ -103,5 +103,33 @@ namespace BookingProject.Controller
         {
             _accommodationReservationService.Save();
         }
+        public int CountReservationsForSpecificYear(int year, int accommodationId)
+        {
+            return _accommodationReservationService.CountReservationsForSpecificYear(year, accommodationId);
+        }
+        public int CountCancelledReservationsForSpecificYear(int year, int accommodationId)
+        {
+            return _accommodationReservationService.CountCancelledReservationsForSpecificYear(year, accommodationId);
+        }
+        public int CountReservationsForSpecificMonth(int year,int month, int accommodationId)
+        {
+            return _accommodationReservationService.CountReservationsForSpecificMonth(year,month, accommodationId);
+        }
+        public int CountCancelledReservationsForSpecificMonth(int year,int month, int accommodationId)
+        {
+            return _accommodationReservationService.CountCancelledReservationsForSpecificMonth(year,month, accommodationId);
+        }
+        public int FindTheMostBusyYear(List<AccommodationReservation> reservations)
+        {
+            return _accommodationReservationService.FindTheMostBusyYear(reservations);
+        }
+        public List<AccommodationReservation> GetAllNotCancelled()
+        {
+            return _accommodationReservationService.GetAllNotCancelled();
+        }
+        public int GetMostBusyMonth(List<AccommodationReservation> reservations, int year)
+        {
+            return _accommodationReservationService.GetMostBusyMonth(reservations,year);
+        }
     }
 }

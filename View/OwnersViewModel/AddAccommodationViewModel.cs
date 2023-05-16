@@ -61,7 +61,7 @@ namespace BookingProject.View
         }
         private void Button_Click_Back(object param)
         {
-            var view = new OwnerView();
+            var view = new OwnerssView();
             view.Show();
             CloseWindow();
         }
@@ -209,7 +209,7 @@ namespace BookingProject.View
             {
                 AccommodationController.Create(accommodation);
                 MessageBox.Show("You have succesfully added new accommodation");
-                var view = new OwnerView();
+                var view = new OwnerssView();
                 view.Show();
             }
             CloseWindow();
