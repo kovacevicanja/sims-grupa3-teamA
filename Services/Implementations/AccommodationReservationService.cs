@@ -125,7 +125,7 @@ namespace BookingProject.Services.Implementations
             DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
             if (todayMidnight.AddDays(accommodationReservation.Accommodation.CancellationPeriod) <= accommodationReservation.InitialDate)
             {
-               // DeleteReservationFromCSV(accommodationReservation);
+                // DeleteReservationFromCSV(accommodationReservation);
                 accommodationReservation.IsCancelled = true;
                 List<AccommodationReservation> _reservations = _accommodationReservationRepository.GetAll();
                 SaveParam(_reservations);
@@ -190,6 +190,146 @@ namespace BookingProject.Services.Implementations
         public void Save()
         {
             _accommodationReservationRepository.Save();
+        }
+
+        public int CountReservationsForSpecificYear(int year, int accommodationId)
+        {
+            int number = 0;
+            foreach (AccommodationReservation res in _accommodationReservationRepository.GetAll())
+            {
+                if (res.Accommodation.Id == accommodationId && res.EndDate.Year == year && res.IsCancelled == false)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
+        public int CountCancelledReservationsForSpecificYear(int year, int accommodationId)
+        {
+            int number = 0;
+            foreach (AccommodationReservation res in _accommodationReservationRepository.GetAll())
+            {
+                if (res.Accommodation.Id == accommodationId && res.EndDate.Year == year && res.IsCancelled == true)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public int CountReservationsForSpecificMonth(int year, int month, int accommodationId)
+        {
+            int number = 0;
+            foreach (AccommodationReservation res in _accommodationReservationRepository.GetAll())
+            {
+                if (res.Accommodation.Id == accommodationId && res.EndDate.Year == year && res.EndDate.Month == month && res.IsCancelled == false)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public double FindTheOccupancyPercentageForYear(int accommodationId, int year)
+        {
+            int sum = 0;
+            int count = 0;
+            foreach(AccommodationReservation res in _accommodationReservationRepository.GetAll())
+            {
+                if (res.Accommodation.Id == accommodationId && res.EndDate.Year==year)
+                {
+                    sum += res.DaysToStay;
+                    count++;
+                }
+            }
+            return sum/count;
+        }
+        //public double FindMaxOccupancyPercentage(int accId)
+        //{
+        //    double max = 0;
+        //    for(int i = 2023; i >= 2021; i--)
+        //    {
+        //        if()
+        //    }
+        //}
+        //public int FindTheMostBusyYear(int accommodationId)
+        //{
+        //    if()
+            
+        //}
+        public List<AccommodationReservation> GetAllNotCancelled()
+        {
+            List<AccommodationReservation> filtered= new List<AccommodationReservation>();
+            foreach(AccommodationReservation res in _accommodationReservationRepository.GetAll())
+            {
+                if (res.IsCancelled == false)
+                {
+                    filtered.Add(res);
+                }
+            }
+            return filtered;
+        }
+        public int FindTheMostBusyYear(List<AccommodationReservation> reservations)
+        {
+                reservations = GetAllNotCancelled();
+                var groupedByYear = reservations.GroupBy(r => r.EndDate.Year);
+                int mostBusyYear = 0;
+                double highestBusinessRatio = 0;
+
+                foreach (var group in groupedByYear)
+                {
+                    int year = group.Key;
+                    int totalDaysToStay = group.Sum(r => r.DaysToStay);
+                    int daysInYear = DateTime.IsLeapYear(year) ? 366 : 365;
+
+                    double businessRatio = (double)totalDaysToStay / daysInYear;
+
+                    if (businessRatio > highestBusinessRatio)
+                    {
+                        mostBusyYear = year;
+                        highestBusinessRatio = businessRatio;
+                    }
+                }
+                return mostBusyYear;
+        }
+        public int GetMostBusyMonth(List<AccommodationReservation> reservations, int year)
+        {
+            reservations = GetAllNotCancelled();
+            var reservationsInYear = reservations.Where(r => r.EndDate.Year == year);
+
+            var groupedByMonth = reservationsInYear.GroupBy(r => r.EndDate.Month);
+
+            int mostBusyMonth = 0;
+            double highestBusinessRatio = 0;
+
+            foreach (var group in groupedByMonth)
+            {
+                int month = group.Key;
+                int totalDaysToStay = group.Sum(r => r.DaysToStay);
+                int daysInMonth = DateTime.DaysInMonth(year, month);
+
+                double businessRatio = (double)totalDaysToStay / daysInMonth;
+
+                if (businessRatio > highestBusinessRatio)
+                {
+                    mostBusyMonth = month;
+                    highestBusinessRatio = businessRatio;
+                }
+            }
+
+            return mostBusyMonth;
+        }
+
+        public int CountCancelledReservationsForSpecificMonth(int year, int month, int accommodationId)
+        {
+            int number = 0;
+            foreach (AccommodationReservation res in _accommodationReservationRepository.GetAll())
+            {
+                if (res.Accommodation.Id == accommodationId && res.EndDate.Year == year && res.EndDate.Month == month && res.IsCancelled == true)
+                {
+                    number++;
+                }
+            }
+            return number;
         }
     }
 }

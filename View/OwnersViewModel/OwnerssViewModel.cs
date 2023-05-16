@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.OwnerView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,19 +12,21 @@ using System.Windows;
 
 namespace BookingProject.View
 {
-    public class OwnersViewModel
+    public class OwnerssViewModel
     {
         private AccommodationController _accommodationController;
         public AccommodationOwnerGradeController _accommodationOwnerGradeController;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
         public UserController _userController { get; set; }
+        public Accommodation SelectedAccommodation { get; set; }
         public RelayCommand AddAccommodationCommand { get; }
         public RelayCommand RateGuestsCommand { get; }
         public RelayCommand RequestsCommand { get; }
         public RelayCommand GuestGradesCommand { get; }
         public RelayCommand LogoutCommand { get; }
         public RelayCommand CloseCommand { get; }
-        public OwnersViewModel()
+        public RelayCommand StatisticsCommand { get; }
+        public OwnerssViewModel()
         {
             _userController = new UserController();
             _accommodationController = new AccommodationController();
@@ -39,6 +42,7 @@ namespace BookingProject.View
             GuestGradesCommand = new RelayCommand(Button_Click_Review, CanExecute);
             LogoutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
             CloseCommand = new RelayCommand(Button_Click_Close, CanExecute);
+            StatisticsCommand = new RelayCommand(Button_Click_Statistics, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
         private void Button_Click_Add(object param)
@@ -46,6 +50,15 @@ namespace BookingProject.View
             AddAccommodationView addAccommodationsView = new AddAccommodationView();
             addAccommodationsView.Show();
             CloseWindow();
+        }
+        private void Button_Click_Statistics(object param)
+        {
+            if (SelectedAccommodation != null)
+            {
+                var view = new AccommodationStatisticsByYearView(SelectedAccommodation);
+                view.Show();
+                CloseWindow();
+            }
         }
         private void Button_Click_Rate(object param)
         {
@@ -68,7 +81,7 @@ namespace BookingProject.View
         {
             foreach (Window window in App.Current.Windows)
             {
-                if (window.GetType() == typeof(OwnerView)) { window.Close(); }
+                if (window.GetType() == typeof(OwnerssView)) { window.Close(); }
             }
         }
         private void Window_Closed(object sender, EventArgs e)

@@ -24,5 +24,7 @@ namespace BookingProject.Services.Interfaces
         void Save(List<RequestAccommodationReservation> requests);
         void SaveRequest();
         void SendRequest(AccommodationReservation SelectedReservation, String Comment, DateTime NewInitialDate, DateTime NewEndDate);
+        int CountRescheduledReservationForSpecificYear(int year, int accommodationId);
+        int CountRescheduledReservationForSpecificMonth(int year, int month, int accommodationId);
     }
 }

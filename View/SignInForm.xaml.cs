@@ -86,7 +86,7 @@ namespace BookingProject.View
                         Model.User owner = _controller.GetByUsername(Username);
                         owner.IsLoggedIn = true;
                         _controller.Save();
-                        OwnerView ownerView = new OwnerView();
+                        OwnerssView ownerView = new OwnerssView();
                         ownerView.Show();
                         List<Notification> notifications = _notificationController.GetOwnerNotifications(owner);
                         List<Notification> notificationsCopy = new List<Notification>();

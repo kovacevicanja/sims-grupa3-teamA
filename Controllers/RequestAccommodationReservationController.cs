@@ -77,5 +77,13 @@ namespace BookingProject.Controllers
         {
             _requestsService.SendRequest(SelectedReservation, Comment, NewInitialDate, NewEndDate); 
         }
+        public int CountRescheduledReservationsForSpecificYear(int year, int accId)
+        {
+            return _requestsService.CountRescheduledReservationForSpecificYear(year, accId);
+        }
+        public int CountRescheduledReservationsForSpecificMonth(int year,int month, int accId)
+        {
+            return _requestsService.CountRescheduledReservationForSpecificMonth(year, month, accId);
+        }
     }
 }

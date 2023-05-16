@@ -14,5 +14,7 @@ namespace BookingProject.Services.Interfaces
         void Save(List<RecommendationRenovation> recommendations);
         List<RecommendationRenovation> GetAll();
         RecommendationRenovation GetById(int id);
+        int CountAccommodationRenovationRecommendationsForSpecificYear(int year, int accommodationId);
+        int CountAccommodationRenovationRecommendationsForSpecificMonth(int year, int month, int accommodationId);
     }
 }

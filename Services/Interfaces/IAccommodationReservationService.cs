@@ -35,5 +35,14 @@ namespace BookingProject.Services.Interfaces
         void NotifyObservers();
         void SaveParam(List<AccommodationReservation> reservations);
         void Save();
+        int CountReservationsForSpecificYear(int year, int accommodationId);
+        int CountCancelledReservationsForSpecificYear(int year, int accommodationId);
+        int CountReservationsForSpecificMonth(int year,int month, int accommodationId);
+        int CountCancelledReservationsForSpecificMonth(int year,int month, int accommodationId);
+        int FindTheMostBusyYear(List<AccommodationReservation> reservations);
+        List<AccommodationReservation> GetAllNotCancelled();
+        int GetMostBusyMonth(List<AccommodationReservation> reservations, int year);
+
+
     }
 }

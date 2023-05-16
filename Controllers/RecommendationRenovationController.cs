@@ -32,5 +32,13 @@ namespace BookingProject.Controllers
         {
             return recommendationRenovationService.GetById(id);
         }
+        public int CountAccommodationRenovationRecommendationsForSpecificYear(int year, int accId)
+        {
+            return recommendationRenovationService.CountAccommodationRenovationRecommendationsForSpecificYear(year, accId);
+        }
+        public int CountAccommodationRenovationRecommendationsForSpecificMonth(int year,int month, int accId)
+        {
+            return recommendationRenovationService.CountAccommodationRenovationRecommendationsForSpecificMonth(year, month, accId);
+        }
     }
 }
