@@ -51,11 +51,11 @@ namespace BookingProject.View.Guest2ViewModel
             GuestId = guestId;
             User = new User();
 
+            SeeMoreCommand = new RelayCommand(Button_Click_SeeMore, CanWhenSelected);
             SearchCommand = new RelayCommand(Button_Click_Search, CanExecute);
             BookTourCommand = new RelayCommand(Button_Click_Book, CanWhenSelected);
             ShowAllToursCommand = new RelayCommand(Button_Click_ShowAll, CanExecute);
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
-            SeeMoreCommand = new RelayCommand(Button_Click_SeeMore, CanWhenSelected);
 
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);

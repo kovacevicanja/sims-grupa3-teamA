@@ -99,5 +99,9 @@ namespace BookingProject.Controllers
             return _tourRequestService.GetTopLocation(year);
         }
 
+        public void NewlyAcceptedRequests(int guestId)
+        {
+            _tourRequestService.NewlyAcceptedRequests(guestId);
+        }
     }
 }

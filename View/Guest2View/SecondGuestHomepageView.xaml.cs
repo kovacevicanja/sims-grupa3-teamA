@@ -17,6 +17,7 @@ using BookingProject.Model;
 using BookingProject.Controller;
 using BookingProject.View.Guest2View;
 using BookingProject.View.CustomMessageBoxes;
+using BookingProject.Controllers;
 
 namespace BookingProject.View
 {
@@ -27,6 +28,8 @@ namespace BookingProject.View
         public UserController UserController { get; set; }
         public TourReservationController TourReservationController { get; set; }    
         public CustomMessageBox CustomMessageBox { get; set; }
+        public TourController TourController { get; set; }
+        public TourRequestController TourRequestController { get; set; }    
         public SecondGuestHomepageView(int guestId)
         {
             InitializeComponent();
@@ -36,6 +39,8 @@ namespace BookingProject.View
             User = new User();
             UserController = new UserController();
             TourReservationController = new TourReservationController();
+            TourController = new TourController();
+            TourRequestController = new TourRequestController();
 
             FrameHomePage.Content = new SecondGuestProfileView(guestId, this.FrameHomePage.NavigationService);
             CustomMessageBox = new CustomMessageBox();
@@ -53,6 +58,7 @@ namespace BookingProject.View
 
         private void Button_Click_LogOut(object sender, RoutedEventArgs e)
         {
+            TourRequestController.NewlyAcceptedRequests(GuestId);
             UserController.GetById(GuestId);
             User.Id = GuestId;
             User.IsLoggedIn = false;
@@ -115,7 +121,14 @@ namespace BookingProject.View
 
         private void Button_Click_NewlyCreatedTours(object sender, RoutedEventArgs e)
         {
-            FrameHomePage.Content = new NewlyCreatedToursOfNeverAcceptedRequestsView(GuestId, this.FrameHomePage.NavigationService);
+            if (TourController.FindToursCreatedByStatistcisForGuest(GuestId).Distinct().Count() > 0)
+            {
+                FrameHomePage.Content = new NewlyCreatedToursOfNeverAcceptedRequestsView(GuestId, this.FrameHomePage.NavigationService);
+            }
+            else
+            {
+                CustomMessageBox.ShowCustomMessageBox("There are currently no new tours you have always wanted created according to your requirements.");
+            }
         }
     }
 }

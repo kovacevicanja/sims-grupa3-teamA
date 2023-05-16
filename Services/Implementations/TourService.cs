@@ -132,7 +132,8 @@ namespace BookingProject.Services
             {
                 foreach (TourRequest request in _tourRequestService.FindUnacceptedRequestsForGuests(guestId))
                 {
-                    if (request.Language == tour.Language)
+                    if (request.Language == tour.Language || 
+                        (tour.Location.City.Equals(request.Location.City) && tour.Location.Country.Equals(request.Location.Country)))
                     {
                         tours.Add(tour);
                     }

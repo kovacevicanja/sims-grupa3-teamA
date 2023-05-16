@@ -71,7 +71,7 @@ namespace BookingProject.Services.Implementations
 
         public void SystemSendingNotification(int guestId)
         {
-            foreach (int id in GuestsForNotification().ToList()) 
+            foreach (int id in GuestsForNotification()) 
             {
                 if (guestId == id)
                 {
@@ -85,15 +85,30 @@ namespace BookingProject.Services.Implementations
             }
         }
 
+        public void NewlyAcceptedRequests(int guestId)
+        {
+            foreach (Tour tour in FindToursCreatedByStatistcis())
+            {
+                foreach (TourRequest request in FindUnacceptedRequests())
+                {
+                    if (tour.Language == request.Language ||
+                        (tour.Location.City.Equals(request.Location.City) && tour.Location.Country.Equals(request.Location.Country)))
+                    {
+                        _tourRequestRepository.ChangeStatus(request, guestId);
+                    }
+                }
+            }
+        }
+
         private List<int> GuestsForNotification()
         {
-            //LANGUAGE
             List<int> guests = new List<int>();
-            foreach (Tour tour in FindToursCreatedByStatistcis().ToList())
+            foreach (Tour tour in FindToursCreatedByStatistcis())
             {
-                foreach (TourRequest request in FindUnacceptedRequests().ToList())
+                foreach (TourRequest request in FindUnacceptedRequests())
                 {
-                    if (tour.Language == request.Language)
+                    if (tour.Language == request.Language || 
+                        (tour.Location.City.Equals(request.Location.City) && tour.Location.Country.Equals(request.Location.Country)))
                     {
                         guests.Add(request.Guest.Id);
                     }
@@ -136,7 +151,6 @@ namespace BookingProject.Services.Implementations
 
             return unacceptedRequests;
         }
-
 
         public List<TourRequest> GetGuestRequests (int guestId, string enteredYear = "")
         {

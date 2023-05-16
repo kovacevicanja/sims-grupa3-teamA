@@ -47,5 +47,6 @@ namespace BookingProject.Services.Interfaces
         LanguageEnum GetTopLanguage(string enteredYear);
         void SystemSendingNotification(int guestId);
         List<TourRequest> FindUnacceptedRequestsForGuests(int guestId);
+        void NewlyAcceptedRequests(int guestId);
     }
 }
