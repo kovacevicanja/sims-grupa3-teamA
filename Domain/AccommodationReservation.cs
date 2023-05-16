@@ -16,6 +16,7 @@ namespace BookingProject.Model
         public DateTime EndDate { get; set; }
         public int DaysToStay { get; set; }
         public User Guest { get; set; }
+        public bool IsCancelled { get; set; }
 
         public AccommodationReservation()
         {
@@ -38,6 +39,7 @@ namespace BookingProject.Model
             EndDate = DateConversion.StringToDateAccommodation(values[3]);
             DaysToStay = int.Parse(values[4]);
             Guest.Id = int.Parse(values[5]);
+            IsCancelled = bool.Parse(values[6]);
         }
 
         public string[] ToCSV()
@@ -49,7 +51,8 @@ namespace BookingProject.Model
                 DateConversion.DateToStringAccommodation(InitialDate),
                 DateConversion.DateToStringAccommodation(EndDate),
                 DaysToStay.ToString(),
-                Guest.Id.ToString()
+                Guest.Id.ToString(),
+                IsCancelled.ToString()
             };
             return csvValues;
         }
