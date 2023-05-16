@@ -15,6 +15,7 @@ using BookingProject.Domain;
 using BookingProject.View.CustomMessageBoxes;
 using BookingProject.View.Guest1View;
 using BookingProject.ConversionHelp;
+using BookingProject.View.OwnerViewModel;
 
 namespace BookingProject.View
 {
@@ -95,7 +96,7 @@ namespace BookingProject.View
                         {
                             _notificationController.WriteNotificationAgain(notification1);
                         }
-                        NotGradedView not_view = new NotGradedView();
+                        NotGradedViewModel not_view = new NotGradedViewModel();
                         int row_num = not_view.RowNum();
                         if (row_num > 0)
                         {
