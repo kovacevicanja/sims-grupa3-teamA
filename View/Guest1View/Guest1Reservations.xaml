@@ -38,7 +38,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Command="{Binding MyReviewsCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/reviews.png"/>

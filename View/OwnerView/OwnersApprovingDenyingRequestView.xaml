@@ -19,6 +19,23 @@
         </ControlTemplate>
     </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Height="40" Orientation="Horizontal" VerticalAlignment="Top" Background="#261799">
+            <Button Name="back" Width="40" Height="30" BorderBrush="#261799" Background="#261799" Command="{Binding BackCommand}">
+                <Image Source="../ImagesOwner/backArrow.png"/>
+            </Button>
+            <Label Margin="0 0 0 0" Height="53" FontSize="20" FontWeight="Bold" Foreground="Black">Requests</Label>
+            <Button Name="btn5" Width="50" Height="30" Margin="160,0,0,0" BorderBrush="#261799" Background="#261799" Command="{Binding MenuCommand}">
+                <Image Source="../ImagesOwner/menu.png"/>
+            </Button>
+        </StackPanel>
+        <Grid Grid.Row="1">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Images/backgroundOwner.jpg" Opacity="0.60"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0"/>
             <ColumnDefinition Width="8*"/>
@@ -28,8 +45,8 @@
             <RowDefinition Height="Auto" MinHeight="434"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0" Grid.Column="2" Margin="28,33,33,33">
+        
+        <Grid Grid.Row="0" Grid.Column="2" Margin="28,70,33,33">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -79,9 +96,10 @@
                      Height="30" IsEnabled="False"></TextBox>
         </Grid>
         <Button x:Name ="Button_Comment" Content="Accept" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top"
-              Click="Button_Click_Accept" RenderTransformOrigin="0.5,0.5" Width="46" Grid.Column="2" Margin="256,10,0,0" Grid.Row="1" >
+               Command="{Binding AcceptCommand}" RenderTransformOrigin="0.5,0.5" Width="46" Grid.Column="2" Margin="256,10,0,0" Grid.Row="1" >
         </Button>
         <Button  Content="Decline" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="253,50,0,0"
-               Click="Button_Click_Decline" Grid.Column="2" Width="49" Grid.Row="1"/>
+                Command="{Binding DeclineCommand}" Grid.Column="2" Width="49" Grid.Row="1"/>
+    </Grid>
     </Grid>
 </Window>

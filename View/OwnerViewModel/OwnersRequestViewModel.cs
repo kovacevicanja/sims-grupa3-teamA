@@ -1,4 +1,5 @@
-﻿using BookingProject.Controllers;
+﻿using BookingProject.Commands;
+using BookingProject.Controllers;
 using BookingProject.Domain;
 using System;
 using System.Collections.Generic;
@@ -7,33 +8,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace BookingProject.View
+namespace BookingProject.View.OwnerViewModel
 {
-    /// <summary>
-    /// Interaction logic for OwnersRequestView.xaml
-    /// </summary>
-    public partial class OwnersRequestView : Window
+    public class OwnersRequestViewModel
     {
         private RequestAccommodationReservationController _requestController;
         public ObservableCollection<RequestAccommodationReservation> Requests { get; set; }
         public RequestAccommodationReservation SelectedMovingRequest { get; set; }
-        public OwnersRequestView()
+        public RelayCommand ViewCommand { get; }
+        public RelayCommand MenuCommand { get; }
+        public OwnersRequestViewModel()
         {
-            InitializeComponent();
-            this.DataContext = this;
             _requestController = new RequestAccommodationReservationController();
-            int ownerId = SignInForm.LoggedInUser.Id;                                                                                                   //change to logged user
+            int ownerId = SignInForm.LoggedInUser.Id;                                                                                                  
             Requests = new ObservableCollection<RequestAccommodationReservation>(_requestController.GetAllRequestForOwner(ownerId));
+            ViewCommand = new RelayCommand(Button_Click_View, CanExecute);
+            MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
         }
-        private void Button_Click_View(object sender, RoutedEventArgs e)
+        private bool CanExecute(object param) { return true; }
+        private void Button_Click_View(object param)
         {
             if (SelectedMovingRequest == null)
             {
@@ -41,11 +35,20 @@ namespace BookingProject.View
             }
             OwnersApprovingDenyingRequestView view = new OwnersApprovingDenyingRequestView(SelectedMovingRequest);
             view.Show();
+            CloseWindow();
         }
-        private void Button_Click_Menu(object sender, RoutedEventArgs e)
+        private void Button_Click_Menu(object param)
         {
             MenuView view = new MenuView();
             view.Show();
+            CloseWindow();
+        }
+        private void CloseWindow()
+        {
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.GetType() == typeof(OwnersRequestView)) { window.Close(); }
+            }
         }
     }
 }

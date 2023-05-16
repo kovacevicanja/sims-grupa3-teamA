@@ -38,7 +38,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Command="{Binding MyReviewsCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/reviews.png"/>
@@ -122,7 +122,7 @@
                         <Label Grid.Row="2" Grid.Column="0" Height="30" FontSize="18" FontWeight="Bold" Foreground="DarkGreen">Owner corectness</Label>
                         <Label Grid.Row="3" Grid.Column="0" Height="30" FontSize="18" FontWeight="Bold" Foreground="DarkGreen">Additional comment</Label>
                         <Label Grid.Row="4" Grid.Column="0" Height="30" FontSize="18" FontWeight="Bold" Foreground="DarkGreen">Image URL</Label>
-                        <Label Grid.Row="5" Grid.Column="0" Height="50" FontSize="18" FontWeight="Bold" Foreground="DarkGreen">Reccommendation</Label>
+                        
 
                         <TextBox Grid.Row="1" Grid.Column="1" 
                      Text="{Binding Path=Cleanliness, UpdateSourceTrigger=PropertyChanged}"
@@ -144,9 +144,6 @@
                      Height="20"></TextBox>
                         <Button Content="+" Command="{Binding AddPictureCommand}"  Grid.Row="4" Grid.Column="3" Height="20" Width="20"></Button>
 
-                        <TextBox Grid.Row="5" Grid.Column="1"
-                                Text="{Binding Path=Reccommendation, UpdateSourceTrigger=PropertyChanged}"
-                     Height="20"></TextBox>
 
 
                         <WrapPanel Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10" Width="300" >

@@ -43,6 +43,7 @@ namespace BookingProject.View.Guest1ViewModel
         public RelayCommand MyReservationsCommand { get; }
         public RelayCommand FillCityCommand { get; }
         public RelayCommand LogoutCommand { get; }
+        public RelayCommand MyReviewsCommand { get; }
         public Guest1HomepageViewMddel()
         {
             _accommodationController = new AccommodationController();
@@ -63,6 +64,7 @@ namespace BookingProject.View.Guest1ViewModel
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
             FillCityCommand = new RelayCommand(FindCities, CanExecute);
             LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
+            MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
             FindAllStates();
         }
 
@@ -215,6 +217,13 @@ namespace BookingProject.View.Guest1ViewModel
         {
             SignInForm signInForm = new SignInForm();
             signInForm.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_MyReviews(object param)
+        {
+            var reviews = new Guest1ReviewsView();
+            reviews.Show();
             CloseWindow();
         }
     }

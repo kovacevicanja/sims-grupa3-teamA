@@ -1,30 +1,19 @@
-﻿using BookingProject.Controller;
+﻿using BookingProject.Commands;
+using BookingProject.Controller;
 using BookingProject.Model;
-using BookingProject.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace BookingProject.View
+namespace BookingProject.View.OwnerViewModel
 {
-    /// <summary>
-    /// Interaction logic for GuestRateView.xaml
-    /// </summary>
-    public partial class GuestRateView : Window
+    public class GuestRateViewModel
     {
         public GuestGradeController GradeController { get; set; }
         public ObservableCollection<GuestGrade> Grades { get; set; }
@@ -40,10 +29,11 @@ namespace BookingProject.View
         public int ChosenDecency { get; set; }
         public ObservableCollection<int> NoisinessOption { get; set; }
         public int ChosenNoisiness { get; set; }
-        public GuestRateView(AccommodationReservation selectedReservation)
+        public RelayCommand RateCommand { get; }
+        public RelayCommand MenuCommand { get; }
+        public RelayCommand BackCommand { get; }
+        public GuestRateViewModel(AccommodationReservation selectedReservation)
         {
-            InitializeComponent();
-            this.DataContext = this;
             GradeController = new GuestGradeController();
             _selectedReservation = new AccommodationReservation();
             _selectedReservation = selectedReservation;
@@ -52,7 +42,7 @@ namespace BookingProject.View
             ObservanceOption = new ObservableCollection<int>();
             DecencyOption = new ObservableCollection<int>();
             NoisinessOption = new ObservableCollection<int>();
-            for(int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 CleanlinessOption.Add(i);
                 CommunicationOption.Add(i);
@@ -60,13 +50,28 @@ namespace BookingProject.View
                 DecencyOption.Add(i);
                 NoisinessOption.Add(i);
             }
+            RateCommand = new RelayCommand(Button_Click_Rate, CanExecute);
+            MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
+            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
         }
-
+        private bool CanExecute(object param) { return true; }
 
         public AccommodationReservation SelectedReservation
         {
             get { return _selectedReservation; }
             set { _selectedReservation = value; OnPropertyChanged(); }
+        }
+        private void Button_Click_Menu(object param)
+        {
+            MenuView view = new MenuView();
+            view.Show();
+            CloseWindow();
+        }
+        private void Button_Click_Back(object param)
+        {
+            var view = new NotGradedView();
+            view.Show();
+            CloseWindow();
         }
 
         private int _cleanliness;
@@ -158,8 +163,13 @@ namespace BookingProject.View
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private void Button_Click_Rate(object sender, RoutedEventArgs e)
+        private void Button_Click_Rate(object param)
         {
+            if(ChosenCleanliness ==0 || ChosenCommunication==0 || ChosenDecency==0 || ChosenNoisiness==0 || ChosenObservance==0)
+            {
+                MessageBox.Show("You must select one of dropdown options for grade!");
+                return;
+            }
             GuestGrade grade = new GuestGrade();
             grade.Cleanliness = ChosenCleanliness;
             grade.Communication = ChosenCommunication;
@@ -170,13 +180,21 @@ namespace BookingProject.View
             grade.AccommodationReservation.Id = _selectedReservation.Id;
 
             GradeController.Create(grade);
+            MessageBox.Show("You have rated a guest!");
+            var view = new NotGradedView();
+            view.Show();
 
 
 
-            
-            this.Close();
-            
+            CloseWindow();
+
         }
-       
+        private void CloseWindow()
+        {
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.GetType() == typeof(GuestRateView)) { window.Close(); }
+            }
+        }
     }
 }

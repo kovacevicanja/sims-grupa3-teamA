@@ -108,6 +108,7 @@ namespace BookingProject.Services.Implementations
             reservation.EndDate = endDate;
             reservation.DaysToStay = (endDate - initialDate).Days;
             reservation.Guest.Id = Injector.CreateInstance<IUserService>().GetLoggedUser().Id;
+            reservation.IsCancelled = false;
             Injector.CreateInstance<IAccommodationReservationService>().GetAll().Add(reservation);
         }
 
@@ -124,8 +125,10 @@ namespace BookingProject.Services.Implementations
             DateTime todayMidnight = today.AddHours(0).AddMinutes(0).AddSeconds(0);
             if (todayMidnight.AddDays(accommodationReservation.Accommodation.CancellationPeriod) <= accommodationReservation.InitialDate)
             {
-                
-                DeleteReservationFromCSV(accommodationReservation);
+               // DeleteReservationFromCSV(accommodationReservation);
+                accommodationReservation.IsCancelled = true;
+                List<AccommodationReservation> _reservations = _accommodationReservationRepository.GetAll();
+                SaveParam(_reservations);
                 Injector.CreateInstance<INotificationService>().SendNotification(accommodationReservation);
                 return true;
             }
