@@ -99,7 +99,7 @@
 
                     <Grid Grid.Row="0" Grid.Column="2" Height="600" Margin="15" Width="800">
                         <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition Height="200"></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -114,7 +114,7 @@
                             <ColumnDefinition Width="40"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-                            <Label Margin="15" Height="80" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="DarkGreen">Recommend renovation</Label>
+                            <Label Margin="0 0 0 0"  Height="70" Grid.ColumnSpan="3" FontSize="30" FontWeight="Bold" Foreground="DarkGreen" Width="350">Recommend renovation</Label>
                             <Image  Width="50" Height="50" Margin="10" Source="/Resources/Images/Guest1Images/renovation.png"/>
                         </StackPanel>
                         <Label Grid.Row="1" Grid.Column="0" Height="30" FontSize="18" FontWeight="Bold" Foreground="DarkGreen">Description</Label>
@@ -150,7 +150,7 @@
                                      Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen">Send</Button>
                             <Button Content="View tutorial" Margin="20 20 0 20"
                                      Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen"></Button>
-                            <Button Content="Homepage" Command="{Binding HomePageCommand}" Margin="20 20 0 20"
+                            <Button Content="Homepage" Command="{Binding HomepageCommand}" Margin="20 20 0 20"
                                      Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen"></Button>
                         </WrapPanel>
                     </Grid>
