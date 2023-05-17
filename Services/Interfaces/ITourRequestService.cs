@@ -21,14 +21,9 @@ namespace BookingProject.Services.Interfaces
         TourRequest GetById(int id);
         void Save(List<TourRequest> tourRequests);
         void SaveTourRequest();
-        void SendNotification(User guest, Tour CreatedTour);
         List<TourRequest> GetGuestRequests(int guestId, string enteredYear);
-        double GetUnacceptedRequestsPercentage(int guestId, string enteredYear);
-        double GetAcceptedRequestsPercentage(int guestId, string enteredYear);
-        double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear);
-        bool IsMatchingYear(int guestId, string enteredYear = "");
-        void SystemSendingNotification(int guestId);
         List<TourRequest> FindUnacceptedRequestsForGuests(int guestId);
         void NewlyAcceptedRequests(int guestId);
+        List<int> GuestsForNotification();
     }
 }

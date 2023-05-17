@@ -67,6 +67,10 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourRequestService), new TourRequestService() },
             { typeof(ITourRequestGuideService), new TourRequestGuideService() },
             { typeof(ITourRequestFilterService), new TourRequestFilterService() },
+            { typeof(ITourRequestNotificationService), new TourRequestNotificationService() },
+            { typeof(ITourRequestStatisticsService), new TourRequestStatisticsService() },
+            { typeof(ITourSearchService), new TourSearchService() },
+            { typeof(ITourStatisticsService), new TourStatisticsService() },
             { typeof(IRecommendationRenovationService), new RecommendationRenovationService() }
         };
         public static void Initialize()
@@ -120,8 +124,12 @@ namespace BookingProject.DependencyInjection
             CreateInstance<IVoucherService>().Initialize();
             CreateInstance<ITourRequestService>().Initialize();
             CreateInstance<ITourRequestGuideService>().Initialize();
+            CreateInstance<ITourRequestStatisticsService>().Initialize();
+            CreateInstance<ITourRequestNotificationService>().Initialize();
             CreateInstance<IRecommendationRenovationService>().Initialize();
             CreateInstance<ITourRequestFilterService>().Initialize();
+            CreateInstance<ITourStatisticsService>().Initialize();
+            CreateInstance<ITourSearchService>().Initialize();
         }
         public static T CreateInstance<T>()
         {

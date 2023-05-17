@@ -23,18 +23,14 @@ namespace BookingProject.Services.Implementations
     public class TourRequestService : ITourRequestService
     {
         private ITourRequestRepository _tourRequestRepository;
-        private INotificationService _notificationService;
-        private IUserService _userService;
-        private ITourLocationService _locationService;
         private ITourService _tourService;
+        private ITourStatisticsService _tourStatisticsService;
         public TourRequestService() { }
         public void Initialize()
         {
             _tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
-            _notificationService = Injector.CreateInstance<INotificationService>();
-            _userService = Injector.CreateInstance<IUserService>();
-            _locationService = Injector.CreateInstance<ITourLocationService>();
             _tourService = Injector.CreateInstance<ITourService>();
+            _tourStatisticsService = Injector.CreateInstance<ITourStatisticsService>();
         }
         public void Create(TourRequest tourRequest)
         {
@@ -57,34 +53,6 @@ namespace BookingProject.Services.Implementations
             _tourRequestRepository.Save();
         }
 
-        public void SendNotification(User guest, Tour createdTour)
-        {
-            Notification notification = new Notification();
-            notification.UserId = guest.Id;
-            notification.Text = "A tour you requested was created, go search it out, first instance of this tour will be held on  " + createdTour.StartingTime[0].StartingDateTime + "!";
-            notification.Read = false;
-            notification.RelatedTo = "Creating a tour on demand";
-            _notificationService.Create(notification);
-            //ovde bi bilo najbolje organiciti ovu notifikaciju na zahteve koji su pending, i onda samo takvim gostima poslati notifikaciju 
-            //poslati gostu ciji je zahtev prihvacen notifikaciju, ako je njegov zahtev bio pending
-        }
-
-        public void SystemSendingNotification(int guestId)
-        {
-            foreach (int id in GuestsForNotification())
-            {
-                if (guestId == id)
-                {
-                    Notification notification = new Notification();
-                    notification.UserId = id;
-                    notification.Text = "The tour you always wanted was made. View the offer in newly created tours.";
-                    notification.Read = false;
-                    notification.RelatedTo = "System notification about new tours";
-                    _notificationService.Create(notification);
-                }
-            }
-        }
-
         public void NewlyAcceptedRequests(int guestId)
         {
             foreach (Tour tour in FindToursCreatedByStatistcis())
@@ -100,7 +68,7 @@ namespace BookingProject.Services.Implementations
             }
         }
 
-        private List<int> GuestsForNotification()
+        public List<int> GuestsForNotification()
         {
             List<int> guests = new List<int>();
             foreach (Tour tour in FindToursCreatedByStatistcis())
@@ -120,7 +88,7 @@ namespace BookingProject.Services.Implementations
 
         private List<Tour> FindToursCreatedByStatistcis()
         {
-            return _tourService.FindToursCreatedByStatistcis();
+            return _tourStatisticsService.FindToursCreatedByStatistcis();
         }
 
         public List<TourRequest> FindUnacceptedRequestsForGuests(int guestId)
@@ -155,78 +123,6 @@ namespace BookingProject.Services.Implementations
         public List<TourRequest> GetGuestRequests(int guestId, string enteredYear = "")
         {
             return _tourRequestRepository.GetGuestRequests(guestId, enteredYear);
-        }
-        public double GetAcceptedRequestsPercentage(int guestId, string enteredYear = "")
-        {
-            int requestsTotalNumber = _tourRequestRepository.GetGuestRequests(guestId, enteredYear).Count;
-            int acceptedRequestsNumber = AcceptedRequestsNumber(guestId, enteredYear);
-
-            if (requestsTotalNumber == 0) { return 0; }
-
-            return ((double)acceptedRequestsNumber / requestsTotalNumber) * 100;
-        }
-        public bool IsMatchingYear(int guestId, string enteredYear = "")
-        {
-            foreach (var request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
-            {
-                return string.IsNullOrEmpty(enteredYear) ||
-                         (request.StartDate.Year.ToString().Equals(enteredYear) && request.EndDate.Year.ToString().Equals(enteredYear));
-            }
-            return false;
-        }
-        public int AcceptedRequestsNumber(int guestId, string enteredYear = "")
-        {
-            int acceptedRequestsNumber = 0;
-
-            foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
-            {
-                if (request.Status == TourRequestStatus.ACCEPTED && IsMatchingYear(guestId, enteredYear)) { acceptedRequestsNumber++; }
-            }
-
-            return acceptedRequestsNumber;
-        }
-        public double GetUnacceptedRequestsPercentage(int guestId, string enteredYear = "")
-        {
-            int requestsTotalNumber = _tourRequestRepository.GetGuestRequests(guestId, enteredYear).Count;
-            int unacceptedRequestsNumber = UnacceptedRequestsNumber(guestId, enteredYear);
-
-            if (requestsTotalNumber == 0) { return 0; }
-
-            return ((double)unacceptedRequestsNumber / requestsTotalNumber) * 100;
-        }
-        private int UnacceptedRequestsNumber(int guestId, string enteredYear = "")
-        {
-            int unacceptedRequestsNumber = 0;
-
-            foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
-            {
-                if (request.Status == TourRequestStatus.INVALID && IsMatchingYear(guestId, enteredYear)) { unacceptedRequestsNumber++; }
-            }
-
-            return unacceptedRequestsNumber;
-        }
-        public double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear = "")
-        {
-            int totalNumberOfPeople = 0, totalNumberOfAcceptedRequests = 0;
-            FindTotalNumber(guestId, out totalNumberOfPeople, out totalNumberOfAcceptedRequests, enteredYear);
-
-            if (totalNumberOfAcceptedRequests == 0) { return 0; }
-
-            return (double)(totalNumberOfPeople / totalNumberOfAcceptedRequests);
-        }
-        private void FindTotalNumber(int guestId, out int totalGuests, out int acceptedRequests, string enteredYear = "")
-        {
-            totalGuests = 0;
-            acceptedRequests = 0;
-
-            foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
-            {
-                if (request.Status == TourRequestStatus.ACCEPTED && IsMatchingYear(guestId, enteredYear))
-                {
-                    totalGuests += request.GuestsNumber;
-                    acceptedRequests++;
-                }
-            }
         }
     }
 }

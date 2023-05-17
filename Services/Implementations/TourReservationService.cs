@@ -27,12 +27,14 @@ namespace BookingProject.Services
         public CustomMessageBox CustomMessageBox { get; set; }
         private ITourReservationRepository _tourReservationRepository;
         private ITourService _tourService;
+        private ITourSearchService _tourSearchService;
 
         public TourReservationService() { }
         public void Initialize()
         {
             _tourReservationRepository = Injector.CreateInstance<ITourReservationRepository>();
             _tourService = Injector.CreateInstance<ITourService>();
+            _tourSearchService = Injector.CreateInstance<ITourSearchService>();
             CustomMessageBox = new CustomMessageBox();
         }
 
@@ -99,7 +101,7 @@ namespace BookingProject.Services
         public void FullyBookedTours(Tour chosenTour, DateTime selectedDate, User guest, NavigationService navigationService)
         {
             CustomMessageBox.ShowCustomMessageBox("The tour is fully booked. The system will offer you tours at the same location.");
-            if (_tourService.GetFilteredTours(chosenTour.Location, selectedDate).Count == 0)
+            if (_tourSearchService.GetFilteredTours(chosenTour.Location, selectedDate).Count == 0)
             {
                 navigationService.Navigate(new SerachAndReservationToursView(guest.Id, navigationService));
             }

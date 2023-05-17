@@ -20,7 +20,7 @@ namespace BookingProject.Services.Implementations
     {
         private ITourRequestRepository _tourRequestRepository; 
         private IUserService _userService;
-        private ITourRequestService _tourRequestService;
+        private ITourRequestStatisticsService _tourRequestStatisticsService;
         private ITourLocationService _locationService;
         private ITourRequestFilterService _tourRequestFilterService;
         public TourRequestGuideService() { }
@@ -29,7 +29,7 @@ namespace BookingProject.Services.Implementations
             _tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             _userService = Injector.CreateInstance<IUserService>();
             _locationService = Injector.CreateInstance<ITourLocationService>();
-            _tourRequestService = Injector.CreateInstance<ITourRequestService>();
+            _tourRequestStatisticsService = Injector.CreateInstance<ITourRequestStatisticsService>();
             _tourRequestFilterService=Injector.CreateInstance<ITourRequestFilterService>();
         }
         public int GetNumberRequestsLanguage(int guestId, LanguageEnum language, string enteredYear = "")
@@ -37,7 +37,7 @@ namespace BookingProject.Services.Implementations
             int numberRequestsLanguage = 0;
             foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
-                if (request.Language == language && _tourRequestService.IsMatchingYear(guestId, enteredYear)) { numberRequestsLanguage++; }
+                if (request.Language == language && _tourRequestStatisticsService.IsMatchingYear(guestId, enteredYear)) { numberRequestsLanguage++; }
             }
             return numberRequestsLanguage;
         }
@@ -77,7 +77,7 @@ namespace BookingProject.Services.Implementations
             int numberRequestsLocation = 0;
             foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
             {
-                if (request.Location.City == city && request.Location.Country == country && _tourRequestService.IsMatchingYear(guestId, enteredYear))
+                if (request.Location.City == city && request.Location.Country == country && _tourRequestStatisticsService.IsMatchingYear(guestId, enteredYear))
                 { numberRequestsLocation++; }
             }
             return numberRequestsLocation;

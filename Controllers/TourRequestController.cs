@@ -19,10 +19,14 @@ namespace BookingProject.Controllers
         private readonly ITourRequestService _tourRequestService;
 
         private readonly ITourRequestGuideService _tourRequestGuideService;
+        private readonly ITourRequestStatisticsService _tourRequestStatisticsService;
+        private readonly ITourRequestNotificationService _tourRequestNotificationService;
         public TourRequestController()
         {
             _tourRequestService = Injector.CreateInstance<ITourRequestService>();
             _tourRequestGuideService = Injector.CreateInstance<ITourRequestGuideService>();
+            _tourRequestStatisticsService = Injector.CreateInstance<ITourRequestStatisticsService>();
+            _tourRequestNotificationService = Injector.CreateInstance<ITourRequestNotificationService>();
         }
         public void Create(TourRequest tourRequest)
         {
@@ -46,11 +50,11 @@ namespace BookingProject.Controllers
         }
         public void SendNotification(User guest, Tour tour)
         {
-            _tourRequestService.SendNotification(guest, tour);
+            _tourRequestNotificationService.SendNotification(guest, tour);
         }
         public void SystemSendingNotification(int guestId)
         {
-            _tourRequestService.SystemSendingNotification(guestId);
+            _tourRequestNotificationService.SystemSendingNotification(guestId);
         }
         public List<TourRequest> GetGuestRequests(int guestId, string enteredYear)
         {
@@ -58,11 +62,11 @@ namespace BookingProject.Controllers
         }
         public double GetUnacceptedRequestsPercentage(int guestId, string enteredYear)
         {
-            return _tourRequestService.GetUnacceptedRequestsPercentage(guestId, enteredYear);
+            return _tourRequestStatisticsService.GetUnacceptedRequestsPercentage(guestId, enteredYear);
         }
         public double GetAcceptedRequestsPercentage(int guestId, string enteredYear)
         {
-            return _tourRequestService.GetAcceptedRequestsPercentage(guestId, enteredYear);
+            return _tourRequestStatisticsService.GetAcceptedRequestsPercentage(guestId, enteredYear);
         }
         public int GetNumberRequestsLanguage(int guestId, LanguageEnum language, string enteredYear)
         {
@@ -74,7 +78,7 @@ namespace BookingProject.Controllers
         }
         public double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear)
         {
-            return _tourRequestService.GetAvarageNumberOfPeopleInAcceptedRequests(guestId, enteredYear);
+            return _tourRequestStatisticsService.GetAvarageNumberOfPeopleInAcceptedRequests(guestId, enteredYear);
         }
 
         public ObservableCollection<TourRequest> Search(ObservableCollection<TourRequest> tourView, string city, string country, string chosenLanguage, string numOfGuests, string startDate, string endDate)
@@ -105,6 +109,11 @@ namespace BookingProject.Controllers
         public void NewlyAcceptedRequests(int guestId)
         {
             _tourRequestService.NewlyAcceptedRequests(guestId);
+        }
+
+        public List<int> GuestsForNotification()
+        {
+            return _tourRequestService.GuestsForNotification();
         }
     }
 }
