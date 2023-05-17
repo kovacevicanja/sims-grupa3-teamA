@@ -16,6 +16,7 @@ using BookingProject.Repositories.Intefaces;
 using BookingProject.Repositories.Implementations;
 using BookingProject.View.CustomMessageBoxes;
 using BookingProject.Domain;
+using System.Windows.Navigation;
 
 namespace BookingProject.Services
 {
@@ -200,7 +201,10 @@ namespace BookingProject.Services
             List<Tour> filteredTours = FilterToursByDate(selectedDate);
             filteredTours = FilterToursByLocation(filteredTours, location, selectedDate);
 
-            if (filteredTours.Count == 0) { CustomMessageBox.ShowCustomMessageBox("Unfortunately, it is not possible to make a reservation. All tours at that location are booked."); }
+            if (filteredTours.Count == 0) 
+            { 
+                CustomMessageBox.ShowCustomMessageBox("Unfortunately, it is not possible to make a reservation. All tours at that location are booked."); 
+            }
 
             return filteredTours;
         }

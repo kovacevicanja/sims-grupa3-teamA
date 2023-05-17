@@ -53,7 +53,7 @@
     <Grid>
         <StackPanel Orientation="Vertical" Background="LightGray" Margin="0,0,736,0">
             <Grid Height="504" Width="276">
-                <Button Content="Search and reservation" Click="Button_Click_SearchAndReservation" CommandParameter="2" Width="232" Margin="0,27,0,437" HorizontalAlignment="Center"/>
+                <Button Content="Make a reservation" Click="Button_Click_SearchAndReservation" CommandParameter="2" Width="232" Margin="0,27,0,437" HorizontalAlignment="Center"/>
                 <Button Content="My attended tours" Click="Button_Click_MyAttendedTours" CommandParameter="3" Width="232" Margin="0,118,0,346" HorizontalAlignment="Center"/>
                 <Button Content="My reservations" Click="Button_Click_MyReservations" CommandParameter="4" Width="232" Margin="0,72,0,392" HorizontalAlignment="Center"/>
                 <Button Content="My vouchers" Click="Button_Click_MyVouchers" CommandParameter="5" Width="234" Margin="0,208,0,256" HorizontalAlignment="Center"/>

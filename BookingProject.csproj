@@ -237,6 +237,7 @@
     <Compile Include="Services\Implementations\TourRequestService.cs" />
     <Compile Include="Services\Implementations\TourReservationService.cs" />
     <Compile Include="Services\Implementations\TourService.cs" />
+    <Compile Include="Services\Implementations\TourServiceGuest2.cs" />
     <Compile Include="Services\Implementations\TourStartingTimeService.cs" />
     <Compile Include="Services\Implementations\TourTimeInstanceService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
@@ -309,7 +310,6 @@
     <Compile Include="View\Guest2ViewModel\ReservationTourOtherOffersViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ReservationTourViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SearchAndReservationToursViewModel.cs" />
-    <Compile Include="View\Guest2ViewModel\SecondGuestHomepageViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyAttendedToursViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyReservationsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\SecondGuestMyVouchersViewModel.cs" />
