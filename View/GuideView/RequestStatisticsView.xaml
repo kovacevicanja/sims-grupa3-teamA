@@ -33,7 +33,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.InputBindings>
-        <KeyBinding Key="Ins" Command="{Binding ShowAllCommand}" />
+        <KeyBinding Key="Backspace" Command="{Binding ShowAllCommand}" />
         <KeyBinding Key="Enter" Command="{Binding SearchCommand}" />
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
         <KeyBinding Key="A" Command="{Binding PickCommand}" />
@@ -65,7 +65,7 @@
         <Label Content="Language:" Margin="10,134,909,150" Grid.Row="1"/>
         <Label Content="Year:" Margin="10,204,909,78" Grid.Row="1"/>
         <Label Content="Month:" Margin="10,265,909,18" Grid.Row="1"/>
-        <Button Margin="840,30,65,212" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding ShowAllCommand}" Content="Reset All Requests&#xA;           (Ins)" Grid.Row="1"/>
+        <Button Margin="840,30,65,212" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding ShowAllCommand}" Content="Reset All Requests&#xA;      (Backspace)" Grid.Row="1"/>
         <Button Margin="840,116,65,133" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding SearchCommand}" Content=" Filter &#xA;(Enter)" Grid.Row="1"/>
         <Button Margin="840,199,65,52" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="Close &#xA; (Esc)" Grid.Row="1"/>
         <Label Content="Options" FontWeight="Bold" FontSize="26"  Margin="800,0,-20,0"/>

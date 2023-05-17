@@ -108,7 +108,7 @@ namespace BookingProject.View.GuideViewModel
         {
 
 
-            _tourRequestController.ShowAll(TourRequests);
+            _tourRequestController.ShowAll(TourRequests, false);
             Stats = TourRequests.Count();
 
         }
