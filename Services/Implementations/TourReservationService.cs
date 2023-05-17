@@ -18,6 +18,7 @@ using BookingProject.Services.Interfaces;
 using BookingProject.View.CustomMessageBoxes;
 using BookingProject.DependencyInjection;
 using System.Windows.Navigation;
+using BookingProject.View.Guest2ViewModel;
 
 namespace BookingProject.Services
 {
@@ -98,7 +99,14 @@ namespace BookingProject.Services
         public void FullyBookedTours(Tour chosenTour, DateTime selectedDate, User guest, NavigationService navigationService)
         {
             CustomMessageBox.ShowCustomMessageBox("The tour is fully booked. The system will offer you tours at the same location.");
-            navigationService.Navigate(new ReservationTourOtherOffersView(chosenTour, selectedDate, guest.Id, navigationService));
+            if (_tourService.GetFilteredTours(chosenTour.Location, selectedDate).Count == 0)
+            {
+                navigationService.Navigate(new SerachAndReservationToursView(guest.Id, navigationService));
+            }
+            else
+            {
+                navigationService.Navigate(new ReservationTourOtherOffersView(chosenTour, selectedDate, guest.Id, navigationService));
+            }
         }
         public void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour, NavigationService navigationService)
         {
@@ -120,6 +128,10 @@ namespace BookingProject.Services
             {
                 CustomMessageBox.ShowCustomMessageBox("The system has detected that you have an unused voucher. You can use them now.");
                 navigationService.Navigate(new SecondGuestMyVouchersView(guest.Id, chosenTour.Id, navigationService));
+            }
+            else
+            {
+                navigationService.Navigate(new SerachAndReservationToursView(guest.Id, navigationService));
             }
         }
         public void FreePlaceMessage(int maxGuests)

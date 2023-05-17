@@ -106,7 +106,7 @@
                 <TextBox.Text>
                     <Binding Path="EnteredCountry" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
                         <Binding.ValidationRules>
-                            <val:CorrectInputCountryStatisticsValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            <val:CorrectInputCountryStatisticsValidationRule ValidationStep="RawProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -131,7 +131,7 @@
                 <TextBox.Text>
                     <Binding Path="EnteredCity" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
                         <Binding.ValidationRules>
-                            <val:CorrectInputCityStatisticsValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            <val:CorrectInputCityStatisticsValidationRule ValidationStep="RawProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
