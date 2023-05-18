@@ -12,7 +12,7 @@ namespace BookingProject.Repositories.Implementations
 {
     public class AccommodationRenovationRepository : IAccommodationRenovationRepository
     {
-        private const string FilePath = "../../Resources/Images/accommodationRenovations.csv";
+        private const string FilePath = "../../Resources/Data/accommodationRenovations.csv";
 
         private Serializer<AccommodationRenovation> _serializer;
 

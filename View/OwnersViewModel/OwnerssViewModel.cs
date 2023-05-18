@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.OwnersView;
 using BookingProject.View.OwnerView;
 using System;
 using System.Collections.Generic;
@@ -55,8 +56,8 @@ namespace BookingProject.View
         }
         private void Button_Click_Renovations(object param)
         {
-            AddAccommodationView addAccommodationsView = new AddAccommodationView();
-            addAccommodationsView.Show();
+            var view = new EnterAccommodationRenovationDatesView(SelectedAccommodation);
+            view.Show();
             CloseWindow();
         }
         private void Button_Click_Statistics(object param)
