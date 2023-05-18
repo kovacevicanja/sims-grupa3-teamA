@@ -1,4 +1,6 @@
 ﻿using BookingProject.Commands;
+using BookingProject.Controller;
+using BookingProject.Controllers;
 using BookingProject.Model;
 using BookingProject.Services.Implementations;
 using BookingProject.View.OwnersView;
@@ -17,21 +19,41 @@ namespace BookingProject.View.OwnersViewModel
 {
     public class EnterAccommodationRenovationDatesViewModel
     {
-        public AccommodationRenovationService _renovationService;
+        public AccommodationRenovationController _renovationController { get; set; }
+        public AccommodationReservationController _reservationController { get; set; }
         public RelayCommand ShowCommand { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
 
         public EnterAccommodationRenovationDatesViewModel(Accommodation selectedAccommodation)
         {
             SelectedAccommodation=selectedAccommodation;
-            _renovationService = new AccommodationRenovationService();
+            AvailableDatesPair = new ObservableCollection<Tuple<DateTime, DateTime>>();
+            _renovationController = new AccommodationRenovationController();
+            _reservationController = new AccommodationReservationController();
             ShowCommand = new RelayCommand(Button_Click_Show, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
 
+        public List<Tuple<DateTime, DateTime>> FindAvailableDates(DateTime startDate, DateTime endDate, int duration, Accommodation selectedAccommodation)
+        {
+            List<DateTime> reservedDates = _reservationController.FindDatesThatAreNotAvailable(selectedAccommodation);
+            List<DateTime> renovationDates = _renovationController.FindRenovationDates(selectedAccommodation);
+            List<DateTime> availableDates = new List<DateTime>();
+            List<Tuple<DateTime, DateTime>> availableDatesPair = new List<Tuple<DateTime, DateTime>>();
+
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                _renovationController.CheckIfDatesAreAvailable(availableDates, reservedDates, renovationDates, date);
+                _renovationController.CheckDatePairExistence(availableDates, availableDatesPair, duration);
+            }
+            return availableDatesPair;
+        }
+
         private void Button_Click_Show(object param)
         {
-            var view = new AccommodationRenovationsView();
+            //AvailableDatesPair = new ObservableCollection<Tuple<DateTime, DateTime>>(_renovationService.FindAvailableDates(StartDate, EndDate, RenovationDuration, SelectedAccommodation));
+            AvailableDatesPair = new ObservableCollection<Tuple<DateTime, DateTime>>(FindAvailableDates(StartDate, EndDate, RenovationDuration, SelectedAccommodation));
+            var view = new AvailableDatesForAccommodationRenovationView(SelectedAccommodation, AvailableDatesPair);
             view.Show();
             CloseWindow();
         }
@@ -40,6 +62,19 @@ namespace BookingProject.View.OwnersViewModel
             foreach (Window window in App.Current.Windows)
             {
                 if (window.GetType() == typeof(EnterAccommodationRenovationDatesView)) { window.Close(); }
+            }
+        }
+        private ObservableCollection<Tuple<DateTime, DateTime>> _availableDatesPair;
+        public ObservableCollection<Tuple<DateTime, DateTime>> AvailableDatesPair
+        {
+            get => _availableDatesPair;
+            set
+            {
+                if (value != _availableDatesPair)
+                {
+                    _availableDatesPair = value;
+                    OnPropertyChanged();
+                }
             }
         }
 

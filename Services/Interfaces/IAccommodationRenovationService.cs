@@ -20,11 +20,11 @@ namespace BookingProject.Services.Interfaces
         List<AccommodationRenovation> GetRenovationsInPast();
         List<AccommodationRenovation> GetRenovationsInFuture();
         List<Accommodation> FillRenovationData(List<Accommodation> accommodations);
-        List<Tuple<DateTime, DateTime>> FindAvailableDates(DateTime startDate, DateTime endDate, int duration, Accommodation selectedAccommodation);
+        //List<Tuple<DateTime, DateTime>> FindAvailableDates(DateTime startDate, DateTime endDate, int duration, Accommodation selectedAccommodation);
         void CheckDatePairExistence(List<DateTime> availableDates, List<Tuple<DateTime, DateTime>> availableDatesPair, int duration);
         Tuple<DateTime, DateTime> FindLastRenovation(Accommodation accommodation);
         List<AccommodationRenovation> FindRenovationsForAccommodationId(int id);
-        List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation);
+        //List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation);
         List<DateTime> FindRenovationDates(Accommodation selectedAccommodation);
         void CheckIfDatesAreAvailable(List<DateTime> dates, List<DateTime> reservationDates, List<DateTime> renovationDates, DateTime date);
         void Delete(AccommodationRenovation accommodationRenovation);

@@ -49,10 +49,10 @@ namespace BookingProject.Controllers
         {
             return _accommodationRenovationService.FillRenovationData(accommodations);
         }
-        public List<Tuple<DateTime, DateTime>> FindAvailableDates(DateTime startDate, DateTime endDate, int duration, Accommodation selectedAccommodation)
-        {
-            return _accommodationRenovationService.FindAvailableDates(startDate, endDate, duration, selectedAccommodation);
-        }
+        //public List<Tuple<DateTime, DateTime>> FindAvailableDates(DateTime startDate, DateTime endDate, int duration, Accommodation selectedAccommodation)
+        //{
+        //    return _accommodationRenovationService.FindAvailableDates(startDate, endDate, duration, selectedAccommodation);
+        //}
         public void CheckDatePairExistence(List<DateTime> availableDates, List<Tuple<DateTime, DateTime>> availableDatesPair, int duration)
         {
             _accommodationRenovationService.CheckDatePairExistence(availableDates, availableDatesPair, duration);
@@ -65,10 +65,10 @@ namespace BookingProject.Controllers
         {
             return _accommodationRenovationService.FindRenovationsForAccommodationId(id);
         }
-        public List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation)
-        {
-            return _accommodationRenovationService.FindDatesThatAreNotAvailable(selectedAccommodation);
-        }
+        //public List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation)
+        //{
+        //    return _accommodationRenovationService.FindDatesThatAreNotAvailable(selectedAccommodation);
+        //}
         public List<DateTime> FindRenovationDates(Accommodation selectedAccommodation)
         {
             return _accommodationRenovationService.FindRenovationDates(selectedAccommodation);

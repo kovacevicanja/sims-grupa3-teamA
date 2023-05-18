@@ -131,5 +131,9 @@ namespace BookingProject.Controller
         {
             return _accommodationReservationService.GetMostBusyMonth(reservations,year);
         }
+        public List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation)
+        {
+            return _accommodationReservationService.FindDatesThatAreNotAvailable(selectedAccommodation);
+        }
     }
 }

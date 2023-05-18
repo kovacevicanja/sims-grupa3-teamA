@@ -15,14 +15,15 @@ namespace BookingProject.Services.Implementations
     public class AccommodationRenovationService : IAccommodationRenovationService
     {
         private IAccommodationRenovationRepository _renovationRepository;
-        private AccommodationReservationService _accommodationReservationService;
+        //public IAccommodationReservationService _accommodationReservationService;
 
-        public AccommodationRenovationService() { }
+        public AccommodationRenovationService() {
+        }
 
         public void Initialize()
         {
             _renovationRepository = Injector.CreateInstance<IAccommodationRenovationRepository>();
-            _accommodationReservationService = new AccommodationReservationService();
+            //_accommodationReservationService = Injector.CreateInstance<IAccommodationReservationService>();
         }
         public void Create(AccommodationRenovation renovation)
         {
@@ -101,20 +102,20 @@ namespace BookingProject.Services.Implementations
 
             return accommodations;
         }
-        public List<Tuple<DateTime, DateTime>> FindAvailableDates(DateTime startDate, DateTime endDate, int duration, Accommodation selectedAccommodation)
-        {
-            List<DateTime> reservedDates = FindDatesThatAreNotAvailable(selectedAccommodation);
-            List<DateTime> renovationDates = FindRenovationDates(selectedAccommodation);
-            List<DateTime> availableDates = new List<DateTime>();
-            List<Tuple<DateTime, DateTime>> availableDatesPair = new List<Tuple<DateTime, DateTime>>();
+        //public List<Tuple<DateTime, DateTime>> FindAvailableDates(DateTime startDate, DateTime endDate, int duration, Accommodation selectedAccommodation)
+        //{
+        //    List<DateTime> reservedDates = FindDatesThatAreNotAvailable(selectedAccommodation);
+        //    List<DateTime> renovationDates = FindRenovationDates(selectedAccommodation);
+        //    List<DateTime> availableDates = new List<DateTime>();
+        //    List<Tuple<DateTime, DateTime>> availableDatesPair = new List<Tuple<DateTime, DateTime>>();
 
-            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
-            {
-                CheckIfDatesAreAvailable(availableDates, reservedDates, renovationDates, date);
-                CheckDatePairExistence(availableDates, availableDatesPair, duration);
-            }
-            return availableDatesPair;
-        }
+        //    for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+        //    {
+        //        CheckIfDatesAreAvailable(availableDates, reservedDates, renovationDates, date);
+        //        CheckDatePairExistence(availableDates, availableDatesPair, duration);
+        //    }
+        //    return availableDatesPair;
+        //}
         public void CheckDatePairExistence(List<DateTime> availableDates, List<Tuple<DateTime, DateTime>> availableDatesPair, int duration)
         {
             if (availableDates.Count == duration)
@@ -150,26 +151,26 @@ namespace BookingProject.Services.Implementations
 
             return accommodationRenovations;
         }
-        public List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation)
-        {
-            List<AccommodationReservation> reservations = _accommodationReservationService.GetAll();
-            List<DateTime> nonAvailableDates = new List<DateTime>();
+        //public List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation)
+        //{
+        //    List<AccommodationReservation> reservations = _accommodationReservationService.GetAll();
+        //    List<DateTime> nonAvailableDates = new List<DateTime>();
 
-            foreach (AccommodationReservation reservation in reservations)
-            {
-                if (selectedAccommodation.Id == reservation.Accommodation.Id && reservation.IsCancelled == false)
-                {
-                    DateTime checkIn = reservation.InitialDate;
-                    DateTime checkOut = reservation.EndDate;
+        //    foreach (AccommodationReservation reservation in reservations)
+        //    {
+        //        if (selectedAccommodation.Id == reservation.Accommodation.Id && reservation.IsCancelled == false)
+        //        {
+        //            DateTime checkIn = reservation.InitialDate;
+        //            DateTime checkOut = reservation.EndDate;
 
-                    for (DateTime currentDate = checkIn; currentDate <= checkOut; currentDate = currentDate.AddDays(1))
-                    {
-                        nonAvailableDates.Add(currentDate);
-                    }
-                }
-            }
-            return nonAvailableDates;
-        }
+        //            for (DateTime currentDate = checkIn; currentDate <= checkOut; currentDate = currentDate.AddDays(1))
+        //            {
+        //                nonAvailableDates.Add(currentDate);
+        //            }
+        //        }
+        //    }
+        //    return nonAvailableDates;
+        //}
         public List<DateTime> FindRenovationDates(Accommodation selectedAccommodation)
         {
             List<AccommodationRenovation> renovations = GetAll();

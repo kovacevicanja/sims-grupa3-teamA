@@ -56,6 +56,10 @@ namespace BookingProject.View
         }
         private void Button_Click_Renovations(object param)
         {
+            if (SelectedAccommodation == null)
+            {
+                return;
+            }
             var view = new EnterAccommodationRenovationDatesView(SelectedAccommodation);
             view.Show();
             CloseWindow();
