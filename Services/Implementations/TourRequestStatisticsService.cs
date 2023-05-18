@@ -37,7 +37,7 @@ namespace BookingProject.Services.Implementations
             }
             return false;
         }
-        public int AcceptedRequestsNumber(int guestId, string enteredYear = "")
+        private int AcceptedRequestsNumber(int guestId, string enteredYear = "")
         {
             int acceptedRequestsNumber = 0;
 

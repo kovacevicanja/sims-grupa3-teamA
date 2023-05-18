@@ -33,7 +33,7 @@ namespace BookingProject.Repositories.Implementations
         {
             TourRequestLocationBind();
         }
-        public List<TourRequest> Load()
+        private List<TourRequest> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
@@ -71,7 +71,7 @@ namespace BookingProject.Repositories.Implementations
             _tourRequests.Add(tourRequest);
             SaveTourRequest(_tourRequests);
         }
-        public void TourRequestLocationBind()
+        private void TourRequestLocationBind()
         {
             foreach (TourRequest tourRequest in _tourRequests)
             {

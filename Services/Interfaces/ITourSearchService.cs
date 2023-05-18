@@ -15,9 +15,9 @@ namespace BookingProject.Services.Interfaces
         bool RequestedCity(Tour tour, string city);
         bool RequestedCountry(Tour tour, string country);
         bool RequestedDuration(Tour tour, string duration);
-        bool RequestedLanguage(Tour tour, string choosenLanguage);
+        bool RequestedLanguage(Tour tour, string chosenLanguage);
         bool RequestedNumOfGuests(Tour tour, string numOfGuests);
-        ObservableCollection<Tour> Search(ObservableCollection<Tour> tourView, string city, string country, string duration, string choosenLanguage, string numOfGuests);
+        ObservableCollection<Tour> Search(ObservableCollection<Tour> tourView, string city, string country, string duration, string chosenLanguage, string numOfGuests);
         void ShowAll(ObservableCollection<Tour> tourView);
         List<Tour> FilterToursByDate(DateTime selectedDate);
         void GoThroughTourDates(Tour tour, DateTime selectedDate);
