@@ -1,4 +1,5 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.ConversionHelp;
+using BookingProject.Model;
 using BookingProject.Serializer;
 using System;
 using System.Collections.Generic;
@@ -34,8 +35,9 @@ namespace BookingProject.Domain
             {
                 Id.ToString(),
                 Accommodation.Id.ToString(),
-                StartDate.ToString(),
-                EndDate.ToString(),
+                DateConversion.DateToStringAccommodation(StartDate),
+                DateConversion.DateToStringAccommodation(EndDate),
+
                 Description,
             };
             return csvValues;
@@ -45,8 +47,8 @@ namespace BookingProject.Domain
         {
             Id = Convert.ToInt32(values[0]);
             Accommodation.Id = Convert.ToInt32(values[1]);
-            StartDate = DateTime.Parse(values[3]);
-            EndDate = DateTime.Parse(values[4]);
+            StartDate = DateConversion.StringToDateAccommodation(values[3]);
+            EndDate = DateConversion.StringToDateAccommodation(values[4]);
             Description = values[5];
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingProject.View.OwnersViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace BookingProject.View.OwnersView
         public AccommodationRenovationsView()
         {
             InitializeComponent();
+            this.DataContext = new AccommodationRenovationsViewModel();
         }
     }
 }

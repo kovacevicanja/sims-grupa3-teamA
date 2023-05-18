@@ -1,4 +1,5 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.Domain;
+using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,5 +27,6 @@ namespace BookingProject.Services.Interfaces
         void SaveAccommodation();
         List<Accommodation> GetAllForOwner(int ownerId);
         void Save(List<Accommodation> accommodations);
+        List<AccommodationRenovation> GetAccommodationData(List<AccommodationRenovation> renovations);
     }
 }

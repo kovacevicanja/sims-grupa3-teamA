@@ -1,4 +1,5 @@
 ﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
@@ -48,6 +49,17 @@ namespace BookingProject.Services.Implementations
             }
             return _accommodationsView;
 
+        }
+        public List<AccommodationRenovation> GetAccommodationData(List<AccommodationRenovation> renovations)
+        {
+            List<Accommodation> accommodations = GetAll();
+
+            foreach (AccommodationRenovation renovation in renovations)
+            {
+                renovation.Accommodation = accommodations.Find(a => a.Id == renovation.Accommodation.Id);
+            }
+
+            return renovations;
         }
 
         public bool AccMatched(Accommodation accommodation, string name, string city, string state, List<string> types, string numberOfGuests, string minNumDaysOfReservation)
