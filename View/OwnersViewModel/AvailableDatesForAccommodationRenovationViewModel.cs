@@ -1,5 +1,6 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controllers;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Services.Implementations;
 using BookingProject.View.OwnersView;
@@ -30,9 +31,18 @@ namespace BookingProject.View.OwnersViewModel
         }
         private void Button_Click_Schedule(object param)
         {
-            var view = new AccommodationRenovationsView();
-            view.Show();
-            CloseWindow();
+            if (SelectedDatePair != null)
+            {
+                AccommodationRenovation accommodationRenovation = new AccommodationRenovation(SelectedAccommodation.Id, SelectedDatePair.Item1, SelectedDatePair.Item2, RenovationDescription);
+                _renovationController.Save(accommodationRenovation);
+                var view = new AccommodationRenovationsView();
+                view.Show();
+                CloseWindow();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati opseg datuma kada zelite da zakazete renoviranje!");
+            }           
         }
         private ObservableCollection<Tuple<DateTime, DateTime>> _availableDatesPair;
         public ObservableCollection<Tuple<DateTime, DateTime>> AvailableDatesPair

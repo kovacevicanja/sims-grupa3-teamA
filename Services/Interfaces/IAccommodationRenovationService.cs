@@ -16,7 +16,6 @@ namespace BookingProject.Services.Interfaces
         AccommodationRenovation GetById(int id);
         void Initialize();
         void Save(List<AccommodationRenovation> renovations);
-        void SaveRenovation();
         List<AccommodationRenovation> GetRenovationsInPast();
         List<AccommodationRenovation> GetRenovationsInFuture();
         List<Accommodation> FillRenovationData(List<Accommodation> accommodations);
@@ -29,5 +28,6 @@ namespace BookingProject.Services.Interfaces
         void CheckIfDatesAreAvailable(List<DateTime> dates, List<DateTime> reservationDates, List<DateTime> renovationDates, DateTime date);
         void Delete(AccommodationRenovation accommodationRenovation);
         AccommodationRenovation Update(AccommodationRenovation accommodationRenovation);
+        AccommodationRenovation Save(AccommodationRenovation accommodationRenovation);
     }
 }

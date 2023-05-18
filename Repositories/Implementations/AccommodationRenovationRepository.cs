@@ -1,4 +1,6 @@
-﻿using BookingProject.Domain;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain;
+using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
@@ -24,7 +26,9 @@ namespace BookingProject.Repositories.Implementations
             _renovations = Load();
         }
 
-        public void Initialize() { }
+        public void Initialize() {
+            RenovationAccommodationBind();
+        }
 
         public List<AccommodationRenovation> Load()
         {
@@ -35,9 +39,14 @@ namespace BookingProject.Repositories.Implementations
         {
             _serializer.ToCSV(FilePath, renovations);
         }
-        public void SaveRenovation()
+        
+        public void RenovationAccommodationBind()
         {
-            _serializer.ToCSV(FilePath, _renovations);
+            foreach (AccommodationRenovation ren in _renovations)
+            {
+                Accommodation ac = Injector.CreateInstance<IAccommodationRepository>().GetById(ren.Accommodation.Id);
+                ren.Accommodation = ac;
+            }
         }
         public List<AccommodationRenovation> GetAll()
         {
@@ -61,6 +70,14 @@ namespace BookingProject.Repositories.Implementations
             renovation.Id = GenerateId();
             _renovations.Add(renovation);
             Save(_renovations);
+        }
+        public AccommodationRenovation Save(AccommodationRenovation accommodationRenovation)
+        {
+            accommodationRenovation.Id = GenerateId();
+            _renovations = _serializer.FromCSV(FilePath);
+            _renovations.Add(accommodationRenovation);
+            _serializer.ToCSV(FilePath, _renovations);
+            return accommodationRenovation;
         }
         public AccommodationRenovation GetById(int id)
         {

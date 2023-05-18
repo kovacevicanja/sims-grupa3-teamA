@@ -15,9 +15,8 @@ namespace BookingProject.Repositories.Intefaces
         AccommodationRenovation GetById(int id);
         void Initialize();
         void Save(List<AccommodationRenovation> renovations);
-        void SaveRenovation();
-        void Delete(AccommodationRenovation accommodationRenovation);
-
+        AccommodationRenovation Save(AccommodationRenovation accommodationRenovation);
         AccommodationRenovation Update(AccommodationRenovation accommodationRenovation);
+        void Delete(AccommodationRenovation renovation);
     }
 }

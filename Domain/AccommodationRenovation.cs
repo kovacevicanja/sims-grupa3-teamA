@@ -15,10 +15,13 @@ namespace BookingProject.Domain
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public String Description { get; set; }
-        public AccommodationRenovation() { }
+        public AccommodationRenovation() {
+            Accommodation = new Accommodation();
+        }
 
         public AccommodationRenovation(int accommodationId, DateTime startDate, DateTime endDate, String description)
         {
+            Accommodation = new Accommodation();
             Accommodation.Id = accommodationId;
             StartDate = startDate;
             EndDate = endDate;

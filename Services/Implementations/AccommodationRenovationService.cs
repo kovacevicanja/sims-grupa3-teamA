@@ -25,6 +25,11 @@ namespace BookingProject.Services.Implementations
             _renovationRepository = Injector.CreateInstance<IAccommodationRenovationRepository>();
             //_accommodationReservationService = Injector.CreateInstance<IAccommodationReservationService>();
         }
+        public AccommodationRenovation Save(AccommodationRenovation accommodationRenovation)
+        {
+            return _renovationRepository.Save(accommodationRenovation);
+        }
+
         public void Create(AccommodationRenovation renovation)
         {
             _renovationRepository.Create(renovation);
@@ -34,11 +39,6 @@ namespace BookingProject.Services.Implementations
         {
             return _renovationRepository.GetAll();
         }
-        public void SaveRenovation()
-        {
-            _renovationRepository.SaveRenovation();
-        }
-
         public AccommodationRenovation GetById(int id)
         {
             return _renovationRepository.GetById(id);

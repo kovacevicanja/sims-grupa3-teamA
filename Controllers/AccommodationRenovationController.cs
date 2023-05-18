@@ -33,9 +33,9 @@ namespace BookingProject.Controllers
         {
             _accommodationRenovationService.Save(renovations);
         }
-        public void SaveRenovation()
+        public void Save(AccommodationRenovation renovation)
         {
-            _accommodationRenovationService.SaveRenovation();
+            _accommodationRenovationService.Save(renovation);
         }
         public List<AccommodationRenovation> GetRenovationsInPast()
         {
