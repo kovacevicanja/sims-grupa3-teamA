@@ -23,6 +23,7 @@ namespace BookingProject.Services.Implementations
         private ITourRequestStatisticsService _tourRequestStatisticsService;
         private ITourLocationService _locationService;
         private ITourRequestFilterService _tourRequestFilterService;
+        private ITourRequestService _tourRequestService;
         public TourRequestGuideService() { }
         public void Initialize()
         {
@@ -31,6 +32,7 @@ namespace BookingProject.Services.Implementations
             _locationService = Injector.CreateInstance<ITourLocationService>();
             _tourRequestStatisticsService = Injector.CreateInstance<ITourRequestStatisticsService>();
             _tourRequestFilterService=Injector.CreateInstance<ITourRequestFilterService>();
+            _tourRequestService=Injector.CreateInstance<ITourRequestService>();
         }
         public int GetNumberRequestsLanguage(int guestId, LanguageEnum language, string enteredYear = "")
         {
@@ -122,7 +124,7 @@ namespace BookingProject.Services.Implementations
         public ObservableCollection<TourRequest> Filter(ObservableCollection<TourRequest> tourView, string city, string country, string choosenLanguage, string year, string month)
         {
             tourView.Clear();
-            foreach (TourRequest tour in _tourRequestFilterService.PendingTours())
+            foreach (TourRequest tour in _tourRequestService.GetAll())
             {
                 if (_tourRequestFilterService.WantedFilteredTour(tour, city, country, choosenLanguage, year, month))
                 {
