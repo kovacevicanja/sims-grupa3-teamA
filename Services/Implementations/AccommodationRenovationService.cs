@@ -78,7 +78,7 @@ namespace BookingProject.Services.Implementations
 
             foreach (AccommodationRenovation renovation in renovations)
             {
-                if (renovation.StartDate < DateTime.Today)
+                if (renovation.StartDate > DateTime.Today)
                     futureRenovations.Add(renovation);
             }
 

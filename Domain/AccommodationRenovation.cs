@@ -47,9 +47,9 @@ namespace BookingProject.Domain
         {
             Id = Convert.ToInt32(values[0]);
             Accommodation.Id = Convert.ToInt32(values[1]);
-            StartDate = DateConversion.StringToDateAccommodation(values[3]);
-            EndDate = DateConversion.StringToDateAccommodation(values[4]);
-            Description = values[5];
+            StartDate = DateConversion.StringToDateAccommodation(values[2]);
+            EndDate = DateConversion.StringToDateAccommodation(values[3]);
+            Description = values[4];
         }
 
     }

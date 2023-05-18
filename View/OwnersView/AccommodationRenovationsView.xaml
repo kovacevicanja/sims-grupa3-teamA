@@ -10,13 +10,13 @@
         <StackPanel Orientation="Vertical" >
             <Label HorizontalAlignment="Center" FontSize="25" Margin="0 15 0 7" FontWeight="SemiBold">Prikaz i otkazivanje renoviranja</Label>
 
-            <TabControl Margin="30 40 30 0" Height="420">
+            <TabControl Margin="30 40 30 0" Height="300">
                 <TabItem x:Name="LastRenovations" Header="Prethodna renoviranja">
                     <DataGrid ItemsSource="{Binding Path=LastRenovations, UpdateSourceTrigger=PropertyChanged}"
                               AutoGenerateColumns="False" IsReadOnly="True" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Smestaj" Width="100" Binding="{Binding Accommodation.Name}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Pocetni datum" Width="100" Binding="{Binding StartDate, StringFormat='{}{0:dd-MMM-yyyy}'}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Smestaj" Width="100" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Pocetni datum" Width="90" Binding="{Binding StartDate, StringFormat='{}{0:dd-MMM-yyyy}'}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Krajnji datum" Width="100" Binding="{Binding EndDate, StringFormat='{}{0:dd-MMM-yyyy}'}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -26,8 +26,8 @@
                               SelectedItem="{Binding Path=SelectedRenovation, UpdateSourceTrigger=PropertyChanged}"
                               AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Smestaj" Width="100" Binding="{Binding Accommodation.Name}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Pocetni datum" Width="100" Binding="{Binding StartDate, StringFormat='{}{0:dd-MMM-yyyy}'}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Smestaj" Width="100" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Pocetni datum" Width="90" Binding="{Binding StartDate, StringFormat='{}{0:dd-MMM-yyyy}'}" ></DataGridTextColumn>
                             <DataGridTextColumn Header="Krajnji datum" Width="100" Binding="{Binding EndDate, StringFormat='{}{0:dd-MMM-yyyy}'}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
