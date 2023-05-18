@@ -26,6 +26,7 @@ namespace BookingProject.View
         public RelayCommand LogoutCommand { get; }
         public RelayCommand CloseCommand { get; }
         public RelayCommand StatisticsCommand { get; }
+        public RelayCommand RenovationsCommand { get; }
         public OwnerssViewModel()
         {
             _userController = new UserController();
@@ -43,9 +44,16 @@ namespace BookingProject.View
             LogoutCommand = new RelayCommand(Button_Click_LogOut, CanExecute);
             CloseCommand = new RelayCommand(Button_Click_Close, CanExecute);
             StatisticsCommand = new RelayCommand(Button_Click_Statistics, CanExecute);
+            RenovationsCommand = new RelayCommand(Button_Click_Renovations, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
         private void Button_Click_Add(object param)
+        {
+            AddAccommodationView addAccommodationsView = new AddAccommodationView();
+            addAccommodationsView.Show();
+            CloseWindow();
+        }
+        private void Button_Click_Renovations(object param)
         {
             AddAccommodationView addAccommodationsView = new AddAccommodationView();
             addAccommodationsView.Show();

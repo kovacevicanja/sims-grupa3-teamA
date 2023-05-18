@@ -21,6 +21,7 @@ namespace BookingProject.Model
         public int MaxGuestNumber { get; set; }
         public int MinDays { get; set; }
         public int CancellationPeriod { get; set; }
+        public bool IsRecentlyRenovated { get; set; }
         public List<AccommodationImage> Images { get; set; }
         public User Owner { get; set; }
 
@@ -61,6 +62,7 @@ namespace BookingProject.Model
             MinDays= int.Parse(values[5]);
             CancellationPeriod= int.Parse(values[6]);
             Owner.Id = int.Parse(values[7]);
+            IsRecentlyRenovated = bool.Parse(values[8]);
         }
 
         public string[] ToCSV()
@@ -74,7 +76,8 @@ namespace BookingProject.Model
                 MaxGuestNumber.ToString(),
                 MinDays.ToString(),
                 CancellationPeriod.ToString(),
-                Owner.Id.ToString()
+                Owner.Id.ToString(),
+                IsRecentlyRenovated.ToString(),
             };
             return csvValues;
         }
