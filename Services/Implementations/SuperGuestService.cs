@@ -58,7 +58,7 @@ namespace BookingProject.Services.Implementations
         {
             SuperGuest superGuest = _superGuestRepository.GetById(guest.Id);
             DateTime todayMidnight = DateTime.Now.AddHours(0).AddMinutes(0).AddSeconds(0);
-            if (superGuest.StartDate.AddYears(1) <= todayMidnight 
+            if (superGuest.StartDate.AddYears(1) <= todayMidnight) 
             {
                 CheckNumberOfReservationsAgain(guest);
             }
@@ -150,13 +150,23 @@ namespace BookingProject.Services.Implementations
 
             foreach(AccommodationReservation reservation in _allReservations)
             {
-                if(reservation.EndDate < todayMidnight && reservation.EndDate.AddYears(1) < todayMidnight)
+                if(reservation.EndDate < todayMidnight && reservation.EndDate.AddYears(1) > todayMidnight)
                 {
-                    _allReservations.Add(reservation);
+                    _allResForLastYear.Add(reservation);
                 }
             }
 
             return _allResForLastYear;
+        }
+
+        public void ReduceBonusPoints(User guest)
+        {
+            SuperGuest superGuest = _superGuestRepository.GetById(guest.Id);
+            if(superGuest.BonusPoints > 0)
+            {
+                superGuest.BonusPoints = superGuest.BonusPoints - 1;
+                _superGuestRepository.Update(superGuest);
+            }
         }
     }
 }

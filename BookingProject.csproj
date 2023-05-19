@@ -281,6 +281,7 @@
     <Compile Include="Validation\SearchAccommodationValidationRule.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\Guest1ProfileViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ReservationsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ReviewsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1HomepageViewModel.cs" />
@@ -298,6 +299,9 @@
     </Compile>
     <Compile Include="View\Guest1View\Guest1HomepageView.xaml.cs">
       <DependentUpon>Guest1HomepageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Guest1ProfileView.xaml.cs">
+      <DependentUpon>Guest1ProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest1View\Guest1ReviewsView.xaml.cs">
       <DependentUpon>Guest1ReviewsView.xaml</DependentUpon>
@@ -543,6 +547,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Guest1View\Guest1HomepageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Guest1ProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1219,6 +1227,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Guest1Images\renovation1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\profile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
