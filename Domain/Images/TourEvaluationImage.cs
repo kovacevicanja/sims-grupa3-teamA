@@ -19,11 +19,11 @@ namespace BookingProject.Model.Images
             TourEvaluation = new TourEvaluation();
         }
 
-        public TourEvaluationImage(int id, string url, TourEvaluation tour)
+        public TourEvaluationImage(int id, string url, TourEvaluation evaluation)
         {
             Id = id;
             Url = url;
-            TourEvaluation = tour;
+            TourEvaluation = evaluation;
         }
 
         public void FromCSV(string[] values)

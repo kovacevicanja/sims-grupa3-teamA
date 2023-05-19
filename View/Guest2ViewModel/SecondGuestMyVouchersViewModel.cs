@@ -83,7 +83,7 @@ namespace BookingProject.View.Guest2ViewModel
                 ChosenVoucher.Tour = ChosenTour;
                 VoucherController.Save(_vouchersList);
 
-                NavigationService.GoBack();
+                NavigationService.Navigate(new SerachAndReservationToursView(GuestId, NavigationService));
             }
         }
         private void Button_Cancel(object param)

@@ -17,9 +17,16 @@ namespace BookingProject.Controllers
     public class TourRequestController
     {
         private readonly ITourRequestService _tourRequestService;
+
+        private readonly ITourRequestGuideService _tourRequestGuideService;
+        private readonly ITourRequestStatisticsService _tourRequestStatisticsService;
+        private readonly ITourRequestNotificationService _tourRequestNotificationService;
         public TourRequestController()
         {
             _tourRequestService = Injector.CreateInstance<ITourRequestService>();
+            _tourRequestGuideService = Injector.CreateInstance<ITourRequestGuideService>();
+            _tourRequestStatisticsService = Injector.CreateInstance<ITourRequestStatisticsService>();
+            _tourRequestNotificationService = Injector.CreateInstance<ITourRequestNotificationService>();
         }
         public void Create(TourRequest tourRequest)
         {
@@ -43,65 +50,70 @@ namespace BookingProject.Controllers
         }
         public void SendNotification(User guest, Tour tour)
         {
-            _tourRequestService.SendNotification(guest, tour);
+            _tourRequestNotificationService.SendNotification(guest, tour);
         }
         public void SystemSendingNotification(int guestId)
-        { 
-            _tourRequestService.SystemSendingNotification(guestId);
+        {
+            _tourRequestNotificationService.SystemSendingNotification(guestId);
         }
-        public List<TourRequest> GetGuestRequests (int guestId, string enteredYear)
+        public List<TourRequest> GetGuestRequests(int guestId, string enteredYear)
         {
             return _tourRequestService.GetGuestRequests(guestId, enteredYear);
         }
         public double GetUnacceptedRequestsPercentage(int guestId, string enteredYear)
         {
-            return _tourRequestService.GetUnacceptedRequestsPercentage(guestId, enteredYear);
+            return _tourRequestStatisticsService.GetUnacceptedRequestsPercentage(guestId, enteredYear);
         }
         public double GetAcceptedRequestsPercentage(int guestId, string enteredYear)
         {
-            return _tourRequestService.GetAcceptedRequestsPercentage(guestId, enteredYear);
+            return _tourRequestStatisticsService.GetAcceptedRequestsPercentage(guestId, enteredYear);
         }
-        public int GetNumberRequestsLanguage(int guestId, LanguageEnum language, string enteredYear) 
+        public int GetNumberRequestsLanguage(int guestId, LanguageEnum language, string enteredYear)
         {
-            return _tourRequestService.GetNumberRequestsLanguage(guestId, language, enteredYear);
+            return _tourRequestGuideService.GetNumberRequestsLanguage(guestId, language, enteredYear);
         }
         public int GetNumberRequestsLocation(int guestId, string country, string city, string enteredYear)
         {
-            return _tourRequestService.GetNumberRequestsLocation(guestId, country, city, enteredYear);
+            return _tourRequestGuideService.GetNumberRequestsLocation(guestId, country, city, enteredYear);
         }
         public double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear)
         {
-            return _tourRequestService.GetAvarageNumberOfPeopleInAcceptedRequests(guestId, enteredYear);
+            return _tourRequestStatisticsService.GetAvarageNumberOfPeopleInAcceptedRequests(guestId, enteredYear);
         }
 
         public ObservableCollection<TourRequest> Search(ObservableCollection<TourRequest> tourView, string city, string country, string chosenLanguage, string numOfGuests, string startDate, string endDate)
         {
-            return _tourRequestService.Search(tourView, city, country, chosenLanguage, numOfGuests, startDate, endDate);
+            return _tourRequestGuideService.Search(tourView, city, country, chosenLanguage, numOfGuests, startDate, endDate);
         }
 
         public ObservableCollection<TourRequest> Filter(ObservableCollection<TourRequest> tourView, string city, string country, string chosenLanguage, string year, string month)
         {
-            return _tourRequestService.Filter(tourView, city, country, chosenLanguage, year, month);
+            return _tourRequestGuideService.Filter(tourView, city, country, chosenLanguage, year, month);
         }
-        public void ShowAll(ObservableCollection<TourRequest> tourRequestView)
+        public void ShowAll(ObservableCollection<TourRequest> tourRequestView, bool isPending)
         {
-            _tourRequestService.ShowAll(tourRequestView);
+            _tourRequestGuideService.ShowAll(tourRequestView, isPending);
         }
 
         public LanguageEnum GetTopLanguage(string year)
         {
-            return _tourRequestService.GetTopLanguage(year);
+            return _tourRequestGuideService.GetTopLanguage(year);
         }
 
         public Location GetTopLocation(string year)
         {
 
-            return _tourRequestService.GetTopLocation(year);
+            return _tourRequestGuideService.GetTopLocation(year);
         }
 
         public void NewlyAcceptedRequests(int guestId)
         {
             _tourRequestService.NewlyAcceptedRequests(guestId);
+        }
+
+        public List<int> GuestsForNotification()
+        {
+            return _tourRequestService.GuestsForNotification();
         }
     }
 }

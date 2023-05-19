@@ -39,8 +39,8 @@
             <TextBox.Text>
                 <Binding Path="EnteredGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
                     <Binding.ValidationRules>
-                        <val:RequiredFieldValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
-                        <val:IntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                        <val:RequiredFieldValidationRule ValidationStep="RawProposedValue"/>
+                        <val:IntegerNumberValidationRule ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>

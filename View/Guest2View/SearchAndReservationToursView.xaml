@@ -14,7 +14,7 @@
 
     <Page.Resources>
         <Style TargetType="Label">
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="Gray"/>
         </Style>
@@ -27,27 +27,27 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style TargetType="TextBox" x:Key="BoldAndLargeTextBoxStyle">
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="Gray"/>
         </Style>
     </Page.Resources>
     <Grid>
-        <Label Margin="311,36,10,631" Foreground="LightBlue" FontSize="35" Content="next destination?"/>
-        <Label Margin="91,36,327,625" Foreground="Gray" FontSize="35" Content="What is your"/>
-        <Grid Margin="0,114,0,451">
-            <Label Content="City:" Margin="20,5,630,0" VerticalAlignment="Top" Height="45"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding City}" Height="38" Margin="90,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145"/>
-            <Label Content="Country:" Margin="240,5,0,0" RenderTransformOrigin="0.514,0.615" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="45"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding Country}" Margin="352,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="38"/>
-            <Label Width="125" Content="Duration:" Margin="507,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="630,9,0,0" Text="{Binding Duration}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="71" Height="38"/>
-            <Label Width="134" Content="Language:" Margin="352,55,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43"/>
-            <ComboBox Foreground="Gray" Margin="491,55,0,0" ItemsSource="{Binding Languages}" SelectedItem="{Binding ChosenLanguage}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="39" FontSize="24" FontWeight="Bold"/>
-            <Label Content="Number of guests:" Margin="20,55,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" Height="43"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding NumOfGuests}" Margin="250,59,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="71" Height="36" />
+        <Label Margin="311,29,10,638" Foreground="LightBlue" FontSize="35" Content="next destination?"/>
+        <Label Margin="91,29,327,632" Foreground="Gray" FontSize="35" Content="What is your"/>
+        <Grid Margin="0,94,0,471">
+            <Label Content="City:" Margin="10,5,640,0" VerticalAlignment="Top" Height="45"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding City}" Height="38" Margin="157,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145"/>
+            <Label Content="Country:" Margin="10,54,0,0" RenderTransformOrigin="0.514,0.615" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="44"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding Country}" Margin="157,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="38"/>
+            <Label Width="126" Content="Duration:" Margin="328,51,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="44"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="567,55,0,0" Text="{Binding Duration}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="59" Height="36"/>
+            <Label Width="134" Content="Language:" Margin="10,104,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" RenderTransformOrigin="0.501,0.544"/>
+            <ComboBox Foreground="Gray" Margin="157,108,0,0" ItemsSource="{Binding Languages}" SelectedItem="{Binding ChosenLanguage}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="39" FontSize="24" FontWeight="Bold"/>
+            <Label Content="Number of guests:" Margin="328,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" Height="42"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding NumOfGuests}" Margin="567,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="59" Height="36" TextChanged="TextBox_TextChanged" RenderTransformOrigin="0.489,0.572" />
 
-            <Button Content="Search" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="566,117,0,0" Width="120"
+            <Button Content="Search" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="339,119,0,0" Width="120"
                 Command="{Binding SearchCommand}" FontSize="24" VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -83,7 +83,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="Show all tours" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="368,117,0,0" VerticalAlignment="Top" Width="170"
+            <Button Content="Show all tours" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="479,119,0,0" VerticalAlignment="Top" Width="170"
                 Command="{Binding ShowAllToursCommand}" FontSize="24">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -145,7 +145,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Border>
-            <Button Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="523,321,0,0" VerticalAlignment="Top" Width="125"
+            <Button Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="531,321,0,0" VerticalAlignment="Top" Width="125"
         Command="{Binding SeeMoreCommand}" FontSize="24">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -186,8 +186,8 @@
                 </Button.Style>
             </Button>
         </Grid>
-        <Grid Margin="0,670,0,0">
-            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="443,8,0,0" Width="125"
+        <Grid Margin="0,657,0,0">
+            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="442,18,0,0" Width="125"
                 Command="{Binding CancelCommand}" FontSize="24" VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -223,7 +223,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="Book tour" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="188,8,0,0" Width="125"
+            <Button Content="Book tour" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="187,18,0,0" Width="125"
         Command="{Binding BookTourCommand}" FontSize="24" VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">

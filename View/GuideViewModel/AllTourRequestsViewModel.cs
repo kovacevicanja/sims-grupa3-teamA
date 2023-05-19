@@ -107,8 +107,7 @@ namespace BookingProject.View.GuideViewModel
         private void Button_Click_Show(object param)
         {
 
-
-            _tourRequestController.ShowAll(TourRequests);
+            _tourRequestController.ShowAll(TourRequests, true);
 
         }
         private void Button_Click_Pick(object param)

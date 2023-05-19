@@ -27,7 +27,7 @@
             <TextBox.Text>
                 <Binding Path="EnteredYear" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
                     <Binding.ValidationRules>
-                        <val:YearValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                        <val:YearValidationRule ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>

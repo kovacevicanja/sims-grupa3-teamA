@@ -187,15 +187,15 @@
             <Label Foreground="Gray" Grid.Column="0" Content="Country" Margin="84,0,97,29"/>
             <Label Foreground="Gray" Grid.Row="1" Grid.Column="0" Content="Description" Margin="28,12,136,12"/>
             <Label Foreground="Gray" Grid.Row="2" Grid.Column="0" Content="Langugage" Margin="28,16,121,9"/>
-            <Label Foreground="Gray" Grid.Row="3" Grid.Column="0" Content="Number of guests" Margin="28,19,67,10"/>
+            <Label Foreground="Gray" Grid.Row="3" Grid.Column="0" Content="Guests number" Margin="28,15,67,15"/>
             <Label Foreground="Gray" Grid.Row="4" Grid.Column="0" Content="Start date" Margin="29,15,164,21" RenderTransformOrigin="0.887,1.009"/>
             <Label Foreground="Gray" Grid.Row="5" Grid.Column="0" Content="End date" Margin="28,7,174,33" RenderTransformOrigin="0.565,0.545"/>
 
-            <TextBox Foreground="Gray" Grid.Row="0" Margin="220,4,244,39" Grid.ColumnSpan="2">
+            <TextBox Foreground="Gray" Grid.Row="0" Margin="250,4,214,39" Grid.ColumnSpan="2">
                 <TextBox.Text>
                     <Binding Path="City" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
-                            <val:CorrectInputCityValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            <val:CorrectInputCityValidationRule ValidationStep="RawProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -219,11 +219,11 @@
                 </Validation.ErrorTemplate>
             </TextBox>
 
-            <TextBox Foreground="Gray" Grid.Column="1" Margin="78,4,67,39">
+            <TextBox Foreground="Gray" Grid.Column="1" Margin="108,4,37,39">
                 <TextBox.Text>
                     <Binding Path="Country" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
-                            <val:CorrectInputCountryValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            <val:CorrectInputCountryValidationRule ValidationStep="RawProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -249,17 +249,17 @@
             </TextBox>
 
             <TextBox Foreground="Gray" x:Name="txtDescription" Grid.Row="1" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-         Height="78" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="220,0,67,0"
+         Height="78" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="250,0,37,0"
          AcceptsReturn="True" TextWrapping="Wrap"/>
 
-            <ComboBox Foreground="Gray" Grid.Row="2" ItemsSource="{Binding Languages}" SelectedItem="{Binding ChosenLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="220,18,188,18" Grid.ColumnSpan="2"/>
+            <ComboBox Foreground="Gray" Grid.Row="2" ItemsSource="{Binding Languages}" SelectedItem="{Binding ChosenLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="250,18,158,18" Grid.ColumnSpan="2"/>
 
-            <TextBox Foreground="Gray" x:Name="GuestsNumber" Grid.Row="3" Margin="265,0,0,0" Height="40" VerticalAlignment="Center">
+            <TextBox Foreground="Gray" x:Name="GuestsNumber" Grid.Row="3" Margin="250,0,15,0" Height="36" VerticalAlignment="Center">
                 <TextBox.Text>
                     <Binding Path="GuestsNumber" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
                         <Binding.ValidationRules>
-                            <val:RequiredFieldValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
-                            <val:IntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                            <val:RequiredFieldValidationRule ValidationStep="RawProposedValue"/>
+                            <val:IntegerNumberValidationRule ValidationStep="RawProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>

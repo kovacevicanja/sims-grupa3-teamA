@@ -75,25 +75,25 @@ namespace BookingProject.Repositories
 
         public void BindLastTour()
         {
-            
-             if (_tours.Count == 0)
-             {
-                 return;
-             }
-             else
-             {
-                 Tour tour = _tours.Last();
+
+            if (_tours.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                Tour tour = _tours.Last();
                 List<TourDateTime> dates = Injector.CreateInstance<ITourStartingTimeRepository>().GetAll();
                 List<KeyPoint> keyPoints = Injector.CreateInstance<IKeyPointRepository>().GetAll();
                 List<TourImage> images = Injector.CreateInstance<ITourImageRepository>().GetAll();
                 List<Location> locations = Injector.CreateInstance<ITourLocationRepository>().GetAll();
                 foreach (TourDateTime date in dates)
-                 {
-                     if (tour.Id == date.TourId)
-                     {
-                         tour.StartingTime.Add(date);
-                     }
-                 }
+                {
+                    if (tour.Id == date.TourId)
+                    {
+                        tour.StartingTime.Add(date);
+                    }
+                }
 
                 foreach (KeyPoint keyPoint in keyPoints)
                 {
@@ -115,21 +115,15 @@ namespace BookingProject.Repositories
                 {
                     if (tour.LocationId == location.Id)
                     {
-                        tour.Location=location;
+                        tour.Location = location;
                     }
                 }
 
             }
-         }
+        }
 
-            public List<Tour> GetAll()
-        {
-            return _tours.ToList();
-        }
-        public Tour GetById(int id)
-        {
-            return _tours.Find(tour => tour.Id == id);
-        }
+        public List<Tour> GetAll() { return _tours.ToList(); }
+        public Tour GetById(int id) { return _tours.Find(tour => tour.Id == id); }
         public void TourLocationBind()
         {
             foreach (Tour tour in _tours)

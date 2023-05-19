@@ -29,6 +29,7 @@ namespace BookingProject.View.Guest2ViewModel
             ChosenTour = chosenTour;
             _tourController = new TourController();
             Tours = new ObservableCollection<Tour>(_tourController.GetFilteredTours(chosenTour.Location, selectedDate));
+
             GuestId = guestId;
 
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
@@ -42,14 +43,6 @@ namespace BookingProject.View.Guest2ViewModel
         {
             if (NewlyChosenTour == null) { return false; }
             else { return true; }
-        }
-
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(ReservationTourOtherOffersView)) { window.Close(); }
-            }
         }
 
         private void Button_Click_SeeMore(object param)

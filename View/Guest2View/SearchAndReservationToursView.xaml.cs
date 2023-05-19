@@ -37,5 +37,10 @@ namespace BookingProject.View
             InitializeComponent();
             this.DataContext = new SearchAndReservationToursViewModel(guestId, navigationService);
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -18,6 +18,7 @@ using BookingProject.Services.Interfaces;
 using BookingProject.View.CustomMessageBoxes;
 using BookingProject.DependencyInjection;
 using System.Windows.Navigation;
+using BookingProject.View.Guest2ViewModel;
 
 namespace BookingProject.Services
 {
@@ -26,12 +27,14 @@ namespace BookingProject.Services
         public CustomMessageBox CustomMessageBox { get; set; }
         private ITourReservationRepository _tourReservationRepository;
         private ITourService _tourService;
+        private ITourSearchService _tourSearchService;
 
         public TourReservationService() { }
         public void Initialize()
         {
             _tourReservationRepository = Injector.CreateInstance<ITourReservationRepository>();
-            _tourService = Injector.CreateInstance<ITourService>(); 
+            _tourService = Injector.CreateInstance<ITourService>();
+            _tourSearchService = Injector.CreateInstance<ITourSearchService>();
             CustomMessageBox = new CustomMessageBox();
         }
 
@@ -98,12 +101,17 @@ namespace BookingProject.Services
         public void FullyBookedTours(Tour chosenTour, DateTime selectedDate, User guest, NavigationService navigationService)
         {
             CustomMessageBox.ShowCustomMessageBox("The tour is fully booked. The system will offer you tours at the same location.");
-            //ReservationTourOtherOffersView reservationTourOtherOffersView = new ReservationTourOtherOffersView(chosenTour, selectedDate, guest.Id);
-            //reservationTourOtherOffersView.Show();
-            navigationService.Navigate(new ReservationTourOtherOffersView(chosenTour, selectedDate, guest.Id, navigationService));
+            if (_tourSearchService.GetFilteredTours(chosenTour.Location, selectedDate).Count == 0)
+            {
+                navigationService.Navigate(new SerachAndReservationToursView(guest.Id, navigationService));
+            }
+            else
+            {
+                navigationService.Navigate(new ReservationTourOtherOffersView(chosenTour, selectedDate, guest.Id, navigationService));
+            }
         }
         public void SuccessfulReservationMessage(string numberOfGuests, User guest, Tour chosenTour, NavigationService navigationService)
-        { 
+        {
             if (int.Parse(numberOfGuests) == 1)
             {
                 CustomMessageBox.ShowCustomMessageBox("You have successfully booked a tour for " + numberOfGuests + " person");
@@ -121,12 +129,14 @@ namespace BookingProject.Services
             if (guest.Vouchers.Count != 0)
             {
                 CustomMessageBox.ShowCustomMessageBox("The system has detected that you have an unused voucher. You can use them now.");
-                //SecondGuestMyVouchersView secondGuestMyVouchers = new SecondGuestMyVouchersView(guest.Id, chosenTour.Id, NavigationService);
-                //secondGuestMyVouchers.Show();
                 navigationService.Navigate(new SecondGuestMyVouchersView(guest.Id, chosenTour.Id, navigationService));
             }
+            else
+            {
+                navigationService.Navigate(new SerachAndReservationToursView(guest.Id, navigationService));
+            }
         }
-        public void FreePlaceMessage (int maxGuests)
+        public void FreePlaceMessage(int maxGuests)
         {
             if (maxGuests == 1) { CustomMessageBox.ShowCustomMessageBox("There is space for " + maxGuests + " more person"); }
             else { CustomMessageBox.ShowCustomMessageBox("There is space for " + maxGuests + " more people"); }
@@ -137,7 +147,7 @@ namespace BookingProject.Services
         }
         public TourReservation GetById(int id)
         {
-            return _tourReservationRepository.GetById(id);  
+            return _tourReservationRepository.GetById(id);
         }
         public List<TourReservation> GetUserReservations(int guestId)
         {

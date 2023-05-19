@@ -34,8 +34,6 @@ namespace BookingProject.Model
             IsSuggestion= false;
         }
 
-       
-
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);

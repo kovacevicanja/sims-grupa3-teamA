@@ -12,26 +12,25 @@ using System.Xml.Linq;
 
 namespace BookingProject.Domain
 {
-    public class TourEvaluation: ISerializable
+    public class TourEvaluation : ISerializable
     {
         public int Id { get; set; }
         public int GuideKnowledge { get; set; }
         public int GuideLanguage { get; set; }
         public int TourInterestigness { get; set; }
         public string AdditionalComment { get; set; }
-        public List<TourEvaluationImage> Images { get; set; }  
+        public List<TourEvaluationImage> Images { get; set; }
         public Tour Tour { get; set; }
-        public TourReservation TourReservation { get; set; }
         public User Guest { get; set; }
         public bool IsValid { get; set; }
-        public TourEvaluation() 
+        public TourEvaluation()
         {
             Images = new List<TourEvaluationImage>();
-            IsValid= true;
+            IsValid = true;
             Tour = new Tour();
             Guest = new User();
         }
-        public TourEvaluation (int id, int knowledge, int language, int interestigness, string comment, List<TourEvaluationImage> images, bool isValid)
+        public TourEvaluation(int id, int knowledge, int language, int interestigness, string comment, List<TourEvaluationImage> images, bool isValid)
         {
             Id = id;
             GuideKnowledge = knowledge;
