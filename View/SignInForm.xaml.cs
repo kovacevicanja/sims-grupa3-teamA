@@ -143,11 +143,6 @@ namespace BookingProject.View
                         notifications = _tourPresenceController.GetGuestNotifications(userGuest);
                         List<Notification> notificationsCopy = new List<Notification>();
 
-                        //kada on jednom klikne da vidi te ture koje su napravljene da mu vise ne iskace to obavestenje, 
-                        //ili kada jednom zakaze te ture da mu vise ne iskace obavestenje 
-                        //il
-
-
                         foreach (Notification notification in notifications)
                         {
                             if (notification.RelatedTo.Equals("Creating a tour on demand"))

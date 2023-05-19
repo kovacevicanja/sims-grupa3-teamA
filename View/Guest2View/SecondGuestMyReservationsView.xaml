@@ -86,7 +86,7 @@
             </ListView.Resources>
         </ListView>
         <Grid>
-            <Button Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="162,658,0,0" VerticalAlignment="Top" Width="125"
+            <Button Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="193,658,0,0" VerticalAlignment="Top" Width="125"
         Command="{Binding SeeMoreCommand}" FontSize="24">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">

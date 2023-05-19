@@ -31,7 +31,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand CountNumberForLocationCommand { get; }
         public RelayCommand ChangeYearCommand { get; }
         public RelayCommand CancelCommand { get; }
-        public RelayCommand LogOutCommand { get; }
+        public RelayCommand LanguageChartCommand { get; }
         public User User { get; }
         public NavigationService NavigationService { get; set; }
 
@@ -61,6 +61,7 @@ namespace BookingProject.View.Guest2ViewModel
             CountNumberForLocationCommand = new RelayCommand(Button_Click_CountNumberForLocation, CanExecute);
             ChangeYearCommand = new RelayCommand(Button_Click_ChangeTheYear, CanExecute);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
+            LanguageChartCommand = new RelayCommand(Button_ChartLangauge, CanExecute);
 
             User = new User();
             NavigationService = navigationService;
@@ -143,6 +144,11 @@ namespace BookingProject.View.Guest2ViewModel
         private void Button_Cancel(object param)
         {
             NavigationService.GoBack();
+        }
+
+        private void Button_ChartLangauge(object param)
+        {
+            NavigationService.Navigate(new TourRequestsLanguageChartView(GuestId, NavigationService));
         }
     }
 }

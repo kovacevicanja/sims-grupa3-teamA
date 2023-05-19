@@ -22,10 +22,10 @@ namespace BookingProject.View.Guest2View
     /// </summary>
     public partial class ChangeYearTourRequestsStatisticsView : Page
     {
-        public ChangeYearTourRequestsStatisticsView(int guestId, NavigationService navigationService)
+        public ChangeYearTourRequestsStatisticsView(int guestId, NavigationService navigationService, string previousPage="")
         {
             InitializeComponent();
-            this.DataContext = new ChangeYearTourRequestsStatisticsViewModel(guestId, navigationService);
+            this.DataContext = new ChangeYearTourRequestsStatisticsViewModel(guestId, navigationService, previousPage);
         }
     }
 }

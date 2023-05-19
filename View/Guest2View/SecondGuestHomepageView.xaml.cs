@@ -46,6 +46,11 @@ namespace BookingProject.View
             CustomMessageBox = new CustomMessageBox();
         }
 
+        private void Button_Click_Chart(object sender, EventArgs e)
+        {
+            FrameHomePage.Content = new TourRequestsLanguageChartView(GuestId, this.FrameHomePage.NavigationService);
+        }
+
         private void Button_Click_MyAttendedTours(object sender, RoutedEventArgs e)
         {
             FrameHomePage.Content = new SecondGuestMyAttendedToursView(GuestId, this.FrameHomePage.NavigationService);
