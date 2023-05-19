@@ -111,6 +111,7 @@
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\RecommendationRenovationController.cs" />
     <Compile Include="Controllers\RequestAccommodationReservationController.cs" />
+    <Compile Include="Controllers\SuperGuestController.cs" />
     <Compile Include="Controllers\TourEvaluationController.cs" />
     <Compile Include="Controllers\GuestGradeController.cs" />
     <Compile Include="Controllers\TourEvaluationImageController.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Domain\Enums\VoucherState.cs" />
     <Compile Include="Domain\Images\TourEvaluationImage.cs" />
     <Compile Include="Domain\Notification.cs" />
+    <Compile Include="Domain\SuperGuest.cs" />
     <Compile Include="Domain\TourEvaluation.cs" />
     <Compile Include="Domain\TourPresence.cs" />
     <Compile Include="Domain\TourRequest.cs" />
@@ -177,6 +179,7 @@
     <Compile Include="Repositories\Implementations\AccommodationRepository.cs" />
     <Compile Include="Repositories\Implementations\NotificationRepository.cs" />
     <Compile Include="Repositories\Implementations\RecommendationRenovationRepository.cs" />
+    <Compile Include="Repositories\Implementations\SuperGuestRepository.cs" />
     <Compile Include="Repositories\Implementations\TourPresenceRepository.cs" />
     <Compile Include="Repositories\Implementations\RequestAccommodationReservationRepository.cs" />
     <Compile Include="Repositories\Implementations\TourRequestRepository.cs" />
@@ -203,6 +206,7 @@
     <Compile Include="Repositories\Intefaces\INotificationRepository.cs" />
     <Compile Include="Repositories\Intefaces\IRecommendationRenovationRepository.cs" />
     <Compile Include="Repositories\Intefaces\IRequestAccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\ISuperGuestRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourEvaluationImageRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourEvaluationRepository.cs" />
     <Compile Include="Repositories\Intefaces\ITourImageRepository.cs" />
@@ -229,6 +233,7 @@
     <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\RecommendationRenovationService.cs" />
     <Compile Include="Services\Implementations\RequestAccommodationReservationService.cs" />
+    <Compile Include="Services\Implementations\SuperGuestService.cs" />
     <Compile Include="Services\Implementations\TourEvaluationImageService.cs" />
     <Compile Include="Services\Implementations\TourEvaluationService.cs" />
     <Compile Include="Services\Implementations\TourImageService.cs" />
@@ -259,6 +264,7 @@
     <Compile Include="Services\Interfaces\INotificationService.cs" />
     <Compile Include="Services\Interfaces\IRecommendationRenovationService.cs" />
     <Compile Include="Services\Interfaces\IRequestAccommodationReservationService.cs" />
+    <Compile Include="Services\Interfaces\ISuperGuestService.cs" />
     <Compile Include="Services\Interfaces\ITourEvaluationImageService.cs" />
     <Compile Include="Services\Interfaces\ITourEvaluationService.cs" />
     <Compile Include="Services\Interfaces\ITourImageService.cs" />
@@ -289,6 +295,7 @@
     <Compile Include="View\CustomMessageBoxes\CustomNotificationMessageBoxNewlyCreatedTours.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\Guest1ProfileViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ReservationsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ReviewsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1HomepageViewModel.cs" />
@@ -306,6 +313,9 @@
     </Compile>
     <Compile Include="View\Guest1View\Guest1HomepageView.xaml.cs">
       <DependentUpon>Guest1HomepageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Guest1ProfileView.xaml.cs">
+      <DependentUpon>Guest1ProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest1View\Guest1ReviewsView.xaml.cs">
       <DependentUpon>Guest1ReviewsView.xaml</DependentUpon>
@@ -562,6 +572,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Guest1View\Guest1HomepageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Guest1ProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -830,6 +844,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\Data\renovationrecommendations.csv" />
+    <None Include="Resources\Data\superguests.csv" />
     <None Include="Resources\Data\tourEvaluationImages.csv" />
     <None Include="Resources\Data\accommodationOwnerGrades.csv" />
     <None Include="Resources\Data\accommodationReservationRequests.csv" />
@@ -1249,6 +1264,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Guest1Images\renovation1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\profile.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\backgroundOwner.jpg" />

@@ -39,6 +39,7 @@ namespace BookingProject.View
         public RelayCommand AddPictureCommand { get; }
         public RelayCommand ReviewCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
+        public RelayCommand MyProfileCommand { get; }
         public AccommodationOwnerReviewViewModel(AccommodationReservation selectedReservation)
         {
             AccommodationOwnerGradeController = new AccommodationOwnerGradeController();
@@ -60,6 +61,7 @@ namespace BookingProject.View
             AddPictureCommand = new RelayCommand(Button_Click_AddPicture, CanExecute);
             ReviewCommand = new RelayCommand(Button_Click_Review, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
+            MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
 
         }
         private bool CanExecute(object param) { return true; }
@@ -234,6 +236,13 @@ namespace BookingProject.View
         {
             var reviews = new Guest1ReviewsView();
             reviews.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_MyProfile(object param)
+        {
+            var profile = new Guest1ProfileView();
+            profile.Show();
             CloseWindow();
         }
     }

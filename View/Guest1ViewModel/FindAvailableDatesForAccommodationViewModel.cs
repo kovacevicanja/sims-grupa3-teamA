@@ -1,5 +1,6 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
+using BookingProject.Controllers;
 using BookingProject.Model;
 using BookingProject.View.Guest1View;
 using System;
@@ -18,6 +19,8 @@ namespace BookingProject.View.Guest1ViewModel
     {
         public ObservableCollection<Range> Ranges { get; set; }
         private AccommodationReservationController accommodationReservationController;
+        private UserController userController;
+        private SuperGuestController superGuestController;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Range selectedDates { get; set; }
@@ -27,10 +30,13 @@ namespace BookingProject.View.Guest1ViewModel
         public RelayCommand LogOutCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
+        public RelayCommand MyProfileCommand { get; }
 
         public FindAvailableDatesForAccommodationViewModel(List<(DateTime, DateTime)> ranges, Accommodation selectedAccommodation)
         {
             accommodationReservationController = new AccommodationReservationController();
+            userController = new UserController();
+            superGuestController = new SuperGuestController();
             _selectedAccommodation = selectedAccommodation;
             Ranges = new ObservableCollection<Range>(ranges.Select(r => new Range { StartDate = r.Item1, EndDate = r.Item2 }).ToList());
             BookCommand = new RelayCommand(Button_Click_Book, CanIfSelected);
@@ -38,6 +44,7 @@ namespace BookingProject.View.Guest1ViewModel
             LogOutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
+            MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
         private void CloseWindow()
@@ -90,6 +97,11 @@ namespace BookingProject.View.Guest1ViewModel
             }
             else
             {
+                User user = userController.GetLoggedUser();
+                if (user.IsSuper)
+                {
+                    superGuestController.ReduceBonusPoints(user);
+                }
                 accommodationReservationController.BookAccommodation(selectedDates.StartDate, selectedDates.EndDate, _selectedAccommodation);
                 MessageBox.Show("Successfully reserved accommodation!");
             }
@@ -120,6 +132,12 @@ namespace BookingProject.View.Guest1ViewModel
         {
             var reviews = new Guest1ReviewsView();
             reviews.Show();
+            CloseWindow();
+        }
+        private void Button_Click_MyProfile(object param)
+        {
+            var profile = new Guest1ProfileView();
+            profile.Show();
             CloseWindow();
         }
     }
