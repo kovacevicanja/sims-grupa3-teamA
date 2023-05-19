@@ -1273,5 +1273,8 @@
   <ItemGroup>
     <Resource Include="Resources\Images\backgroundOwner.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\broom.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
