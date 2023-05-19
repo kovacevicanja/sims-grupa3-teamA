@@ -13,7 +13,7 @@ namespace BookingProject.Domain
         public User Guest { get; set; }
         public int NumberOfReservations { get; set; }
         public int BonusPoints { get; set; }
-        public DateTime ActivationDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         public SuperGuest()
         {
@@ -25,7 +25,7 @@ namespace BookingProject.Domain
             Guest.Id = int.Parse(values[0]);
             NumberOfReservations = int.Parse(values[1]);
             BonusPoints = int.Parse(values[2]);
-            ActivationDate = DateTime.Parse(values[3]);
+            StartDate = DateTime.Parse(values[3]);
         }
 
         public string[] ToCSV()
@@ -35,7 +35,7 @@ namespace BookingProject.Domain
                 Guest.Id.ToString(),
                 NumberOfReservations.ToString(),
                 BonusPoints.ToString(),
-                ActivationDate.ToString("dd/MM/yyyy")
+                StartDate.ToString("dd/MM/yyyy")
         };
             return csvValues;
         }

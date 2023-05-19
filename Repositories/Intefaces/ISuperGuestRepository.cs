@@ -14,5 +14,7 @@ namespace BookingProject.Repositories.Intefaces
         SuperGuest GetById(int id);
         void Initialize();
         void Save(List<SuperGuest> guests);
+        void Delete(SuperGuest guest);
+        void Update(SuperGuest guest);
     }
 }

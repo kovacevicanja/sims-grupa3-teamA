@@ -70,6 +70,12 @@ namespace BookingProject.Repositories
         public User GetById(int id)
         {
             return _users.Find(user => user.Id == id);
-        } 
+        }
+        public void Update(User user)
+        {
+            int index = _users.FindIndex(u => u.Id == user.Id);
+            _users[index] = user;
+            _serializer.ToCSV(FilePath, _users);
+        }
     }
 }

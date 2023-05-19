@@ -49,6 +49,26 @@ namespace BookingProject.Repositories.Implementations
             _guests.Add(guest);
             Save(_guests);
         }
+        public void Delete(SuperGuest guest)
+        {
+            List<SuperGuest> _superGuestCopy = new List<SuperGuest>(_guests);
+
+            _guests.Clear();
+            foreach (var g in _superGuestCopy)
+            {
+                if (g.Guest.Id != guest.Guest.Id)
+                {
+                    _guests.Add(guest);
+                }
+            }
+            _serializer.ToCSV(FilePath, _guests);
+        }
+        public void Update(SuperGuest guest)
+        {
+            int index = _guests.FindIndex(u => u.Guest.Id == guest.Guest.Id);
+            _guests[index] = guest;
+            _serializer.ToCSV(FilePath, _guests);
+        }
         public void SuperGuestBind()
         {
             foreach (SuperGuest superGuest in _guests)
@@ -57,5 +77,6 @@ namespace BookingProject.Repositories.Implementations
                 superGuest.Guest = guest;
             }
         }
+        
     }
 }
