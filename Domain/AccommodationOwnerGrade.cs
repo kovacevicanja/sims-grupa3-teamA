@@ -26,7 +26,6 @@ namespace BookingProject.Model
             guestImages = new List<AccommodationGuestImage>();
             User = new User();
             AccommodationReservation = new AccommodationReservation();
-
         }
 
         public void FromCSV(string[] values)
