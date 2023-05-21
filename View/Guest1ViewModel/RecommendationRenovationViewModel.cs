@@ -31,6 +31,7 @@ namespace BookingProject.View.Guest1ViewModel
         public RelayCommand LogoutCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
         public RelayCommand SendCommand { get; }
+        public RelayCommand MyProfileCommand { get; }
         public RecommendationRenovationViewModel(AccommodationReservation selectedReservation)
         {
             AccommodationReservation = selectedReservation;
@@ -41,6 +42,7 @@ namespace BookingProject.View.Guest1ViewModel
             LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
             SendCommand = new RelayCommand(Button_Click_Send, CanExecute);
+            MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
         }
 
         private string _description;
@@ -129,6 +131,12 @@ namespace BookingProject.View.Guest1ViewModel
             SetLevel();
             recommendationRenovationController.Create(RecommendationRenovation);
             MessageBox.Show("You have successfully send recommendation for renovation!");
+        }
+        private void Button_Click_MyProfile(object param)
+        {
+            var profile = new Guest1ProfileView();
+            profile.Show();
+            CloseWindow();
         }
     }
 }

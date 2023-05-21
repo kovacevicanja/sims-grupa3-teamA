@@ -41,6 +41,7 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourEvaluationImageRepository), new TourEvaluationImageRepository() },
             { typeof(ITourRequestRepository), new TourRequestRepository() },
             { typeof(IRecommendationRenovationRepository), new RecommendationRenovationRepository() },
+            { typeof(ISuperGuestRepository), new SuperGuestRepository() },
             { typeof(IAccommodationRenovationRepository), new AccommodationRenovationRepository() },
 
             { typeof(ITourService), new TourService() },
@@ -66,13 +67,14 @@ namespace BookingProject.DependencyInjection
             { typeof(IRequestAccommodationReservationService), new RequestAccommodationReservationService() },
             { typeof(ITourImageService), new TourImageService() },
             { typeof(ITourRequestService), new TourRequestService() },
+            { typeof(IRecommendationRenovationService), new RecommendationRenovationService() },
+            { typeof(ISuperGuestService), new SuperGuestService() },
             { typeof(ITourRequestGuideService), new TourRequestGuideService() },
             { typeof(ITourRequestFilterService), new TourRequestFilterService() },
             { typeof(ITourRequestNotificationService), new TourRequestNotificationService() },
             { typeof(ITourRequestStatisticsService), new TourRequestStatisticsService() },
             { typeof(ITourSearchService), new TourSearchService() },
             { typeof(ITourStatisticsService), new TourStatisticsService() },
-            { typeof(IRecommendationRenovationService), new RecommendationRenovationService() },
             { typeof(IAccommodationRenovationService), new AccommodationRenovationService() }
         };
         public static void Initialize()
@@ -101,6 +103,7 @@ namespace BookingProject.DependencyInjection
             CreateInstance<IVoucherRepository>().Initialize();
             CreateInstance<ITourRequestRepository>().Initialize();
             CreateInstance<IRecommendationRenovationRepository>().Initialize();
+            CreateInstance<ISuperGuestRepository>().Initialize();
             CreateInstance<IAccommodationRenovationRepository>().Initialize();
 
             CreateInstance<IAccommodationDateService>().Initialize();
@@ -133,6 +136,7 @@ namespace BookingProject.DependencyInjection
             CreateInstance<ITourRequestFilterService>().Initialize();
             CreateInstance<ITourStatisticsService>().Initialize();
             CreateInstance<ITourSearchService>().Initialize();
+            CreateInstance<ISuperGuestService>().Initialize();
             CreateInstance<IAccommodationRenovationService>().Initialize();
         }
         public static T CreateInstance<T>()

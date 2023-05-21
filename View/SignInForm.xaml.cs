@@ -38,6 +38,8 @@ namespace BookingProject.View
         private readonly TourRequestController _tourRequestController;
         public CustomNotificationMessageBox CustomNotificationMessageBox { get; set; }
         CustomNotificationMessageBoxNewlyCreatedTours CustomNotificationMessageBoxNewlyCreatedTours { get; set; }
+        private SuperGuestController _superGuestController { get; set; }
+        //public CustomNotificationMessageBox CustomNotificationMessageBox { get; set; }  
 
         private string _username;
         public string Username
@@ -68,6 +70,7 @@ namespace BookingProject.View
             _accResController = new AccommodationReservationController();
             _requestController = new RequestAccommodationReservationController();
             _notificationController = new NotificationController();
+            _superGuestController = new SuperGuestController();
             NotificationController = new NotificationController();
             CustomNotificationMessageBox = new CustomNotificationMessageBox();
             CustomNotificationMessageBoxNewlyCreatedTours = new CustomNotificationMessageBoxNewlyCreatedTours();
@@ -115,6 +118,7 @@ namespace BookingProject.View
                         Model.User guest = _controller.GetByUsername(Username);
                         guest.IsLoggedIn = true;
                         _controller.Save();
+                        _superGuestController.CheckIfGuestIsSuper(guest);
                         Guest1HomepageView guest1View = new Guest1HomepageView();
                         guest1View.Show();
                         List<Notification> notifications = new List<Notification>();

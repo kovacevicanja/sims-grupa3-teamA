@@ -1,5 +1,7 @@
 ﻿using BookingProject.Commands;
+using BookingProject.Controller;
 using BookingProject.Controllers;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.View.Guest1View;
 using System;
@@ -13,26 +15,23 @@ using System.Windows;
 
 namespace BookingProject.View.Guest1ViewModel
 {
-    public class RescheduleAccommodationReservationViewModel
+    public class Guest1ProfileViewModel
     {
-        public RequestAccommodationReservationController RequestAccommodationReservationController { get; set; }
-        public AccommodationReservation SelectedReservation;
-        public RelayCommand SendRequestCommand { get; }
-        public RelayCommand SeeRequestsCommand { get; }
+        private UserController userController;
+        private SuperGuestController superGuestController;
         public RelayCommand HomepageCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
         public RelayCommand LogoutCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
         public RelayCommand MyProfileCommand { get; }
-        public RescheduleAccommodationReservationViewModel(AccommodationReservation selectedReservation)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public Guest1ProfileViewModel()
         {
-            RequestAccommodationReservationController = new RequestAccommodationReservationController();
-            SelectedReservation = new AccommodationReservation();
-            SelectedReservation = selectedReservation;
-            NewInitialDate = DateTime.Now;
-            NewEndDate = DateTime.Now;
-            SendRequestCommand = new RelayCommand(Button_Click_Send_Request, CanExecute);
-            SeeRequestsCommand = new RelayCommand(Button_Click_See_Requests, CanExecute);
+            userController = new UserController();
+            superGuestController = new SuperGuestController();
+            User guest = userController.GetLoggedUser();
+            SetParameters(guest);
             HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
             LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
@@ -44,83 +43,80 @@ namespace BookingProject.View.Guest1ViewModel
         {
             foreach (Window window in App.Current.Windows)
             {
-                if (window.GetType() == typeof(RescheduleAccommodationReservationView)) { window.Close(); }
+                if (window.GetType() == typeof(Guest1ProfileView)) { window.Close(); }
             }
         }
-
-        public DateTime _newInitialDate;
-        public DateTime NewInitialDate
-        {
-            get => _newInitialDate;
-            set
-            {
-                if (_newInitialDate != value)
-                {
-                    _newInitialDate = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public DateTime _newEndDate;
-        public DateTime NewEndDate
-        {
-            get => _newEndDate;
-            set
-            {
-                if (_newEndDate != value)
-                {
-                    _newEndDate = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public String _comment;
-        public String Comment
-        {
-            get => _comment;
-            set
-            {
-                if (_comment != value)
-                {
-                    _comment = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void Button_Click_Send_Request(object param)
+        public string _numberOfReservations;
+        public string NumberOfReservations
         {
-            if(NewInitialDate == null || NewEndDate == null)
+            get => _numberOfReservations;
+            set
             {
-                MessageBox.Show("You must enter new initial and new end date!");
-            }else if (NewInitialDate > NewEndDate)
+                if (_numberOfReservations != value)
+                {
+                    _numberOfReservations = value;
+                    OnPropertyChanged();
+                }
+
+            }
+        }
+        public string _typeOfGuest;
+        public string TypeOfGuest
+        {
+            get => _typeOfGuest;
+            set
             {
-                MessageBox.Show("New initial date must be before new end date!");
-            }else if(NewInitialDate == DateTime.Now.AddHours(0).AddMinutes(0).AddSeconds(0))
+                if (_typeOfGuest != value)
+                {
+                    _typeOfGuest = value;
+                    OnPropertyChanged();
+                }
+
+            }
+        }
+        public string _bonusPoints;
+        public string BonusPoints
+        {
+            get => _bonusPoints;
+            set
             {
-                MessageBox.Show("New initial date must be after today!");
+                if (_bonusPoints != value)
+                {
+                    _bonusPoints = value;
+                    OnPropertyChanged();
+                }
+
+            }
+        }
+        public void SetParameters(User guest)
+        {
+            if (guest.IsSuper)
+            {
+                SetSuperGuest(guest);
             }
             else
             {
-                RequestAccommodationReservationController.SendRequest(SelectedReservation, Comment, NewInitialDate, NewEndDate);
-                MessageBox.Show("Successfully rescheduled reservation!");
+                SetOrdinaryGuest(guest);
             }
         }
-        private void Button_Click_See_Requests(object param)
+        public void SetSuperGuest(User guest)
         {
-            var reqAccView = new AccommodationRequestsView();
-            reqAccView.Show();
-            CloseWindow();
+            NumberOfReservations = superGuestController.FindNumberOfReservations(guest).ToString();
+            TypeOfGuest = "SUPER";
+            SuperGuest superGuest = superGuestController.GetById(guest.Id);
+            BonusPoints = superGuest.BonusPoints.ToString();
         }
-
+        public void SetOrdinaryGuest(User guest)
+        {
+            NumberOfReservations = superGuestController.FindNumberOfReservations(guest).ToString();
+            TypeOfGuest = "ORDINARY";
+            BonusPoints = "0";
+        }
         private void Button_Click_Homepage(object param)
         {
             var Guest1Homepage = new Guest1HomepageView();
@@ -148,6 +144,7 @@ namespace BookingProject.View.Guest1ViewModel
             reviews.Show();
             CloseWindow();
         }
+
         private void Button_Click_MyProfile(object param)
         {
             var profile = new Guest1ProfileView();
