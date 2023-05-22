@@ -1,0 +1,51 @@
+@startuml
+actor Guest
+participant "TourController" as TourController
+participant "TourStatisticsService" as TourStatisticsService
+participant "TourRequestService" as TourRequestService
+participant "TourRepository" as TourRepository
+participant "TourRequestRepository" as TourRequestRepository
+participant "NotificationService" as NotificationService
+participant "NotificationRepository" as NotificationRepository
+
+activate Guest
+Guest -> TourController: FindToursCreatedByStatisticsForGuest(guestId)
+activate TourController
+TourController -> TourStatisticsService: FindToursCreatedByStatisticsForGuest(guestId)
+activate TourStatisticsService
+TourStatisticsService -> TourRepository: FindToursCreatedByStatistics()
+activate TourRepository
+TourRepository --> TourStatisticsService: List of tours
+deactivate TourRepository
+TourStatisticsService -> TourRequestService: FindUnacceptedRequestsForGuests(guestId)
+activate TourRequestService
+TourRequestService -> TourRequestRepository: FindUnacceptedRequests()
+activate TourRequestRepository
+TourRequestRepository --> TourRequestService: List of unaccepted requests
+deactivate TourRequestRepository
+TourRequestService --> TourStatisticsService: List of unaccepted requests
+deactivate TourRequestService
+TourStatisticsService --> TourController: List of tours
+deactivate TourStatisticsService
+
+Guest -> TourController: SystemSendingNotification(guestId)
+activate TourController
+TourController -> TourRequestService: GuestsForNotification()
+activate TourRequestService
+TourRequestService --> TourController: List of guests
+deactivate TourRequestService
+deactivate TourController
+
+TourController -> NotificationService: CreateNotification(guestId, tour)
+activate NotificationService
+NotificationService -> NotificationRepository: Create(notification)
+activate NotificationRepository
+NotificationRepository --> NotificationService: Notification created
+deactivate NotificationRepository
+NotificationService -> Guest: SendNotification(notification)
+deactivate NotificationService
+
+TourController --> Guest: DisplayTours(tours)
+deactivate Guest
+
+@enduml

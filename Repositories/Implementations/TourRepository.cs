@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BookingProject.Repositories
 {
@@ -53,6 +54,10 @@ namespace BookingProject.Repositories
         public void Save(List<Tour> tours)
         {
             _serializer.ToCSV(FilePath, tours);
+        }
+        private void SaveTours()
+        {
+            _serializer.ToCSV(FilePath, _tours);
         }
         private int GenerateId()
         {

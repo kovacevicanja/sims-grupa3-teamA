@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BookingProject.Model.Images;
 using System.Xml.Linq;
 using BookingProject.Serializer;
+using BookingProject.ConversionHelp;
 
 namespace BookingProject.Model
 {
@@ -26,12 +27,15 @@ namespace BookingProject.Model
         public int GuideId { get; set; }
 
         public bool IsSuggestion { get; set; }
+        public DateTime CreartionDate { get; set; }
 
-        public Tour() { 
+        public Tour()
+        {
             KeyPoints = new List<KeyPoint>();
             StartingTime = new List<TourDateTime>();
             Images = new List<TourImage>();
-            IsSuggestion= false;
+            IsSuggestion = false;
+            CreartionDate = DateTime.Now;
         }
 
         public void FromCSV(string[] values)
@@ -55,6 +59,7 @@ namespace BookingProject.Model
             DurationInHours = int.Parse(values[6]);
             GuideId= int.Parse(values[7]);
             IsSuggestion = bool.Parse(values[8]);
+            CreartionDate = DateConversion.StringToDateTour(values[9]);
         }
 
         public string[] ToCSV()
@@ -70,7 +75,7 @@ namespace BookingProject.Model
                 DurationInHours.ToString(),
                 GuideId.ToString(),
                 IsSuggestion.ToString(),
-
+                DateConversion.DateToStringTour(CreartionDate),
             };
             return csvValues;
         }

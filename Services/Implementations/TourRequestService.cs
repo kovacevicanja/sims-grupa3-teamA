@@ -73,13 +73,17 @@ namespace BookingProject.Services.Implementations
             List<int> guests = new List<int>();
             foreach (Tour tour in FindToursCreatedByStatistcis())
             {
-                foreach (TourRequest request in FindUnacceptedRequests())
+                DateTime date = tour.CreartionDate.Date.AddDays(7);
+                if (date > DateTime.Now.Date)
                 {
-                    if (tour.Language == request.Language ||
-                        (tour.Location.City.Equals(request.Location.City) && tour.Location.Country.Equals(request.Location.Country)))
-                    {
-                        guests.Add(request.Guest.Id);
-                    }
+                        foreach (TourRequest request in FindUnacceptedRequests())
+                        {
+                            if (tour.Language == request.Language ||
+                                (tour.Location.City.Equals(request.Location.City) && tour.Location.Country.Equals(request.Location.Country)))
+                            {
+                                guests.Add(request.Guest.Id);
+                            }
+                        }
                 }
             }
 

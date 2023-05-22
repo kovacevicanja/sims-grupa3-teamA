@@ -225,6 +225,9 @@ namespace BookingProject.View.GuideViewModel
             tour.DurationInHours = Duration;
             tour.Language = ChosenLanguage;
             tour.GuideId = UserController.GetLoggedUser().Id;
+            //za gosta - notifikacija::::
+            tour.CreartionDate = DateTime.Now;
+            //////////////
             Location location = new Location();
             location.City = City;
             location.Country = Country;

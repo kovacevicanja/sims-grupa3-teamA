@@ -1,0 +1,35 @@
+@startuml
+actor Owner
+
+participant "AccommodationReservaitonController" as ReservationController
+participant "AccommodationRenovationController" as RenovationController
+participant "AccommodationReservationService" as ReservationService
+participant "AccommodationReservationRepository" as ReservationRepository
+participant "AccommodationRenovationService" as RenovationService
+
+participant System
+
+Owner -> ReservationController: Find available dates(StartDate, EndDate, Duration, Accommodation)
+
+ReservationController -> ReservationController ++: FindDatesThatAreNotAvailable(selectedAccommodation)
+ReservationController -> ReservationService ++: FindDatesThatAreNotAvailable(selectedAccommodation)
+ReservationService --> ReservationController --: reservedDates
+ReservationController --> ReservationController --: reservedDates
+
+ReservationController -> RenovationController ++:FindRenovationDates(selectedAccommodation)
+RenovationController -> RenovationService ++:FindRenovationDates(selectedAccommodation)
+RenovationService--> RenovationController --: renovationDates
+RenovationController--> ReservationController --: renovationDates
+
+loop
+ReservationController->RenovationController :CheckIfDatesAreAvailable(availableDates, reservedDates, renovationDates, date)
+RenovationController->RenovationService :CheckIfDatesAreAvailable(availableDates, reservedDates, renovationDates, date)
+ReservationController->RenovationController :CheckDatePairExistence(availableDates, availableDatesPair, duration)
+RenovationController->RenovationService :CheckDatePairExistence(availableDates, availableDatesPair, duration)
+end
+
+ReservationController -> Owner:AvailableDatesPair
+opt SelectedDatePair!=null
+Owner->RenovationController:Save(accommodationRenovation)
+end
+@enduml

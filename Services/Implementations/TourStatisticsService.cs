@@ -1,6 +1,8 @@
-﻿using BookingProject.DependencyInjection;
+﻿using BookingProject.Controller;
+using BookingProject.DependencyInjection;
 using BookingProject.Domain;
 using BookingProject.Model;
+using BookingProject.Repositories;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
 using System;
@@ -35,16 +37,19 @@ namespace BookingProject.Services.Implementations
 
             foreach (Tour tour in FindToursCreatedByStatistcis())
             {
-                foreach (TourRequest request in _tourRequestService.FindUnacceptedRequestsForGuests(guestId))
+                DateTime date = tour.CreartionDate.Date.AddDays(7);
+                if (date > DateTime.Now.Date)
                 {
-                    if (request.Language == tour.Language ||
-                        (tour.Location.City.Equals(request.Location.City) && tour.Location.Country.Equals(request.Location.Country)))
-                    {
-                        tours.Add(tour);
-                    }
+                   foreach (TourRequest request in _tourRequestService.FindUnacceptedRequestsForGuests(guestId))
+                   {
+                       if (request.Language == tour.Language ||
+                            (tour.Location.City.Equals(request.Location.City) && tour.Location.Country.Equals(request.Location.Country)))
+                       {
+                            tours.Add(tour);
+                       }
+                   }
                 }
             }
-
             return tours;
         }
     }
