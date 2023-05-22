@@ -9,7 +9,10 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Guest1HomepageView" Height="720" Width="1280">
-    
+    <Window.Resources>
+        <local1:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+
     <DockPanel LastChildFill="True">
         <Grid Background="Honeydew">
             <Grid.ColumnDefinitions>
@@ -210,7 +213,8 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Width="15" Height="15" Margin="0,0,0,90" Source="../Resources/Images/star.jpg" Visibility="{Binding Owner.IsSupers}" />
+                                                <Image Width="15" Height="15" Margin="0,0,0,90" Source="/Resources/Images/star.jpg" Visibility="{Binding Owner.IsSuper,  Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                <Image Width="15" Height="15" Margin="0,0,0,90" Source="/Resources/Images/broom.png" Visibility="{Binding IsRecentlyRenovated, Converter={StaticResource BooleanToVisibilityConverter}}" />
                                                 <TextBlock TextAlignment="Right" Text="{Binding AccommodationName}" />
                                             </StackPanel>
                                         </DataTemplate>
