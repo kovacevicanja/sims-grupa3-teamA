@@ -67,14 +67,13 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourImageService), new TourImageService() },
             { typeof(ITourRequestService), new TourRequestService() },
             { typeof(IRecommendationRenovationService), new RecommendationRenovationService() },
-            { typeof(ISuperGuestService), new SuperGuestService() }
+            { typeof(ISuperGuestService), new SuperGuestService() },
             { typeof(ITourRequestGuideService), new TourRequestGuideService() },
             { typeof(ITourRequestFilterService), new TourRequestFilterService() },
             { typeof(ITourRequestNotificationService), new TourRequestNotificationService() },
             { typeof(ITourRequestStatisticsService), new TourRequestStatisticsService() },
             { typeof(ITourSearchService), new TourSearchService() },
-            { typeof(ITourStatisticsService), new TourStatisticsService() },
-            { typeof(IRecommendationRenovationService), new RecommendationRenovationService() }
+            { typeof(ITourStatisticsService), new TourStatisticsService() }
         };
         public static void Initialize()
         {

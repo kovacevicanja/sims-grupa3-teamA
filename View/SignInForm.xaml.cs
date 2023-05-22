@@ -39,7 +39,7 @@ namespace BookingProject.View
         public CustomNotificationMessageBox CustomNotificationMessageBox { get; set; }
         CustomNotificationMessageBoxNewlyCreatedTours CustomNotificationMessageBoxNewlyCreatedTours { get; set; }
         private SuperGuestController _superGuestController { get; set; }
-        public CustomNotificationMessageBox CustomNotificationMessageBox { get; set; }  
+        //public CustomNotificationMessageBox CustomNotificationMessageBox { get; set; }  
 
         private string _username;
         public string Username
