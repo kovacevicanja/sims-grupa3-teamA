@@ -32,6 +32,6 @@ namespace BookingProject.View.Guest2View
         {
             InitializeComponent();
             this.DataContext = new TourRequestStatisticsViewModel(guestId, navigationService, enteredYear);
-        }  
+        }
     }
 }

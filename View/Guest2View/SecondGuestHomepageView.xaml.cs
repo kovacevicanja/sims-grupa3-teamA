@@ -48,7 +48,7 @@ namespace BookingProject.View
 
         private void Button_Click_Chart(object sender, EventArgs e)
         {
-            FrameHomePage.Content = new TourRequestsLanguageChartView(GuestId, this.FrameHomePage.NavigationService);
+            FrameHomePage.Content = new TourRequestStatisticsPieChart(GuestId, this.FrameHomePage.NavigationService);
         }
 
         private void Button_Click_MyAttendedTours(object sender, RoutedEventArgs e)
@@ -64,9 +64,8 @@ namespace BookingProject.View
         private void Button_Click_LogOut(object sender, RoutedEventArgs e)
         {
             TourRequestController.NewlyAcceptedRequests(GuestId);
-            UserController.GetById(GuestId);
-            User.Id = GuestId;
-            User.IsLoggedIn = false;
+            UserController.GetLoggedUser().IsLoggedIn = false;
+            UserController.Save();
             SignInForm signInForm = new SignInForm();
             signInForm.Show();
             this.Close();

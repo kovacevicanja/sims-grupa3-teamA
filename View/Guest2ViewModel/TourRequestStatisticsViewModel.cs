@@ -32,6 +32,8 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand ChangeYearCommand { get; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand LanguageChartCommand { get; }
+        public RelayCommand LocationChartCommand { get; }
+        public RelayCommand ChartPieCommand { get; }
         public User User { get; }
         public NavigationService NavigationService { get; set; }
 
@@ -53,7 +55,7 @@ namespace BookingProject.View.Guest2ViewModel
             Languages = new ObservableCollection<LanguageEnum>(languages);
 
             NumberRequestsLanguage = _tourRequestController.GetNumberRequestsLanguage(GuestId, ChosenLanguage, EnteredYear);
-            NumberRequestsLocation = 0;
+            NumberRequestsLocation = _tourRequestController.GetNumberRequestsLocation(GuestId, EnteredCountry, EnteredCity, EnteredYear);
 
             AvarageNumberOfPeopleInAcceptedRequests = _tourRequestController.GetAvarageNumberOfPeopleInAcceptedRequests(GuestId, EnteredYear);
 
@@ -62,6 +64,8 @@ namespace BookingProject.View.Guest2ViewModel
             ChangeYearCommand = new RelayCommand(Button_Click_ChangeTheYear, CanExecute);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
             LanguageChartCommand = new RelayCommand(Button_ChartLangauge, CanExecute);
+            LocationChartCommand = new RelayCommand(Button_ChartLocation, CanExecute);
+            ChartPieCommand = new RelayCommand(Button_ChartPie, CanExecute);
 
             User = new User();
             NavigationService = navigationService;
@@ -149,6 +153,16 @@ namespace BookingProject.View.Guest2ViewModel
         private void Button_ChartLangauge(object param)
         {
             NavigationService.Navigate(new TourRequestsLanguageChartView(GuestId, NavigationService));
+        }
+
+        private void Button_ChartLocation(object param)
+        {
+            NavigationService.Navigate(new TourRequestsLocationChartView(GuestId, NavigationService));
+        }
+
+        private void Button_ChartPie(object param)
+        {
+            NavigationService.Navigate(new TourRequestStatisticsPieChart(GuestId, NavigationService));
         }
     }
 }

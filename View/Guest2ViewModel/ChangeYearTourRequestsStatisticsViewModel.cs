@@ -52,6 +52,14 @@ namespace BookingProject.View.Guest2ViewModel
             {
                 NavigationService.Navigate(new TourRequestsLanguageChartView(GuestId, NavigationService, EnteredYear));
             }
+            else if (PreviouesPage.Equals("locationChart"))
+            {
+                NavigationService.Navigate(new TourRequestsLocationChartView(GuestId, NavigationService, EnteredYear));
+            }
+            else if (PreviouesPage.Equals("pieChart"))
+            {
+                NavigationService.Navigate(new TourRequestStatisticsPieChart(GuestId, NavigationService, EnteredYear));
+            }
             else
             {
                 NavigationService.Navigate(new TourRequestStatisticsView(GuestId, NavigationService, EnteredYear));

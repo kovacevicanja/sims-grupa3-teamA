@@ -21,14 +21,14 @@ namespace BookingProject.View.Guest2View
     /// <summary>
     /// Interaction logic for TourRequestsChartView.xaml
     /// </summary>
-    public partial class TourRequestsLanguageChartView : Page
+    public partial class TourRequestsLocationChartView : Page
     {
         TourRequestController _tourRequestController = new TourRequestController();
-        public int GuestId { get; set; }    
+        public int GuestId { get; set; }
         public NavigationService NavigationService { get; set; }
         public string EnteredYear { get; set; }
         public string DisplayYear { get; set; }
-        public TourRequestsLanguageChartView(int guestId, NavigationService navigationService, string enteredYear = "")
+        public TourRequestsLocationChartView(int guestId, NavigationService navigationService, string enteredYear = "")
         {
             InitializeComponent();
             this.DataContext = this;
@@ -48,10 +48,9 @@ namespace BookingProject.View.Guest2View
                 DisplayYear = "for all times";
             }
 
-            Chart1.Series[0].Points.Add(_tourRequestController.GetNumberRequestsLanguage(guestId, LanguageEnum.ENGLISH, enteredYear)).AxisLabel = "English";
-            Chart1.Series[0].Points.Add(_tourRequestController.GetNumberRequestsLanguage(guestId, LanguageEnum.SERBIAN, enteredYear)).AxisLabel = "Serbian";
-            Chart1.Series[0].Points.Add(_tourRequestController.GetNumberRequestsLanguage(guestId, LanguageEnum.GERMAN, enteredYear)).AxisLabel = "German";
-            Chart1.Series[0].Points.Add(_tourRequestController.GetNumberRequestsLanguage(guestId, LanguageEnum.SPANISH, enteredYear)).AxisLabel = "Spanish";
+            Chart1.Series[0].Points.Add(_tourRequestController.GetNumberRequestsLocation(GuestId, "Serbia", "Novi Sad", EnteredYear)).AxisLabel = "Novi Sad, Serbia";
+            Chart1.Series[0].Points.Add(_tourRequestController.GetNumberRequestsLocation(GuestId, "Spain", "Barcelona", EnteredYear)).AxisLabel = "Barcelona, Spain";
+            Chart1.Series[0].Points.Add(_tourRequestController.GetNumberRequestsLocation(GuestId, "Spain", "Valencia", EnteredYear)).AxisLabel = "Valencia, Spain";
 
             Chart1.Series[0].Color = System.Drawing.Color.LightBlue;
 
@@ -78,7 +77,7 @@ namespace BookingProject.View.Guest2View
 
         private void Button_Click_ChangeTheYear(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ChangeYearTourRequestsStatisticsView(GuestId, NavigationService, "languageChart"));
+            NavigationService.Navigate(new ChangeYearTourRequestsStatisticsView(GuestId, NavigationService, "locationChart"));
         }
 
         private void Button_Cancel(object sender, RoutedEventArgs e)

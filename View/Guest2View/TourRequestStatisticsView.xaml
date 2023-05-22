@@ -93,8 +93,8 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="Chart" IsCancel="True" Height="36" Margin="69,59,0,0" Width="94"
-                 Command="{Binding LanguageChartCommand}" FontSize="24" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="2">
+            <Button Content="ChartLanguage" IsCancel="True" Height="36" Margin="69,6,0,0" Width="94"
+                 Command="{Binding LanguageChartCommand}" FontSize="24" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="LightGray" />
@@ -147,6 +147,7 @@
                     <Binding Path="EnteredCountry" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
                         <Binding.ValidationRules>
                             <val:CorrectInputCountryStatisticsValidationRule ValidationStep="RawProposedValue"/>
+                            <val:NavigationInputCountry ValidationStep="RawProposedValue" ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -172,6 +173,7 @@
                     <Binding Path="EnteredCity" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" StringFormat='{}{0:#}'>
                         <Binding.ValidationRules>
                             <val:CorrectInputCityStatisticsValidationRule ValidationStep="RawProposedValue"/>
+                            <val:NavigationInputCity ValidationStep="RawProposedValue" ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -281,8 +283,8 @@
             </Button.Style>
         </Button>
 
-        <Button Content="Chart" IsCancel="True" Height="36" Margin="618,73,0,0" Width="94"
-                Command="{Binding LanguageChartCommand}" FontSize="24" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Button Content="ChartLoc" IsCancel="True" Height="36" Margin="618,90,0,0" Width="94"
+                Command="{Binding LocationChartCommand}" FontSize="24" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="LightGray" />
@@ -401,8 +403,8 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Chart" IsCancel="True" Height="36" Margin="591,177,0,0" Width="94"
-            Command="{Binding LanguageChartCommand}" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Button Content="ChartPie" IsCancel="True" Height="36" Margin="591,177,0,0" Width="94"
+            Command="{Binding ChartPieCommand}" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="LightGray" />
