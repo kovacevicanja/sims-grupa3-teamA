@@ -1,0 +1,81 @@
+@startuml
+
+actor Guest
+
+participant "SuperGuestController" as Controller
+participant "SuperGuestService" as Service
+participant "SuperGuestRepository" as Repository
+
+Guest -> Controller: Become Super-Guest
+activate Controller
+Controller -> Service: CheckIfGuestIsSuper(guest)
+activate Service
+Service -> Repository: GetById(guest.Id)
+activate Repository
+Repository --> Service: SuperGuest Object
+deactivate Repository
+
+alt Guest is already a Super-Guest
+    Service -> Service: CheckRequirements(guest)
+    activate Service
+    Service -> Repository: GetById(guest.Id)
+    activate Repository
+    Repository --> Service: SuperGuest Object
+    deactivate Repository
+    
+    Service -> Service: CheckNumberOfReservationsAgain(guest)
+    activate Service
+    Service -> Service: FindNumberOfReservations(guest)
+    activate Service
+    Service -> Repository: GetById(guest.Id)
+    activate Repository
+    Repository --> Service: SuperGuest Object
+    deactivate Repository
+    Service --> Service: Number of Reservations
+    deactivate Service
+    
+    alt Guest meets the requirement
+        Service -> Service: UpdateSuperGuest(guest)
+        activate Service
+        Service -> Repository: Update(superGuest)
+        activate Repository
+        Repository --> Service
+        deactivate Repository
+        Service --> Service
+        deactivate Service
+    else Guest does not meet the requirement
+        Service -> Repository: Delete(superGuest)
+        activate Repository
+        Repository --> Service
+        deactivate Repository
+        Service -> Service: Update(guest)
+        activate Service
+        Service -> Repository: Update(guest)
+        activate Repository
+        Repository --> Service
+        deactivate Repository
+        Service --> Service
+        deactivate Service
+    end
+else Guest is not a Super-Guest
+    Service -> Service: CheckConditions(guest)
+    activate Service
+    Service -> Service: FindNumberOfReservations(guest)
+    activate Service
+    Service -> Service: MakeSuperGuest(guest, numberOfReservations)
+    activate Service
+    Service -> Repository: Create(superGuest)
+    activate Repository
+    Repository --> Service
+    deactivate Repository
+    Service -> Service: Update(guest)
+    activate Service
+    Service -> Repository: Update(guest)
+    activate Repository
+    Repository --> Service
+    deactivate Repository
+    Service --> Service
+    deactivate Service
+end
+
+@enduml
