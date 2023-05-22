@@ -18,9 +18,25 @@ namespace BookingProject.Controller
     public class AccommodationReservationController 
     {
         private readonly IAccommodationReservationService _accommodationReservationService;
+        public AccommodationRenovationController _renovationController { get; set; }
         public AccommodationReservationController()
         {
             _accommodationReservationService = Injector.CreateInstance<IAccommodationReservationService>();
+            _renovationController = new AccommodationRenovationController();
+        }
+        public List<Tuple<DateTime, DateTime>> FindAvailableDates(DateTime startDate, DateTime endDate, int duration, Accommodation selectedAccommodation)
+        {
+            List<DateTime> reservedDates = FindDatesThatAreNotAvailable(selectedAccommodation);
+            List<DateTime> renovationDates = _renovationController.FindRenovationDates(selectedAccommodation);
+            List<DateTime> availableDates = new List<DateTime>();
+            List<Tuple<DateTime, DateTime>> availableDatesPair = new List<Tuple<DateTime, DateTime>>();
+
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                _renovationController.CheckIfDatesAreAvailable(availableDates, reservedDates, renovationDates, date);
+                _renovationController.CheckDatePairExistence(availableDates, availableDatesPair, duration);
+            }
+            return availableDatesPair;
         }
         public void Create(AccommodationReservation reservation)
         {
