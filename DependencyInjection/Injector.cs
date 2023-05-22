@@ -42,6 +42,7 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourRequestRepository), new TourRequestRepository() },
             { typeof(IRecommendationRenovationRepository), new RecommendationRenovationRepository() },
             { typeof(ISuperGuestRepository), new SuperGuestRepository() },
+            { typeof(IAccommodationRenovationRepository), new AccommodationRenovationRepository() },
 
             { typeof(ITourService), new TourService() },
             { typeof(ITourReservationService), new TourReservationService() },
@@ -73,7 +74,8 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourRequestNotificationService), new TourRequestNotificationService() },
             { typeof(ITourRequestStatisticsService), new TourRequestStatisticsService() },
             { typeof(ITourSearchService), new TourSearchService() },
-            { typeof(ITourStatisticsService), new TourStatisticsService() }
+            { typeof(ITourStatisticsService), new TourStatisticsService() },
+            { typeof(IAccommodationRenovationService), new AccommodationRenovationService() }
         };
         public static void Initialize()
         {
@@ -102,6 +104,7 @@ namespace BookingProject.DependencyInjection
             CreateInstance<ITourRequestRepository>().Initialize();
             CreateInstance<IRecommendationRenovationRepository>().Initialize();
             CreateInstance<ISuperGuestRepository>().Initialize();
+            CreateInstance<IAccommodationRenovationRepository>().Initialize();
 
             CreateInstance<IAccommodationDateService>().Initialize();
             CreateInstance<IAccommodationGuestImageService>().Initialize();
@@ -134,6 +137,7 @@ namespace BookingProject.DependencyInjection
             CreateInstance<ITourStatisticsService>().Initialize();
             CreateInstance<ITourSearchService>().Initialize();
             CreateInstance<ISuperGuestService>().Initialize();
+            CreateInstance<IAccommodationRenovationService>().Initialize();
         }
         public static T CreateInstance<T>()
         {

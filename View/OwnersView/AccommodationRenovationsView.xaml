@@ -1,0 +1,41 @@
+﻿<Window x:Class="BookingProject.View.OwnersView.AccommodationRenovationsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View.OwnersView"
+        mc:Ignorable="d"
+        Title="AccommodationRenovationsView" WindowStartupLocation="CenterScreen" Height="600" Width="356">
+    <Grid>
+        <StackPanel Orientation="Vertical" >
+            <Label HorizontalAlignment="Center" FontSize="25" Margin="0 15 0 7" FontWeight="SemiBold">Prikaz i otkazivanje renoviranja</Label>
+
+            <TabControl Margin="30 40 30 0" Height="300">
+                <TabItem x:Name="LastRenovations" Header="Prethodna renoviranja">
+                    <DataGrid ItemsSource="{Binding Path=LastRenovations, UpdateSourceTrigger=PropertyChanged}"
+                              AutoGenerateColumns="False" IsReadOnly="True" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Smestaj" Width="100" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Pocetni datum" Width="90" Binding="{Binding StartDate, StringFormat='{}{0:dd-MMM-yyyy}'}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Krajnji datum" Width="100" Binding="{Binding EndDate, StringFormat='{}{0:dd-MMM-yyyy}'}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem x:Name="FutureRenovations" Header="Zakazana renoviranja">
+                    <DataGrid ItemsSource="{Binding Path=FutureRenovations, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding Path=SelectedRenovation, UpdateSourceTrigger=PropertyChanged}"
+                              AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Smestaj" Width="100" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Pocetni datum" Width="90" Binding="{Binding StartDate, StringFormat='{}{0:dd-MMM-yyyy}'}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Krajnji datum" Width="100" Binding="{Binding EndDate, StringFormat='{}{0:dd-MMM-yyyy}'}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+
+            <Button Width="150" Height="50" HorizontalAlignment="Right" Content="Otkazi renoviranje" Margin="0 37 60 0" Command="{Binding CancelRenovationCommand}" IsEnabled="{Binding ElementName=FutureRenovations, Path=IsSelected}">
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

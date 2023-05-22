@@ -107,6 +107,7 @@
     <Compile Include="Controllers\AccommodationLocationController.cs" />
     <Compile Include="Controllers\AccommodationImageController.cs" />
     <Compile Include="Controllers\AccommodationOwnerGradeController.cs" />
+    <Compile Include="Controllers\AccommodationRenovationController.cs" />
     <Compile Include="Controllers\AccommodationReservationController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\RecommendationRenovationController.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="DependencyInjection\Injector.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Domain\AccommodationOwnerGrade.cs" />
+    <Compile Include="Domain\AccommodationRenovation.cs" />
     <Compile Include="Domain\Enums\GuideType.cs" />
     <Compile Include="Domain\Enums\RequestStatus.cs" />
     <Compile Include="Domain\Enums\TourRequestStatus.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Repositories\Implementations\AccommodationImageRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationLocationRepository.cs" />
+    <Compile Include="Repositories\Implementations\AccommodationRenovationRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationReservationRepository.cs" />
     <Compile Include="Repositories\Implementations\GuestGradeRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationDateRepository.cs" />
@@ -196,6 +199,7 @@
     <Compile Include="Repositories\Implementations\VoucherRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationImageRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationLocationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IAccommodationRenovationRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationReservationRepository.cs" />
     <Compile Include="Repositories\Intefaces\IGuestGradeRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationDateRepository.cs" />
@@ -223,6 +227,7 @@
     <Compile Include="Serializer\Serializer.cs" />
     <Compile Include="Services\Implementations\AccommodationImageService.cs" />
     <Compile Include="Services\Implementations\AccommodationLocationService.cs" />
+    <Compile Include="Services\Implementations\AccommodationRenovationService.cs" />
     <Compile Include="Services\Implementations\AccommodationReservationService.cs" />
     <Compile Include="Services\Implementations\GuestGradeService.cs" />
     <Compile Include="Services\Implementations\AccommodationDateService.cs" />
@@ -254,6 +259,7 @@
     <Compile Include="Services\Implementations\VoucherService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationImageService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationLocationService.cs" />
+    <Compile Include="Services\Interfaces\IAccommodationRenovationService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationReservationService.cs" />
     <Compile Include="Services\Interfaces\IGuestGradeService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationDateService.cs" />
@@ -344,16 +350,22 @@
     <Compile Include="View\Guest2View\ActiveToursView.xaml.cs">
       <DependentUpon>ActiveToursView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OwnersViewModel\AccommodationRenovationsViewModel.cs" />
     <Compile Include="View\OwnersViewModel\AccommodationStatisticsByMonthViewModel.cs" />
     <Compile Include="View\OwnersViewModel\AccommodationStatisticsByYearViewModel.cs" />
     <Compile Include="View\OwnersViewModel\AddAccommodationViewModel.cs" />
     <Compile Include="View\OwnersViewModel\AddPhotosToAccommodationViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\AvailableDatesForAccommodationRenovationViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\EnterAccommodationRenovationDatesViewModel.cs" />
     <Compile Include="View\OwnersViewModel\GuestGradesForOwnerViewModel.cs" />
     <Compile Include="View\OwnersViewModel\GuestRateViewModel.cs" />
     <Compile Include="View\OwnersViewModel\MenuViewModel.cs" />
     <Compile Include="View\OwnersViewModel\NotGradedViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersApprovingDenyingRequestViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersRequestViewModel.cs" />
+    <Compile Include="View\OwnersView\AccommodationRenovationsView.xaml.cs">
+      <DependentUpon>AccommodationRenovationsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OwnersView\AccommodationStatisticsByMonthView.xaml.cs">
       <DependentUpon>AccommodationStatisticsByMonthView.xaml</DependentUpon>
     </Compile>
@@ -521,6 +533,12 @@
     <Compile Include="View\OwnersView\AddPhotosToAccommodationView.xaml.cs">
       <DependentUpon>AddPhotosToAccommodationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OwnersView\AvailableDatesForAccommodationRenovationView.xaml.cs">
+      <DependentUpon>AvailableDatesForAccommodationRenovationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\EnterAccommodationRenovationDatesView.xaml.cs">
+      <DependentUpon>EnterAccommodationRenovationDatesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OwnersView\GuestGradesForOwnerView.xaml.cs">
       <DependentUpon>GuestGradesForOwnerView.xaml</DependentUpon>
     </Compile>
@@ -588,6 +606,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest2View\ActiveToursView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\AccommodationRenovationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -779,6 +801,14 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="View\OwnersView\AvailableDatesForAccommodationRenovationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\EnterAccommodationRenovationDatesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\OwnersView\GuestGradesForOwnerView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -843,6 +873,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\Data\accommodationRenovations.csv" />
     <None Include="Resources\Data\renovationrecommendations.csv" />
     <None Include="Resources\Data\superguests.csv" />
     <None Include="Resources\Data\tourEvaluationImages.csv" />

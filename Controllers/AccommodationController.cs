@@ -1,4 +1,5 @@
 ﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Services.Interfaces;
@@ -100,6 +101,10 @@ namespace BookingProject.Controller
         public List<Accommodation> GetAllForOwner(int ownerId)
         {
            return _accommodationService.GetAllForOwner(ownerId);
+        }
+        public List<AccommodationRenovation> GetAccommodationData(List<AccommodationRenovation> renovations)
+        {
+            return _accommodationService.GetAccommodationData(renovations);
         }
     }
 }

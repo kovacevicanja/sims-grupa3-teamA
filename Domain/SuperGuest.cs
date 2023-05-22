@@ -1,4 +1,5 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.ConversionHelp;
+using BookingProject.Model;
 using BookingProject.Serializer;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,8 @@ namespace BookingProject.Domain
             Guest.Id = int.Parse(values[0]);
             NumberOfReservations = int.Parse(values[1]);
             BonusPoints = int.Parse(values[2]);
-            StartDate = DateTime.Parse(values[3]);
+            //StartDate = DateTime.Parse(values[3]);
+            StartDate = DateConversion.StringToDateAccommodation(values[3]);
         }
 
         public string[] ToCSV()
@@ -35,7 +37,7 @@ namespace BookingProject.Domain
                 Guest.Id.ToString(),
                 NumberOfReservations.ToString(),
                 BonusPoints.ToString(),
-                StartDate.ToString("dd/MM/yyyy")
+                StartDate.ToString("dd.MM.yyyy.")
         };
             return csvValues;
         }
