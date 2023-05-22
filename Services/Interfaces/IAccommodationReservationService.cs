@@ -42,7 +42,7 @@ namespace BookingProject.Services.Interfaces
         int FindTheMostBusyYear(List<AccommodationReservation> reservations);
         List<AccommodationReservation> GetAllNotCancelled();
         int GetMostBusyMonth(List<AccommodationReservation> reservations, int year);
-
+        List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation);
 
     }
 }

@@ -9,7 +9,10 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Guest1HomepageView" Height="720" Width="1280">
-    
+    <Window.Resources>
+        <local1:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+
     <DockPanel LastChildFill="True">
         <Grid Background="Honeydew">
             <Grid.ColumnDefinitions>
@@ -73,10 +76,14 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <StackPanel Height="320" Background="Honeydew" Orientation="Vertical">
-                    <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
-                    <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
-                </StackPanel>
+                <Button Command="{Binding MyProfileCommand}" Background="Honeydew">
+                    <Button.Content>
+                        <StackPanel Height="320" Background="Honeydew" Orientation="Vertical">
+                            <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
+                            <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
                 <Button Command="{Binding LogoutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
@@ -206,7 +213,8 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Width="15" Height="15" Margin="0,0,0,90" Source="../Resources/Images/star.jpg" Visibility="{Binding Owner.IsSupers}" />
+                                                <Image Width="15" Height="15" Margin="0,0,0,90" Source="/Resources/Images/star.jpg" Visibility="{Binding Owner.IsSuper,  Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                <Image Width="15" Height="15" Margin="0,0,0,90" Source="/Resources/Images/broom.png" Visibility="{Binding IsRecentlyRenovated, Converter={StaticResource BooleanToVisibilityConverter}}" />
                                                 <TextBlock TextAlignment="Right" Text="{Binding AccommodationName}" />
                                             </StackPanel>
                                         </DataTemplate>

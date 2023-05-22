@@ -20,7 +20,7 @@ namespace BookingProject.View.Guest1ViewModel
         public RelayCommand HomepageCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
         public RelayCommand LogoutCommand { get; }
-
+        public RelayCommand MyProfileCommand { get; }
         public Guest1ReviewsViewModel()
         {
             GuestGradeController = new GuestGradeController();
@@ -29,6 +29,7 @@ namespace BookingProject.View.Guest1ViewModel
             HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
             LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
+            MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
         private void CloseWindow()
@@ -64,6 +65,12 @@ namespace BookingProject.View.Guest1ViewModel
         {
             SignInForm signInForm = new SignInForm();
             signInForm.Show();
+            CloseWindow();
+        }
+        private void Button_Click_MyProfile(object param)
+        {
+            var profile = new Guest1ProfileView();
+            profile.Show();
             CloseWindow();
         }
     }

@@ -1,0 +1,75 @@
+@startuml
+actor Guide
+participant "TourRequestRepository" as RequestRepo
+participant "TourRequestService" as RequestService
+participant "TourRequestNotificationService" as RequestNotiService
+participant "TourService" as TourService
+participant "LocationRepository" as LocationRepo
+participant "KeyPointRepository" as KeyPointRepo
+participant "ImageRepository" as ImageRepo
+participant "StartingDateRepository" as StartDateRepo
+participant "TourRepository" as TourRepo
+participant "NotificationService" 
+participant "NotificiatonRepository" as NotiRep
+actor Guest2
+
+Guide -> RequestService: Pick a request
+activate RequestService
+
+alt Use Search()
+    RequestService -> RequestRepo: Search()
+    activate RequestRepo
+    RequestRepo -> RequestService: TourRequests
+    deactivate RequestRepo
+    activate RequestService
+else Use GetAll()
+    RequestService -> RequestRepo: GetAll()
+    activate RequestRepo
+    RequestRepo -> RequestService: TourRequests
+    deactivate RequestRepo
+    activate RequestService
+end
+
+RequestService -> TourService: CreateTour()
+activate TourService
+TourService -> LocationRepo: CreateLocation()
+activate LocationRepo
+LocationRepo -> LocationRepo: SaveLocation()
+deactivate LocationRepo
+TourService -> KeyPointRepo: CreateKeyPoints()
+activate KeyPointRepo
+KeyPointRepo -> KeyPointRepo: SaveKeyPoints()
+deactivate KeyPointRepo
+TourService -> ImageRepo: CreateImage()
+activate ImageRepo
+ImageRepo -> ImageRepo: SaveImages()
+deactivate ImageRepo
+TourService -> StartDateRepo: CreateDate()
+activate StartDateRepo
+StartDateRepo -> StartDateRepo: SaveTourDates()
+deactivate StartDateRepo
+activate TourService
+TourService -> TourService: LinkToTour()
+TourService -> TourRepo: CreateTour()
+deactivate TourService
+activate TourRepo
+TourRepo -> TourRepo: SaveTour()
+deactivate TourRepo
+activate RequestService
+RequestService -> RequestRepo
+deactivate RequestService
+activate RequestRepo
+RequestRepo -> RequestRepo: SaveTourRequest()
+deactivate RequestRepo
+activate RequestNotiService
+Guide -> RequestNotiService: SendNotification()
+RequestNotiService -> NotificationService: SendNotification()
+deactivate RequestNotiService
+activate NotificationService
+NotificationService -> NotiRep: CreateNotification()
+deactivate NotificationService
+activate NotiRep
+NotiRep -> NotiRep: Save()
+deactivate NotiRep
+
+@enduml

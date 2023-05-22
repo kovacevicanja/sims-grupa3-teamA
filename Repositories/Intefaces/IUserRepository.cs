@@ -15,5 +15,6 @@ namespace BookingProject.Repositories.Intefaces
         User GetById(int id);
         void Initialize();
         void Save();
+        void Update(User user);
     }
 }

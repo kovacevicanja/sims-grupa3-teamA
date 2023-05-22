@@ -21,7 +21,8 @@ namespace BookingProject.Services.Implementations
     {
         private IAccommodationReservationRepository _accommodationReservationRepository;
         private List<IObserver> observers;
-        public AccommodationReservationService() { }
+        public AccommodationReservationService() {
+        }
         public void Initialize()
         {
             _accommodationReservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
@@ -330,6 +331,26 @@ namespace BookingProject.Services.Implementations
                 }
             }
             return number;
+        }
+        public List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation)
+        {
+            //List<AccommodationReservation> reservations = _accommodationReservationService.GetAll();
+            List<DateTime> nonAvailableDates = new List<DateTime>();
+
+            foreach (AccommodationReservation reservation in _accommodationReservationRepository.GetAll())
+            {
+                if (selectedAccommodation.Id == reservation.Accommodation.Id && reservation.IsCancelled == false)
+                {
+                    DateTime checkIn = reservation.InitialDate;
+                    DateTime checkOut = reservation.EndDate;
+
+                    for (DateTime currentDate = checkIn; currentDate <= checkOut; currentDate = currentDate.AddDays(1))
+                    {
+                        nonAvailableDates.Add(currentDate);
+                    }
+                }
+            }
+            return nonAvailableDates;
         }
     }
 }

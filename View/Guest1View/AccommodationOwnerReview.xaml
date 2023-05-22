@@ -70,10 +70,14 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <StackPanel Height="320" Background="Honeydew" Orientation="Vertical">
-                    <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
-                    <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
-                </StackPanel>
+                <Button Command="{Binding MyProfileCommand}" Background="Honeydew">
+                    <Button.Content>
+                        <StackPanel Height="320" Background="Honeydew" Orientation="Vertical">
+                            <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
+                            <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
                 <Button Command="{Binding LogOutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
