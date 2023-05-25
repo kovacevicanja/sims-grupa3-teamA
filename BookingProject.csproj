@@ -365,6 +365,9 @@
     <Compile Include="View\Guest2View\ActiveToursView.xaml.cs">
       <DependentUpon>ActiveToursView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Guest2View\TourRequestsAveragesChartView.xaml.cs">
+      <DependentUpon>TourRequestsAveragesChartView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Guest2View\TourRequestsLocationChartView.xaml.cs">
       <DependentUpon>TourRequestsLocationChartView.xaml</DependentUpon>
     </Compile>
@@ -627,6 +630,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest2View\ActiveToursView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\TourRequestsAveragesChartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

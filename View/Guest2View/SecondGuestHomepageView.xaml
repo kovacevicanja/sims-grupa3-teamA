@@ -61,8 +61,7 @@
                 <Button Content="Create tour request" Click="Button_Click_CreateTourRequest" CommandParameter="7" Width="234" Margin="0,252,0,212" HorizontalAlignment="Center"/>
                 <Button Content="My tour requests" Click="Button_Click_MyTourRequests" CommandParameter="8" Width="234" Margin="0,297,0,167" HorizontalAlignment="Center"/>
                 <Button Content="Request statistics" Click="Button_Click_RequestStatistcis" CommandParameter="9" Width="232" Margin="0,342,0,122" HorizontalAlignment="Center"/>
-                <Button Content="Chart" Click="Button_Click_Chart" CommandParameter="9" Width="232" Margin="0,387,0,77" HorizontalAlignment="Center"/>
-                <Button Content="Newly created tours" Click="Button_Click_NewlyCreatedTours" CommandParameter="9" Width="232" Margin="0,432,0,32" HorizontalAlignment="Center"/>
+                <Button Content="Newly created tours" Click="Button_Click_NewlyCreatedTours" CommandParameter="9" Width="232" Margin="0,387,0,77" HorizontalAlignment="Center"/>
             </Grid>
             <Grid Height="243" Width="276">
                 <Button Content="My profile" Click="Button_Click_MyProfile" CommandParameter="0" Width="234" Margin="0,104,0,99" HorizontalAlignment="Center"/>

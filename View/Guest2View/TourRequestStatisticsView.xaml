@@ -93,7 +93,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="ChartLanguage" IsCancel="True" Height="36" Margin="69,6,0,0" Width="94"
+            <Button Content="Chart" IsCancel="True" Height="36" Margin="69,6,0,0" Width="94"
                  Command="{Binding LanguageChartCommand}" FontSize="24" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -283,7 +283,7 @@
             </Button.Style>
         </Button>
 
-        <Button Content="ChartLoc" IsCancel="True" Height="36" Margin="618,90,0,0" Width="94"
+        <Button Content="Chart" IsCancel="True" Height="36" Margin="618,90,0,0" Width="94"
                 Command="{Binding LocationChartCommand}" FontSize="24" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -364,7 +364,7 @@
             </Button.Style>
         </Button>
         <Button Content="Chart" IsCancel="True" Height="36" Margin="591,172,0,0" Width="94"
-            Command="{Binding LanguageChartCommand}" FontSize="24" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+            Command="{Binding AveragesChartCommand}" FontSize="24" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="LightGray" />
@@ -403,7 +403,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="ChartPie" IsCancel="True" Height="36" Margin="591,177,0,0" Width="94"
+        <Button Content="Chart" IsCancel="True" Height="36" Margin="591,177,0,0" Width="94"
             Command="{Binding ChartPieCommand}" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

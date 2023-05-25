@@ -115,5 +115,15 @@ namespace BookingProject.Controllers
         {
             return _tourRequestService.GuestsForNotification();
         }
+
+        public int NumberOfAcceptedRequests(int guestId, string enteredYear)
+        {
+            return _tourRequestStatisticsService.NumberOfAcceptedRequests(guestId, enteredYear);
+        }
+
+        public List<TourRequest> AcceptedRequestsList(int guestId, string enteredYear)
+        {
+            return _tourRequestStatisticsService.AcceptedRequestsList(guestId, enteredYear);    
+        }
     }
 }

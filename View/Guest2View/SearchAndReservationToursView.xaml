@@ -31,6 +31,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="Gray"/>
         </Style>
+        <FontWeight x:Key="FontWeightBold">Bold</FontWeight>
     </Page.Resources>
     <Grid>
         <Label Margin="311,29,10,638" Foreground="LightBlue" FontSize="35" Content="next destination?"/>
@@ -139,6 +140,18 @@
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                                     <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold" Foreground="Gray" />
                                     <TextBlock Text="{Binding Language}" FontSize="24" FontWeight="Bold" Foreground="Gray" Margin="0,10,0,0" />
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0}, {1}">
+                                                <Binding Path="Location.City" />
+                                                <Binding Path="Location.Country" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                        <TextBlock.FontWeight>
+                                            <StaticResource ResourceKey="FontWeightBold" />
+                                        </TextBlock.FontWeight>
+                                        <TextBlock.FontSize>22</TextBlock.FontSize>
+                                    </TextBlock>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
@@ -146,7 +159,7 @@
                 </ListView>
             </Border>
             <Button Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="531,321,0,0" VerticalAlignment="Top" Width="125"
-        Command="{Binding SeeMoreCommand}" FontSize="24">
+                Command="{Binding SeeMoreCommand}" FontSize="24">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Gray" />

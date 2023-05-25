@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BookingProject.DependencyInjection;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
+using System.Windows.Forms;
 
 namespace BookingProject.Services.Implementations
 {
@@ -77,6 +78,30 @@ namespace BookingProject.Services.Implementations
 
             return (double)(totalNumberOfPeople / totalNumberOfAcceptedRequests);
         }
+        public int NumberOfAcceptedRequests(int guestId, string enteredYear = "")
+        {
+            int numberOfAcceptedRequests = 0;
+            int numberOfGuests = 0;
+            FindTotalNumber(guestId, out numberOfGuests, out numberOfAcceptedRequests, enteredYear);
+
+            return numberOfAcceptedRequests;
+        }
+
+        public List<TourRequest> AcceptedRequestsList (int guestId, string enteredYear = "")
+        {
+            List<TourRequest> acceptedRequests = new List<TourRequest>();   
+
+            foreach (TourRequest request in _tourRequestRepository.GetGuestRequests(guestId, enteredYear))
+            {
+                if (request.Status == TourRequestStatus.ACCEPTED && IsMatchingYear(guestId, enteredYear))
+                {
+                    acceptedRequests.Add(request);
+                }
+            }
+
+            return acceptedRequests;
+        }
+
         private void FindTotalNumber(int guestId, out int totalGuests, out int acceptedRequests, string enteredYear = "")
         {
             totalGuests = 0;

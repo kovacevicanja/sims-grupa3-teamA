@@ -34,6 +34,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand LanguageChartCommand { get; }
         public RelayCommand LocationChartCommand { get; }
         public RelayCommand ChartPieCommand { get; }
+        public RelayCommand AveragesChartCommand { get; }
         public User User { get; }
         public NavigationService NavigationService { get; set; }
 
@@ -66,6 +67,7 @@ namespace BookingProject.View.Guest2ViewModel
             LanguageChartCommand = new RelayCommand(Button_ChartLangauge, CanExecute);
             LocationChartCommand = new RelayCommand(Button_ChartLocation, CanExecute);
             ChartPieCommand = new RelayCommand(Button_ChartPie, CanExecute);
+            AveragesChartCommand = new RelayCommand(Button_AveragesChart, CanExecute);
 
             User = new User();
             NavigationService = navigationService;
@@ -130,6 +132,10 @@ namespace BookingProject.View.Guest2ViewModel
                     OnPropertyChanged(nameof(NumberRequestsLocation));
                 }
             }
+        }
+        private void Button_AveragesChart(object param)
+        {
+            NavigationService.Navigate(new TourRequestsAveragesChartView(GuestId, NavigationService));
         }
         private void Button_Click_CountNumberForLanguage(object param)
         {
