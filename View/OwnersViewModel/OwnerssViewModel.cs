@@ -6,10 +6,14 @@ using BookingProject.View.OwnerView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Navigation;
 
 namespace BookingProject.View
@@ -55,6 +59,12 @@ namespace BookingProject.View
         {
             NavigationService.Navigate(new AddAccommodationView(NavigationService));
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         private void Button_Click_Renovations(object param)
         {
             //if (SelectedAccommodation == null)
@@ -87,7 +97,7 @@ namespace BookingProject.View
         }
         private void Button_Click_Close(object param)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new AddAccommodationView(NavigationService));
         }
         private void CloseWindow()
         {

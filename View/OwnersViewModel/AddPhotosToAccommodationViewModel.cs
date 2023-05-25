@@ -1,5 +1,6 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
+using BookingProject.ConversionHelp;
 using BookingProject.Model.Images;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace BookingProject.View.OwnerViewModel
         public RelayCommand CloseCommand { get; }
         public RelayCommand MenuCommand { get; }
         public NavigationService NavigationService { get; set; }
+        public RelayCommand BackCommand { get; }
 
         public AddPhotosToAccommodationViewModel(NavigationService navigationService)
         {
@@ -30,6 +32,7 @@ namespace BookingProject.View.OwnerViewModel
             AddCommand = new RelayCommand(Button_Click_Add, CanExecute);
             CloseCommand = new RelayCommand(CancelButton_Click, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
+            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             NavigationService = navigationService;
         }
         private void Button_Click_Menu(object param)
@@ -52,6 +55,26 @@ namespace BookingProject.View.OwnerViewModel
                 }
             }
         }
+        private string _displayedUrl;
+        public string DisplayedUrl
+        {
+            get => _displayedUrl;
+            set
+            {
+                if (value != _displayedUrl)
+                {
+                    _displayedUrl = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private void Button_Click_Back(object param)
+        {
+            //var view = new OwnerssView();
+            //view.Show();
+            //CloseWindow();
+            NavigationService.GoBack();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -69,8 +92,14 @@ namespace BookingProject.View.OwnerViewModel
             } else
             {
                 _imageController.Create(image);
+                Url = string.Empty;
+                //OnPropertyChanged(nameof(Url));
+                //TextBoxClearHelper.ClearTextBox(param);
+                //NavigationService.Refresh();
+                DisplayedUrl = image.Url;
             }
             
+
             //_imageController.SaveImage();
         }
 

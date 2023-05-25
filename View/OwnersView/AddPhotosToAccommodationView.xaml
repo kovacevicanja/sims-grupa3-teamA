@@ -11,43 +11,57 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Height="40" Orientation="Horizontal" VerticalAlignment="Top" Background="#261799">
-            <Label Margin="0 0 0 0" Height="53" FontSize="20" FontWeight="Bold" Foreground="Black">My Accommodations</Label>
-            <Button Name="btn5" Width="50" Height="30" Margin="90,0,0,0" BorderBrush="#261799" Background="#261799" Command="{Binding MenuCommand}">
-                <Image Source="../ImagesOwner/menu.png"/>
+        <StackPanel Grid.Row="0" Height="50" Orientation="Horizontal" VerticalAlignment="Center"  Background="Transparent">
+            <Button Name="back" Width="40" Height="30" BorderBrush="Transparent" Background="Transparent" Command="{Binding BackCommand}">
+                <Image Source="/Resources/Images/OwnerImages/backArrow.png"/>
             </Button>
+            <Label Margin="0 5 0 0" FontSize="20" FontWeight="Bold" Foreground="Black">My Accommodations</Label>
         </StackPanel>
         <Grid Grid.Row="1">
-            <Grid.Background>
-                <ImageBrush ImageSource="/Resources/Images/backgroundOwner.jpg" Opacity="0.60"/>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="8*"/>
-                <ColumnDefinition Width="473*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Grid.Column="1" Margin="30,25,30,738">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="81*"></ColumnDefinition>
-                    <ColumnDefinition Width="379.604"></ColumnDefinition>
-                    <ColumnDefinition Width="133*"></ColumnDefinition>
-                    <ColumnDefinition Width="133*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="1" Margin="118,18,190,252">Photo url:</Label>
-                <TextBox Grid.Row="0" Text="{Binding Path=Url, UpdateSourceTrigger=PropertyChanged}"  Margin="0,60,102,210" Grid.Column="1"/>
-                <WrapPanel Grid.Row = "0" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="10,10,0,0" Height="26" Width="72" />
-                <WrapPanel Grid.Row = "0" Grid.Column="3" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="72" />
-                <Button Content="Add" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top"
-              Command="{Binding AddCommand}" Height="26" Width="51" RenderTransformOrigin="0.632,1.254" Grid.Column="1" Margin="227,122,0,0" />
-                <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top"
-              Command="{Binding CloseCommand}" Height="29" Width="55" Grid.Column="1" Margin="227,165,0,0" />
-            </Grid>
+
+            <Label  Grid.Column="1" Margin="0,0,0,400" Height="30" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center">Photo url:</Label>
+            <TextBox Text="{Binding Path=Url, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="300" Margin="0,0,0,300"/>
+            <Button Content="Add" IsDefault="True" 
+              Command="{Binding AddCommand}" Height="26" Width="51" Margin="0,0,0,150">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FF0F4E7A" />
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <TextBlock Text="{Binding DisplayedUrl}" Margin="0,20,0,0" HorizontalAlignment="Center" FontSize="14" />
         </Grid>
     </Grid>
 </Page>

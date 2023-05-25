@@ -14,7 +14,7 @@ namespace BookingProject.Validation
         {
             if (string.IsNullOrEmpty((value ?? "").ToString()))
             {
-                return new ValidationResult(false, "Field cannot be left empty.");
+                return new ValidationResult(false, "This must be filled!");
             }
 
             return ValidationResult.ValidResult;

@@ -141,6 +141,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="ConversionHelp\BooleanToVisibilityConverter.cs" />
+    <Compile Include="ConversionHelp\TextBoxClearHelper.cs" />
     <Compile Include="DependencyInjection\Injector.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Domain\AccommodationOwnerGrade.cs" />
@@ -1365,6 +1366,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\OwnerImages\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\backArrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

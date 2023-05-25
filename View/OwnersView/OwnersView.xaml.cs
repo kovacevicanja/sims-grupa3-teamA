@@ -5,6 +5,7 @@ using BookingProject.Domain.Images;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
+using BookingProject.View.OwnerView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,6 +40,11 @@ namespace BookingProject.View
             {
                 //SuperOwnerImage.Visibility = Visibility.Hidden;
             }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var accommodation = ((Button)sender).DataContext as Accommodation;
+            NavigationService.Navigate(new AccommodationStatisticsByYearView(accommodation, NavigationService));
         }
     }
 }

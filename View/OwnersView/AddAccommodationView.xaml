@@ -21,20 +21,14 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Height="40" Orientation="Horizontal" VerticalAlignment="Top" Background="#261799">
-            <Button Name="back" Width="40" Height="30" BorderBrush="#261799" Background="#261799" Command="{Binding BackCommand}">
-                <Image Source="../ImagesOwner/backArrow.png"/>
+        <StackPanel Grid.Row="0" Height="50" Orientation="Horizontal" VerticalAlignment="Center"  Background="Transparent">
+            <Button Name="back" Width="40" Height="30" BorderBrush="Transparent" Background="Transparent" Command="{Binding BackCommand}">
+                <Image Source="/Resources/Images/OwnerImages/backArrow.png"/>
             </Button>
-            <Label Margin="0 0 0 0" Height="53" FontSize="20" FontWeight="Bold" Foreground="Black">My Accommodations</Label>
-            <Button Name="btn5" Width="50" Height="30" Margin="45,0,0,0" BorderBrush="#261799" Background="#261799" Command="{Binding MenuCommand}">
-                <Image Source="../ImagesOwner/menu.png"/>
-            </Button>
+            <Label Margin="0 5 0 0" FontSize="20" FontWeight="Bold" Foreground="Black">My Accommodations</Label>
         </StackPanel>
         <Grid Grid.Row="1">
-            <Grid.Background>
-                <ImageBrush ImageSource="/Resources/Images/backgroundOwner.jpg" Opacity="0.60"/>
-            </Grid.Background>
-        <Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="349*"/>
@@ -59,14 +53,14 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Height="30" >Name</Label>
-            <Label Grid.Row="1" Grid.Column="0" Height="30" >City</Label>
-            <Label Grid.Row="2" Grid.Column="0" Height="30" >Country</Label>
-            <Label Grid.Row="3" Grid.Column="0" Height="30" >Type</Label>
-            <Label Grid.Row="4" Grid.Column="0" Height="30" >Max number of guests</Label>
-            <Label Grid.Row="5" Grid.Column="0" Height="30" >Min number of days</Label>
-            <Label Grid.Row="6" Grid.Column="0" Height="30" >Cancellation period</Label>
-            <Label Grid.Row="7" Grid.Column="0" Height="30">Photo url</Label>
+                <Label Grid.Row="0" Grid.Column="0" Height="30" FontSize="14" FontWeight="Bold"  >Name</Label>
+                <Label Grid.Row="1" Grid.Column="0" Height="30" FontSize="14" FontWeight="Bold"  >City</Label>
+                <Label Grid.Row="2" Grid.Column="0" Height="30" FontSize="14" FontWeight="Bold"  >Country</Label>
+                <Label Grid.Row="3" Grid.Column="0" Height="30" FontSize="14" FontWeight="Bold"  >Type</Label>
+                <Label Grid.Row="4" Grid.Column="0" Height="30" FontSize="14" FontWeight="Bold"  >Max guests</Label>
+                <Label Grid.Row="5" Grid.Column="0" Height="30" FontSize="14" FontWeight="Bold"  >Min days</Label>
+                <Label Grid.Row="6" Grid.Column="0" Height="30" FontSize="14" FontWeight="Bold"  >Cancel period</Label>
+                <Label Grid.Row="7" Grid.Column="0" Height="30" FontSize="14" FontWeight="Bold" >Photo url</Label>
             <TextBox x:Name="textBoxName" Grid.Row="0" Grid.Column="1" Height="30">
                  <TextBox.Text>
                       <Binding Path="AccommodationName" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
@@ -87,7 +81,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Border BorderBrush="Red" BorderThickness="1"/>
                                 <AdornedElementPlaceholder x:Name="textBox"/>
-                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
                             </Grid>
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
@@ -112,7 +106,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Border BorderBrush="Red" BorderThickness="1"/>
                                 <AdornedElementPlaceholder x:Name="textBox"/>
-                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
                             </Grid>
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
@@ -137,15 +131,15 @@
                                 </Grid.ColumnDefinitions>
                                 <Border BorderBrush="Red" BorderThickness="1"/>
                                 <AdornedElementPlaceholder x:Name="textBox"/>
-                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
                             </Grid>
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </TextBox>
                 <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=TypeOfAccommodation, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
-            <ComboBox  Height="30" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=accommodationTypes}" SelectedItem="{Binding Path=chosenType, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
-                <TextBox x:Name="txtGuest" Grid.Row="4" Grid.Column="1" Height="30">
+                <ComboBox  Background="#FF0F4E7A" Height="30" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=accommodationTypes}" SelectedItem="{Binding Path=chosenType, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                <TextBox x:Name="txtGuest" Grid.Row="4" Grid.Column="1" Height="30" >
                     <TextBox.Text>
                         <Binding Path="MaxGuestNumber" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
@@ -165,12 +159,12 @@
                                 </Grid.ColumnDefinitions>
                                 <Border BorderBrush="Red" BorderThickness="1"/>
                                 <AdornedElementPlaceholder x:Name="textBox"/>
-                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
                             </Grid>
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </TextBox>
-                <TextBox x:Name="txtDays" Grid.Row="5" Grid.Column="1" Height="30">
+                <TextBox x:Name="txtDays" Grid.Row="5" Grid.Column="1" Height="30" >
                     <TextBox.Text>
                         <Binding Path="MinDays" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
@@ -190,12 +184,12 @@
                                 </Grid.ColumnDefinitions>
                                 <Border BorderBrush="Red" BorderThickness="1"/>
                                 <AdornedElementPlaceholder x:Name="textBox"/>
-                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
                             </Grid>
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </TextBox>
-                <TextBox x:Name="txtCancellationPeriod" Grid.Row="6" Grid.Column="1" Height="30">
+                <TextBox x:Name="txtCancellationPeriod" Grid.Row="6" Grid.Column="1" Height="30" >
                     <TextBox.Text>
                         <Binding Path="CancellationPeriod" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
@@ -215,17 +209,93 @@
                                 </Grid.ColumnDefinitions>
                                 <Border BorderBrush="Red" BorderThickness="1"/>
                                 <AdornedElementPlaceholder x:Name="textBox"/>
-                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="14" HorizontalAlignment="Right" Margin="2"/>
+                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
                             </Grid>
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </TextBox>
             <Button Grid.Row="7" Grid.Column="1" Content="Add image"
-                    IsDefault="True"  Height="30" Command="{Binding AddImageCommand}" ></Button>
+                    IsDefault="True"  Height="30" Width="130" Command="{Binding AddImageCommand}" >
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF0F4E7A" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter Property="Padding" Value="10" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
         </Grid>
-            <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" Grid.ColumnSpan="3" Height="30" Margin="-44,0,0,0" >
-                <Button Content="Add accommodation" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"
-               Command="{Binding AddAccommodationCommand}"/>
+            <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.ColumnSpan="3" Height="30"  >
+                <Button Content="Add accommodation" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Command="{Binding AddAccommodationCommand}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF0F4E7A" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter Property="Padding" Value="10" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </WrapPanel>
         </Grid>
     </Grid>

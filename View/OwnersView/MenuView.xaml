@@ -17,9 +17,9 @@
         </Grid>
         <Grid x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Right">
             <StackPanel>
-                <Grid Height="50" Background="#b7d1e0">
+                <Grid Height="50" Background="#FF0F4E7A">
                     <Button HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="Button_Click">
-                        <Image Margin="0,10,0,0" Height="30" Source="/Resources/Images/OwnerImages/menu.png"/>
+                        <Image Margin="0,10,0,0" Height="30" Source="/View/ImagesOwner/menu.png"/>
                     </Button>
                 </Grid>
                 <ListView BorderBrush="Transparent" Background="Transparent" Height="533">
