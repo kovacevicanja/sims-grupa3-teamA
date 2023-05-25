@@ -5,6 +5,7 @@ using BookingProject.Domain.Images;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
+using BookingProject.View.OwnersView;
 using BookingProject.View.OwnerView;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace BookingProject.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var accommodation = ((Button)sender).DataContext as Accommodation;
-            NavigationService.Navigate(new AccommodationStatisticsByYearView(accommodation, NavigationService));
+            NavigationService.Navigate(new OneAccommodationView(accommodation, NavigationService));
         }
     }
 }

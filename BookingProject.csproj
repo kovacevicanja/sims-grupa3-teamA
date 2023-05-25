@@ -382,6 +382,7 @@
     <Compile Include="View\OwnersViewModel\GuestGradesForOwnerViewModel.cs" />
     <Compile Include="View\OwnersViewModel\GuestRateViewModel.cs" />
     <Compile Include="View\OwnersViewModel\NotGradedViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\OneAccommodationViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersApprovingDenyingRequestViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersRequestViewModel.cs" />
     <Compile Include="View\OwnersView\AccommodationRenovationsView.xaml.cs">
@@ -571,6 +572,9 @@
     </Compile>
     <Compile Include="View\OwnersView\NotGradedView.xaml.cs">
       <DependentUpon>NotGradedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\OneAccommodationView.xaml.cs">
+      <DependentUpon>OneAccommodationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnersView\OwnersApprovingDenyingRequestView.xaml.cs">
       <DependentUpon>OwnersApprovingDenyingRequestView.xaml</DependentUpon>
@@ -853,6 +857,10 @@
     <Page Include="View\OwnersView\NotGradedView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\OwnersView\OneAccommodationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OwnersView\OwnersApprovingDenyingRequestView.xaml">
       <SubType>Designer</SubType>

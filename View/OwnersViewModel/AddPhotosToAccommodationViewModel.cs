@@ -22,7 +22,7 @@ namespace BookingProject.View.OwnerViewModel
         public RelayCommand CloseCommand { get; }
         public RelayCommand MenuCommand { get; }
         public NavigationService NavigationService { get; set; }
-        public RelayCommand BackCommand { get; }
+        public RelayCommand BackCommand { get; set; }
 
         public AddPhotosToAccommodationViewModel(NavigationService navigationService)
         {
