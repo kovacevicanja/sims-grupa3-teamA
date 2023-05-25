@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.OwnerView" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="AccommodationStatisticsByYearView" Height="600" Width="356">
+        Title="AccommodationStatisticsByYearView" d:DesignHeight="600" d:DesignWidth="323">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

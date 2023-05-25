@@ -5,22 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="OwnersRequestView" Height="600" Width="356">
+        Title="OwnersRequestView" d:DesignHeight="600" d:DesignWidth="323">
     <DockPanel>
         
     <Grid>
-
-        <Grid.Background>
-            <ImageBrush ImageSource="/Resources/Images/backgroundOwner.jpg" Opacity="0.60"/>
-        </Grid.Background>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Background="#261799">
+        
+        
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Background="Transparent">
                 <Label Margin="0 0 0 0" Height="40" FontSize="20" FontWeight="Bold" Foreground="Black">Requests</Label>
-                <Button Name="btn5" Width="50" Height="30" Margin="200,0,0,0" BorderBrush="#261799" Background="#261799" Command="{Binding MenuCommand}">
-                    <Image Source="../ImagesOwner/menu.png"/>
-                </Button>
             </StackPanel>
             <DataGrid ItemsSource ="{Binding Path=Requests, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedMovingRequest}"
-                      FontSize="10" Background="LightGray" Margin="16,100,16,350" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
+                      FontSize="10" Margin="16,100,16,350" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Accommodation" Width="85" Binding="{Binding AccommodationReservation.Accommodation.AccommodationName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Guest Name" Width="70" Binding="{Binding AccommodationReservation.Guest.Username}"></DataGridTextColumn>

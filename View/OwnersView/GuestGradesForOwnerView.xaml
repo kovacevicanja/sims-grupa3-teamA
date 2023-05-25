@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="GuestGradesForOwnerView" Height="450" Width="800">
+        Title="GuestGradesForOwnerView" d:DesignHeight="600" d:DesignWidth="323">
     <Grid>
         <DataGrid ItemsSource ="{Binding Path=GuestGrades, UpdateSourceTrigger=PropertyChanged}"
                       Margin="16,12,16,104" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
@@ -14,7 +14,6 @@
                 <DataGridTextColumn Header="Cleanliness" Width="100" Binding="{Binding Cleanliness}"></DataGridTextColumn>
                 <DataGridTextColumn Header="OwnerCorectness" Width="100" Binding="{Binding OwnerCorectness}"></DataGridTextColumn>
                 <DataGridTextColumn Header="AdditionalComment" Width="100" Binding="{Binding AdditionalComment}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Reccommendation" Width="150" Binding="{Binding Reccommendation}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Guest Name" Width="100" Binding="{Binding User.Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Guest Surname" Width="150" Binding="{Binding User.Surname}"></DataGridTextColumn>
                 

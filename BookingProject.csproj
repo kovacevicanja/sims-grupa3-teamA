@@ -380,7 +380,6 @@
     <Compile Include="View\OwnersViewModel\EnterAccommodationRenovationDatesViewModel.cs" />
     <Compile Include="View\OwnersViewModel\GuestGradesForOwnerViewModel.cs" />
     <Compile Include="View\OwnersViewModel\GuestRateViewModel.cs" />
-    <Compile Include="View\OwnersViewModel\MenuViewModel.cs" />
     <Compile Include="View\OwnersViewModel\NotGradedViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersApprovingDenyingRequestViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersRequestViewModel.cs" />

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View" xmlns:val="clr-namespace:BookingProject.Validation"
         mc:Ignorable="d"
-        Title="AddAccommodationView" Height="600" Width="356">
+        Title="AddAccommodationView" d:DesignHeight="600" d:DesignWidth="323">
     <Page.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>

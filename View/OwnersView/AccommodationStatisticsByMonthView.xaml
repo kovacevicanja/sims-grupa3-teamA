@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.OwnersView"
         mc:Ignorable="d"
-        Title="AccommodationStatisticsByMonthView" Height="600" Width="356">
+        Title="AccommodationStatisticsByMonthView" d:DesignHeight="600" d:DesignWidth="323">
     <Grid>
         <ScrollViewer>
             <Grid>

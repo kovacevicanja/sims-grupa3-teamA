@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.OwnersView"
         mc:Ignorable="d"
-        Title="AccommodationRenovationsView" Height="600" Width="356">
+        Title="AccommodationRenovationsView" d:DesignHeight="600" d:DesignWidth="323">
     <Grid>
         <StackPanel Orientation="Vertical" >
             <Label HorizontalAlignment="Center" FontSize="25" Margin="0 15 0 7" FontWeight="SemiBold">Prikaz i otkazivanje renoviranja</Label>

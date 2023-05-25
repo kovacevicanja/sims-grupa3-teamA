@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="Owner" Height="500" Width="1000">
+        Title="Owner"
+        d:DesignHeight="600" d:DesignWidth="323">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Resources/Images/backgroundOwner.jpg"></ImageBrush>

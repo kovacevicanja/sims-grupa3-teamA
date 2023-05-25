@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="AddPhotosToAccommodationView" Height="600" Width="356">
+        Title="AddPhotosToAccommodationView" d:DesignHeight="600" d:DesignWidth="323">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

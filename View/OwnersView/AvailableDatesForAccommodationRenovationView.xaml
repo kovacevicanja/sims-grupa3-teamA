@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.OwnersView"
         mc:Ignorable="d"
-        Title="AvailableDatesForAccommodationRenovationView"  Height="600" Width="356">
+        Title="AvailableDatesForAccommodationRenovationView"  d:DesignHeight="600" d:DesignWidth="323">
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label Margin="0 38 0 0" HorizontalAlignment="Center">Slobodni termini:</Label>

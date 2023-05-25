@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
-        Title="GuestRateView" Height="600" Width="356">
+        Title="GuestRateView" d:DesignHeight="600" d:DesignWidth="323">
     <Page.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>

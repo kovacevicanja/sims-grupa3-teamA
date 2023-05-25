@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingProject.View.OwnersView"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="EnterAccommodationRenovationDates"  Height="600" Width="356">
+        Title="EnterAccommodationRenovationDates"  d:DesignHeight="600" d:DesignWidth="323">
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="180">
             <Label>Pocetni datum</Label>
