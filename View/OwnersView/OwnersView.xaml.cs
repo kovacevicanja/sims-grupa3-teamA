@@ -20,6 +20,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View
@@ -27,12 +28,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for OwnerView.xaml
     /// </summary>
-    public partial class OwnerssView : Window
+    public partial class OwnerssView : Page
     {
-        public OwnerssView()
+        public OwnerssView(NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new OwnerssViewModel();
+            this.DataContext = new OwnerssViewModel(navigationService);
             var view = new OwnerssViewModel();
             if (!view._accommodationOwnerGradeController.IsOwnerSuperOwner(SignInForm.LoggedInUser.Id))
             {

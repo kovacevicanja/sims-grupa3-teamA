@@ -1334,5 +1334,38 @@
   <ItemGroup>
     <Resource Include="Resources\Images\broom.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\accommodations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\guests.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\statistics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\requests.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\suggestions.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\renovations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\forums.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\reviews.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\profile.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\menu.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

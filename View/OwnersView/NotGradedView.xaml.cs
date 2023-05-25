@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View
@@ -21,12 +22,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for NotGradedView.xaml
     /// </summary>
-    public partial class NotGradedView : Window
+    public partial class NotGradedView : Page
     {
-        public NotGradedView()
+        public NotGradedView(NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new NotGradedViewModel();
+            this.DataContext = new NotGradedViewModel(navigationService);
         }
     }
 }

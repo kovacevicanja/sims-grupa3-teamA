@@ -13,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View.OwnersView
@@ -20,12 +21,12 @@ namespace BookingProject.View.OwnersView
     /// <summary>
     /// Interaction logic for AvailableDatesForAccommodationRenovationView.xaml
     /// </summary>
-    public partial class AvailableDatesForAccommodationRenovationView : Window
+    public partial class AvailableDatesForAccommodationRenovationView : Page
     {
-        public AvailableDatesForAccommodationRenovationView(Accommodation selectedAccommodation, ObservableCollection<Tuple<DateTime, DateTime>> availableDates)
+        public AvailableDatesForAccommodationRenovationView(Accommodation selectedAccommodation, ObservableCollection<Tuple<DateTime, DateTime>> availableDates, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new AvailableDatesForAccommodationRenovationViewModel(selectedAccommodation, availableDates);
+            this.DataContext = new AvailableDatesForAccommodationRenovationViewModel(selectedAccommodation, availableDates, navigationService);
         }
     }
 }

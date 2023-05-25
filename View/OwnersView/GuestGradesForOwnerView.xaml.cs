@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View
@@ -21,12 +22,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for GuestGradesForOwnerView.xaml
     /// </summary>
-    public partial class GuestGradesForOwnerView : Window
+    public partial class GuestGradesForOwnerView : Page
     {
-        public GuestGradesForOwnerView()
+        public GuestGradesForOwnerView(NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new GuestGradesForOwnerViewModel();
+            this.DataContext = new GuestGradesForOwnerViewModel(navigationService);
         }
     }
 }

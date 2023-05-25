@@ -17,18 +17,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingProject.Controllers;
 using BookingProject.View.OwnerViewModel;
+using System.Windows.Navigation;
 
 namespace BookingProject.View
 {
     /// <summary>
     /// Interaction logic for OwnersApprovingDenyingRequestView.xaml
     /// </summary>
-    public partial class OwnersApprovingDenyingRequestView : Window
+    public partial class OwnersApprovingDenyingRequestView : Page
     {
-        public OwnersApprovingDenyingRequestView(RequestAccommodationReservation request)
+        public OwnersApprovingDenyingRequestView(RequestAccommodationReservation request, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new OwnersApprovingDenyingRequestViewModel(request);
+            this.DataContext = new OwnersApprovingDenyingRequestViewModel(request, navigationService);
         }
         private void Comment_TextChanged(object sender, TextChangedEventArgs e)
         {

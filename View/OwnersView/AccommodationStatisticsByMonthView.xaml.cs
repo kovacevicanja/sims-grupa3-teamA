@@ -13,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View.OwnersView
@@ -20,12 +21,12 @@ namespace BookingProject.View.OwnersView
     /// <summary>
     /// Interaction logic for AccommodationStatisticsByMonthView.xaml
     /// </summary>
-    public partial class AccommodationStatisticsByMonthView : Window
+    public partial class AccommodationStatisticsByMonthView : Page
     {
-        public AccommodationStatisticsByMonthView(int selectedYear, Accommodation selectedAccommodation)
+        public AccommodationStatisticsByMonthView(int selectedYear, Accommodation selectedAccommodation,NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new AccommodationStatisticsByMonthViewModel(selectedYear, selectedAccommodation);
+            this.DataContext = new AccommodationStatisticsByMonthViewModel(selectedYear, selectedAccommodation, navigationService);
         }
     }
 }

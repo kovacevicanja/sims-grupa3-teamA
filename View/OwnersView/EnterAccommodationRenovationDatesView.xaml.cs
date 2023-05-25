@@ -13,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View.OwnersView
@@ -22,10 +23,10 @@ namespace BookingProject.View.OwnersView
     /// </summary>
     public partial class EnterAccommodationRenovationDatesView : Window
     {
-        public EnterAccommodationRenovationDatesView(Accommodation selectedAccommodation)
+        public EnterAccommodationRenovationDatesView(Accommodation selectedAccommodation, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new EnterAccommodationRenovationDatesViewModel(selectedAccommodation);
+            this.DataContext = new EnterAccommodationRenovationDatesViewModel(selectedAccommodation, navigationService);
         }
     }
 }
