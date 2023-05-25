@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.WebPages;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnerViewModel
 {
@@ -19,8 +20,9 @@ namespace BookingProject.View.OwnerViewModel
         public RelayCommand AddCommand { get; }
         public RelayCommand CloseCommand { get; }
         public RelayCommand MenuCommand { get; }
+        public NavigationService NavigationService { get; set; }
 
-        public AddPhotosToAccommodationViewModel()
+        public AddPhotosToAccommodationViewModel(NavigationService navigationService)
         {
             
             //_imageController = app.AccommodationImageController;
@@ -28,7 +30,7 @@ namespace BookingProject.View.OwnerViewModel
             AddCommand = new RelayCommand(Button_Click_Add, CanExecute);
             CloseCommand = new RelayCommand(CancelButton_Click, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
-
+            NavigationService = navigationService;
         }
         private void Button_Click_Menu(object param)
         {
@@ -74,7 +76,7 @@ namespace BookingProject.View.OwnerViewModel
 
         private void CancelButton_Click(object param)
         {
-            CloseWindow();
+            NavigationService.GoBack();
         }
         private void CloseWindow()
         {

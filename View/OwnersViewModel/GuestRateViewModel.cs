@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnerViewModel
 {
@@ -32,7 +33,8 @@ namespace BookingProject.View.OwnerViewModel
         public RelayCommand RateCommand { get; }
         public RelayCommand MenuCommand { get; }
         public RelayCommand BackCommand { get; }
-        public GuestRateViewModel(AccommodationReservation selectedReservation)
+        public NavigationService NavigationService { get; set; }
+        public GuestRateViewModel(AccommodationReservation selectedReservation, NavigationService navigationService)
         {
             GradeController = new GuestGradeController();
             _selectedReservation = new AccommodationReservation();
@@ -53,6 +55,7 @@ namespace BookingProject.View.OwnerViewModel
             RateCommand = new RelayCommand(Button_Click_Rate, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
+            NavigationService = navigationService;
         }
         private bool CanExecute(object param) { return true; }
 
@@ -69,9 +72,10 @@ namespace BookingProject.View.OwnerViewModel
         }
         private void Button_Click_Back(object param)
         {
-            var view = new NotGradedView();
-            view.Show();
-            CloseWindow();
+            //var view = new NotGradedView();
+            //view.Show();
+            //CloseWindow();
+            NavigationService.GoBack();
         }
 
         private int _cleanliness;
@@ -181,12 +185,13 @@ namespace BookingProject.View.OwnerViewModel
 
             GradeController.Create(grade);
             MessageBox.Show("You have rated a guest!");
-            var view = new NotGradedView();
-            view.Show();
+            //var view = new NotGradedView();
+            //view.Show();
 
 
 
-            CloseWindow();
+            //CloseWindow();
+            NavigationService.Navigate(new NotGradedView(NavigationService));
 
         }
         private void CloseWindow()

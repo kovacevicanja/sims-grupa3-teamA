@@ -14,6 +14,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnersViewModel
 {
@@ -23,14 +24,16 @@ namespace BookingProject.View.OwnersViewModel
         public AccommodationReservationController _reservationController { get; set; }
         public RelayCommand ShowCommand { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
+        public NavigationService NavigationService { get; set; }
 
-        public EnterAccommodationRenovationDatesViewModel(Accommodation selectedAccommodation)
+        public EnterAccommodationRenovationDatesViewModel(Accommodation selectedAccommodation, NavigationService navigationService)
         {
             SelectedAccommodation=selectedAccommodation;
             AvailableDatesPair = new ObservableCollection<Tuple<DateTime, DateTime>>();
             _renovationController = new AccommodationRenovationController();
             _reservationController = new AccommodationReservationController();
             ShowCommand = new RelayCommand(Button_Click_Show, CanExecute);
+            NavigationService = navigationService;
         }
         private bool CanExecute(object param) { return true; }
 
@@ -38,9 +41,10 @@ namespace BookingProject.View.OwnersViewModel
         {
             //AvailableDatesPair = new ObservableCollection<Tuple<DateTime, DateTime>>(_renovationService.FindAvailableDates(StartDate, EndDate, RenovationDuration, SelectedAccommodation));
             AvailableDatesPair = new ObservableCollection<Tuple<DateTime, DateTime>>(_reservationController.FindAvailableDates(StartDate, EndDate, RenovationDuration, SelectedAccommodation));
-            var view = new AvailableDatesForAccommodationRenovationView(SelectedAccommodation, AvailableDatesPair);
-            view.Show();
-            CloseWindow();
+            //var view = new AvailableDatesForAccommodationRenovationView(SelectedAccommodation, AvailableDatesPair);
+            //view.Show();
+            //CloseWindow();
+            NavigationService.Navigate(new AvailableDatesForAccommodationRenovationView(SelectedAccommodation, AvailableDatesPair, NavigationService));
         }
         private void CloseWindow()
         {

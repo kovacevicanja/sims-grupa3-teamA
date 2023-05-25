@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnerViewModel
 {
@@ -20,7 +21,8 @@ namespace BookingProject.View.OwnerViewModel
         public RelayCommand GradeCommand { get; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand MenuCommand { get; }
-        public NotGradedViewModel()
+        public NavigationService NavigationService { get; set; }
+        public NotGradedViewModel(NavigationService navigationService)
         {
             
 
@@ -33,6 +35,8 @@ namespace BookingProject.View.OwnerViewModel
             GradeCommand = new RelayCommand(Button_Grade, CanExecute);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
+
+            NavigationService = navigationService;
         }
         //private void selectedIndexChanged(object sender, EventArgs e)
         //{
@@ -52,16 +56,18 @@ namespace BookingProject.View.OwnerViewModel
         {
             if (SelectedReservation != null)
             {
-                GuestRateView view = new GuestRateView(SelectedReservation);
-                view.Show();
-                CloseWindow();
+                //GuestRateView view = new GuestRateView(SelectedReservation);
+                //view.Show();
+                //CloseWindow();
+                NavigationService.Navigate(new GuestRateView(SelectedReservation, NavigationService));
             }
         }
         private void Button_Cancel(object param)
         {
-            var view = new OwnerssView();
-            view.Show();
-            CloseWindow();
+            NavigationService.Navigate(new OwnerssView(NavigationService));
+            //var view = new OwnerssView();
+            //view.Show();
+            //CloseWindow();
         }
         private void CloseWindow()
         {

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnersViewModel
 {
@@ -28,6 +29,8 @@ namespace BookingProject.View.OwnersViewModel
         public string[] NumberOfRenovationRecommendationsDisplay { get; set; }
         public RecommendationRenovationController _renovationController { get; set; }
         public int MostBusyMonth { get; set; }
+        public NavigationService NavigationService { get; set; }
+
         public string MostBusyMonthDisplay { get; set; }
         public int[] NumberOfReservationss
         {
@@ -49,7 +52,7 @@ namespace BookingProject.View.OwnersViewModel
             get { return NumberOfRenovationRecommendations; }
             set { NumberOfRenovationRecommendations = value; }
         }
-        public AccommodationStatisticsByMonthViewModel(int selectedYear, Accommodation selectedAccommodation)
+        public AccommodationStatisticsByMonthViewModel(int selectedYear, Accommodation selectedAccommodation, NavigationService navigationService)
         {
             _accommodationReservationController = new AccommodationReservationController();
             _requestController = new RequestAccommodationReservationController();
@@ -83,6 +86,7 @@ namespace BookingProject.View.OwnersViewModel
                 NumberOfRenovationRecommendationsDisplay[n] = NumberOfRenovationRecommendations[n].ToString();
                 n++;
             }
+            NavigationService = navigationService;
         }
         public Accommodation SelectedReservation
         {

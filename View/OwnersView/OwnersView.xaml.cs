@@ -34,7 +34,7 @@ namespace BookingProject.View
         {
             InitializeComponent();
             this.DataContext = new OwnerssViewModel(navigationService);
-            var view = new OwnerssViewModel();
+            var view = new OwnerssViewModel(navigationService);
             if (!view._accommodationOwnerGradeController.IsOwnerSuperOwner(SignInForm.LoggedInUser.Id))
             {
                 //SuperOwnerImage.Visibility = Visibility.Hidden;

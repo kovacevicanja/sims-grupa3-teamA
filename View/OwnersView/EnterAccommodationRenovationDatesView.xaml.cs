@@ -21,7 +21,7 @@ namespace BookingProject.View.OwnersView
     /// <summary>
     /// Interaction logic for EnterAccommodationRenovationDates.xaml
     /// </summary>
-    public partial class EnterAccommodationRenovationDatesView : Window
+    public partial class EnterAccommodationRenovationDatesView : Page
     {
         public EnterAccommodationRenovationDatesView(Accommodation selectedAccommodation, NavigationService navigationService)
         {

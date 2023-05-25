@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnerViewModel
 {
@@ -35,6 +36,7 @@ namespace BookingProject.View.OwnerViewModel
         public int ChosenYear { get; set; }
         public int MostBusyYear { get; set; }
         public string MostBusyYearDisplay { get; set; }
+        public NavigationService NavigationService { get; set; }
         //private ComboBoxItem _chosenYear;
         //public ComboBoxItem ChosenYear
         //{
@@ -66,7 +68,7 @@ namespace BookingProject.View.OwnerViewModel
             get { return NumberOfRenovationRecommendations; }
             set { NumberOfRenovationRecommendations = value; }
         }
-        public AccommodationStatisticsByYearViewModel(Accommodation selectedAccommodation)
+        public AccommodationStatisticsByYearViewModel(Accommodation selectedAccommodation, NavigationService navigationService)
         {
             _accommodationReservationController = new AccommodationReservationController();
             _requestController = new RequestAccommodationReservationController();
@@ -103,6 +105,7 @@ namespace BookingProject.View.OwnerViewModel
                 n++;
             }
             OpenSecondWindowCommand = new RelayCommand(Button_Click_Open, CanExecute);
+            NavigationService = navigationService;
         }
         private bool CanExecute(object param) { return true; }
         public Accommodation SelectedReservation
@@ -112,9 +115,10 @@ namespace BookingProject.View.OwnerViewModel
         }
         private void Button_Click_Open(object param)
         {
-            var view = new AccommodationStatisticsByMonthView(ChosenYear, _selectedAccommodation);
-            view.Show();
-            CloseWindow();
+            //var view = new AccommodationStatisticsByMonthView(ChosenYear, _selectedAccommodation);
+            //view.Show();
+            //CloseWindow();
+            NavigationService.Navigate(new AccommodationStatisticsByMonthView(ChosenYear, _selectedAccommodation, NavigationService));
         }
         private void CloseWindow()
         {

@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnerViewModel
 {
@@ -13,10 +14,12 @@ namespace BookingProject.View.OwnerViewModel
     {
         public ObservableCollection<AccommodationOwnerGrade> GuestGrades { get; set; }
         private AccommodationOwnerGradeController _accommodationOwnerGradeControler;
-        public GuestGradesForOwnerViewModel()
+        public NavigationService NavigationService { get; set; }
+        public GuestGradesForOwnerViewModel(NavigationService navigationService)
         {
             _accommodationOwnerGradeControler = new AccommodationOwnerGradeController();
             GuestGrades = new ObservableCollection<AccommodationOwnerGrade>(_accommodationOwnerGradeControler.GradesGradedByBothSidesForOwner(SignInForm.LoggedInUser.Id));
+            NavigationService = navigationService;
         }
     }
 }

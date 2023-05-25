@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
 using BookingProject.Commands;
+using System.Windows.Navigation;
 
 namespace BookingProject.View
 {
@@ -30,8 +31,9 @@ namespace BookingProject.View
         public RelayCommand CancelCommand { get; }
         public RelayCommand MenuCommand { get; }
         public RelayCommand BackCommand { get; }
+        public NavigationService NavigationService { get; set; }
 
-        public AddAccommodationViewModel()
+        public AddAccommodationViewModel(NavigationService navigationService)
         {
             var types = Enum.GetValues(typeof(AccommodationType)).Cast<AccommodationType>();
             accommodationTypes = new ObservableCollection<AccommodationType>(types);
@@ -48,6 +50,7 @@ namespace BookingProject.View
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
+            NavigationService = navigationService;
         }
         private bool CanExecute(object param) { return true; }
 
@@ -61,9 +64,10 @@ namespace BookingProject.View
         }
         private void Button_Click_Back(object param)
         {
-            var view = new OwnerssView();
-            view.Show();
-            CloseWindow();
+            //var view = new OwnerssView();
+            //view.Show();
+            //CloseWindow();
+            NavigationService.GoBack();
         }
         public string AccommodationName
         {
@@ -209,8 +213,9 @@ namespace BookingProject.View
             {
                 AccommodationController.Create(accommodation);
                 MessageBox.Show("You have succesfully added new accommodation");
-                var view = new OwnerssView();
-                view.Show();
+                //var view = new OwnerssView();
+                //view.Show();
+                NavigationService.Navigate(new OwnerssView(NavigationService));
             }
             CloseWindow();
         }
@@ -225,7 +230,7 @@ namespace BookingProject.View
         {
             ImageController.DeleteUnused();
             ImageController.SaveImage();
-            CloseWindow();
+            NavigationService.GoBack();
         }
         public bool IsValid
         {
@@ -242,8 +247,9 @@ namespace BookingProject.View
         }
         private void Button_Click_Add_Image(object param)
         {
-            AddPhotosToAccommodationView addPhoto = new AddPhotosToAccommodationView();
-            addPhoto.Show();
+            //AddPhotosToAccommodationView addPhoto = new AddPhotosToAccommodationView();
+            //addPhoto.Show();
+            NavigationService.Navigate(new AddPhotosToAccommodationView(NavigationService));
         }
         public string this[string columnName]
         {
