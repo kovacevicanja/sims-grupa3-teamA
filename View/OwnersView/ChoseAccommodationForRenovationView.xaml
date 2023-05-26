@@ -25,9 +25,9 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Text="Chose the accommodation you want to renovate" HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="13" FontWeight="Bold"></TextBlock>
-            <ListView Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent"
+            <ListView Grid.Row="1" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent"
           SelectedItem="{Binding Path=SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
-          ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0" Width="323">
+          ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"  Width="323">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -35,22 +35,22 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Button BorderBrush="Transparent" Background="Transparent">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Image Margin="25,20,20,0" Source="{Binding Images[0].Url}" Width="90" Height="90" Stretch="Fill" />
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Margin="0,40,0,0" Text="{Binding AccommodationName}" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Location.City}" FontSize="18" FontWeight="Bold" Foreground="Gray" />
-                                    <TextBlock Text=", " FontSize="18" FontWeight="Bold" Foreground="Gray" />
-                                    <TextBlock Text="{Binding Location.Country}" FontSize="18" FontWeight="Bold" Foreground="Gray" />
+                        <Button BorderBrush="Transparent" Background="Transparent" Click="Button_Click">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Margin="25,20,20,0" Source="{Binding Images[0].Url}" Width="90" Height="90" Stretch="Fill" />
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Margin="0,40,0,0" Text="{Binding AccommodationName}" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Location.City}" FontSize="18" FontWeight="Bold" Foreground="Gray" />
+                                        <TextBlock Text=", " FontSize="18" FontWeight="Bold" Foreground="Gray" />
+                                        <TextBlock Text="{Binding Location.Country}" FontSize="18" FontWeight="Bold" Foreground="Gray" />
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </Grid>
+                            </Grid>
                         </Button>
                     </DataTemplate>
                 </ListView.ItemTemplate>

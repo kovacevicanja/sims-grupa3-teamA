@@ -86,7 +86,7 @@
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,10,0,11"/>
                 <ComboBox  Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Path=NoisinessOption}" HorizontalAlignment="Center" Width="47"  SelectedItem="{Binding Path=ChosenNoisiness, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,11" />
 
-                <TextBox Grid.Row="6" Background="LightGray"
+                <TextBox Grid.Row="6" Background="#f2f2f2"
                      Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}" />
 
