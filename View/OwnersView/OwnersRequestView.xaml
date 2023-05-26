@@ -9,21 +9,120 @@
     <DockPanel>
         
     <Grid>
-        
-        
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Background="Transparent">
-                <Label Margin="0 0 0 0" Height="40" FontSize="20" FontWeight="Bold" Foreground="Black">Requests</Label>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Height="50" Orientation="Horizontal" VerticalAlignment="Center"  Background="Transparent">
+                <Label Margin="15 5 0 0" FontSize="22" FontWeight="Bold" Foreground="Black">Guests</Label>
             </StackPanel>
-            <DataGrid ItemsSource ="{Binding Path=Requests, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedMovingRequest}"
-                      FontSize="10" Margin="16,100,16,350" SelectionMode="Single" AutoGenerateColumns="False" Name="AccommodationDataGrid" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Accommodation" Width="85" Binding="{Binding AccommodationReservation.Accommodation.AccommodationName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Guest Name" Width="70" Binding="{Binding AccommodationReservation.Guest.Username}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Wanted Start" Width="75" Binding="{Binding NewArrivalDay}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Wanted End" Width="100" Binding="{Binding NewDeparuteDay}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button  Command="{Binding ViewCommand}" Content="View" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20" Width="60" Margin="30,30,30,30"/>
-    </Grid>
+            <Grid Grid.Row="1">
+                <ListView  HorizontalAlignment="Center" Margin="0,30,0,250" Background="Transparent" BorderBrush="#FF0F4E7A" BorderThickness="3"
+          ItemsSource="{Binding Path=Requests, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedMovingRequest}" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding NewArrivalDay,  StringFormat='{}{0:dd/MM}'}"/>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="{Binding NewDeparuteDay,  StringFormat='{}{0:dd/MM}'}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text=" - " />
+                                </StackPanel>
+                                <StackPanel Grid.Column="3">
+                                    <TextBlock Text=" " FontWeight="Bold"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="4">
+                                    <TextBlock Text="{Binding AccommodationReservation.Accommodation.AccommodationName}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="5">
+                                    <TextBlock Text=" " FontWeight="Bold"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="6">
+                                    <TextBlock Text="{Binding AccommodationReservation.Guest.Name}" FontWeight="Bold"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Resources>
+                        <Style TargetType="ListView">
+                            <Setter Property="BorderBrush" Value="Gray" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListView">
+                                        <Grid>
+                                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="0"
+                                    Margin="-10">
+                                            </Border>
+                                            <ScrollViewer>
+                                                <ItemsPresenter />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.Resources>
+                </ListView>
+                <Button  Command="{Binding ViewCommand}" Content="View" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Width="70" Margin="30,30,30,30">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF0F4E7A" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter Property="Padding" Value="10" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#b7d1e0"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Grid>
     </DockPanel>
 </Page>

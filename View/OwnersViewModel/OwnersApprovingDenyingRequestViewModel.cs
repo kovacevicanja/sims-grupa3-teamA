@@ -26,6 +26,7 @@ namespace BookingProject.View.OwnerViewModel
         public RelayCommand MenuCommand { get; }
         public RelayCommand BackCommand { get; }
         public NavigationService NavigationService { get; set; }
+        public String AvailabilityDisplay { get; set; }
 
         public OwnersApprovingDenyingRequestViewModel(RequestAccommodationReservation selectedMovingRequest, NavigationService navigationService)
         {
@@ -33,6 +34,13 @@ namespace BookingProject.View.OwnerViewModel
             _reservationController = new AccommodationReservationController();
             _movingController = new RequestAccommodationReservationController();
             Availability = _reservationController.IsAvailableToMove(selectedMovingRequest);
+            if (Availability)
+            {
+                AvailabilityDisplay = "Available";
+            } else
+            {
+                AvailabilityDisplay = "Not available";
+            }
             AcceptCommand = new RelayCommand(Button_Click_Accept, CanExecute);
             DeclineCommand = new RelayCommand(Button_Click_Decline, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
