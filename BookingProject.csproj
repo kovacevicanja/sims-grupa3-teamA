@@ -378,6 +378,7 @@
     <Compile Include="View\OwnersViewModel\AddAccommodationViewModel.cs" />
     <Compile Include="View\OwnersViewModel\AddPhotosToAccommodationViewModel.cs" />
     <Compile Include="View\OwnersViewModel\AvailableDatesForAccommodationRenovationViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\BookingCalendarViewModel.cs" />
     <Compile Include="View\OwnersViewModel\EnterAccommodationRenovationDatesViewModel.cs" />
     <Compile Include="View\OwnersViewModel\GuestGradesForOwnerViewModel.cs" />
     <Compile Include="View\OwnersViewModel\GuestRateViewModel.cs" />
@@ -557,6 +558,9 @@
     </Compile>
     <Compile Include="View\OwnersView\AvailableDatesForAccommodationRenovationView.xaml.cs">
       <DependentUpon>AvailableDatesForAccommodationRenovationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\BookingCalendarView.xaml.cs">
+      <DependentUpon>BookingCalendarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnersView\EnterAccommodationRenovationDatesView.xaml.cs">
       <DependentUpon>EnterAccommodationRenovationDatesView.xaml</DependentUpon>
@@ -835,6 +839,10 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\OwnersView\AvailableDatesForAccommodationRenovationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\BookingCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

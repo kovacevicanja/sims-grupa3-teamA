@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.View.OwnersView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,12 +19,14 @@ namespace BookingProject.View.OwnersViewModel
         public Accommodation SelectedAccommodation { get; set; }
         public NavigationService NavigationService { get; set; }
         public RelayCommand BackCommand { get; set; }
+        public RelayCommand BookingCommand { get; set; }
 
         public OneAccommodationViewModel(Accommodation selectedAccommodation, NavigationService navigationService)
         {
             SelectedAccommodation = selectedAccommodation;
             NavigationService = navigationService;
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
+            BookingCommand = new RelayCommand(Button_Click_Calendar, CanExecute);
         }
 
         private bool CanExecute(object param) { return true; }
@@ -31,6 +34,10 @@ namespace BookingProject.View.OwnersViewModel
         private void Button_Click_Back(object param)
         {
             NavigationService.GoBack();
+        }
+        private void Button_Click_Calendar(object param)
+        {
+            NavigationService.Navigate(new BookingCalendarView(SelectedAccommodation, NavigationService));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
