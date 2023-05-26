@@ -79,7 +79,7 @@ namespace BookingProject.View.OwnersViewModel
 
         private void Button_Click_Add(object param)
         {
-            //NavigationService.Navigate(new EnterAccommodationRenovationDatesView(NavigationService));
+            NavigationService.Navigate(new ChoseAccommodationForRenovationView(NavigationService));
         }
 
         private void Button_Click_Cancel_Renovation(object param)
