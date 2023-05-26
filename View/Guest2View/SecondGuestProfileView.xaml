@@ -12,12 +12,34 @@
     </Page.Background>
 
     <Grid>
-        <Label Content="{Binding UsernameDisplay}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="51" Width="232" Margin="328,119,0,0" />
-        <Grid Margin="42,50,408,472">
-            <Border BorderBrush="White" BorderThickness="2" Background="White" Margin="10">
-                <Image Source="{Binding PictureSource}" Stretch="Uniform" Margin="12,10,12,10" />
-            </Border>
-        </Grid>
+        <TextBlock Margin="57,288,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+                <Run Text="Username:" FontWeight="Bold" Foreground="Gray"/>
+                <Run Text="{Binding UsernameDisplay}" FontWeight="Normal" Foreground="Gray" />
+        </TextBlock>
+        <TextBlock Margin="57,349,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+                <Run Text="Name:" FontWeight="Bold" Foreground="Gray"/>
+                <Run Text="{Binding NameDisplay}" FontWeight="Normal" Foreground="Gray" />
+        </TextBlock>
+        <TextBlock Margin="57,410,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+                <Run Text="Surname:" FontWeight="Bold" Foreground="Gray"/>
+                <Run Text="{Binding SurnameDisplay}" FontWeight="Normal" Foreground="Gray" />
+        </TextBlock>
+        <TextBlock Margin="57,471,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+                <Run Text="E-mail:" FontWeight="Bold" Foreground="Gray"/>
+                <Run Text="{Binding EmailDiplay}" FontWeight="Normal" Foreground="Gray" />
+        </TextBlock>
+        <TextBlock Margin="57,532,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+                <Run Text="Phone:" FontWeight="Bold" Foreground="Gray"/>
+                <Run Text="+381/69-13-04-001" Foreground="Gray"/>
+        </TextBlock>
+        <TextBlock Margin="57,593,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+                <Run Text="Gender:" FontWeight="Bold" Foreground="Gray"/>
+                <Run Text="{Binding GenderDisplay}" FontWeight="Normal" Foreground="Gray" />
+        </TextBlock>
+        <Border BorderBrush="White" BorderThickness="2" Margin="57,51,337,506">
+            <Image Source="{Binding PictureSource}" Stretch="UniformToFill" Margin="0,0,0,-3"/>
+        </Border>
+
     </Grid>
 
 </Page>

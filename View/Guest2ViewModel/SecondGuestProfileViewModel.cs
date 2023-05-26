@@ -39,6 +39,10 @@ namespace BookingProject.View.Guest2ViewModel
         public TourReservation TourReservation { get; set; }
         public string UsernameDisplay { get; set; } 
         public NavigationService NavigationService { get; set; }
+        public string NameDisplay { get; set; }
+        public string SurnameDisplay { get; set; }
+        public string EmailDiplay { get; set; }
+        public string GenderDisplay { get; set; }
 
         public SecondGuestProfileViewModel(int guestId, NavigationService navigationService)
         {
@@ -66,11 +70,19 @@ namespace BookingProject.View.Guest2ViewModel
 
             if (GuestId == 5)
             {
-                PictureSource = new Uri("https://birthdayinspire.com/wp-content/uploads/2019/05/gifts-for-65-years-old-women.jpg");
+                PictureSource = new Uri("https://www.shutterstock.com/image-photo/selfie-portrait-happy-senior-woman-260nw-1851945448.jpg");
+                NameDisplay = "Anica";
+                SurnameDisplay = "Anic";
+                EmailDiplay = "anicaanic65@gmail.com";
+                GenderDisplay = "female";
             }
             else if (GuestId == 3)
             {
-                PictureSource = new Uri("https://media.istockphoto.com/id/1347942558/photo/portrait-of-mature-man-standing-in-garden-in-front-of-dream-home-in-countryside.jpg?s=612x612&w=0&k=20&c=amykj2RUwq1LpNVHtXuCbmylIsfNSCV6GYUIzBptgPI=");
+                PictureSource = new Uri("https://media.istockphoto.com/id/996843044/photo/who-said-selfies-are-just-for-the-youth.jpg?s=612x612&w=0&k=20&c=NWD4bqyxkopGtNycCWAgV9XJXiJ4VTMgCwz0jQg1Eb8=");
+                NameDisplay = "Mile";
+                SurnameDisplay = "Milic";
+                EmailDiplay = "milemilic65@gmail.com";
+                GenderDisplay = "male";
             }
             UsernameDisplay = UserController.GetById(GuestId).Username;
 

@@ -28,54 +28,56 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <FontWeight x:Key="FontWeightBold">Bold</FontWeight>
     </Page.Resources>
 
     <Grid Margin="0,0,0,6">
 
-        <Label Content="My Vouchers" FontSize="35" FontWeight="Bold" Foreground="LightBlue" Margin="65,123,411,534" />
+        <Label Content="My Vouchers" FontSize="35" FontWeight="Bold" Foreground="LightBlue" Margin="65,118,411,539" />
 
-        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Margin="64,260,69,188">
+        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="144,221,144,132">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
             </Border.Effect>
-            <ListView DockPanel.Dock="Bottom"
-              SelectedItem="{Binding Path=ChosenVoucher, UpdateSourceTrigger=PropertyChanged}"
-              ItemsSource="{Binding Path=Vouchers, UpdateSourceTrigger=PropertyChanged}"
-              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-              ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                <ListView.Resources>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="FontSize" Value="24"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Foreground" Value="Gray"/>
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="TextAlignment" Value="Center"/>
-                    </Style>
-                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                        <Setter Property="FontSize" Value="24"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Foreground" Value="Gray"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="Padding" Value="10,0,0,0"/>
-                    </Style>
-                </ListView.Resources>
-                <ListView.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.126"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-0.998"/>
-                    </TransformGroup>
-                </ListView.RenderTransform>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Start date" DisplayMemberBinding="{Binding StartDate}" Width="300"/>
-                        <GridViewColumn Header="Expiry date" DisplayMemberBinding="{Binding EndDate}" Width="300"/>
-                    </GridView>
-                </ListView.View>
+            <ListView Margin="-1,-1,-1,-1"
+          SelectedItem="{Binding Path=ChosenVoucher, UpdateSourceTrigger=PropertyChanged}"
+          ItemsSource="{Binding Path=Vouchers, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Voucher" FontSize="20" FontWeight="Bold" Foreground="Gray"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray" FontSize="22">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0:dd/MM/yyyy} - {1:dd/MM/yyyy}">
+                                        <Binding Path="StartDate" />
+                                        <Binding Path="EndDate" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                <TextBlock.FontWeight>
+                                    <StaticResource ResourceKey="FontWeightBold" />
+                                </TextBlock.FontWeight>
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Valid for another 7 days" FontSize="20" FontWeight="Bold" Foreground="Gray"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Border>
-        <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="155,629,0,0" VerticalAlignment="Top" Width="170"
+        <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="155,668,0,0" VerticalAlignment="Top" Width="170"
                 Command="{Binding UseVoucherCommand}" FontSize="24">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -115,7 +117,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="395,629,0,0" VerticalAlignment="Top" Width="170"
+        <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="395,668,0,0" VerticalAlignment="Top" Width="170"
                 Command="{Binding CancelCommand}" FontSize="24">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

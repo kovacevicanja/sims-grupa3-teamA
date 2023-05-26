@@ -59,9 +59,9 @@ namespace BookingProject.View.Guest2View
             Chart1.ChartAreas[0].AxisX.LabelStyle.Angle = -30;
             Chart1.ChartAreas[0].AxisX.LabelStyle.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
 
-            Chart1.ChartAreas[0].AxisY.Interval = 1;
+            Chart1.ChartAreas[0].AxisY.Interval = 5;
             Chart1.ChartAreas[0].AxisY.Minimum = 0;
-            Chart1.ChartAreas[0].AxisY.Maximum = 15; 
+            Chart1.ChartAreas[0].AxisY.Maximum = 30; 
             Chart1.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
 
             Chart1.Series[0].IsValueShownAsLabel = true;

@@ -33,6 +33,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand ProfileCommand { get; }
         public int GuestId { get; set; }
         public NavigationService NavigationService { get; set; }
+        public string NumberOfDays { get; set; }
         public SecondGuestMyVouchersViewModel(int guestId, int chosenTourId, NavigationService navigationService)
         {
             VoucherController = new VoucherController();
@@ -54,6 +55,13 @@ namespace BookingProject.View.Guest2ViewModel
             ProfileCommand = new RelayCommand(Button_BackToProfile, CanExecute);
 
             GuestId = guestId;
+
+            NumberOfDays = "5";
+
+            /*foreach (Voucher voucher in _vouchersList)
+            {
+                NumberofDays = (int)(DateTime.Now.Date - voucher.EndDate.Date).TotalDays;
+            }*/
         }
 
         private bool CanExecute(object param) { return true; }
