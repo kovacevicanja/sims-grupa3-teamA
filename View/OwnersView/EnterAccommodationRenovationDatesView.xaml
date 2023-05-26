@@ -61,7 +61,7 @@
                 </DatePicker>
                 <StackPanel Margin="0,15,0,0" Orientation="Horizontal">
                     <Label Margin="0 0 0 0" FontWeight="SemiBold">Expected duration</Label>
-                    <TextBox Width="60" Margin="11,0,0,0" BorderBrush="#FF0F4E7A" Background="#f2f2f2" Text="{Binding RenovationDuration}"></TextBox>
+                    <TextBox Width="60" Margin="10.5,0,0,0" BorderBrush="#FF0F4E7A" Background="#f2f2f2" Text="{Binding RenovationDuration}"></TextBox>
                 </StackPanel>
                 <Button Margin="0 200 0 0" Height="25" Width="50" Command="{Binding ShowCommand}" Content="Prikazi">
                     <Button.Style>

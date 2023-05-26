@@ -1,5 +1,7 @@
 ﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain.Images;
 using BookingProject.Model;
+using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
 using System;
@@ -29,6 +31,18 @@ namespace BookingProject.Repositories.Implementations
         {
             GradeUserBind();
             GradeAccommodationBind();
+            GradeReservationBind();
+            AccommodationImagesBind();
+        }
+
+        public void AccommodationImagesBind()
+        {
+            IAccommodationGuestImageRepository accommodationImageRepository = Injector.CreateInstance<IAccommodationGuestImageRepository>();
+            foreach (AccommodationGuestImage image in accommodationImageRepository.GetAll())
+            {
+                AccommodationOwnerGrade grade = GetById(image.Grade.Id);
+                grade.guestImages.Add(image);
+            }
         }
 
         public List<AccommodationOwnerGrade> Load()
@@ -70,6 +84,15 @@ namespace BookingProject.Repositories.Implementations
             {
                 Accommodation accommodation = Injector.CreateInstance<IAccommodationRepository>().GetById(grade.Accommodation.Id);
                 grade.Accommodation = accommodation;
+            }
+        }
+        public void GradeReservationBind()
+        {
+
+            foreach (AccommodationOwnerGrade grade in _grades)
+            {
+                AccommodationReservation accommodation = Injector.CreateInstance<IAccommodationReservationRepository>().GetById(grade.AccommodationReservation.Id);
+                grade.AccommodationReservation = accommodation;
             }
         }
 

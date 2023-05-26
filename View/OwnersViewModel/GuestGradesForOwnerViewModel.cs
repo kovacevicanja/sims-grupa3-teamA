@@ -15,6 +15,7 @@ namespace BookingProject.View.OwnerViewModel
         public ObservableCollection<AccommodationOwnerGrade> GuestGrades { get; set; }
         private AccommodationOwnerGradeController _accommodationOwnerGradeControler;
         public NavigationService NavigationService { get; set; }
+        public AccommodationOwnerGrade SelectedGrade { get; set; }
         public GuestGradesForOwnerViewModel(NavigationService navigationService)
         {
             _accommodationOwnerGradeControler = new AccommodationOwnerGradeController();

@@ -7,19 +7,113 @@
         mc:Ignorable="d"
         Title="AvailableDatesForAccommodationRenovationView"  d:DesignHeight="600" d:DesignWidth="323">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Label Margin="0 38 0 0" HorizontalAlignment="Center">Slobodni termini:</Label>
-            <DataGrid ItemsSource="{Binding AvailableDatesPair}" SelectedItem="{Binding SelectedDatePair}" Margin="0 10 0 0" AutoGenerateColumns="False" Width="300" Height="210">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Pocetak termina" Binding="{Binding Item1, StringFormat='{}{0:d}'}" Width="*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Kraj termina" Binding="{Binding Item2, StringFormat='{}{0:d}'}"  Width="*"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-            <StackPanel Orientation="Vertical" Width="300" Margin="0,70,0,0">
-                <Label HorizontalAlignment="Center">Opis renoviranja</Label>
-                <TextBox Height="70" Margin="0 12 0 0" Text="{Binding RenovationDescription}"></TextBox>
-            </StackPanel>
-            <Button Width="60" Height="30" Margin="0,50,0,0" Command="{Binding ScheduleRenovationCommand}">Schedule</Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Height="50" Orientation="Horizontal" VerticalAlignment="Center"  Background="Transparent">
+            <Button Name="back" Width="40" Height="30" BorderBrush="Transparent" Background="Transparent" Command="{Binding BackCommand}">
+                <Image Source="/Resources/Images/OwnerImages/backArrow.png"/>
+            </Button>
+            <Label Margin="0 5 0 0" FontSize="20" FontWeight="Bold" Foreground="Black">Renovations</Label>
         </StackPanel>
+        <Grid Grid.Row="1">
+            <Label Margin="0 15 0 0" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="16">Available dates</Label>
+            
+            <ListView  HorizontalAlignment="Center" Margin="0,70,0,250" Background="Transparent" BorderBrush="#FF0F4E7A" BorderThickness="3"
+          ItemsSource="{Binding Path=AvailableDatesPair, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedDatePair}" >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Item1, StringFormat='{}{0:d}'}"/>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="{Binding Item2, StringFormat='{}{0:d}'}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text=" - " />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Resources>
+                    <Style TargetType="ListView">
+                        <Setter Property="BorderBrush" Value="Gray" />
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="Background" Value="White" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListView">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="0"
+                                    Margin="-10">
+                                        </Border>
+                                        <ScrollViewer>
+                                            <ItemsPresenter />
+                                        </ScrollViewer>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.Resources>
+            </ListView>
+            <StackPanel Orientation="Vertical" Width="300" Margin="0,300,0,0">
+                <Label HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="16">Renovation description</Label>
+                <TextBox Height="70" Margin="0 12 0 0" Width="250" BorderBrush="#FF0F4E7A"  Text="{Binding RenovationDescription}"></TextBox>
+            </StackPanel>
+            <Button Width="60" Height="30" Margin="0,420,0,0" Command="{Binding ScheduleRenovationCommand}" Content="Schedule">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FF0F4E7A" />
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#b7d1e0"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

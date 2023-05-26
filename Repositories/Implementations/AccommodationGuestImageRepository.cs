@@ -1,4 +1,7 @@
-﻿using BookingProject.Domain.Images;
+﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain.Images;
+using BookingProject.Model;
+using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
 using System;
@@ -21,8 +24,21 @@ namespace BookingProject.Repositories.Implementations
         {
             _serializer = new Serializer<AccommodationGuestImage>();
             _images = Load();
+            
+
         }
-        public void Initialize() { }
+
+        public void ImageGradeBind()
+        {
+            foreach (AccommodationGuestImage image in _images)
+            {
+                AccommodationOwnerGrade grade = Injector.CreateInstance<IAccommodationOwnerGradeRepository>().GetById(image.Grade.Id);
+                image.Grade = grade;
+            }
+        }
+        
+
+        public void Initialize() { ImageGradeBind(); }
 
         public List<AccommodationGuestImage> Load()
         {

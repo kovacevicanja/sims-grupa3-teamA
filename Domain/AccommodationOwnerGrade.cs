@@ -17,7 +17,7 @@ namespace BookingProject.Model
         public int OwnerCorectness { get; set; }
         public string AdditionalComment { get; set; }
         public User User { get; set; }
-        public List<AccommodationGuestImage> guestImages;
+        public List<AccommodationGuestImage> guestImages { get; set; }
         public AccommodationReservation AccommodationReservation { get; set; }
 
         public AccommodationOwnerGrade()
