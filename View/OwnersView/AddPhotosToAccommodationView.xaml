@@ -6,6 +6,29 @@
         xmlns:local="clr-namespace:BookingProject.View"
         mc:Ignorable="d"
         Title="AddPhotosToAccommodationView" d:DesignHeight="600" d:DesignWidth="323">
+    <Page.Resources>
+        <Style x:Key="CustomTooltipStyle" TargetType="ToolTip">
+            <Setter Property="Background" Value="#FF0F4E7A"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToolTip">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="2"
+                                CornerRadius="4"
+                                Padding="5">
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -60,6 +83,14 @@
                         </Setter>
                     </Style>
                 </Button.Style>
+            </Button>
+            <Button Height="20" Width="20" Margin="70,-150,0,0" Background="Transparent" BorderBrush="Transparent" ToolTipService.ShowDuration="5000">
+                <Button.ToolTip>
+                    <ToolTip Content="You can add multiple images."  Style="{StaticResource CustomTooltipStyle}">
+
+                    </ToolTip>
+                </Button.ToolTip>
+                <Image Source="/Resources/Images/OwnerImages/tooltip.png" ></Image>
             </Button>
             <TextBlock Text="{Binding DisplayedUrl}" Margin="0,20,0,0" HorizontalAlignment="Center" FontSize="14" />
         </Grid>

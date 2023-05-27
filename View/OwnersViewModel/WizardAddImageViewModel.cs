@@ -23,6 +23,7 @@ namespace BookingProject.View.OwnersViewModel
         public NavigationService NavigationService { get; set; }
         public RelayCommand AddCommand { get; }
         public RelayCommand NextCommand { get; }
+        public RelayCommand BackCommand { get; }
         public OwnerCustomMessageBox OwnerCustomMessageBox { get; set; }
         public AccommodationImageController _imageController;
         public AccommodationImageController ImageController { get; set; }
@@ -33,7 +34,12 @@ namespace BookingProject.View.OwnersViewModel
             ForwardedAcc = forwardedAcc;
             AddCommand = new RelayCommand(Button_Click_Add, CanExecute);
             NextCommand = new RelayCommand(Button_Click_Next, CanExecute);
+            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             OwnerCustomMessageBox = new OwnerCustomMessageBox();
+        }
+        private void Button_Click_Back(object param)
+        {
+            NavigationService.GoBack();
         }
         private bool CanExecute(object param) { return true; }
         private string _url;

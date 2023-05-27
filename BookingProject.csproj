@@ -1435,5 +1435,8 @@
   <ItemGroup>
     <Resource Include="Resources\Images\OwnerImages\backArrow.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\tooltip.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

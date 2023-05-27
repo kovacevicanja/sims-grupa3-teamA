@@ -6,6 +6,29 @@
         xmlns:local="clr-namespace:BookingProject.View.OwnerView" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="AccommodationStatisticsByYearView" d:DesignHeight="600" d:DesignWidth="323">
+    <Page.Resources>
+        <Style x:Key="CustomTooltipStyle" TargetType="ToolTip">
+            <Setter Property="Background" Value="#FF0F4E7A"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToolTip">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="2"
+                                CornerRadius="4"
+                                Padding="5">
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,7 +42,15 @@
             <Label Margin="0 5 0 0" FontSize="20" FontWeight="Bold" Foreground="Black">Statistics</Label>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <TextBlock Text="Month" Margin="0,0,0,0"></TextBlock>
+            <TextBlock Text="Year" Margin="5,0,0,0"></TextBlock>
+            <Button Height="16" Width="20" Margin="-240,-15,0,0" Background="Transparent" BorderBrush="Transparent" ToolTipService.ShowDuration="5000">
+                <Button.ToolTip>
+                    <ToolTip  Content="Chose a year to see monthly statistics." Placement="Left" Style="{StaticResource CustomTooltipStyle}">
+                        
+                    </ToolTip>
+                </Button.ToolTip>
+                <Image Source="/Resources/Images/OwnerImages/tooltip.png" ></Image>
+            </Button>
             <ComboBox ItemsSource="{Binding Path=YearOption}"  Width="47" Height="30" HorizontalAlignment="Left"
                   SelectedItem="{Binding ChosenYear, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
                 <i:Interaction.Triggers>

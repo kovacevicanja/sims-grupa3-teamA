@@ -15,22 +15,24 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Border BorderBrush="#FF0F4E7A" Width="200" Height="200" BorderThickness="4" Margin="0,120,0,0">
+                <Border Height="203" Width="203" Margin="0,120,0,0" BorderBrush="Black" BorderThickness="4">
+                <Border BorderBrush="#FF0F4E7A" Width="200" Height="200" BorderThickness="6" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock Width="200"  FontSize="30" Text="    Welcome" Foreground="#FF0F4E7A" FontWeight="Bold"></TextBlock>
                         <TextBlock Width="200"  FontSize="30" Text="          to" Foreground="#FF0F4E7A" FontWeight="SemiBold"></TextBlock>
                         <TextBlock Width="200"  FontSize="30" Text="     Booking" Foreground="#FF0F4E7A" FontWeight="Bold"></TextBlock>
                     </StackPanel>
                 </Border>
+                </Border>
             </Grid>
             <Grid Grid.Row="1">
-                <Button Content="Add your first accommodation accommodation" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Command="{Binding AddAccommodationCommand}" Margin="0,20,0,0" Height="25">
+                <Button Content="Add your first accommodation" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Command="{Binding AddAccommodationCommand}" Margin="0,20,0,0" Height="25" FontWeight="Bold">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#FF0F4E7A" />
                             <Setter Property="Foreground" Value="Black" />
-                            <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                            <Setter Property="BorderBrush" Value="black" />
                             <Setter Property="BorderThickness" Value="2" />
                             <Setter Property="Padding" Value="10" />
                             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -65,12 +67,12 @@
                     </Button.Style>
                 </Button>
                 <Button Content="Skip" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Command="{Binding SkipCommand}" Margin="0,100,0,0" Height="25" Width="40">
+               Command="{Binding SkipCommand}" Margin="0,100,0,0" Height="25" Width="40" FontWeight="Bold">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#FF0F4E7A" />
                             <Setter Property="Foreground" Value="Black" />
-                            <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                            <Setter Property="BorderBrush" Value="black" />
                             <Setter Property="BorderThickness" Value="2" />
                             <Setter Property="Padding" Value="10" />
                             <Setter Property="HorizontalAlignment" Value="Center" />
