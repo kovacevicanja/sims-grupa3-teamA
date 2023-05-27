@@ -12,26 +12,28 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Height="40" Orientation="Horizontal" VerticalAlignment="Top" Background="#261799">
-            <Button Name="back" Width="40" Height="30" BorderBrush="#261799" Background="#261799">
-                <Image Source="../ImagesOwner/backArrow.png"/>
+        <StackPanel Grid.Row="0" Height="50" Orientation="Horizontal" VerticalAlignment="Center"  Background="Transparent">
+            <Button Name="back" Width="40" Height="30" BorderBrush="Transparent" Background="Transparent" Command="{Binding BackCommand}">
+                <Image Source="/Resources/Images/OwnerImages/backArrow.png"/>
             </Button>
-            <Label Margin="0 0 0 0" Height="53" FontSize="20" FontWeight="Bold" Foreground="Black">Statistics</Label>
-            <Button Name="btn5" Width="50" Height="30" Margin="160,0,0,0" BorderBrush="#261799" Background="#261799">
-                <Image Source="../ImagesOwner/menu.png"/>
-            </Button>
+            <Label Margin="0 5 0 0" FontSize="20" FontWeight="Bold" Foreground="Black">Statistics</Label>
         </StackPanel>
-        <ComboBox ItemsSource="{Binding Path=YearOption}" Grid.Row="1" Width="47" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"  
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Month" Margin="0,0,0,0"></TextBlock>
+            <ComboBox ItemsSource="{Binding Path=YearOption}"  Width="47" Height="30" HorizontalAlignment="Left"
                   SelectedItem="{Binding ChosenYear, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding OpenSecondWindowCommand}"
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding OpenSecondWindowCommand}"
                      CommandParameter="{Binding SelectedItem}"                      />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </ComboBox>
-        <Label Grid.Row="1" Width="70" >Most Busy</Label>
-        <Label Content="{Binding MostBusyYear}" HorizontalAlignment="Right" Width="50" Grid.Row="1"  />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+            
+        </StackPanel>
+        
+        <Label Grid.Row="1" Width="70" Margin="0,10,0,0" FontWeight="SemiBold">Most Busy</Label>
+        <Label Content="{Binding MostBusyYear}" HorizontalAlignment="Right" Width="50" Grid.Row="1"  Margin="0,10,0,0" FontWeight="Bold"/>
         <Grid Grid.Row="2">
 
             <Grid.ColumnDefinitions>
@@ -66,33 +68,33 @@
                     <ColumnDefinition Width="185*"></ColumnDefinition>
                     <ColumnDefinition Width="47*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,5" Width="38" >2023.</Label>
-                <Label Content="{Binding NumberOfReservationsDisplay[0]}" Grid.Row="1" Grid.Column="1" />
-                <Label Content="{Binding NumberOfReservationsDisplay[1]}" Grid.Row="6" Grid.Column="1" />
-                <Label Content="{Binding NumberOfReservationsDisplay[2]}" Grid.Row="11" Grid.Column="1" />
-                <Label Grid.Row="1" Grid.Column="0" Margin="0,1,0,1"  >Number of Reservations:</Label>
-                <Label Content="{Binding NumberOfCancelledReservationsDisplay[0]}" Grid.Row="2" Grid.Column="1" />
-                <Label Content="{Binding NumberOfCancelledReservationsDisplay[1]}" Grid.Row="7" Grid.Column="1" />
-                <Label Content="{Binding NumberOfCancelledReservationsDisplay[2]}" Grid.Row="12" Grid.Column="1" />
-                <Label Grid.Row="2" Grid.Column="0"    >Number of Cancelled Reservations:</Label>
-                <Label Content="{Binding NumberOfRescheduledReservationsDisplay[0]}" Grid.Row="3" Grid.Column="1" />
-                <Label Content="{Binding NumberOfRescheduledReservationsDisplay[1]}" Grid.Row="8" Grid.Column="1" />
-                <Label Content="{Binding NumberOfRescheduledReservationsDisplay[2]}" Grid.Row="13" Grid.Column="1" />
-                <Label Grid.Row="3" Grid.Column="0"    >Number of Rescheduled Reservations:</Label>
-                <Label Content="{Binding NumberOfRenovationRecommendationsDisplay[0]}" Grid.Row="4" Grid.Column="1" />
-                <Label Content="{Binding NumberOfRenovationRecommendationsDisplay[1]}" Grid.Row="9" Grid.Column="1" />
-                <Label Content="{Binding NumberOfRenovationRecommendationsDisplay[2]}" Grid.Row="14" Grid.Column="1" />
-                <Label Grid.Row="4" Grid.Column="0"   >Number of Renovation Recommendations:</Label>
-                <Label Grid.Row="5" HorizontalAlignment="Center" Margin="0,0,0,5" Width="38" >2022.</Label>
-                <Label Grid.Row="6" Grid.Column="0" Margin="0,1,0,1"  >Number of Reservations:</Label>
-                <Label Grid.Row="7" Grid.Column="0"    >Number of Cancelled Reservations:</Label>
-                <Label Grid.Row="8" Grid.Column="0"    >Number of Rescheduled Reservations:</Label>
-                <Label Grid.Row="9" Grid.Column="0"   >Number of Renovation Recommendations:</Label>
-                <Label Grid.Row="10" HorizontalAlignment="Center" Margin="0,0,0,5" Width="38" >2021.</Label>
-                <Label Grid.Row="11" Grid.Column="0" Margin="0,1,0,1"  >Number of Reservations:</Label>
-                <Label Grid.Row="12" Grid.Column="0"    >Number of Cancelled Reservations:</Label>
-                <Label Grid.Row="13" Grid.Column="0"    >Number of Rescheduled Reservations:</Label>
-                <Label Grid.Row="14" Grid.Column="0"   >Number of Renovation Recommendations:</Label>
+                <Label Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,5" Width="46" FontSize="16" FontWeight="Bold">2023.</Label>
+                <Label Content="{Binding NumberOfReservationsDisplay[0]}" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
+                <Label Content="{Binding NumberOfReservationsDisplay[1]}" Grid.Row="6" Grid.Column="1" FontWeight="Bold"/>
+                <Label Content="{Binding NumberOfReservationsDisplay[2]}" Grid.Row="11" Grid.Column="1" FontWeight="Bold"/>
+                <Label Grid.Row="1" Grid.Column="0" Margin="0,1,0,1" FontWeight="SemiBold" >Number of Reservations:</Label>
+                <Label Content="{Binding NumberOfCancelledReservationsDisplay[0]}" Grid.Row="2" Grid.Column="1" FontWeight="Bold"/>
+                <Label Content="{Binding NumberOfCancelledReservationsDisplay[1]}" Grid.Row="7" Grid.Column="1" FontWeight="Bold"/>
+                <Label Content="{Binding NumberOfCancelledReservationsDisplay[2]}" Grid.Row="12" Grid.Column="1" FontWeight="Bold"/>
+                <Label Grid.Row="2" Grid.Column="0"  FontWeight="SemiBold"  >Number of Cancelled Reservations:</Label>
+                <Label Content="{Binding NumberOfRescheduledReservationsDisplay[0]}" Grid.Row="3" Grid.Column="1" FontWeight="Bold"/>
+                <Label Content="{Binding NumberOfRescheduledReservationsDisplay[1]}" Grid.Row="8" Grid.Column="1" FontWeight="Bold"/>
+                <Label Content="{Binding NumberOfRescheduledReservationsDisplay[2]}" Grid.Row="13" Grid.Column="1" FontWeight="Bold" />
+                <Label Grid.Row="3" Grid.Column="0"  FontWeight="SemiBold"  >Number of Rescheduled Reservations:</Label>
+                <Label Content="{Binding NumberOfRenovationRecommendationsDisplay[0]}" Grid.Row="4" Grid.Column="1" FontWeight="Bold"/>
+                <Label Content="{Binding NumberOfRenovationRecommendationsDisplay[1]}" Grid.Row="9" Grid.Column="1" FontWeight="Bold"/>
+                <Label Content="{Binding NumberOfRenovationRecommendationsDisplay[2]}" Grid.Row="14" Grid.Column="1" FontWeight="Bold"/>
+                <Label Grid.Row="4" Grid.Column="0" FontWeight="SemiBold"  >Number of Recommendations:</Label>
+                <Label Grid.Row="5" HorizontalAlignment="Center" Margin="0,0,0,5" Width="46" FontSize="16" FontWeight="Bold" >2022.</Label>
+                <Label Grid.Row="6" Grid.Column="0" Margin="0,1,0,1"  FontWeight="SemiBold" >Number of Reservations:</Label>
+                <Label Grid.Row="7" Grid.Column="0"  FontWeight="SemiBold"  >Number of Cancelled Reservations:</Label>
+                <Label Grid.Row="8" Grid.Column="0" FontWeight="SemiBold"   >Number of Rescheduled Reservations:</Label>
+                <Label Grid.Row="9" Grid.Column="0" FontWeight="SemiBold"  >Number of Recommendations:</Label>
+                <Label Grid.Row="10" HorizontalAlignment="Center" Margin="0,0,0,5" Width="46" FontSize="16" FontWeight="Bold" >2021.</Label>
+                <Label Grid.Row="11" Grid.Column="0" Margin="0,1,0,1"  FontWeight="SemiBold">Number of Reservations:</Label>
+                <Label Grid.Row="12" Grid.Column="0"  FontWeight="SemiBold"  >Number of Cancelled Reservations:</Label>
+                <Label Grid.Row="13" Grid.Column="0" FontWeight="SemiBold"   >Number of Rescheduled Reservations:</Label>
+                <Label Grid.Row="14" Grid.Column="0" FontWeight="SemiBold"  >Number of Recommendations:</Label>
 
 
 

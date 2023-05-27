@@ -41,7 +41,13 @@ namespace BookingProject.View
             panelWidth = sidePanel.Width;
             hidden = true;
             sidePanel.Width = 34;
-            FrameHomePage.Content = new OwnerssView(this.FrameHomePage.NavigationService);
+            if (UserController.GetLoggedUser().numberOfSignIn == 1)
+            {
+                FrameHomePage.Content = new WelcomeToBookingView(this.FrameHomePage.NavigationService);
+            } else
+            {
+                FrameHomePage.Content = new OwnerssView(this.FrameHomePage.NavigationService);
+            }
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -99,7 +105,7 @@ namespace BookingProject.View
         }
         private void Button_Click_Statistics(object sender, RoutedEventArgs e)
         {
-            
+            FrameHomePage.Content = new ChoseAccommodationForStatisticsView(this.FrameHomePage.NavigationService);
         }
         private void Button_Click_Requests(object sender, RoutedEventArgs e)
         {

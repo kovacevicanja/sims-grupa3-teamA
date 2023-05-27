@@ -1,4 +1,4 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.View.OwnersViewModel;
 using BookingProject.View.OwnerViewModel;
 using System;
 using System.Collections.Generic;
@@ -15,18 +15,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingProject.View.OwnerView
+namespace BookingProject.View.OwnersView
 {
     /// <summary>
-    /// Interaction logic for AccommodationStatisticsByYearView.xaml
+    /// Interaction logic for WelcomeToBookingView.xaml
     /// </summary>
-    public partial class AccommodationStatisticsByYearView : Page
+    public partial class WelcomeToBookingView : Page
     {
-        public AccommodationStatisticsByYearView(Accommodation selectedAccommodation, NavigationService navigationService)
+        public WelcomeToBookingView(NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new AccommodationStatisticsByYearViewModel(selectedAccommodation, navigationService);
+            this.DataContext = new WelcomeToBookingViewMode(navigationService);
         }
-        
     }
 }

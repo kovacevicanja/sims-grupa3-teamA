@@ -16,7 +16,7 @@ namespace BookingProject.View.CustomMessageBoxes
         {
             Window customMessageBox = new Window
             {
-                Title = "Message",
+                //Title = "Message",
                 FontWeight = FontWeights.Bold,
                 Height = 300,
                 Width = 280,

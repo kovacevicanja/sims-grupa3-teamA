@@ -33,6 +33,7 @@ namespace BookingProject.View.OwnerViewModel
         public int[] NumberOfRenovationRecommendations;
         public string[] NumberOfRenovationRecommendationsDisplay { get; set; }
         public RecommendationRenovationController _renovationController { get; set; }
+        public RelayCommand BackCommand { get; set; }
         public int ChosenYear { get; set; }
         public int MostBusyYear { get; set; }
         public string MostBusyYearDisplay { get; set; }
@@ -76,6 +77,7 @@ namespace BookingProject.View.OwnerViewModel
             _selectedAccommodation = new Accommodation();
             _selectedAccommodation = selectedAccommodation;
             YearOption = new ObservableCollection<int>();
+            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             MostBusyYear = _accommodationReservationController.FindTheMostBusyYear(_accommodationReservationController.GetAll());
             MostBusyYearDisplay = MostBusyYear.ToString();
             NumberOfReservations = new int[3];
@@ -106,6 +108,11 @@ namespace BookingProject.View.OwnerViewModel
             }
             OpenSecondWindowCommand = new RelayCommand(Button_Click_Open, CanExecute);
             NavigationService = navigationService;
+        }
+
+        private void Button_Click_Back(object param)
+        {
+            NavigationService.GoBack();
         }
         private bool CanExecute(object param) { return true; }
         public Accommodation SelectedReservation

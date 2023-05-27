@@ -43,6 +43,10 @@ namespace BookingProject.Controller
         {
             _userService.Save();
         }
+        public void Update2(User user)
+        {
+            _userService.Update2(user);
+        }
         //public bool isUserSuperUser(User user)
         //{
         //    return _userService.IsUserSuperUser(user);

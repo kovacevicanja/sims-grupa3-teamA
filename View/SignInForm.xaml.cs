@@ -16,6 +16,7 @@ using BookingProject.View.CustomMessageBoxes;
 using BookingProject.View.Guest1View;
 using BookingProject.ConversionHelp;
 using BookingProject.View.OwnerViewModel;
+using BookingProject.View.OwnersView;
 
 namespace BookingProject.View
 {
@@ -83,6 +84,8 @@ namespace BookingProject.View
             {
                 if (user.Password == txtPassword.Password)
                 {
+                    user.numberOfSignIn++;
+                    _controller.Update2(user);
                     LoggedInUser = user;
                     if (user.UserType == UserType.OWNER)
                     {
@@ -109,8 +112,9 @@ namespace BookingProject.View
                         //{
                         //    MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
                         //}
-                        var view = new MenuView();
-                        view.Show();
+                            var view = new MenuView();
+                            view.Show();
+                        
                     }
                     else if (user.UserType == UserType.GUEST1)
                     {
