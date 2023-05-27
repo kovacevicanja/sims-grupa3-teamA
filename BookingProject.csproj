@@ -390,6 +390,9 @@
     <Compile Include="View\OwnersViewModel\OwnersApprovingDenyingRequestViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersRequestViewModel.cs" />
     <Compile Include="View\OwnersViewModel\WelcomeToBookingViewMode.cs" />
+    <Compile Include="View\OwnersViewModel\WizardAddAccommodationViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\WizardAddImageViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\WizardFinalConfirmationViewModel.cs" />
     <Compile Include="View\OwnersView\AccommodationRenovationsView.xaml.cs">
       <DependentUpon>AccommodationRenovationsView.xaml</DependentUpon>
     </Compile>
@@ -601,6 +604,15 @@
     </Compile>
     <Compile Include="View\OwnersView\WelcomeToBookingView.xaml.cs">
       <DependentUpon>WelcomeToBookingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\WizardAddAccommodationView.xaml.cs">
+      <DependentUpon>WizardAddAccommodationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\WizardAddImageView.xaml.cs">
+      <DependentUpon>WizardAddImageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\WizardFinalConfirmationView.xaml.cs">
+      <DependentUpon>WizardFinalConfirmationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
@@ -904,6 +916,18 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\OwnersView\WelcomeToBookingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\WizardAddAccommodationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\WizardAddImageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\WizardFinalConfirmationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

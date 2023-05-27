@@ -41,13 +41,13 @@ namespace BookingProject.View
             panelWidth = sidePanel.Width;
             hidden = true;
             sidePanel.Width = 34;
-            if (UserController.GetLoggedUser().numberOfSignIn == 1)
-            {
+            //if (UserController.GetLoggedUser().numberOfSignIn == 1)
+            //{
                 FrameHomePage.Content = new WelcomeToBookingView(this.FrameHomePage.NavigationService);
-            } else
-            {
-                FrameHomePage.Content = new OwnerssView(this.FrameHomePage.NavigationService);
-            }
+            //} else
+            //{
+            //    FrameHomePage.Content = new OwnerssView(this.FrameHomePage.NavigationService);
+            //}
         }
         private void Timer_Tick(object sender, EventArgs e)
         {

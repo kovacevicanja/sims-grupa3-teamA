@@ -1,0 +1,121 @@
+﻿<Page x:Class="BookingProject.View.OwnersView.WizardFinalConfirmationView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingProject.View.OwnersView"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="323"
+      Title="WizardFinalConfirmationView">
+
+    <Grid Background="#b7d1e0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Height="70" VerticalAlignment="Center"  Background="Transparent">
+            <Ellipse
+                Margin="0,25,220,0"
+                Width="30"
+                Height="30"
+                Stroke="#FF0F4E7A"
+                StrokeThickness="2"
+                Fill="#b7d1e0"/>
+            <Line  
+                X1="58" Y1="-15"  
+                X2="148" Y2="-15"  
+                Stroke="Black"
+                StrokeThickness="2" />
+            <Ellipse
+                Margin="0,-30,0,0"
+                Width="30"
+                Height="30"
+                Stroke="#FF0F4E7A"
+                StrokeThickness="2"
+                Fill="#b7d1e0"/>
+            <Line  
+                X1="168" Y1="-15"  
+                X2="258" Y2="-15"  
+                Stroke="Black"
+                StrokeThickness="2" />
+            <Ellipse
+                Margin="220,-30,0,0"
+                Width="30"
+                Height="30"
+                Stroke="Black"
+                StrokeThickness="2"
+                Fill="#FF0F4E7A"/>
+            <TextBlock Margin="37,-33,0,0" Text="1              2              3" FontSize="25" FontWeight="Bold"></TextBlock>
+            <TextBlock Margin="37,-33,0,0" Text="1              2              " FontSize="25" FontWeight="Bold" Foreground="#FF0F4E7A"></TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1" Background="Transparent">
+            <Border BorderBrush="Gray" BorderThickness="0" CornerRadius="0" Margin="30,0,30,263">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="5" Color="Gray" Opacity="0.8"/>
+                </Border.Effect>
+                <Image Stretch="Fill" Source="{Binding SelectedAccommodation.Images[0].Url}" Margin="0,-40,0,0" Height="180" Width="180"/>
+            </Border>
+            <StackPanel Orientation="Horizontal" Margin="0,200,0,0" HorizontalAlignment="Center">
+                <TextBlock Text="Name: " HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
+                <TextBlock Text="{Binding SelectedAccommodation.AccommodationName}" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0,230,0,0" HorizontalAlignment="Center">
+                <TextBlock Text="Location: " FontSize="18" HorizontalAlignment="Center"  FontWeight="Bold" Foreground="Gray" />
+                <TextBlock Text="{Binding SelectedAccommodation.Location.City}" FontSize="18" HorizontalAlignment="Center"  FontWeight="Bold" Foreground="Gray" />
+                <TextBlock Text=", " FontSize="18" HorizontalAlignment="Center"  FontWeight="Bold" Foreground="Gray" />
+                <TextBlock Text="{Binding SelectedAccommodation.Location.Country}" FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Gray" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,260,0,0" HorizontalAlignment="Center">
+                <TextBlock Text="Type: " HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="Gray" />
+                <TextBlock Text="{Binding SelectedAccommodation.Type}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Gray" />
+            </StackPanel>
+            
+            <TextBlock Text="Max number of guests: " FontSize="18"   FontWeight="Bold" Foreground="Gray" Margin="47,320,0,0" />
+            <TextBlock Text="{Binding SelectedAccommodation.MaxGuestNumber}" FontSize="18"  FontWeight="Bold" Foreground="Gray" Margin="245,320,0,0" />
+            <TextBlock Text="Min days to stay: " FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Gray" Margin="-5,290,0,0" />
+            <TextBlock Text="{Binding SelectedAccommodation.MinDays}" FontSize="18" FontWeight="Bold"  Foreground="Gray" Margin="226,290,0,0" />
+            <TextBlock Text="Cancellation period: " FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Gray" Margin="0,350,0,0" />
+            <TextBlock Text="{Binding SelectedAccommodation.CancellationPeriod}" FontSize="18" FontWeight="Bold" Foreground="Gray" Margin="240,350,0,0" />
+            <Button  Command="{Binding BookingCommand}" Content="Booking calendar" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,460,0,0" Height="30" Width="140">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FF0F4E7A" />
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

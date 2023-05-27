@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.OwnersView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace BookingProject.View.OwnersViewModel
         private bool CanExecute(object param) { return true; }
         private void Button_Click_Add(object param)
         {
-            //NavigationService.Navigate(new WizardAddAccommodationView(NavigationService));
+            NavigationService.Navigate(new WizardAddAccommodationView(NavigationService));
         }
         
         private void Button_Click_Cancel(object param)

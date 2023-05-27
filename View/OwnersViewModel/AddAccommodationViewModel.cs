@@ -209,14 +209,14 @@ namespace BookingProject.View
             ImageController.LinkToAccommodation(accommodation.Id);
             ImageController.SaveImage();
 
-            if (IsValid)
-            {
-                AccommodationController.Create(accommodation);
-                MessageBox.Show("You have succesfully added new accommodation");
-                //var view = new OwnerssView();
-                //view.Show();
-                NavigationService.Navigate(new OwnerssView(NavigationService));
-            }
+            //if (IsValid)
+            //{
+            //    AccommodationController.Create(accommodation);
+            //    MessageBox.Show("You have succesfully added new accommodation");
+            //    //var view = new OwnerssView();
+            //    //view.Show();
+            //    NavigationService.Navigate(new OwnerssView(NavigationService));
+            //}
             CloseWindow();
         }
         private void CloseWindow()

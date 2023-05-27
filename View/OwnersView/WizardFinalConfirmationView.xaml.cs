@@ -1,4 +1,5 @@
-﻿using BookingProject.View.OwnersViewModel;
+﻿using BookingProject.Model;
+using BookingProject.View.OwnersViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,14 @@ using System.Windows.Shapes;
 namespace BookingProject.View.OwnersView
 {
     /// <summary>
-    /// Interaction logic for WizardAddAccommodationView.xaml
+    /// Interaction logic for WizardFinalConfirmationView.xaml
     /// </summary>
-    public partial class WizardAddAccommodationView : Page
+    public partial class WizardFinalConfirmationView : Page
     {
-        public WizardAddAccommodationView(NavigationService navigationService)
+        public WizardFinalConfirmationView(Accommodation forwardedAcc, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new WizardAddAccommodationViewModel(navigationService);
+            this.DataContext = new WizardFinalConfirmationViewModel(forwardedAcc, navigationService);
         }
     }
 }
