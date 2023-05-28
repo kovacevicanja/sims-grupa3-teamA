@@ -43,6 +43,8 @@ namespace BookingProject.DependencyInjection
             { typeof(IRecommendationRenovationRepository), new RecommendationRenovationRepository() },
             { typeof(ISuperGuestRepository), new SuperGuestRepository() },
             { typeof(IAccommodationRenovationRepository), new AccommodationRenovationRepository() },
+            { typeof(IForumRepository), new ForumRepository() },
+            { typeof(IForumCommentRepository), new ForumCommentRepository() },
 
             { typeof(ITourService), new TourService() },
             { typeof(ITourReservationService), new TourReservationService() },
@@ -75,7 +77,9 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourRequestStatisticsService), new TourRequestStatisticsService() },
             { typeof(ITourSearchService), new TourSearchService() },
             { typeof(ITourStatisticsService), new TourStatisticsService() },
-            { typeof(IAccommodationRenovationService), new AccommodationRenovationService() }
+            { typeof(IAccommodationRenovationService), new AccommodationRenovationService() },
+            { typeof(IForumService), new ForumService() },
+            { typeof(IForumCommentService), new ForumCommentService() }
         };
         public static void Initialize()
         {
@@ -105,6 +109,8 @@ namespace BookingProject.DependencyInjection
             CreateInstance<IRecommendationRenovationRepository>().Initialize();
             CreateInstance<ISuperGuestRepository>().Initialize();
             CreateInstance<IAccommodationRenovationRepository>().Initialize();
+            CreateInstance<IForumRepository>().Initialize();
+            CreateInstance<IForumCommentRepository>().Initialize();
 
             CreateInstance<IAccommodationDateService>().Initialize();
             CreateInstance<IAccommodationGuestImageService>().Initialize();
@@ -138,6 +144,8 @@ namespace BookingProject.DependencyInjection
             CreateInstance<ITourSearchService>().Initialize();
             CreateInstance<ISuperGuestService>().Initialize();
             CreateInstance<IAccommodationRenovationService>().Initialize();
+            CreateInstance<IForumService>().Initialize();
+            CreateInstance<IForumCommentService>().Initialize();
         }
         public static T CreateInstance<T>()
         {

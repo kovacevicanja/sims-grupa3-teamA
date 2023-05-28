@@ -121,7 +121,7 @@ namespace BookingProject.View
         }
         private void Button_Click_Forums(object sender, RoutedEventArgs e)
         {
-
+            FrameHomePage.Content = new OwnersForumsView(this.FrameHomePage.NavigationService);
         }
         private void Button_Click_Reviews(object sender, RoutedEventArgs e)
         {
