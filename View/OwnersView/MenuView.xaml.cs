@@ -113,7 +113,7 @@ namespace BookingProject.View
         }
         private void Button_Click_Suggestions(object sender, RoutedEventArgs e)
         {
-
+            FrameHomePage.Content = new OwnerSuggestionsView(this.FrameHomePage.NavigationService);
         }
         private void Button_Click_Renovations(object sender, RoutedEventArgs e)
         {

@@ -43,5 +43,9 @@ namespace BookingProject.Services.Implementations
         {
             _locationRepository.Save(locations);
         }
+        public void Delete(Location acc)
+        {
+            _locationRepository.Delete(acc);
+        }
     }
 }

@@ -28,5 +28,6 @@ namespace BookingProject.Services.Interfaces
         List<Accommodation> GetAllForOwner(int ownerId);
         void Save(List<Accommodation> accommodations);
         List<AccommodationRenovation> GetAccommodationData(List<AccommodationRenovation> renovations);
+        void Delete(Accommodation acc);
     }
 }

@@ -15,5 +15,6 @@ namespace BookingProject.Services.Interfaces
         void Initialize();
         void Save(List<Location> locations);
         void SaveLocation();
+        void Delete(Location acc);
     }
 }

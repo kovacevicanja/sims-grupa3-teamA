@@ -1,4 +1,5 @@
 ﻿using BookingProject.DependencyInjection;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
@@ -45,6 +46,13 @@ namespace BookingProject.Repositories.Implementations
         public void Save(List<Accommodation> accommodations)
         {
             _serializer.ToCSV(FilePath, accommodations);
+        }
+        public void Delete(Accommodation accommodationRenovation)
+        {
+            _accommodations = _serializer.FromCSV(FilePath);
+            Accommodation founded = _accommodations.Find(c => c.Id == accommodationRenovation.Id);
+            _accommodations.Remove(founded);
+            _serializer.ToCSV(FilePath, _accommodations);
         }
 
         private int GenerateId()

@@ -18,5 +18,6 @@ namespace BookingProject.Services.Interfaces
         void DeleteUnused();
         void Save(List<AccommodationImage> images);
         void SaveImage();
+        void Delete(AccommodationImage acc);
     }
 }
