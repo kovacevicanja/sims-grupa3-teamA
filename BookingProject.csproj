@@ -311,11 +311,14 @@
     <Compile Include="Validation\IntegerNumberValidationRule.cs" />
     <Compile Include="Validation\NavigationInputCountry.cs" />
     <Compile Include="Validation\NavigationInputCity.cs" />
+    <Compile Include="Validation\OwnerDurationValidationRule.cs" />
     <Compile Include="Validation\OwnerIntegerNumberValidationRule.cs" />
+    <Compile Include="Validation\OwnerRequiredFieldValidationRule.cs" />
     <Compile Include="Validation\RequiredFieldValidationRule .cs" />
     <Compile Include="Validation\SearchAccommodationValidationRule.cs" />
     <Compile Include="View\CustomMessageBoxes\CustomNotificationMessageBoxNewlyCreatedTours.cs" />
     <Compile Include="View\CustomMessageBoxes\OwnerCustomMessageBox.cs" />
+    <Compile Include="View\CustomMessageBoxes\OwnerNotificationCustomBox.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ProfileViewModel.cs" />

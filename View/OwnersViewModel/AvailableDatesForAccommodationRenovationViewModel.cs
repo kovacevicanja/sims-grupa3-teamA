@@ -3,6 +3,7 @@ using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Services.Implementations;
+using BookingProject.View.CustomMessageBoxes;
 using BookingProject.View.OwnersView;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace BookingProject.View.OwnersViewModel
         public RelayCommand BackCommand { get; set; }
         public Tuple<DateTime, DateTime> SelectedDatePair { get; set; }
         public NavigationService NavigationService { get; set; }
+        public OwnerNotificationCustomBox box { get; set; }
         public AvailableDatesForAccommodationRenovationViewModel(Accommodation selectedAccommodation, ObservableCollection<Tuple<DateTime, DateTime>> availableDates, NavigationService navigationService)
         {
             SelectedAccommodation = selectedAccommodation;
@@ -33,6 +35,7 @@ namespace BookingProject.View.OwnersViewModel
             ScheduleRenovationCommand = new RelayCommand(Button_Click_Schedule, CanExecute);
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             NavigationService = navigationService;
+            box = new OwnerNotificationCustomBox();
         }
 
         private void Button_Click_Back(object param)
@@ -45,6 +48,8 @@ namespace BookingProject.View.OwnersViewModel
             {
                 AccommodationRenovation accommodationRenovation = new AccommodationRenovation(SelectedAccommodation.Id, SelectedDatePair.Item1, SelectedDatePair.Item2, RenovationDescription);
                 _renovationController.Save(accommodationRenovation);
+                box.ShowCustomMessageBox("You have scheduled a renovation from "+ SelectedDatePair.Item1.ToShortDateString() + " to "+SelectedDatePair.Item2.ToShortDateString());
+
                 //var view = new AccommodationRenovationsView();
                 //view.Show();
                 //CloseWindow();
@@ -52,7 +57,7 @@ namespace BookingProject.View.OwnersViewModel
             }
             else
             {
-                MessageBox.Show("Morate izabrati opseg datuma kada zelite da zakazete renoviranje!");
+                box.ShowCustomMessageBox("You must chose the date range when you want to schedule the renovation");
             }           
         }
         private ObservableCollection<Tuple<DateTime, DateTime>> _availableDatesPair;

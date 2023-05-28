@@ -7,7 +7,29 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="323"
       Title="OneAccommodationView">
-
+    <Page.Resources>
+        <Style x:Key="CustomTooltipStyle" TargetType="ToolTip">
+            <Setter Property="Background" Value="#FF0F4E7A"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToolTip">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="2"
+                                CornerRadius="4"
+                                Padding="5">
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -37,45 +59,56 @@
         <TextBlock Text="{Binding SelectedAccommodation.MinDays}" FontSize="18" FontWeight="Bold"  Foreground="Gray" Margin="226,405,0,0" />
         <TextBlock Text="Cancellation period: " FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Gray" Margin="0,435,0,0" />
         <TextBlock Text="{Binding SelectedAccommodation.CancellationPeriod}" FontSize="18" FontWeight="Bold" Foreground="Gray" Margin="240,435,0,0" />
-            <Button  Command="{Binding BookingCommand}" Content="Booking calendar" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,460,0,0" Height="30" Width="140">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#FF0F4E7A" />
-                        <Setter Property="Foreground" Value="Black" />
-                        <Setter Property="BorderBrush" Value="black" />
-                        <Setter Property="BorderThickness" Value="2" />
-                        <Setter Property="Padding" Value="10" />
-                        <Setter Property="HorizontalAlignment" Value="Center" />
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}"
+            <StackPanel Margin="0,460,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button  Command="{Binding BookingCommand}" Content="Booking calendar" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"  Height="30" Width="140">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF0F4E7A" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="black" />
+                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter Property="Padding" Value="10" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="8">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#FF0F4E7A"/>
-                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
-                                        </Trigger>
-                                        <Trigger Property="IsPressed" Value="True">
-                                            <Setter Property="Background" Value="#FF0F4E7A"/>
-                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
-                                        </Trigger>
-                                        <Trigger Property="IsEnabled" Value="False">
-                                            <Setter Property="Background" Value="#FF0F4E7A"/>
-                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
-            </Button>
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Height="20" Width="20" Background="Transparent" BorderBrush="Transparent" ToolTipService.ShowDuration="5000" Margin="3,0,0,0">
+                    <Button.ToolTip>
+                        <ToolTip Content="Tap here to see upcoming reservations!" Placement="Top" HorizontalOffset="100" VerticalOffset="-10" Style="{StaticResource CustomTooltipStyle}">
+
+                        </ToolTip>
+                    </Button.ToolTip>
+                    <Image Source="/Resources/Images/OwnerImages/tooltip.png" ></Image>
+                </Button>
+            </StackPanel>
+            
         </Grid>
     </Grid>
 </Page>

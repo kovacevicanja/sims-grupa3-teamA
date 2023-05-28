@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,6 +23,7 @@ namespace BookingProject.View.OwnerViewModel
         public RelayCommand CancelCommand { get; }
         public RelayCommand MenuCommand { get; }
         public NavigationService NavigationService { get; set; }
+        public OwnerNotificationCustomBox box { get; set; }
         public NotGradedViewModel(NavigationService navigationService)
         {
             
@@ -35,7 +37,7 @@ namespace BookingProject.View.OwnerViewModel
             GradeCommand = new RelayCommand(Button_Grade, CanExecute);
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
-
+            box = new OwnerNotificationCustomBox(); 
             NavigationService = navigationService;
         }
         //private void selectedIndexChanged(object sender, EventArgs e)
@@ -60,6 +62,9 @@ namespace BookingProject.View.OwnerViewModel
                 //view.Show();
                 //CloseWindow();
                 NavigationService.Navigate(new GuestRateView(SelectedReservation, NavigationService));
+            } else
+            {
+                box.ShowCustomMessageBox("You need to select a guest you want to grade!");
             }
         }
         private void Button_Cancel(object param)

@@ -12,6 +12,7 @@ using System.Windows;
 using System.Xml.Linq;
 using BookingProject.Commands;
 using System.Windows.Navigation;
+using BookingProject.View.CustomMessageBoxes;
 
 namespace BookingProject.View.OwnerViewModel
 {
@@ -27,6 +28,7 @@ namespace BookingProject.View.OwnerViewModel
         public RelayCommand BackCommand { get; }
         public NavigationService NavigationService { get; set; }
         public String AvailabilityDisplay { get; set; }
+        public OwnerNotificationCustomBox box { get; set; }
 
         public OwnersApprovingDenyingRequestViewModel(RequestAccommodationReservation selectedMovingRequest, NavigationService navigationService)
         {
@@ -46,6 +48,7 @@ namespace BookingProject.View.OwnerViewModel
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             NavigationService = navigationService;
+            box = new OwnerNotificationCustomBox();
 
         }
         private bool CanExecute(object param) { return true; }
@@ -58,12 +61,16 @@ namespace BookingProject.View.OwnerViewModel
                 //SelectedMovingRequest.Status = RequestStatus.APPROVED;
                 _movingController.Update(SelectedMovingRequest);
                 _movingController.AcceptRequest(SelectedMovingRequest);
-                MessageBox.Show("You have moved a reservation from "+SelectedMovingRequest.AccommodationReservation.InitialDate.ToShortDateString()+" - "+ SelectedMovingRequest.AccommodationReservation.EndDate.ToShortDateString()
-                    + " to " + SelectedMovingRequest.NewArrivalDay.ToShortDateString() + " - " + SelectedMovingRequest.NewDeparuteDay.ToShortDateString());
+                box.ShowCustomMessageBox("You have moved a reservation from "+SelectedMovingRequest.AccommodationReservation.InitialDate.ToString("MM/dd") + " - "+ SelectedMovingRequest.AccommodationReservation.EndDate.ToString("MM/dd")
+                    + " to " + SelectedMovingRequest.NewArrivalDay.ToString("MM/dd") + " - " + SelectedMovingRequest.NewDeparuteDay.ToString("MM/dd"));
                 //var view = new OwnersRequestView();
                 //view.Show();
                 //CloseWindow();
                 NavigationService.Navigate(new OwnersRequestView(NavigationService));
+            } else
+            {
+                box.ShowCustomMessageBox("You don't have permission to accept this request!");
+                NavigationService.GoBack();
             }
         }
         private void Button_Click_Menu(object param)
@@ -85,6 +92,10 @@ namespace BookingProject.View.OwnerViewModel
             if (_movingController.PermissionToAcceptDenyRequest(SelectedMovingRequest))
             {
                 _movingController.Update(SelectedMovingRequest);
+                NavigationService.GoBack();
+            } else
+            {
+                box.ShowCustomMessageBox("You don't have permission to decline this request!");
                 NavigationService.GoBack();
             }
         }

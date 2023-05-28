@@ -2,6 +2,7 @@
 using BookingProject.Controller;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.View.CustomMessageBoxes;
 using BookingProject.View.OwnersView;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.WebPages;
 using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnersViewModel
@@ -22,6 +24,7 @@ namespace BookingProject.View.OwnersViewModel
         public AccommodationType chosenType { get; set; }
         public ObservableCollection<AccommodationType> accommodationTypes { get; set; }
         public AccommodationLocationController LocationController { get; set; }
+        public OwnerNotificationCustomBox messageBox { get; set; }
 
         public WizardAddAccommodationViewModel(NavigationService navigationService )
         {
@@ -30,6 +33,7 @@ namespace BookingProject.View.OwnersViewModel
             NavigationService = navigationService;
             AddImageCommand = new RelayCommand(Button_Click_Add_Image, CanExecute);
             LocationController = new AccommodationLocationController();
+            messageBox = new OwnerNotificationCustomBox();
         }
         private bool CanExecute(object param) { return true; }
 
@@ -91,8 +95,8 @@ namespace BookingProject.View.OwnersViewModel
             }
         }
 
-        private int _maxGuestNumber;
-        public int MaxGuestNumber
+        private int? _maxGuestNumber;
+        public int? MaxGuestNumber
         {
             get => _maxGuestNumber;
             set
@@ -104,8 +108,8 @@ namespace BookingProject.View.OwnersViewModel
                 }
             }
         }
-        private int _minNumberOfDays;
-        public int MinDays
+        private int? _minNumberOfDays;
+        public int? MinDays
         {
             get => _minNumberOfDays;
             set
@@ -117,8 +121,8 @@ namespace BookingProject.View.OwnersViewModel
                 }
             }
         }
-        private int _cancellationPeriod;
-        public int CancellationPeriod
+        private int? _cancellationPeriod;
+        public int? CancellationPeriod
         {
             get => _cancellationPeriod;
             set
@@ -137,12 +141,21 @@ namespace BookingProject.View.OwnersViewModel
         }
         private void Button_Click_Add_Image(object param)
         {
+            if (MaxGuestNumber == null || MinDays == null || AccommodationName.IsEmpty() || City.IsEmpty() || Country.IsEmpty())
+            {
+                messageBox.ShowCustomMessageBox("All fields must be filled!");
+                return;
+            }
+            if (CancellationPeriod == null)
+            {
+                CancellationPeriod = 1;
+            }
             Accommodation accommodation = new Accommodation();
             accommodation.AccommodationName = AccommodationName;
             accommodation.Type = chosenType;
-            accommodation.MaxGuestNumber = MaxGuestNumber;
-            accommodation.MinDays = MinDays;
-            accommodation.CancellationPeriod = CancellationPeriod;
+            accommodation.MaxGuestNumber = (int)MaxGuestNumber;
+            accommodation.MinDays = (int)MinDays;
+            accommodation.CancellationPeriod = (int)CancellationPeriod;
             accommodation.Owner.Id = SignInForm.LoggedInUser.Id;
 
             Location location = new Location();

@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controllers;
 using BookingProject.Domain;
+using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,15 +17,26 @@ namespace BookingProject.View.OwnerViewModel
     {
         private RequestAccommodationReservationController _requestController;
         public ObservableCollection<RequestAccommodationReservation> Requests { get; set; }
+        public ObservableCollection<RequestAccommodationReservation> DisplayedRequests { get; set; }
         public RequestAccommodationReservation SelectedMovingRequest { get; set; }
         public RelayCommand ViewCommand { get; }
         public RelayCommand MenuCommand { get; }
         public NavigationService NavigationService { get; set; }
+        public OwnerNotificationCustomBox box { get; set; }
         public OwnersRequestViewModel(NavigationService navigationService)
         {
             _requestController = new RequestAccommodationReservationController();
             int ownerId = SignInForm.LoggedInUser.Id;                                                                                                  
-            Requests = new ObservableCollection<RequestAccommodationReservation>(_requestController.GetAllRequestForOwner(ownerId));
+            DisplayedRequests = new ObservableCollection<RequestAccommodationReservation>(_requestController.GetAllRequestForOwner(ownerId));
+            Requests = new ObservableCollection<RequestAccommodationReservation>();
+            box = new OwnerNotificationCustomBox();
+            foreach(RequestAccommodationReservation r in DisplayedRequests)
+            {
+                if (r.AccommodationReservation.InitialDate > DateTime.Now)
+                {
+                    Requests.Add(r);
+                }
+            }
             ViewCommand = new RelayCommand(Button_Click_View, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
             NavigationService = navigationService;
@@ -34,6 +46,7 @@ namespace BookingProject.View.OwnerViewModel
         {
             if (SelectedMovingRequest == null)
             {
+                box.ShowCustomMessageBox("You need to select a request you want to see!");
                 return;
             }
             //OwnersApprovingDenyingRequestView view = new OwnersApprovingDenyingRequestView(SelectedMovingRequest);

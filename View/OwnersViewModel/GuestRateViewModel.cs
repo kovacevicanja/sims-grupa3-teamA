@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,11 +35,13 @@ namespace BookingProject.View.OwnerViewModel
         public RelayCommand MenuCommand { get; }
         public RelayCommand BackCommand { get; }
         public NavigationService NavigationService { get; set; }
+        public OwnerNotificationCustomBox box { get; set; }
         public GuestRateViewModel(AccommodationReservation selectedReservation, NavigationService navigationService)
         {
             GradeController = new GuestGradeController();
             _selectedReservation = new AccommodationReservation();
             _selectedReservation = selectedReservation;
+            box = new OwnerNotificationCustomBox();
             CleanlinessOption = new ObservableCollection<int>();
             CommunicationOption = new ObservableCollection<int>();
             ObservanceOption = new ObservableCollection<int>();
@@ -171,7 +174,7 @@ namespace BookingProject.View.OwnerViewModel
         {
             if(ChosenCleanliness ==0 || ChosenCommunication==0 || ChosenDecency==0 || ChosenNoisiness==0 || ChosenObservance==0)
             {
-                MessageBox.Show("You must select one of dropdown options for grade!");
+                box.ShowCustomMessageBox("You must select one of dropdown options for grade!");
                 return;
             }
             GuestGrade grade = new GuestGrade();
@@ -184,7 +187,7 @@ namespace BookingProject.View.OwnerViewModel
             grade.AccommodationReservation.Id = _selectedReservation.Id;
 
             GradeController.Create(grade);
-            MessageBox.Show("You have rated a guest!");
+            box.ShowCustomMessageBox("You have rated a guest!");
             //var view = new NotGradedView();
             //view.Show();
 

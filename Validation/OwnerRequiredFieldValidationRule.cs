@@ -8,25 +8,15 @@ using System.Windows.Controls;
 
 namespace BookingProject.Validation
 {
-    public class OwnerIntegerNumberValidationRule : ValidationRule
+    public class OwnerRequiredFieldValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-
-            if (string.IsNullOrEmpty((string)value))
+            if (string.IsNullOrEmpty((value ?? "").ToString()))
             {
                 return new ValidationResult(false, "*");
             }
 
-            if (!int.TryParse((string)value, out int intValue))
-            {
-                return new ValidationResult(false, "This has to be a number!");
-            }
-
-            if (intValue <= 0)
-            {
-                return new ValidationResult(false, "Cannot be negative!");
-            }
             return ValidationResult.ValidResult;
         }
     }

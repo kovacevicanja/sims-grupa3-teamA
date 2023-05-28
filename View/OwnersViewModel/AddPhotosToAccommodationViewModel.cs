@@ -2,6 +2,7 @@
 using BookingProject.Controller;
 using BookingProject.ConversionHelp;
 using BookingProject.Model.Images;
+using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,10 +20,10 @@ namespace BookingProject.View.OwnerViewModel
     {
         public AccommodationImageController _imageController;
         public RelayCommand AddCommand { get; }
-        public RelayCommand CloseCommand { get; }
         public RelayCommand MenuCommand { get; }
         public NavigationService NavigationService { get; set; }
         public RelayCommand BackCommand { get; set; }
+        public OwnerNotificationCustomBox box { get; set; }
 
         public AddPhotosToAccommodationViewModel(NavigationService navigationService)
         {
@@ -30,8 +31,8 @@ namespace BookingProject.View.OwnerViewModel
             //_imageController = app.AccommodationImageController;
             _imageController = new AccommodationImageController();
             AddCommand = new RelayCommand(Button_Click_Add, CanExecute);
-            CloseCommand = new RelayCommand(CancelButton_Click, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
+            box = new OwnerNotificationCustomBox();
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             NavigationService = navigationService;
         }
@@ -73,6 +74,8 @@ namespace BookingProject.View.OwnerViewModel
             //var view = new OwnerssView();
             //view.Show();
             //CloseWindow();
+            if (!isAdded) { box.ShowCustomMessageBox("You need to add at least one image!"); return; }
+            box.ShowCustomMessageBox("You have added " + numberOfPhotos + " images!");
             NavigationService.GoBack();
         }
 
@@ -81,16 +84,20 @@ namespace BookingProject.View.OwnerViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        private bool isAdded = false;
+        private int numberOfPhotos = 0;
         public void Button_Click_Add(object param)
         {
             AccommodationImage image = new AccommodationImage();
             image.Url = Url;
             if (image.Url.IsEmpty())
             {
-                MessageBox.Show("Photo url can not be empty!");
+                box.ShowCustomMessageBox("Photo url can not be empty!");
+                return;
             } else
             {
+                numberOfPhotos++;
+                isAdded = true;
                 _imageController.Create(image);
                 Url = string.Empty;
                 //OnPropertyChanged(nameof(Url));
@@ -103,10 +110,6 @@ namespace BookingProject.View.OwnerViewModel
             //_imageController.SaveImage();
         }
 
-        private void CancelButton_Click(object param)
-        {
-            NavigationService.GoBack();
-        }
         private void CloseWindow()
         {
             foreach (Window window in App.Current.Windows)

@@ -24,7 +24,7 @@ namespace BookingProject.View.OwnersViewModel
         public RelayCommand AddCommand { get; }
         public RelayCommand NextCommand { get; }
         public RelayCommand BackCommand { get; }
-        public OwnerCustomMessageBox OwnerCustomMessageBox { get; set; }
+        public OwnerNotificationCustomBox OwnerCustomMessageBox { get; set; }
         public AccommodationImageController _imageController;
         public AccommodationImageController ImageController { get; set; }
         public WizardAddImageViewModel(Accommodation forwardedAcc, NavigationService navigationService) {
@@ -35,7 +35,7 @@ namespace BookingProject.View.OwnersViewModel
             AddCommand = new RelayCommand(Button_Click_Add, CanExecute);
             NextCommand = new RelayCommand(Button_Click_Next, CanExecute);
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
-            OwnerCustomMessageBox = new OwnerCustomMessageBox();
+            OwnerCustomMessageBox = new OwnerNotificationCustomBox();
         }
         private void Button_Click_Back(object param)
         {
@@ -73,6 +73,8 @@ namespace BookingProject.View.OwnersViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        private bool isAdded = false;
+        int numberOfPhotos = 0;
         public void Button_Click_Add(object param)
         {
             AccommodationImage image = new AccommodationImage();
@@ -81,9 +83,12 @@ namespace BookingProject.View.OwnersViewModel
             if (image.Url.IsEmpty())
             {
                 OwnerCustomMessageBox.ShowCustomMessageBox("Photo url can not be empty!");
+                return;
             }
             else
             {
+                numberOfPhotos++;
+                isAdded = true;
                 _imageController.Create(image);
                 Url = string.Empty;
                 //OnPropertyChanged(nameof(Url));
@@ -95,6 +100,8 @@ namespace BookingProject.View.OwnersViewModel
         }
         public void Button_Click_Next(object param)
         {
+            if (!isAdded) { OwnerCustomMessageBox.ShowCustomMessageBox("You need to add at least one image!"); return; }
+            OwnerCustomMessageBox.ShowCustomMessageBox("You have added " + numberOfPhotos + " images!");
             ImageController.LinkToAccommodation(ForwardedAcc.Id);
             ImageController.SaveImage();
             NavigationService.Navigate(new WizardFinalConfirmationView(ForwardedAcc, NavigationService));
