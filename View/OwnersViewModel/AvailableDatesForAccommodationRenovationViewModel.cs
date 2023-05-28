@@ -22,6 +22,7 @@ namespace BookingProject.View.OwnersViewModel
         public Accommodation SelectedAccommodation { get; set; }
         public AccommodationRenovationController _renovationController { get; set; }
         public RelayCommand ScheduleRenovationCommand { get; set; }
+        public RelayCommand BackCommand { get; set; }
         public Tuple<DateTime, DateTime> SelectedDatePair { get; set; }
         public NavigationService NavigationService { get; set; }
         public AvailableDatesForAccommodationRenovationViewModel(Accommodation selectedAccommodation, ObservableCollection<Tuple<DateTime, DateTime>> availableDates, NavigationService navigationService)
@@ -30,7 +31,13 @@ namespace BookingProject.View.OwnersViewModel
             _renovationController = new AccommodationRenovationController();
             AvailableDatesPair = availableDates;
             ScheduleRenovationCommand = new RelayCommand(Button_Click_Schedule, CanExecute);
+            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             NavigationService = navigationService;
+        }
+
+        private void Button_Click_Back(object param)
+        {
+            NavigationService.GoBack();
         }
         private void Button_Click_Schedule(object param)
         {

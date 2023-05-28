@@ -87,7 +87,7 @@
             
 
             <TabControl Margin="30 40 30 0" Height="500" Background="Transparent" BorderBrush="Transparent">
-                <TabItem x:Name="LastRenovations" Header="Previous" Style="{DynamicResource TabItemStyle}" Width="50" Height="20">
+                <TabItem x:Name="LastRenovations" Header="Previous" Style="{DynamicResource TabItemStyle}" Width="50" Height="20" FontWeight="Bold">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="200"></RowDefinition>
@@ -156,12 +156,12 @@
                                 </ListView>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <Button Width="100" Margin="0,20,0,0" Height="30" HorizontalAlignment="Center" Content="Add renovation"   Command="{Binding AddRenovationCommand}">
+                                <Button FontWeight="bold" Width="100" Margin="0,20,0,0" Height="30" HorizontalAlignment="Center" Content="Add renovation"   Command="{Binding AddRenovationCommand}">
                                     <Button.Style>
                                         <Style TargetType="Button">
                                             <Setter Property="Background" Value="#FF0F4E7A" />
                                             <Setter Property="Foreground" Value="Black" />
-                                            <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                                            <Setter Property="BorderBrush" Value="black" />
                                             <Setter Property="BorderThickness" Value="2" />
                                             <Setter Property="Padding" Value="10" />
                                             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -177,12 +177,12 @@
                                                         </Border>
                                                         <ControlTemplate.Triggers>
                                                             <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Background" Value="#b7d1e0"/>
+                                                                <Setter Property="Background" Value="#FF0F4E7A"/>
                                                                 <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                                             </Trigger>
                                                             <Trigger Property="IsPressed" Value="True">
                                                                 <Setter Property="Background" Value="#FF0F4E7A"/>
-                                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                                                <Setter Property="BorderBrush" Value="black"/>
                                                             </Trigger>
                                                             <Trigger Property="IsEnabled" Value="False">
                                                                 <Setter Property="Background" Value="#b7d1e0"/>
@@ -201,7 +201,7 @@
 
 
                     </TabItem>
-                <TabItem x:Name="FutureRenovations" Header="Upcoming" Style="{DynamicResource TabItemStyle}" Width="60" Height="20">
+                <TabItem x:Name="FutureRenovations" Header="Upcoming" Style="{DynamicResource TabItemStyle}" Width="60" Height="20" FontWeight="Bold">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="200"></RowDefinition>
@@ -270,12 +270,12 @@
                                 </ListView>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <Button Width="110" Margin="0,20,0,0" Height="30" HorizontalAlignment="Center" Content="Cancel renovation"   Command="{Binding CancelRenovationCommand}" IsEnabled="{Binding ElementName=FutureRenovations, Path=IsSelected}">
+                                <Button FontWeight="Bold" Width="110" Margin="0,20,0,0" Height="30" HorizontalAlignment="Center" Content="Cancel renovation"   Command="{Binding CancelRenovationCommand}" IsEnabled="{Binding ElementName=FutureRenovations, Path=IsSelected}">
                                     <Button.Style>
                                         <Style TargetType="Button">
                                             <Setter Property="Background" Value="#FF0F4E7A" />
                                             <Setter Property="Foreground" Value="Black" />
-                                            <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                                            <Setter Property="BorderBrush" Value="Black" />
                                             <Setter Property="BorderThickness" Value="2" />
                                             <Setter Property="Padding" Value="10" />
                                             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -291,15 +291,15 @@
                                                         </Border>
                                                         <ControlTemplate.Triggers>
                                                             <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Background" Value="#b7d1e0"/>
+                                                                <Setter Property="Background" Value="#FF0F4E7A"/>
                                                                 <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                                             </Trigger>
                                                             <Trigger Property="IsPressed" Value="True">
                                                                 <Setter Property="Background" Value="#FF0F4E7A"/>
-                                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                                                <Setter Property="BorderBrush" Value="black"/>
                                                             </Trigger>
                                                             <Trigger Property="IsEnabled" Value="False">
-                                                                <Setter Property="Background" Value="#b7d1e0"/>
+                                                                <Setter Property="Background" Value="#FF0F4E7A"/>
                                                                 <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                                             </Trigger>
                                                         </ControlTemplate.Triggers>

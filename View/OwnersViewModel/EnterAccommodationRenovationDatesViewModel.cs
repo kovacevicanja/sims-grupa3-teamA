@@ -25,6 +25,10 @@ namespace BookingProject.View.OwnersViewModel
         public RelayCommand ShowCommand { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
         public NavigationService NavigationService { get; set; }
+        public RelayCommand BackCommand
+        {
+            get; set;
+        }
 
         public EnterAccommodationRenovationDatesViewModel(Accommodation selectedAccommodation, NavigationService navigationService)
         {
@@ -33,7 +37,12 @@ namespace BookingProject.View.OwnersViewModel
             _renovationController = new AccommodationRenovationController();
             _reservationController = new AccommodationReservationController();
             ShowCommand = new RelayCommand(Button_Click_Show, CanExecute);
+            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             NavigationService = navigationService;
+        }
+        private void Button_Click_Back(object param)
+        {
+            NavigationService.GoBack();
         }
         private bool CanExecute(object param) { return true; }
 

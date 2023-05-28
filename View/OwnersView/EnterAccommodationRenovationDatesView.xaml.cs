@@ -28,5 +28,10 @@ namespace BookingProject.View.OwnersView
             InitializeComponent();
             this.DataContext = new EnterAccommodationRenovationDatesViewModel(selectedAccommodation, navigationService);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

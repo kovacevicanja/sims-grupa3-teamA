@@ -41,12 +41,12 @@
                                 <TextBlock Text="{Binding Location.City}" FontSize="18" FontWeight="Bold" Foreground="Gray" />
                                 <TextBlock Text="{Binding Location.Country}" FontSize="18" FontWeight="Bold" Foreground="Gray" />
                                 <TextBlock Text="{Binding Type}" FontSize="18" FontWeight="Bold" Foreground="Gray" />
-                                <Button Content="Show more" Width="70" HorizontalAlignment="Left" Click="Button_Click">
+                                <Button Content="Show more" Width="70" HorizontalAlignment="Left" Click="Button_Click" FontWeight="Bold">
                                     <Button.Style>
                                         <Style TargetType="Button">
                                             <Setter Property="Background" Value="#FF0F4E7A" />
                                             <Setter Property="Foreground" Value="Black" />
-                                            <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                                            <Setter Property="BorderBrush" Value="black" />
                                             <Setter Property="BorderThickness" Value="2" />
                                             <Setter Property="Padding" Value="10" />
                                             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -111,12 +111,12 @@
             </ListView>
 
 
-            <Button  Command="{Binding CloseCommand}" Content="Add accommodations" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Width="120" Margin="30,30,30,30">
+            <Button FontWeight="Bold" Command="{Binding CloseCommand}" Content="Add accommodations" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Width="120" Margin="30,30,30,30">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#FF0F4E7A" />
                         <Setter Property="Foreground" Value="Black" />
-                        <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                        <Setter Property="BorderBrush" Value="Black" />
                         <Setter Property="BorderThickness" Value="2" />
                         <Setter Property="Padding" Value="10" />
                         <Setter Property="HorizontalAlignment" Value="Center" />

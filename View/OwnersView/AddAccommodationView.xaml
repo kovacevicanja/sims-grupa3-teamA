@@ -247,12 +247,12 @@
                     </Validation.ErrorTemplate>
                 </TextBox>
                 <Button Grid.Row="7" Grid.Column="1" Content="Add image"
-                    IsDefault="True"  Height="30" Width="130" Command="{Binding AddImageCommand}" >
+                    IsDefault="True"  Height="30" Width="125" FontWeight="bold" Command="{Binding AddImageCommand}" >
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#FF0F4E7A" />
                             <Setter Property="Foreground" Value="Black" />
-                            <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                            <Setter Property="BorderBrush" Value="Black" />
                             <Setter Property="BorderThickness" Value="2" />
                             <Setter Property="Padding" Value="10" />
                             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -287,14 +287,14 @@
                     </Button.Style>
                 </Button>
             </Grid>
-            <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.ColumnSpan="3" Height="30"  >
-                <Button Content="Add accommodation" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Command="{Binding AddAccommodationCommand}">
+            <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.ColumnSpan="3" Height="40"  >
+                <Button Content="Add accommodation" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"
+               Command="{Binding AddAccommodationCommand}" Height="30">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#FF0F4E7A" />
                             <Setter Property="Foreground" Value="Black" />
-                            <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                            <Setter Property="BorderBrush" Value="Black" />
                             <Setter Property="BorderThickness" Value="2" />
                             <Setter Property="Padding" Value="10" />
                             <Setter Property="HorizontalAlignment" Value="Center" />

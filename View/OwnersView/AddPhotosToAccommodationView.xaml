@@ -44,13 +44,13 @@
 
             <Label  Grid.Column="1" Margin="0,0,0,400" Height="30" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center">Photo url:</Label>
             <TextBox Text="{Binding Path=Url, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="300" Margin="0,0,0,300"/>
-            <Button Content="Add" IsDefault="True" 
+            <Button Content="Add" IsDefault="True" FontWeight="Bold"
               Command="{Binding AddCommand}" Height="26" Width="51" Margin="0,0,0,150">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#FF0F4E7A" />
                         <Setter Property="Foreground" Value="Black" />
-                        <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                        <Setter Property="BorderBrush" Value="black" />
                         <Setter Property="BorderThickness" Value="2" />
                         <Setter Property="Padding" Value="10" />
                         <Setter Property="HorizontalAlignment" Value="Center" />

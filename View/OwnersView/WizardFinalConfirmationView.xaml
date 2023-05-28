@@ -51,7 +51,7 @@
                 Stroke="Black"
                 StrokeThickness="2"
                 Fill="#FF0F4E7A"/>
-            <TextBlock Margin="37,-33,0,0" Text="1              2              3" FontSize="25" FontWeight="Bold"></TextBlock>
+            <TextBlock Margin="37,-33,0,0" Text="                                3" FontSize="25" FontWeight="Bold"></TextBlock>
             <TextBlock Margin="37,-33,0,0" Text="1              2              " FontSize="25" FontWeight="Bold" Foreground="#FF0F4E7A"></TextBlock>
         </StackPanel>
         <Grid Grid.Row="1" Background="Transparent">
@@ -62,7 +62,7 @@
                 <Image Stretch="Fill" Source="{Binding SelectedAccommodation.Images[0].Url}" Margin="0,-40,0,0" Height="180" Width="180"/>
             </Border>
             <StackPanel Orientation="Horizontal" Margin="0,200,0,0" HorizontalAlignment="Center">
-                <TextBlock Text="Name: " HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
+                <TextBlock Text="Name: "  HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
                 <TextBlock Text="{Binding SelectedAccommodation.AccommodationName}" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
             </StackPanel>
 
@@ -105,7 +105,7 @@
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="#FF0F4E7A"/>
-                                            <Setter Property="BorderBrush" Value="black"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                         </Trigger>
                                         <Trigger Property="IsPressed" Value="True">
                                             <Setter Property="Background" Value="#FF0F4E7A"/>
@@ -144,7 +144,7 @@
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="#FF0F4E7A"/>
-                                            <Setter Property="BorderBrush" Value="black"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                         </Trigger>
                                         <Trigger Property="IsPressed" Value="True">
                                             <Setter Property="Background" Value="#FF0F4E7A"/>

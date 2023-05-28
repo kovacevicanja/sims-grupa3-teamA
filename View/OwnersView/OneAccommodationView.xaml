@@ -42,7 +42,7 @@
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#FF0F4E7A" />
                         <Setter Property="Foreground" Value="Black" />
-                        <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                        <Setter Property="BorderBrush" Value="black" />
                         <Setter Property="BorderThickness" Value="2" />
                         <Setter Property="Padding" Value="10" />
                         <Setter Property="HorizontalAlignment" Value="Center" />

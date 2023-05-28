@@ -109,12 +109,12 @@
                 
                 <TextBox Height="70" Margin="0 12 0 0" Width="250" BorderBrush="#FF0F4E7A"  Text="{Binding RenovationDescription}"></TextBox>
             </StackPanel>
-            <Button Width="60" Height="30" Margin="0,420,0,0" Command="{Binding ScheduleRenovationCommand}" Content="Schedule">
+            <Button Width="60" Height="30" FontWeight="Bold" Margin="0,420,0,0" Command="{Binding ScheduleRenovationCommand}" Content="Schedule">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#FF0F4E7A" />
                         <Setter Property="Foreground" Value="Black" />
-                        <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                        <Setter Property="BorderBrush" Value="Black" />
                         <Setter Property="BorderThickness" Value="2" />
                         <Setter Property="Padding" Value="10" />
                         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -130,15 +130,15 @@
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#b7d1e0"/>
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
                                             <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                         </Trigger>
                                         <Trigger Property="IsPressed" Value="True">
                                             <Setter Property="Background" Value="#FF0F4E7A"/>
-                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="black"/>
                                         </Trigger>
                                         <Trigger Property="IsEnabled" Value="False">
-                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="Background" Value="#b7d1e0"/>
                                             <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>

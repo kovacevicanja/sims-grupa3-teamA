@@ -48,7 +48,7 @@
             <Button Name="back" Width="40" Height="30" BorderBrush="Transparent" Background="Transparent" Command="{Binding BackCommand}">
                 <Image Source="/Resources/Images/OwnerImages/backArrow.png"/>
             </Button>
-            <Label Margin="0 5 0 0" FontSize="20" FontWeight="Bold" Foreground="Black">Guests</Label>
+            <Label Margin="0 5 0 0" FontSize="20" FontWeight="Bold" Foreground="Black">Requests</Label>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -69,13 +69,13 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Grid.Row="0" FontSize="14" Width="155">Accommodation Name: </Label>
+                <Label Grid.Row="0" FontSize="14" Width="160" FontWeight="SemiBold">Accommodation Name: </Label>
                     <TextBox Grid.Row="0" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"
                      Text="{Binding Path=SelectedMovingRequest.AccommodationReservation.Accommodation.AccommodationName}"
                      IsEnabled="False" FontSize="14"></TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Grid.Row="1" FontSize="14" Width="90">Guest Name:</Label>
+                    <Label Grid.Row="1" FontSize="14" FontWeight="SemiBold">Guest Name:</Label>
                     <TextBox Grid.Row="1" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"
                      Text="{Binding Path=SelectedMovingRequest.AccommodationReservation.Guest.Name}"
                       IsEnabled="False" FontSize="14"></TextBox>
@@ -84,38 +84,38 @@
                       IsEnabled="False" FontSize="14"></TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Grid.Row="2" FontSize="14" Width="125">Wanted Start Date:</Label>
+                    <Label Grid.Row="2" FontSize="14" FontWeight="SemiBold">Wanted Start Date:</Label>
                     <TextBox Grid.Row="2" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"
                      Text="{Binding Path=SelectedMovingRequest.NewArrivalDay,  StringFormat='{}{0:dd/MM/yy}'}"
                      IsEnabled="False" FontSize="14"></TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Grid.Row="3"  FontSize="14" Width="120">Wanted End Date:</Label>
+                    <Label Grid.Row="3"  FontSize="14" FontWeight="SemiBold">Wanted End Date:</Label>
                     <TextBox Grid.Row="3" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"
                      Text="{Binding Path=SelectedMovingRequest.NewDeparuteDay,  StringFormat='{}{0:dd/MM/yy}'}"
                      IsEnabled="False" FontSize="14"></TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Grid.Row="4"  FontSize="14" Width="125">Current Start Date:</Label>
+                    <Label Grid.Row="4"  FontSize="14" FontWeight="SemiBold">Current Start Date:</Label>
                     <TextBox Grid.Row="4" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"
                      Text="{Binding Path=SelectedMovingRequest.AccommodationReservation.InitialDate,  StringFormat='{}{0:dd/MM/yy}'}"
                      IsEnabled="False" FontSize="14"></TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Grid.Row="5"  FontSize="14" Width="120">Current End Date:</Label>
+                    <Label Grid.Row="5"  FontSize="14" FontWeight="SemiBold">Current End Date:</Label>
                     <TextBox Grid.Row="5" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"
                      Text="{Binding Path=SelectedMovingRequest.AccommodationReservation.EndDate,  StringFormat='{}{0:dd/MM/yy}'}"
                      IsEnabled="False" FontSize="14"></TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Grid.Row="6"  FontSize="14" Width="80">Availability</Label>
+                    <Label Grid.Row="6"  FontSize="14" FontWeight="SemiBold">Availability</Label>
                     <TextBox Grid.Row="6"  Width="90" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"
                      Text="{Binding Path=AvailabilityDisplay}"
                       IsEnabled="False" FontSize="14"></TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <Label Grid.Row="7" FontSize="14" Width="75">Comment:</Label>
-                    <TextBox x:Name ="Comment" TextChanged="Comment_TextChanged" Grid.Row="7" FontSize="14"  Width="200" Background="Transparent" BorderBrush="Black"
+                    <Label Grid.Row="7" FontSize="14" FontWeight="SemiBold">Comment:</Label>
+                    <TextBox x:Name ="Comment" TextChanged="Comment_TextChanged" BorderThickness="2" Grid.Row="7" FontSize="14"  Width="200" Background="Transparent" BorderBrush="Black"
                      Text="{Binding Path=SelectedMovingRequest.OwnerComment, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      ></TextBox>
@@ -130,12 +130,12 @@
                 </StackPanel>
                 <StackPanel Grid.Row="8">
                 <Button x:Name ="Button_Comment" Content="Accept" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,200,0,0"
-               Command="{Binding AcceptCommand}"  Width="46" >
+               Command="{Binding AcceptCommand}"  Width="46" FontWeight="Bold">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#FF0F4E7A" />
                                 <Setter Property="Foreground" Value="Black" />
-                                <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                                <Setter Property="BorderBrush" Value="black" />
                                 <Setter Property="BorderThickness" Value="2" />
                                 <Setter Property="Padding" Value="10" />
                                 <Setter Property="HorizontalAlignment" Value="Center" />
@@ -151,17 +151,17 @@
                                             </Border>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="#b7d1e0"/>
-                                                    <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
-                                                </Trigger>
-                                                <Trigger Property="IsPressed" Value="True">
-                                                    <Setter Property="Background" Value="#FF0F4E7A"/>
-                                                    <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
-                                                </Trigger>
-                                                <Trigger Property="IsEnabled" Value="False">
-                                                    <Setter Property="Background" Value="Gray"/>
-                                                    <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
-                                                </Trigger>
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="black"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Background" Value="#b7d1e0"/>
+                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                        </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
                                     </Setter.Value>
@@ -170,12 +170,12 @@
                         </Button.Style>
                     </Button>
                     <Button  Content="Decline" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"
-                Command="{Binding DeclineCommand}" Width="49" Grid.Row="1">
+                Command="{Binding DeclineCommand}" Width="49" Grid.Row="1" FontWeight="Bold">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#FF0F4E7A" />
                                 <Setter Property="Foreground" Value="Black" />
-                                <Setter Property="BorderBrush" Value="#FF0F4E7A" />
+                                <Setter Property="BorderBrush" Value="black" />
                                 <Setter Property="BorderThickness" Value="2" />
                                 <Setter Property="Padding" Value="10" />
                                 <Setter Property="HorizontalAlignment" Value="Center" />
@@ -191,16 +191,16 @@
                                             </Border>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="#b7d1e0"/>
+                                                    <Setter Property="Background" Value="#FF0F4E7A"/>
                                                     <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                                 </Trigger>
                                                 <Trigger Property="IsPressed" Value="True">
                                                     <Setter Property="Background" Value="#FF0F4E7A"/>
-                                                    <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                                    <Setter Property="BorderBrush" Value="black"/>
                                                 </Trigger>
                                                 <Trigger Property="IsEnabled" Value="False">
-                                                    <Setter Property="Background" Value="Red"/>
-                                                    <Setter Property="BorderBrush" Value="Red"/>
+                                                    <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                    <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
