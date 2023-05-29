@@ -17,5 +17,6 @@ namespace BookingProject.Services.Interfaces
         void Save(List<ForumComment> comments);
         void SaveComment();
         List<ForumComment> GetAllForForum(int forumId);
+        void Update(ForumComment comment);
     }
 }

@@ -1,5 +1,7 @@
-﻿using BookingProject.Domain;
+﻿using BookingProject.Controllers;
+using BookingProject.Domain;
 using BookingProject.Model;
+using BookingProject.View.CustomMessageBoxes;
 using BookingProject.View.OwnersViewModel;
 using System;
 using System.Collections.Generic;
@@ -23,10 +25,21 @@ namespace BookingProject.View.OwnersView
     /// </summary>
     public partial class OneForumView : Page
     {
+        public ForumCommentController ForumCommentController { get; set; }
+        public OwnerNotificationCustomBox box { get; set; }
         public OneForumView(Forum selectedForum, NavigationService navigationService)
         {
             InitializeComponent();
             this.DataContext = new OneForumViewModel(selectedForum, navigationService);
+            ForumCommentController = new ForumCommentController();
+            box = new OwnerNotificationCustomBox();
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var comment = ((Button)sender).DataContext as ForumComment;
+            comment.NumberOfReports++;
+            ForumCommentController.Update(comment);
+            box.ShowCustomMessageBox("You have reported a comment!");
         }
     }
 }

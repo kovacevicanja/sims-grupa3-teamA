@@ -42,6 +42,11 @@ namespace BookingProject.Controllers
         {
             return _commentService.GetAllForForum(forumId);
         }
-        
+        public void Update(ForumComment comment)
+        {
+            _commentService.Update(comment);
+        }
+
+
     }
 }

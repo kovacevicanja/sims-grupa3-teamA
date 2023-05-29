@@ -54,6 +54,16 @@ namespace BookingProject.Services.Implementations
             return comm;
         }
 
-
+        public void Update(ForumComment comment)
+        {
+            ForumComment oldComment = _commentRepository.GetById(comment.Id);
+            if (oldComment == null)
+            {
+                return;
+            }
+            oldComment.NumberOfReports = comment.NumberOfReports;
+            
+            SaveComment();
+        }
     }
 }

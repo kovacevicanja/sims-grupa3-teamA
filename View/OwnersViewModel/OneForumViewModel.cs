@@ -53,6 +53,9 @@ namespace BookingProject.View.OwnersViewModel
             forumComment.Forum = Forum;
             forumComment.User = UserController.GetLoggedUser();
             forumComment.IsOwners = true;
+            forumComment.IsGuests = false;
+            forumComment.IsInvalid = false;
+            forumComment.NumberOfReports = 0;
 
             CommentController.Create(forumComment);
             this.Comments.Add(forumComment);

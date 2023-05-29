@@ -15,6 +15,9 @@ namespace BookingProject.Domain
         public User User { get; set; }
         public Forum Forum { get; set; }
         public bool IsOwners { get; set; }
+        public bool IsGuests { get; set; }
+        public bool IsInvalid { get; set; }
+        public int NumberOfReports { get; set; }
         public ForumComment() {
             User = new User();
             Forum = new Forum();
@@ -27,6 +30,9 @@ namespace BookingProject.Domain
             User.Id = int.Parse(values[2]);
             Forum.Id = int.Parse(values[3]);
             IsOwners = bool.Parse(values[4]);   
+            IsGuests = bool.Parse(values[5]);   
+            IsInvalid = bool.Parse(values[6]);
+            NumberOfReports= int.Parse(values[7]);
         }
 
         public string[] ToCSV()
@@ -37,7 +43,10 @@ namespace BookingProject.Domain
                 Text,
                 User.Id.ToString(),
                 Forum.Id.ToString(),
-                IsOwners.ToString()
+                IsOwners.ToString(),
+                IsGuests.ToString(),
+                IsInvalid.ToString(),
+                NumberOfReports.ToString()
             };
             return csvValues;
         }

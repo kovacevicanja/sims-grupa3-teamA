@@ -72,9 +72,68 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding User.Name}" FontSize="10" FontWeight="Bold" Foreground="Gray" />
                                     <Image Width="13" Height="13" Source="/Resources/Images/OwnerImages/star1.png"  Visibility="{Binding IsOwners, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    <StackPanel Visibility="{Binding IsGuests, Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" Margin="140,0,0,0">
+                                            <TextBlock Text="Number of Reports: " FontSize="10" FontWeight="Bold" Foreground="Gray" ></TextBlock>
+                                            <TextBlock Text="{Binding NumberOfReports}" FontSize="10" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                        </StackPanel>
+
+                                       
+                                    </StackPanel>
                                 </StackPanel>
-                                <Border BorderThickness="1" BorderBrush="#FF0F4E7A" Height="30">
-                                    <TextBlock Text="{Binding Text}" FontSize="14" FontWeight="Bold" Foreground="#FF0F4E7A" Margin="0,0,0,0" TextWrapping="Wrap"/>
+                                <Border BorderThickness="1" BorderBrush="#FF0F4E7A" Height="30" Width="280">
+                                    <Grid>
+                                        <TextBlock Text="{Binding Text}" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Foreground="#FF0F4E7A"/>
+                                        <StackPanel Visibility="{Binding IsGuests, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                            <Button ToolTipService.ShowDuration="5000" FontSize="9" FontWeight="Bold" Content="Report" Margin="0,20,0,0" Height="15" Click="Button_Click" Width="40" Visibility="{Binding IsInvalid, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                <Button.ToolTip>
+                                                    <ToolTip Content="You can report a comment &#x0a; if it's from a guest who has &#x0a; never been on this location!"  Style="{StaticResource CustomTooltipStyle}">
+
+                                                    </ToolTip>
+                                                </Button.ToolTip>
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Setter Property="Background" Value="Red" />
+                                                        <Setter Property="Foreground" Value="Black" />
+                                                        <Setter Property="BorderBrush" Value="black" />
+                                                        <Setter Property="BorderThickness" Value="2" />
+                                                        <Setter Property="Padding" Value="10" />
+                                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                    </Border>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="red"/>
+                                                                            <Setter Property="BorderBrush" Value="red"/>
+                                                                        </Trigger>
+                                                                        <Trigger Property="IsPressed" Value="True">
+                                                                            <Setter Property="Background" Value="red"/>
+                                                                            <Setter Property="BorderBrush" Value="black"/>
+                                                                        </Trigger>
+                                                                        <Trigger Property="IsEnabled" Value="False">
+                                                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                                                        </Trigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                        </StackPanel>
+                                        
+
+                                        
+                                    </Grid>
                                 </Border>
                                
                             </StackPanel>
