@@ -8,7 +8,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="MyToursWindow" Height="515" Width="1105">
+        Title="MyToursWindow" Height="515" Width="1105"
+    Style="{DynamicResource MyWindowStyle}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Create">
             <i:InvokeCommandAction Command="{Binding CreateCommand}" />

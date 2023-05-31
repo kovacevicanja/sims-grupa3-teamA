@@ -8,7 +8,8 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="GuestListView" Height="490" Width="300">
+        Title="GuestListView" Height="490" Width="300"
+    Style="{DynamicResource MyWindowStyle}">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Mark">

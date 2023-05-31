@@ -7,7 +7,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="GuestReviewsWindow" Height="480" Width="615">
+        Title="GuestReviewsWindow" Height="480" Width="615"
+        Style="{DynamicResource MyWindowStyle}">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Enter">
@@ -70,7 +71,7 @@
             <Label  Content="Select grade to examine: "  FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Button Margin="313,59,62,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding CancelCommand}" Content="   Close &#xA;    (Esc)" Height="46"/>
-        <Border BorderBrush="Black" BorderThickness="5" Margin="10,40,25,0">
+        <Border  BorderThickness="5" Margin="10,40,25,0">
             <Label Content="Options"  FontWeight="Bold" FontSize="22" Margin="30,-51,445,101"/>
         </Border>
 

@@ -6,13 +6,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="EnterDate" Height="180" Width="500" >
+        Title="EnterDate" Height="180" Width="500" 
+        Style="{DynamicResource MyWindowStyle}">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
                 <!-- Placeholder for the TextBox itself -->
                 <AdornedElementPlaceholder x:Name="textBox" />
-                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="GhostWhite"/>
             </StackPanel>
 
         </ControlTemplate>

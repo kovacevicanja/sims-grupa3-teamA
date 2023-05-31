@@ -7,13 +7,14 @@
         xmlns:local="clr-namespace:BookingProject.View.GuideView" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="AllTourRequestsView" Height="520" Width="1105">
+        Title="AllTourRequestsView" Height="520" Width="1105"
+        Style="{DynamicResource MyWindowStyle}">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
                 <!-- Placeholder for the TextBox itself -->
                 <AdornedElementPlaceholder x:Name="textBox" />
-                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="GhostWhite" />
             </StackPanel>
 
         </ControlTemplate>

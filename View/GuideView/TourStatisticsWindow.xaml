@@ -49,7 +49,7 @@
             <Button Width="168" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding YCommand}" Content="Change year &#xa;        (Y)" Height="46"/>
             <Button Width="150" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="Close &#xa; (Esc)" Height="46"/>
         </WrapPanel>
-        <Border BorderBrush="Black" BorderThickness="4" Margin="20,45,0,26" HorizontalAlignment="Left" Width="760"/>
+        <Border BorderThickness="4" Margin="20,45,0,26" HorizontalAlignment="Left" Width="760"/>
         <Label Content="Options"  FontWeight="Bold" FontSize="22" Margin="40,0,625,110"/>
         <Grid Grid.Row="1">
             <DataGrid

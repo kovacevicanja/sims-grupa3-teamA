@@ -2,8 +2,37 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="LightStyle" TargetType="Window">
-        <Setter Property="Background" Value="SeaGreen" />
-        <!-- Additional setters and triggers for main window style -->
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="../Resources/Images/GuideImages/lightsea.jpg" />
+            </Setter.Value>
+        </Setter>
+
+        <Style.Resources>
+            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Background" Value="Goldenrod" />
+                <Setter Property="Foreground" Value="GhostWhite" />
+                <Setter Property="BorderBrush" Value="Black" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="GhostWhite" />
+            </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="GhostWhite" />
+            </Style>
+
+            <Style TargetType="Rectangle">
+                <Setter Property="Stroke" Value="DarkGoldenrod" />
+            </Style>
+
+            <Style TargetType="Border">
+                <Setter Property="BorderBrush" Value="DarkGoldenrod" />
+            </Style>
+        </Style.Resources>
+
     </Style>
 </ResourceDictionary>
 

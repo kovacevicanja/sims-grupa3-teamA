@@ -8,7 +8,8 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="SelectedTourStatsWindow" Height="490" Width="615">
+        Title="SelectedTourStatsWindow" Height="490" Width="615"
+    Style="{DynamicResource MyWindowStyle}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Enter">
             <i:InvokeCommandAction Command="{Binding OkCommand}" />

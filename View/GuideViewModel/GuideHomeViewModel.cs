@@ -170,34 +170,6 @@ namespace BookingProject.View.GuideViewModel
             view.Show();
             CloseWindow();
         }
-
-
-        /*   <Window.Resources>
-       <ResourceDictionary>
-           <ResourceDictionary.MergedDictionaries>
-               <ResourceDictionary Source = "../../Styles/LightStyle.xaml" />
-           </ ResourceDictionary.MergedDictionaries >
-       </ ResourceDictionary >
-   </ Window.Resources >
-
-
-
-
-
-
-
-                 <ResourceDictionary>
-           <ResourceDictionary.MergedDictionaries>
-               <ResourceDictionary Source="Styles/LightStyle.xaml" />
-               <ResourceDictionary Source="Styles/DarkStyle.xaml" />
-           </ResourceDictionary.MergedDictionaries>
-       </ResourceDictionary>
-
-
-
-         */
-
-
         private void Button_Click_M(object param)
         {
             StyleManager.ApplyDarkStyle();

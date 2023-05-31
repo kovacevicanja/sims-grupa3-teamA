@@ -9,7 +9,8 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:guideviewmodel="clr-namespace:BookingProject.View.GuideViewModel" d:DataContext="{d:DesignInstance Type=guideviewmodel:ChangeStatsYearViewModel}"
     mc:Ignorable="d"
-        Title="ChangeStatsYearWindow" Height="220" Width="565">
+        Title="ChangeStatsYearWindow" Height="220" Width="565"
+    Style="{DynamicResource MyWindowStyle}">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Set">
@@ -29,7 +30,7 @@
             <StackPanel>
                 <!-- Placeholder for the TextBox itself -->
                 <AdornedElementPlaceholder x:Name="textBox" />
-                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="GhostWhite" />
             </StackPanel>
 
         </ControlTemplate>
@@ -54,7 +55,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold" FontSize="16" Height="30" Content="Enter statistic year here:"></Label>
 
-            <TextBox Grid.Row="0" Grid.Column="1" BorderThickness="2" BorderBrush="Black" FontSize="22" Text="{Binding Path=PickedYear, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, TargetNullValue=''}" Margin="10,35,0,35">
+            <TextBox Grid.Row="0" Grid.Column="1" BorderThickness="2"  FontSize="22" Text="{Binding Path=PickedYear, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, TargetNullValue=''}" Margin="10,35,0,35">
             <Validation.ErrorTemplate>
                 <StaticResource ResourceKey="validationErrorTemplate"/>
             </Validation.ErrorTemplate>
@@ -65,6 +66,6 @@
             <Button Command="{Binding SetYearCommand}" FontWeight="Bold" Content="Change (Enter)" IsCancel="True"  HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding IsButtonEnabled}" Width="191" Height="41" Margin="15,5,15,5"/>
             <Button Command="{Binding CancelCommand}" FontWeight="Bold" Content="Close (Esc)" IsDefault="True"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="191" Height="41" Margin="15,5,15,5" />
         </WrapPanel>
-        <Rectangle Stroke="Black" Margin="50,10,50,100"/>
+        <Rectangle  Margin="50,10,50,100"/>
     </Grid>
 </Window>

@@ -7,13 +7,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
-        Title="RequestStatisticsView" Height="420" Width="1105">
+        Title="RequestStatisticsView" Height="420" Width="1105"
+    Style="{DynamicResource MyWindowStyle}">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
                 <!-- Placeholder for the TextBox itself -->
                 <AdornedElementPlaceholder x:Name="textBox" />
-                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="GhostWhite" />
             </StackPanel>
 
         </ControlTemplate>
@@ -51,7 +52,6 @@
             <RowDefinition Height="22"/>
         </Grid.RowDefinitions>
         <Label Content="Statistics Filtering" FontWeight="Bold" FontSize="26"  Margin="6,0,775,0"/>
-        <Label Content="Options" FontWeight="Bold" FontSize="26"  Margin="-349,8,1195,-31" Grid.Row="2"/>
         <TextBox TextWrapping="Wrap" Text="{Binding City}" Margin="75,14,747,262" Grid.Row="1"/>
         <TextBox TextWrapping="Wrap" Text="{Binding Country}" Margin="75,74,747,204" Grid.Row="1"/>
         <ComboBox  Margin="75,135,747,143" Grid.Row="1" ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding Path=ChosenLanguage, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
@@ -69,7 +69,7 @@
         <Button Margin="840,116,65,133" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding SearchCommand}" Content=" Filter &#xA;(Enter)" Grid.Row="1"/>
         <Button Margin="840,199,65,52" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="Close &#xA; (Esc)" Grid.Row="1"/>
         <Label Content="Options" FontWeight="Bold" FontSize="26"  Margin="800,0,-20,0"/>
-        <Rectangle HorizontalAlignment="Left" Height="276" Margin="800,10,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="270"/>
+        <Rectangle HorizontalAlignment="Left" Height="276" Margin="800,10,0,0" Grid.Row="1"  VerticalAlignment="Top" Width="270"/>
         <Label Content="Number of requests:" FontWeight="Bold" FontSize="26"  Margin="421,83,360,179" Grid.Row="1"/>
         <Label Content="{Binding Stats}" FontWeight="Bold" FontSize="60"  Margin="510,131,485,95" Grid.Row="1"/>
     </Grid>

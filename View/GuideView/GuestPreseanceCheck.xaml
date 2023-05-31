@@ -7,7 +7,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="GuestPreseanceCheck" Height="132" Width="257">
+        Title="GuestPreseanceCheck" Height="132" Width="257"
+    Style="{DynamicResource MyWindowStyle}">
     <Grid Margin="0,12,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>

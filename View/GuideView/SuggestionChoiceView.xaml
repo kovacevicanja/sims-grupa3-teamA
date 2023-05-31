@@ -8,7 +8,8 @@
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        Title="SuggestionChoiceView" Height="450" Width="800">
+        Title="SuggestionChoiceView" Height="450" Width="800"
+    Style="{DynamicResource MyWindowStyle}">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Yes">

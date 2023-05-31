@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="EnterKeyPoint" Height="180" Width="500">
+        Title="EnterKeyPoint" Height="180" Width="500"
+        Style="{DynamicResource MyWindowStyle}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>

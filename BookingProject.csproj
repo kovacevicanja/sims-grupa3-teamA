@@ -1514,5 +1514,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\OwnerImages\star1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\GuideImages\darksea.jpg" />
+    <Resource Include="Resources\Images\GuideImages\lightsea.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,7 +7,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="ExamineGradeWindow" Height="450" Width="800">
+        Title="ExamineGradeWindow" Height="450" Width="800"
+    Style="{DynamicResource MyWindowStyle}">
     <Grid>
         <TextBox  IsReadOnly="True" TextWrapping="Wrap" FontSize="24" Text="{Binding ChosenEvaluation.AdditionalComment}" Margin="0,74,270,0"/>
         <Button Content="Mark" Command="{Binding MarkCommand}" FontWeight="Bold" FontSize="34" Margin="560,132,40,217" />
