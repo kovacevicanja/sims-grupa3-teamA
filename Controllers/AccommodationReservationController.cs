@@ -73,6 +73,54 @@ namespace BookingProject.Controller
 
             return popularLocations;
         }
+        public List<AccommodationReservation> GetAllForAccommodation(int accId)
+        {
+            List<AccommodationReservation> res = new List<AccommodationReservation>();
+            foreach (AccommodationReservation reservation in GetAll())
+            {
+                if (reservation.Accommodation.Id == accId && reservation.IsCancelled==false)
+                {
+                    res.Add(reservation);
+                }
+            }
+            return res;
+        }
+        public List<AccommodationReservation> GetAllForAccommodationAnYear(int accId, int year)
+        {
+            List<AccommodationReservation> res = new List<AccommodationReservation>();
+            foreach (AccommodationReservation reservation in GetAll())
+            {
+                if (reservation.Accommodation.Id == accId && reservation.EndDate.Year==year && reservation.IsCancelled==false)
+                {
+                    res.Add(reservation);
+                }
+            }
+            return res;
+        }
+        public List<AccommodationReservation> GetAllCancelledForAccommodation(int accId)
+        {
+            List<AccommodationReservation> res = new List<AccommodationReservation>();
+            foreach (AccommodationReservation reservation in GetAll())
+            {
+                if (reservation.Accommodation.Id == accId && reservation.IsCancelled)
+                {
+                    res.Add(reservation);
+                }
+            }
+            return res;
+        }
+        public List<AccommodationReservation> GetAllCancelledForAccommodationAndYear(int accId, int year)
+        {
+            List<AccommodationReservation> res = new List<AccommodationReservation>();
+            foreach (AccommodationReservation reservation in GetAll())
+            {
+                if (reservation.Accommodation.Id == accId && reservation.IsCancelled && reservation.EndDate.Year==year)
+                {
+                    res.Add(reservation);
+                }
+            }
+            return res;
+        }
         public List<Location> GetUnPopularLocations()
         {
             List<AccommodationReservation> reservations = GetAllForOwner(_userController.GetLoggedUser().Id);
@@ -93,6 +141,54 @@ namespace BookingProject.Controller
                 .ToList();
 
             return popularLocations;
+        }
+        public int CountResForAcc(int accId)
+        {
+            int res = 0;
+            foreach (AccommodationReservation reservation in GetAll())
+            {
+                if (reservation.Accommodation.Id == accId && reservation.IsCancelled == false)
+                {
+                    res++;
+                }
+            }
+            return res;
+        }
+        public int CountResForAccAndYear(int accId, int year)
+        {
+            int res = 0;
+            foreach (AccommodationReservation reservation in GetAll())
+            {
+                if (reservation.Accommodation.Id == accId && reservation.EndDate.Year==year &&  reservation.IsCancelled == false)
+                {
+                    res++;
+                }
+            }
+            return res;
+        }
+        public int CountCancelledForAcc(int accId)
+        {
+            int res = 0;
+            foreach (AccommodationReservation reservation in GetAll())
+            {
+                if (reservation.Accommodation.Id == accId && reservation.IsCancelled)
+                {
+                    res++;
+                }
+            }
+            return res;
+        }
+        public int CountCancelledForAccAndYear(int accId, int year)
+        {
+            int res = 0;
+            foreach (AccommodationReservation reservation in GetAll())
+            {
+                if (reservation.Accommodation.Id == accId && reservation.IsCancelled && reservation.EndDate.Year==year)
+                {
+                    res++;
+                }
+            }
+            return res;
         }
         public void Create(AccommodationReservation reservation)
         {

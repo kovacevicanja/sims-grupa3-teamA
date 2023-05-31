@@ -9,11 +9,12 @@
     <Grid>
         <ScrollViewer>
             <Grid>
-            <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Height="50" Orientation="Horizontal" VerticalAlignment="Center"  Background="Transparent">
                     <Button Name="back" Width="40" Height="30" BorderBrush="Transparent" Background="Transparent" Command="{Binding BackCommand}">
                         <Image Source="/Resources/Images/OwnerImages/backArrow.png"/>
@@ -28,85 +29,85 @@
                 <Label Content="{Binding MostBusyMonthDisplay}" HorizontalAlignment="Right" Width="50" Grid.Row="1" Foreground="#FF0F4E7A" FontWeight="Bold"/>
                 <Grid Grid.Row="1">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="64*"/>
-                <ColumnDefinition Width="8*"/>
-                <ColumnDefinition Width="473*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" MinHeight="395"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="64*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="473*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="395"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Grid.Column="2" Margin="0,0,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                    <RowDefinition Height="26"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="185*"></ColumnDefinition>
-                    <ColumnDefinition Width="47*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="2" Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="185*"></ColumnDefinition>
+                            <ColumnDefinition Width="47*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,5" Width="60" FontWeight="bold" FontSize="13">January</Label>
-                <Label Content="{Binding NumberOfReservationsDisplay[0]}" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
+                        <Label Content="{Binding NumberOfReservationsDisplay[0]}" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
                         <Label Content="{Binding NumberOfReservationsDisplay[1]}" Grid.Row="6" Grid.Column="1" FontWeight="Bold"/>
                         <Label Content="{Binding NumberOfReservationsDisplay[2]}" Grid.Row="11" Grid.Column="1" FontWeight="Bold"/>
                         <Label Content="{Binding NumberOfReservationsDisplay[3]}" Grid.Row="16" Grid.Column="1" FontWeight="Bold"/>
@@ -216,9 +217,48 @@
 
 
 
-            </Grid>
+                    </Grid>
+                    <Button Content="Generate PDF" Command="{Binding GeneratePDF1}" FontWeight="Bold" Width="90" Grid.ColumnSpan="3" Margin="3,4,195,1608">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#FF0F4E7A" />
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="BorderBrush" Value="black" />
+                                <Setter Property="BorderThickness" Value="2" />
+                                <Setter Property="Padding" Value="10" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                    <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                    <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Background" Value="#FF0F4E7A"/>
+                                                    <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
 
-        </Grid>
+                </Grid>
             </Grid>
         </ScrollViewer>
     </Grid>

@@ -85,5 +85,54 @@ namespace BookingProject.Controllers
         {
             return _requestsService.CountRescheduledReservationForSpecificMonth(year, month, accId);
         }
+        public List<RequestAccommodationReservation> GetAllForAccId(int id)
+        {
+            List<RequestAccommodationReservation> res = new List<RequestAccommodationReservation>();
+            foreach (RequestAccommodationReservation reservation in GetAll())
+            {
+                if (reservation.AccommodationReservation.Accommodation.Id == id && reservation.Status==Domain.Enums.RequestStatus.APPROVED)
+                {
+                    res.Add(reservation);
+                }
+            }
+            return res;
+        }
+        public int CountResForAcc(int accId)
+        {
+            int res = 0;
+            foreach (RequestAccommodationReservation reservation in GetAll())
+            {
+                if (reservation.AccommodationReservation.Accommodation.Id == accId && reservation.Status==Domain.Enums.RequestStatus.APPROVED)
+                {
+                    res++;
+                }
+            }
+            return res;
+        }
+        public List<RequestAccommodationReservation> GetAllForAccIdAndYear(int id,int year)
+        {
+            List<RequestAccommodationReservation> res = new List<RequestAccommodationReservation>();
+            foreach (RequestAccommodationReservation reservation in GetAll())
+            {
+                if (reservation.AccommodationReservation.Accommodation.Id == id && reservation.Status==Domain.Enums.RequestStatus.APPROVED && reservation.NewDeparuteDay.Year==year)
+                {
+                    res.Add(reservation);
+                }
+            }
+            return res;
+        }
+        public int CountResForAccAndYear(int accId, int year)
+        {
+            int res = 0;
+            foreach (RequestAccommodationReservation reservation in GetAll())
+            {
+                if (reservation.AccommodationReservation.Accommodation.Id == accId && reservation.Status==Domain.Enums.RequestStatus.APPROVED && reservation.NewDeparuteDay.Year == year)
+                {
+                    res++;
+                }
+            }
+            return res;
+        }
+
     }
 }

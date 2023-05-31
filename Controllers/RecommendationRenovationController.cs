@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Model;
 using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,54 @@ namespace BookingProject.Controllers
         public int CountAccommodationRenovationRecommendationsForSpecificMonth(int year,int month, int accId)
         {
             return recommendationRenovationService.CountAccommodationRenovationRecommendationsForSpecificMonth(year, month, accId);
+        }
+        public List<RecommendationRenovation> GetAllCancelledForAccommodation(int accId)
+        {
+            List<RecommendationRenovation> res = new List<RecommendationRenovation>();
+            foreach (RecommendationRenovation reservation in GetAll())
+            {
+                if (reservation.AccommodationReservation.Accommodation.Id == accId)
+                {
+                    res.Add(reservation);
+                }
+            }
+            return res;
+        }
+        public int CountResForAcc(int accId)
+        {
+            int res = 0;
+            foreach (RecommendationRenovation reservation in GetAll())
+            {
+                if (reservation.AccommodationReservation.Accommodation.Id == accId)
+                {
+                    res++;
+                }
+            }
+            return res;
+        }
+        public List<RecommendationRenovation> GetAllCancelledForAccommodationAndYear(int accId, int year)
+        {
+            List<RecommendationRenovation> res = new List<RecommendationRenovation>();
+            foreach (RecommendationRenovation reservation in GetAll())
+            {
+                if (reservation.AccommodationReservation.Accommodation.Id == accId && reservation.AccommodationReservation.EndDate.Year==year)
+                {
+                    res.Add(reservation);
+                }
+            }
+            return res;
+        }
+        public int CountResForAccAndYear(int accId, int year)
+        {
+            int res = 0;
+            foreach (RecommendationRenovation reservation in GetAll())
+            {
+                if (reservation.AccommodationReservation.Accommodation.Id == accId && reservation.AccommodationReservation.EndDate.Year == year)
+                {
+                    res++;
+                }
+            }
+            return res;
         }
     }
 }
