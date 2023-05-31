@@ -1,6 +1,7 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.DependencyInjection;
+using BookingProject.Styles;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,11 @@ namespace BookingProject
     /// </summary>
     public partial class App : Application
     {
+        public static MessagingService MessagingService { get; } = new MessagingService();
         public App()
         {
-            Injector.Initialize();  
+            Injector.Initialize();
+            
         }
     }
 }

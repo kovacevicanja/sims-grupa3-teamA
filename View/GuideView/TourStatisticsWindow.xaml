@@ -8,7 +8,10 @@
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:guideviewmodel="clr-namespace:BookingProject.View.GuideViewModel" d:DataContext="{d:DesignInstance Type=guideviewmodel:ChangeStatsYearViewModel}"
         mc:Ignorable="d"
-        Title="TourStatisticsWindow" Height="480" Width="815">
+        Title="TourStatisticsWindow" Height="480" Width="815"
+        Style="{DynamicResource MyWindowStyle}"
+        >
+    
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Enter">

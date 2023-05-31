@@ -1,5 +1,8 @@
 ﻿<Window 
-        WindowStartupLocation="CenterScreen"
+    
+
+
+    WindowStartupLocation="CenterScreen"
         x:Class="BookingProject.View.GuideView.GuideHomeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,7 +11,26 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="GuideHomeWindow" Height="832" Width="1239">
+        Title="GuideHomeWindow" Height="832" Width="1239"
+        Style="{DynamicResource MyWindowStyle}"
+        >
+        
+
+    <Window.Resources>
+        <Style x:Key="LightStyle" TargetType="Window">
+            <Setter Property="Background" Value="SeaGreen" />
+            <!-- Define your light mode style properties -->
+        </Style>
+
+        <Style x:Key="DarkStyle" TargetType="Window">
+            <Setter Property="Background" Value="DarkRed" />
+            <!-- Define your dark mode style properties -->
+        </Style>
+    </Window.Resources>
+
+
+
+
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Logout">
@@ -32,6 +54,9 @@
         <i:EventTrigger EventName="Create">
             <i:InvokeCommandAction Command="{Binding CreateCommand}" />
         </i:EventTrigger>
+        <i:EventTrigger EventName="Mode">
+            <i:InvokeCommandAction Command="{Binding ModeCommand}" />
+        </i:EventTrigger>
         <i:EventTrigger EventName="Suggestion">
             <i:InvokeCommandAction Command="{Binding SuggestionCommand}" />
         </i:EventTrigger>
@@ -44,6 +69,7 @@
         <KeyBinding Key="D"  Command="{Binding FourCommand}" />
         <KeyBinding Key="E"  Command="{Binding FiveCommand}" />
         <KeyBinding Key="S"  Command="{Binding SuggestionCommand}" />
+        <KeyBinding Key="M"  Command="{Binding ModeCommand}" />
         <KeyBinding Key="N"  Command="{Binding CreateCommand}" />
     </Window.InputBindings>
 
@@ -66,7 +92,7 @@
         <Label Content="Workflow Options" FontWeight="Bold" FontSize="24" Margin="123,10,319,689" Grid.Column="1"/>
         <WrapPanel Margin="29,110,10,444">
             <Button Content="Language (L)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" />
-            <Button Content="Mode (M)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" />
+            <Button Content="Mode (M)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding ModeCommand}"/>
             <Button Content="Create New Tour  (N)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding CreateCommand}"/>
             <Button Content="Suggestion (S)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding SuggestionCommand}"/>
         </WrapPanel>
