@@ -21,6 +21,7 @@ namespace BookingProject.Controllers
         {
             _accommodationRenovationService.Create(renovation);
         }
+        
         public List<AccommodationRenovation> GetAll()
         {
             return _accommodationRenovationService.GetAll();
@@ -37,13 +38,13 @@ namespace BookingProject.Controllers
         {
             _accommodationRenovationService.Save(renovation);
         }
-        public List<AccommodationRenovation> GetRenovationsInPast(int ownerId)
+        public List<AccommodationRenovation> GetRenovationsInPast()
         {
-            return _accommodationRenovationService.GetRenovationsInPast(ownerId);
+            return _accommodationRenovationService.GetRenovationsInPast();
         }
-        public List<AccommodationRenovation> GetRenovationsInFuture(int ownerId)
+        public List<AccommodationRenovation> GetRenovationsInFuture()
         {
-            return _accommodationRenovationService.GetRenovationsInFuture(ownerId);
+            return _accommodationRenovationService.GetRenovationsInFuture();
         }
         public List<Accommodation> FillRenovationData(List<Accommodation> accommodations)
         {

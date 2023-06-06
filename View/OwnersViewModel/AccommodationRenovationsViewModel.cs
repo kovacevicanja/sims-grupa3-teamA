@@ -68,9 +68,9 @@ namespace BookingProject.View.OwnersViewModel
             _accommodationController = new AccommodationController();
             _renovationController = new AccommodationRenovationController();
 
-            List<AccommodationRenovation> lastRenovations = _renovationController.GetRenovationsInPast(SignInForm.LoggedInUser.Id);
+            List<AccommodationRenovation> lastRenovations = _renovationController.GetRenovationsInPast();
             LastRenovations = new ObservableCollection<AccommodationRenovation>(_accommodationController.GetAccommodationData(lastRenovations));
-            List<AccommodationRenovation> futureRenovations = _renovationController.GetRenovationsInFuture(SignInForm.LoggedInUser.Id);
+            List<AccommodationRenovation> futureRenovations = _renovationController.GetRenovationsInFuture();
             FutureRenovations = new ObservableCollection<AccommodationRenovation>(_accommodationController.GetAccommodationData(futureRenovations));
             CancelRenovationCommand = new RelayCommand(Button_Click_Cancel_Renovation, CanExecute);
             AddRenovationCommand = new RelayCommand(Button_Click_Add, CanExecute);

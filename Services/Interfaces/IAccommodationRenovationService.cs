@@ -16,8 +16,8 @@ namespace BookingProject.Services.Interfaces
         AccommodationRenovation GetById(int id);
         void Initialize();
         void Save(List<AccommodationRenovation> renovations);
-        List<AccommodationRenovation> GetRenovationsInPast(int ownerId);
-        List<AccommodationRenovation> GetRenovationsInFuture(int ownerId);
+        List<AccommodationRenovation> GetRenovationsInPast();
+        List<AccommodationRenovation> GetRenovationsInFuture();
         List<Accommodation> FillRenovationData(List<Accommodation> accommodations);
         //List<Tuple<DateTime, DateTime>> FindAvailableDates(DateTime startDate, DateTime endDate, int duration, Accommodation selectedAccommodation);
         void CheckDatePairExistence(List<DateTime> availableDates, List<Tuple<DateTime, DateTime>> availableDatesPair, int duration);

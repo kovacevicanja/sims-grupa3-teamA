@@ -79,15 +79,15 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Height="50" Orientation="Horizontal" VerticalAlignment="Center"  Background="Transparent">
-            
+
             <Label Margin="15 0 0 0" FontSize="22" FontWeight="Bold" Foreground="Black">Renovations</Label>
         </StackPanel>
         <Grid Grid.Row="1">
-        <StackPanel Orientation="Vertical" >
-            
+            <StackPanel Orientation="Vertical" >
 
-            <TabControl Margin="30 40 30 0" Height="500" Background="Transparent" BorderBrush="Transparent">
-                <TabItem x:Name="LastRenovations" Header="Previous" Style="{DynamicResource TabItemStyle}" Width="50" Height="20" FontWeight="Bold">
+
+                <TabControl Margin="30 40 30 0" Height="500" Background="Transparent" BorderBrush="Transparent">
+                    <TabItem x:Name="LastRenovations" Header="Previous" Style="{DynamicResource TabItemStyle}" Width="50" Height="20" FontWeight="Bold">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="200"></RowDefinition>
@@ -201,7 +201,7 @@
 
 
                     </TabItem>
-                <TabItem x:Name="FutureRenovations" Header="Upcoming" Style="{DynamicResource TabItemStyle}" Width="60" Height="20" FontWeight="Bold">
+                    <TabItem x:Name="FutureRenovations" Header="Upcoming" Style="{DynamicResource TabItemStyle}" Width="60" Height="20" FontWeight="Bold">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="200"></RowDefinition>
@@ -312,7 +312,6 @@
                                 <Button Height="20" Width="20" Margin="130,20,0,0" Background="Transparent" BorderBrush="Transparent" ToolTipService.ShowDuration="5000">
                                     <Button.ToolTip>
                                         <ToolTip Content="If you change your mind, &#x0a; you can cancel upcoming renovation."  Style="{StaticResource CustomTooltipStyle}">
-                                            
                                         </ToolTip>
                                     </Button.ToolTip>
                                     <Image Source="/Resources/Images/OwnerImages/tooltip.png" ></Image>
@@ -320,12 +319,12 @@
                             </Grid>
                         </Grid>
 
-                        
-                    </TabItem>
-            </TabControl>
 
-            
-        </StackPanel>
-    </Grid>
+                    </TabItem>
+                </TabControl>
+
+
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
