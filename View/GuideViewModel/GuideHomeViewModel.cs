@@ -12,11 +12,23 @@ using System.Windows;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Messaging;
+using BookingProject.Localization;
+using System.Globalization;
+using System.Threading;
 
 namespace BookingProject.View.GuideViewModel
 {
-    public class GuideHomeViewModel:INotifyPropertyChanged
+    public class GuideHomeViewModel : INotifyPropertyChanged
     {
+        public static string sep = System.IO.Path.DirectorySeparatorChar.ToString();
+        public static App app;
+        public const string SRB = "sr-Latn-RS";
+        public const string ENG = "en-US";
+        public string StatusBarString;
+        public static string lang;
+
+
+
         private readonly UserController _userController;
         public string GuideName { get; }
         public double GuideRating { get; }
@@ -33,8 +45,12 @@ namespace BookingProject.View.GuideViewModel
         public RelayCommand ModeCommand { get; }
         public RelayCommand CreateCommand { get; }
 
+        public RelayCommand SerbianCommand { get; }
+        public RelayCommand EnglishCommand { get; }
+        public RelayCommand ResCommand { get; }
         public GuideHomeViewModel()
         {
+
             Messenger.Default.Register<ChangeModeMessage>(this, OnModeChangeMessageReceived);
             _userController = new UserController();
             LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
@@ -46,23 +62,18 @@ namespace BookingProject.View.GuideViewModel
             SuggestionCommand = new RelayCommand(Button_Click_S, CanExecute);
             CreateCommand = new RelayCommand(Button_Click_N, CanExecute);
             ModeCommand = new RelayCommand(Button_Click_M, CanExecute);
+            SerbianCommand = new RelayCommand(Button_Click_X, CanExecute);
+            EnglishCommand = new RelayCommand(Button_Click_Y, CanExecute);
+            ResCommand = new RelayCommand(Button_Click_R, CanExecute);
             GuideRating = 5.5;
             GuideName = _userController.GetLoggedUser().Name;
 
+            app = (App)Application.Current;
+            app.ChangeLanguage(ENG);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            // lang = SRB;
         }
-
-        private void HandleChangeModeMessage(ChangeModeMessage message)
-        {
-            if (message.IsDarkMode)
-            {
-                StyleManager.ApplyDarkStyle();
-            }
-            else
-            {
-                StyleManager.ApplyLightStyle();
-            }
-        }
-
         private bool _isDarkMode;
         public bool IsDarkMode
         {
@@ -177,5 +188,32 @@ namespace BookingProject.View.GuideViewModel
             App.MessagingService.PublishModeChange(IsDarkMode);
 
         }
+        private void Button_Click_X(object param)
+        {
+            
+                app.ChangeLanguage(SRB);
+                lang = SRB;
+
+            
+        }
+
+        private void Button_Click_Y(object param)
+        {
+            
+                app.ChangeLanguage(ENG);
+                lang = ENG;
+
+            
+        }
+
+        private void Button_Click_R(object param)
+        {
+
+            TourResignationWindow window = new TourResignationWindow();
+            window.Show();
+            CloseWindow();
+        }   
+
     }
 }
+

@@ -1,0 +1,35 @@
+﻿<Window
+        WindowStartupLocation="CenterScreen"
+        x:Class="BookingProject.View.GuideView.TourResignationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View.GuideView"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        Title="TourResignationWindow" Height="450" Width="800"
+    Style="{DynamicResource MyWindowStyle}">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Yes">
+            <i:InvokeCommandAction Command="{Binding YesCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="No">
+            <i:InvokeCommandAction Command="{Binding NoCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.InputBindings>
+        <KeyBinding Key="Y" Command="{Binding YesCommand}" />
+        <KeyBinding Key="N" Command="{Binding NoCommand}" />
+    </Window.InputBindings>
+
+
+    <Grid>
+        <Rectangle Stroke="Black" Margin="59,101,59,125"/>
+        <Label Content="Are you sure you want&#xD;&#xA; to cancel this tour?" HorizontalAlignment="Center"  FontSize="45" FontWeight="Bold" Margin="0,118,0,125" Width="480"/>
+        <Button Content="Yes(Y)" FontSize="30" FontWeight="Bold" Margin="90,330,434,29" Command="{Binding YesCommand}"/>
+        <Button Content="No(N)" FontSize ="30" FontWeight="Bold" Margin="425,330,89,29" Command="{Binding NoCommand}"/>
+
+    </Grid>
+</Window>

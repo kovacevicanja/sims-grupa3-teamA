@@ -1,8 +1,6 @@
 ﻿<Window 
-    
-
-
-    WindowStartupLocation="CenterScreen"
+   
+        WindowStartupLocation="CenterScreen"
         x:Class="BookingProject.View.GuideView.GuideHomeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,6 +8,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
+        xmlns:ns="clr-namespace:BookingProject.Localization"
         mc:Ignorable="d"
         Title="GuideHomeWindow" Height="832" Width="1239"
         Style="{DynamicResource MyWindowStyle}"
@@ -43,6 +42,15 @@
         <i:EventTrigger EventName="Suggestion">
             <i:InvokeCommandAction Command="{Binding SuggestionCommand}" />
         </i:EventTrigger>
+        <i:EventTrigger EventName="Srb">
+            <i:InvokeCommandAction Command="{Binding SuggeCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Eng">
+            <i:InvokeCommandAction Command="{Binding EnglishCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Res">
+            <i:InvokeCommandAction Command="{Binding ResCommand}" />
+        </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.InputBindings>
         <KeyBinding Key="Esc"  Command="{Binding LogoutCommand}" />
@@ -54,6 +62,9 @@
         <KeyBinding Key="S"  Command="{Binding SuggestionCommand}" />
         <KeyBinding Key="M"  Command="{Binding ModeCommand}" />
         <KeyBinding Key="N"  Command="{Binding CreateCommand}" />
+        <KeyBinding Key="X"  Command="{Binding SerbianCommand}"/>
+        <KeyBinding Key="Y"  Command="{Binding EnglishCommand}"/>
+        <KeyBinding Key="R"  Command="{Binding ResCommand}"/>
     </Window.InputBindings>
 
 
@@ -74,22 +85,23 @@
         <Border  BorderThickness="5" Margin="96,72,10,0" Grid.Column="1"/>
         <Label Content="Workflow Options" FontWeight="Bold" FontSize="24" Margin="123,10,319,689" Grid.Column="1"/>
         <WrapPanel Margin="29,110,10,444">
-            <Button Content="Language (L)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" />
+            <Button Content="Serbian (X)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding SerbianCommand}"/>
             <Button Content="Mode (M)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding ModeCommand}"/>
-            <Button Content="Create New Tour  (N)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding CreateCommand}"/>
+            <Button Content="English  (Y)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding EnglishCommand}"/>
             <Button Content="Suggestion (S)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding SuggestionCommand}"/>
         </WrapPanel>
-        <Border  BorderThickness="5" Margin="10,72,0,430"/>
+        <Border  BorderThickness="5" Margin="14,72,685,430" Grid.ColumnSpan="2"/>
         <Label Content="Core Options" FontWeight="Bold" FontSize="24" Margin="29,8,337,691"/>
-        <Button Content="Resign (R)" Margin="160,723,177,0" FontSize="20" FontWeight="Bold"  Height="43" VerticalAlignment="Top"/>
+        <Button Content="{ns:Loc Resign}" Margin="160,723,177,0" FontSize="20" FontWeight="Bold" Command="{Binding ResCommand}" Height="43" VerticalAlignment="Top"/>
         <Button Content="Logout (Esc)" Margin="160,659,177,0" FontSize="20" FontWeight="Bold" Command="{Binding LogoutCommand}" VerticalAlignment="Top" Height="45"/>
         <Image Source="../../Resources/Images/guide.png" Margin="14,398,275,242"/>
         <Image Source="../../Resources/Images/super.png" Margin="80,524,334,166"/>
-        <Label Content="Name:" FontWeight="Bold" FontSize="24" Margin="285,398,137,302"/>
+        <Label Content="{ns:Loc Name}" FontWeight="Bold" FontSize="24" Margin="285,398,137,302"/>
         <Label Content="Rating:" FontWeight="Bold" FontSize="24" Margin="284,463,139,241"/>
         <Label Content="User profile" FontWeight="Bold" FontSize="24" Margin="68,360,323,359"/>
         <Label Content="{Binding GuideName}" FontWeight="Bold" FontSize="24" Margin="370,399,52,301"/>
-        <Label Content="{Binding GuideRating}" FontWeight="Bold" FontSize="24" Margin="370,464,52,236"/>
-
+        <Label Content="{Binding GuideRating}" FontWeight="Bold" FontSize="24" Margin="390,463,32,237"/>
+        <Button Content="Create New Tour  (N)" Margin="160,282,159,444" FontSize="20" FontWeight="Bold" Command="{Binding CreateCommand}"/>
+        
     </Grid>
 </Window>

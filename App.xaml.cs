@@ -1,6 +1,7 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.DependencyInjection;
+using BookingProject.Localization;
 using BookingProject.Styles;
 using Microsoft.Win32;
 using System;
@@ -19,10 +20,16 @@ namespace BookingProject
     public partial class App : Application
     {
         public static MessagingService MessagingService { get; } = new MessagingService();
+
+        public void ChangeLanguage(string lang)
+        {
+            TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo(lang);
+        }
         public App()
         {
             Injector.Initialize();
-            
+            TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+
         }
     }
 }
