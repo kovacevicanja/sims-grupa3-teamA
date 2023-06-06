@@ -408,7 +408,7 @@ namespace BookingProject.View.OwnersViewModel
             }
             //*********************************************************************************************************************************
             Paragraph info8 = new Paragraph();
-            info8.Add(new Chunk("Total number of rescheduled reservations:  ", infoFont2));
+            info8.Add(new Chunk("Total number of renovation recommendations:  ", infoFont2));
             info8.Add(new Chunk(_renovationController.CountResForAccAndYear(_selectedAccommodation.Id, _selectedYear).ToString(), infoFont));
             info8.Alignment = Element.ALIGN_CENTER;
             info8.SpacingBefore = 225;

@@ -124,7 +124,7 @@
                                             <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                         </Trigger>
                                         <Trigger Property="IsEnabled" Value="False">
-                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="Background" Value="#b7d1e0"/>
                                             <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
