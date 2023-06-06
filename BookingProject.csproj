@@ -35,8 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetProjects.DataVisualization.Toolkit, Version=6.1.94.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
       <HintPath>packages\DotNetProjects.WpfToolkit.DataVisualization.6.1.94\lib\net40\DotNetProjects.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
@@ -122,6 +128,7 @@
     <Compile Include="Controllers\AccommodationOwnerGradeController.cs" />
     <Compile Include="Controllers\AccommodationRenovationController.cs" />
     <Compile Include="Controllers\AccommodationReservationController.cs" />
+    <Compile Include="Controllers\ComplexTourRequestController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\RecommendationRenovationController.cs" />
     <Compile Include="Controllers\RequestAccommodationReservationController.cs" />
@@ -145,6 +152,7 @@
     <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Domain\AccommodationOwnerGrade.cs" />
     <Compile Include="Domain\AccommodationRenovation.cs" />
+    <Compile Include="Domain\ComplexTourRequest.cs" />
     <Compile Include="Domain\Enums\GuideType.cs" />
     <Compile Include="Domain\Enums\RequestStatus.cs" />
     <Compile Include="Domain\Enums\TourRequestStatus.cs" />
@@ -188,6 +196,7 @@
     <Compile Include="Repositories\Implementations\AccommodationLocationRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationRenovationRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Implementations\ComplexTourRequestRepository.cs" />
     <Compile Include="Repositories\Implementations\GuestGradeRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationDateRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationGuestImageRepository.cs" />
@@ -214,6 +223,7 @@
     <Compile Include="Repositories\Intefaces\IAccommodationLocationRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationRenovationRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationReservationRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IComplexTourRequestRepository.cs" />
     <Compile Include="Repositories\Intefaces\IGuestGradeRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationDateRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationGuestImageRepository.cs" />
@@ -242,6 +252,7 @@
     <Compile Include="Services\Implementations\AccommodationLocationService.cs" />
     <Compile Include="Services\Implementations\AccommodationRenovationService.cs" />
     <Compile Include="Services\Implementations\AccommodationReservationService.cs" />
+    <Compile Include="Services\Implementations\ComplexTourRequestService.cs" />
     <Compile Include="Services\Implementations\GuestGradeService.cs" />
     <Compile Include="Services\Implementations\AccommodationDateService.cs" />
     <Compile Include="Services\Implementations\AccommodationGuestImageService.cs" />
@@ -274,6 +285,7 @@
     <Compile Include="Services\Interfaces\IAccommodationLocationService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationRenovationService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationReservationService.cs" />
+    <Compile Include="Services\Interfaces\IComplexTourRequestService.cs" />
     <Compile Include="Services\Interfaces\IGuestGradeService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationDateService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationGuestImageService.cs" />
@@ -313,6 +325,7 @@
     <Compile Include="Validation\OwnerIntegerNumberValidationRule.cs" />
     <Compile Include="Validation\RequiredFieldValidationRule .cs" />
     <Compile Include="Validation\SearchAccommodationValidationRule.cs" />
+    <Compile Include="View\CustomMessageBoxes\CustomMessageBoxComplexTourRequests.cs" />
     <Compile Include="View\CustomMessageBoxes\CustomNotificationMessageBoxNewlyCreatedTours.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
@@ -346,6 +359,7 @@
     </Compile>
     <Compile Include="View\Guest2ViewModel\ActiveToursViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ChangeYearTourRequestsStatisticsViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\CreateComplexTourRequestViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\CreateTourRequestViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\MonitoringActiveToursViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\NewlyCreatedToursOfNeverAcceptedRequestsViewModel.cs" />
@@ -364,6 +378,9 @@
     <Compile Include="View\Guest2ViewModel\ValidationContext.cs" />
     <Compile Include="View\Guest2View\ActiveToursView.xaml.cs">
       <DependentUpon>ActiveToursView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\CreateComplexTourRequestView.xaml.cs">
+      <DependentUpon>CreateComplexTourRequestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\TourRequestsAveragesChartView.xaml.cs">
       <DependentUpon>TourRequestsAveragesChartView.xaml</DependentUpon>
@@ -630,6 +647,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest2View\ActiveToursView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\CreateComplexTourRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -905,6 +926,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="PDFs\Guest2PDF\ValidVouchersReport.pdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -920,6 +942,7 @@
     <None Include="Resources\Data\accommodationDates.csv" />
     <None Include="Resources\Data\accommodationLocations.csv" />
     <None Include="Resources\Data\notifications.csv" />
+    <None Include="Resources\Data\complexTourRequests.csv" />
     <None Include="Resources\Data\tourRequests.csv" />
     <None Include="Resources\Data\tourGuests.csv" />
     <None Include="Resources\Data\guestGrades.csv" />

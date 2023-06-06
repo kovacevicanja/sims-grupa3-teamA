@@ -17,12 +17,13 @@ namespace BookingProject.View.CustomMessageBoxes
             {
                 Title = "Notification",
                 FontWeight = FontWeights.Bold,
-                Height = 300,
-                Width = 400,
-                WindowStyle = WindowStyle.ThreeDBorderWindow,
+                Height = 200, // Adjust the height to make it smaller
+                Width = 300, // Adjust the width to make it smaller
+                WindowStyle = WindowStyle.None,
                 ResizeMode = ResizeMode.NoResize,
                 Background = Brushes.Gray,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner
+                WindowStartupLocation = WindowStartupLocation.CenterScreen, // Display in the middle of the screen
+                AllowsTransparency = true,
             };
 
             TextBlock message = new TextBlock
@@ -33,14 +34,14 @@ namespace BookingProject.View.CustomMessageBoxes
                 Foreground = Brushes.White,
                 TextAlignment = TextAlignment.Center,
                 TextWrapping = TextWrapping.Wrap,
-                Margin = new Thickness(20, 20, 20, 0)
+                Margin = new Thickness(20, 20, 20, 10) // Adjust the margin to bring it closer to the text
             };
 
             StackPanel buttonPanel = new StackPanel
             {
                 Orientation = Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Margin = new Thickness(0, 20, 0, 0)
+                Margin = new Thickness(0, 10, 0, 0) // Adjust the margin to bring it closer to the text
             };
 
             Button okButton = new Button
@@ -51,7 +52,7 @@ namespace BookingProject.View.CustomMessageBoxes
                 Margin = new Thickness(0, 0, 10, 0),
                 FontWeight = FontWeights.Bold,
                 Background = Brushes.LightBlue,
-                Foreground = Brushes.Gray,
+                Foreground = Brushes.White,
                 Template = GetRoundedButtonTemplate()
             };
             okButton.Click += (o, args) =>
@@ -59,24 +60,7 @@ namespace BookingProject.View.CustomMessageBoxes
                 customNotification.Close();
             };
 
-            Button cancelButton = new Button
-            {
-                Content = "Cancel",
-                Width = 80,
-                Height = 30,
-                Margin = new Thickness(10, 0, 0, 0),
-                FontWeight = FontWeights.Bold,
-                Background = Brushes.LightBlue,
-                Foreground = Brushes.Gray,
-                Template = GetRoundedButtonTemplate()
-            };
-            cancelButton.Click += (o, args) =>
-            {
-                customNotification.Close();
-            };
-
             buttonPanel.Children.Add(okButton);
-            buttonPanel.Children.Add(cancelButton);
 
             StackPanel stackPanel = new StackPanel
             {

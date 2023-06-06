@@ -1,4 +1,5 @@
 ﻿using BookingProject.Domain;
+using BookingProject.Model;
 using BookingProject.Serializer;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,6 @@ namespace BookingProject.Repositories.Intefaces
         void Initialize();
         void Save(List<Voucher> vouchers);
         void SaveVouchers();
+        void CreatePrizeVoucher(User guest);
     }
 }

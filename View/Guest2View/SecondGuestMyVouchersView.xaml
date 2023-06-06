@@ -31,11 +31,11 @@
         <FontWeight x:Key="FontWeightBold">Bold</FontWeight>
     </Page.Resources>
 
-    <Grid Margin="0,0,0,6">
+    <Grid>
 
-        <Label Content="My Vouchers" FontSize="35" FontWeight="Bold" Foreground="LightBlue" Margin="65,118,411,539" />
+        <Label Content="My Vouchers" FontSize="35" FontWeight="Bold" Foreground="LightBlue" Margin="65,91,411,566" />
 
-        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="144,221,144,132">
+        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="144,194,144,159">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
             </Border.Effect>
@@ -56,7 +56,7 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Voucher" FontSize="20" FontWeight="Bold" Foreground="Gray"/>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Voucher" FontSize="20" FontWeight="Bold" Foreground="LightBlue"/>
 
                             <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray" FontSize="22">
                                 <TextBlock.Text>
@@ -69,9 +69,6 @@
                                     <StaticResource ResourceKey="FontWeightBold" />
                                 </TextBlock.FontWeight>
                             </TextBlock>
-
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Valid for another 7 days" FontSize="20" FontWeight="Bold" Foreground="Gray"/>
-
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -79,6 +76,46 @@
         </Border>
         <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="155,668,0,0" VerticalAlignment="Top" Width="170"
                 Command="{Binding UseVoucherCommand}" FontSize="24">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="BorderBrush" Value="Gray" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="LightGray"/>
+                                        <Setter Property="BorderBrush" Value="LightGray"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Content="Generate pdf report" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="454,37,0,0" VerticalAlignment="Top" Width="247"
+                Command="{Binding GeneratePdfReport}" FontSize="24">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="Gray" />

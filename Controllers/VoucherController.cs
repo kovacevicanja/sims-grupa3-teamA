@@ -50,5 +50,13 @@ namespace BookingProject.Controllers
         {
             _voucherService.SaveVouchers();
         }
+        public void CreatePrizeVoucher(User guest)
+        {
+            _voucherService.CreatePrizeVoucher(guest);
+        }
+        public List<Voucher> GetAllGuestsVouchers(int guestId)
+        {
+            return _voucherService.GetAllGuestsVouchers(guestId);
+        }
     }
 }

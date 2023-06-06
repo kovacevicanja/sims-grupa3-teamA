@@ -1,4 +1,5 @@
 ﻿using BookingProject.Domain;
+using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,7 @@ namespace BookingProject.Services.Interfaces
         void Initialize();
         void Save(List<Voucher> vouchers);
         void SaveVouchers();
+        void CreatePrizeVoucher(User guest);
+        List<Voucher> GetAllGuestsVouchers(int guestId); 
     }
 }

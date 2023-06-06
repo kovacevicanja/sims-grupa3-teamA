@@ -32,6 +32,7 @@ namespace BookingProject.View
         public TourRequestController TourRequestController { get; set; }    
         public SecondGuestHomepageView(int guestId)
         {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             this.DataContext = this;
 
@@ -116,6 +117,11 @@ namespace BookingProject.View
         private void Button_Click_MyReservations(object sender, RoutedEventArgs e)
         {
             FrameHomePage.Content = new SecondGuestMyReservations(GuestId, this.FrameHomePage.NavigationService);
+        }
+
+        private void Button_Click_CreateComplexTourRequest(object sender, RoutedEventArgs e)
+        {
+            FrameHomePage.Content = new CreateComplexTourRequestView(GuestId, this.FrameHomePage.NavigationService);
         }
 
         private void Button_Click_NewlyCreatedTours(object sender, RoutedEventArgs e)

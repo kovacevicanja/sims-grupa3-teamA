@@ -13,21 +13,23 @@ namespace BookingProject.Domain
     public class TourRequest : ISerializable
     {
         public int Id { get; set; }
-        public int GuideId { get; set; } 
+        public int GuideId { get; set; }
         public TourRequestStatus Status { get; set; }
         public Location Location { get; set; }
-        public string Description { get; set; } 
+        public string Description { get; set; }
         public LanguageEnum Language { get; set; }
-        public int GuestsNumber { get; set; }   
+        public int GuestsNumber { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public User Guest { get; set; }
+        public ComplexTourRequest ComplexTour { get; set; }
 
         public TourRequest()
         {
             Location = new Location();
             GuideId = -1;
             Guest = new User();
+            ComplexTour = new ComplexTourRequest();
         }
         public TourRequest (int id, int guideId, TourRequestStatus status, Location location, string description, LanguageEnum language, int guestsNumber, DateTime startDate, DateTime endDate, User guest)
         {
@@ -71,7 +73,8 @@ namespace BookingProject.Domain
             GuestsNumber = int.Parse(values[6]);
             StartDate = DateConversion.StringToDateTour(values[7]);
             EndDate = DateConversion.StringToDateTour(values[8]);
-            Guest.Id = int.Parse(values[9]);    
+            Guest.Id = int.Parse(values[9]);
+            ComplexTour.Id = int.Parse(values[10]);
         }
         public string[] ToCSV()
         {
@@ -86,7 +89,8 @@ namespace BookingProject.Domain
                 GuestsNumber.ToString(),
                 DateConversion.DateToStringTour(StartDate),
                 DateConversion.DateToStringTour(EndDate),
-                Guest.Id.ToString()
+                Guest.Id.ToString(),
+                ComplexTour.Id.ToString()
             };
             return csvValues;
         }

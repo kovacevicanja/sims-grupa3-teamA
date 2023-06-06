@@ -11,6 +11,6 @@ namespace BookingProject.Domain.Enums
         CREATED,
         USED,
         INVALID,
-        EXPIRED
+        EXPIRED,
     }
 }

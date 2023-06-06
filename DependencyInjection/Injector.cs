@@ -43,6 +43,7 @@ namespace BookingProject.DependencyInjection
             { typeof(IRecommendationRenovationRepository), new RecommendationRenovationRepository() },
             { typeof(ISuperGuestRepository), new SuperGuestRepository() },
             { typeof(IAccommodationRenovationRepository), new AccommodationRenovationRepository() },
+            {typeof(IComplexTourRequestRepository), new ComplexTourRequestRepository() },
 
             { typeof(ITourService), new TourService() },
             { typeof(ITourReservationService), new TourReservationService() },
@@ -75,7 +76,8 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourRequestStatisticsService), new TourRequestStatisticsService() },
             { typeof(ITourSearchService), new TourSearchService() },
             { typeof(ITourStatisticsService), new TourStatisticsService() },
-            { typeof(IAccommodationRenovationService), new AccommodationRenovationService() }
+            { typeof(IAccommodationRenovationService), new AccommodationRenovationService() },
+            { typeof(IComplexTourRequestService), new ComplexTourRequestService() }
         };
         public static void Initialize()
         {
@@ -105,6 +107,7 @@ namespace BookingProject.DependencyInjection
             CreateInstance<IRecommendationRenovationRepository>().Initialize();
             CreateInstance<ISuperGuestRepository>().Initialize();
             CreateInstance<IAccommodationRenovationRepository>().Initialize();
+            CreateInstance<IComplexTourRequestRepository>().Initialize();
 
             CreateInstance<IAccommodationDateService>().Initialize();
             CreateInstance<IAccommodationGuestImageService>().Initialize();
@@ -138,6 +141,7 @@ namespace BookingProject.DependencyInjection
             CreateInstance<ITourSearchService>().Initialize();
             CreateInstance<ISuperGuestService>().Initialize();
             CreateInstance<IAccommodationRenovationService>().Initialize();
+            CreateInstance<IComplexTourRequestService>().Initialize();
         }
         public static T CreateInstance<T>()
         {

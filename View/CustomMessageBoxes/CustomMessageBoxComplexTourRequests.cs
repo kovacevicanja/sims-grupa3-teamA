@@ -1,35 +1,26 @@
-﻿using System;
+﻿using BookingProject.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows;
-using BookingProject.Controller;
-using BookingProject.Controllers;
-using BookingProject.Domain;
+using System.Windows.Media;
 
 namespace BookingProject.View.CustomMessageBoxes
 {
-    public class CustomNotificationMessageBox
+    public class CustomMessageBoxComplexTourRequests
     {
-        private TourPresenceController _tourPresenceController;
-        private UserController _userController;
-        private NotificationController _notificationController;
-        private CustomMessageBox _customMessageBox;
-
-        public CustomNotificationMessageBox()
-        {
-            _tourPresenceController = new TourPresenceController();
-            _userController = new UserController();
-            _notificationController = new NotificationController();
-            _customMessageBox = new CustomMessageBox();
+        public CustomMessageBoxComplexTourRequests() 
+        { 
+        
         }
-
-        public void ShowCustomMessageBoxNotification(string messageText, Model.User userGuest)
+        public void ShowCustomMessageBoxComplexTourRequests(string messageText, out bool flag)
         {
-            List<Notification> notifications = _tourPresenceController.GetGuestNotifications(userGuest);
+            flag = false;
+
+            bool insideFlag = false;
 
             Window customMessageBox = new Window
             {
@@ -55,9 +46,9 @@ namespace BookingProject.View.CustomMessageBoxes
                 Foreground = Brushes.White
             };
 
-            Button yesButton = new Button
+            Button continueButton = new Button
             {
-                Content = "Yes",
+                Content = "Continue",
                 Width = 80,
                 Height = 30,
                 Margin = new Thickness(0, 10, 10, 0),
@@ -67,25 +58,17 @@ namespace BookingProject.View.CustomMessageBoxes
                 Foreground = Brushes.White,
                 Template = GetRoundedButtonTemplate()
             };
-            yesButton.Click += (o, args) =>
+            continueButton.Click += (o, args) =>
             {
-                _customMessageBox.ShowCustomMessageBox("You have successfully confirmed your presence on the tour.");
-                foreach (Notification notification in notifications)
-                {
-                    if (notification.UserId == userGuest.Id)
-                    {
-                        _userController.GetById(userGuest.Id).IsPresent = true;
-                        _userController.Save();
-                        _notificationController.GetById(notification.Id).Read = true;
-                        _notificationController.Save();
-                    }
-                }
+                insideFlag = true;
+                // Continue with adding tour requests
                 customMessageBox.Close();
+                // Add your logic here to handle the "Continue" button click
             };
 
-            Button noButton = new Button
+            Button finishButton = new Button
             {
-                Content = "No",
+                Content = "Finish",
                 Width = 80,
                 Height = 30,
                 Margin = new Thickness(10, 10, 0, 0),
@@ -95,18 +78,12 @@ namespace BookingProject.View.CustomMessageBoxes
                 Foreground = Brushes.White,
                 Template = GetRoundedButtonTemplate()
             };
-            noButton.Click += (o, args) =>
+            finishButton.Click += (o, args) =>
             {
-                _customMessageBox.ShowCustomMessageBox("You have successfully reported that you are not present on the tour.");
-                foreach (Notification notification in notifications)
-                {
-                    if (notification.UserId == userGuest.Id)
-                    {
-                        _userController.GetById(userGuest.Id).IsPresent = false;
-                        _userController.Save();
-                    }
-                }
+                insideFlag = false;
+                // Finish creating complex tour request
                 customMessageBox.Close();
+                // Add your logic here to handle the "Finish" button click
             };
 
             StackPanel stackPanel = new StackPanel
@@ -115,8 +92,8 @@ namespace BookingProject.View.CustomMessageBoxes
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
-            stackPanel.Children.Add(noButton);
-            stackPanel.Children.Add(yesButton);
+            stackPanel.Children.Add(continueButton);
+            stackPanel.Children.Add(finishButton);
 
             StackPanel mainStackPanel = new StackPanel
             {
@@ -161,6 +138,8 @@ namespace BookingProject.View.CustomMessageBoxes
             customMessageBox.Top = (screenHeight - windowHeight) / 2;
 
             customMessageBox.ShowDialog();
+
+            flag = insideFlag;
         }
     }
 }

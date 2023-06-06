@@ -1,9 +1,13 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.Controllers;
+using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Domain.Enums;
 using BookingProject.Model;
 using BookingProject.Model.Enums;
+using BookingProject.Repositories.Implementations;
+using BookingProject.Repositories.Intefaces;
 using BookingProject.Validation;
 using BookingProject.View.CustomMessageBoxes;
 using System;
@@ -14,19 +18,15 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.WebPages;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Navigation;
 
 namespace BookingProject.View.Guest2ViewModel
 {
-    public class CreateTourRequestViewModel : INotifyPropertyChanged
+    public class CreateComplexTourRequestViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<LanguageEnum> Languages { get; set; }
         public LanguageEnum ChosenLanguage { get; set; }
@@ -41,9 +41,24 @@ namespace BookingProject.View.Guest2ViewModel
         public int Flag { get; set; }
         public CorrectInputCityValidationRule correctInputCityvalidationRule { get; set; }
         public NavigationService NavigationService { get; set; }
+        public ComplexTourRequestController _complexTourRequestController { get; set; }
+        public ComplexTourRequest ComplexTourRequest { get; set; }  
+        public CustomMessageBoxComplexTourRequests CustomMessageBoxComplexTourRequests { get; set; }
 
-        public CreateTourRequestViewModel(int guestId, NavigationService navigationService)
+        public CreateComplexTourRequestViewModel(int guestId, NavigationService navigationService)
         {
+            _complexTourRequestController = new ComplexTourRequestController();
+            ComplexTourRequest = new ComplexTourRequest();
+
+            ComplexTourRequest.Id = Injector.CreateInstance<IComplexTourRequestRepository>().GenerateId();
+
+            CustomMessageBoxComplexTourRequests = new CustomMessageBoxComplexTourRequests();
+
+            //ideja napraviti meessage box koji pita da li je to to sto se tice unosa ili zelite jos tura da unesete?
+            //onda on ako klikne da, zavrsava se unos i vraca se na prethodnu stranicu, ako klikne ne onda nastavkja da unosi jos tura *u zavisnosti od kontektsa*
+            //zahtevi se dodaju u listu zahteva, i svakom zahtevu se nalepi id tour requesta, ako slucajno korisnik odustane, moraju se obrisati 
+            //i complexan zahtev (kao za sliku u recenziji --- pogledati)
+
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
 
@@ -190,7 +205,7 @@ namespace BookingProject.View.Guest2ViewModel
             tourRequest.GuestsNumber = GuestsNumber;
             tourRequest.Status = Domain.Enums.TourRequestStatus.PENDING;
             tourRequest.Guest.Id = GuestId;
-            tourRequest.ComplexTour.Id = -1;
+            tourRequest.ComplexTour.Id = ComplexTourRequest.Id;
 
             ValidationResult resultCity = correctInputCityvalidationRule.Validate(location.City, CultureInfo.CurrentCulture);
 
@@ -208,8 +223,32 @@ namespace BookingProject.View.Guest2ViewModel
 
                     _tourRequestController.Create(tourRequest);
 
-                    CustomMessageBox.ShowCustomMessageBox("You have successfully created a tour request. If you want, you can create more of them.");
 
+                    ComplexTourRequest.TourRequestsList.Add(tourRequest);
+
+                    string MessageText = "Do you want to continue adding more tour requests to complex tours? If you want to - press continue, if you are done - press finish.";
+                    bool resultFlag;
+                    CustomMessageBoxComplexTourRequests.ShowCustomMessageBoxComplexTourRequests(MessageText, out resultFlag);
+
+                    if (resultFlag)
+                    {
+                        City = "";
+                        Country = "";
+                        Description = "";
+                        GuestsNumber = 0;
+                        StartDate = DateTime.Today;
+                        EndDate = DateTime.Today;
+
+                        //ovde nastavljam sa dodavanjem tura.
+                        // Continue based on true value -> ako je true onda nastavljamo sa dodavanjem novih zahteva za ture
+                    }
+                    else
+                    {
+                        ComplexTourRequest.Status = TourRequestStatus.PENDING;
+                        ComplexTourRequest.Guest.Id = GuestId;
+                        _complexTourRequestController.Create(ComplexTourRequest);
+                        NavigationService.GoBack();
+                    }
                     City = "";
                     Country = "";
                     Description = "";
@@ -222,13 +261,13 @@ namespace BookingProject.View.Guest2ViewModel
                     MessageBox.Show("You have not entered the correct city or country.");
                 }
             }
-            NavigationService.GoBack();
+
         }
 
         private void Button_Click_Cancel(object param)
         {
+            _complexTourRequestController.DeleteRequestIfComplexRequestNotCreated(ComplexTourRequest.Id);
             NavigationService.GoBack();
         }
-
     }
 }
