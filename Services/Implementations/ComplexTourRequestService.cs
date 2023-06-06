@@ -60,5 +60,10 @@ namespace BookingProject.Services.Implementations
             }
             _tourRequestService.Save(tourRequests);
         }
+
+        public List<ComplexTourRequest> GetGuestComplexRequests(int guestId)
+        {
+            return _complexTourRequestRepository.GetGuestComplexRequests(guestId);
+        }
     }
 }

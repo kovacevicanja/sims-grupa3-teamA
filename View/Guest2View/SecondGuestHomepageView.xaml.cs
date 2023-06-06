@@ -18,6 +18,7 @@ using BookingProject.Controller;
 using BookingProject.View.Guest2View;
 using BookingProject.View.CustomMessageBoxes;
 using BookingProject.Controllers;
+using BookingProject.Domain;
 
 namespace BookingProject.View
 {
@@ -112,6 +113,11 @@ namespace BookingProject.View
             {
                 FrameHomePage.Content = new ActiveToursView(activeToursIds, GuestId, this.FrameHomePage.NavigationService);                
             }
+        }
+
+        private void Button_Click_MyComplexTourRequests(object sender, RoutedEventArgs e)
+        {
+            FrameHomePage.Content = new ComplexTourRequestsView(GuestId, this.FrameHomePage.NavigationService);
         }
 
         private void Button_Click_MyReservations(object sender, RoutedEventArgs e)

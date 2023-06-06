@@ -37,5 +37,10 @@ namespace BookingProject.Controllers
         {
             _complexTourRequestService.DeleteRequestIfComplexRequestNotCreated(complexTourRequestId);
         }
+
+        public List<ComplexTourRequest> GetGuestComplexRequests(int guestId)
+        {
+            return _complexTourRequestService.GetGuestComplexRequests(guestId);
+        }
     }
 }

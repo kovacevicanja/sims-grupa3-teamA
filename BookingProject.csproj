@@ -359,6 +359,7 @@
     </Compile>
     <Compile Include="View\Guest2ViewModel\ActiveToursViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ChangeYearTourRequestsStatisticsViewModel.cs" />
+    <Compile Include="View\Guest2ViewModel\ComplexTourRequestsViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\CreateComplexTourRequestViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\CreateTourRequestViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\MonitoringActiveToursViewModel.cs" />
@@ -378,6 +379,9 @@
     <Compile Include="View\Guest2ViewModel\ValidationContext.cs" />
     <Compile Include="View\Guest2View\ActiveToursView.xaml.cs">
       <DependentUpon>ActiveToursView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest2View\ComplexTourRequestsView.xaml.cs">
+      <DependentUpon>ComplexTourRequestsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2View\CreateComplexTourRequestView.xaml.cs">
       <DependentUpon>CreateComplexTourRequestView.xaml</DependentUpon>
@@ -647,6 +651,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest2View\ActiveToursView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest2View\ComplexTourRequestsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

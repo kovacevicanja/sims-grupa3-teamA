@@ -64,6 +64,18 @@ namespace BookingProject.View.Guest2View
 
             int i = 1;
 
+            Chart1.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
+
+            // Customize x-axis title
+            Chart1.ChartAreas[0].AxisX.Title = "Request";
+            Chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 14, System.Drawing.FontStyle.Bold);
+            Chart1.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.Black;
+
+            // Customize y-axis title
+            Chart1.ChartAreas[0].AxisY.Title = "Number of People";
+            Chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 14, System.Drawing.FontStyle.Bold);
+            Chart1.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.Black;
+
             foreach (TourRequest request in _tourRequestController.AcceptedRequestsList(guestId, enteredYear))
             {
                 Chart1.Series[0].Points.Add(request.GuestsNumber).AxisLabel = "request " + i;
@@ -80,7 +92,7 @@ namespace BookingProject.View.Guest2View
             Chart1.ChartAreas[0].AxisY.Maximum = 30;
             Chart1.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
 
-            Chart1.Series[0].IsValueShownAsLabel = true;
+            Chart1.Series[0].IsValueShownAsLabel = false;
             Chart1.Series[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
 
             Chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
@@ -97,19 +109,17 @@ namespace BookingProject.View.Guest2View
             averageLine.Interval = 0;
             averageLine.IntervalOffset = averageValue;
             averageLine.StripWidth = 0.1;
-            averageLine.BackColor = System.Drawing.Color.Gray;
-            averageLine.Text = "Average number of people: " + averageValue; // Set the label text for the average line
-            averageLine.TextAlignment = System.Drawing.StringAlignment.Far; // Set the alignment of the label to the right
+            averageLine.BackColor = System.Drawing.Color.Black;
+            averageLine.Text = "Average number of people: " + averageValue; 
+            averageLine.TextAlignment = System.Drawing.StringAlignment.Far; 
             averageLine.TextLineAlignment = System.Drawing.StringAlignment.Near; // Set the position of the label
-            averageLine.Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold); // Customize the font of the label
+            averageLine.Font = new System.Drawing.Font("Arial", 16, System.Drawing.FontStyle.Bold); // Customize the font of the label
+            averageLine.ForeColor = System.Drawing.Color.Gray; // Set the gray color for the text
             Chart1.ChartAreas[0].AxisY.StripLines.Add(averageLine);
 
             // Customize the appearance of the series
             Chart1.Series[0].BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash; // Set the border dash style to Dash
             Chart1.Series[0].BorderWidth = 2; // Set the border width
-
-
-
         }
         private void Button_Click_ChangeTheYear(object sender, RoutedEventArgs e)
         {

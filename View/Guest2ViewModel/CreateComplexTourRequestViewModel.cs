@@ -54,11 +54,6 @@ namespace BookingProject.View.Guest2ViewModel
 
             CustomMessageBoxComplexTourRequests = new CustomMessageBoxComplexTourRequests();
 
-            //ideja napraviti meessage box koji pita da li je to to sto se tice unosa ili zelite jos tura da unesete?
-            //onda on ako klikne da, zavrsava se unos i vraca se na prethodnu stranicu, ako klikne ne onda nastavkja da unosi jos tura *u zavisnosti od kontektsa*
-            //zahtevi se dodaju u listu zahteva, i svakom zahtevu se nalepi id tour requesta, ako slucajno korisnik odustane, moraju se obrisati 
-            //i complexan zahtev (kao za sliku u recenziji --- pogledati)
-
             var languages = Enum.GetValues(typeof(LanguageEnum)).Cast<LanguageEnum>();
             Languages = new ObservableCollection<LanguageEnum>(languages);
 
@@ -238,9 +233,6 @@ namespace BookingProject.View.Guest2ViewModel
                         GuestsNumber = 0;
                         StartDate = DateTime.Today;
                         EndDate = DateTime.Today;
-
-                        //ovde nastavljam sa dodavanjem tura.
-                        // Continue based on true value -> ako je true onda nastavljamo sa dodavanjem novih zahteva za ture
                     }
                     else
                     {

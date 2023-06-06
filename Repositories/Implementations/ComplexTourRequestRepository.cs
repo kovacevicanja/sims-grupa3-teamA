@@ -78,5 +78,18 @@ namespace BookingProject.Repositories.Implementations
                 }
             }
         }
+
+        public List<ComplexTourRequest> GetGuestComplexRequests(int guestId)
+        {
+            List<ComplexTourRequest> guestComplexRequests = new List<ComplexTourRequest>();
+            foreach (ComplexTourRequest complexTourRequest in GetAll())
+            {
+                if (complexTourRequest.Guest.Id == guestId)
+                {
+                    guestComplexRequests.Add(complexTourRequest);
+                }
+            }
+            return guestComplexRequests;    
+        }
     }
 }

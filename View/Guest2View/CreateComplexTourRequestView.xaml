@@ -43,8 +43,8 @@
             </Grid.RowDefinitions>
             <Image Source="ToursImages/createTour1.jpg" Margin="548,4,272,124" />
 
-            <Label Content="Got great ideas for new tours?" FontSize="35" FontWeight="Bold" Foreground="Gray" Margin="40,21,180,141" />
-            <Label Content="We hear you!" FontSize="28" FontWeight="Bold" Foreground="LightBlue" Margin="78,61,391,125" />
+            <Label Content="Got great ideas for new complex tours?" FontSize="35" FontWeight="Bold" Foreground="Gray" Margin="27,21,37,141" />
+            <Label Content="We hear you!" FontSize="28" FontWeight="Bold" Foreground="LightBlue" Margin="62,61,407,125" />
 
             <Button Content="Create tour request" IsCancel="True" Height="36" Margin="178,395,0,0" VerticalAlignment="Top" Width="228"
                 Command="{Binding CreateTourRequestCommand}" FontSize="24" Grid.Row="1" HorizontalAlignment="Left">
