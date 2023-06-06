@@ -21,14 +21,20 @@ namespace BookingProject
     {
         public static MessagingService MessagingService { get; } = new MessagingService();
 
-        public void ChangeLanguage(string lang)
+        public void ChangeLanguage(string currLang)
         {
-            TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo(lang);
+            if (currLang.Equals("en-US"))
+            {
+                TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            }
+            else
+            {
+                TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("sr-LATN");
+            }
         }
         public App()
         {
             Injector.Initialize();
-            TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
         }
     }

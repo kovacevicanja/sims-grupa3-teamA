@@ -43,7 +43,7 @@
             <i:InvokeCommandAction Command="{Binding SuggestionCommand}" />
         </i:EventTrigger>
         <i:EventTrigger EventName="Srb">
-            <i:InvokeCommandAction Command="{Binding SuggeCommand}" />
+            <i:InvokeCommandAction Command="{Binding SerbianCommand}" />
         </i:EventTrigger>
         <i:EventTrigger EventName="Eng">
             <i:InvokeCommandAction Command="{Binding EnglishCommand}" />

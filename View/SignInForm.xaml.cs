@@ -189,8 +189,7 @@ namespace BookingProject.View
                     else if (user.UserType == UserType.GUIDE)
                     {
 
-                        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-                        TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+
                         _controller.GetByUsername(Username).IsLoggedIn = true;
                         _controller.Save();
                         GuideHomeWindow guideHomeWindow = new GuideHomeWindow();

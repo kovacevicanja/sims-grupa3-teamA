@@ -61,7 +61,16 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ostavka (R).
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resign (R).
         /// </summary>
         public static string Resign {
             get {
@@ -70,20 +79,11 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Selektuj turu da dobijes statistike | Najposecenija:.
+        ///   Looks up a localized string similar to Select tour to get statistics|Most visited tour:.
         /// </summary>
         public static string SelectMost {
             get {
                 return ResourceManager.GetString("SelectMost", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to x.
-        /// </summary>
-        public static string x {
-            get {
-                return ResourceManager.GetString("x", resourceCulture);
             }
         }
     }

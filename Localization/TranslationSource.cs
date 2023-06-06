@@ -11,22 +11,24 @@ using System.Windows.Data;
 
 namespace BookingProject.Localization
 {
-    class TranslationSource : INotifyPropertyChanged
+    public class TranslationSource : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         private static readonly TranslationSource instance = new TranslationSource();
+
         public static TranslationSource Instance
         {
             get { return instance; }
         }
 
-        private readonly ResourceManager resourceManager = Properties.Resources.ResourceManager;
+        private readonly ResourceManager resManager = Properties.Resources.ResourceManager;
         private CultureInfo currentCulture = null;
 
         public string this[string key]
         {
             get
             {
-                string retVal = this.resourceManager.GetString(key, this.currentCulture);
+                string retVal = this.resManager.GetString(key, this.currentCulture);
                 return retVal;
             }
         }
@@ -47,8 +49,6 @@ namespace BookingProject.Localization
                 }
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 
     public class LocExtension : Binding

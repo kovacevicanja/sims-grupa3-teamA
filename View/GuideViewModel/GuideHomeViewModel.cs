@@ -21,14 +21,7 @@ namespace BookingProject.View.GuideViewModel
     public class GuideHomeViewModel : INotifyPropertyChanged
     {
         public static string sep = System.IO.Path.DirectorySeparatorChar.ToString();
-        public static App app;
-        public const string SRB = "sr-Latn-RS";
-        public const string ENG = "en-US";
-        public string StatusBarString;
-        public static string lang;
-
-
-
+        private App app;
         private readonly UserController _userController;
         public string GuideName { get; }
         public double GuideRating { get; }
@@ -68,10 +61,9 @@ namespace BookingProject.View.GuideViewModel
             GuideRating = 5.5;
             GuideName = _userController.GetLoggedUser().Name;
 
-            app = (App)Application.Current;
-            app.ChangeLanguage(ENG);
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            this.app = System.Windows.Application.Current as App;
+            this.app = (App)System.Windows.Application.Current;
+            this.CurrentLanguage = "en-US";
             // lang = SRB;
         }
         private bool _isDarkMode;
@@ -154,7 +146,15 @@ namespace BookingProject.View.GuideViewModel
             CloseWindow();
         }
 
-
+        private string currentLanguage;
+        public string CurrentLanguage
+        {
+            get { return currentLanguage; }
+            set
+            {
+                currentLanguage = value;
+            }
+        }
         private void Button_Click_4(object param)
         {
             AllTourRequestsView allTourRequestsView = new AllTourRequestsView();
@@ -190,20 +190,20 @@ namespace BookingProject.View.GuideViewModel
         }
         private void Button_Click_X(object param)
         {
-            
-                app.ChangeLanguage(SRB);
-                lang = SRB;
 
-            
+            CurrentLanguage = "sr-LATN";
+            app.ChangeLanguage(CurrentLanguage);
+
+
         }
 
         private void Button_Click_Y(object param)
         {
-            
-                app.ChangeLanguage(ENG);
-                lang = ENG;
 
-            
+            CurrentLanguage = "en-US";
+            app.ChangeLanguage(CurrentLanguage);
+
+
         }
 
         private void Button_Click_R(object param)
