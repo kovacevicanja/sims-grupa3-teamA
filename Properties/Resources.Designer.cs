@@ -70,6 +70,15 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of guests(adult):.
+        /// </summary>
+        public static string ADULT {
+            get {
+                return ResourceManager.GetString("ADULT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         public static string AYS {
@@ -111,6 +120,15 @@ namespace BookingProject.Properties {
         public static string CancelSelectedTour {
             get {
                 return ResourceManager.GetString("CancelSelectedTour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change (Enter).
+        /// </summary>
+        public static string Change {
+            get {
+                return ResourceManager.GetString("Change", resourceCulture);
             }
         }
         
@@ -205,6 +223,51 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter URL:.
+        /// </summary>
+        public static string EnterImageUrl {
+            get {
+                return ResourceManager.GetString("EnterImageUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter key point:.
+        /// </summary>
+        public static string EnterKeyPoint {
+            get {
+                return ResourceManager.GetString("EnterKeyPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter date:.
+        /// </summary>
+        public static string EnterTourDate {
+            get {
+                return ResourceManager.GetString("EnterTourDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter year here:.
+        /// </summary>
+        public static string ESY {
+            get {
+                return ResourceManager.GetString("ESY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter (Enter).
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ask for presence:.
         /// </summary>
         public static string GPC {
@@ -264,6 +327,15 @@ namespace BookingProject.Properties {
         public static string KeyPoints {
             get {
                 return ResourceManager.GetString("KeyPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string Kreiraj {
+            get {
+                return ResourceManager.GetString("Kreiraj", resourceCulture);
             }
         }
         
@@ -403,6 +475,15 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of requests:.
+        /// </summary>
+        public static string NOR {
+            get {
+                return ResourceManager.GetString("NOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string Options {
@@ -439,6 +520,33 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string RDClose {
+            get {
+                return ResourceManager.GetString("RDClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description:.
+        /// </summary>
+        public static string RDDescription {
+            get {
+                return ResourceManager.GetString("RDDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset (Backspace).
+        /// </summary>
+        public static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resign (R).
         /// </summary>
         public static string Resign {
@@ -466,6 +574,15 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of guests(senior):.
+        /// </summary>
+        public static string SENIOR {
+            get {
+                return ResourceManager.GetString("SENIOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to StartingTime.
         /// </summary>
         public static string StartingTime {
@@ -480,6 +597,15 @@ namespace BookingProject.Properties {
         public static string StartTour {
             get {
                 return ResourceManager.GetString("StartTour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics Filtering.
+        /// </summary>
+        public static string StatisticsFiltering {
+            get {
+                return ResourceManager.GetString("StatisticsFiltering", resourceCulture);
             }
         }
         
@@ -502,6 +628,15 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of guests(teen):.
+        /// </summary>
+        public static string TEEN {
+            get {
+                return ResourceManager.GetString("TEEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tour duration.
         /// </summary>
         public static string TourDuration {
@@ -516,6 +651,24 @@ namespace BookingProject.Properties {
         public static string TourName {
             get {
                 return ResourceManager.GetString("TourName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percent of guests without voucher:.
+        /// </summary>
+        public static string VOUCHERMINUS {
+            get {
+                return ResourceManager.GetString("VOUCHERMINUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percent of guests with voucher:.
+        /// </summary>
+        public static string VOUCHERPLUS {
+            get {
+                return ResourceManager.GetString("VOUCHERPLUS", resourceCulture);
             }
         }
         
@@ -570,6 +723,15 @@ namespace BookingProject.Properties {
         public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Zatvori {
+            get {
+                return ResourceManager.GetString("Zatvori", resourceCulture);
             }
         }
     }

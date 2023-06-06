@@ -36,7 +36,7 @@ namespace BookingProject
         public App()
         {
             Injector.Initialize();
-
+            ChangeLanguage("en-US");
         }
     }
 }

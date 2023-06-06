@@ -89,7 +89,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Label  Content="{ns:Loc SelectMost}" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top"/>
-            <Label  Content="{Binding TopTour}"  FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="535,0,0,263"/>
+            <Label  Content="{Binding TopTour}"  FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="515,0,0,263"/>
         </Grid>
 
 

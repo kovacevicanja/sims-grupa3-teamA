@@ -7,6 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:ns="clr-namespace:BookingProject.Localization"
         xmlns:guideviewmodel="clr-namespace:BookingProject.View.GuideViewModel" d:DataContext="{d:DesignInstance Type=guideviewmodel:ChangeStatsYearViewModel}"
     mc:Ignorable="d"
         Title="ChangeStatsYearWindow" Height="220" Width="565"
@@ -53,7 +54,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold" FontSize="16" Height="30" Content="Enter statistic year here:"></Label>
+            <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold" FontSize="16" Height="30" Content="{ns:Loc ESY}"></Label>
 
             <TextBox Grid.Row="0" Grid.Column="1" BorderThickness="2"  FontSize="22" Text="{Binding Path=PickedYear, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, TargetNullValue=''}" Margin="10,35,0,35">
             <Validation.ErrorTemplate>
@@ -63,8 +64,8 @@
         </Grid>
 
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="79" Margin="0,105,0,0" Width="445" >
-            <Button Command="{Binding SetYearCommand}" FontWeight="Bold" Content="Change (Enter)" IsCancel="True"  HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding IsButtonEnabled}" Width="191" Height="41" Margin="15,5,15,5"/>
-            <Button Command="{Binding CancelCommand}" FontWeight="Bold" Content="Close (Esc)" IsDefault="True"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="191" Height="41" Margin="15,5,15,5" />
+            <Button Command="{Binding SetYearCommand}" FontWeight="Bold" Content="{ns:Loc Change}" IsCancel="True"  HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding IsButtonEnabled}" Width="191" Height="41" Margin="15,5,15,5"/>
+            <Button Command="{Binding CancelCommand}" FontWeight="Bold" Content="{ns:Loc Close}" IsDefault="True"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="191" Height="41" Margin="15,5,15,5" />
         </WrapPanel>
         <Rectangle  Margin="50,10,50,100"/>
     </Grid>

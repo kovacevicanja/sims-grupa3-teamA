@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
+        xmlns:ns="clr-namespace:BookingProject.Localization"
         mc:Ignorable="d"
         Title="EnterKeyPoint" Height="180" Width="500"
         Style="{DynamicResource MyWindowStyle}">
@@ -18,11 +19,11 @@
 
 
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,2,0,0" Grid.RowSpan="2" >
-            <Button Content="Zatvori" IsCancel="True" Command="{Binding CancelCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5" />
-            <Button Content="Kreiraj" IsDefault="True" Command="{Binding CreateCommand}"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5" />
+            <Button Content="{ns:Loc Zatvori}" IsCancel="True" Command="{Binding CancelCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5" />
+            <Button Content="{ns:Loc Kreiraj}" IsDefault="True" Command="{Binding CreateCommand}"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5" />
         </WrapPanel>
         <Grid HorizontalAlignment="Center" Height="80" VerticalAlignment="Center" Width="480">
-            <Label Content="ENTER KEY POINT: " HorizontalAlignment="Left" Height="70" Margin="10,10,0,0" VerticalAlignment="Top" Width="230"/>
+            <Label Content="{ns:Loc EnterKeyPoint}" FontWeight="Bold" FontSize="30" HorizontalAlignment="Left" Height="70" Margin="0,10,0,0" VerticalAlignment="Top" Width="230"/>
             <TextBox HorizontalAlignment="Center" Height="70" Margin="245,10,0,0" TextWrapping="Wrap" Text="{Binding Path=KeyPoint}"  VerticalAlignment="Top" Width="235"/>
         </Grid>
 

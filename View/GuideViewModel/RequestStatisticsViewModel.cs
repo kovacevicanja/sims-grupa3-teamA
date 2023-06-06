@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.SqlServer.Server;
+using BookingProject.Localization;
 
 namespace BookingProject.View.GuideViewModel
 {
@@ -87,9 +88,16 @@ namespace BookingProject.View.GuideViewModel
                 }
                 if (columnName == "EndDate")
                 {
-                    if (!(DateTime.TryParse(EndDate, out DateTime result)) || (EndDate.Length != 19))
-                        return "Enter a number in this range: 1-12  ";
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US")){
+                        if (!(DateTime.TryParse(EndDate, out DateTime result)) || (EndDate.Length != 19))
+                            return "Enter a number in this range: 1-12  ";
+                    }
+                    else
+                    {
+                        if (!(DateTime.TryParse(EndDate, out DateTime result)) || (EndDate.Length != 19))
+                            return "Unesite broj u opsegu: 1-12  ";
 
+                    }
                 }
                 return null;
             }

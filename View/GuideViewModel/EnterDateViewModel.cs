@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.ConversionHelp;
+using BookingProject.Localization;
 using BookingProject.Model;
 using BookingProject.View.GuideView;
 using System;
@@ -78,8 +79,9 @@ namespace BookingProject.View.GuideViewModel
             {
                 if (columnName == "StartingDate")
                 {
-                    if (!(DateTime.TryParse(StartingDate, out DateTime result)) || (StartingDate.Length != 19))
-                        return "Format dd/mm/yyyy hh:mm:ss";
+
+                        if (!(DateTime.TryParse(StartingDate, out DateTime result)) || (StartingDate.Length != 19))
+                            return "Format dd/mm/yyyy hh:mm:ss";
 
                 }
 

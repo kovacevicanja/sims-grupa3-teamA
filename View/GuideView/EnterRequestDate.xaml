@@ -1,9 +1,12 @@
-﻿<Window x:Class="BookingProject.View.GuideView.EnterRequestDate"
+﻿<Window 
+        WindowStartupLocation="CenterScreen"
+        x:Class="BookingProject.View.GuideView.EnterRequestDate"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
+        xmlns:ns="clr-namespace:BookingProject.Localization"
         mc:Ignorable="d"
     Title="EnterDate" Height="180" Width="645" 
         Style="{DynamicResource MyWindowStyle}">
@@ -27,11 +30,11 @@
 
 
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,2,0,0" Grid.RowSpan="2" >
-            <Button Content="Zatvori" IsCancel="True" Command="{Binding CancelCommand}"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5" />
-            <Button x:Name="CreateButton" Content="Kreiraj" IsDefault="True" Command="{Binding CreateCommand}"   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5" IsEnabled="{Binding IsButtonEnabled}"/>
+            <Button Content="{ns:Loc Zatvori}" IsCancel="True" Command="{Binding CancelCommand}"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5" />
+            <Button x:Name="CreateButton" Content="{ns:Loc Kreiraj}" IsDefault="True" Command="{Binding CreateCommand}"   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5" IsEnabled="{Binding IsButtonEnabled}"/>
         </WrapPanel>
         <Grid HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="576">
-            <Label Content="ENTER  TOUR DATE: " HorizontalAlignment="Left" Height="70" Margin="0,30,0,0" VerticalAlignment="Top" Width="230"/>
+            <Label Content="{ns:Loc EnterTourDate}" FontWeight="Bold" FontSize="30" HorizontalAlignment="Left" Height="70" Margin="-30,20,0,0" VerticalAlignment="Top" Width="230"/>
             <TextBox HorizontalAlignment="Left" Height="60" Margin="164,0,0,0" TextWrapping="Wrap" Text="{Binding Path=StartingDate, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  VerticalAlignment="Center" Width="402"
             Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
             </TextBox>
