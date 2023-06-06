@@ -31,7 +31,7 @@ namespace BookingProject.View.OwnersViewModel
             UpcomingReservations = new ObservableCollection<AccommodationReservation>();
             foreach (AccommodationReservation a in Accommodations)
             {
-                if(a.InitialDate > DateTime.Now)
+                if(a.InitialDate > DateTime.Now && a.Accommodation.Id==selectedAccommodation.Id)
                 {
                     UpcomingReservations.Add(a);
                 }

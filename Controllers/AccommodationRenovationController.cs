@@ -37,13 +37,13 @@ namespace BookingProject.Controllers
         {
             _accommodationRenovationService.Save(renovation);
         }
-        public List<AccommodationRenovation> GetRenovationsInPast()
+        public List<AccommodationRenovation> GetRenovationsInPast(int ownerId)
         {
-            return _accommodationRenovationService.GetRenovationsInPast();
+            return _accommodationRenovationService.GetRenovationsInPast(ownerId);
         }
-        public List<AccommodationRenovation> GetRenovationsInFuture()
+        public List<AccommodationRenovation> GetRenovationsInFuture(int ownerId)
         {
-            return _accommodationRenovationService.GetRenovationsInFuture();
+            return _accommodationRenovationService.GetRenovationsInFuture(ownerId);
         }
         public List<Accommodation> FillRenovationData(List<Accommodation> accommodations)
         {

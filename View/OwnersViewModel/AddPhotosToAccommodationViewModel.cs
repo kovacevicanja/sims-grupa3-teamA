@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.WebPages;
 using System.Windows;
@@ -16,7 +17,7 @@ using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnerViewModel
 {
-    public class AddPhotosToAccommodationViewModel
+    public class AddPhotosToAccommodationViewModel : IDataErrorInfo, INotifyPropertyChanged
     {
         public AccommodationImageController _imageController;
         public RelayCommand AddCommand { get; }
@@ -52,8 +53,62 @@ namespace BookingProject.View.OwnerViewModel
                 if (value != _url)
                 {
                     _url = value;
+                    IsButtonEnabled = validateUrlRegex.IsMatch(Url);
                     OnPropertyChanged();
                 }
+            }
+        }
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "Url")
+                {
+                    if (string.IsNullOrEmpty(Url))
+                        return ""; 
+                    if (!validateUrlRegex.IsMatch(Url))
+                    {
+                        return "Url should be of format http(s)://something.extension";
+                    }
+
+                }
+
+                return null;
+            }
+        }
+
+
+        private readonly string[] _validatedProperties = { "Url" };
+
+        Regex validateUrlRegex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.(png|jpe?g)$");
+
+
+        private bool _isButtonEnabled = false;
+        public bool IsButtonEnabled
+        {
+            get { return _isButtonEnabled; }
+            set
+            {
+                if (_isButtonEnabled != value)
+                {
+                    _isButtonEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var property in _validatedProperties)
+                {
+                    if (this[property] != null)
+                        return false;
+                }
+
+                return validateUrlRegex.IsMatch(Url);
             }
         }
         private string _displayedUrl;

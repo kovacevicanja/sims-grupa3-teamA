@@ -234,9 +234,7 @@
                 <TextBox x:Name="txtCancellationPeriod" Grid.Row="6" Grid.Column="1" Height="30" >
                     <TextBox.Text>
                         <Binding Path="CancellationPeriod" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
-                            <Binding.ValidationRules>
-                                <val:OwnerIntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
-                            </Binding.ValidationRules>
+                            
                         </Binding>
                     </TextBox.Text>
                     <Validation.ErrorTemplate>
@@ -251,7 +249,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Border BorderBrush="#FF0F4E7A" BorderThickness="1"/>
                                 <AdornedElementPlaceholder x:Name="textBox"/>
-                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#FF0F4E7A" FontSize="17" HorizontalAlignment="Right" Margin="0,-6,0,0"/>
+                                
                             </Grid>
                         </ControlTemplate>
                     </Validation.ErrorTemplate>

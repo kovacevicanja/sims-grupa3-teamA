@@ -12,86 +12,87 @@
         </Style>
     </Window.Resources>
     <Grid Background="#b7d1e0">
+        
         <Grid x:Name="panelHeader" VerticalAlignment="Top" Height="50" Background="#FF0F4E7A" MouseDown="PanelHeader_MouseDown">
 
         </Grid>
-        <Grid x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Right">
+        <Grid x:Name="sidePanel" Background="#FF0F4E7A" Opacity="1" HorizontalAlignment="Right" Panel.ZIndex="1">
             <StackPanel>
                 <Grid Height="50" Background="#FF0F4E7A">
                     <Button HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="Button_Click">
                         <Image Margin="0,10,0,0" Height="30" Source="/View/ImagesOwner/menu.png"/>
                     </Button>
                 </Grid>
-                <ListView BorderBrush="Transparent" Background="Transparent" Height="533">
+                <ListView BorderBrush="Transparent" Background="Transparent" Opacity="1" Height="533">
                     <ListViewItem Height="30">
                         <Button Background="Transparent" BorderBrush="Transparent" Height="30" HorizontalAlignment="Left" Width="130" Click="Button_Click_Profile">
-                            <StackPanel Margin="0,0,47,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,0,44,0" Orientation="Horizontal">
                                 <Image Source="/Resources/Images/OwnerImages/profile.jpg" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="My profile" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text=" My profile" VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
                     </ListViewItem>
                     <ListViewItem Height="30">
                         <Button Background="Transparent" BorderBrush="Transparent" Height="30" HorizontalAlignment="Left" Width="130" Click="Button_Click_Accommodations">
-                            <StackPanel Margin="0,0,7,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,0,5,0" Orientation="Horizontal">
                                 <Image Source="/Resources/Images/OwnerImages/accommodations.png" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="Accommodations" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text=" Accommodations" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>
                     <ListViewItem Height="30">
                         <Button Background="Transparent" BorderBrush="Transparent" Height="30" HorizontalAlignment="Left" Width="130" Click="Button_Click_Guests">
-                            <StackPanel Margin="0,0,65,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,0,62,0" Orientation="Horizontal">
                                 <Image Source="/Resources/Images/OwnerImages/guests.png" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="Guests" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text=" Guests" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>
                     <ListViewItem Height="30">
                         <Button Background="Transparent" BorderBrush="Transparent" Height="30" HorizontalAlignment="Left" Width="130" Click="Button_Click_Statistics">
-                            <StackPanel Margin="0,0,55,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,0,52,0" Orientation="Horizontal">
                                 <Image Source="/Resources/Images/OwnerImages/statistics.png" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="Statistics" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text=" Statistics" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>
                     <ListViewItem Height="30">
                         <Button Background="Transparent" BorderBrush="Transparent" Height="30" HorizontalAlignment="Left" Width="130" Click="Button_Click_Requests">
-                            <StackPanel Margin="0,0,53,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,0,51,0" Orientation="Horizontal">
                                 <Image Source="/Resources/Images/OwnerImages/requests.png" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="Requests" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text=" Requests" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>
                     <ListViewItem Height="30">
                         <Button Background="Transparent" BorderBrush="Transparent" Height="30" HorizontalAlignment="Left" Width="130" Click="Button_Click_Suggestions">
-                            <StackPanel Margin="0,0,36,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,0,33,0" Orientation="Horizontal">
                                 <Image Source="/Resources/Images/OwnerImages/suggestions.jpg" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="Suggestions" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text=" Suggestions" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>
                     <ListViewItem Height="30">
                         <Button Background="Transparent" BorderBrush="Transparent" Height="30" HorizontalAlignment="Left" Width="130" Click="Button_Click_Renovations">
-                            <StackPanel Margin="0,0,36,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,0,33,0" Orientation="Horizontal">
                                 <Image Source="/Resources/Images/OwnerImages/renovations.png" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="Renovations" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text=" Renovations" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>
                     <ListViewItem Height="30">
                         <Button Background="Transparent" BorderBrush="Transparent" Height="30" HorizontalAlignment="Left" Width="130" Click="Button_Click_Forums">
-                            <StackPanel Margin="0,0,61,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,0,58,0" Orientation="Horizontal">
                                 <Image Source="/Resources/Images/OwnerImages/forums.png" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="Forums" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text=" Forums" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>
                     <ListViewItem Height="30">
                         <Button Background="Transparent" BorderBrush="Transparent" Height="30" HorizontalAlignment="Left" Width="130" Click="Button_Click_Reviews">
-                            <StackPanel Margin="0,0,59,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,0,56,0" Orientation="Horizontal">
                                 <Image Source="/Resources/Images/OwnerImages/reviews.png" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="Reviews" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text=" Reviews" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>
@@ -99,7 +100,7 @@
                         <Button Background="Transparent" BorderBrush="Transparent" Height="30" HorizontalAlignment="Left" Width="130" Click="Button_Click_Logout">
                             <StackPanel Margin="0,0,53,0" Orientation="Horizontal">
                                 <Image Source="/Resources/Images/OwnerImages/logout.png" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,0,0,0" Text="Log out" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text=" Log out" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>

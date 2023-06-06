@@ -1,6 +1,9 @@
 ﻿using BookingProject.Controller;
+using BookingProject.Controllers;
 using BookingProject.Domain;
+using BookingProject.View.CustomMessageBoxes;
 using BookingProject.View.OwnersView;
+using BookingProject.View.OwnerViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +30,9 @@ namespace BookingProject.View
 
         double panelWidth;
         bool hidden;
+        public OwnerNotificationCustomBox box { get; set; }
         public UserController UserController { get; set; }
+        public NotificationController _notificationController { get; set; }
 
         public MenuView()
         {
@@ -36,18 +41,32 @@ namespace BookingProject.View
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 0);
             timer.Tick += Timer_Tick;
-            
-           
+            box = new OwnerNotificationCustomBox();
+
+            _notificationController = new NotificationController();
             panelWidth = sidePanel.Width;
             hidden = true;
             sidePanel.Width = 34;
-            //if (UserController.GetLoggedUser().numberOfSignIn == 1)
-            //{
+            if (UserController.GetLoggedUser().numberOfSignIn == 1)
+            {
                 FrameHomePage.Content = new WelcomeToBookingView(this.FrameHomePage.NavigationService);
-            //} else
-            //{
-            //    FrameHomePage.Content = new OwnerssView(this.FrameHomePage.NavigationService);
-            //}
+            }
+            else
+            {
+                FrameHomePage.Content = new OwnerssView(this.FrameHomePage.NavigationService);
+                NotGradedViewModel not_view = new NotGradedViewModel(this.FrameHomePage.NavigationService);
+                int row_num = not_view.RowNum();
+
+                // Delay showing the MessageBox by using Dispatcher.BeginInvoke
+                Dispatcher.BeginInvoke(new Action(async () =>
+                {
+                    if (row_num > 0)
+                    {
+                        await Task.Delay(500); // Delay before showing the custom box
+                        box.ShowCustomMessageBox("You have " + row_num.ToString() + " guests to rate!");
+                    }
+                }));
+            }
         }
         private void Timer_Tick(object sender, EventArgs e)
         {

@@ -1,8 +1,10 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.CustomMessageBoxes;
 using BookingProject.View.OwnersView;
 using BookingProject.View.OwnerView;
+using BookingProject.View.OwnerViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,6 +36,7 @@ namespace BookingProject.View
         public RelayCommand StatisticsCommand { get; }
         public RelayCommand RenovationsCommand { get; }
         public NavigationService NavigationService { get; set; }
+        public OwnerNotificationCustomBox box { get; set; }
         public OwnerssViewModel(NavigationService navigationService)
         {
             _userController = new UserController();
@@ -52,7 +55,9 @@ namespace BookingProject.View
             CloseCommand = new RelayCommand(Button_Click_Close, CanExecute);
             StatisticsCommand = new RelayCommand(Button_Click_Statistics, CanExecute);
             RenovationsCommand = new RelayCommand(Button_Click_Renovations, CanExecute);
+            box = new OwnerNotificationCustomBox();
             NavigationService = navigationService;
+            
         }
         private bool CanExecute(object param) { return true; }
         private void Button_Click_Add(object param)

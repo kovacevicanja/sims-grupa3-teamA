@@ -104,7 +104,7 @@
                             <Grid>
 
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock Text="Popular location: " FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
+                                    <TextBlock Text="Unpopular location: " FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
                                     <TextBlock Text="{Binding City}" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
                                     <TextBlock Text=", " FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
                                     <TextBlock Text="{Binding Country}" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
@@ -164,52 +164,14 @@
                             </Grid.ColumnDefinitions>
                             <Image Margin="50,0,5,0" Source="{Binding Images[0].Url}" Width="80" Height="80" Stretch="Fill" />
                             <StackPanel Grid.Column="1">
-                                <TextBlock Margin="0,0,0,0" Text="{Binding AccommodationName}" FontSize="15" FontWeight="Bold" Foreground="#FF0F4E7A" />
+                                <TextBlock Margin="0,5,0,0" Text="{Binding AccommodationName}" FontSize="15" FontWeight="Bold" Foreground="#FF0F4E7A" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Location.City}" FontSize="15" FontWeight="Bold" Foreground="Gray" />
                                     <TextBlock Text=", " FontSize="15" FontWeight="Bold" Foreground="Gray" />
                                     <TextBlock Text="{Binding Location.Country}" FontSize="15" FontWeight="Bold" Foreground="Gray" />
                                 </StackPanel>
                                 <TextBlock Text="{Binding Type}" FontSize="15" FontWeight="Bold" Foreground="Gray" />
-                                <Button Content="Close accommodation" Width="130" HorizontalAlignment="Left" Click="Button_Click" FontWeight="Bold">
-                                    <Button.Style>
-                                        <Style TargetType="Button">
-                                            <Setter Property="Background" Value="#FF0F4E7A" />
-                                            <Setter Property="Foreground" Value="Black" />
-                                            <Setter Property="BorderBrush" Value="black" />
-                                            <Setter Property="BorderThickness" Value="2" />
-                                            <Setter Property="Padding" Value="10" />
-                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                            <Setter Property="VerticalAlignment" Value="Center" />
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="8">
-                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                        </Border>
-                                                        <ControlTemplate.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Background" Value="#FF0F4E7A"/>
-                                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
-                                                            </Trigger>
-                                                            <Trigger Property="IsPressed" Value="True">
-                                                                <Setter Property="Background" Value="#FF0F4E7A"/>
-                                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
-                                                            </Trigger>
-                                                            <Trigger Property="IsEnabled" Value="False">
-                                                                <Setter Property="Background" Value="#FF0F4E7A"/>
-                                                                <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
-                                                            </Trigger>
-                                                        </ControlTemplate.Triggers>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </Button.Style>
-                                </Button>
+                            
                             </StackPanel>
                         </Grid>
                     </DataTemplate>

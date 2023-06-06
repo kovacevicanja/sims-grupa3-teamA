@@ -84,6 +84,10 @@ namespace BookingProject.View.GuideViewModel
                 {
                     if (string.IsNullOrEmpty(Url))
                         return "Enter a valid url!";
+                    if (!validateUrlRegex.IsMatch(Url))
+                    {
+                        return "poiada";
+                    }
 
                 }
 

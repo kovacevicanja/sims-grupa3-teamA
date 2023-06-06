@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnersViewModel
 {
-    public class OneAccommodationViewModel
+    public class OneAccommodationViewModel : INotifyPropertyChanged
     { 
         public Accommodation SelectedAccommodation { get; set; }
         public NavigationService NavigationService { get; set; }

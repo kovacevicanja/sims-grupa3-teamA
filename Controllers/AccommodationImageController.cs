@@ -39,6 +39,10 @@ namespace BookingProject.Controller
         {
             _imageService.LinkToAccommodation(id);
         }
+        public void LinkToAccommodationWizard(int id)
+        {
+            _imageService.LinkToAccommodationWizard(id);
+        }
         public void DeleteUnused()
         {
             _imageService.DeleteUnused();

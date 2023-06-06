@@ -56,7 +56,7 @@ namespace BookingProject.Services.Implementations
         {
             return _renovationRepository.Update(accommodationRenovation);
         }
-        public List<AccommodationRenovation> GetRenovationsInPast()
+        public List<AccommodationRenovation> GetRenovationsInPast(int ownerId)
         {
             List<AccommodationRenovation> renovations = _renovationRepository.GetAll();
 
@@ -64,13 +64,13 @@ namespace BookingProject.Services.Implementations
 
             foreach (AccommodationRenovation renovation in renovations)
             {
-                if (renovation.StartDate < DateTime.Today)
+                if (renovation.StartDate < DateTime.Today && renovation.Accommodation.Owner.Id==ownerId)
                     passedRenovations.Add(renovation);
             }
 
             return passedRenovations;
         }
-        public List<AccommodationRenovation> GetRenovationsInFuture()
+        public List<AccommodationRenovation> GetRenovationsInFuture(int ownerId)
         {
             List<AccommodationRenovation> renovations = _renovationRepository.GetAll();
 
@@ -78,7 +78,7 @@ namespace BookingProject.Services.Implementations
 
             foreach (AccommodationRenovation renovation in renovations)
             {
-                if (renovation.StartDate > DateTime.Today)
+                if (renovation.StartDate > DateTime.Today && renovation.Accommodation.Owner.Id==ownerId)
                     futureRenovations.Add(renovation);
             }
 

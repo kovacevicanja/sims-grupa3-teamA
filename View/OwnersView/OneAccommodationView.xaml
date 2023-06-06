@@ -4,10 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingProject.View.OwnersView"
+      xmlns:local1="clr-namespace:BookingProject.ConversionHelp"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="323"
       Title="OneAccommodationView">
     <Page.Resources>
+        <local1:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Style x:Key="CustomTooltipStyle" TargetType="ToolTip">
             <Setter Property="Background" Value="#FF0F4E7A"/>
             <Setter Property="BorderBrush" Value="Black"/>
@@ -43,13 +45,21 @@
             <Label Margin="0 5 0 0" FontSize="20" FontWeight="Bold" Foreground="Black">My Accommodations</Label>
         </StackPanel>
         <Grid Grid.Row="1" Background="Transparent">
-        <Border BorderBrush="Gray" BorderThickness="0" CornerRadius="0" Margin="30,30,30,263">
+        <Border BorderBrush="Gray" BorderThickness="0" CornerRadius="0" Margin="30,20,30,273">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="5" Color="Gray" Opacity="0.8"/>
             </Border.Effect>
-            <Image Stretch="Fill" Source="{Binding CurrentImage.Url}" />
+                <Image Source="{Binding CurrentImage.Url}" Stretch="Fill" />
         </Border>
-        <TextBlock Text="{Binding SelectedAccommodation.AccommodationName}" HorizontalAlignment="Center" Margin="0,255,0,0" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
+            <Button IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="0,115,0,0" Width="30" Visibility="{Binding CanMoveToPreviousImage, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Command="{Binding MoveToPreviousImageCommand}" FontSize="24" VerticalAlignment="Top" BorderBrush="Transparent" Background="Transparent">
+                <Image Height="30" Source="/Resources/Images/Ownerimages/left.png"/>
+            </Button>
+            <Button IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="280,115,0,0" Width="30"  Visibility="{Binding CanMoveToNextImage, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Command="{Binding MoveToNextImageCommand}" FontSize="24" VerticalAlignment="Top" BorderBrush="Transparent" Background="Transparent">
+                <Image Height="30" Source="/Resources/Images/Ownerimages/right.png"/>
+            </Button>
+            <TextBlock Text="{Binding SelectedAccommodation.AccommodationName}" HorizontalAlignment="Center" Margin="0,255,0,0" FontSize="18" FontWeight="Bold" Foreground="#FF0F4E7A" />
         <TextBlock Text="{Binding SelectedAccommodation.Location.City}" FontSize="18" HorizontalAlignment="Center" Margin="0,285,0,0" FontWeight="Bold" Foreground="Gray" />
         <TextBlock Text="{Binding SelectedAccommodation.Location.Country}" FontSize="18" HorizontalAlignment="Center" Margin="0,315,0,0" FontWeight="Bold" Foreground="Gray" />
         <TextBlock Text="{Binding SelectedAccommodation.Type}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Gray" Margin="0,345,0,0" />

@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="AddPhotosToAccommodationView" d:DesignHeight="600" d:DesignWidth="323">
     <Page.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <!-- Placeholder for the TextBox itself -->
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="#FF0F4E7A" />
+            </StackPanel>
+
+        </ControlTemplate>
         <Style x:Key="CustomTooltipStyle" TargetType="ToolTip">
             <Setter Property="Background" Value="#FF0F4E7A"/>
             <Setter Property="BorderBrush" Value="Black"/>
@@ -43,8 +51,8 @@
         <Grid Grid.Row="1">
 
             <Label  Grid.Column="1" Margin="0,0,0,400" Height="30" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center">Photo url:</Label>
-            <TextBox Text="{Binding Path=Url, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="300" Margin="0,0,0,300"/>
-            <Button Content="Add" IsDefault="True" FontWeight="Bold"
+            <TextBox Text="{Binding Path=Url, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Height="30" Width="300" Margin="0,0,0,300" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
+            <Button Content="Add" IsDefault="True" FontWeight="Bold" IsEnabled="{Binding IsButtonEnabled}"
               Command="{Binding AddCommand}" Height="26" Width="51" Margin="0,0,0,150">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -71,10 +79,10 @@
                                         </Trigger>
                                         <Trigger Property="IsPressed" Value="True">
                                             <Setter Property="Background" Value="#FF0F4E7A"/>
-                                            <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
+                                            <Setter Property="BorderBrush" Value="black"/>
                                         </Trigger>
                                         <Trigger Property="IsEnabled" Value="False">
-                                            <Setter Property="Background" Value="#FF0F4E7A"/>
+                                            <Setter Property="Background" Value="#b7d1e0"/>
                                             <Setter Property="BorderBrush" Value="#FF0F4E7A"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>

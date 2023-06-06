@@ -93,5 +93,6 @@
 93|5|The tour you always wanted was made. View the offer in newly created tours.|True|
 94|5|A tour you requested was created, go search it out, first instance of this tour will be held on  28/05/2023 10:00:00!|True|
 95|5|The tour you always wanted was made. View the offer in newly created tours.|True|
-96|1|Request to move reservation from 20.07.2023. - 25.07.2023. to 23.06.2023. - 30.06.2023. is APPROVED|False|
-97|1|Request to move reservation from 23.06.2023. - 30.06.2023. to 23.06.2023. - 30.06.2023. is APPROVED|False|
+99|1|Request to move reservation from 20.07.2023. - 25.07.2023. to 23.06.2023. - 30.06.2023. is APPROVED|True|
+100|1|Request to move reservation from 23.06.2023. - 30.06.2023. to 23.06.2023. - 30.06.2023. is APPROVED|True|
+101|3|Request to move reservation from 27.06.2023. - 29.06.2023. to 22.07.2023. - 30.07.2023. is APPROVED|True|

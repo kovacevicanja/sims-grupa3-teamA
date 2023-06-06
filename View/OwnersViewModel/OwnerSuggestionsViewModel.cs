@@ -34,7 +34,18 @@ namespace BookingProject.View.OwnersViewModel
             numberOfRes = new ObservableCollection<int>();
             numberOfRes2 = new ObservableCollection<int>();
             Locations = new ObservableCollection<Location>(ReservationController.GetPopularLocations());
-            Locations2 = new ObservableCollection<Location>(ReservationController.GetUnPopularLocations());
+            if(_accommodationController.GetAllAccommodationsWithoutReservations(SignInForm.LoggedInUser.Id).Count != 0)
+            {
+                foreach(Accommodation a in _accommodationController.GetAllAccommodationsWithoutReservations(SignInForm.LoggedInUser.Id))
+                {
+                    Locations2 = new ObservableCollection<Location>();
+                    Locations2.Add(a.Location);
+                }
+            } else
+            {
+                Locations2 = new ObservableCollection<Location>(ReservationController.GetUnPopularLocations());
+            }
+            
             AddCommand = new RelayCommand(Button_Click_Add, CanExecute);
             foreach(Location location in Locations)
             {
@@ -45,17 +56,26 @@ namespace BookingProject.View.OwnersViewModel
                 numberOfRes2.Add(ReservationController.CountReservationsForSpecificLocation(location.Id));
             }
             Accommodation = new ObservableCollection<Accommodation>(_accommodationController.GetAllForOwner(SignInForm.LoggedInUser.Id));
-            Accommodations = new ObservableCollection<Accommodation>();
-            foreach(Accommodation a in Accommodation){
-                foreach(Location l in Locations2)
+            //Accommodations = new ObservableCollection<Accommodation>();
+            if (_accommodationController.GetAllAccommodationsWithoutReservations(SignInForm.LoggedInUser.Id).Count != 0)
+            {
+                Accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAllAccommodationsWithoutReservations(SignInForm.LoggedInUser.Id));
+            } else
+            {
+                Accommodations = new ObservableCollection<Accommodation>();
+                foreach (Accommodation a in Accommodation)
                 {
-                    if (a.IdLocation == l.Id)
+                    foreach (Location l in Locations2)
                     {
-                        Accommodations.Add(a);
+                        if (a.IdLocation == l.Id)
+                        {
+                            Accommodations.Add(a);
+                        }
                     }
+
                 }
-                
             }
+            
         }
         private bool CanExecute(object param) { return true; }
         public void Button_Click_Add(object param)

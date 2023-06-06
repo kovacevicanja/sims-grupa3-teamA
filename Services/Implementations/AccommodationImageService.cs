@@ -47,12 +47,25 @@ namespace BookingProject.Services.Implementations
             _imageRepository.Delete(acc);
         }
 
+
         public void LinkToAccommodation(int id)
         {
 
             foreach (AccommodationImage image in _imageRepository.GetAll())
             {
                 if (image.AccommodationId == -1)
+                {
+                    image.AccommodationId = id;
+                }
+
+            }
+        }
+        public void LinkToAccommodationWizard(int id)
+        {
+
+            foreach (AccommodationImage image in _imageRepository.GetAll())
+            {
+                if (image.AccommodationId == 0)
                 {
                     image.AccommodationId = id;
                 }

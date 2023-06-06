@@ -25,16 +25,18 @@ namespace BookingProject.View.OwnersView
     public partial class BookingCalendarView : Page
     {
         public AccommodationReservationController Controller { get; set; }
+        public Accommodation SelAcc { get; set; }
         public BookingCalendarView(Accommodation selectedAccommodation, NavigationService navigationService)
         {
             InitializeComponent();
             this.DataContext = new BookingCalendarViewModel(selectedAccommodation, navigationService);
             Controller = new AccommodationReservationController();
+            SelAcc = selectedAccommodation;
             PopulateOccupiedDates();
         }
         private void PopulateOccupiedDates()
         {
-            foreach (var reservation in Controller.GetAll())
+            foreach (var reservation in Controller.GetAllForAccommodation(SelAcc.Id))
             {
                 DateTime startDate = reservation.InitialDate;
                 DateTime endDate = reservation.EndDate;

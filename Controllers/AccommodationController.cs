@@ -5,6 +5,7 @@ using BookingProject.Model.Images;
 using BookingProject.Services.Implementations;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
+using Org.BouncyCastle.Asn1.Mozilla;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,11 +20,13 @@ namespace BookingProject.Controller
         private readonly IAccommodationService _accommodationService;
         public AccommodationImageController AccommodationImageController { get; set; }
         public AccommodationLocationController AccommodationLocationController { get; set; }
+        public AccommodationReservationController ReservationController { get; set; }
         public AccommodationController()
         {
             _accommodationService = Injector.CreateInstance<IAccommodationService>();
             AccommodationLocationController = new AccommodationLocationController();
             AccommodationImageController = new AccommodationImageController();
+            ReservationController = new AccommodationReservationController();
         }
         public bool CheckType(List<String> accommodationTypes, string accType)
         {
@@ -128,6 +131,21 @@ namespace BookingProject.Controller
         public List<AccommodationRenovation> GetAccommodationData(List<AccommodationRenovation> renovations)
         {
             return _accommodationService.GetAccommodationData(renovations);
+        }
+        public List<Accommodation> GetAllAccommodationsWithoutReservations(int ownerId)
+        {
+            List<Accommodation> accommodations = GetAllForOwner(ownerId);
+            foreach(Accommodation a in GetAllForOwner(ownerId))
+            {
+                foreach(AccommodationReservation r in ReservationController.GetAllForOwner(ownerId))
+                {
+                    if (r.Accommodation.Id == a.Id)
+                    {
+                        accommodations.Remove(a);
+                    }
+                }
+            }
+            return accommodations;
         }
     }
 }
