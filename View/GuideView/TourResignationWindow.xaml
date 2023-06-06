@@ -7,6 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
+    xmlns:ns="clr-namespace:BookingProject.Localization"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         Title="TourResignationWindow" Height="450" Width="800"
     Style="{DynamicResource MyWindowStyle}">
@@ -27,9 +28,9 @@
 
     <Grid>
         <Rectangle Stroke="Black" Margin="59,101,59,125"/>
-        <Label Content="Are you sure you want&#xD;&#xA; to cancel this tour?" HorizontalAlignment="Center"  FontSize="45" FontWeight="Bold" Margin="0,118,0,125" Width="480"/>
-        <Button Content="Yes(Y)" FontSize="30" FontWeight="Bold" Margin="90,330,434,29" Command="{Binding YesCommand}"/>
-        <Button Content="No(N)" FontSize ="30" FontWeight="Bold" Margin="425,330,89,29" Command="{Binding NoCommand}"/>
+        <Label Content="{ns:Loc AYS}" HorizontalAlignment="Left"  FontSize="55" FontWeight="Bold" Margin="205,170,0,66" Width="480"/>
+        <Button Content="{ns:Loc Yes}" FontSize="30" FontWeight="Bold" Margin="90,330,434,29" Command="{Binding YesCommand}"/>
+        <Button Content="{ns:Loc No}" FontSize ="30" FontWeight="Bold" Margin="425,330,89,29" Command="{Binding NoCommand}"/>
 
     </Grid>
 </Window>

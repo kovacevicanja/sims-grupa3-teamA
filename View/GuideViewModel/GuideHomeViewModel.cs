@@ -202,8 +202,7 @@ namespace BookingProject.View.GuideViewModel
 
             CurrentLanguage = "en-US";
             app.ChangeLanguage(CurrentLanguage);
-
-
+          
         }
 
         private void Button_Click_R(object param)

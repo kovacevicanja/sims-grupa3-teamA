@@ -117,13 +117,172 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="A" xml:space="preserve">
+    <value>Moje Ture (A)</value>
+  </data>
+  <data name="AYS" xml:space="preserve">
+    <value>Jeste li sigurni?</value>
+  </data>
+  <data name="B" xml:space="preserve">
+    <value>Statistike Ture (B)</value>
+  </data>
+  <data name="C" xml:space="preserve">
+    <value>Pogled Uživo (C)</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Nazad (Esc)</value>
+  </data>
+  <data name="CancelSelectedTour" xml:space="preserve">
+    <value>Otkaži Izabranu Turu(C)</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Grad</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zatvori (Esc)</value>
+  </data>
+  <data name="CloseE" xml:space="preserve">
+    <value>Zatvori</value>
+  </data>
+  <data name="Core" xml:space="preserve">
+    <value>Core opcije:</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Država</value>
+  </data>
+  <data name="CreateNewReport" xml:space="preserve">
+    <value>Kreiraj Novi Izveštaj(N)</value>
+  </data>
+  <data name="D" xml:space="preserve">
+    <value>Zahtevi (D)</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Deskripcija</value>
+  </data>
+  <data name="E" xml:space="preserve">
+    <value>Statistika Zahteva (E)</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>Kraj (Enter)</value>
+  </data>
+  <data name="GPC" xml:space="preserve">
+    <value>Pitaj za prisustvo:</value>
+  </data>
+  <data name="GPCask" xml:space="preserve">
+    <value>Pitaj</value>
+  </data>
+  <data name="GPCcancel" xml:space="preserve">
+    <value>Otkaži</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Slike</value>
+  </data>
+  <data name="IsPresent" xml:space="preserve">
+    <value>Prisutan</value>
+  </data>
+  <data name="JoinE" xml:space="preserve">
+    <value>Pojavio se na:</value>
+  </data>
+  <data name="KeyPoints" xml:space="preserve">
+    <value>Ključne tačke</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Jezik</value>
+  </data>
+  <data name="LanguageN" xml:space="preserve">
+    <value>Jeziku(N)</value>
+  </data>
+  <data name="LiveList" xml:space="preserve">
+    <value>LISTA TURA ODRŽAVANIH DANAS</value>
+  </data>
+  <data name="LocationY" xml:space="preserve">
+    <value>Lokaciji(Y)</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Izloguj se (Esc)</value>
+  </data>
+  <data name="LTVKeyPoint" xml:space="preserve">
+    <value>Ključna Tačka</value>
+  </data>
+  <data name="M" xml:space="preserve">
+    <value>Mod (M)</value>
+  </data>
+  <data name="Mark" xml:space="preserve">
+    <value>Markiraj (M)</value>
+  </data>
+  <data name="MarkE" xml:space="preserve">
+    <value>Markiraj</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Mesec</value>
+  </data>
+  <data name="MyTours" xml:space="preserve">
+    <value>Moje Ture</value>
+  </data>
+  <data name="N" xml:space="preserve">
+    <value>Kreiraj Novu Turu  (N)</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Ime:</value>
+  </data>
+  <data name="NameG" xml:space="preserve">
+    <value>Ime</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Ne(N)</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Opcije</value>
+  </data>
+  <data name="PossibleGuests" xml:space="preserve">
+    <value>Moguće gostiju</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Moj profil:</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rejting:</value>
   </data>
   <data name="Resign" xml:space="preserve">
     <value>Ostavka (R)</value>
   </data>
+  <data name="S" xml:space="preserve">
+    <value>Sugestija (S)</value>
+  </data>
   <data name="SelectMost" xml:space="preserve">
     <value>Selektuj turu da dobijes statistike | Najposecenija:</value>
+  </data>
+  <data name="StartingTime" xml:space="preserve">
+    <value>Start vreme</value>
+  </data>
+  <data name="StartTour" xml:space="preserve">
+    <value>Započni Turu (S)</value>
+  </data>
+  <data name="SuggestionB" xml:space="preserve">
+    <value>Baziraj na:</value>
+  </data>
+  <data name="SurnameG" xml:space="preserve">
+    <value>Prezime</value>
+  </data>
+  <data name="TourDuration" xml:space="preserve">
+    <value>Trajanje</value>
+  </data>
+  <data name="TourName" xml:space="preserve">
+    <value>Ime ture</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>Workflow opcije:</value>
+  </data>
+  <data name="X" xml:space="preserve">
+    <value>Srpski (X)</value>
+  </data>
+  <data name="Y" xml:space="preserve">
+    <value>Engleski  (Y)</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Godina</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Da(Y)</value>
   </data>
 </root>

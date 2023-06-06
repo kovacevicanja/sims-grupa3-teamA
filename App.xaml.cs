@@ -30,6 +30,7 @@ namespace BookingProject
             else
             {
                 TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo("sr-LATN");
+                
             }
         }
         public App()

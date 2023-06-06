@@ -29,5 +29,7 @@ namespace BookingProject.View.GuideView
             InitializeComponent();
             this.DataContext = new GuestPresenceCheckViewModel(chosenTour, chosenKeyPoint, chosenGuest);
         }
+
+
     }
 }

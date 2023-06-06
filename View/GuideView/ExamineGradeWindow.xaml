@@ -6,14 +6,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
+    xmlns:ns="clr-namespace:BookingProject.Localization"
         mc:Ignorable="d"
         Title="ExamineGradeWindow" Height="450" Width="800"
     Style="{DynamicResource MyWindowStyle}">
     <Grid>
         <TextBox  IsReadOnly="True" TextWrapping="Wrap" FontSize="24" Text="{Binding ChosenEvaluation.AdditionalComment}" Margin="0,74,270,0"/>
-        <Button Content="Mark" Command="{Binding MarkCommand}" FontWeight="Bold" FontSize="34" Margin="560,132,40,217" />
-        <Button Content="Close" Command="{Binding CancelCommand}" FontWeight="Bold" FontSize="34" Margin="560,254,40,95" />
-        <Label Content="Joined at:" FontWeight="Bold" FontSize="32" Margin="0,0,615,365"/>
+        <Button Content="{ns:Loc MarkE}" Command="{Binding MarkCommand}" FontWeight="Bold" FontSize="34" Margin="560,132,40,217" />
+        <Button Content="{ns:Loc CloseE}" Command="{Binding CancelCommand}" FontWeight="Bold" FontSize="34" Margin="560,254,40,95" />
+        <Label Content="{ns:Loc JoinE}" FontWeight="Bold" FontSize="32" Margin="0,0,615,365"/>
         <Label Content="{Binding GuestKeyPoint}" FontWeight="Bold" FontSize="32" Margin="185,0,270,365"/>
 
     </Grid>
