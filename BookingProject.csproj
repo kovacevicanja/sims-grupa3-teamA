@@ -411,6 +411,7 @@
     <Compile Include="View\OwnersViewModel\OneForumViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersApprovingDenyingRequestViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersForumsViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\OwnersProfileViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersRequestViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnerSuggestionsViewModel.cs" />
     <Compile Include="View\OwnersViewModel\WelcomeToBookingViewMode.cs" />
@@ -625,6 +626,9 @@
     </Compile>
     <Compile Include="View\OwnersView\OwnersForumsView.xaml.cs">
       <DependentUpon>OwnersForumsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\OwnersProfileView.xaml.cs">
+      <DependentUpon>OwnersProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnersView\OwnersRequestView.xaml.cs">
       <DependentUpon>OwnersRequestView.xaml</DependentUpon>
@@ -945,6 +949,10 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\OwnersView\OwnersForumsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\OwnersProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -96,3 +96,4 @@
 99|1|Request to move reservation from 20.07.2023. - 25.07.2023. to 23.06.2023. - 30.06.2023. is APPROVED|True|
 100|1|Request to move reservation from 23.06.2023. - 30.06.2023. to 23.06.2023. - 30.06.2023. is APPROVED|True|
 101|3|Request to move reservation from 27.06.2023. - 29.06.2023. to 22.07.2023. - 30.07.2023. is APPROVED|True|
+102|1|Request to move reservation from 22.07.2023. - 30.07.2023. to 23.06.2023. - 30.06.2023. is DECLINED|False|

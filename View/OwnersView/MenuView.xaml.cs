@@ -111,7 +111,7 @@ namespace BookingProject.View
 
         private void Button_Click_Profile(object sender, RoutedEventArgs e)
         {
-            
+            FrameHomePage.Content = new OwnersProfileView(this.FrameHomePage.NavigationService);
         }
 
         private void Button_Click_Accommodations(object sender, RoutedEventArgs e)

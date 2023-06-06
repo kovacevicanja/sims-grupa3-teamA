@@ -38,7 +38,6 @@ namespace BookingProject.View.OwnersView
         {
             var comment = ((Button)sender).DataContext as ForumComment;
             comment.NumberOfReports++;
-            ForumCommentController.Update(comment);
             box.ShowCustomMessageBox("You have reported a comment!");
         }
     }

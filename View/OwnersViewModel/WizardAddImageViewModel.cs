@@ -6,10 +6,12 @@ using BookingProject.View.CustomMessageBoxes;
 using BookingProject.View.OwnersView;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.WebPages;
 using System.Windows.Navigation;
@@ -17,7 +19,7 @@ using System.Windows.Navigation;
 namespace BookingProject.View.OwnersViewModel
 {
     
-    public class WizardAddImageViewModel
+    public class WizardAddImageViewModel : IDataErrorInfo, INotifyPropertyChanged
     {
         public Accommodation ForwardedAcc { get; set; }
         public NavigationService NavigationService { get; set; }
@@ -36,6 +38,82 @@ namespace BookingProject.View.OwnersViewModel
             NextCommand = new RelayCommand(Button_Click_Next, CanExecute);
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             OwnerCustomMessageBox = new OwnerNotificationCustomBox();
+            Images = new ObservableCollection<AccommodationImage>();
+        }
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "Url")
+                {
+                    if (string.IsNullOrEmpty(Url))
+                        return "";
+                    if (!validateUrlRegex.IsMatch(Url))
+                    {
+                        return "Url should be of format http(s)://something.extension";
+                    }
+
+                }
+
+                return null;
+            }
+        }
+
+
+        private readonly string[] _validatedProperties = { "Url" };
+
+        Regex validateUrlRegex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
+
+
+        private bool _isButtonEnabled = false;
+        public bool IsButtonEnabled
+        {
+            get { return _isButtonEnabled; }
+            set
+            {
+                if (_isButtonEnabled != value)
+                {
+                    _isButtonEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var property in _validatedProperties)
+                {
+                    if (this[property] != null)
+                        return false;
+                }
+
+                return validateUrlRegex.IsMatch(Url);
+            }
+        }
+        public string DisplayedUrl
+        {
+            get => _displayedUrl;
+            set
+            {
+                if (value != _displayedUrl)
+                {
+                    _displayedUrl = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private ObservableCollection<AccommodationImage> _images;
+        public ObservableCollection<AccommodationImage> Images
+        {
+            get => _images;
+            set
+            {
+                _images = value;
+                OnPropertyChanged();
+            }
         }
         private void Button_Click_Back(object param)
         {
@@ -51,23 +129,13 @@ namespace BookingProject.View.OwnersViewModel
                 if (value != _url)
                 {
                     _url = value;
+                    IsButtonEnabled = validateUrlRegex.IsMatch(Url);
                     OnPropertyChanged();
                 }
             }
         }
         private string _displayedUrl;
-        public string DisplayedUrl
-        {
-            get => _displayedUrl;
-            set
-            {
-                if (value != _displayedUrl)
-                {
-                    _displayedUrl = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+       
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -79,6 +147,7 @@ namespace BookingProject.View.OwnersViewModel
         {
             AccommodationImage image = new AccommodationImage();
             image.Url = Url;
+            Images.Add(image);
             ForwardedAcc.Images.Add(image);
             if (image.Url.IsEmpty())
             {

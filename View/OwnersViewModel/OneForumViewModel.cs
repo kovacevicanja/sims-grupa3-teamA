@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.WebPages;
@@ -16,7 +17,7 @@ using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnersViewModel
 {
-    public class OneForumViewModel
+    public class OneForumViewModel : INotifyPropertyChanged
     {
         public Forum Forum { get; set; }
         public NavigationService NavigationService { get; set; }
@@ -58,8 +59,10 @@ namespace BookingProject.View.OwnersViewModel
             forumComment.NumberOfReports = 0;
 
             CommentController.Create(forumComment);
+            Text = string.Empty;
             this.Comments.Add(forumComment);
         }
+
         private void Button_Back(object param)
         {
             NavigationService.GoBack();

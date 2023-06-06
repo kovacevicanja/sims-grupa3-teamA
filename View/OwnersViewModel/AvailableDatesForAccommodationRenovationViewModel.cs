@@ -18,7 +18,7 @@ using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnersViewModel
 {
-    public class AvailableDatesForAccommodationRenovationViewModel
+    public class AvailableDatesForAccommodationRenovationViewModel : INotifyPropertyChanged
     {
         public Accommodation SelectedAccommodation { get; set; }
         public AccommodationRenovationController _renovationController { get; set; }
@@ -27,39 +27,6 @@ namespace BookingProject.View.OwnersViewModel
         public Tuple<DateTime, DateTime> SelectedDatePair { get; set; }
         public NavigationService NavigationService { get; set; }
         public OwnerNotificationCustomBox box { get; set; }
-        public AvailableDatesForAccommodationRenovationViewModel(Accommodation selectedAccommodation, ObservableCollection<Tuple<DateTime, DateTime>> availableDates, NavigationService navigationService)
-        {
-            SelectedAccommodation = selectedAccommodation;
-            _renovationController = new AccommodationRenovationController();
-            AvailableDatesPair = availableDates;
-            ScheduleRenovationCommand = new RelayCommand(Button_Click_Schedule, CanExecute);
-            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
-            NavigationService = navigationService;
-            box = new OwnerNotificationCustomBox();
-        }
-
-        private void Button_Click_Back(object param)
-        {
-            NavigationService.GoBack();
-        }
-        private void Button_Click_Schedule(object param)
-        {
-            if (SelectedDatePair != null)
-            {
-                AccommodationRenovation accommodationRenovation = new AccommodationRenovation(SelectedAccommodation.Id, SelectedDatePair.Item1, SelectedDatePair.Item2, RenovationDescription);
-                _renovationController.Save(accommodationRenovation);
-                box.ShowCustomMessageBox("You have scheduled a renovation from "+ SelectedDatePair.Item1.ToShortDateString() + " to "+SelectedDatePair.Item2.ToShortDateString());
-
-                //var view = new AccommodationRenovationsView();
-                //view.Show();
-                //CloseWindow();
-                NavigationService.Navigate(new AccommodationRenovationsView(NavigationService));
-            }
-            else
-            {
-                box.ShowCustomMessageBox("You must chose the date range when you want to schedule the renovation");
-            }           
-        }
         private ObservableCollection<Tuple<DateTime, DateTime>> _availableDatesPair;
         public ObservableCollection<Tuple<DateTime, DateTime>> AvailableDatesPair
         {
@@ -86,19 +53,47 @@ namespace BookingProject.View.OwnersViewModel
                 }
             }
         }
-        private void CloseWindow()
+
+        public AvailableDatesForAccommodationRenovationViewModel(Accommodation selectedAccommodation, ObservableCollection<Tuple<DateTime, DateTime>> availableDates, NavigationService navigationService)
         {
-            foreach (Window window in App.Current.Windows)
+            SelectedAccommodation = selectedAccommodation;
+            _renovationController = new AccommodationRenovationController();
+            AvailableDatesPair = availableDates;
+            ScheduleRenovationCommand = new RelayCommand(Button_Click_Schedule, CanExecute);
+            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
+            NavigationService = navigationService;
+            box = new OwnerNotificationCustomBox();
+        }
+
+        private void Button_Click_Back(object param)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void Button_Click_Schedule(object param)
+        {
+            if (SelectedDatePair != null)
             {
-                if (window.GetType() == typeof(AvailableDatesForAccommodationRenovationView)) { window.Close(); }
+                AccommodationRenovation accommodationRenovation = new AccommodationRenovation(SelectedAccommodation.Id, SelectedDatePair.Item1, SelectedDatePair.Item2, RenovationDescription);
+                _renovationController.Save(accommodationRenovation);
+                box.ShowCustomMessageBox("You have scheduled a renovation from " + SelectedDatePair.Item1.ToShortDateString() + " to " + SelectedDatePair.Item2.ToShortDateString());
+
+                // Update the AvailableDatesPair collection with the new renovation
+                NavigationService.Navigate(new AccommodationRenovationsView(NavigationService));
+            }
+            else
+            {
+                box.ShowCustomMessageBox("You must choose the date range when you want to schedule the renovation");
             }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+
+        private bool CanExecute(object param) => true;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private bool CanExecute(object param) { return true; }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

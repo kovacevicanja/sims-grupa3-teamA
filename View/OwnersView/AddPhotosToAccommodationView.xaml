@@ -40,6 +40,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Height="50" Orientation="Horizontal" VerticalAlignment="Center"  Background="Transparent">
@@ -100,7 +101,23 @@
                 </Button.ToolTip>
                 <Image Source="/Resources/Images/OwnerImages/tooltip.png" ></Image>
             </Button>
-            <TextBlock Text="{Binding DisplayedUrl}" Margin="0,20,0,0" HorizontalAlignment="Center" FontSize="14" />
+            
+        </Grid>
+        <Grid Grid.Row="1" Margin="0,160,0,0" Grid.RowSpan="2">
+            <ItemsControl ItemsSource="{Binding Images}" Margin="0,10,0,0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="10">
+                            <Image Source="{Binding Url}" Height="100" Width="100" Stretch="Fill" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Grid>
     </Grid>
 </Page>

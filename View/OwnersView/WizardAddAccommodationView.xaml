@@ -219,7 +219,7 @@
                     <TextBox.Text>
                         <Binding Path="MaxGuestNumber" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
-                                <val:OwnerIntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                                <val:OwnerRequiredFieldValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -244,7 +244,7 @@
                     <TextBox.Text>
                         <Binding Path="MinDays" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
-                                <val:OwnerIntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                                <val:OwnerRequiredFieldValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>

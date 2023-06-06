@@ -5,6 +5,7 @@ using BookingProject.Model.Images;
 using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -36,6 +37,7 @@ namespace BookingProject.View.OwnerViewModel
             box = new OwnerNotificationCustomBox();
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             NavigationService = navigationService;
+            Images = new ObservableCollection<AccommodationImage>();
         }
         private void Button_Click_Menu(object param)
         {
@@ -67,7 +69,7 @@ namespace BookingProject.View.OwnerViewModel
                 if (columnName == "Url")
                 {
                     if (string.IsNullOrEmpty(Url))
-                        return ""; 
+                        return "";
                     if (!validateUrlRegex.IsMatch(Url))
                     {
                         return "Url should be of format http(s)://something.extension";
@@ -82,7 +84,7 @@ namespace BookingProject.View.OwnerViewModel
 
         private readonly string[] _validatedProperties = { "Url" };
 
-        Regex validateUrlRegex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.(png|jpe?g)$");
+        Regex validateUrlRegex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
 
 
         private bool _isButtonEnabled = false;
@@ -124,6 +126,16 @@ namespace BookingProject.View.OwnerViewModel
                 }
             }
         }
+        private ObservableCollection<AccommodationImage> _images;
+        public ObservableCollection<AccommodationImage> Images
+        {
+            get => _images;
+            set
+            {
+                _images = value;
+                OnPropertyChanged();
+            }
+        }
         private void Button_Click_Back(object param)
         {
             //var view = new OwnerssView();
@@ -153,6 +165,7 @@ namespace BookingProject.View.OwnerViewModel
             {
                 numberOfPhotos++;
                 isAdded = true;
+                Images.Add(image);
                 _imageController.Create(image);
                 Url = string.Empty;
                 //OnPropertyChanged(nameof(Url));
