@@ -12,7 +12,7 @@
     </Page.Background>
 
     <Grid>
-        <Label Margin="24,27,64,644" Foreground="Gray" FontWeight="Bold" FontSize="30" Content="Percentage of"/>
+        <Label Margin="24,27,0,644" Foreground="Gray" FontWeight="Bold" FontSize="30" Content="Percentage of"/>
         <Label Margin="227,27,62,644" Foreground="Gray" FontWeight="Bold" FontSize="30" Content="accepted and rejected requests"/>
         <Label Foreground = "LightBlue" Content="{Binding DisplayYear}" FontSize="28" FontWeight="Bold" Margin="86,72,368,581" />
 

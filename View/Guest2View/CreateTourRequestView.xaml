@@ -156,7 +156,7 @@
                 </Button.Style>
             </Button>
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="0" Margin="30,144,72,-177" Grid.RowSpan="2">
+        <Grid Grid.Row="0" Grid.Column="0" Margin="51,163,51,-196" Grid.RowSpan="2">
             <Grid.Resources>
                 <Style TargetType="{x:Type TextBox}">
                     <Setter Property="FontSize" Value="24" />

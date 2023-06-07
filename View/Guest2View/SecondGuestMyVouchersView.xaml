@@ -33,9 +33,9 @@
 
     <Grid>
 
-        <Label Content="My Vouchers" FontSize="35" FontWeight="Bold" Foreground="LightBlue" Margin="65,91,411,566" />
+        <Label Content="My Vouchers" FontSize="35" FontWeight="Bold" Foreground="LightBlue" Margin="140,65,368,614" />
 
-        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="144,194,144,159">
+        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="211,166,213,165">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
             </Border.Effect>
@@ -74,7 +74,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="155,668,0,0" VerticalAlignment="Top" Width="170"
+        <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="144,657,0,0" VerticalAlignment="Top" Width="170"
                 Command="{Binding UseVoucherCommand}" FontSize="24">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -114,7 +114,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Generate pdf report" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="454,37,0,0" VerticalAlignment="Top" Width="247"
+        <Button Content="Generate pdf report" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="468,25,0,0" VerticalAlignment="Top" Width="221"
                 Command="{Binding GeneratePdfReport}" FontSize="24">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -154,7 +154,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="395,668,0,0" VerticalAlignment="Top" Width="170"
+        <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="441,657,0,0" VerticalAlignment="Top" Width="170"
                 Command="{Binding CancelCommand}" FontSize="24">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

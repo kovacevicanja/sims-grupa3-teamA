@@ -10,6 +10,7 @@ using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Validation;
 using BookingProject.View.CustomMessageBoxes;
+using BookingProject.View.Guest2View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -200,7 +201,7 @@ namespace BookingProject.View.Guest2ViewModel
             tourRequest.GuestsNumber = GuestsNumber;
             tourRequest.Status = Domain.Enums.TourRequestStatus.PENDING;
             tourRequest.Guest.Id = GuestId;
-            tourRequest.ComplexTour.Id = ComplexTourRequest.Id;
+            tourRequest.ComplexTourRequest.Id = ComplexTourRequest.Id;
 
             ValidationResult resultCity = correctInputCityvalidationRule.Validate(location.City, CultureInfo.CurrentCulture);
 
@@ -208,6 +209,7 @@ namespace BookingProject.View.Guest2ViewModel
                 && tourRequest.EndDate == DateTime.Today) || tourRequest.GuestsNumber == 0)
             {
                 CustomMessageBox.ShowCustomMessageBox("You can not create a tour request. Some of the required fields are not filled out.");
+                NavigationService.Navigate(new CreateComplexTourRequestView(GuestId, NavigationService));
             }
             else
             {
@@ -240,6 +242,7 @@ namespace BookingProject.View.Guest2ViewModel
                         ComplexTourRequest.Guest.Id = GuestId;
                         _complexTourRequestController.Create(ComplexTourRequest);
                         NavigationService.GoBack();
+                        //ovo videti da nije bolje da se otvori odmah na profil
                     }
                     City = "";
                     Country = "";
@@ -253,7 +256,6 @@ namespace BookingProject.View.Guest2ViewModel
                     MessageBox.Show("You have not entered the correct city or country.");
                 }
             }
-
         }
 
         private void Button_Click_Cancel(object param)

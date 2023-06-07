@@ -53,7 +53,7 @@ namespace BookingProject.Services.Implementations
 
             foreach (TourRequest tourRequest in tourRequestsCopy)
             {
-                if (tourRequest.ComplexTour.Id == complexTourRequestId)
+                if (tourRequest.ComplexTourRequest.Id == complexTourRequestId)
                 {
                     tourRequests.Remove(tourRequest);
                 }

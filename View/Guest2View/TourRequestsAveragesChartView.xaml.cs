@@ -69,12 +69,12 @@ namespace BookingProject.View.Guest2View
             // Customize x-axis title
             Chart1.ChartAreas[0].AxisX.Title = "Request";
             Chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 14, System.Drawing.FontStyle.Bold);
-            Chart1.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.Black;
+            Chart1.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.Gray;
 
             // Customize y-axis title
             Chart1.ChartAreas[0].AxisY.Title = "Number of People";
             Chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 14, System.Drawing.FontStyle.Bold);
-            Chart1.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.Black;
+            Chart1.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.Gray;
 
             foreach (TourRequest request in _tourRequestController.AcceptedRequestsList(guestId, enteredYear))
             {
@@ -87,10 +87,12 @@ namespace BookingProject.View.Guest2View
 
             Chart1.ChartAreas[0].AxisY.Interval = 5;
             Chart1.ChartAreas[0].AxisX.LabelStyle.Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold);
+            Chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = System.Drawing.Color.Gray; // Set the gray color for y-axis labels
 
             Chart1.ChartAreas[0].AxisY.Minimum = 0;
             Chart1.ChartAreas[0].AxisY.Maximum = 30;
             Chart1.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+            Chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = System.Drawing.Color.Gray; // Set the gray color for y-axis labels
 
             Chart1.Series[0].IsValueShownAsLabel = false;
             Chart1.Series[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
@@ -100,7 +102,7 @@ namespace BookingProject.View.Guest2View
             Chart1.ChartAreas[0].AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             Chart1.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             Chart1.ChartAreas[0].BackColor = System.Drawing.Color.White;
-            Chart1.ChartAreas[0].ShadowColor = System.Drawing.Color.LightGray;
+            Chart1.ChartAreas[0].ShadowColor = System.Drawing.Color.Gray;
             Chart1.ChartAreas[0].ShadowOffset = 2;
 
             double averageValue = _tourRequestController.GetAvarageNumberOfPeopleInAcceptedRequests(guestId, enteredYear);
@@ -109,9 +111,9 @@ namespace BookingProject.View.Guest2View
             averageLine.Interval = 0;
             averageLine.IntervalOffset = averageValue;
             averageLine.StripWidth = 0.1;
-            averageLine.BackColor = System.Drawing.Color.Black;
-            averageLine.Text = "Average number of people: " + averageValue; 
-            averageLine.TextAlignment = System.Drawing.StringAlignment.Far; 
+            averageLine.BackColor = System.Drawing.Color.Gray;
+            averageLine.Text = "Average number of people: " + averageValue;
+            averageLine.TextAlignment = System.Drawing.StringAlignment.Far;
             averageLine.TextLineAlignment = System.Drawing.StringAlignment.Near; // Set the position of the label
             averageLine.Font = new System.Drawing.Font("Arial", 16, System.Drawing.FontStyle.Bold); // Customize the font of the label
             averageLine.ForeColor = System.Drawing.Color.Gray; // Set the gray color for the text
@@ -120,6 +122,7 @@ namespace BookingProject.View.Guest2View
             // Customize the appearance of the series
             Chart1.Series[0].BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash; // Set the border dash style to Dash
             Chart1.Series[0].BorderWidth = 2; // Set the border width
+
         }
         private void Button_Click_ChangeTheYear(object sender, RoutedEventArgs e)
         {

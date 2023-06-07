@@ -57,14 +57,17 @@ namespace BookingProject.View.Guest2View
             Chart1.ChartAreas[0].AxisX.Interval = 1;
             Chart1.ChartAreas[0].AxisX.LabelStyle.Angle = -30;
             Chart1.ChartAreas[0].AxisX.LabelStyle.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+            Chart1.ChartAreas[0].AxisX.LabelStyle.ForeColor = System.Drawing.Color.Gray; // Set the label color to gray
 
             Chart1.ChartAreas[0].AxisY.Interval = 5;
             Chart1.ChartAreas[0].AxisY.Minimum = 0;
-            Chart1.ChartAreas[0].AxisY.Maximum = 30; 
+            Chart1.ChartAreas[0].AxisY.Maximum = 30;
             Chart1.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+            Chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = System.Drawing.Color.Gray; // Set the label color to gray
 
             Chart1.Series[0].IsValueShownAsLabel = true;
             Chart1.Series[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+            Chart1.Series[0].LabelForeColor = System.Drawing.Color.Gray;
 
             Chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
             Chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;

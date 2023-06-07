@@ -64,16 +64,17 @@ namespace BookingProject.Repositories.Implementations
         }
         private void TourRequestsListBind()
         {
+            ComplexTourRequest complexTourRequest = new ComplexTourRequest();
             ITourRequestRepository tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             foreach (TourRequest tourRequest in tourRequestRepository.GetAll())
-            {
-                if (tourRequest.ComplexTour.Id == -1)
+            { 
+                if (tourRequest.ComplexTourRequest.Id == -1)
                 {
                     continue;
                 }
                 else
                 {
-                    ComplexTourRequest complexTourRequest = GetById(tourRequest.ComplexTour.Id);
+                    complexTourRequest = GetById(tourRequest.ComplexTourRequest.Id);
                     complexTourRequest.TourRequestsList.Add(tourRequest);
                 }
             }

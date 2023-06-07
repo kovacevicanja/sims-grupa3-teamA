@@ -12,32 +12,35 @@
     </Page.Background>
 
     <Grid>
-        <TextBlock Margin="57,288,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+        <Label Content="My" FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="29,27,517,635" />
+        <Label Content="profile" FontSize="40" FontWeight="Bold" Foreground="LightBlue" Margin="103,27,179,635" />
+
+        <TextBlock Margin="60,504,282,0" Height="56" VerticalAlignment="Top" FontSize="24">
                 <Run Text="Username:" FontWeight="Bold" Foreground="Gray"/>
                 <Run Text="{Binding UsernameDisplay}" FontWeight="Normal" Foreground="Gray" />
         </TextBlock>
-        <TextBlock Margin="57,349,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+        <TextBlock Margin="60,565,282,0" Height="56" VerticalAlignment="Top" FontSize="24">
                 <Run Text="Name:" FontWeight="Bold" Foreground="Gray"/>
                 <Run Text="{Binding NameDisplay}" FontWeight="Normal" Foreground="Gray" />
         </TextBlock>
-        <TextBlock Margin="57,410,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+        <TextBlock Margin="60,626,282,0" Height="56" VerticalAlignment="Top" FontSize="24">
                 <Run Text="Surname:" FontWeight="Bold" Foreground="Gray"/>
                 <Run Text="{Binding SurnameDisplay}" FontWeight="Normal" Foreground="Gray" />
         </TextBlock>
-        <TextBlock Margin="57,471,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+        <TextBlock Margin="330,504,21,0" Height="56" VerticalAlignment="Top" FontSize="24">
                 <Run Text="E-mail:" FontWeight="Bold" Foreground="Gray"/>
                 <Run Text="{Binding EmailDiplay}" FontWeight="Normal" Foreground="Gray" />
         </TextBlock>
-        <TextBlock Margin="57,532,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+        <TextBlock Margin="330,565,21,0" Height="56" VerticalAlignment="Top" FontSize="24">
                 <Run Text="Phone:" FontWeight="Bold" Foreground="Gray"/>
                 <Run Text="+381/69-13-04-001" Foreground="Gray"/>
         </TextBlock>
-        <TextBlock Margin="57,593,285,0" Height="56" VerticalAlignment="Top" FontSize="24">
+        <TextBlock Margin="330,626,21,0" Height="56" VerticalAlignment="Top" FontSize="24">
                 <Run Text="Gender:" FontWeight="Bold" Foreground="Gray"/>
                 <Run Text="{Binding GenderDisplay}" FontWeight="Normal" Foreground="Gray" />
         </TextBlock>
-        <Border BorderBrush="White" BorderThickness="2" Margin="57,51,337,506">
-            <Image Source="{Binding PictureSource}" Stretch="UniformToFill" Margin="0,0,0,-3"/>
+        <Border BorderBrush="White" BorderThickness="2" Margin="60,109,60,303">
+            <Image Source="{Binding PictureSource}" Stretch="UniformToFill" Margin="0,-2,0,-1"/>
         </Border>
 
     </Grid>

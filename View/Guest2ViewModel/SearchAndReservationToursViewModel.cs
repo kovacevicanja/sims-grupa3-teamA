@@ -103,6 +103,18 @@ namespace BookingProject.View.Guest2ViewModel
 
         private void Button_Click_ShowAll(object param)
         {
+            City = string.Empty;
+            Country = string.Empty;
+            Duration = string.Empty;
+            ChosenLanguage = string.Empty;
+            NumOfGuests = string.Empty;
+
+            OnPropertyChanged(nameof(City));
+            OnPropertyChanged(nameof(Country));
+            OnPropertyChanged(nameof(Duration));
+            OnPropertyChanged(nameof(ChosenLanguage));
+            OnPropertyChanged(nameof(NumOfGuests));
+
             _tourController.ShowAll(Tours);
         }
 

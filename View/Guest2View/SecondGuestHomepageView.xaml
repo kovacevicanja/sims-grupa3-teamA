@@ -59,11 +59,11 @@
                 <Button Content="My vouchers" Click="Button_Click_MyVouchers" CommandParameter="5" Width="256" Margin="0,200,0,290" HorizontalAlignment="Center"/>
                 <Button Content="Monitoring active tours" Click="Button_Click_ActiveTours" CommandParameter="6" Width="256" Margin="0,155,0,335" HorizontalAlignment="Center"/>
                 <Button Content="Create tour request" Click="Button_Click_CreateTourRequest" CommandParameter="7" Width="256" Margin="0,244,0,246" HorizontalAlignment="Center"/>
-                <Button Content="My tour requests" Click="Button_Click_MyTourRequests" CommandParameter="8" Width="256" Margin="0,379,0,111" HorizontalAlignment="Center"/>
+                <Button Content="My tour requests" Click="Button_Click_MyTourRequests" CommandParameter="8" Width="256" Margin="0,289,0,201" HorizontalAlignment="Center"/>
                 <Button Content="Request statistics" Click="Button_Click_RequestStatistcis" CommandParameter="9" Width="256" Margin="0,424,0,66" HorizontalAlignment="Center"/>
                 <Button Content="Newly created tours" Click="Button_Click_NewlyCreatedTours" CommandParameter="9" Width="256" Margin="0,469,0,21" HorizontalAlignment="Center"/>
-                <Button Content="Create complex tour request" Click="Button_Click_CreateComplexTourRequest" CommandParameter="9" Width="256" Margin="0,289,0,201" HorizontalAlignment="Center"/>
-                <Button Content="My complex tour request" Click="Button_Click_MyComplexTourRequests" CommandParameter="9" Width="256" Margin="0,334,0,156" HorizontalAlignment="Center"/>
+                <Button Content="Create complex tour request" Click="Button_Click_CreateComplexTourRequest" CommandParameter="9" Width="256" Margin="0,334,0,156" HorizontalAlignment="Center"/>
+                <Button Content="My complex tour request" Click="Button_Click_MyComplexTourRequests" CommandParameter="9" Width="256" Margin="0,379,0,111" HorizontalAlignment="Center"/>
             </Grid>
             <Grid Height="243" Width="276">
                 <Button Content="My profile" Click="Button_Click_MyProfile" CommandParameter="0" Width="256" Margin="0,82,0,121" HorizontalAlignment="Center"/>

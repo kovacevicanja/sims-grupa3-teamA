@@ -46,8 +46,8 @@
             <Label Content="Got great ideas for new complex tours?" FontSize="35" FontWeight="Bold" Foreground="Gray" Margin="27,21,37,141" />
             <Label Content="We hear you!" FontSize="28" FontWeight="Bold" Foreground="LightBlue" Margin="62,61,407,125" />
 
-            <Button Content="Create tour request" IsCancel="True" Height="36" Margin="178,395,0,0" VerticalAlignment="Top" Width="228"
-                Command="{Binding CreateTourRequestCommand}" FontSize="24" Grid.Row="1" HorizontalAlignment="Left">
+            <Button Content="Create tour request" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="146,409,0,0" VerticalAlignment="Top" Width="238"
+                Command="{Binding CreateTourRequestCommand}" FontSize="24" Grid.Row="1">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="Gray" />
@@ -82,7 +82,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="454,395,0,0" VerticalAlignment="Top" Width="114"
+            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="450,409,0,0" VerticalAlignment="Top" Width="114"
                 Command="{Binding CancelCommand}" FontSize="24" Grid.Row="1">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -118,8 +118,44 @@
                     </Style>
                 </Button.Style>
             </Button>
+            <Button Content="Log out" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="869,10,0,0" VerticalAlignment="Top" Width="116"
+                Command="{Binding LogOutCommand}" FontSize="24">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Gray" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="BorderBrush" Value="Gray" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="LightBlue"/>
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="0" Margin="32,128,70,-161" Grid.RowSpan="2">
+        <Grid Grid.Row="0" Grid.Column="0" Margin="40,161,62,-194" Grid.RowSpan="2">
             <Grid.Resources>
                 <Style TargetType="{x:Type TextBox}">
                     <Setter Property="FontSize" Value="24" />

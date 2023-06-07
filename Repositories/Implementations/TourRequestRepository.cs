@@ -103,7 +103,7 @@ namespace BookingProject.Repositories.Implementations
 
             foreach (TourRequest request in _tourRequests)
             {
-                if (request.Guest.Id == guestId && string.IsNullOrEmpty(enteredYear) && request.ComplexTour.Id == -1 ||
+                if (request.Guest.Id == guestId && string.IsNullOrEmpty(enteredYear) && request.ComplexTourRequest.Id == -1 ||
                          (request.StartDate.Year.ToString().Equals(enteredYear) && request.EndDate.Year.ToString().Equals(enteredYear)))
                 { guestRequests.Add(request); }         
             }

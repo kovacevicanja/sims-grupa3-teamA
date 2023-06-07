@@ -25,6 +25,7 @@ namespace BookingProject.View.Guest2ViewModel
         public string ComplexTourRequestName { get; set; }
 
         private List<TourRequest> _tourRequestsList;
+        public ObservableCollection<TourRequest> TourRequests { get; set; }
         public List<TourRequest> TourRequestsList
         {
             get { return _tourRequestsList; }
@@ -39,6 +40,10 @@ namespace BookingProject.View.Guest2ViewModel
             GuestId = guestId;
 
             _complexTourRequestController = new ComplexTourRequestController();
+            _tourRequestController = new TourRequestController();
+
+            _tourRequestController = new TourRequestController();
+            TourRequests = new ObservableCollection<TourRequest>(_tourRequestController.GetGuestRequests(guestId, ""));
 
             ComplexTourRequests = new ObservableCollection<ComplexTourRequest>(_complexTourRequestController.GetGuestComplexRequests(guestId));
 
@@ -46,15 +51,33 @@ namespace BookingProject.View.Guest2ViewModel
 
             NavigationService = navigationService;
 
-            _tourRequestController = new TourRequestController();
-
             TourRequestsList = new List<TourRequest>();
+
+            /*
+            foreach (TourRequest tourRequest in _tourRequestController.GetGuestRequests(guestId, ""))
+            {
+                if (tourRequest.ComplexTourRequest.Id == -1)
+                {
+                    continue;
+                }
+                else
+                {
+                    foreach (ComplexTourRequest complexTourRequest in ComplexTourRequests.ToList())
+                    {
+                        if (tourRequest.ComplexTourRequest.Id == complexTourRequest.Id)
+                        {
+                            TourRequestsList.Add(tourRequest);
+                        }
+                    }
+                }
+            }
+            */
 
             foreach (ComplexTourRequest complexRequest in ComplexTourRequests.ToList())
             {
                 foreach (TourRequest tourRequest in _tourRequestController.GetGuestRequests(guestId, ""))
                 {
-                    if (tourRequest.ComplexTour.Id ==  complexRequest.Id)
+                    if (tourRequest.ComplexTourRequest.Id == complexRequest.Id)
                     {
                         TourRequestsList.Add(tourRequest);
                     }
