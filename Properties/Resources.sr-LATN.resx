@@ -120,6 +120,15 @@
   <data name="A" xml:space="preserve">
     <value>Moje Ture (A)</value>
   </data>
+  <data name="A1" xml:space="preserve">
+    <value>Prihvati Zahtev (Space)</value>
+  </data>
+  <data name="A2" xml:space="preserve">
+    <value>PrikažI Sve (Backspace)</value>
+  </data>
+  <data name="A3" xml:space="preserve">
+    <value>Filter (Ins)</value>
+  </data>
   <data name="ADULT" xml:space="preserve">
     <value>Broj gostiju(odrasli):</value>
   </data>
@@ -140,6 +149,9 @@
   </data>
   <data name="Change" xml:space="preserve">
     <value>Izmeni (Enter)</value>
+  </data>
+  <data name="ChangeYear" xml:space="preserve">
+    <value>Promeni godinu (Y)</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Grad</value>
@@ -165,11 +177,23 @@
   <data name="Description" xml:space="preserve">
     <value>Deskripcija</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detalji</value>
+  </data>
+  <data name="DurationInHours" xml:space="preserve">
+    <value>Trajanje u satima</value>
+  </data>
   <data name="E" xml:space="preserve">
     <value>Statistika Zahteva (E)</value>
   </data>
   <data name="End" xml:space="preserve">
     <value>Kraj (Enter)</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Krajnji datum</value>
+  </data>
+  <data name="EnterImages" xml:space="preserve">
+    <value>Unesi Slike</value>
   </data>
   <data name="EnterImageUrl" xml:space="preserve">
     <value>Unesi URL:</value>
@@ -177,11 +201,20 @@
   <data name="EnterKeyPoint" xml:space="preserve">
     <value>Unesi k. tačku:</value>
   </data>
+  <data name="EnterKeyPoints" xml:space="preserve">
+    <value>Unesi Ključne Tačke</value>
+  </data>
+  <data name="EnterStartingTime" xml:space="preserve">
+    <value>Unesi Početno Vreme</value>
+  </data>
   <data name="EnterTourDate" xml:space="preserve">
     <value>Unesi datum:</value>
   </data>
   <data name="ESY" xml:space="preserve">
     <value>Unesi godinu ovde:</value>
+  </data>
+  <data name="Examine" xml:space="preserve">
+    <value>Analiziraj ocenu (E)</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filter (Enter)</value>
@@ -195,8 +228,20 @@
   <data name="GPCcancel" xml:space="preserve">
     <value>Otkaži</value>
   </data>
+  <data name="GuestNumberF" xml:space="preserve">
+    <value>Broj gostiju</value>
+  </data>
+  <data name="GuideKnowledge" xml:space="preserve">
+    <value>Znanje vodiča</value>
+  </data>
+  <data name="GuideLanguage" xml:space="preserve">
+    <value>Jezik vodiča</value>
+  </data>
   <data name="Images" xml:space="preserve">
     <value>Slike</value>
+  </data>
+  <data name="InititalDate" xml:space="preserve">
+    <value>Inicijalni datum</value>
   </data>
   <data name="IsPresent" xml:space="preserve">
     <value>Prisutan</value>
@@ -237,8 +282,14 @@
   <data name="MarkE" xml:space="preserve">
     <value>Markiraj</value>
   </data>
+  <data name="MaxGuests" xml:space="preserve">
+    <value>Maks gostiju</value>
+  </data>
   <data name="Month" xml:space="preserve">
     <value>Mesec</value>
+  </data>
+  <data name="MRF" xml:space="preserve">
+    <value>Moji Zahtevi: Filtriranje</value>
   </data>
   <data name="MyTours" xml:space="preserve">
     <value>Moje Ture</value>
@@ -291,6 +342,15 @@
   <data name="SENIOR" xml:space="preserve">
     <value>Broj gostiju(seniori):</value>
   </data>
+  <data name="SGE" xml:space="preserve">
+    <value>Izaberi ocenu za analizu:</value>
+  </data>
+  <data name="ShowReviews" xml:space="preserve">
+    <value>Prikaži ocene (R)</value>
+  </data>
+  <data name="ShowStatistics" xml:space="preserve">
+    <value>Prikaži statistiku (S)</value>
+  </data>
   <data name="StartingTime" xml:space="preserve">
     <value>Start vreme</value>
   </data>
@@ -309,11 +369,17 @@
   <data name="TEEN" xml:space="preserve">
     <value>Broj gostiju(deca):</value>
   </data>
+  <data name="TourAppeal" xml:space="preserve">
+    <value>Privlačnost ture</value>
+  </data>
   <data name="TourDuration" xml:space="preserve">
     <value>Trajanje</value>
   </data>
   <data name="TourName" xml:space="preserve">
     <value>Ime ture</value>
+  </data>
+  <data name="Validation" xml:space="preserve">
+    <value>Validacija</value>
   </data>
   <data name="VOUCHERMINUS" xml:space="preserve">
     <value>Procenat gostiju bez vaučera:</value>

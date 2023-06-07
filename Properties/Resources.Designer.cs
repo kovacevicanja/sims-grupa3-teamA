@@ -70,6 +70,33 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept Request (Space).
+        /// </summary>
+        public static string A1 {
+            get {
+                return ResourceManager.GetString("A1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show All (Backspace).
+        /// </summary>
+        public static string A2 {
+            get {
+                return ResourceManager.GetString("A2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter (Ins).
+        /// </summary>
+        public static string A3 {
+            get {
+                return ResourceManager.GetString("A3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of guests(adult):.
         /// </summary>
         public static string ADULT {
@@ -129,6 +156,15 @@ namespace BookingProject.Properties {
         public static string Change {
             get {
                 return ResourceManager.GetString("Change", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change year (Y).
+        /// </summary>
+        public static string ChangeYear {
+            get {
+                return ResourceManager.GetString("ChangeYear", resourceCulture);
             }
         }
         
@@ -205,6 +241,24 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration in hours.
+        /// </summary>
+        public static string DurationInHours {
+            get {
+                return ResourceManager.GetString("DurationInHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Request Statistics (E).
         /// </summary>
         public static string E {
@@ -219,6 +273,24 @@ namespace BookingProject.Properties {
         public static string End {
             get {
                 return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date.
+        /// </summary>
+        public static string EndDate {
+            get {
+                return ResourceManager.GetString("EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Images.
+        /// </summary>
+        public static string EnterImages {
+            get {
+                return ResourceManager.GetString("EnterImages", resourceCulture);
             }
         }
         
@@ -241,6 +313,24 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter Key Points.
+        /// </summary>
+        public static string EnterKeyPoints {
+            get {
+                return ResourceManager.GetString("EnterKeyPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Starting Time.
+        /// </summary>
+        public static string EnterStartingTime {
+            get {
+                return ResourceManager.GetString("EnterStartingTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter date:.
         /// </summary>
         public static string EnterTourDate {
@@ -255,6 +345,15 @@ namespace BookingProject.Properties {
         public static string ESY {
             get {
                 return ResourceManager.GetString("ESY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Examine grade (E).
+        /// </summary>
+        public static string Examine {
+            get {
+                return ResourceManager.GetString("Examine", resourceCulture);
             }
         }
         
@@ -295,11 +394,47 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guest number.
+        /// </summary>
+        public static string GuestNumberF {
+            get {
+                return ResourceManager.GetString("GuestNumberF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guide Knowledge.
+        /// </summary>
+        public static string GuideKnowledge {
+            get {
+                return ResourceManager.GetString("GuideKnowledge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guide Language.
+        /// </summary>
+        public static string GuideLanguage {
+            get {
+                return ResourceManager.GetString("GuideLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Images.
         /// </summary>
         public static string Images {
             get {
                 return ResourceManager.GetString("Images", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initital date.
+        /// </summary>
+        public static string InititalDate {
+            get {
+                return ResourceManager.GetString("InititalDate", resourceCulture);
             }
         }
         
@@ -421,11 +556,29 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max guests.
+        /// </summary>
+        public static string MaxGuests {
+            get {
+                return ResourceManager.GetString("MaxGuests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Month.
         /// </summary>
         public static string Month {
             get {
                 return ResourceManager.GetString("Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Requests : Filtering.
+        /// </summary>
+        public static string MRF {
+            get {
+                return ResourceManager.GetString("MRF", resourceCulture);
             }
         }
         
@@ -583,6 +736,33 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select grade to examine:.
+        /// </summary>
+        public static string SGE {
+            get {
+                return ResourceManager.GetString("SGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show reviews (R).
+        /// </summary>
+        public static string ShowReviews {
+            get {
+                return ResourceManager.GetString("ShowReviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show statistics (S).
+        /// </summary>
+        public static string ShowStatistics {
+            get {
+                return ResourceManager.GetString("ShowStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to StartingTime.
         /// </summary>
         public static string StartingTime {
@@ -637,6 +817,15 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tour Appeal.
+        /// </summary>
+        public static string TourAppeal {
+            get {
+                return ResourceManager.GetString("TourAppeal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tour duration.
         /// </summary>
         public static string TourDuration {
@@ -651,6 +840,15 @@ namespace BookingProject.Properties {
         public static string TourName {
             get {
                 return ResourceManager.GetString("TourName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation.
+        /// </summary>
+        public static string Validation {
+            get {
+                return ResourceManager.GetString("Validation", resourceCulture);
             }
         }
         
@@ -691,11 +889,11 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to xxx.
         /// </summary>
-        public static string xx {
+        public static string xxx {
             get {
-                return ResourceManager.GetString("xx", resourceCulture);
+                return ResourceManager.GetString("xxx", resourceCulture);
             }
         }
         
