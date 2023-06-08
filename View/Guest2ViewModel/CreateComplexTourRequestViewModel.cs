@@ -201,7 +201,7 @@ namespace BookingProject.View.Guest2ViewModel
             tourRequest.GuestsNumber = GuestsNumber;
             tourRequest.Status = Domain.Enums.TourRequestStatus.PENDING;
             tourRequest.Guest.Id = GuestId;
-            tourRequest.ComplexTourRequest.Id = ComplexTourRequest.Id;
+            tourRequest.ComplexTourRequestId = ComplexTourRequest.Id;
 
             ValidationResult resultCity = correctInputCityvalidationRule.Validate(location.City, CultureInfo.CurrentCulture);
 

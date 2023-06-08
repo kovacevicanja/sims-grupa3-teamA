@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Domain.Enums;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
@@ -7,6 +8,7 @@ using BookingProject.Services.Interfaces;
 using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,15 +24,18 @@ namespace BookingProject.Services.Implementations
         {
 
         }
+
         public void Initialize()
         {
             _complexTourRequestRepository = Injector.CreateInstance<IComplexTourRequestRepository>();
             _tourRequestService = Injector.CreateInstance<ITourRequestService>();
         }
+
         public void Create(ComplexTourRequest complexTourRequest)
         {
             _complexTourRequestRepository.Create(complexTourRequest);
         }
+
         public List<ComplexTourRequest> GetAll()
         {
             return _complexTourRequestRepository.GetAll();
@@ -53,7 +58,7 @@ namespace BookingProject.Services.Implementations
 
             foreach (TourRequest tourRequest in tourRequestsCopy)
             {
-                if (tourRequest.ComplexTourRequest.Id == complexTourRequestId)
+                if (tourRequest.ComplexTourRequestId == complexTourRequestId)
                 {
                     tourRequests.Remove(tourRequest);
                 }
@@ -64,6 +69,66 @@ namespace BookingProject.Services.Implementations
         public List<ComplexTourRequest> GetGuestComplexRequests(int guestId)
         {
             return _complexTourRequestRepository.GetGuestComplexRequests(guestId);
+        }
+        //Ukoliko 48h pred odabrani opseg datuma za prvi deo ture nijedan vodič nije prihvatio nijedan deo ture,
+        ///zahtev za složenu turu postaje "nevažeći". 
+        private bool AcceptanceDeadline(ComplexTourRequest complexTourRequest)
+        {
+            var sortedList = complexTourRequest.TourRequestsList.OrderBy(t => t.Id).ToList();
+            int flag = 0;
+
+            if (sortedList.Count > 0)
+            {
+                if (DateTime.Now >= sortedList[0].EndDate.AddHours(-48)
+                    && sortedList[0].Status != TourRequestStatus.ACCEPTED)
+                {
+                    foreach (TourRequest tourRequest in sortedList)
+                    {
+                        if (tourRequest.Status == TourRequestStatus.ACCEPTED && tourRequest != sortedList[0])
+                        {
+                            flag = 1;
+                        }
+                    }
+                    if (flag == 0)
+                    {
+                        _complexTourRequestRepository.ChnageStatusToInvalid(complexTourRequest);
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public void ChnageStatusComplexTourRequest(int guestId)
+        {
+            int flag = 0;
+            int count = 0;
+            foreach (ComplexTourRequest complexTourRequest in GetGuestComplexRequests(guestId))
+            {
+                if (!AcceptanceDeadline(complexTourRequest))
+                {
+                    count = complexTourRequest.TourRequestsList.Count;
+                    while (count != 0 && flag != 1)
+                    {
+                        foreach (TourRequest tourRequest in complexTourRequest.TourRequestsList)
+                        {
+                            if (tourRequest.Status != TourRequestStatus.ACCEPTED)
+                            {
+                                flag = 1;
+                                break;
+                            }
+                            count--;
+                        }
+
+                    }
+                    if (flag == 0)
+                    {
+                        _complexTourRequestRepository.ChnageStatus(complexTourRequest);
+                    }
+                    flag = 0;
+                }
+            }
         }
     }
 }

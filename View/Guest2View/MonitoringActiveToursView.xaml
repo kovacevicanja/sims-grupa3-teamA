@@ -30,52 +30,49 @@
         </Style>
     </Page.Resources>
     <Grid>
-        <Label Content="Follow" FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="36,103,510,559" />
-        <Label Content="the key points" FontSize="40" FontWeight="Bold" Foreground="LightBlue" Margin="170,103,112,559" />
+        <Label Content="Follow" FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="148,80,398,582" />
+        <Label Content="the key points" FontSize="40" FontWeight="Bold" Foreground="LightBlue" Margin="282,80,0,582" />
 
-        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Margin="64,260,70,188">
+        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="108,224,108,221">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
             </Border.Effect>
-            <ListView DockPanel.Dock="Bottom"
+            <ListView Margin="-1,-1,-1,-1"
               SelectedItem="{Binding Path=ChosenKeyPoint, UpdateSourceTrigger=PropertyChanged}"
-              ItemsSource="{Binding Path=KeyPoints, UpdateSourceTrigger=PropertyChanged}"
-              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-              ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                <ListView.Resources>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="FontSize" Value="24"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Foreground" Value="Gray"/>
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="TextAlignment" Value="Center"/>
-                    </Style>
-                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                        <Setter Property="FontSize" Value="24"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Foreground" Value="Gray"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="Padding" Value="10,0,0,0"/>
-                    </Style>
-                </ListView.Resources>
-                <ListView.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.126"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-0.998"/>
-                    </TransformGroup>
-                </ListView.RenderTransform>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Key point" DisplayMemberBinding="{Binding Point}" Width="300"/>
-                        <GridViewColumn Header="State" DisplayMemberBinding="{Binding State}" Width="300"/>
-                    </GridView>
-                </ListView.View>
+              ItemsSource="{Binding Path=KeyPoints, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray">
+                                <TextBlock.Inlines>
+                                    <Run FontWeight="Bold"></Run>
+                                    <Run Text="{Binding Point}" FontWeight="Bold"/>
+                                </TextBlock.Inlines>
+                                <TextBlock.FontSize>28</TextBlock.FontSize>
+                            </TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray" Margin="15,0,0,0">
+                                <TextBlock.Inlines>
+                                    <Run FontWeight="Bold">Status:</Run>
+                                    <Run Text="{Binding State}" FontWeight="Normal"/>
+                                </TextBlock.Inlines>
+                                <TextBlock.FontSize>24</TextBlock.FontSize>
+                            </TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Border>
 
-        <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="483,626,0,0" VerticalAlignment="Top" Width="114"
+        <Button Content="Cancel" IsCancel="True" Height="36" Margin="0,619,0,0" VerticalAlignment="Top" Width="114"
                 Command="{Binding CancelCommand}" FontSize="24">
             <Button.Style>
                 <Style TargetType="Button">

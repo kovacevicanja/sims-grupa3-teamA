@@ -35,8 +35,8 @@
             <RowDefinition Height="134*"/>
             <RowDefinition Height="585*"/>
         </Grid.RowDefinitions>
-        <Label Content="Active tours today" FontSize="35" FontWeight="Bold" Foreground="Gray" Margin="122,54,277,10" />
-        <Label Content="{Binding DisplayTodaysDay}" Foreground="LightBlue" Margin="141,90,229,570" Grid.RowSpan="2"/>
+        <Label Content="Active tours today" FontSize="35" FontWeight="Bold" Foreground="Gray" Margin="122,54,50,10" />
+        <Label Content="{Binding DisplayTodaysDay}" Foreground="LightBlue" Margin="141,90,183,570" Grid.RowSpan="2"/>
 
         <Border CornerRadius="10" Background="White" Margin="50,72,50,162" Grid.Row="1">
             <Border.Effect>

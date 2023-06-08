@@ -29,7 +29,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand MyAttendedToursCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
         public RelayCommand SerachAndReservationToursCommand { get; }
-        public RelayCommand MyVouchersCommand { get; }  
+        public RelayCommand MyVouchersCommand { get; }
         public RelayCommand LogOutCommand { get; }
         public RelayCommand MonitoringActiveToursCommand { get; }
         public RelayCommand CreateTourRequestCommand { get; }
@@ -37,7 +37,7 @@ namespace BookingProject.View.Guest2ViewModel
         public RelayCommand RequestStatisticsCommand { get; }
         public RelayCommand ProfileCommand { get; }
         public TourReservation TourReservation { get; set; }
-        public string UsernameDisplay { get; set; } 
+        public string UsernameDisplay { get; set; }
         public NavigationService NavigationService { get; set; }
         public string NameDisplay { get; set; }
         public string SurnameDisplay { get; set; }

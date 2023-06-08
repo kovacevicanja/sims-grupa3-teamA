@@ -42,5 +42,10 @@ namespace BookingProject.Controllers
         {
             return _complexTourRequestService.GetGuestComplexRequests(guestId);
         }
+
+        public void ChnageStatusComplexTourRequest(int guestId)
+        {
+            _complexTourRequestService.ChnageStatusComplexTourRequest(guestId);
+        }
     }
 }

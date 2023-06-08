@@ -51,7 +51,6 @@ namespace BookingProject.Repositories.Implementations
 
         public void ReservationUserBind()
         {
-
             foreach (AccommodationReservation reservation in _accommodationReservations)
             {
                 User user = Injector.CreateInstance<IUserRepository>().GetById(reservation.Guest.Id);

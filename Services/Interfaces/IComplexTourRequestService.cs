@@ -20,5 +20,6 @@ namespace BookingProject.Services.Interfaces
         void Save();
         void DeleteRequestIfComplexRequestNotCreated(int complexTourRequestId);
         List<ComplexTourRequest> GetGuestComplexRequests(int guestId);
+        void ChnageStatusComplexTourRequest(int guestId);
     }
 }

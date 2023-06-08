@@ -54,7 +54,7 @@ namespace BookingProject.Domain
             {
                 Id.ToString(),
                 Status.ToString(),
-                Guest.Id.ToString()
+                Guest.Id.ToString(),
             };
             return csvValues;
         }

@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Domain.Enums;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Razor.Parser.SyntaxTree;
 using System.Windows.Controls;
 
 namespace BookingProject.Repositories.Implementations
@@ -18,6 +20,7 @@ namespace BookingProject.Repositories.Implementations
         private const string FilePath = "../../Resources/Data/complexTourRequests.csv";
         private Serializer<ComplexTourRequest> _serializer;
         public List<ComplexTourRequest> _complexTourRequests;
+        public ITourRequestRepository _tourRequestRepository { get; set; }
 
         public ComplexTourRequestRepository()
         {
@@ -26,6 +29,7 @@ namespace BookingProject.Repositories.Implementations
         }
         public void Initialize()
         {
+            _tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             TourRequestsListBind();
         }
         public List<ComplexTourRequest> Load()
@@ -48,33 +52,36 @@ namespace BookingProject.Repositories.Implementations
             }
             return maxId + 1;
         }
+
         public void Create(ComplexTourRequest complexTourRequest)
         {
             complexTourRequest.Id = GenerateId();
             _complexTourRequests.Add(complexTourRequest);
             Save();
         }
+
         public List<ComplexTourRequest> GetAll()
         {
             return _complexTourRequests.ToList();
         }
+
         public ComplexTourRequest GetById(int id)
-        {
+        { 
             return _complexTourRequests.Find(complexTourRequest => complexTourRequest.Id == id);
         }
+
         private void TourRequestsListBind()
         {
-            ComplexTourRequest complexTourRequest = new ComplexTourRequest();
             ITourRequestRepository tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             foreach (TourRequest tourRequest in tourRequestRepository.GetAll())
-            { 
-                if (tourRequest.ComplexTourRequest.Id == -1)
+            {
+                if (tourRequest.ComplexTourRequestId == -1)
                 {
                     continue;
                 }
                 else
                 {
-                    complexTourRequest = GetById(tourRequest.ComplexTourRequest.Id);
+                    ComplexTourRequest complexTourRequest = GetById(tourRequest.ComplexTourRequestId);
                     complexTourRequest.TourRequestsList.Add(tourRequest);
                 }
             }
@@ -91,6 +98,24 @@ namespace BookingProject.Repositories.Implementations
                 }
             }
             return guestComplexRequests;    
+        }
+
+        public void ChnageStatus(ComplexTourRequest complexTourRequest)
+        {
+            _complexTourRequests.Remove(complexTourRequest);
+            ComplexTourRequest changedStatusComplexTourRequest = new ComplexTourRequest(complexTourRequest.Id,
+                    complexTourRequest.TourRequestsList, TourRequestStatus.ACCEPTED, complexTourRequest.Guest);
+            _complexTourRequests.Add(changedStatusComplexTourRequest);
+            Save();
+        }
+        public void ChnageStatusToInvalid(ComplexTourRequest complexTourRequest)
+        {
+            _complexTourRequests.Remove(complexTourRequest);
+            ComplexTourRequest invalidComplexTourRequest = new ComplexTourRequest(complexTourRequest.Id,
+                complexTourRequest.TourRequestsList, TourRequestStatus.INVALID, complexTourRequest.Guest);
+            invalidComplexTourRequest.TourRequestsList = new List<TourRequest>(_tourRequestRepository.SetTourRequestsToInvalid(complexTourRequest.TourRequestsList));
+            _complexTourRequests.Add(invalidComplexTourRequest);
+            Save();
         }
     }
 }

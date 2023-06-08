@@ -42,7 +42,8 @@ namespace BookingProject.View.Guest2ViewModel
             _complexTourRequestController = new ComplexTourRequestController();
             _tourRequestController = new TourRequestController();
 
-            _tourRequestController = new TourRequestController();
+            _complexTourRequestController.ChnageStatusComplexTourRequest(guestId);
+
             TourRequests = new ObservableCollection<TourRequest>(_tourRequestController.GetGuestRequests(guestId, ""));
 
             ComplexTourRequests = new ObservableCollection<ComplexTourRequest>(_complexTourRequestController.GetGuestComplexRequests(guestId));
@@ -53,31 +54,11 @@ namespace BookingProject.View.Guest2ViewModel
 
             TourRequestsList = new List<TourRequest>();
 
-            /*
-            foreach (TourRequest tourRequest in _tourRequestController.GetGuestRequests(guestId, ""))
-            {
-                if (tourRequest.ComplexTourRequest.Id == -1)
-                {
-                    continue;
-                }
-                else
-                {
-                    foreach (ComplexTourRequest complexTourRequest in ComplexTourRequests.ToList())
-                    {
-                        if (tourRequest.ComplexTourRequest.Id == complexTourRequest.Id)
-                        {
-                            TourRequestsList.Add(tourRequest);
-                        }
-                    }
-                }
-            }
-            */
-
             foreach (ComplexTourRequest complexRequest in ComplexTourRequests.ToList())
             {
                 foreach (TourRequest tourRequest in _tourRequestController.GetGuestRequests(guestId, ""))
                 {
-                    if (tourRequest.ComplexTourRequest.Id == complexRequest.Id)
+                    if (tourRequest.ComplexTourRequestId == complexRequest.Id)
                     {
                         TourRequestsList.Add(tourRequest);
                     }

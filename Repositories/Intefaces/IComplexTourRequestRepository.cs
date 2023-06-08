@@ -17,5 +17,7 @@ namespace BookingProject.Repositories.Intefaces
         void Save();
         int GenerateId();
         List<ComplexTourRequest> GetGuestComplexRequests(int guestId);
+        void ChnageStatus(ComplexTourRequest complexTourRequest);
+        void ChnageStatusToInvalid(ComplexTourRequest complexTourRequest);
     }
 }
