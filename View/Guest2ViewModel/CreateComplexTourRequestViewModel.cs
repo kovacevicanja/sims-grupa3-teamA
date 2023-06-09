@@ -11,6 +11,7 @@ using BookingProject.Repositories.Intefaces;
 using BookingProject.Validation;
 using BookingProject.View.CustomMessageBoxes;
 using BookingProject.View.Guest2View;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -202,6 +203,7 @@ namespace BookingProject.View.Guest2ViewModel
             tourRequest.Status = Domain.Enums.TourRequestStatus.PENDING;
             tourRequest.Guest.Id = GuestId;
             tourRequest.ComplexTourRequestId = ComplexTourRequest.Id;
+            tourRequest.SetDate = DateTime.ParseExact("01/01/2001 00:00:00", "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
 
             ValidationResult resultCity = correctInputCityvalidationRule.Validate(location.City, CultureInfo.CurrentCulture);
 

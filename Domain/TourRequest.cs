@@ -22,16 +22,18 @@ namespace BookingProject.Domain
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public User Guest { get; set; }
-        //public ComplexTourRequest ComplexTourRequest { get; set; }
         public int ComplexTourRequestId { get; set; }
+        public DateTime SetDate { get; set; }
+        public string DisplaySetDate { get; set; }
 
         public TourRequest()
         {
             Location = new Location();
             GuideId = -1;
             Guest = new User();
-            //ComplexTourRequest = new ComplexTourRequest();
             ComplexTourRequestId = -1;
+            SetDate = DateTime.MinValue;
+            DisplaySetDate = "";
         }
         public TourRequest (int id, int guideId, TourRequestStatus status, Location location, string description, LanguageEnum language, int guestsNumber, DateTime startDate, DateTime endDate, User guest)
         {
@@ -77,6 +79,8 @@ namespace BookingProject.Domain
             EndDate = DateConversion.StringToDateTour(values[8]);
             Guest.Id = int.Parse(values[9]);
             ComplexTourRequestId = int.Parse(values[10]);
+            SetDate = DateConversion.StringToDateTour(values[11]);
+            DisplaySetDate = values[12];
         }
         public string[] ToCSV()
         {
@@ -92,7 +96,9 @@ namespace BookingProject.Domain
                 DateConversion.DateToStringTour(StartDate),
                 DateConversion.DateToStringTour(EndDate),
                 Guest.Id.ToString(),
-                ComplexTourRequestId.ToString()
+                ComplexTourRequestId.ToString(),
+                DateConversion.DateToStringTour(SetDate),
+                DisplaySetDate
             };
             return csvValues;
         }

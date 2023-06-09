@@ -605,6 +605,7 @@
     <Compile Include="View\OwnersView\OwnersView.xaml.cs">
       <DependentUpon>OwnersView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SetDateVisibility.cs" />
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
     </Compile>

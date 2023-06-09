@@ -2,6 +2,7 @@
 using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.Model;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,14 +19,12 @@ namespace BookingProject.View.Guest2ViewModel
     {
         public int GuestId { get; set; }
         public ComplexTourRequestController _complexTourRequestController { get; set; }
-        public TourRequestController _tourRequestController { get; set; }   
+        public TourRequestController _tourRequestController { get; set; }
         public ObservableCollection<ComplexTourRequest> ComplexTourRequests { get; set; }
         public RelayCommand CancelCommand { get; }
         public NavigationService NavigationService { get; set; }
         public string ComplexTourRequestName { get; set; }
-
         private List<TourRequest> _tourRequestsList;
-        public ObservableCollection<TourRequest> TourRequests { get; set; }
         public List<TourRequest> TourRequestsList
         {
             get { return _tourRequestsList; }
@@ -35,6 +34,7 @@ namespace BookingProject.View.Guest2ViewModel
                 OnPropertyChanged();
             }
         }
+        public string DisplayText { get; set; }
         public ComplexTourRequestsViewModel(int guestId, NavigationService navigationService)
         {
             GuestId = guestId;
@@ -44,26 +44,35 @@ namespace BookingProject.View.Guest2ViewModel
 
             _complexTourRequestController.ChnageStatusComplexTourRequest(guestId);
 
-            TourRequests = new ObservableCollection<TourRequest>(_tourRequestController.GetGuestRequests(guestId, ""));
+            DateTime comparisonDate = new DateTime(2001, 1, 1, 0, 0, 0);
+
+            foreach (ComplexTourRequest ctr in _complexTourRequestController.GetGuestComplexRequests(guestId))
+            {
+                foreach (TourRequest tr in ctr.TourRequestsList)
+                {
+                    if (tr.SetDate == comparisonDate)
+                    {
+                        if (tr.Status == Domain.Enums.TourRequestStatus.PENDING)
+                        {
+                            tr.DisplaySetDate = "Guide not accepted the tour yet.";
+                        }
+                        else if (tr.Status == Domain.Enums.TourRequestStatus.INVALID)
+                        {
+                            tr.DisplaySetDate = "The tour is not accepted.";
+                        }
+                    }
+                    else
+                    {
+                        tr.DisplaySetDate = "The guide set the date: " + tr.SetDate.ToString();
+                    }
+                }
+            }
 
             ComplexTourRequests = new ObservableCollection<ComplexTourRequest>(_complexTourRequestController.GetGuestComplexRequests(guestId));
 
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
 
             NavigationService = navigationService;
-
-            TourRequestsList = new List<TourRequest>();
-
-            foreach (ComplexTourRequest complexRequest in ComplexTourRequests.ToList())
-            {
-                foreach (TourRequest tourRequest in _tourRequestController.GetGuestRequests(guestId, ""))
-                {
-                    if (tourRequest.ComplexTourRequestId == complexRequest.Id)
-                    {
-                        TourRequestsList.Add(tourRequest);
-                    }
-                }
-            }
         }
 
         private bool CanExecute(object param) { return true; }

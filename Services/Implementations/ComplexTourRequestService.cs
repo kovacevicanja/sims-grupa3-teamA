@@ -70,8 +70,6 @@ namespace BookingProject.Services.Implementations
         {
             return _complexTourRequestRepository.GetGuestComplexRequests(guestId);
         }
-        //Ukoliko 48h pred odabrani opseg datuma za prvi deo ture nijedan vodič nije prihvatio nijedan deo ture,
-        ///zahtev za složenu turu postaje "nevažeći". 
         private bool AcceptanceDeadline(ComplexTourRequest complexTourRequest)
         {
             var sortedList = complexTourRequest.TourRequestsList.OrderBy(t => t.Id).ToList();

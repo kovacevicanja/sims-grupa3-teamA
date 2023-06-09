@@ -3,22 +3,18 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BookingProject.View.Guest2View"
-        mc:Ignorable="d"
+      xmlns:local="clr-namespace:BookingProject.View.Guest2View" xmlns:local1="clr-namespace:BookingProject.View.Guest2ViewModel" xmlns:local11="clr-namespace:BookingProject.View"
+      mc:Ignorable="d"
         Title="" Height="761" Width="736">
 
     <Page.Background>
         <SolidColorBrush Color="White" />
     </Page.Background>
 
-    <Page.Resources>
-        <FontWeight x:Key="FontWeightBold">Bold</FontWeight>
-    </Page.Resources>
-
     <Grid>
-        <Label Content="My " FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="110,53,318,571" />
-        <Label Content="complex tour requests" FontSize="40" FontWeight="Bold" Foreground="LightBlue" Margin="180,53,102,571" />
-        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="100,165,100,164">
+        <Label Content="My " FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="112,34,316,590" />
+        <Label Content="complex tour requests" FontSize="40" FontWeight="Bold" Foreground="LightBlue" Margin="182,34,100,590" />
+        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="100,102,100,141">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
             </Border.Effect>
@@ -59,6 +55,7 @@
                                                     <RowDefinition Height="Auto"/>
                                                     <RowDefinition Height="Auto"/>
                                                     <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Tour Request" FontSize="24" FontWeight="Bold" Foreground="LightBlue"/>
 
@@ -85,6 +82,13 @@
                                                         <Run Text="{Binding Status}" />
                                                     </TextBlock.Inlines>
                                                 </TextBlock>
+                                                <TextBlock Grid.Row="4" Grid.Column="0" FontSize="20" Foreground="Gray" Margin="15,0,0,0">
+                                                    <TextBlock.Inlines>
+                                                        <Run FontWeight="Bold"/>
+                                                        <Run Text=" " />
+                                                        <Run Text="{Binding DisplaySetDate}" />
+                                                    </TextBlock.Inlines>
+                                                </TextBlock>
                                             </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -95,7 +99,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        <Button Content="Cancel" IsCancel="True" Height="36" Margin="0,661,0,0" Width="124"
+        <Button Content="Cancel" IsCancel="True" Height="36" Margin="0,667,0,0" Width="124"
                 Command="{Binding CancelCommand}" FontSize="24" VerticalAlignment="Top">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -133,3 +137,4 @@
         </Button>
     </Grid>
 </Page>
+    

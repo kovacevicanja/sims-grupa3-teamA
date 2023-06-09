@@ -132,6 +132,7 @@ namespace BookingProject.Repositories.Implementations
                 TourRequest newRequest = new TourRequest(request.Id, -1, TourRequestStatus.INVALID, request.Location,
                     request.Description, request.Language, request.GuestsNumber, request.StartDate, request.EndDate, request.Guest);
                 newRequest.ComplexTourRequestId = request.ComplexTourRequestId;
+                newRequest.SetDate = request.SetDate;
                 _tourRequests.Add(newRequest);
                 newTourRequests.Add(newRequest);
                 Save();
