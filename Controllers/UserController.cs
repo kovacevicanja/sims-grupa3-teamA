@@ -15,9 +15,11 @@ namespace BookingProject.Controller
     public class UserController 
     {
         private readonly IUserService _userService;
+        private readonly ISuperGuideService _superGuideService;
         public UserController()
         {
             _userService = Injector.CreateInstance<IUserService>();
+            _superGuideService = Injector.CreateInstance<ISuperGuideService>();
         }
         public User GetByUsername(string username)
         {
@@ -47,6 +49,12 @@ namespace BookingProject.Controller
         {
             _userService.Update2(user);
         }
+
+        public void GoSuper()
+        {
+            _superGuideService.SetToSuper();
+        }
+
         //public bool isUserSuperUser(User user)
         //{
         //    return _userService.IsUserSuperUser(user);

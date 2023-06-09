@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:BookingProject"
              StartupUri="View/SignInForm.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <Style x:Key="MyWindowStyle" TargetType="Window" BasedOn="{StaticResource LightStyle}" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/LightStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

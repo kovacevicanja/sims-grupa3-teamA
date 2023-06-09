@@ -7,6 +7,7 @@ using BookingProject.Services.Implementations;
 using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,6 +81,8 @@ namespace BookingProject.DependencyInjection
             { typeof(IForumService), new ForumService() },
             { typeof(IForumCommentService), new ForumCommentService() },
             { typeof(IAccommodationRenovationService), new AccommodationRenovationService() },
+
+            { typeof(ISuperGuideService), new SuperGuideService() },
             { typeof(IComplexTourRequestService), new ComplexTourRequestService() },
             { typeof(ITourRequestService), new TourRequestService() },
         };
@@ -150,6 +153,7 @@ namespace BookingProject.DependencyInjection
             CreateInstance<ITourRequestService>().Initialize();
             CreateInstance<IForumService>().Initialize();
             CreateInstance<IForumCommentService>().Initialize();
+            CreateInstance<ISuperGuideService>().Initialize();
         }
         public static T CreateInstance<T>()
         {

@@ -6,14 +6,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ns="clr-namespace:BookingProject.Localization"
         mc:Ignorable="d"
-        Title="AllTourRequestsView" Height="520" Width="1105">
+        Title="AllTourRequestsView" Height="520" Width="1105"
+        Style="{DynamicResource MyWindowStyle}">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
                 <!-- Placeholder for the TextBox itself -->
                 <AdornedElementPlaceholder x:Name="textBox" />
-                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="GhostWhite" />
             </StackPanel>
 
         </ControlTemplate>
@@ -81,11 +83,11 @@
 
 
 
-                    <DataGridTextColumn Header="City" Width="100" Binding="{Binding Location.City}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Country" Width="100" Binding="{Binding Location.Country}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Guest number" Width="100" Binding="{Binding GuestsNumber}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Initial date" Width="200" Binding="{Binding StartDate}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="End date" Width="200" Binding="{Binding EndDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc City}" Width="100" Binding="{Binding Location.City}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc Country}" Width="100" Binding="{Binding Location.Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc GuestNumberF}" Width="100" Binding="{Binding GuestsNumber}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc InititalDate}" Width="200" Binding="{Binding StartDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc EndDate}" Width="200" Binding="{Binding EndDate}"></DataGridTextColumn>
 
 
 
@@ -99,13 +101,13 @@
         </Grid>
 
         <WrapPanel Grid.Row="2" Margin="0,41,5,-145" RenderTransformOrigin="0.5,0.773">
-            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding PickCommand}"  Content="Accept Request &#xa;        (Space)" Height="46"/>
-            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding ShowAllCommand}" Content="Show All Requests&#xa;      (Backspace)" Height="46" />
-            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding SearchCommand}" Content="Filter &#xa; (Ins)" Height="46"/>
-            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="Close &#xA; (Esc)" Height="46"/>
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding PickCommand}"  Content="{ns:Loc A1}" Height="46"/>
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding ShowAllCommand}" Content="{ns:Loc A2}" Height="46" />
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding SearchCommand}" Content="{ns:Loc A3}" Height="46"/>
+            <Button Width="235" Margin="22,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="{ns:Loc Close}" Height="46"/>
         </WrapPanel>
-        <Label Content="My Requests : Filtering" FontWeight="Bold" FontSize="26"  Margin="10,0,770,0"/>
-        <Label Content="Options" FontWeight="Bold" FontSize="26"  Margin="30,308,816,-19" Grid.Row="1" Grid.RowSpan="2"/>
+        <Label Content="My Requests : Filtering" FontWeight="Bold" FontSize="26"  Margin="10,0,699,0"/>
+        <Label Content="{ns:Loc Options}" FontWeight="Bold" FontSize="26"  Margin="30,308,816,-19" Grid.Row="1" Grid.RowSpan="2"/>
         <TextBox TextWrapping="Wrap" Text="{Binding City}" Margin="75,29,747,248" Grid.Row="1"/>
         <TextBox TextWrapping="Wrap" Text="{Binding Country}" Margin="411,29,411,249" Grid.Row="1"/>
         <TextBox TextWrapping="Wrap" Text="{Binding NumOfGuests}" Margin="757,29,65,249" Grid.Row="1"/>
@@ -116,11 +118,11 @@
         <TextBox TextWrapping="Wrap" Text="{Binding EndDate, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Margin="757,99,65,178" Grid.Row="1"
         Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
         </TextBox>
-            <Label Content="City:" Margin="75,0,844,283" Grid.Row="1"/>
-        <Label Content="Country:" Margin="411,0,508,283" Grid.Row="1"/>
-        <Label Content="Max Guests:" Margin="757,47,162,286" Grid.RowSpan="2"/>
-        <Label Content="Language:" Margin="75,70,844,213" Grid.Row="1"/>
-        <Label Content="Initial Date:" Margin="411,71,508,212" Grid.Row="1"/>
-        <Label Content="End Date:" Margin="757,70,162,213" Grid.Row="1"/>
+            <Label Content="{ns:Loc City}" Margin="75,0,844,283" Grid.Row="1"/>
+        <Label Content="{ns:Loc Country}" Margin="411,0,508,283" Grid.Row="1"/>
+        <Label Content="{ns:Loc MaxGuests}" Margin="757,47,162,286" Grid.RowSpan="2"/>
+        <Label Content="{ns:Loc Language}" Margin="75,70,844,213" Grid.Row="1"/>
+        <Label Content="{ns:Loc InitialDate}" Margin="411,71,508,212" Grid.Row="1"/>
+        <Label Content="{ns:Loc EndDate}" Margin="757,70,162,213" Grid.Row="1"/>
     </Grid>
 </Window>

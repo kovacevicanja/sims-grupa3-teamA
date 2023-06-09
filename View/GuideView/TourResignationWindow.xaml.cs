@@ -1,10 +1,6 @@
-﻿using BookingProject.Controller;
-using BookingProject.Domain;
-using BookingProject.Model;
-using BookingProject.View.GuideViewModel;
+﻿using BookingProject.View.GuideViewModel;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,16 +16,14 @@ using System.Windows.Shapes;
 namespace BookingProject.View.GuideView
 {
     /// <summary>
-    /// Interaction logic for GuestPreseanceCheck.xaml
+    /// Interaction logic for TourResignationWindow.xaml
     /// </summary>
-    public partial class GuestPreseanceCheck : Window
+    public partial class TourResignationWindow : Window
     {
-        public GuestPreseanceCheck(TourTimeInstance chosenTour, KeyPoint chosenKeyPoint, User chosenGuest)
+        public TourResignationWindow()
         {
             InitializeComponent();
-            this.DataContext = new GuestPresenceCheckViewModel(chosenTour, chosenKeyPoint, chosenGuest);
+            this.DataContext = new TourResignationViewModel();
         }
-
-
     }
 }

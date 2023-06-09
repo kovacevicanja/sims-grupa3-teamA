@@ -6,9 +6,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ns="clr-namespace:BookingProject.Localization"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="GuestListView" Height="490" Width="300">
+        Title="GuestListView" Height="490" Width="300"
+    Style="{DynamicResource MyWindowStyle}">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Mark">
@@ -41,7 +43,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row = "1" Orientation="Horizontal" Margin="50,0,50,0">
-            <Button Content="Mark (M)" FontWeight="Bold" FontSize="10" IsDefault="True"
+            <Button Content="{ns:Loc Mark}" FontWeight="Bold" FontSize="10" IsDefault="True"
                 Command="{Binding MarkCommand}" Width="90" Height="19" />
         </StackPanel>
 
@@ -69,16 +71,16 @@
                     </TransformGroup>
                 </DataGrid.RenderTransform>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Width="98" Binding="{Binding Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Surname" Width="78" Binding="{Binding Surname}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Present" Width="106" Binding="{Binding IsPresent}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc NameG}" Width="98" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc SurnameG}" Width="78" Binding="{Binding Surname}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc IsPresent}" Width="106" Binding="{Binding IsPresent}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
         </Grid>
 
         <WrapPanel Grid.Row = "3" FlowDirection="LeftToRight" HorizontalAlignment="Center" VerticalAlignment="Center" Height="54" Width="136" >
-            <Button Width="136" IsDefault="True" FontWeight="Bold" FontSize="20" Command="{Binding CancelCommand}" Content="Cancel (Esc)" Height="54"/>
+            <Button Width="136" IsDefault="True" FontWeight="Bold" FontSize="20" Command="{Binding CancelCommand}" Content="{ns:Loc Cancel}" Height="54"/>
         </WrapPanel>
     </Grid>
 </Window>

@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using System.Windows.Threading;
 using BookingProject.Controllers;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using BookingProject.Localization;
 
 namespace BookingProject.View.GuideViewModel
 {
@@ -305,36 +306,86 @@ namespace BookingProject.View.GuideViewModel
             {
                 if (columnName == "TourName")
                 {
-                    if (string.IsNullOrEmpty(TourName))
-                        return "You must enter a name!";
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US"))
+                    {
+                        if (string.IsNullOrEmpty(TourName))
+                            return "You must enter a name!";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(TourName))
+                            return "Morate uneti ime!";
+
+                    }
 
                 }
                 else if (columnName == "Description")
                 {
-                    if (string.IsNullOrEmpty(Description))
-                        return "You must enter a description!";
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US"))
+                    {
+                        if (string.IsNullOrEmpty(Description))
+                            return "You must enter a description!";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(Description))
+                            return "Morate uneti opis!";
+                    }
                 }
                 else if (columnName == "Country")
                 {
-                    if (string.IsNullOrEmpty(Country))
-                        return "You must enter a country!";
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US"))
+                    {
+                        if (string.IsNullOrEmpty(Country))
+                            return "You must enter a country!";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(Country))
+                            return "Morate uneti državu!";
+                    }
                 }
                 else if (columnName == "City")
                 {
-                    if (string.IsNullOrEmpty(City))
-                        return "You must enter a city!";
+
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US"))
+                    {
+                        if (string.IsNullOrEmpty(City))
+                            return "You must enter a city!";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(City))
+                            return "Morate uneti grad!";
+                    }
                 }
 
                 else if (columnName == "Duration")
                 {
-                    if (!ValidDuration())
-                        return "You must enter a number!";
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US"))
+                    {
+                        if (!ValidDuration())
+                            return "You must enter a number!";
+                    }
+                    else
+                    {
+                        if (!ValidDuration())
+                            return "Morate uneti broj!";
+                    }
                 }
 
                 else if (columnName == "MaxGuests")
                 {
-                    if (!ValidMaxGuests())
-                        return "You must enter a number!";
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US"))
+                    {
+                        if (!ValidMaxGuests())
+                            return "You must enter a number!";
+                    }
+                    else
+                    {
+                        if (!ValidMaxGuests())
+                            return "Morate uneti broj!";
+                    }
                 }
                 return null;
             }

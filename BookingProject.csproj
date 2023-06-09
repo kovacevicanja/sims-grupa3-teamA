@@ -38,8 +38,20 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetProjects.DataVisualization.Toolkit, Version=6.1.94.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
       <HintPath>packages\DotNetProjects.WpfToolkit.DataVisualization.6.1.94\lib\net40\DotNetProjects.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
@@ -55,8 +67,8 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.0.1\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="Notifications.Wpf, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Notifications.Wpf.0.1.1\lib\net461\Notifications.Wpf.dll</HintPath>
@@ -85,6 +97,9 @@
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -195,6 +210,7 @@
     <Compile Include="Domain\TourReservation.cs" />
     <Compile Include="Domain\TourTimeInstance.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Localization\TranslationSource.cs" />
     <Compile Include="Observer\IObserver.cs" />
     <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Repositories\Implementations\AccommodationImageRepository.cs" />
@@ -274,6 +290,7 @@
     <Compile Include="Services\Implementations\RecommendationRenovationService.cs" />
     <Compile Include="Services\Implementations\RequestAccommodationReservationService.cs" />
     <Compile Include="Services\Implementations\SuperGuestService.cs" />
+    <Compile Include="Services\Implementations\SuperGuideService.cs" />
     <Compile Include="Services\Implementations\TourEvaluationImageService.cs" />
     <Compile Include="Services\Implementations\TourEvaluationService.cs" />
     <Compile Include="Services\Implementations\TourImageService.cs" />
@@ -309,6 +326,7 @@
     <Compile Include="Services\Interfaces\IRecommendationRenovationService.cs" />
     <Compile Include="Services\Interfaces\IRequestAccommodationReservationService.cs" />
     <Compile Include="Services\Interfaces\ISuperGuestService.cs" />
+    <Compile Include="Services\Interfaces\ISuperGuideService.cs" />
     <Compile Include="Services\Interfaces\ITourEvaluationImageService.cs" />
     <Compile Include="Services\Interfaces\ITourEvaluationService.cs" />
     <Compile Include="Services\Interfaces\ITourImageService.cs" />
@@ -327,6 +345,9 @@
     <Compile Include="Services\Interfaces\ITourTimeInstanceService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\Interfaces\IVoucherService.cs" />
+    <Compile Include="Styles\ChangeModeMessage.cs" />
+    <Compile Include="Styles\MessagingService.cs" />
+    <Compile Include="Styles\StyleManager.cs" />
     <Compile Include="Validation\CorrectInputCityStatisticsValidationRule.cs" />
     <Compile Include="Validation\CorrectInputCountryStatisticsValidationRule.cs" />
     <Compile Include="Validation\CorrectInputCountryValidationRule.cs" />
@@ -411,6 +432,11 @@
     </Compile>
     <Compile Include="View\Guest2View\TourRequestStatisticsPieChart.xaml.cs">
       <DependentUpon>TourRequestStatisticsPieChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GuideViewModel\TourResignationViewModel.cs" />
+    <Compile Include="View\GuideView\ImageConverter.cs" />
+    <Compile Include="View\GuideView\TourResignationWindow.xaml.cs">
+      <DependentUpon>TourResignationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnersViewModel\AccommodationRenovationsViewModel.cs" />
     <Compile Include="View\OwnersViewModel\AccommodationStatisticsByMonthViewModel.cs" />
@@ -686,6 +712,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Resource Include="Styles\LightStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Styles\DarkStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
     <Page Include="View\Guest1View\AccommodationOwnerReview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -731,6 +765,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Guest2View\TourRequestStatisticsPieChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GuideView\TourResignationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1034,9 +1072,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.sr-LATN.resx" />
     <None Include="packages.config" />
     <None Include="PDFs\Guest2PDF\ValidVouchersReport.pdf" />
     <None Include="Properties\Settings.settings">
@@ -1525,6 +1564,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\OwnerImages\star1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\GuideImages\darksea.jpg" />
+    <Resource Include="Resources\Images\GuideImages\lightsea.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

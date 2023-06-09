@@ -17,14 +17,25 @@ using BookingProject.View.Guest1View;
 using BookingProject.ConversionHelp;
 using BookingProject.View.OwnerViewModel;
 using BookingProject.View.OwnersView;
+using System.Globalization;
+using BookingProject.Localization;
+using System.Threading;
 
 namespace BookingProject.View
 {
+
+
+
+
     /// <summary>
     /// Interaction logic for SignInForm.xaml
     /// </summary>
     public partial class SignInForm : Window
     {
+        public static App app;
+        public const string ENG = "en-US";
+        public const string SRB = "sr-Latn-RS";
+
         private readonly UserController _controller;
         public bool IsSelectedOwner { get; set; }
         public bool IsSelectedGuest1 { get; set; }
@@ -177,12 +188,22 @@ namespace BookingProject.View
                     }
                     else if (user.UserType == UserType.GUIDE)
                     {
+
+
                         _controller.GetByUsername(Username).IsLoggedIn = true;
                         _controller.Save();
                         GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
                         guideHomeWindow.Show();
                     }
-                    Close();
+                    if (user.UserType == UserType.RESIGNED)
+                    {
+                        MessageBox.Show("This user resigned!");
+                    }
+                    else
+                    {
+                        Close();
+                    }
+
                 }
                 else
                 {

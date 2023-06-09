@@ -6,8 +6,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
+        xmlns:ns="clr-namespace:BookingProject.Localization"
         mc:Ignorable="d"
-        Title="LiveTourView" Height="490" Width="300" >
+        Title="LiveTourView" Height="490" Width="300" 
+        Style="{DynamicResource MyWindowStyle}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Mark">
             <i:InvokeCommandAction Command="{Binding MarkCommand}" />
@@ -42,7 +44,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row = "1" Orientation="Horizontal" Margin="50,0,50,0">
-            <Button Content="Mark (M)" FontWeight="Bold" FontSize="10" IsDefault="True"
+            <Button Content="{ns:Loc Mark}" FontWeight="Bold" FontSize="10" IsDefault="True"
                 Command="{Binding MarkCommand}" Width="90" Height="19" />
         </StackPanel>
 
@@ -69,7 +71,7 @@
                     </TransformGroup>
                 </DataGrid.RenderTransform>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="KeyPoint" Width="98" Binding="{Binding Point}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc LTVKeyPoint}" Width="98" Binding="{Binding Point}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Status" Width="117" Binding="{Binding State}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
@@ -77,8 +79,8 @@
         </Grid>
 
         <WrapPanel Grid.Row = "3" FlowDirection="LeftToRight" HorizontalAlignment="Center" VerticalAlignment="Center" Height="44" Width="250" >
-            <Button Width="115" IsDefault="True" FontWeight="Bold" FontSize="18" Command="{Binding EnterCommand}" Content="Cancel (Esc)" Height="44" Margin="0,0,15,0"/>
-            <Button x:Name="EndButton" Width="120" FontWeight="Bold" FontSize="18" IsDefault="True" Command="{Binding EndCommand}" Content="End (Enter)" IsEnabled="{Binding IsValid}" Margin="0,0,0,0"/>
+            <Button Width="115" IsDefault="True" FontWeight="Bold" FontSize="18" Command="{Binding EnterCommand}" Content="{ns:Loc Cancel}" Height="44" Margin="0,0,15,0"/>
+            <Button x:Name="EndButton" Width="120" FontWeight="Bold" FontSize="18" IsDefault="True" Command="{Binding EndCommand}" Content="{ns:Loc End}" IsEnabled="{Binding IsValid}" Margin="0,0,0,0"/>
 
         </WrapPanel>
     </Grid>

@@ -35,5 +35,6 @@ namespace BookingProject.View.GuideView
             this.DataContext = ViewModel;
             TourDataGrid.ItemsSource = ViewModel._instances;
         }
+
     }
 }
