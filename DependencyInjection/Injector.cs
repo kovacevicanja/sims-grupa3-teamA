@@ -77,9 +77,8 @@ namespace BookingProject.DependencyInjection
             { typeof(ITourRequestStatisticsService), new TourRequestStatisticsService() },
             { typeof(ITourSearchService), new TourSearchService() },
             { typeof(ITourStatisticsService), new TourStatisticsService() },
-            { typeof(IAccommodationRenovationService), new AccommodationRenovationService() },
             { typeof(IForumService), new ForumService() },
-            { typeof(IForumCommentService), new ForumCommentService() }
+            { typeof(IForumCommentService), new ForumCommentService() },
             { typeof(IAccommodationRenovationService), new AccommodationRenovationService() },
             { typeof(IComplexTourRequestService), new ComplexTourRequestService() },
             { typeof(ITourRequestService), new TourRequestService() },

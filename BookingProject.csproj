@@ -653,6 +653,18 @@
     <Compile Include="View\OwnersView\OwnersView.xaml.cs">
       <DependentUpon>OwnersView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OwnersView\WelcomeToBookingView.xaml.cs">
+      <DependentUpon>WelcomeToBookingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\WizardAddAccommodationView.xaml.cs">
+      <DependentUpon>WizardAddAccommodationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\WizardAddImageView.xaml.cs">
+      <DependentUpon>WizardAddImageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\WizardFinalConfirmationView.xaml.cs">
+      <DependentUpon>WizardFinalConfirmationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
     </Compile>
@@ -980,7 +992,7 @@
     </Page>
     <Page Include="View\OwnersView\WelcomeToBookingView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\OwnersView\WizardAddAccommodationView.xaml">
       <SubType>Designer</SubType>
