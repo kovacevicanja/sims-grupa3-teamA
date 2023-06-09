@@ -16,6 +16,7 @@ namespace BookingProject.Services.Implementations
     {
         private IUserRepository _userRepository;
         private IUserService _userService;
+        private ITourService _tourService;
         private ITourTimeInstanceService _tourTimeInstanceService;
         private ITourEvaluationService _tourEvaluationService;
         public SuperGuideService() { }
@@ -26,6 +27,7 @@ namespace BookingProject.Services.Implementations
             _userService = Injector.CreateInstance<IUserService>();
             _tourTimeInstanceService = Injector.CreateInstance<ITourTimeInstanceService>();
             _tourEvaluationService = Injector.CreateInstance<ITourEvaluationService>();
+            _tourService= Injector.CreateInstance<ITourService>();
         }
 
         public void SetToSuper()
@@ -47,17 +49,17 @@ namespace BookingProject.Services.Implementations
         }
         public bool IsSuperEnglish()
         {
-            return (ReturnLanguageNumber(LanguageEnum.SERBIAN) && ReturnRating(LanguageEnum.ENGLISH));
+            return (ReturnLanguageNumber(LanguageEnum.ENGLISH) && ReturnRating(LanguageEnum.ENGLISH));
         }
 
         public bool IsSuperGerman()
         {
-            return (ReturnLanguageNumber(LanguageEnum.SERBIAN) && ReturnRating(LanguageEnum.GERMAN));
+            return (ReturnLanguageNumber(LanguageEnum.GERMAN) && ReturnRating(LanguageEnum.GERMAN));
         }
 
         public bool IsSuperSpanish()
         {
-            return (ReturnLanguageNumber(LanguageEnum.SERBIAN) && ReturnRating(LanguageEnum.SPANISH));
+            return (ReturnLanguageNumber(LanguageEnum.SPANISH) && ReturnRating(LanguageEnum.SPANISH));
         }
 
         public bool IsSuperSerbian()
@@ -83,7 +85,7 @@ namespace BookingProject.Services.Implementations
             double sum = 0;
             foreach(var evaluation in _tourEvaluationService.GetAll())
             {
-                if (evaluation.Tour.Language == language){
+                if ((evaluation.Tour.Language) == language && (_tourService.GetById(evaluation.Tour.Id).GuideId==_userService.GetLoggedUser().Id)){
                     double minisum = (evaluation.GuideLanguage + evaluation.TourInterestigness + evaluation.GuideLanguage) / 3;
                     sum += minisum;
                     counter++;
