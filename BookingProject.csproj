@@ -285,6 +285,7 @@
     <Compile Include="Services\Implementations\RecommendationRenovationService.cs" />
     <Compile Include="Services\Implementations\RequestAccommodationReservationService.cs" />
     <Compile Include="Services\Implementations\SuperGuestService.cs" />
+    <Compile Include="Services\Implementations\SuperGuideService.cs" />
     <Compile Include="Services\Implementations\TourEvaluationImageService.cs" />
     <Compile Include="Services\Implementations\TourEvaluationService.cs" />
     <Compile Include="Services\Implementations\TourImageService.cs" />
@@ -319,6 +320,7 @@
     <Compile Include="Services\Interfaces\IRecommendationRenovationService.cs" />
     <Compile Include="Services\Interfaces\IRequestAccommodationReservationService.cs" />
     <Compile Include="Services\Interfaces\ISuperGuestService.cs" />
+    <Compile Include="Services\Interfaces\ISuperGuideService.cs" />
     <Compile Include="Services\Interfaces\ITourEvaluationImageService.cs" />
     <Compile Include="Services\Interfaces\ITourEvaluationService.cs" />
     <Compile Include="Services\Interfaces\ITourImageService.cs" />
@@ -414,6 +416,7 @@
       <DependentUpon>TourRequestStatisticsPieChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GuideViewModel\TourResignationViewModel.cs" />
+    <Compile Include="View\GuideView\ImageConverter.cs" />
     <Compile Include="View\GuideView\TourResignationWindow.xaml.cs">
       <DependentUpon>TourResignationWindow.xaml</DependentUpon>
     </Compile>

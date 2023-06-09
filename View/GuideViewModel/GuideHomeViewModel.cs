@@ -15,6 +15,8 @@ using GalaSoft.MvvmLight.Messaging;
 using BookingProject.Localization;
 using System.Globalization;
 using System.Threading;
+using System.Windows.Data;
+using System.Windows.Media.Imaging;
 
 namespace BookingProject.View.GuideViewModel
 {
@@ -43,9 +45,11 @@ namespace BookingProject.View.GuideViewModel
         public RelayCommand ResCommand { get; }
         public GuideHomeViewModel()
         {
-
+            IsImageVisible = false;
             Messenger.Default.Register<ChangeModeMessage>(this, OnModeChangeMessageReceived);
             _userController = new UserController();
+            _userController.GoSuper();
+            IsImageVisible = _userController.GetLoggedUser().IsSuper;
             LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             OneCommand = new RelayCommand(Button_Click_1, CanExecute);
             TwoCommand = new RelayCommand(Button_Click_2, CanExecute);
@@ -92,6 +96,20 @@ namespace BookingProject.View.GuideViewModel
             }
         }
 
+        private bool isImageVisible;
+
+        public bool IsImageVisible
+        {
+            get { return isImageVisible; }
+            set
+            {
+                if (isImageVisible != value)
+                {
+                    isImageVisible = value;
+                    OnPropertyChanged(nameof(IsImageVisible));
+                }
+            }
+        }
         private void OnModeChangeMessageReceived(ChangeModeMessage message)
         {
             // Update the IsDarkMode property based on the received message

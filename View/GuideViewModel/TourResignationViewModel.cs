@@ -64,6 +64,7 @@ namespace BookingProject.View.GuideViewModel
         public void ResignUser()
         {
             _userController.GetLoggedUser().UserType = UserType.RESIGNED;
+            _userController.GetLoggedUser().IsLoggedIn = false;
             _userController.Save();
         }
 
