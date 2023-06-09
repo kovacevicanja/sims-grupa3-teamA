@@ -19,10 +19,12 @@ namespace BookingProject.Controller
     {
         private readonly IAccommodationReservationService _accommodationReservationService;
         public AccommodationRenovationController _renovationController { get; set; }
+        public UserController _userController { get; set; }
         public AccommodationReservationController()
         {
             _accommodationReservationService = Injector.CreateInstance<IAccommodationReservationService>();
             _renovationController = new AccommodationRenovationController();
+            _userController = new UserController();
         }
         public List<Tuple<DateTime, DateTime>> FindAvailableDates(DateTime startDate, DateTime endDate, int duration, Accommodation selectedAccommodation)
         {
@@ -37,6 +39,60 @@ namespace BookingProject.Controller
                 _renovationController.CheckDatePairExistence(availableDates, availableDatesPair, duration);
             }
             return availableDatesPair;
+        }
+        public List<AccommodationReservation> GetAllForOwner(int ownerId)
+        {
+            List<AccommodationReservation> res = new List<AccommodationReservation>();
+            foreach (AccommodationReservation reservation in GetAll())
+            {
+                if (reservation.Accommodation.Owner.Id == ownerId)
+                {
+                    res.Add(reservation);
+                }
+            }
+            return res;
+        }
+        public List<Location> GetPopularLocations()
+        {
+            List<AccommodationReservation> reservations = GetAllForOwner(_userController.GetLoggedUser().Id);
+            // Group reservations by location and calculate the number of reservations and occupancy percentage for each location
+            var locationStats = reservations
+                .GroupBy(r => r.Accommodation.Location)
+                .Select(g => new
+                {
+                    Location = g.Key,
+                    ReservationCount = g.Count()
+                })
+                .OrderByDescending(ls => ls.ReservationCount);
+
+            // Retrieve the locations with the highest number of reservations
+            var popularLocations = locationStats
+                .Where(ls => ls.ReservationCount == locationStats.First().ReservationCount)
+                .Select(ls => ls.Location)
+                .ToList();
+
+            return popularLocations;
+        }
+        public List<Location> GetUnPopularLocations()
+        {
+            List<AccommodationReservation> reservations = GetAllForOwner(_userController.GetLoggedUser().Id);
+            // Group reservations by location and calculate the number of reservations and occupancy percentage for each location
+            var locationStats = reservations
+                .GroupBy(r => r.Accommodation.Location)
+                .Select(g => new
+                {
+                    Location = g.Key,
+                    ReservationCount = g.Count()
+                })
+                .OrderBy(ls => ls.ReservationCount);
+
+            // Retrieve the locations with the highest number of reservations
+            var popularLocations = locationStats
+                .Where(ls => ls.ReservationCount == locationStats.First().ReservationCount)
+                .Select(ls => ls.Location)
+                .ToList();
+
+            return popularLocations;
         }
         public void Create(AccommodationReservation reservation)
         {
@@ -150,6 +206,10 @@ namespace BookingProject.Controller
         public List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation)
         {
             return _accommodationReservationService.FindDatesThatAreNotAvailable(selectedAccommodation);
+        }
+        public int CountReservationsForSpecificLocation(int locationId)
+        {
+            return _accommodationReservationService.CountReservationsForSpecificLocation(locationId);
         }
     }
 }

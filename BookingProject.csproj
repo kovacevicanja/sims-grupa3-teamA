@@ -128,6 +128,8 @@
     <Compile Include="Controllers\AccommodationOwnerGradeController.cs" />
     <Compile Include="Controllers\AccommodationRenovationController.cs" />
     <Compile Include="Controllers\AccommodationReservationController.cs" />
+    <Compile Include="Controllers\ForumCommentController.cs" />
+    <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\ComplexTourRequestController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\RecommendationRenovationController.cs" />
@@ -148,6 +150,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="ConversionHelp\BooleanToVisibilityConverter.cs" />
+    <Compile Include="ConversionHelp\TextBoxClearHelper.cs" />
     <Compile Include="DependencyInjection\Injector.cs" />
     <Compile Include="ConversionHelp\DateConversion.cs" />
     <Compile Include="Domain\AccommodationOwnerGrade.cs" />
@@ -157,6 +160,8 @@
     <Compile Include="Domain\Enums\RequestStatus.cs" />
     <Compile Include="Domain\Enums\TourRequestStatus.cs" />
     <Compile Include="Domain\Enums\VoucherState.cs" />
+    <Compile Include="Domain\Forum.cs" />
+    <Compile Include="Domain\ForumComment.cs" />
     <Compile Include="Domain\Guide.cs" />
     <Compile Include="Domain\Images\AccommodationGuestImage.cs" />
     <Compile Include="Domain\MonthData.cs" />
@@ -197,6 +202,8 @@
     <Compile Include="Repositories\Implementations\AccommodationRenovationRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationReservationRepository.cs" />
     <Compile Include="Repositories\Implementations\ComplexTourRequestRepository.cs" />
+    <Compile Include="Repositories\Implementations\ForumCommentRepository.cs" />
+    <Compile Include="Repositories\Implementations\ForumRepository.cs" />
     <Compile Include="Repositories\Implementations\GuestGradeRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationDateRepository.cs" />
     <Compile Include="Repositories\Implementations\AccommodationGuestImageRepository.cs" />
@@ -224,6 +231,8 @@
     <Compile Include="Repositories\Intefaces\IAccommodationRenovationRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationReservationRepository.cs" />
     <Compile Include="Repositories\Intefaces\IComplexTourRequestRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IForumCommentRepository.cs" />
+    <Compile Include="Repositories\Intefaces\IForumRepository.cs" />
     <Compile Include="Repositories\Intefaces\IGuestGradeRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationDateRepository.cs" />
     <Compile Include="Repositories\Intefaces\IAccommodationGuestImageRepository.cs" />
@@ -253,6 +262,8 @@
     <Compile Include="Services\Implementations\AccommodationRenovationService.cs" />
     <Compile Include="Services\Implementations\AccommodationReservationService.cs" />
     <Compile Include="Services\Implementations\ComplexTourRequestService.cs" />
+    <Compile Include="Services\Implementations\ForumCommentService.cs" />
+    <Compile Include="Services\Implementations\ForumService.cs" />
     <Compile Include="Services\Implementations\GuestGradeService.cs" />
     <Compile Include="Services\Implementations\AccommodationDateService.cs" />
     <Compile Include="Services\Implementations\AccommodationGuestImageService.cs" />
@@ -286,6 +297,8 @@
     <Compile Include="Services\Interfaces\IAccommodationRenovationService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationReservationService.cs" />
     <Compile Include="Services\Interfaces\IComplexTourRequestService.cs" />
+    <Compile Include="Services\Interfaces\IForumCommentService.cs" />
+    <Compile Include="Services\Interfaces\IForumService.cs" />
     <Compile Include="Services\Interfaces\IGuestGradeService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationDateService.cs" />
     <Compile Include="Services\Interfaces\IAccommodationGuestImageService.cs" />
@@ -322,11 +335,15 @@
     <Compile Include="Validation\IntegerNumberValidationRule.cs" />
     <Compile Include="Validation\NavigationInputCountry.cs" />
     <Compile Include="Validation\NavigationInputCity.cs" />
+    <Compile Include="Validation\OwnerDurationValidationRule.cs" />
     <Compile Include="Validation\OwnerIntegerNumberValidationRule.cs" />
+    <Compile Include="Validation\OwnerRequiredFieldValidationRule.cs" />
     <Compile Include="Validation\RequiredFieldValidationRule .cs" />
     <Compile Include="Validation\SearchAccommodationValidationRule.cs" />
     <Compile Include="View\CustomMessageBoxes\CustomMessageBoxComplexTourRequests.cs" />
     <Compile Include="View\CustomMessageBoxes\CustomNotificationMessageBoxNewlyCreatedTours.cs" />
+    <Compile Include="View\CustomMessageBoxes\OwnerCustomMessageBox.cs" />
+    <Compile Include="View\CustomMessageBoxes\OwnerNotificationCustomBox.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ProfileViewModel.cs" />
@@ -401,13 +418,23 @@
     <Compile Include="View\OwnersViewModel\AddAccommodationViewModel.cs" />
     <Compile Include="View\OwnersViewModel\AddPhotosToAccommodationViewModel.cs" />
     <Compile Include="View\OwnersViewModel\AvailableDatesForAccommodationRenovationViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\BookingCalendarViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\ChoseAccommodationForRenovationViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\ChoseAccommodationForStatisticsViewModel.cs" />
     <Compile Include="View\OwnersViewModel\EnterAccommodationRenovationDatesViewModel.cs" />
     <Compile Include="View\OwnersViewModel\GuestGradesForOwnerViewModel.cs" />
     <Compile Include="View\OwnersViewModel\GuestRateViewModel.cs" />
-    <Compile Include="View\OwnersViewModel\MenuViewModel.cs" />
     <Compile Include="View\OwnersViewModel\NotGradedViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\OneAccommodationViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\OneForumViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersApprovingDenyingRequestViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\OwnersForumsViewModel.cs" />
     <Compile Include="View\OwnersViewModel\OwnersRequestViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\OwnerSuggestionsViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\WelcomeToBookingViewMode.cs" />
+    <Compile Include="View\OwnersViewModel\WizardAddAccommodationViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\WizardAddImageViewModel.cs" />
+    <Compile Include="View\OwnersViewModel\WizardFinalConfirmationViewModel.cs" />
     <Compile Include="View\OwnersView\AccommodationRenovationsView.xaml.cs">
       <DependentUpon>AccommodationRenovationsView.xaml</DependentUpon>
     </Compile>
@@ -581,6 +608,15 @@
     <Compile Include="View\OwnersView\AvailableDatesForAccommodationRenovationView.xaml.cs">
       <DependentUpon>AvailableDatesForAccommodationRenovationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OwnersView\BookingCalendarView.xaml.cs">
+      <DependentUpon>BookingCalendarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\ChoseAccommodationForRenovationView.xaml.cs">
+      <DependentUpon>ChoseAccommodationForRenovationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\ChoseAccommodationForStatisticsView.xaml.cs">
+      <DependentUpon>ChoseAccommodationForStatisticsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OwnersView\EnterAccommodationRenovationDatesView.xaml.cs">
       <DependentUpon>EnterAccommodationRenovationDatesView.xaml</DependentUpon>
     </Compile>
@@ -596,16 +632,27 @@
     <Compile Include="View\OwnersView\NotGradedView.xaml.cs">
       <DependentUpon>NotGradedView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OwnersView\OneAccommodationView.xaml.cs">
+      <DependentUpon>OneAccommodationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\OneForumView.xaml.cs">
+      <DependentUpon>OneForumView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OwnersView\OwnersApprovingDenyingRequestView.xaml.cs">
       <DependentUpon>OwnersApprovingDenyingRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OwnersView\OwnersForumsView.xaml.cs">
+      <DependentUpon>OwnersForumsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OwnersView\OwnersRequestView.xaml.cs">
       <DependentUpon>OwnersRequestView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OwnersView\OwnerSuggestionsView.xaml.cs">
+      <DependentUpon>OwnerSuggestionsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OwnersView\OwnersView.xaml.cs">
       <DependentUpon>OwnersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SetDateVisibility.cs" />
     <Compile Include="View\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
     </Compile>
@@ -871,6 +918,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\OwnersView\BookingCalendarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\ChoseAccommodationForRenovationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\ChoseAccommodationForStatisticsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\OwnersView\EnterAccommodationRenovationDatesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -891,17 +950,49 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="View\OwnersView\OneAccommodationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\OneForumView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\OwnersView\OwnersApprovingDenyingRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\OwnersView\OwnersForumsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OwnersView\OwnersRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="View\OwnersView\OwnerSuggestionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\OwnersView\OwnersView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\OwnersView\WelcomeToBookingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\WizardAddAccommodationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\WizardAddImageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OwnersView\WizardFinalConfirmationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SignInForm.xaml">
       <SubType>Designer</SubType>
@@ -941,6 +1032,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\Data\accommodationRenovations.csv" />
+    <None Include="Resources\Data\forumComments.csv" />
+    <None Include="Resources\Data\forums.csv" />
     <None Include="Resources\Data\renovationrecommendations.csv" />
     <None Include="Resources\Data\superguests.csv" />
     <None Include="Resources\Data\tourEvaluationImages.csv" />
@@ -1372,6 +1465,54 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\broom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\accommodations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\guests.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\statistics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\requests.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\suggestions.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\renovations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\forums.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\reviews.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\profile.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\backArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\tooltip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\medal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\medal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OwnerImages\star1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

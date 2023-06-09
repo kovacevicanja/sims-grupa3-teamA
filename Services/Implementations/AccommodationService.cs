@@ -35,6 +35,10 @@ namespace BookingProject.Services.Implementations
         {
             return accommodationTypes == null || accommodationTypes.Count == 0 || accommodationTypes.Any(t => accType.Contains(t.ToLower()));
         }
+        public void Delete(Accommodation acc)
+        {
+            _accommodationRepository.Delete(acc);
+        }
 
         public ObservableCollection<Accommodation> Search(ObservableCollection<Accommodation> _accommodationsView, string name, string city, string state, List<string> types, string numberOfGuests, string minNumDaysOfReservation)
         {

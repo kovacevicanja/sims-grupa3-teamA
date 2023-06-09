@@ -1,4 +1,5 @@
-﻿using BookingProject.Model.Images;
+﻿using BookingProject.Model;
+using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
 using System;
@@ -53,6 +54,13 @@ namespace BookingProject.Repositories.Implementations
                 }
             }
             return maxId + 1;
+        }
+        public void Delete(AccommodationImage image)
+        {
+            _images = _serializer.FromCSV(FilePath);
+            AccommodationImage founded = _images.Find(c => c.Id == image.Id);
+            _images.Remove(founded);
+            _serializer.ToCSV(FilePath, _images);
         }
 
         public void Create(AccommodationImage image)

@@ -16,6 +16,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnersViewModel
 {
@@ -27,10 +28,12 @@ namespace BookingProject.View.OwnersViewModel
 
         public Action CloseAction { get; set; }
         public RelayCommand CancelRenovationCommand { get; set; }
+        public RelayCommand AddRenovationCommand { get; set; }
 
         public AccommodationRenovation SelectedRenovation { get; set; }
         public static ObservableCollection<Accommodation> Accommodations { get; set; }
         public static List<Location> Locations { get; set; }
+        public NavigationService NavigationService { get; set; }
 
         private ObservableCollection<AccommodationRenovation> _lastRenovations;
         public ObservableCollection<AccommodationRenovation> LastRenovations
@@ -60,7 +63,7 @@ namespace BookingProject.View.OwnersViewModel
             }
         }
 
-        public AccommodationRenovationsViewModel()
+        public AccommodationRenovationsViewModel(NavigationService navigationService)
         {
             _accommodationController = new AccommodationController();
             _renovationController = new AccommodationRenovationController();
@@ -70,7 +73,15 @@ namespace BookingProject.View.OwnersViewModel
             List<AccommodationRenovation> futureRenovations = _renovationController.GetRenovationsInFuture();
             FutureRenovations = new ObservableCollection<AccommodationRenovation>(_accommodationController.GetAccommodationData(futureRenovations));
             CancelRenovationCommand = new RelayCommand(Button_Click_Cancel_Renovation, CanExecute);
+            AddRenovationCommand = new RelayCommand(Button_Click_Add, CanExecute);
+            NavigationService = navigationService;
         }
+
+        private void Button_Click_Add(object param)
+        {
+            NavigationService.Navigate(new ChoseAccommodationForRenovationView(NavigationService));
+        }
+
         private void Button_Click_Cancel_Renovation(object param)
         {
             if (SelectedRenovation != null)

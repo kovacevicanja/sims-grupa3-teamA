@@ -42,6 +42,13 @@ namespace BookingProject.Repositories.Implementations
         {
             return _locations;
         }
+        public void Delete(Location l)
+        {
+            _locations = _serializer.FromCSV(FilePath);
+            Location founded = _locations.Find(c => c.Id == l.Id);
+            _locations.Remove(founded);
+            _serializer.ToCSV(FilePath, _locations);
+        }
 
         public Location GetById(int id)
         {

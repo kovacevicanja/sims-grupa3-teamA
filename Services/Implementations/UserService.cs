@@ -37,6 +37,17 @@ namespace BookingProject.Services
             return _userRepository.GetAll().FirstOrDefault(u => u.IsLoggedIn == true);
         }
 
+        public void Update2(User user)
+        {
+            User oldUser = _userRepository.GetById(user.Id);
+            if (oldUser == null)
+            {
+                return;
+            }
+            oldUser.numberOfSignIn = user.numberOfSignIn;
+            Save();
+        }
+
         public void Create(User user)
         {
             _userRepository.Create(user);

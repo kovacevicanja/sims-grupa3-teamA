@@ -18,6 +18,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 
@@ -26,12 +27,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for AddAccommodationView.xaml
     /// </summary>
-    public partial class AddAccommodationView : Window
+    public partial class AddAccommodationView : Page
     {
-        public AddAccommodationView()
+        public AddAccommodationView(NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new AddAccommodationViewModel();
+            this.DataContext = new AddAccommodationViewModel(navigationService);
         }
 
         

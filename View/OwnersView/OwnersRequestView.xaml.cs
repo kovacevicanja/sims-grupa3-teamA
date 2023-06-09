@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View
@@ -21,12 +22,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for OwnersRequestView.xaml
     /// </summary>
-    public partial class OwnersRequestView : Window
+    public partial class OwnersRequestView : Page
     {
-        public OwnersRequestView()
+        public OwnersRequestView(NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new OwnersRequestViewModel();
+            this.DataContext = new OwnersRequestViewModel(navigationService);
         }
     }
 }

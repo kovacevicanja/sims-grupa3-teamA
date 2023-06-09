@@ -15,17 +15,17 @@ namespace BookingProject.Validation
 
             if (string.IsNullOrEmpty((string)value))
             {
-                return new ValidationResult(false, "This must be filled!");
+                return new ValidationResult(false, "*");
             }
 
             if (!int.TryParse((string)value, out int intValue))
             {
-                return new ValidationResult(false, "This field has to be an number!");
+                return new ValidationResult(false, "This has to be a number!");
             }
 
             if (intValue <= 0)
             {
-                return new ValidationResult(false, "Number must be positive!");
+                return new ValidationResult(false, "Cannot be negative!");
             }
             return ValidationResult.ValidResult;
         }

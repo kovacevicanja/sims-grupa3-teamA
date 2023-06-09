@@ -18,6 +18,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View
@@ -25,12 +26,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for GuestRateView.xaml
     /// </summary>
-    public partial class GuestRateView : Window
+    public partial class GuestRateView : Page
     {
-        public GuestRateView(AccommodationReservation selectedReservation)
+        public GuestRateView(AccommodationReservation selectedReservation, NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new GuestRateViewModel(selectedReservation);
+            this.DataContext = new GuestRateViewModel(selectedReservation, navigationService);
         }
     }
 }

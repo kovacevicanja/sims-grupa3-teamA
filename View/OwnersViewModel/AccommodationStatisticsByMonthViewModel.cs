@@ -1,4 +1,5 @@
-﻿using BookingProject.Controller;
+﻿using BookingProject.Commands;
+using BookingProject.Controller;
 using BookingProject.Controllers;
 using BookingProject.Model;
 using System;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnersViewModel
 {
@@ -28,6 +30,11 @@ namespace BookingProject.View.OwnersViewModel
         public string[] NumberOfRenovationRecommendationsDisplay { get; set; }
         public RecommendationRenovationController _renovationController { get; set; }
         public int MostBusyMonth { get; set; }
+        public NavigationService NavigationService { get; set; }
+        public RelayCommand BackCommand
+        {
+            get; set;
+        }
         public string MostBusyMonthDisplay { get; set; }
         public int[] NumberOfReservationss
         {
@@ -49,7 +56,7 @@ namespace BookingProject.View.OwnersViewModel
             get { return NumberOfRenovationRecommendations; }
             set { NumberOfRenovationRecommendations = value; }
         }
-        public AccommodationStatisticsByMonthViewModel(int selectedYear, Accommodation selectedAccommodation)
+        public AccommodationStatisticsByMonthViewModel(int selectedYear, Accommodation selectedAccommodation, NavigationService navigationService)
         {
             _accommodationReservationController = new AccommodationReservationController();
             _requestController = new RequestAccommodationReservationController();
@@ -69,6 +76,7 @@ namespace BookingProject.View.OwnersViewModel
             NumberOfCancelledReservationsDisplay = new string[12];
             NumberOfRescheduledReservationsDisplay = new string[12];
             NumberOfRenovationRecommendationsDisplay = new string[12];
+            BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
             int n = 0;
             for (int i = 0; i < 12; i++)
             {
@@ -83,7 +91,13 @@ namespace BookingProject.View.OwnersViewModel
                 NumberOfRenovationRecommendationsDisplay[n] = NumberOfRenovationRecommendations[n].ToString();
                 n++;
             }
+            NavigationService = navigationService;
         }
+        private void Button_Click_Back(object param)
+        {
+            NavigationService.GoBack();
+        }
+        private bool CanExecute(object param) { return true; }
         public Accommodation SelectedReservation
         {
             get { return _selectedAccommodation; }

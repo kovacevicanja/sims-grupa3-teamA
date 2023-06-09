@@ -15,5 +15,6 @@ namespace BookingProject.Repositories.Intefaces
         void Initialize();
         void Save(List<Location> locations);
         void SaveLocation();
+        void Delete(Location location);
     }
 }

@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
 using BookingProject.Commands;
+using System.Windows.Navigation;
+using BookingProject.View.CustomMessageBoxes;
+using System.Web.WebPages;
 
 namespace BookingProject.View
 {
@@ -30,8 +33,10 @@ namespace BookingProject.View
         public RelayCommand CancelCommand { get; }
         public RelayCommand MenuCommand { get; }
         public RelayCommand BackCommand { get; }
+        public NavigationService NavigationService { get; set; }
+        public OwnerNotificationCustomBox messageBox { get; set; }
 
-        public AddAccommodationViewModel()
+        public AddAccommodationViewModel(NavigationService navigationService)
         {
             var types = Enum.GetValues(typeof(AccommodationType)).Cast<AccommodationType>();
             accommodationTypes = new ObservableCollection<AccommodationType>(types);
@@ -48,6 +53,8 @@ namespace BookingProject.View
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
+            NavigationService = navigationService;
+            messageBox = new OwnerNotificationCustomBox();
         }
         private bool CanExecute(object param) { return true; }
 
@@ -57,13 +64,13 @@ namespace BookingProject.View
         {
             MenuView view = new MenuView();
             view.Show();
-            CloseWindow();
         }
         private void Button_Click_Back(object param)
         {
-            var view = new OwnerssView();
-            view.Show();
-            CloseWindow();
+            //var view = new OwnerssView();
+            //view.Show();
+            //CloseWindow();
+            NavigationService.GoBack();
         }
         public string AccommodationName
         {
@@ -122,8 +129,8 @@ namespace BookingProject.View
             }
         }
 
-        private int _maxGuestNumber;
-        public int MaxGuestNumber
+        private int? _maxGuestNumber;
+        public int? MaxGuestNumber
         {
             get => _maxGuestNumber;
             set
@@ -135,8 +142,8 @@ namespace BookingProject.View
                 }
             }
         }
-        private int _minNumberOfDays;
-        public int MinDays
+        private int? _minNumberOfDays;
+        public int? MinDays
         {
             get => _minNumberOfDays;
             set
@@ -148,8 +155,8 @@ namespace BookingProject.View
                 }
             }
         }
-        private int _cancellationPeriod;
-        public int CancellationPeriod
+        private int? _cancellationPeriod;
+        public int? CancellationPeriod
         {
             get => _cancellationPeriod;
             set
@@ -180,15 +187,28 @@ namespace BookingProject.View
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        private bool isImageAdded = false;
         private void Button_Click_Add(object param)
         {
+            if (isImageAdded == false)
+            {
+                messageBox.ShowCustomMessageBox("You need to enter at least one image!");
+                return;
+            }
+            if (MaxGuestNumber==null || MinDays==null || AccommodationName.IsEmpty() || City.IsEmpty() || Country.IsEmpty()) {
+                messageBox.ShowCustomMessageBox("All fields must be filled!");
+                return;
+            }
+            if (CancellationPeriod == null)
+            {
+                CancellationPeriod = 1;
+            }
             Accommodation accommodation = new Accommodation();
             accommodation.AccommodationName = AccommodationName;
             accommodation.Type = chosenType;
-            accommodation.MaxGuestNumber = MaxGuestNumber;
-            accommodation.MinDays = MinDays;
-            accommodation.CancellationPeriod = CancellationPeriod;
+            accommodation.MaxGuestNumber = (int)MaxGuestNumber;
+            accommodation.MinDays = (int)MinDays;
+            accommodation.CancellationPeriod = (int)CancellationPeriod;
             accommodation.Owner.Id = SignInForm.LoggedInUser.Id;
 
             Location location = new Location();
@@ -197,6 +217,7 @@ namespace BookingProject.View
 
             LocationController.Create(location);
             LocationController.SaveLocation();
+            accommodation.Location = location;
             accommodation.IdLocation = location.Id;
 
             //AccommodationController.Create(accommodation);
@@ -208,24 +229,19 @@ namespace BookingProject.View
             if (IsValid)
             {
                 AccommodationController.Create(accommodation);
-                MessageBox.Show("You have succesfully added new accommodation");
-                var view = new OwnerssView();
-                view.Show();
+                messageBox.ShowCustomMessageBox("You have succesfully added new accommodation");
+                //var view = new OwnerssView();
+                //view.Show();
+                NavigationService.Navigate(new OwnerssView(NavigationService));
             }
-            CloseWindow();
+            
         }
-        private void CloseWindow()
-        {
-            foreach (Window window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(AddAccommodationView)) { window.Close(); }
-            }
-        }
+        
         private void Button_Click_Cancel(object param)
         {
             ImageController.DeleteUnused();
             ImageController.SaveImage();
-            CloseWindow();
+            NavigationService.GoBack();
         }
         public bool IsValid
         {
@@ -242,8 +258,10 @@ namespace BookingProject.View
         }
         private void Button_Click_Add_Image(object param)
         {
-            AddPhotosToAccommodationView addPhoto = new AddPhotosToAccommodationView();
-            addPhoto.Show();
+            //AddPhotosToAccommodationView addPhoto = new AddPhotosToAccommodationView();
+            //addPhoto.Show();
+            isImageAdded = true;
+            NavigationService.Navigate(new AddPhotosToAccommodationView(NavigationService));
         }
         public string this[string columnName]
         {

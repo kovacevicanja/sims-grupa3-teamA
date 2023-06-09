@@ -6,10 +6,15 @@ using BookingProject.View.OwnerView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace BookingProject.View
 {
@@ -28,7 +33,8 @@ namespace BookingProject.View
         public RelayCommand CloseCommand { get; }
         public RelayCommand StatisticsCommand { get; }
         public RelayCommand RenovationsCommand { get; }
-        public OwnerssViewModel()
+        public NavigationService NavigationService { get; set; }
+        public OwnerssViewModel(NavigationService navigationService)
         {
             _userController = new UserController();
             _accommodationController = new AccommodationController();
@@ -46,49 +52,52 @@ namespace BookingProject.View
             CloseCommand = new RelayCommand(Button_Click_Close, CanExecute);
             StatisticsCommand = new RelayCommand(Button_Click_Statistics, CanExecute);
             RenovationsCommand = new RelayCommand(Button_Click_Renovations, CanExecute);
+            NavigationService = navigationService;
         }
         private bool CanExecute(object param) { return true; }
         private void Button_Click_Add(object param)
         {
-            AddAccommodationView addAccommodationsView = new AddAccommodationView();
-            addAccommodationsView.Show();
-            CloseWindow();
+            NavigationService.Navigate(new AddAccommodationView(NavigationService));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private void Button_Click_Renovations(object param)
         {
-            if (SelectedAccommodation == null)
-            {
-                return;
-            }
-            var view = new EnterAccommodationRenovationDatesView(SelectedAccommodation);
-            view.Show();
-            CloseWindow();
+            //if (SelectedAccommodation == null)
+            //{
+            //    return;
+            //}
+            //var view = new EnterAccommodationRenovationDatesView(SelectedAccommodation, NavigationService);
+            //view.Show();
+            //CloseWindow();
         }
         private void Button_Click_Statistics(object param)
         {
-            if (SelectedAccommodation != null)
-            {
-                var view = new AccommodationStatisticsByYearView(SelectedAccommodation);
-                view.Show();
-                CloseWindow();
-            }
+            //if (SelectedAccommodation != null)
+            //{
+            //    var view = new AccommodationStatisticsByYearView(SelectedAccommodation, NavigationService);
+            //    view.Show();
+            //    CloseWindow();
+            //}
         }
         private void Button_Click_Rate(object param)
         {
-            NotGradedView view = new NotGradedView();
-            view.Show();
-            CloseWindow();
+            //NotGradedView view = new NotGradedView(NavigationService);
+            //view.Show();
+            //CloseWindow();
         }
         private void Button_Click_Request(object param)
         {
-            OwnersRequestView view = new OwnersRequestView();
-            view.Show();
-            CloseWindow(); 
+            NavigationService.Navigate( new OwnersRequestView(NavigationService));
 
         }
         private void Button_Click_Close(object param)
         {
-            CloseWindow();
+            NavigationService.Navigate(new AddAccommodationView(NavigationService));
         }
         private void CloseWindow()
         {
@@ -104,9 +113,9 @@ namespace BookingProject.View
 
         private void Button_Click_Review(object param)
         {
-            GuestGradesForOwnerView view = new GuestGradesForOwnerView();
-            view.Show();
-            CloseWindow();
+            //GuestGradesForOwnerView view = new GuestGradesForOwnerView();
+            //view.Show();
+            //CloseWindow();
         }
 
         private void Button_Click_LogOut(object param)

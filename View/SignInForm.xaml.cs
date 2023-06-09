@@ -16,6 +16,7 @@ using BookingProject.View.CustomMessageBoxes;
 using BookingProject.View.Guest1View;
 using BookingProject.ConversionHelp;
 using BookingProject.View.OwnerViewModel;
+using BookingProject.View.OwnersView;
 
 namespace BookingProject.View
 {
@@ -83,34 +84,37 @@ namespace BookingProject.View
             {
                 if (user.Password == txtPassword.Password)
                 {
+                    user.numberOfSignIn++;
+                    _controller.Update2(user);
                     LoggedInUser = user;
                     if (user.UserType == UserType.OWNER)
                     {
                         Model.User owner = _controller.GetByUsername(Username);
                         owner.IsLoggedIn = true;
                         _controller.Save();
-                        OwnerssView ownerView = new OwnerssView();
-                        ownerView.Show();
-                        List<Notification> notifications = _notificationController.GetOwnerNotifications(owner);
-                        List<Notification> notificationsCopy = new List<Notification>();
-                        foreach (Notification notification in notifications)
-                        {
-                            MessageBox.Show(notification.Text);
-                            notificationsCopy.Add(notification);
-                            _notificationController.DeleteNotificationFromCSV(notification);
-                        }
-                        foreach (Notification notification1 in notificationsCopy)
-                        {
-                            _notificationController.WriteNotificationAgain(notification1);
-                        }
-                        NotGradedViewModel not_view = new NotGradedViewModel();
-                        int row_num = not_view.RowNum();
-                        if (row_num > 0)
-                        {
-                            MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
-                        }
-                        //OwnersRequestView view = new OwnersRequestView();
-                        //view.Show();
+                        //OwnerssView ownerView = new OwnerssView();
+                        //ownerView.Show();
+                        //List<Notification> notifications = _notificationController.GetOwnerNotifications(owner);
+                        //List<Notification> notificationsCopy = new List<Notification>();
+                        //foreach (Notification notification in notifications)
+                        //{
+                        //    MessageBox.Show(notification.Text);
+                        //    notificationsCopy.Add(notification);
+                        //    _notificationController.DeleteNotificationFromCSV(notification);
+                        //}
+                        //foreach (Notification notification1 in notificationsCopy)
+                        //{
+                        //    _notificationController.WriteNotificationAgain(notification1);
+                        //}
+                        //NotGradedViewModel not_view = new NotGradedViewModel();
+                        //int row_num = not_view.RowNum();
+                        //if (row_num > 0)
+                        //{
+                        //    MessageBox.Show("You have " + row_num.ToString() + " guests to rate");
+                        //}
+                            var view = new MenuView();
+                            view.Show();
+                        
                     }
                     else if (user.UserType == UserType.GUEST1)
                     {

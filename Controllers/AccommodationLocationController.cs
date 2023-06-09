@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingProject.DependencyInjection;
 using BookingProject.Model;
+using BookingProject.Services.Implementations;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 
@@ -36,6 +37,10 @@ namespace BookingProject.Controller
         public void SaveLocation()
         {
             _locationService.SaveLocation();
+        }
+        public void Delete(Location l)
+        {
+            _locationService.Delete(l);
         }
     }
 }

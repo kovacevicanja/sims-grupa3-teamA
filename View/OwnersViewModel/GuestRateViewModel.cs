@@ -1,6 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
 using BookingProject.Model;
+using BookingProject.View.CustomMessageBoxes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingProject.View.OwnerViewModel
 {
@@ -32,11 +34,14 @@ namespace BookingProject.View.OwnerViewModel
         public RelayCommand RateCommand { get; }
         public RelayCommand MenuCommand { get; }
         public RelayCommand BackCommand { get; }
-        public GuestRateViewModel(AccommodationReservation selectedReservation)
+        public NavigationService NavigationService { get; set; }
+        public OwnerNotificationCustomBox box { get; set; }
+        public GuestRateViewModel(AccommodationReservation selectedReservation, NavigationService navigationService)
         {
             GradeController = new GuestGradeController();
             _selectedReservation = new AccommodationReservation();
             _selectedReservation = selectedReservation;
+            box = new OwnerNotificationCustomBox();
             CleanlinessOption = new ObservableCollection<int>();
             CommunicationOption = new ObservableCollection<int>();
             ObservanceOption = new ObservableCollection<int>();
@@ -53,6 +58,7 @@ namespace BookingProject.View.OwnerViewModel
             RateCommand = new RelayCommand(Button_Click_Rate, CanExecute);
             MenuCommand = new RelayCommand(Button_Click_Menu, CanExecute);
             BackCommand = new RelayCommand(Button_Click_Back, CanExecute);
+            NavigationService = navigationService;
         }
         private bool CanExecute(object param) { return true; }
 
@@ -69,9 +75,10 @@ namespace BookingProject.View.OwnerViewModel
         }
         private void Button_Click_Back(object param)
         {
-            var view = new NotGradedView();
-            view.Show();
-            CloseWindow();
+            //var view = new NotGradedView();
+            //view.Show();
+            //CloseWindow();
+            NavigationService.GoBack();
         }
 
         private int _cleanliness;
@@ -167,7 +174,7 @@ namespace BookingProject.View.OwnerViewModel
         {
             if(ChosenCleanliness ==0 || ChosenCommunication==0 || ChosenDecency==0 || ChosenNoisiness==0 || ChosenObservance==0)
             {
-                MessageBox.Show("You must select one of dropdown options for grade!");
+                box.ShowCustomMessageBox("You must select one of dropdown options for grade!");
                 return;
             }
             GuestGrade grade = new GuestGrade();
@@ -180,13 +187,14 @@ namespace BookingProject.View.OwnerViewModel
             grade.AccommodationReservation.Id = _selectedReservation.Id;
 
             GradeController.Create(grade);
-            MessageBox.Show("You have rated a guest!");
-            var view = new NotGradedView();
-            view.Show();
+            box.ShowCustomMessageBox("You have rated a guest!");
+            //var view = new NotGradedView();
+            //view.Show();
 
 
 
-            CloseWindow();
+            //CloseWindow();
+            NavigationService.Navigate(new NotGradedView(NavigationService));
 
         }
         private void CloseWindow()

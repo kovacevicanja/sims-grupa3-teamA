@@ -18,6 +18,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View
@@ -25,12 +26,12 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for AddPhotosToAccommodationView.xaml
     /// </summary>
-    public partial class AddPhotosToAccommodationView : Window
+    public partial class AddPhotosToAccommodationView : Page
     {
-        public AddPhotosToAccommodationView()
+        public AddPhotosToAccommodationView(NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new AddPhotosToAccommodationViewModel();
+            this.DataContext = new AddPhotosToAccommodationViewModel(navigationService);
         }
     }
 }

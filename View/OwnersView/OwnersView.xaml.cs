@@ -5,6 +5,8 @@ using BookingProject.Domain.Images;
 using BookingProject.Model;
 using BookingProject.Model.Images;
 using BookingProject.Repositories.Intefaces;
+using BookingProject.View.OwnersView;
+using BookingProject.View.OwnerView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +22,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BookingProject.View
@@ -27,17 +30,22 @@ namespace BookingProject.View
     /// <summary>
     /// Interaction logic for OwnerView.xaml
     /// </summary>
-    public partial class OwnerssView : Window
+    public partial class OwnerssView : Page
     {
-        public OwnerssView()
+        public OwnerssView(NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new OwnerssViewModel();
-            var view = new OwnerssViewModel();
+            this.DataContext = new OwnerssViewModel(navigationService);
+            var view = new OwnerssViewModel(navigationService);
             if (!view._accommodationOwnerGradeController.IsOwnerSuperOwner(SignInForm.LoggedInUser.Id))
             {
                 //SuperOwnerImage.Visibility = Visibility.Hidden;
             }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var accommodation = ((Button)sender).DataContext as Accommodation;
+            NavigationService.Navigate(new OneAccommodationView(accommodation, NavigationService));
         }
     }
 }

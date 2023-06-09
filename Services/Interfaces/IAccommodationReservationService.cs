@@ -43,6 +43,7 @@ namespace BookingProject.Services.Interfaces
         List<AccommodationReservation> GetAllNotCancelled();
         int GetMostBusyMonth(List<AccommodationReservation> reservations, int year);
         List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation);
+        int CountReservationsForSpecificLocation(int locationId);
 
     }
 }

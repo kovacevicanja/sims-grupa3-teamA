@@ -244,6 +244,20 @@ namespace BookingProject.Services.Implementations
             }
             return sum/count;
         }
+
+        public int CountReservationsForSpecificLocation(int locationId)
+        {
+            int number = 0;
+            foreach(AccommodationReservation res in _accommodationReservationRepository.GetAll())
+            {
+                if(res.Accommodation.Location.Id == locationId)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
         //public double FindMaxOccupancyPercentage(int accId)
         //{
         //    double max = 0;
@@ -352,5 +366,6 @@ namespace BookingProject.Services.Implementations
             }
             return nonAvailableDates;
         }
+        
     }
 }
