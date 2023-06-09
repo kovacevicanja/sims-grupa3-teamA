@@ -195,7 +195,15 @@ namespace BookingProject.View
                         GuideHomeWindow guideHomeWindow = new GuideHomeWindow();
                         guideHomeWindow.Show();
                     }
-                    Close();
+                    if (user.UserType == UserType.RESIGNED)
+                    {
+                        MessageBox.Show("This user resigned!");
+                    }
+                    else
+                    {
+                        Close();
+                    }
+
                 }
                 else
                 {

@@ -19,24 +19,59 @@ namespace BookingProject.View.GuideViewModel
     public class TourResignationViewModel
     {
         private TourTimeInstanceController _tourTimeInstanceController;
+        private UserController _userController;
         private VoucherController _voucherController;
         private TourReservationController _tourReservationController;
         public TourTimeInstance ChosenTour;
+
         public RelayCommand YesCommand { get; }
         public RelayCommand NoCommand { get; }
         public TourResignationViewModel()
         {
             _tourTimeInstanceController = new TourTimeInstanceController();
             _voucherController = new VoucherController();
+            _userController = new UserController();
             _tourReservationController = new TourReservationController();   
             YesCommand = new RelayCommand(Yes_Click, CanExecute);
             NoCommand = new RelayCommand(No_Click, CanExecute);
         }
-        public void SendVouchers()
+
+
+
+        public void SendVouchersResignation()
+        {
+            foreach(TourTimeInstance instance in _tourTimeInstanceController.GetAll())
+            {
+                if (instance.Tour.GuideId ==_userController.GetLoggedUser().Id)
+                {
+                    SendVouchers(instance);
+                }
+            }
+        }
+
+        public void SetToCompleted()
+        {
+            foreach (TourTimeInstance instance in _tourTimeInstanceController.GetAll())
+            {
+                if (instance.Tour.GuideId == _userController.GetLoggedUser().Id)
+                {
+                    instance.State = TourState.COMPLETED;
+                }
+            }
+            _tourTimeInstanceController.Save();
+        }
+
+        public void ResignUser()
+        {
+            _userController.GetLoggedUser().UserType = UserType.RESIGNED;
+            _userController.Save();
+        }
+
+        public void SendVouchers(TourTimeInstance tour)
         {
             foreach (TourReservation reservation in _tourReservationController.GetAll())
             {
-                if (reservation.Tour.Id == ChosenTour.TourId)
+                if (reservation.Tour.Id == tour.TourId)
                 {
                     Voucher voucher = new Voucher();
                     voucher.Guest = reservation.Guest;
@@ -64,6 +99,9 @@ namespace BookingProject.View.GuideViewModel
         }
         private void Yes_Click(object param)
         {
+            SendVouchersResignation();
+            SetToCompleted();
+            ResignUser();
             SignInForm signInForm = new SignInForm();
             signInForm.Show();
             CloseWindow();

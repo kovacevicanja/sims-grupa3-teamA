@@ -96,12 +96,10 @@
         <Button Content="{ns:Loc Logout}" Margin="160,659,177,0" FontSize="20" FontWeight="Bold" Command="{Binding LogoutCommand}" VerticalAlignment="Top" Height="45"/>
         <Image Source="../../Resources/Images/guide.png" Margin="14,398,275,242"/>
         <Image Source="../../Resources/Images/super.png" Margin="80,524,334,166"/>
-        <Label Content="{ns:Loc Name}" FontWeight="Bold" FontSize="24" Margin="285,398,137,302"/>
-        <Label Content="{ns:Loc Rating}" FontWeight="Bold" FontSize="24" Margin="284,463,139,241"/>
+        <Label Content="{ns:Loc Name}" FontWeight="Bold" FontSize="24" Margin="270,427,152,273"/>
         <Label Content="{ns:Loc Profile}" FontWeight="Bold" FontSize="24" Margin="68,360,323,359"/>
-        <Label Content="{Binding GuideName}" FontWeight="Bold" FontSize="24" Margin="370,399,52,301"/>
-        <Label Content="{Binding GuideRating}" FontWeight="Bold" FontSize="24" Margin="390,463,32,237"/>
+        <Label Content="{Binding GuideName}" FontWeight="Bold" FontSize="24" Margin="355,428,67,272"/>
         <Button Content="{ns:Loc N}" Margin="160,282,159,444" FontSize="20" FontWeight="Bold" Command="{Binding CreateCommand}"/>
-        
+
     </Grid>
 </Window>
