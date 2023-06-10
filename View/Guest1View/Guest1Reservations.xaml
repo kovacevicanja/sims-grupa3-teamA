@@ -14,19 +14,11 @@
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button Command="{Binding HomepageCommand}" Background="Honeydew">
+                <Button Command="{Binding HomePageCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal" >
                             <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
                             <TextBlock Text="Homepage" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Background="Honeydew">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/acc.png"/>
-                            <TextBlock Text="Accommodations" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -46,7 +38,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Command="{Binding CreateForumCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/createforum.png"/>
@@ -54,7 +46,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Command="{Binding QuickSearchCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/quicksearch.png"/>
@@ -62,26 +54,18 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Command="{Binding MyProfileCommand}" Background="Honeydew" Height="400">
                     <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/help2.png"/>
-                            <TextBlock Text="Help" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                        <StackPanel Height="400" Background="Honeydew" Orientation="Vertical">
+                            <Image  Width="100" Height="80" Margin="50 280 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
+                            <TextBlock Text="My profile" Margin="80 10 70 0" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Command="{Binding MyProfileCommand}" Background="Honeydew">
-                    <Button.Content>
-                        <StackPanel Height="320" Background="Honeydew" Orientation="Vertical">
-                            <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
-                            <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Command="{Binding LogoutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
+                <Button Command="{Binding LogOutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Logout" Margin="5,0,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                            <TextBlock Text="Logout" Margin="5,10,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -94,26 +78,37 @@
                     </StackPanel.Background>
                     <StackPanel Orientation="Horizontal">
                         <Label Margin="300 10 30 0" Height="80" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="DarkGreen">My reservations</Label>
-                        <Image  Width="50" Height="50" Margin="10 0 10 10" Source="/Resources/Images/Guest1Images/reservation.png"/>
+                        <Image  Width="50" Height="50" Margin="10 0 10 10" Source="/Resources/Images/Guest1Images/renovation4.png"/>
                     </StackPanel>
-                    <DataGrid SelectionMode="Single"  SelectedItem="{Binding SelectedReservation}" AutoGenerateColumns="False" IsReadOnly="True" Margin="20 10 20 20" Name="ReservationsDataGrid" FontSize="10" ItemsSource="{Binding Reservations}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Accommodation name" Width="120" Binding="{Binding Accommodation.AccommodationName}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="State" Width="50" Binding="{Binding Accommodation.Location.Country}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="City" Width="50" Binding="{Binding Accommodation.Location.City}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Start date" Width="70" Binding="{Binding InitialDate, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="End date" Width="70" Binding="{Binding EndDate, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Number of days to stay" Width="120" Binding="{Binding DaysToStay}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Owner username" Width="100" Binding="{Binding Accommodation.Owner.Username}"></DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <ListView SelectionMode="Single" SelectedItem="{Binding SelectedReservation}" ItemsSource="{Binding Reservations}" Height="461" Width="754">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding Accommodation.Images[0].Url}" Width="150" Height="150" Stretch="UniformToFill" />
+                                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                                        <TextBlock FontWeight="Bold" FontSize="25" Foreground="DarkGreen" Margin="10 10 5 10"><Run Text="{Binding Accommodation.AccommodationName}" /></TextBlock>
+                                        <TextBlock FontSize="15" Foreground="DarkGreen" Margin="10 5 0 0"><Run FontWeight="Bold" Text="From " /><Run Text=" " /><Run Text="{Binding InitialDate, StringFormat=\{0:dd.MM.yyyy.\}}" /></TextBlock>
+                                        <TextBlock FontSize="15" Foreground="DarkGreen" Margin="10 5 0 0"><Run FontWeight="Bold" Text="To " /><Run Text=" " /><Run Text="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy.\}}" /></TextBlock>
+                                        <TextBlock FontSize="15" Foreground="DarkGreen" Margin="10 5 0 0"><Run FontWeight="Bold" Text="Owner: " /><Run Text=" " /><Run Text="{Binding Accommodation.Owner.Username}" /></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+
+                    <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
                         <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="100" IsDefault="True" Margin="20 15 15 15" Command="{Binding RescheduleCommand}">Reschedule</Button>
                         <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="100" IsDefault="True" Margin="15" Command="{Binding CancelCommand}">Cancel</Button>
                         <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="100" IsDefault="True" Margin="15" Command="{Binding ReviewCommand}">Review</Button>
                         <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="100" IsDefault="True" Margin="15" Command="{Binding SeeRequestsCommand}">See requests</Button>
-                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="110" IsDefault="True" Margin="15">View tutorial</Button>
-                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="100" IsDefault="True" Margin="15 15 15 20" Command="{Binding HomepageCommand}">Homepage</Button>
+                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="120" IsDefault="True" Margin="15" Command="{Binding ReviewTutorialCommand}">Review tutorial</Button>
+                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150" IsDefault="True" Margin="15" Command="{Binding RescheduleTutorialCommand}">Reschedule tutorial</Button>
+                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="90" IsDefault="True" Margin="15 15 15 20" Command="{Binding HomepageCommand}">Homepage</Button>
                     </WrapPanel>
                 </StackPanel>
 

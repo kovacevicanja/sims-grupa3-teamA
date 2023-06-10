@@ -69,5 +69,17 @@ namespace BookingProject.Controller
         {
             return _accommodationDateService.FindTakenDates(selectedAccommodation);
         }
+        public List<(DateTime, DateTime)> FindAvailableDatesQuick(Accommodation accommodation, int daysToStay)
+		{
+            return _accommodationDateService.FindAvailableDatesQuick(accommodation, daysToStay);
+		}
+        public List<(DateTime, DateTime)> FindAvailableDatesQuickRanges(Accommodation accommodation, int daysToStay, DateTime initialDate, DateTime endDate)
+		{
+            return _accommodationDateService.FindAvailableDatesQuickRanges(accommodation, daysToStay, initialDate, endDate);
+		}
+        public bool IsDateAvailable(DateTime date, int daysToStay, List<AccommodationReservation> reservations)
+		{
+            return _accommodationDateService.IsDateAvailable(date, daysToStay, reservations);
+		}
     }
 }

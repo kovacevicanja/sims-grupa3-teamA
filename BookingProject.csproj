@@ -35,8 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetProjects.DataVisualization.Toolkit, Version=6.1.94.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
       <HintPath>packages\DotNetProjects.WpfToolkit.DataVisualization.6.1.94\lib\net40\DotNetProjects.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
@@ -325,6 +331,10 @@
     <Compile Include="View\Guest1ViewModel\Guest1ReservationsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ReviewsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1HomepageViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\ImagesAndMoreGuest1ViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\OpenForumViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\QuickSearchSuggestionsViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\QuickSearchViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\RecommendationRenovationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\RescheduleAccommodationReservationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\ReservationAccommodationViewModel.cs" />
@@ -337,6 +347,9 @@
     <Compile Include="View\Guest1View\AccommodationRequestsView.xaml.cs">
       <DependentUpon>AccommodationRequestsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Guest1View\AllForumsView.xaml.cs">
+      <DependentUpon>AllForumsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Guest1View\Guest1HomepageView.xaml.cs">
       <DependentUpon>Guest1HomepageView.xaml</DependentUpon>
     </Compile>
@@ -346,8 +359,44 @@
     <Compile Include="View\Guest1View\Guest1ReviewsView.xaml.cs">
       <DependentUpon>Guest1ReviewsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Guest1View\ImagesAndMoreGuest1View.xaml.cs">
+      <DependentUpon>ImagesAndMoreGuest1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\OpenForumView.xaml.cs">
+      <DependentUpon>OpenForumView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\QuickSearchSuggestionsView.xaml.cs">
+      <DependentUpon>QuickSearchSuggestionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\QuickSearchView.xaml.cs">
+      <DependentUpon>QuickSearchView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Guest1View\RecommendationRenovationView.xaml.cs">
       <DependentUpon>RecommendationRenovationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Tutorials\AccommodationOwnerReviewTutorialView.xaml.cs">
+      <DependentUpon>AccommodationOwnerReviewTutorialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Tutorials\AccommodationRequestsTutorialView.xaml.cs">
+      <DependentUpon>AccommodationRequestsTutorialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Tutorials\BookAccommodationTutorialView.xaml.cs">
+      <DependentUpon>BookAccommodationTutorialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Tutorials\ForumTutorialsView.xaml.cs">
+      <DependentUpon>ForumTutorialsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Tutorials\ImagesAndMoreTutorialView.xaml.cs">
+      <DependentUpon>ImagesAndMoreTutorialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Tutorials\MyProfileTutorialView.xaml.cs">
+      <DependentUpon>MyProfileTutorialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Tutorials\QuickSearchTutorialView.xaml.cs">
+      <DependentUpon>QuickSearchTutorialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\Tutorials\RescheduleCancelReservationTutorialView.xaml.cs">
+      <DependentUpon>RescheduleCancelReservationTutorialView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest2ViewModel\ActiveToursViewModel.cs" />
     <Compile Include="View\Guest2ViewModel\ChangeYearTourRequestsStatisticsViewModel.cs" />
@@ -646,6 +695,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Guest1View\AllForumsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Guest1View\Guest1HomepageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -658,7 +711,55 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Guest1View\ImagesAndMoreGuest1View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\OpenForumView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\QuickSearchSuggestionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\QuickSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Guest1View\RecommendationRenovationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Tutorials\AccommodationOwnerReviewTutorialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Tutorials\AccommodationRequestsTutorialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Tutorials\BookAccommodationTutorialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Tutorials\ForumTutorialsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Tutorials\ImagesAndMoreTutorialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Tutorials\MyProfileTutorialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Tutorials\QuickSearchTutorialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\Tutorials\RescheduleCancelReservationTutorialView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1004,7 +1105,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\calendar.png" />
     <Resource Include="Resources\Images\Guest1Images\request.png" />
+    <Resource Include="Resources\Images\Guest1Images\wallpaper15.jpg" />
     <Resource Include="View\Guest2View\ToursImages\6.png" />
     <Resource Include="View\Guest2View\ToursImages\review11.png" />
     <Resource Include="View\Guest2View\ToursImages\review133.png" />
@@ -1440,6 +1543,59 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\OwnerImages\tooltip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\wallpaper1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\request1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\profile1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\profile2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\profile3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\profile4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\renovation5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\renovation3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\renovation4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\reservation1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\reservation2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Guest1Images\calendar2.png" />
+    <Resource Include="Resources\Images\Guest1Images\calendar3.png" />
+    <Resource Include="Resources\Images\Guest1Images\calendar1.png" />
+    <Resource Include="Resources\Images\Guest1Images\forum.png" />
+    <Resource Include="Resources\Images\Guest1Images\forum2.png" />
+    <Resource Include="Resources\Images\Guest1Images\forum4.png" />
+    <Resource Include="Resources\Images\Guest1Images\mytrip.png" />
+    <Resource Include="Resources\Images\Guest1Images\booking.png" />
+    <Content Include="Resources\TutorialsGuest1\brzaPretraga.mp4" />
+    <Content Include="Resources\TutorialsGuest1\dodatneInfoSlike.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TutorialsGuest1\forum.mp4" />
+    <Content Include="Resources\TutorialsGuest1\mojProfil.mp4" />
+    <Content Include="Resources\TutorialsGuest1\ocenaRenoviranjeSmestaja.mp4" />
+    <Content Include="Resources\TutorialsGuest1\otkazivanjePomeranjeRezervacije.mp4" />
+    <Content Include="Resources\TutorialsGuest1\rezervacija.mp4" />
+    <Content Include="Resources\TutorialsGuest1\zahteviPDF.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

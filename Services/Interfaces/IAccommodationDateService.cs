@@ -23,5 +23,8 @@ namespace BookingProject.Services.Interfaces
         List<(DateTime, DateTime)> FindAvailableDates(Accommodation selectedAccommodation, DateTime initialDate, DateTime endDate, int numberOfDaysToStay);
         bool IfDatesAreInTakenList(List<DateTime> datesToCheck, List<DateTime> takenDates);
         List<DateTime> FindTakenDates(Accommodation selectedAccommodation);
+        List<(DateTime, DateTime)> FindAvailableDatesQuick(Accommodation accommodation, int daysToStay);
+        List<(DateTime, DateTime)> FindAvailableDatesQuickRanges(Accommodation accommodation, int daysToStay, DateTime initialDate, DateTime endDate);
+        bool IsDateAvailable(DateTime date, int daysToStay, List<AccommodationReservation> reservations);
     }
 }

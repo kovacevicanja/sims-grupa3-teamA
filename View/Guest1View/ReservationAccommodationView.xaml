@@ -14,19 +14,11 @@
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button Command="{Binding HomepageCommand}" Background="Honeydew">
+                <Button Command="{Binding HomePageCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal" >
                             <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
                             <TextBlock Text="Homepage" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Background="Honeydew">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/acc.png"/>
-                            <TextBlock Text="Accommodations" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -46,7 +38,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Command="{Binding CreateForumCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/createforum.png"/>
@@ -54,7 +46,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Command="{Binding QuickSearchCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/quicksearch.png"/>
@@ -62,26 +54,18 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Command="{Binding MyProfileCommand}" Background="Honeydew" Height="400">
                     <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/help2.png"/>
-                            <TextBlock Text="Help" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                        <StackPanel Height="400" Background="Honeydew" Orientation="Vertical">
+                            <Image  Width="100" Height="80" Margin="50 280 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
+                            <TextBlock Text="My profile" Margin="80 10 70 0" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Command="{Binding MyProfileCommand}" Background="Honeydew">
-                    <Button.Content>
-                        <StackPanel Height="320" Background="Honeydew" Orientation="Vertical">
-                            <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
-                            <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Command="{Binding LogoutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
+                <Button Command="{Binding LogOutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Logout" Margin="5,0,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                            <TextBlock Text="Logout" Margin="5,10,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -105,6 +89,7 @@
 
                     <Grid Grid.Row="0" Grid.Column="2" Height="300" Margin="28,25,121,25">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="70"></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -114,18 +99,20 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Height="30" Foreground="DarkGreen" FontSize="13" FontWeight="Bold">Initial date:</Label>
-                        <Label Grid.Row="1" Grid.Column="0" Height="30" Foreground="DarkGreen" FontSize="13" FontWeight="Bold">End date:</Label>
-                        <Label Grid.Row="2" Grid.Column="0" Height="30" Foreground="DarkGreen" FontSize="13" FontWeight="Bold">Number of guests:</Label>
-                        <DatePicker Grid.Row="0" Grid.Column="1" SelectedDate="{Binding Path=InitialDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
-                     Height="30"></DatePicker>
-                        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
-                     Height="30"></DatePicker>
-                        <TextBox x:Name="txtNumber" Grid.Row="2" Grid.Column="1" Height="30" Width="350">
+                        <Label Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="DarkGreen" FontSize="25" FontWeight="Bold">Enter details about your trip</Label>
+                        <Image  Width="40" Height="40" Margin="500 0 0 0" Source="/Resources/Images/Guest1Images/mytrip.png"/>
+                        <Label Grid.Row="1" Grid.Column="0" Height="30" Foreground="DarkGreen" FontSize="18" FontWeight="Bold">Initial date:</Label>
+                        <Label Grid.Row="2" Grid.Column="0" Height="30" Foreground="DarkGreen" FontSize="18" FontWeight="Bold">End date:</Label>
+                        <Label Grid.Row="3" Grid.Column="0" Height="35" Foreground="DarkGreen" FontSize="18" FontWeight="Bold">Number of guests:</Label>
+                        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding Path=InitialDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
+                     Height="25" Margin="0 8 0 0"></DatePicker>
+                        <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
+                     Height="25" Margin="0 8 0 0"></DatePicker>
+                        <TextBox x:Name="txtNumber" Grid.Row="3" Grid.Column="1" Height="25" Width="400" Margin="0 2 0 0">
                             <TextBox.Text>
                                 <Binding Path="NumberOfGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                                     <Binding.ValidationRules>
-                                        <val:Guest1IntegerNumberValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                                        <val:Guest1IntegerNumberValidationRule ValidationStep="RawProposedValue"/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -146,19 +133,20 @@
                                 </ControlTemplate>
                             </Validation.ErrorTemplate>
                         </TextBox>
+                        <Image  Width="40" Height="40" Margin="176,0,154,30" Source="/Resources/Images/Guest1Images/mytrip.png" Grid.Column="1" RenderTransformOrigin="-0.386,0.824"/>
 
 
                     </Grid>
 
                     <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Margin="121,0,0,0" Width="668" >
-                        <Button Content="Homepage" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
-                                 Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150"
+                        <Button Content="Homepage" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="15"
+                                 Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="120"
                                 Command="{Binding HomepageCommand}"
                />
-                        <Button Content="View tutorial" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5"
-                                 Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150"
+                        <Button Content="View tutorial" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="15"
+                                 Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="130"
                />
-                        <Button Content="Book" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5"  Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150"
+                        <Button Content="Book" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15"  Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="100"
                Command="{Binding BookCommand}"/>
                     </WrapPanel>
                 </Grid>

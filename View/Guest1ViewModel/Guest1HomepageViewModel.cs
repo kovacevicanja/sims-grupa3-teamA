@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using BookingProject.ConversionHelp;
+using BookingProject.View.Guest1View.Tutorials;
 
 namespace BookingProject.View.Guest1ViewModel
 {
@@ -39,19 +40,23 @@ namespace BookingProject.View.Guest1ViewModel
         public RelayCommand SearchCommand { get; }
         public RelayCommand BookCommand { get; }
         public RelayCommand CancelSearchCommand { get; }
-        public RelayCommand HomepageCommand { get; }
+        public RelayCommand HomePageCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
         public RelayCommand FillCityCommand { get; }
         public RelayCommand LogoutCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
         public RelayCommand MyProfileCommand { get; }
+        public RelayCommand ImagesMoreCommand { get; }
+        public RelayCommand ViewTutorialCommand { get; }
+        public RelayCommand OpenForumCommand { get; }
+        public RelayCommand QuickSearchCommand { get; }
         public Guest1HomepageViewMddel()
         {
             _accommodationController = new AccommodationController();
             _accommodationLocationController = new AccommodationLocationController();
             FilteredAccommodations = new ObservableCollection<Accommodation>();
             List<Accommodation> accommodations = new List<Accommodation>(_accommodationController.GetAll());
-            List<Accommodation> sortedAccommodations = accommodations.OrderByDescending(a => a.Owner.IsSuper).ToList();
+            List<Accommodation> sortedAccommodations = accommodations.OrderByDescending(a => a.Owner.IsSuper).Distinct().ToList();
             Accommodations = new ObservableCollection<Accommodation>(sortedAccommodations);
 
             AccommodationTypes = new List<String>();
@@ -61,12 +66,16 @@ namespace BookingProject.View.Guest1ViewModel
             SearchCommand = new RelayCommand(Button_Click_Search, CanExecute);
             BookCommand = new RelayCommand(Button_Click_Book, CanIfSelected);
             CancelSearchCommand = new RelayCommand(Button_Click_Cancel_Search, CanExecute);
-            HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
+            HomePageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
             FillCityCommand = new RelayCommand(FindCities, CanExecute);
             LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
             MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
+            ImagesMoreCommand = new RelayCommand(Button_Click_ImagesAndMore, CanIfSelected);
+            ViewTutorialCommand = new RelayCommand(Button_Click_ViewTutorial, CanExecute);
+            OpenForumCommand = new RelayCommand(Button_Click_OpenForum, CanExecute);
+            QuickSearchCommand = new RelayCommand(Button_Click_QuickSearch, CanExecute);
             FindAllStates();
         }
 
@@ -184,7 +193,7 @@ namespace BookingProject.View.Guest1ViewModel
             }
             Accommodations.Clear();
             Filtered = _accommodationController.Search(Accommodations, AccName, City, State, AccommodationTypes, NumberOfGuests, MinNumDaysOfReservation).Distinct().ToList();
-            SortedFiltered = Filtered.OrderByDescending(a => a.Owner.IsSuper).ToList();
+            SortedFiltered = Filtered.OrderByDescending(a => a.Owner.IsSuper).Distinct().ToList();
             foreach (var accommodation in SortedFiltered)
             {
                 Accommodations.Add(accommodation);
@@ -234,5 +243,29 @@ namespace BookingProject.View.Guest1ViewModel
             profile.Show();
             CloseWindow();
         }
+        private void Button_Click_ImagesAndMore(object param)
+		{
+            var imagesAndMore = new ImagesAndMoreGuest1View(selectedAccommodation);
+            imagesAndMore.Show();
+            CloseWindow();
+		}
+        private void Button_Click_ViewTutorial(object param)
+		{
+            var tutorial = new BookAccommodationTutorialView();
+            tutorial.Show();
+            CloseWindow();
+		}
+        private void Button_Click_OpenForum(object param)
+		{
+            var forum = new OpenForumView();
+            forum.Show();
+            CloseWindow();
+		}
+        private void Button_Click_QuickSearch(object param)
+		{
+            var quickSearch = new QuickSearchView();
+            quickSearch.Show();
+            CloseWindow();
+		}
     }
 }

@@ -3,6 +3,7 @@ using BookingProject.Controllers;
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.View.Guest1View;
+using BookingProject.View.Guest1View.Tutorials;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,24 +27,31 @@ namespace BookingProject.View.Guest1ViewModel
         public bool SelectedFifth { get; set; }
 
         public RecommendationRenovation RecommendationRenovation;
-        public RelayCommand HomepageCommand { get; }
+        public RelayCommand HomePageCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
-        public RelayCommand LogoutCommand { get; }
+        public RelayCommand LogOutCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
         public RelayCommand SendCommand { get; }
         public RelayCommand MyProfileCommand { get; }
+        public RelayCommand CreateForumCommand { get; }
+        public RelayCommand QuickSearchCommand { get; }
+        public RelayCommand TutorialCommand { get; }
         public RecommendationRenovationViewModel(AccommodationReservation selectedReservation)
         {
             AccommodationReservation = selectedReservation;
             recommendationRenovationController = new RecommendationRenovationController();
             RecommendationRenovation = new RecommendationRenovation();
-            HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
+            HomePageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
-            LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
+            LogOutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
             SendCommand = new RelayCommand(Button_Click_Send, CanExecute);
             MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
+            CreateForumCommand = new RelayCommand(Button_Click_CreateForum, CanExecute);
+            QuickSearchCommand = new RelayCommand(Button_Click_Quick_Search, CanExecute);
+            TutorialCommand = new RelayCommand(Button_Click_Tutorial, CanExecute);
         }
+
 
         private string _description;
         public string Description
@@ -125,17 +133,39 @@ namespace BookingProject.View.Guest1ViewModel
 
         private void Button_Click_Send(object param)
         {
-            // treba funkcija za upis
             RecommendationRenovation.Description = Description;
             RecommendationRenovation.AccommodationReservation.Id = AccommodationReservation.Id;
             SetLevel();
             recommendationRenovationController.Create(RecommendationRenovation);
             MessageBox.Show("You have successfully send recommendation for renovation!");
+            var reservations = new Guest1Reservations();
+            reservations.Show();
+            CloseWindow();
         }
         private void Button_Click_MyProfile(object param)
         {
             var profile = new Guest1ProfileView();
             profile.Show();
+            CloseWindow();
+        }
+        private void Button_Click_CreateForum(object param)
+        {
+            var forum = new OpenForumView();
+            forum.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_Quick_Search(object param)
+        {
+            var quickS = new QuickSearchView();
+            quickS.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_Tutorial(object param)
+        {
+            var tutorial = new AccommodationOwnerReviewTutorialView();
+            tutorial.Show();
             CloseWindow();
         }
     }

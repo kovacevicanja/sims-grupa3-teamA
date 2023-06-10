@@ -6,6 +6,7 @@ using BookingProject.Domain.Images;
 using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.View.Guest1View;
+using BookingProject.View.Guest1View.Tutorials;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,6 +41,9 @@ namespace BookingProject.View
         public RelayCommand ReviewCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
         public RelayCommand MyProfileCommand { get; }
+        public RelayCommand TutorialCommand { get; }
+        public RelayCommand CreateForumCommand { get; }
+        public RelayCommand QuickSearchCommand { get; }
         public AccommodationOwnerReviewViewModel(AccommodationReservation selectedReservation)
         {
             AccommodationOwnerGradeController = new AccommodationOwnerGradeController();
@@ -62,7 +66,9 @@ namespace BookingProject.View
             ReviewCommand = new RelayCommand(Button_Click_Review, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
             MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
-
+            TutorialCommand = new RelayCommand(Button_Click_Tutorial, CanExecute);
+            CreateForumCommand = new RelayCommand(Button_Click_CreateForum, CanExecute);
+            QuickSearchCommand = new RelayCommand(Button_Click_Quick_Search, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
 
@@ -176,7 +182,7 @@ namespace BookingProject.View
             }
             else if (result == MessageBoxResult.No)
             {
-                var homepage = new Guest1HomepageView();
+                var homepage = new Guest1Reservations();
                 homepage.Show();
                 CloseWindow();
             }
@@ -245,5 +251,26 @@ namespace BookingProject.View
             profile.Show();
             CloseWindow();
         }
+        
+        private void Button_Click_Tutorial(object param)
+		{
+            var tutorial = new AccommodationOwnerReviewTutorialView();
+            tutorial.Show();
+            CloseWindow();
+		}
+
+        private void Button_Click_CreateForum(object param)
+		{
+            var forum = new OpenForumView();
+            forum.Show();
+            CloseWindow();
+		}
+
+        private void Button_Click_Quick_Search(object param)
+		{
+            var quickS = new QuickSearchView();
+            quickS.Show();
+            CloseWindow();
+		}
     }
 }

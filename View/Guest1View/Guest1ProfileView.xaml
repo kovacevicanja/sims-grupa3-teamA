@@ -13,19 +13,11 @@
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button Command="{Binding HomepageCommand}" Background="Honeydew">
+                <Button Command="{Binding HomePageCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal" >
                             <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
                             <TextBlock Text="Homepage" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Background="Honeydew">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/acc.png"/>
-                            <TextBlock Text="Accommodations" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -45,7 +37,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Background="Honeydew" Command="{Binding CreateForumCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/createforum.png"/>
@@ -53,7 +45,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Background="Honeydew" Command="{Binding QuickSearchCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/quicksearch.png"/>
@@ -61,26 +53,18 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Command="{Binding MyProfileCommand}" Background="Honeydew" Height="400">
                     <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/help2.png"/>
-                            <TextBlock Text="Help" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                        <StackPanel Height="400" Background="Honeydew" Orientation="Vertical">
+                            <Image  Width="100" Height="80" Margin="50 280 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
+                            <TextBlock Text="My profile" Margin="80 10 70 0" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Command="{Binding MyProfileCommand}" Background="Honeydew">
-                    <Button.Content>
-                        <StackPanel Height="320" Background="Honeydew" Orientation="Vertical">
-                            <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
-                            <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
-                        </StackPanel>
-                    </Button.Content>
-                    </Button>
-                    <Button Command="{Binding LogoutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
+                <Button Command="{Binding LogOutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Logout" Margin="5,0,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                            <TextBlock Text="Logout" Margin="5,10,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -88,8 +72,11 @@
             </StackPanel>
             <Border Grid.Column="1">
                 <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Resources/Images/Guest1Images/background6.jpg"/>
+                    </Grid.Background>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="400"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -98,33 +85,48 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Left side: Picture and Username -->
-                    <StackPanel Grid.Column="0" Grid.Row="0" Width="350">
-                        <Image Source="/Resources/Images/Guest1Images/profile.png" Width="200" Height="200"/>
-                        <TextBlock Margin="100 0 0 0" Text="Username" FontWeight="Bold" Foreground="DarkGreen" FontSize="25"/>
+                    <StackPanel Grid.Column="0" Grid.Row="0" Width="400" HorizontalAlignment="Right">
+                        <Image Source="/Resources/Images/Guest1Images/profile4.png" Width="250" Height="200" Margin="100 50 0 0"/>
+                        <TextBlock Margin="100 10 0 0" Text="{Binding Username}" FontWeight="Bold" Foreground="DarkGreen" FontSize="25" HorizontalAlignment="Center"/>
                     </StackPanel>
 
-                    <!-- Right side: Information -->
-                    <StackPanel Grid.Column="1" Grid.Row="0" Margin="100 30 0 0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="Number of reservations: "/>
-                            <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="{Binding NumberOfReservations}"></TextBlock>
+                    <Border Grid.Column="1" Grid.Row="0" Margin="0 30 180 0" BorderBrush="DarkGreen" BorderThickness="1" Padding="10">
+                        <StackPanel Margin=" 0 0 100 0" Width="400">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="Name: "/>
+                                <TextBlock FontSize="20" Foreground="DarkGreen" Margin="10" Text="Petar"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="Surname: "/>
+                                <TextBlock FontSize="20" Foreground="DarkGreen" Margin="10" Text="Petrovic"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="E-mail: "/>
+                                <TextBlock FontSize="20" Foreground="DarkGreen" Margin="10" Text="petarp990@gmail.com"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="Phone number: "/>
+                                <TextBlock FontSize="20" Foreground="DarkGreen" Margin="10" Text="060-320-11-43"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="Number of reservations: "/>
+                                <TextBlock FontSize="20" Foreground="DarkGreen" Margin="10" Text="{Binding NumberOfReservations}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="Guest type: "/>
+                                <TextBlock FontSize="20" Foreground="DarkGreen" Margin="10" Text="{Binding TypeOfGuest}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="Bonus points: "/>
+                                <TextBlock FontSize="20" Foreground="DarkGreen" Margin="10" Text="{Binding BonusPoints}"/>
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="Guest type: " />
-                            <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="{Binding TypeOfGuest}"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="Bonus points: " />
-                            <TextBlock FontSize="20" FontWeight="Bold" Foreground="DarkGreen" Margin="10" Text="{Binding BonusPoints}"></TextBlock>
-                        </StackPanel>
-                    </StackPanel>
+                    </Border>
 
-                    <!-- Bottom buttons -->
-                    <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="200 0 0 10">
+                    <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="200 0 100 80">
                         <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="100" IsDefault="True" Margin="15" Command="{Binding MyReviewsCommand}">My reviews</Button>
                         <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150" IsDefault="True" Margin="15" Command="{Binding MyReservationsCommand}">My reservations</Button>
-                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="110" IsDefault="True" Margin="15">View tutorial</Button>
+                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="110" IsDefault="True" Margin="15" Command="{Binding TutorialCommand}">View tutorial</Button>
                         <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="100" IsDefault="True" Margin="15 15 15 20" Command="{Binding HomepageCommand}">Homepage</Button>
                     </StackPanel>
                 </Grid>

@@ -18,10 +18,14 @@ namespace BookingProject.Services.Implementations
     public class AccommodationService : IAccommodationService
     {
         private IAccommodationRepository _accommodationRepository;
+        private IAccommodationReservationRepository _accommodationReservationRepository;
+        private IAccommodationDateService _accommodationDateService;
         public AccommodationService() { }
         public void Initialize()
         {
             _accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
+            _accommodationReservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+            _accommodationDateService = Injector.CreateInstance<IAccommodationDateService>();
         }
         public void Save(List<Accommodation> accommodations)
         {
@@ -128,5 +132,23 @@ namespace BookingProject.Services.Implementations
             }
             return accommodations;
         }
+
+        public bool CheckGuestsNumber(Accommodation accommodation, int numberOfGuests)
+		{
+            return accommodation.MaxGuestNumber >= numberOfGuests;
+		}
+
+        public bool AccommodationIsAvailable(Accommodation accommodation, int daysToStay)
+		{
+            if(_accommodationDateService.FindAvailableDatesQuick(accommodation, daysToStay) != null)
+			{
+                return true;
+			}
+			else
+			{
+                return false;
+			}
+		}
+
     }
 }
