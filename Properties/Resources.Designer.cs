@@ -196,6 +196,24 @@ namespace BookingProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The system will not allow you to input a date when you are busy, also if a request is a part of a complex tour it will not allow you to input a date that is already used in that complex tour..
+        /// </summary>
+        public static string COMPLEX {
+            get {
+                return ResourceManager.GetString("COMPLEX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string COMPLEX2 {
+            get {
+                return ResourceManager.GetString("COMPLEX2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Core options:.
         /// </summary>
         public static string Core {

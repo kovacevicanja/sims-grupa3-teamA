@@ -17,12 +17,15 @@ using System.Web.WebPages;
 using BookingProject.View.CustomMessageBoxes;
 using System.Windows.Navigation;
 using BookingProject.Repositories;
+using BookingProject.Domain.Enums;
+using BookingProject.Domain;
 
 namespace BookingProject.View.Guest2ViewModel
 {
     public class SearchAndReservationToursViewModel : INotifyPropertyChanged
     {
         private TourController _tourController;
+        private UserController _userController;
         public string City { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
@@ -43,9 +46,9 @@ namespace BookingProject.View.Guest2ViewModel
         public SearchAndReservationToursViewModel(int guestId, NavigationService navigationService)
         {
             _tourController = new TourController();
+            _userController = new UserController();
 
-            Tours = new ObservableCollection<Tour>(_tourController.LoadAgain());
-
+            Tours = new ObservableCollection<Tour>(SortSuper(FilterTours(_tourController.LoadAgain())));
             NavigationService = navigationService;
 
             GuestId = guestId;
@@ -63,7 +66,36 @@ namespace BookingProject.View.Guest2ViewModel
             CustomMessageBox = new CustomMessageBox();
         }
 
-        private bool CanExecute(object param) { return true; }
+
+        public List<Tour> FilterTours(List<Tour> tours)
+        {
+            List<Tour> filtered = new List<Tour>();
+            foreach (Tour tour in tours)
+            {
+                if (_userController.GetById(tour.GuideId).UserType != UserType.RESIGNED){
+                    filtered.Add(tour);
+                }
+            }
+            return filtered;
+        }
+
+        public List<Tour> SortSuper(List<Tour> tours)
+        {
+            List<Tour> filtered = new List<Tour>();
+            foreach (Tour tour in tours)
+            {
+                if (_userController.GetById(tour.GuideId).IsSuper)
+                {
+                    filtered = new List<Tour> { tour }.Concat(filtered).ToList();
+                }
+                else
+                {
+                    filtered.Add(tour);
+                }
+            }
+            return filtered;
+        }
+    private bool CanExecute(object param) { return true; }
 
         private void Button_Click_SeeMore(object param)
         {
