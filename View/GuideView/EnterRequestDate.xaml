@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         xmlns:ns="clr-namespace:BookingProject.Localization"
         mc:Ignorable="d"
-    Title="EnterDate" Height="180" Width="645" 
+    Title="EnterDate" Height="285" Width="645" 
         Style="{DynamicResource MyWindowStyle}">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
@@ -20,7 +20,7 @@
 
         </ControlTemplate>
     </Window.Resources>
-    <Grid>
+    <Grid Margin="0,0,0,-16">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="9*"></RowDefinition>
@@ -29,7 +29,7 @@
 
 
 
-        <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,2,0,0" Grid.RowSpan="2" >
+        <WrapPanel Grid.Row = "2" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center" >
             <Button Content="{ns:Loc Zatvori}" IsCancel="True" Command="{Binding CancelCommand}"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20, 5, 20, 5" />
             <Button x:Name="CreateButton" Content="{ns:Loc Kreiraj}" IsDefault="True" Command="{Binding CreateCommand}"   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20, 5, 20, 5" IsEnabled="{Binding IsButtonEnabled}"/>
         </WrapPanel>
@@ -39,6 +39,7 @@
             Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
             </TextBox>
         </Grid>
+        <TextBlock Foreground="GhostWhite" FontWeight="Bold" FontSize="12" Text="The system will not allow you to input a date when you are busy, also if a request is a part of a&#xD;&#xA; complex tour it will not allow you to input a date that is already used in that complex tour." HorizontalAlignment="Left" Margin="49,34,0,0" Grid.Row="1" VerticalAlignment="Top" Height="64" Width="540" Grid.RowSpan="2"/>
 
 
     </Grid>

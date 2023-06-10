@@ -162,6 +162,9 @@
   <data name="CloseE" xml:space="preserve">
     <value>Zatvori</value>
   </data>
+  <data name="COMPLEX" xml:space="preserve">
+    <value>Sistem vam neće dozvoliti da unesete datum kada ste zauzeti, takođe ako je zahtev deo složene ture, neće vam dozvoliti da unesete datum koji se već koristi u toj složenoj turi.</value>
+  </data>
   <data name="Core" xml:space="preserve">
     <value>Core opcije:</value>
   </data>

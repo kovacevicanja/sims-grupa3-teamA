@@ -27,5 +27,6 @@ namespace BookingProject.View.GuideView
             this.DataContext = new EnterRequestDateViewModel(request);
 
         }
+
     }
 }
