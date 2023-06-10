@@ -89,6 +89,7 @@ namespace BookingProject.Repositories.Implementations
                     TourRequest newRequestStatus = new TourRequest(tourRequest.Id, -1, TourRequestStatus.INVALID, 
                         tourRequest.Location, tourRequest.Description, tourRequest.Language, 
                         tourRequest.GuestsNumber, tourRequest.StartDate, tourRequest.EndDate, tourRequest.Guest);
+                    newRequestStatus.ComplexTourRequestId = tourRequest.ComplexTourRequestId;
                     _tourRequests.Remove(tourRequest);
                     _tourRequests.Add(newRequestStatus);
                 }
@@ -103,7 +104,7 @@ namespace BookingProject.Repositories.Implementations
 
             foreach (TourRequest request in _tourRequests)
             {
-                if (request.Guest.Id == guestId && string.IsNullOrEmpty(enteredYear) ||
+                if (request.Guest.Id == guestId && string.IsNullOrEmpty(enteredYear) && request.ComplexTourRequestId == -1 ||
                          (request.StartDate.Year.ToString().Equals(enteredYear) && request.EndDate.Year.ToString().Equals(enteredYear)))
                 { guestRequests.Add(request); }         
             }
@@ -117,9 +118,27 @@ namespace BookingProject.Repositories.Implementations
                 _tourRequests.RemoveAll(r => r.Id == request.Id);
                 TourRequest changedStatusRequest = new TourRequest(request.Id, -1, TourRequestStatus.ACCEPTED, request.Location,
                     request.Description, request.Language, request.GuestsNumber, request.StartDate, request.EndDate, request.Guest);
+                changedStatusRequest.ComplexTourRequestId = request.ComplexTourRequestId;
                 _tourRequests.Add(changedStatusRequest);
                 Save();
             }
+        }
+        public List<TourRequest> SetTourRequestsToInvalid (List<TourRequest> tourRequests)
+        {
+            List<TourRequest> newTourRequests = new List<TourRequest>();
+            foreach (TourRequest request in tourRequests)
+            {
+                _tourRequests.Remove(request);
+                TourRequest newRequest = new TourRequest(request.Id, -1, TourRequestStatus.INVALID, request.Location,
+                    request.Description, request.Language, request.GuestsNumber, request.StartDate, request.EndDate, request.Guest);
+                newRequest.ComplexTourRequestId = request.ComplexTourRequestId;
+                newRequest.SetDate = request.SetDate;
+                _tourRequests.Add(newRequest);
+                newTourRequests.Add(newRequest);
+                Save();
+            }
+
+            return newTourRequests;
         }
     }
 }

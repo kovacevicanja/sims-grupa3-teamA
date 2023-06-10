@@ -42,7 +42,7 @@ namespace BookingProject.Services.Implementations
                 {
                    foreach (TourRequest request in _tourRequestService.FindUnacceptedRequestsForGuests(guestId))
                    {
-                       if (request.Language == tour.Language ||
+                       if (request.Language == tour.Language && request.ComplexTourRequestId == -1 ||
                             (tour.Location.City.Equals(request.Location.City) && tour.Location.Country.Equals(request.Location.Country)))
                        {
                             tours.Add(tour);

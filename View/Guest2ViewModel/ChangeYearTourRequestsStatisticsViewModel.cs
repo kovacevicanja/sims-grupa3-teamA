@@ -48,22 +48,23 @@ namespace BookingProject.View.Guest2ViewModel
 
         public void Button_Click_ChangeYear(object param)
         {
-            if (PreviouesPage.Equals("languageChart"))
+            switch (PreviouesPage)
             {
-                NavigationService.Navigate(new TourRequestsLanguageChartView(GuestId, NavigationService, EnteredYear));
-            }
-            else if (PreviouesPage.Equals("locationChart"))
-            {
-                NavigationService.Navigate(new TourRequestsLocationChartView(GuestId, NavigationService, EnteredYear));
-            }
-            else if (PreviouesPage.Equals("pieChart"))
-            {
-                NavigationService.Navigate(new TourRequestStatisticsPieChart(GuestId, NavigationService, EnteredYear));
-            }
-            else
-            {
-                NavigationService.Navigate(new TourRequestStatisticsView(GuestId, NavigationService, EnteredYear));
-
+                case "languageChart":
+                    NavigationService.Navigate(new TourRequestsLanguageChartView(GuestId, NavigationService, EnteredYear));
+                    break;
+                case "locationChart":
+                    NavigationService.Navigate(new TourRequestsLocationChartView(GuestId, NavigationService, EnteredYear));
+                    break;
+                case "pieChart":
+                    NavigationService.Navigate(new TourRequestStatisticsPieChart(GuestId, NavigationService, EnteredYear));
+                    break;
+                case "averagesChart":
+                    NavigationService.Navigate(new TourRequestsAveragesChartView(GuestId, NavigationService, EnteredYear));
+                    break;
+                default:
+                    NavigationService.Navigate(new TourRequestStatisticsView(GuestId, NavigationService, EnteredYear));
+                    break;
             }
         }
 

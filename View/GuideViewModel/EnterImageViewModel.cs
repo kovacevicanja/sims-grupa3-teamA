@@ -1,5 +1,6 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
+using BookingProject.Localization;
 using BookingProject.Model.Images;
 using BookingProject.View.GuideView;
 using System;
@@ -82,9 +83,15 @@ namespace BookingProject.View.GuideViewModel
             {
                 if (columnName == "Url")
                 {
-                    if (string.IsNullOrEmpty(Url))
-                        return "Enter a valid url!";
-
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US")) { 
+                        if (string.IsNullOrEmpty(Url))
+                            return "Enter a valid url!";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(Url))
+                            return "Unesite validan url!";
+                    }
                 }
 
                 return null;

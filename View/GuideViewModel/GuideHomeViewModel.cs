@@ -1,20 +1,32 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
+using BookingProject.Styles;
 using BookingProject.View.GuideView;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Messaging;
+using BookingProject.Localization;
+using System.Globalization;
+using System.Threading;
+using System.Windows.Data;
+using System.Windows.Media.Imaging;
 
 namespace BookingProject.View.GuideViewModel
 {
-    public class GuideHomeViewModel
+    public class GuideHomeViewModel : INotifyPropertyChanged
     {
+        public static string sep = System.IO.Path.DirectorySeparatorChar.ToString();
+        private App app;
         private readonly UserController _userController;
         public string GuideName { get; }
-        public double GuideRating{ get; }
+        public double GuideRating { get; }
         public RelayCommand LogoutCommand { get; }
         public RelayCommand OneCommand { get; }
         public RelayCommand TwoCommand { get; }
@@ -22,12 +34,22 @@ namespace BookingProject.View.GuideViewModel
         public RelayCommand FourCommand { get; }
         public RelayCommand FiveCommand { get; }
 
+        public bool IsLightStyle;
+
         public RelayCommand SuggestionCommand { get; }
+        public RelayCommand ModeCommand { get; }
         public RelayCommand CreateCommand { get; }
 
+        public RelayCommand SerbianCommand { get; }
+        public RelayCommand EnglishCommand { get; }
+        public RelayCommand ResCommand { get; }
         public GuideHomeViewModel()
         {
+            IsImageVisible = false;
+            Messenger.Default.Register<ChangeModeMessage>(this, OnModeChangeMessageReceived);
             _userController = new UserController();
+            _userController.GoSuper();
+            IsImageVisible = _userController.GetLoggedUser().IsSuper;
             LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             OneCommand = new RelayCommand(Button_Click_1, CanExecute);
             TwoCommand = new RelayCommand(Button_Click_2, CanExecute);
@@ -36,9 +58,69 @@ namespace BookingProject.View.GuideViewModel
             FiveCommand = new RelayCommand(Button_Click_5, CanExecute);
             SuggestionCommand = new RelayCommand(Button_Click_S, CanExecute);
             CreateCommand = new RelayCommand(Button_Click_N, CanExecute);
+            ModeCommand = new RelayCommand(Button_Click_M, CanExecute);
+            SerbianCommand = new RelayCommand(Button_Click_X, CanExecute);
+            EnglishCommand = new RelayCommand(Button_Click_Y, CanExecute);
+            ResCommand = new RelayCommand(Button_Click_R, CanExecute);
             GuideRating = 5.5;
-            GuideName= _userController.GetLoggedUser().Name;
+            GuideName = _userController.GetLoggedUser().Name;
 
+            this.app = System.Windows.Application.Current as App;
+            this.app = (App)System.Windows.Application.Current;
+            this.CurrentLanguage = "en-US";
+            // lang = SRB;
+        }
+        private bool _isDarkMode;
+        public bool IsDarkMode
+        {
+            get { return _isDarkMode; }
+            set
+            {
+                if (_isDarkMode != value)
+                {
+                    _isDarkMode = value;
+                    OnPropertyChanged(nameof(IsDarkMode));
+
+                    if (_isDarkMode)
+                    {
+                        StyleManager.ApplyDarkStyle();
+                    }
+                    else
+                    {
+                        StyleManager.ApplyLightStyle();
+                    }
+
+                    // Send a message to other windows to update their styles
+                    Messenger.Default.Send(new ChangeModeMessage(_isDarkMode));
+                }
+            }
+        }
+
+        private bool isImageVisible;
+
+        public bool IsImageVisible
+        {
+            get { return isImageVisible; }
+            set
+            {
+                if (isImageVisible != value)
+                {
+                    isImageVisible = value;
+                    OnPropertyChanged(nameof(IsImageVisible));
+                }
+            }
+        }
+        private void OnModeChangeMessageReceived(ChangeModeMessage message)
+        {
+            // Update the IsDarkMode property based on the received message
+            IsDarkMode = message.IsDarkMode;
+        }
+
+        // INotifyPropertyChanged implementation
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private void Button_Click_1(object param)
         {
@@ -82,7 +164,15 @@ namespace BookingProject.View.GuideViewModel
             CloseWindow();
         }
 
-
+        private string currentLanguage;
+        public string CurrentLanguage
+        {
+            get { return currentLanguage; }
+            set
+            {
+                currentLanguage = value;
+            }
+        }
         private void Button_Click_4(object param)
         {
             AllTourRequestsView allTourRequestsView = new AllTourRequestsView();
@@ -92,7 +182,7 @@ namespace BookingProject.View.GuideViewModel
 
         private void Button_Click_5(object param)
         {
-            RequestStatisticsView view= new RequestStatisticsView();
+            RequestStatisticsView view = new RequestStatisticsView();
             view.Show();
             CloseWindow();
         }
@@ -108,7 +198,39 @@ namespace BookingProject.View.GuideViewModel
             TourCreationWindow view = new TourCreationWindow(false, false);
             view.Show();
             CloseWindow();
+        }
+        private void Button_Click_M(object param)
+        {
+            StyleManager.ApplyDarkStyle();
+            IsDarkMode = !IsDarkMode;
+            App.MessagingService.PublishModeChange(IsDarkMode);
 
         }
+        private void Button_Click_X(object param)
+        {
+
+            CurrentLanguage = "sr-LATN";
+            app.ChangeLanguage(CurrentLanguage);
+
+
+        }
+
+        private void Button_Click_Y(object param)
+        {
+
+            CurrentLanguage = "en-US";
+            app.ChangeLanguage(CurrentLanguage);
+          
+        }
+
+        private void Button_Click_R(object param)
+        {
+
+            TourResignationWindow window = new TourResignationWindow();
+            window.Show();
+            CloseWindow();
+        }   
+
     }
 }
+

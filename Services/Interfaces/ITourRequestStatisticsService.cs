@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingProject.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,7 @@ namespace BookingProject.Services.Interfaces
         double GetAcceptedRequestsPercentage(int guestId, string enteredYear);
         double GetAvarageNumberOfPeopleInAcceptedRequests(int guestId, string enteredYear);
         bool IsMatchingYear(int guestId, string enteredYear = "");
+        int NumberOfAcceptedRequests(int guestId, string enteredYear = "");
+        List<TourRequest> AcceptedRequestsList(int guestId, string enteredYear = "");
     }
 }

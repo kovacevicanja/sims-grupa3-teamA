@@ -2,6 +2,7 @@
 using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Services.Implementations;
 using BookingProject.Services.Interfaces;
 using OisisiProjekat.Observer;
 using System;
@@ -16,9 +17,13 @@ namespace BookingProject.Controller
     public class AccommodationController 
     {
         private readonly IAccommodationService _accommodationService;
+        public AccommodationImageController AccommodationImageController { get; set; }
+        public AccommodationLocationController AccommodationLocationController { get; set; }
         public AccommodationController()
         {
             _accommodationService = Injector.CreateInstance<IAccommodationService>();
+            AccommodationLocationController = new AccommodationLocationController();
+            AccommodationImageController = new AccommodationImageController();
         }
         public bool CheckType(List<String> accommodationTypes, string accType)
         {
@@ -71,6 +76,24 @@ namespace BookingProject.Controller
         public Accommodation GetById(int id)
         {
             return _accommodationService.GetById(id);
+        }
+        public List<AccommodationImage> GetAccommodationImages(int accId)
+        {
+            List<AccommodationImage> images = new List<AccommodationImage>();
+            foreach(AccommodationImage i in AccommodationImageController.GetAll())
+            {
+                if(i.AccommodationId==accId) images.Add(i);
+            }
+            return images;
+        }
+        public void Delete(Accommodation accommodation)
+        {
+            _accommodationService.Delete(accommodation);
+            foreach(AccommodationImage i in GetAccommodationImages(accommodation.Id))
+            {
+                AccommodationImageController.Delete(i);
+            }
+            AccommodationLocationController.Delete(accommodation.Location);
         }
         public void Save(List<Accommodation> accommodations)
         {

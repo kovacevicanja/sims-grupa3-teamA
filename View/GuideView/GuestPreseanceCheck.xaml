@@ -4,10 +4,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ns="clr-namespace:BookingProject.Localization"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="GuestPreseanceCheck" Height="132" Width="257">
+        Title="GuestPreseanceCheck" Height="132" Width="257"
+    Style="{DynamicResource MyWindowStyle}">
     <Grid Margin="0,12,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -17,10 +19,10 @@
 
         <WrapPanel Grid.Row = "1" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center" >
 
-            <Button Content="Cancel" IsCancel="True" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="71" Margin="0,0,10,0"/>
-            <Button x:Name="Mark" Content=" Ask " FontWeight="Bold"  IsDefault="True"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="71"/>
+            <Button Content="{ns:Loc GPCcancel}" IsCancel="True" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="71" Margin="0,0,10,0" Command="{Binding NCommand}"/>
+            <Button x:Name="Mark" Content="{ns:Loc GPCask}"  FontWeight="Bold"  IsDefault="True"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="71" Command="{Binding YCommand}"/>
         </WrapPanel>
-        <Label Content="Ask for presence: " HorizontalAlignment="Center" Height="27" Margin="0,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="103"/>
+        <Label Content="{ns:Loc GPC}" FontWeight="Bold"  HorizontalAlignment="Left" Height="27" Grid.RowSpan="2" VerticalAlignment="Top" Width="122" Margin="75,0,0,0"/>
 
     </Grid>
 </Window>

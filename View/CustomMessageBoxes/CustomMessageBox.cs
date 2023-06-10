@@ -17,13 +17,11 @@ namespace BookingProject.View.CustomMessageBoxes
             Window customMessageBox = new Window
             {
                 Title = "Message",
-                FontWeight = FontWeights.Bold,
                 Height = 200,
                 Width = 300,
-                WindowStyle = WindowStyle.ThreeDBorderWindow,
+                WindowStyle = WindowStyle.None,
                 ResizeMode = ResizeMode.NoResize,
-                Background = Brushes.Gray,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner
+                Background = Brushes.Gray
             };
 
             TextBlock message = new TextBlock
@@ -46,7 +44,7 @@ namespace BookingProject.View.CustomMessageBoxes
                 FontWeight = FontWeights.Bold,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Background = Brushes.LightBlue,
-                Foreground = Brushes.Gray,
+                Foreground = Brushes.White,
                 Template = GetRoundedButtonTemplate()
             };
             okButton.Click += (o, args) =>
@@ -58,12 +56,22 @@ namespace BookingProject.View.CustomMessageBoxes
             {
                 Orientation = Orientation.Vertical,
                 VerticalAlignment = VerticalAlignment.Center,
-                HorizontalAlignment = HorizontalAlignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Background = Brushes.Gray
             };
             stackPanel.Children.Add(message);
             stackPanel.Children.Add(okButton);
 
             customMessageBox.Content = stackPanel;
+
+            // Calculate the screen center
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
+            double windowWidth = customMessageBox.Width;
+            double windowHeight = customMessageBox.Height;
+            customMessageBox.Left = (screenWidth - windowWidth) / 2;
+            customMessageBox.Top = (screenHeight - windowHeight) / 2;
+
             customMessageBox.ShowDialog();
 
             ControlTemplate GetRoundedButtonTemplate()

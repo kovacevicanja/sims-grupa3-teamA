@@ -29,65 +29,54 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <FontWeight x:Key="FontWeightBold">Bold</FontWeight>
     </Page.Resources>
     <Grid>
         <Grid>
-            <Label Margin="44,85,44,586" Foreground="Gray" FontSize="38" Content="Your memories."/>
-            <Label Margin="88,122,0,553" Foreground="LightBlue" FontSize="30" Content="These are the tours you have visited."/>
+            <Label Margin="44,28,44,643" Foreground="Gray" FontSize="38" Content="Your memories."/>
+            <Label Margin="88,73,0,602" Foreground="LightBlue" FontSize="30" Content="These are the tours you have visited."/>
         </Grid>
-        <ListView HorizontalAlignment="Center" VerticalAlignment="Center"
-          SelectedItem="{Binding Path=ChosenTour, UpdateSourceTrigger=PropertyChanged}"
-          ItemsSource="{Binding Path=AttendedTours, UpdateSourceTrigger=PropertyChanged}" Height="321" Width="624">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Images[0].Url}" Width="150" Height="150" Stretch="Uniform" />
-                        <StackPanel Grid.Column="1">
-                            <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold" Foreground="Gray" />
-                            <TextBlock Text="{Binding Language}" FontSize="24" FontWeight="Bold" Foreground="Gray" />
-                            <TextBlock Text="{Binding Location.City}" FontSize="24" FontWeight="Bold" Foreground="Gray" />
-                            <TextBlock Text="{Binding Location.Country}" FontSize="24" FontWeight="Bold" Foreground="Gray" />
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.Resources>
-                <Style TargetType="ListView">
-                    <Setter Property="BorderBrush" Value="Gray" />
-                    <Setter Property="BorderThickness" Value="1" />
-                    <Setter Property="Background" Value="White" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ListView">
-                                <Grid>
-                                    <Border Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="0"
-                                    Margin="-10"
-                                    Effect="{StaticResource BlurredEffect}">
-                                    </Border>
-                                    <ScrollViewer>
-                                        <ItemsPresenter />
-                                    </ScrollViewer>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListView.Resources>
-        </ListView>
+        <Border CornerRadius="10" Background="White" Margin="36,138,64,170">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
+            </Border.Effect>
+            <ListView SelectedItem="{Binding ChosenTour, UpdateSourceTrigger=PropertyChanged}"
+              ItemsSource="{Binding AttendedTours, UpdateSourceTrigger=PropertyChanged}"
+              HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Images[0].Url}" Width="150" Height="150" Stretch="Uniform" />
+                            <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                <TextBlock>
+                                        <Run Text="{Binding Name}" FontSize="26" FontWeight="Bold" Foreground="Gray" />
+                                </TextBlock>
+                                <TextBlock Margin="15,0,0,0">
+                                        <Run Text="Language" FontSize="24" FontWeight="Bold" Foreground="Gray" />
+                                        <Run Text=":" FontSize="24" Foreground="Gray" />
+                                        <Run Text="{Binding Language}" FontSize="24" Foreground="Gray" />
+                                </TextBlock>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray" Margin="15,0,0,0">
+                                    <TextBlock.Inlines>
+                                        <Run FontWeight="Bold">Location:</Run>
+                                        <Run Text="{Binding Location.City}" />
+                                        <Run Text="," />
+                                        <Run Text="{Binding Location.Country}" />
+                                    </TextBlock.Inlines>
+                                    <TextBlock.FontSize>24</TextBlock.FontSize>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
         <Grid>
-            <Button Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="534,569,0,0" VerticalAlignment="Top" Width="126"
+            <Button Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="532,597,0,0" VerticalAlignment="Top" Width="126"
                 Command="{Binding SeeMoreCommand}" FontSize="24">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -127,7 +116,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="Rate tour and guide" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="143,655,0,0" VerticalAlignment="Top" Width="259"
+            <Button Content="Rate tour and guide" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="131,674,0,0" VerticalAlignment="Top" Width="259"
                 Command="{Binding RateCommand}" FontSize="24">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -167,7 +156,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="474,655,0,0" VerticalAlignment="Top" Width="121"
+            <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="462,674,0,0" VerticalAlignment="Top" Width="121"
                 Command="{Binding CancelCommand}" FontSize="24">
                 <Button.Style>
                     <Style TargetType="Button">

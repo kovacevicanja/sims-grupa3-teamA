@@ -18,6 +18,7 @@ using BookingProject.Controller;
 using BookingProject.View.Guest2View;
 using BookingProject.View.CustomMessageBoxes;
 using BookingProject.Controllers;
+using BookingProject.Domain;
 
 namespace BookingProject.View
 {
@@ -32,6 +33,7 @@ namespace BookingProject.View
         public TourRequestController TourRequestController { get; set; }    
         public SecondGuestHomepageView(int guestId)
         {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             this.DataContext = this;
 
@@ -44,11 +46,6 @@ namespace BookingProject.View
 
             FrameHomePage.Content = new SecondGuestProfileView(guestId, this.FrameHomePage.NavigationService);
             CustomMessageBox = new CustomMessageBox();
-        }
-
-        private void Button_Click_Chart(object sender, EventArgs e)
-        {
-            FrameHomePage.Content = new TourRequestStatisticsPieChart(GuestId, this.FrameHomePage.NavigationService);
         }
 
         private void Button_Click_MyAttendedTours(object sender, RoutedEventArgs e)
@@ -118,9 +115,19 @@ namespace BookingProject.View
             }
         }
 
+        private void Button_Click_MyComplexTourRequests(object sender, RoutedEventArgs e)
+        {
+            FrameHomePage.Content = new ComplexTourRequestsView(GuestId, this.FrameHomePage.NavigationService);
+        }
+
         private void Button_Click_MyReservations(object sender, RoutedEventArgs e)
         {
             FrameHomePage.Content = new SecondGuestMyReservations(GuestId, this.FrameHomePage.NavigationService);
+        }
+
+        private void Button_Click_CreateComplexTourRequest(object sender, RoutedEventArgs e)
+        {
+            FrameHomePage.Content = new CreateComplexTourRequestView(GuestId, this.FrameHomePage.NavigationService);
         }
 
         private void Button_Click_NewlyCreatedTours(object sender, RoutedEventArgs e)

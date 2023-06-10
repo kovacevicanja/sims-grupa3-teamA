@@ -16,15 +16,15 @@
     </Page.Resources>
 
     <Grid>
-        <Label Content="Your " FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="61,100,520,524" />
-        <Label Content="tour requests" FontSize="40" FontWeight="Bold" Foreground="LightBlue" Margin="161,100,121,524" />
-        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="86,214,202,139">
+        <Label Content="My " FontSize="40" FontWeight="Bold" Foreground="Gray" Margin="203,53,378,571" />
+        <Label Content="tour requests" FontSize="40" FontWeight="Bold" Foreground="LightBlue" Margin="272,53,10,571" />
+        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="65,165,74,152">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
             </Border.Effect>
             <ListView Margin="-1,-1,-1,-1"
-          SelectedItem="{Binding Path=ChosenRequest, UpdateSourceTrigger=PropertyChanged}"
-          ItemsSource="{Binding Path=TourRequests, UpdateSourceTrigger=PropertyChanged}">
+              SelectedItem="{Binding Path=ChosenRequest, UpdateSourceTrigger=PropertyChanged}"
+              ItemsSource="{Binding Path=TourRequests, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -36,29 +36,40 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Tour Request" FontSize="26" FontWeight="Bold" Foreground="LightBlue"/>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0}, {1}">
-                                        <Binding Path="Location.City" />
-                                        <Binding Path="Location.Country" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                                <TextBlock.FontWeight>
-                                    <StaticResource ResourceKey="FontWeightBold" />
-                                </TextBlock.FontWeight>
-                                <TextBlock.FontSize>22</TextBlock.FontSize>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray" Margin="15,0,0,0">
+                                <TextBlock.Inlines>
+                                    <Run FontWeight="Bold">Location:</Run>
+                                    <Run Text="{Binding Location.City}" />
+                                    <Run Text="," />
+                                    <Run Text="{Binding Location.Country}" />
+                                </TextBlock.Inlines>
+                                <TextBlock.FontSize>24</TextBlock.FontSize>
                             </TextBlock>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Language}" FontSize="20" FontWeight="Bold" Foreground="Gray"/>
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Status}" FontSize="24" FontWeight="Bold" Foreground="LightBlue"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" FontSize="24" Foreground="Gray" Margin="15,0,0,0">
+                                <TextBlock.Inlines>
+                                    <Run FontWeight="Bold">Language:</Run>
+                                    <Run Text=" " />
+                                    <Run Text="{Binding Language}" />
+                                </TextBlock.Inlines>
+                            </TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" FontSize="24" Foreground="Gray" Margin="15,0,0,0">
+                                <TextBlock.Inlines>
+                                    <Run FontWeight="Bold">Status:</Run>
+                                    <Run Text=" " />
+                                    <Run Text="{Binding Status}" />
+                                </TextBlock.Inlines>
+                            </TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="429,671,0,0" Width="125"
+        <Button Content="Cancel" IsCancel="True" Height="36" Margin="0,652,0,0" Width="124"
                 Command="{Binding CancelCommand}" FontSize="24" VerticalAlignment="Top">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

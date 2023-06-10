@@ -31,7 +31,6 @@ namespace BookingProject.View.Guest2ViewModel
             TourController = new TourController();
             TourRequestController = new TourRequestController();
             NewlyCreatedTours = new ObservableCollection<Tour>(TourController.FindToursCreatedByStatistcisForGuest(GuestId).Distinct());
-            //TourRequestController.NewlyAcceptedRequests(guestId);
 
             SeeMoreCommand = new RelayCommand(Button_Click_SeeMore, CanWhenSelected);
             BookTourCommand = new RelayCommand(Button_Click_Book, CanWhenSelected);

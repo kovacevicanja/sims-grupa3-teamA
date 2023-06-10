@@ -28,63 +28,50 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <FontWeight x:Key="FontWeightBold">Bold</FontWeight>
     </Page.Resources>
     <Grid>
         <Label Margin="50,32,368,629" Foreground="Gray" FontSize="40" Content="My"/>
         <Label Margin="123,32,198,629" Foreground="LightBlue" FontSize="40" Content="reservations"/>
-        <ListView HorizontalAlignment="Center" VerticalAlignment="Center"
-          SelectedItem="{Binding Path=ChosenReservation, UpdateSourceTrigger=PropertyChanged}"
-          ItemsSource="{Binding Path=MyReservations, UpdateSourceTrigger=PropertyChanged}" Height="466" Width="624">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Tour.Images[0].Url}" Width="150" Height="150" Stretch="Uniform" />
-                        <StackPanel Grid.Column="1">
-                            <TextBlock Text="{Binding Tour.Name}" FontSize="24" FontWeight="Bold" Foreground="Gray" Margin="10,0,0,0" />
-                            <TextBlock Text="{Binding Tour.Language}" FontSize="24" FontWeight="Bold" Foreground="Gray" Margin="10,5,0,0" />
-                            <TextBlock Text="{Binding ReservationStartingTime, StringFormat='dd/MM/yyyy HH:mm'}" FontSize="24" FontWeight="Bold" Foreground="Gray" Margin="10,5,0,0" />
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.Resources>
-                <Style TargetType="ListView">
-                    <Setter Property="BorderBrush" Value="Gray" />
-                    <Setter Property="BorderThickness" Value="1" />
-                    <Setter Property="Background" Value="White" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ListView">
-                                <Grid>
-                                    <Border Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="0"
-                                    Margin="-10">
-                                        <Border.Effect>
-                                            <BlurEffect Radius="5" />
-                                        </Border.Effect>
-                                    </Border>
-                                    <ScrollViewer>
-                                        <ItemsPresenter />
-                                    </ScrollViewer>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-                <BlurEffect x:Key="BlurredEffect" Radius="5" />
-            </ListView.Resources>
-        </ListView>
+        <Border CornerRadius="10" Background="White" Margin="50,137,50,121">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
+            </Border.Effect>
+            <ListView SelectedItem="{Binding ChosenReservation, UpdateSourceTrigger=PropertyChanged}"
+              ItemsSource="{Binding MyReservations, UpdateSourceTrigger=PropertyChanged}"
+              HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Tour.Images[0].Url}" Width="150" Height="150" Stretch="Uniform" />
+                            <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                <TextBlock>
+                                        <Run Text="{Binding Tour.Name}" FontSize="26" FontWeight="Bold" Foreground="Gray" />
+                                </TextBlock>
+                                <TextBlock Margin="15,0,0,0">
+                                        <Run Text="Language" FontSize="24" FontWeight="Bold" Foreground="Gray" />
+                                        <Run Text=":" FontSize="24" Foreground="Gray" />
+                                        <Run Text="{Binding Tour.Language}" FontSize="24" Foreground="Gray" />
+                                </TextBlock>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray" Margin="15,0,0,0">
+                                    <TextBlock.Inlines>
+                                        <Run FontWeight="Bold">Location:</Run>
+                                        <Run Text="{Binding Tour.Location.City}" />
+                                        <Run Text="," />
+                                        <Run Text="{Binding Tour.Location.Country}" />
+                                    </TextBlock.Inlines>
+                                    <TextBlock.FontSize>24</TextBlock.FontSize>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
         <Grid>
             <Button Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="193,658,0,0" VerticalAlignment="Top" Width="125"
         Command="{Binding SeeMoreCommand}" FontSize="24">

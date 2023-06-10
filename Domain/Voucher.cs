@@ -21,15 +21,17 @@ namespace BookingProject.Domain
         public DateTime EndDate { get; set; }
         public VoucherState State { get; set; }
         public Tour Tour { get; set; }
+        public bool IsAward { get; set; }
 
         public Voucher()
         {
             State = VoucherState.CREATED;
             Guest = new User();
-            Tour = new Tour(); 
+            Tour = new Tour();
+            IsAward = false;
         }
 
-        public Voucher(int id, User guest, DateTime startDate, DateTime endDate, VoucherState state, Tour tour)
+        public Voucher(int id, User guest, DateTime startDate, DateTime endDate, VoucherState state, Tour tour, bool isAward)
         {
             Id = id;
             Guest = guest;
@@ -37,6 +39,7 @@ namespace BookingProject.Domain
             EndDate = endDate;
             State = state;
             Tour = tour;
+            IsAward = isAward;
         }
 
         public void FromCSV(string[] values)
@@ -56,6 +59,7 @@ namespace BookingProject.Domain
                 System.Console.WriteLine("An error occurred while loading the state!");
             }
             Tour.Id = int.Parse(values[5]);
+            IsAward = bool.Parse(values[6]);
         }
 
         public string[] ToCSV()
@@ -67,7 +71,8 @@ namespace BookingProject.Domain
                 StartDate.ToString(),
                 EndDate.ToString(),
                 State.ToString(),
-                Tour.Id.ToString()
+                Tour.Id.ToString(),
+                IsAward.ToString()
             };
             return csvValues;
         }

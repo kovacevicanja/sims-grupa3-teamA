@@ -16,7 +16,7 @@
         <Label Margin="382,23,108,648" Foreground="Gray" FontWeight="Bold" FontSize="30" Content="per language"/>
         <Label Foreground = "LightBlue" Content="{Binding DisplayYear}" FontSize="28" FontWeight="Bold" Margin="47,68,407,585" />
 
-        <WindowsFormsHost Margin="0,113,0,106" Height="NaN">
+        <WindowsFormsHost Margin="21,110,45,109" Height="NaN">
             <wf:Chart x:Name="Chart1">
                 <wf:Chart.Series>
                     <wf:Series ChartType="Column" />

@@ -6,6 +6,7 @@ using BookingProject.Model;
 using BookingProject.Model.Enums;
 using BookingProject.Validation;
 using BookingProject.View.CustomMessageBoxes;
+using BookingProject.View.Guest2View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -190,6 +191,7 @@ namespace BookingProject.View.Guest2ViewModel
             tourRequest.GuestsNumber = GuestsNumber;
             tourRequest.Status = Domain.Enums.TourRequestStatus.PENDING;
             tourRequest.Guest.Id = GuestId;
+            tourRequest.ComplexTourRequestId = -1;
 
             ValidationResult resultCity = correctInputCityvalidationRule.Validate(location.City, CultureInfo.CurrentCulture);
 
@@ -197,6 +199,7 @@ namespace BookingProject.View.Guest2ViewModel
                 && tourRequest.EndDate == DateTime.Today) || tourRequest.GuestsNumber == 0)
             {
                 CustomMessageBox.ShowCustomMessageBox("You can not create a tour request. Some of the required fields are not filled out.");
+                NavigationService.Navigate(new CreateTourRequestView(GuestId, NavigationService));
             }
             else
             {
@@ -208,6 +211,7 @@ namespace BookingProject.View.Guest2ViewModel
                     _tourRequestController.Create(tourRequest);
 
                     CustomMessageBox.ShowCustomMessageBox("You have successfully created a tour request. If you want, you can create more of them.");
+                    NavigationService.GoBack();
 
                     City = "";
                     Country = "";
@@ -218,7 +222,8 @@ namespace BookingProject.View.Guest2ViewModel
                 }
                 else
                 {
-                    MessageBox.Show("Niste uneli pravilno grad.");
+                    MessageBox.Show("You have not entered the correct city or country.");
+                    NavigationService.Navigate(new CreateTourRequestView(GuestId, NavigationService));
                 }
             }
         }

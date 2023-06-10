@@ -1,5 +1,6 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Model;
 using BookingProject.Repositories;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Repository;
@@ -46,6 +47,19 @@ namespace BookingProject.Services
             }
             return guestsVouchers;
         }
+
+        public List<Voucher> GetAllGuestsVouchers(int guestId)
+        {
+            List<Voucher> guestsVouchers = new List<Voucher>();
+            foreach (Voucher voucher in _voucherRepository.GetAll())
+            {
+                if (voucher.Guest.Id == guestId)
+                {
+                    guestsVouchers.Add(voucher);
+                }
+            }
+            return guestsVouchers;
+        }
         public void Create(Voucher voucher)
         {
             _voucherRepository.Create(voucher);
@@ -65,6 +79,10 @@ namespace BookingProject.Services
         public void SaveVouchers()
         {
             _voucherRepository.SaveVouchers();
+        }
+        public void CreatePrizeVoucher(User guest)
+        {
+            _voucherRepository.CreatePrizeVoucher(guest);
         }
     }
 }

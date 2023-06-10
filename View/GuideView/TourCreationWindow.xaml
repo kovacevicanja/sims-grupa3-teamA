@@ -5,15 +5,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ns="clr-namespace:BookingProject.Localization"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="TourCreationView" Height="620" Width="629" >
+        Title="TourCreationView" Height="620" Width="629" 
+    Style="{DynamicResource MyWindowStyle}">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
                 <!-- Placeholder for the TextBox itself -->
                 <AdornedElementPlaceholder x:Name="textBox" />
-                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="GhostWhite"  />
             </StackPanel>
 
         </ControlTemplate>
@@ -43,16 +45,16 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Height="30" Content="Name"></Label>
-            <Label Grid.Row="1" Grid.Column="0" Height="30" Content="City"></Label>
-            <Label Grid.Row="2" Grid.Column="0" Height="30" Content="Country"></Label>
-            <Label Grid.Row="3" Grid.Column="0" Height="30" Content="Description"></Label>
-            <Label Grid.Row="4" Grid.Column="0" Height="30" Content="Langugage"></Label>
-            <Label Grid.Row="5" Grid.Column="0" Height="30" Content="MaxGuests"></Label>
-            <Label Grid.Row="6" Grid.Column="0" Height="30" Content="KeyPoints"></Label>
-            <Label Grid.Row="7" Grid.Column="0" Height="30" Content="StartingTime"></Label>
-            <Label Grid.Row="8" Grid.Column="0" Height="30" Content="DurationInHours"></Label>
-            <Label Grid.Row="9" Grid.Column="0" Height="30" Content="Images"></Label>
+            <Label Grid.Row="0" Grid.Column="0" Height="30" Content="{ns:Loc Name}"></Label>
+            <Label Grid.Row="1" Grid.Column="0" Height="30" Content="{ns:Loc City}"></Label>
+            <Label Grid.Row="2" Grid.Column="0" Height="30" Content="{ns:Loc Country}"></Label>
+            <Label Grid.Row="3" Grid.Column="0" Height="30" Content="{ns:Loc Description}"></Label>
+            <Label Grid.Row="4" Grid.Column="0" Height="30" Content="{ns:Loc Language}"></Label>
+            <Label Grid.Row="5" Grid.Column="0" Height="30" Content="{ns:Loc MaxGuests}"></Label>
+            <Label Grid.Row="6" Grid.Column="0" Height="30" Content="{ns:Loc KeyPoints}"></Label>
+            <Label Grid.Row="7" Grid.Column="0" Height="30" Content="{ns:Loc StartingTime}"></Label>
+            <Label Grid.Row="8" Grid.Column="0" Height="30" Content="{ns:Loc DurationInHours}"></Label>
+            <Label Grid.Row="9" Grid.Column="0" Height="30" Content="{ns:Loc Images}"></Label>
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=TourName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="25"></TextBox>
@@ -75,17 +77,17 @@
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                      Height="25"></TextBox>
 
-            <Button Grid.Row="6" Grid.Column="1" Content="Enter KeyPoints" Command="{Binding KeyPointCommand}" IsDefault="True" 
+            <Button Grid.Row="6" Grid.Column="1" Content="{ns:Loc EnterKeyPoints}"  Command="{Binding KeyPointCommand}" IsDefault="True" 
                      Height="25"></Button>
 
-            <Button Grid.Row="7" Grid.Column="1" Content="Enter StartingTime" Command="{Binding DateCommand}" IsDefault="True" 
+            <Button Grid.Row="7" Grid.Column="1" Content="{ns:Loc EnterStartingTime}"  Command="{Binding DateCommand}" IsDefault="True" 
                     Height="25"></Button>
 
             <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Path=Duration, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"                    
                      Height="25"></TextBox>
 
-            <Button Grid.Row="9" Grid.Column="1" Content="Enter Images" Command="{Binding ImageCommand}" IsDefault="True"                    
+            <Button Grid.Row="9" Grid.Column="1" Content="{ns:Loc EnterImages}" Command="{Binding ImageCommand}" IsDefault="True"                    
                     Height="25"></Button>
 
 
@@ -95,8 +97,8 @@
 
 
 
-            <Button Content="Cancel" IsCancel="True"  HorizontalAlignment="Center" Command="{Binding CancelCommand}" VerticalAlignment="Center" Margin="20, 5, 20, 5"/>
-            <Button x:Name="CreateButton" Content="Create" IsDefault="True"   HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding CreateCommand}" Margin="20, 5, 20, 5" IsEnabled="{Binding IsValid}"/>
+            <Button Content="{ns:Loc Zatvori}" IsCancel="True"  HorizontalAlignment="Center" Command="{Binding CancelCommand}" VerticalAlignment="Center" Margin="20, 5, 20, 5"/>
+            <Button x:Name="CreateButton" Content="{ns:Loc Kreiraj}" IsDefault="True"   HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding CreateCommand}" Margin="20, 5, 20, 5" IsEnabled="{Binding IsValid}"/>
         </WrapPanel>
 
     </Grid>

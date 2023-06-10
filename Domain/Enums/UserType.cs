@@ -8,6 +8,6 @@ namespace BookingProject.Model.Enums
 {
     public enum UserType
     {
-        OWNER, GUIDE, GUEST1, GUEST2
+        OWNER, GUIDE, GUEST1, GUEST2, RESIGNED
     }
 }

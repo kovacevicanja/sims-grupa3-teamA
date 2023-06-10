@@ -13,21 +13,27 @@ namespace BookingProject.Domain
     public class TourRequest : ISerializable
     {
         public int Id { get; set; }
-        public int GuideId { get; set; } 
+        public int GuideId { get; set; }
         public TourRequestStatus Status { get; set; }
         public Location Location { get; set; }
-        public string Description { get; set; } 
+        public string Description { get; set; }
         public LanguageEnum Language { get; set; }
-        public int GuestsNumber { get; set; }   
+        public int GuestsNumber { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public User Guest { get; set; }
+        public int ComplexTourRequestId { get; set; }
+        public DateTime SetDate { get; set; }
+        public string DisplaySetDate { get; set; }
 
         public TourRequest()
         {
             Location = new Location();
             GuideId = -1;
             Guest = new User();
+            ComplexTourRequestId = -1;
+            SetDate = DateTime.MinValue;
+            DisplaySetDate = "";
         }
         public TourRequest (int id, int guideId, TourRequestStatus status, Location location, string description, LanguageEnum language, int guestsNumber, DateTime startDate, DateTime endDate, User guest)
         {
@@ -71,7 +77,10 @@ namespace BookingProject.Domain
             GuestsNumber = int.Parse(values[6]);
             StartDate = DateConversion.StringToDateTour(values[7]);
             EndDate = DateConversion.StringToDateTour(values[8]);
-            Guest.Id = int.Parse(values[9]);    
+            Guest.Id = int.Parse(values[9]);
+            ComplexTourRequestId = int.Parse(values[10]);
+            SetDate = DateConversion.StringToDateTour(values[11]);
+            DisplaySetDate = values[12];
         }
         public string[] ToCSV()
         {
@@ -86,7 +95,10 @@ namespace BookingProject.Domain
                 GuestsNumber.ToString(),
                 DateConversion.DateToStringTour(StartDate),
                 DateConversion.DateToStringTour(EndDate),
-                Guest.Id.ToString()
+                Guest.Id.ToString(),
+                ComplexTourRequestId.ToString(),
+                DateConversion.DateToStringTour(SetDate),
+                DisplaySetDate
             };
             return csvValues;
         }

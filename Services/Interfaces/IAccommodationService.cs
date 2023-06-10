@@ -30,5 +30,6 @@ namespace BookingProject.Services.Interfaces
         List<AccommodationRenovation> GetAccommodationData(List<AccommodationRenovation> renovations);
         bool AccommodationIsAvailable(Accommodation accommodation, int daysToStay);
         bool CheckGuestsNumber(Accommodation accommodation, int numberOfGuests);
+        void Delete(Accommodation acc);
     }
 }

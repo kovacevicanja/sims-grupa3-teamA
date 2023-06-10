@@ -1,4 +1,5 @@
 ﻿<Window 
+   
         WindowStartupLocation="CenterScreen"
         x:Class="BookingProject.View.GuideView.GuideHomeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -7,8 +8,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
-        mc:Ignorable="d"
-        Title="GuideHomeWindow" Height="832" Width="1239">
+        xmlns:test="clr-namespace:BookingProject.View.GuideView.TEST"
+        xmlns:ns="clr-namespace:BookingProject.Localization"
+    mc:Ignorable="d"
+        Title="GuideHomeWindow" Height="832" Width="1239"
+        Style="{DynamicResource MyWindowStyle}"
+        >
+
+    <Window.Resources>
+        <test:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Logout">
@@ -32,8 +41,20 @@
         <i:EventTrigger EventName="Create">
             <i:InvokeCommandAction Command="{Binding CreateCommand}" />
         </i:EventTrigger>
+        <i:EventTrigger EventName="Mode">
+            <i:InvokeCommandAction Command="{Binding ModeCommand}" />
+        </i:EventTrigger>
         <i:EventTrigger EventName="Suggestion">
             <i:InvokeCommandAction Command="{Binding SuggestionCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Srb">
+            <i:InvokeCommandAction Command="{Binding SerbianCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Eng">
+            <i:InvokeCommandAction Command="{Binding EnglishCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Res">
+            <i:InvokeCommandAction Command="{Binding ResCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.InputBindings>
@@ -44,7 +65,11 @@
         <KeyBinding Key="D"  Command="{Binding FourCommand}" />
         <KeyBinding Key="E"  Command="{Binding FiveCommand}" />
         <KeyBinding Key="S"  Command="{Binding SuggestionCommand}" />
+        <KeyBinding Key="M"  Command="{Binding ModeCommand}" />
         <KeyBinding Key="N"  Command="{Binding CreateCommand}" />
+        <KeyBinding Key="X"  Command="{Binding SerbianCommand}"/>
+        <KeyBinding Key="Y"  Command="{Binding EnglishCommand}"/>
+        <KeyBinding Key="R"  Command="{Binding ResCommand}"/>
     </Window.InputBindings>
 
 
@@ -56,31 +81,30 @@
             <ColumnDefinition Width="230*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="123,79,33,17" Grid.Column="1" >
-            <Button Content="My Tours (A)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding OneCommand}"/>
-            <Button Content="Tour Statistics (B)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding TwoCommand}"/>
-            <Button Content="Live View (C)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding ThreeCommand}"/>
-            <Button Content="Requests (D)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding FourCommand}"/>
-            <Button Content="Request Statistics (E)" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding FiveCommand}"/>
+            <Button Content="{ns:Loc A}" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding OneCommand}"/>
+            <Button Content="{ns:Loc B}" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding TwoCommand}"/>
+            <Button Content="{ns:Loc C}" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding ThreeCommand}"/>
+            <Button Content="{ns:Loc D}" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding FourCommand}"/>
+            <Button Content="{ns:Loc E}" Margin="0,20,0,20" FontSize="45" FontWeight="Bold" Height="91" Width="480" Command="{Binding FiveCommand}"/>
         </StackPanel>
-        <Border BorderBrush="Black" BorderThickness="5" Margin="96,72,10,0" Grid.Column="1"/>
-        <Label Content="Workflow Options" FontWeight="Bold" FontSize="24" Margin="123,10,319,689" Grid.Column="1"/>
+        <Border  BorderThickness="5" Margin="96,72,10,0" Grid.Column="1"/>
+        <Label Content="{ns:Loc Workflow}"  FontWeight="Bold" FontSize="24" Margin="123,10,319,689" Grid.Column="1"/>
         <WrapPanel Margin="29,110,10,444">
-            <Button Content="Language (L)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" />
-            <Button Content="Mode (M)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" />
-            <Button Content="Create New Tour  (N)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding CreateCommand}"/>
-            <Button Content="Suggestion (S)" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding SuggestionCommand}"/>
+            <Button Content="{ns:Loc X}" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding SerbianCommand}"/>
+            <Button Content="{ns:Loc M}" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding ModeCommand}"/>
+            <Button Content="{ns:Loc Y}" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding EnglishCommand}"/>
+            <Button Content="{ns:Loc S}" Margin="10,5,10,5" FontSize="20" FontWeight="Bold" Height="70" Width="230" Command="{Binding SuggestionCommand}"/>
         </WrapPanel>
-        <Border BorderBrush="Black" BorderThickness="5" Margin="10,72,0,430"/>
-        <Label Content="Core Options" FontWeight="Bold" FontSize="24" Margin="29,8,337,691"/>
-        <Button Content="Resign (R)" Margin="160,723,177,0" FontSize="20" FontWeight="Bold"  Height="43" VerticalAlignment="Top"/>
-        <Button Content="Logout (Esc)" Margin="160,659,177,0" FontSize="20" FontWeight="Bold" Command="{Binding LogoutCommand}" VerticalAlignment="Top" Height="45"/>
+        <Border  BorderThickness="5" Margin="14,72,685,430" Grid.ColumnSpan="2"/>
+        <Label Content="{ns:Loc Core}" FontWeight="Bold" FontSize="24" Margin="29,8,337,691"/>
+        <Button Content="{ns:Loc Resign}" Margin="160,723,177,0" FontSize="20" FontWeight="Bold" Command="{Binding ResCommand}" Height="43" VerticalAlignment="Top"/>
+        <Button Content="{ns:Loc Logout}" Margin="160,659,177,0" FontSize="20" FontWeight="Bold" Command="{Binding LogoutCommand}" VerticalAlignment="Top" Height="45"/>
         <Image Source="../../Resources/Images/guide.png" Margin="14,398,275,242"/>
-        <Image Source="../../Resources/Images/super.png" Margin="80,524,334,166"/>
-        <Label Content="Name:" FontWeight="Bold" FontSize="24" Margin="285,398,137,302"/>
-        <Label Content="Rating:" FontWeight="Bold" FontSize="24" Margin="284,463,139,241"/>
-        <Label Content="User profile" FontWeight="Bold" FontSize="24" Margin="68,360,323,359"/>
-        <Label Content="{Binding GuideName}" FontWeight="Bold" FontSize="24" Margin="370,399,52,301"/>
-        <Label Content="{Binding GuideRating}" FontWeight="Bold" FontSize="24" Margin="370,464,52,236"/>
+        <Image Source="../../Resources/Images/super.png" Margin="80,524,334,166" Visibility="{Binding IsImageVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <Label Content="{ns:Loc Name}" FontWeight="Bold" FontSize="24" Margin="270,427,152,273"/>
+        <Label Content="{ns:Loc Profile}" FontWeight="Bold" FontSize="24" Margin="68,360,323,359"/>
+        <Label Content="{Binding GuideName}" FontWeight="Bold" FontSize="24" Margin="355,428,67,272"/>
+        <Button Content="{ns:Loc N}" Margin="160,282,159,444" FontSize="20" FontWeight="Bold" Command="{Binding CreateCommand}"/>
 
     </Grid>
 </Window>

@@ -10,6 +10,7 @@ using BookingProject.Commands;
 using System.ComponentModel;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
+using BookingProject.Localization;
 
 namespace BookingProject.View.GuideViewModel
 {
@@ -100,9 +101,17 @@ namespace BookingProject.View.GuideViewModel
             {
                 if (propertyName == "PickedYear")
                 {
-                    if (string.IsNullOrEmpty(PickedYear) && !NumberValidation())
-                        return "ENTER A YEAR IN \"YYYY\" FORMAT!";
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US"))
+                    {
+                        if (string.IsNullOrEmpty(PickedYear) && !NumberValidation())
+                            return "ENTER A YEAR IN \"YYYY\" FORMAT!";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(PickedYear) && !NumberValidation())
+                            return "UNESI GODINU U \"YYYY\" FORMATU!";
 
+                    }
                 }
                 return null;
             }

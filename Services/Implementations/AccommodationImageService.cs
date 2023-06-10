@@ -42,6 +42,10 @@ namespace BookingProject.Services.Implementations
         {
             return _imageRepository.GetById(id);
         }
+        public void Delete(AccommodationImage acc)
+        {
+            _imageRepository.Delete(acc);
+        }
 
         public void LinkToAccommodation(int id)
         {

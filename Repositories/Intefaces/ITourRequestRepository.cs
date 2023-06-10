@@ -18,5 +18,6 @@ namespace BookingProject.Repositories.Intefaces
         TourRequest GetById(int id);
         List<TourRequest> GetGuestRequests(int guestId, string enteredYear);
         void ChangeStatus(TourRequest request, int guestId);
+        List<TourRequest> SetTourRequestsToInvalid(List<TourRequest> tourRequests);
     }
 }

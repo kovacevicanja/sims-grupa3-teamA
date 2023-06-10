@@ -1,5 +1,7 @@
 ﻿using BookingProject.Controller;
 using BookingProject.Domain;
+using BookingProject.Domain.Enums;
+using BookingProject.Model;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Serializer;
 using OisisiProjekat.Observer;
@@ -60,6 +62,15 @@ namespace BookingProject.Repository
         public Voucher GetById(int id)
         {
             return _vouchers.Find(voucher => voucher.Id == id);
+        }
+
+        public void CreatePrizeVoucher(User guest)
+        {
+            Tour tour = new Tour();
+            tour.Id = -1;
+            Voucher voucher = new Voucher(GenerateId(), guest, DateTime.Now, DateTime.Now.AddMonths(6), VoucherState.CREATED, tour, true);
+            _vouchers.Add(voucher);
+            Save(_vouchers);
         }
     }
 }

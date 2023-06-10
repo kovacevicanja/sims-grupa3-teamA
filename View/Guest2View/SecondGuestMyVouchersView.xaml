@@ -28,54 +28,53 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <FontWeight x:Key="FontWeightBold">Bold</FontWeight>
     </Page.Resources>
 
-    <Grid Margin="0,0,0,6">
+    <Grid>
 
-        <Label Content="My Vouchers" FontSize="35" FontWeight="Bold" Foreground="LightBlue" Margin="65,123,411,534" />
+        <Label Content="My Vouchers" FontSize="35" FontWeight="Bold" Foreground="LightBlue" Margin="140,65,368,614" />
 
-        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Margin="64,260,69,188">
+        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="0" Margin="211,166,213,165">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
             </Border.Effect>
-            <ListView DockPanel.Dock="Bottom"
-              SelectedItem="{Binding Path=ChosenVoucher, UpdateSourceTrigger=PropertyChanged}"
-              ItemsSource="{Binding Path=Vouchers, UpdateSourceTrigger=PropertyChanged}"
-              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-              ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                <ListView.Resources>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="FontSize" Value="24"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Foreground" Value="Gray"/>
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="TextAlignment" Value="Center"/>
-                    </Style>
-                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                        <Setter Property="FontSize" Value="24"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Foreground" Value="Gray"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="Padding" Value="10,0,0,0"/>
-                    </Style>
-                </ListView.Resources>
-                <ListView.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.126"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-0.998"/>
-                    </TransformGroup>
-                </ListView.RenderTransform>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Start date" DisplayMemberBinding="{Binding StartDate}" Width="300"/>
-                        <GridViewColumn Header="Expiry date" DisplayMemberBinding="{Binding EndDate}" Width="300"/>
-                    </GridView>
-                </ListView.View>
+            <ListView Margin="-1,-1,-1,-1"
+          SelectedItem="{Binding Path=ChosenVoucher, UpdateSourceTrigger=PropertyChanged}"
+          ItemsSource="{Binding Path=Vouchers, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Voucher" FontSize="20" FontWeight="Bold" Foreground="LightBlue"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray" FontSize="22">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0:dd/MM/yyyy} - {1:dd/MM/yyyy}">
+                                        <Binding Path="StartDate" />
+                                        <Binding Path="EndDate" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                <TextBlock.FontWeight>
+                                    <StaticResource ResourceKey="FontWeightBold" />
+                                </TextBlock.FontWeight>
+                            </TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Border>
-        <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="155,629,0,0" VerticalAlignment="Top" Width="170"
+        <Button Content="Use voucher" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="144,657,0,0" VerticalAlignment="Top" Width="170"
                 Command="{Binding UseVoucherCommand}" FontSize="24">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -115,7 +114,47 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="395,629,0,0" VerticalAlignment="Top" Width="170"
+        <Button Content="Generate pdf report" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="468,25,0,0" VerticalAlignment="Top" Width="221"
+                Command="{Binding GeneratePdfReport}" FontSize="24">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="BorderBrush" Value="Gray" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="LightGray"/>
+                                        <Setter Property="BorderBrush" Value="LightGray"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="441,657,0,0" VerticalAlignment="Top" Width="170"
                 Command="{Binding CancelCommand}" FontSize="24">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

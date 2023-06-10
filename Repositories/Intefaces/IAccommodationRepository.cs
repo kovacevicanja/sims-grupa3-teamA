@@ -1,4 +1,5 @@
-﻿using BookingProject.Model;
+﻿using BookingProject.Domain;
+using BookingProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,6 @@ namespace BookingProject.Repositories.Intefaces
         Accommodation GetById(int id);
         void Save(List<Accommodation> accommodations);
         void SaveAccommodation();
+        void Delete(Accommodation accommodation);
     }
 }

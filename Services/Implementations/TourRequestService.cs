@@ -59,7 +59,7 @@ namespace BookingProject.Services.Implementations
             {
                 foreach (TourRequest request in FindUnacceptedRequests())
                 {
-                    if (tour.Language == request.Language ||
+                    if (tour.Language == request.Language && request.ComplexTourRequestId == -1 ||
                         (tour.Location.City.Equals(request.Location.City) && tour.Location.Country.Equals(request.Location.Country)))
                     {
                         _tourRequestRepository.ChangeStatus(request, guestId);
@@ -115,7 +115,7 @@ namespace BookingProject.Services.Implementations
 
             foreach (TourRequest tourRequest in GetAll())
             {
-                if (tourRequest.Status == TourRequestStatus.INVALID)
+                if (tourRequest.Status == TourRequestStatus.INVALID && tourRequest.ComplexTourRequestId == -1)
                 {
                     unacceptedRequests.Add(tourRequest);
                 }

@@ -31,21 +31,22 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="Gray"/>
         </Style>
+        <FontWeight x:Key="FontWeightBold">Bold</FontWeight>
     </Page.Resources>
     <Grid>
         <Label Margin="311,29,10,638" Foreground="LightBlue" FontSize="35" Content="next destination?"/>
         <Label Margin="91,29,327,632" Foreground="Gray" FontSize="35" Content="What is your"/>
         <Grid Margin="0,94,0,471">
             <Label Content="City:" Margin="10,5,640,0" VerticalAlignment="Top" Height="45"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding City}" Height="38" Margin="157,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding City, Mode=TwoWay}" Height="38" Margin="157,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145"/>
             <Label Content="Country:" Margin="10,54,0,0" RenderTransformOrigin="0.514,0.615" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="44"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding Country}" Margin="157,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="38"/>
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding Country, Mode=TwoWay}" Margin="157,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="38"/>
             <Label Width="126" Content="Duration:" Margin="328,51,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="44"/>
             <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Margin="567,55,0,0" Text="{Binding Duration}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="59" Height="36"/>
             <Label Width="134" Content="Language:" Margin="10,104,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" RenderTransformOrigin="0.501,0.544"/>
-            <ComboBox Foreground="Gray" Margin="157,108,0,0" ItemsSource="{Binding Languages}" SelectedItem="{Binding ChosenLanguage}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="39" FontSize="24" FontWeight="Bold"/>
+            <ComboBox Foreground="Gray" Margin="157,108,0,0" ItemsSource="{Binding Languages, Mode=TwoWay}" SelectedItem="{Binding ChosenLanguage, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="39" FontSize="24" FontWeight="Bold"/>
             <Label Content="Number of guests:" Margin="328,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" Height="42"/>
-            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding NumOfGuests}" Margin="567,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="59" Height="36" TextChanged="TextBox_TextChanged" RenderTransformOrigin="0.489,0.572" />
+            <TextBox Style="{StaticResource BoldAndLargeTextBoxStyle}" Text="{Binding NumOfGuests, Mode=TwoWay}" Margin="567,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="59" Height="36" TextChanged="TextBox_TextChanged" RenderTransformOrigin="0.489,0.572" />
 
             <Button Content="Search" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="339,119,0,0" Width="120"
                 Command="{Binding SearchCommand}" FontSize="24" VerticalAlignment="Top">
@@ -136,17 +137,33 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Image Source="{Binding Images[0].Url}" Width="150" Height="150" Stretch="Uniform" />
-                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                                    <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold" Foreground="Gray" />
-                                    <TextBlock Text="{Binding Language}" FontSize="24" FontWeight="Bold" Foreground="Gray" Margin="0,10,0,0" />
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock>
+                                        <Run Text="{Binding Name}" FontSize="26" FontWeight="Bold" Foreground="Gray" />
+                                    </TextBlock>
+                                    <TextBlock Margin="15,0,0,0">
+                                        <Run Text="Language" FontSize="24" FontWeight="Bold" Foreground="Gray" />
+                                        <Run Text=":" FontSize="24" Foreground="Gray" />
+                                        <Run Text="{Binding Language}" FontSize="24" Foreground="Gray" />
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Gray" Margin="15,0,0,0">
+                                        <TextBlock.Inlines>
+                                            <Run FontWeight="Bold">Location:</Run>
+                                            <Run Text="{Binding Location.City}" />
+                                            <Run Text="," />
+                                            <Run Text="{Binding Location.Country}" />
+                                        </TextBlock.Inlines>
+                                        <TextBlock.FontSize>24</TextBlock.FontSize>
+                                    </TextBlock>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </Border>
+
             <Button Content="See more" IsCancel="True" HorizontalAlignment="Left" Height="36" Margin="531,321,0,0" VerticalAlignment="Top" Width="125"
-        Command="{Binding SeeMoreCommand}" FontSize="24">
+                Command="{Binding SeeMoreCommand}" FontSize="24">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Gray" />

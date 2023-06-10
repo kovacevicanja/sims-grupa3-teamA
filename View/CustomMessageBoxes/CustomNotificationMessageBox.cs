@@ -17,28 +17,31 @@ namespace BookingProject.View.CustomMessageBoxes
         private TourPresenceController _tourPresenceController;
         private UserController _userController;
         private NotificationController _notificationController;
+        private CustomMessageBox _customMessageBox;
 
         public CustomNotificationMessageBox()
         {
             _tourPresenceController = new TourPresenceController();
             _userController = new UserController();
             _notificationController = new NotificationController();
+            _customMessageBox = new CustomMessageBox();
         }
-        
+
         public void ShowCustomMessageBoxNotification(string messageText, Model.User userGuest)
         {
             List<Notification> notifications = _tourPresenceController.GetGuestNotifications(userGuest);
 
             Window customMessageBox = new Window
             {
-                Title = "Message",
+                Title = "",
                 FontWeight = FontWeights.Bold,
                 Height = 200,
                 Width = 300,
-                WindowStyle = WindowStyle.ThreeDBorderWindow,
+                WindowStyle = WindowStyle.None,
                 ResizeMode = ResizeMode.NoResize,
-                Background = Brushes.LightBlue,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner
+                Background = Brushes.Gray,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                AllowsTransparency = true,
             };
 
             TextBlock message = new TextBlock
@@ -48,7 +51,8 @@ namespace BookingProject.View.CustomMessageBoxes
                 FontWeight = FontWeights.Bold,
                 TextAlignment = TextAlignment.Center,
                 TextWrapping = TextWrapping.Wrap,
-                Margin = new Thickness(20, 20, 20, 0)
+                Margin = new Thickness(20, 20, 20, 0),
+                Foreground = Brushes.White
             };
 
             Button yesButton = new Button
@@ -56,13 +60,16 @@ namespace BookingProject.View.CustomMessageBoxes
                 Content = "Yes",
                 Width = 80,
                 Height = 30,
-                Margin = new Thickness(0, 10, 20, 0),
+                Margin = new Thickness(0, 10, 10, 0),
                 FontWeight = FontWeights.Bold,
-                HorizontalAlignment = HorizontalAlignment.Right
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Background = Brushes.LightBlue,
+                Foreground = Brushes.White,
+                Template = GetRoundedButtonTemplate()
             };
             yesButton.Click += (o, args) =>
             {
-                MessageBox.Show("You have successfully confirmed your presence on the tour.");
+                _customMessageBox.ShowCustomMessageBox("You have successfully confirmed your presence on the tour.");
                 foreach (Notification notification in notifications)
                 {
                     if (notification.UserId == userGuest.Id)
@@ -81,13 +88,16 @@ namespace BookingProject.View.CustomMessageBoxes
                 Content = "No",
                 Width = 80,
                 Height = 30,
-                Margin = new Thickness(20, 10, 0, 0),
+                Margin = new Thickness(10, 10, 0, 0),
                 FontWeight = FontWeights.Bold,
-                HorizontalAlignment = HorizontalAlignment.Left
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Background = Brushes.LightBlue,
+                Foreground = Brushes.White,
+                Template = GetRoundedButtonTemplate()
             };
             noButton.Click += (o, args) =>
             {
-                MessageBox.Show("You have successfully reported that you are not present on the tour.");
+                _customMessageBox.ShowCustomMessageBox("You have successfully reported that you are not present on the tour.");
                 foreach (Notification notification in notifications)
                 {
                     if (notification.UserId == userGuest.Id)
@@ -118,6 +128,38 @@ namespace BookingProject.View.CustomMessageBoxes
             mainStackPanel.Children.Add(stackPanel);
 
             customMessageBox.Content = mainStackPanel;
+
+            ControlTemplate GetRoundedButtonTemplate()
+            {
+                ControlTemplate template = new ControlTemplate(typeof(Button));
+                FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
+                borderFactory.SetValue(Border.BackgroundProperty, new TemplateBindingExtension(Button.BackgroundProperty));
+                borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(5));
+                FrameworkElementFactory contentPresenterFactory = new FrameworkElementFactory(typeof(ContentPresenter));
+                contentPresenterFactory.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+                contentPresenterFactory.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
+                borderFactory.AppendChild(contentPresenterFactory);
+                template.VisualTree = borderFactory;
+
+                Trigger pressedTrigger = new Trigger()
+                {
+                    Property = Button.IsPressedProperty,
+                    Value = true
+                };
+                pressedTrigger.Setters.Add(new Setter(Border.BackgroundProperty, Brushes.LightGray));
+                template.Triggers.Add(pressedTrigger);
+
+                return template;
+            }
+
+            // Calculate the screen center
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
+            double windowWidth = customMessageBox.Width;
+            double windowHeight = customMessageBox.Height;
+            customMessageBox.Left = (screenWidth - windowWidth) / 2;
+            customMessageBox.Top = (screenHeight - windowHeight) / 2;
+
             customMessageBox.ShowDialog();
         }
     }
