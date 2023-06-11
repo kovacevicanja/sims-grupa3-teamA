@@ -21,6 +21,7 @@ namespace BookingProject.View.OwnersViewModel
         public Forum Forum { get; set; }
         public NavigationService NavigationService { get; set; }
         public ObservableCollection<ForumComment> Comments { get; set; }
+        public ForumController ForumController { get; set; }
         public ForumCommentController CommentController { get; set; }
         public UserController UserController { get; set; }
         public RelayCommand AddCommand { get; set; }
@@ -33,6 +34,7 @@ namespace BookingProject.View.OwnersViewModel
         {
             Forum = forum;
             NavigationService = navigationService;
+            ForumController = new ForumController();
             CommentController = new ForumCommentController();
             Comments = new ObservableCollection<ForumComment>(CommentController.GetAllForForum(forum.Id));
             UserController= new UserController();
@@ -56,9 +58,29 @@ namespace BookingProject.View.OwnersViewModel
             forumComment.IsGuests = false;
             forumComment.IsInvalid = false;
             forumComment.NumberOfReports = 0;
-
+            int countGuest = 0;
+            int countOwner = 0;
+            foreach(ForumComment comm in CommentController.GetAllForForum(Forum.Id))
+            {
+                if (comm.IsGuests && !comm.IsInvalid)
+                {
+                    countGuest++;
+                }
+                if (comm.IsOwners)
+                {
+                    countOwner++;
+                }
+            }
             CommentController.Create(forumComment);
             this.Comments.Add(forumComment);
+            if (countGuest>19 && countOwner > 9)
+            {
+                Forum.IsUseful = true;
+                Forum.Comments.Add(forumComment);
+                ForumController.Update(Forum);
+            }
+
+           
         }
         private void Button_Back(object param)
         {

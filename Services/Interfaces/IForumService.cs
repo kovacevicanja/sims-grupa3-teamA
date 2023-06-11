@@ -1,4 +1,5 @@
 ﻿using BookingProject.Domain;
+using BookingProject.Model;
 using BookingProject.Model.Images;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,6 @@ namespace BookingProject.Services.Interfaces
         Forum GetById(int id);
         void Save(List<Forum> forums);
         void SaveForum();
+        void Update(Forum forum);
     }
 }
