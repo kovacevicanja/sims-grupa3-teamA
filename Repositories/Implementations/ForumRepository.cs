@@ -26,7 +26,10 @@ namespace BookingProject.Repositories.Implementations
             _forums = Load();
         }
 
-        public void Initialize() { ForumLocationBind(); }
+        public void Initialize() { 
+            ForumLocationBind();
+            ForumUserBind();
+        }
 
         public List<Forum> Load()
         {
@@ -84,6 +87,14 @@ namespace BookingProject.Repositories.Implementations
             {
                 Forum f = GetById(comment.Forum.Id);
                 f.Comments.Add(comment);
+            }
+        }
+        public void ForumUserBind()
+        {
+            foreach (Forum forum in _forums)
+            {
+                User user = Injector.CreateInstance<IUserRepository>().GetById(forum.User.Id);
+                forum.User = user;
             }
         }
     }

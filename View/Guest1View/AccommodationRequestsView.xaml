@@ -13,19 +13,11 @@
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button Command="{Binding HomepageCommand}" Background="Honeydew">
+                <Button Command="{Binding HomePageCommand}" Background="Honeydew">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal" >
                             <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
                             <TextBlock Text="Homepage" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Background="Honeydew">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/acc.png"/>
-                            <TextBlock Text="Accommodations" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -45,7 +37,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Background="Honeydew" Command="{Binding CreateForumCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/createforum.png"/>
@@ -53,7 +45,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Background="Honeydew" Command="{Binding QuickSearchCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/quicksearch.png"/>
@@ -61,26 +53,18 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Background="Honeydew">
+                <Button Command="{Binding MyProfileCommand}" Background="Honeydew" Height="400">
                     <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/help2.png"/>
-                            <TextBlock Text="Help" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                        <StackPanel Height="400" Background="Honeydew" Orientation="Vertical">
+                            <Image  Width="100" Height="80" Margin="50 280 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
+                            <TextBlock Text="My profile" Margin="80 10 70 0" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Command="{Binding MyProfileCommand}" Background="Honeydew">
-                    <Button.Content>
-                        <StackPanel Height="320" Background="Honeydew" Orientation="Vertical">
-                            <Image  Width="100" Height="80" Margin="50 200 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
-                            <TextBlock Text="My profile" Margin="80 10 50 10" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Command="{Binding LogoutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
+                <Button Command="{Binding LogOutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Logout" Margin="5,0,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                            <TextBlock Text="Logout" Margin="5,10,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -93,21 +77,50 @@
                     </StackPanel.Background>
                     <StackPanel Orientation="Horizontal">
                         <Label Margin="300 50 0 0" Height="80" HorizontalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="DarkGreen">All requests</Label>
-                        <Image  Width="60" Height="60" Margin="30 30 30 0" Source="/Resources/Images/Guest1Images/request.png"/>
+                        <Image  Width="60" Height="60" Margin="30 30 30 0" Source="/Resources/Images/Guest1Images/request1.png"/>
                     </StackPanel>
-                    <DataGrid SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="20 10 20 20" Name="RequestsDataGrid" FontSize="10" ItemsSource="{Binding Path=MyRequests, UpdateSourceTrigger=PropertyChanged}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Old initial date" Width="90" Binding="{Binding AccommodationReservation.InitialDate, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Old end date" Width="80" Binding="{Binding AccommodationReservation.EndDate, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="New initial date" Width="80" Binding="{Binding NewArrivalDay, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="New end date" Width="80" Binding="{Binding NewDeparuteDay, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Status" Width="60" Binding="{Binding Status}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Comment from owner" Width="120" Binding="{Binding OwnerComment}"></DataGridTextColumn>
-                            <DataGridTextColumn Foreground="Black" FontWeight="Bold" Header="Owner username" Width="100" Binding="{Binding AccommodationReservation.Accommodation.Owner.Username}"></DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                        <Button Width="120" IsDefault="True" Margin="15" Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen">View tutorial</Button>
+                    <ListView SelectionMode="Single" Margin="20 10 20 20" Name="RequestsListView" FontSize="10" ItemsSource="{Binding Path=MyRequests, UpdateSourceTrigger=PropertyChanged}" Height="347" Width="734">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock FontWeight="Bold" FontSize="25" Foreground="DarkGreen" Grid.ColumnSpan="2"><Run Text="Request for "/><Run Text="{Binding AccommodationReservation.Accommodation.AccommodationName}"/></TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Foreground="DarkGreen" FontSize="18"><Run FontWeight="Bold" Text="Old: "/><Run  Text="{Binding AccommodationReservation.InitialDate, StringFormat={}{0:dd.MM.yyyy.}}" />
+                                        <Run Text=" - "/>
+                                        <Run Text="{Binding AccommodationReservation.EndDate, StringFormat={}{0:dd.MM.yyyy.}}"/>
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Foreground="DarkGreen" FontSize="18">
+                                        <Run FontWeight="Bold" Text="New: "/>
+                                        <Run Text="{Binding NewArrivalDay, StringFormat={}{0:dd.MM.yyyy.}}"/>
+                                        <Run Text=" - "/>
+                                        <Run Text="{Binding NewDeparuteDay, StringFormat={}{0:dd.MM.yyyy.}}"/>
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Foreground="DarkGreen" FontSize="18">
+                                        <Run FontWeight="Bold" Text="Status: "/>
+                                        <Run Text="{Binding Status}"/>
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="4" Foreground="DarkGreen" FontSize="18">
+                                        <Run FontWeight="Bold" Text="{Binding AccommodationReservation.Accommodation.Owner.Username}"/>
+                                        <Run FontWeight="Bold" Text="'s comment: "/>
+                                        <Run Text="{Binding OwnerComment}"/>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 135 0">
+                        <Button Width="120" IsDefault="True" Margin="15" Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Command="{Binding PDFCommand}">Generate PDF</Button>
+                        <Button Width="120" IsDefault="True" Margin="15" Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Command="{Binding ViewTutorialCommand}">View tutorial</Button>
                         <Button Opacity="10" Width="120" IsDefault="True" Margin="15 15 15 20" Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Command="{Binding HomepageCommand}">Homepage</Button>
                     </WrapPanel>
                 </StackPanel>

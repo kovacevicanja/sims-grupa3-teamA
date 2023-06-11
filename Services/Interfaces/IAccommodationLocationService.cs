@@ -16,5 +16,6 @@ namespace BookingProject.Services.Interfaces
         void Save(List<Location> locations);
         void SaveLocation();
         void Delete(Location acc);
+        int GetIdByCountryAndCity(String state, String city);
     }
 }

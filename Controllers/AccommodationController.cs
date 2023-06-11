@@ -129,5 +129,13 @@ namespace BookingProject.Controller
         {
             return _accommodationService.GetAccommodationData(renovations);
         }
+        public bool AccommodationIsAvailable(Accommodation accommodation, int daysToStay)
+		{
+            return _accommodationService.AccommodationIsAvailable(accommodation, daysToStay);
+		}
+        public bool CheckGuestsNumber(Accommodation accommodation, int numberOfGuests)
+		{
+            return _accommodationService.CheckGuestsNumber(accommodation, numberOfGuests);
+		}
     }
 }

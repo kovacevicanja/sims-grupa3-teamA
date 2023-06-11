@@ -7,8 +7,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
+    xmlns:ns="clr-namespace:BookingProject.Localization"
         mc:Ignorable="d"
-        Title="SelectedTourStatsWindow" Height="490" Width="615">
+        Title="SelectedTourStatsWindow" Height="490" Width="615"
+    Style="{DynamicResource MyWindowStyle}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Enter">
             <i:InvokeCommandAction Command="{Binding OkCommand}" />
@@ -21,14 +23,14 @@
 
 
     <Grid>
-        <Label Content="Number of guests(teen):  " FontSize="24" FontWeight="Bold" Margin="0,55,307,345" />
+        <Label Content="{ns:Loc TEEN}" FontSize="24" FontWeight="Bold" Margin="0,55,307,345" />
         <Button Content="OK (Enter)" Command="{Binding OkCommand}" FontSize="26" FontWeight="Bold" Margin="218,404,217,10" />
-        <Label Content="Number of guests(adult):  " FontSize="24" FontWeight="Bold" Margin="0,129,307,270" />
-        <Label Content="Number of guests(senior):  " FontSize="24" FontWeight="Bold" Margin="0,204,283,199" />
-        <Label Content="Percent of guests with voucher:  " FontSize="24" FontWeight="Bold" Margin="0,270,217,139" />
-        <Label Content="Percent of guests without voucher:  " FontSize="24" FontWeight="Bold" Margin="0,335,175,65" />
+        <Label Content="{ns:Loc ADULT}" FontSize="24" FontWeight="Bold" Margin="0,129,307,270" />
+        <Label Content="{ns:Loc SENIOR}" FontSize="24" FontWeight="Bold" Margin="0,204,283,199" />
+        <Label Content="{ns:Loc VOUCHERPLUS}" FontSize="24" FontWeight="Bold" Margin="0,270,217,139" />
+        <Label Content="{ns:Loc VOUCHERMINUS}" FontSize="24" FontWeight="Bold" Margin="0,335,175,65" />
         <Label Content="{Binding TeenGuests}" FontSize="24" FontWeight="Bold" Margin="297,55,80,345" />
-        <Label Content="{Binding AdultGuests}" FontSize="24" FontWeight="Bold" Margin="337,134,40,264" />
+        <Label Content="{Binding AdultGuests}" FontSize="24" FontWeight="Bold" Margin="337,120,40,278" />
         <Label Content="{Binding OldGuests}" FontSize="24" FontWeight="Bold" Margin="337,201,40,201" />
         <Label Content="{Binding VoucherGuests}" FontSize="24" FontWeight="Bold" Margin="377,270,0,140" />
         <Label Content="{Binding VoucherlessGuests}" FontSize="24" FontWeight="Bold" Margin="416,335,-39,65" />

@@ -44,6 +44,10 @@ namespace BookingProject.View.GuideViewModel
             CloseWindow();
         }
 
+
+
+
+
         private void Button_Click_Ask(object param)
         {
             TourPresence tourPresence = new TourPresence();

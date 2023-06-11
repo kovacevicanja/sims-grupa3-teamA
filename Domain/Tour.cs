@@ -29,6 +29,8 @@ namespace BookingProject.Model
         public bool IsSuggestion { get; set; }
         public DateTime CreartionDate { get; set; }
 
+        public int ComplexTourRequestId { get; set; }
+
         public Tour()
         {
             KeyPoints = new List<KeyPoint>();
@@ -36,6 +38,7 @@ namespace BookingProject.Model
             Images = new List<TourImage>();
             IsSuggestion = false;
             CreartionDate = DateTime.Now;
+            ComplexTourRequestId = -1;
         }
 
         public void FromCSV(string[] values)
@@ -60,6 +63,7 @@ namespace BookingProject.Model
             GuideId= int.Parse(values[7]);
             IsSuggestion = bool.Parse(values[8]);
             CreartionDate = DateConversion.StringToDateTour(values[9]);
+            ComplexTourRequestId = int.Parse(values[10]);
         }
 
         public string[] ToCSV()
@@ -76,6 +80,7 @@ namespace BookingProject.Model
                 GuideId.ToString(),
                 IsSuggestion.ToString(),
                 DateConversion.DateToStringTour(CreartionDate),
+                ComplexTourRequestId.ToString(),
             };
             return csvValues;
         }

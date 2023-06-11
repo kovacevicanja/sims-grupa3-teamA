@@ -7,8 +7,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
+    xmlns:ns="clr-namespace:BookingProject.Localization"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        Title="SuggestionChoiceView" Height="450" Width="800">
+        Title="SuggestionChoiceView" Height="450" Width="800"
+    Style="{DynamicResource MyWindowStyle}">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Yes">
@@ -26,9 +28,9 @@
 
     <Grid>
         <Rectangle Stroke="Black" Margin="59,101,59,125"/>
-        <Label Content="Do you want to see&#xD;&#xA; stats based on top: " HorizontalAlignment="Center"  FontSize="45" FontWeight="Bold" Margin="0,118,0,125" Width="450"/>
-        <Button Content="Location(Y)" FontSize="30" FontWeight="Bold" Margin="90,330,434,29" Command="{Binding YesCommand}"/>
-        <Button Content="Language(N)" FontSize ="30" FontWeight="Bold" Margin="425,330,89,29" Command="{Binding NoCommand}"/>
+        <Label Content="{ns:Loc SuggestionB}" HorizontalAlignment="Left"  FontSize="55" FontWeight="Bold" Margin="275,153,0,90" Width="450"/>
+        <Button Content="{ns:Loc LocationY}" FontSize="30" FontWeight="Bold" Margin="90,330,434,29" Command="{Binding YesCommand}"/>
+        <Button Content="{ns:Loc LanguageN}" FontSize ="30" FontWeight="Bold" Margin="425,330,89,29" Command="{Binding NoCommand}"/>
 
     </Grid>
 </Window>

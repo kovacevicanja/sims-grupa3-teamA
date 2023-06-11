@@ -136,5 +136,82 @@ namespace BookingProject.Services.Implementations
 
             return takenDates;
         }
+
+        public List<AccommodationReservation> FindAcceptableReservations(Accommodation accommodation)
+        {
+            List<AccommodationReservation> allReservations = new List<AccommodationReservation>(GetReservationsForAccommodation(accommodation));
+            List<AccommodationReservation> sortedReservations = allReservations.OrderBy(r => r.InitialDate).ToList();
+            List<AccommodationReservation> filteredReservations = sortedReservations.Where(r => r.InitialDate > DateTime.Today).ToList();
+            return filteredReservations;
+        }
+
+        public List<(DateTime, DateTime)> FindAvailableDatesQuick(Accommodation accommodation, int daysToStay)
+		{
+            List<AccommodationReservation> allReservations = FindAcceptableReservations(accommodation);
+            List<(DateTime, DateTime)> freeDateRanges = new List<(DateTime, DateTime)>();
+            int count = 0; 
+
+            for (int i = 0; i < allReservations.Count - 1; i++)
+            {
+                DateTime currentEndDate = allReservations[i].EndDate;
+                DateTime nextStartDate = allReservations[i + 1].InitialDate;
+
+                if ((nextStartDate - currentEndDate).Days >= daysToStay)
+                {
+                    freeDateRanges.Add((currentEndDate.AddDays(1), nextStartDate.AddDays(-1)));
+                    count++;
+
+                    if (count == 3)
+                        break;
+                }
+            }
+
+
+            return freeDateRanges;
+        }
+
+        public List<(DateTime, DateTime)> FindAvailableDatesQuickRanges(Accommodation accommodation, int daysToStay, DateTime initialDate, DateTime endDate)
+        {
+            List<AccommodationReservation> allReservations = FindAcceptableReservations(accommodation);
+
+            List<(DateTime, DateTime)> availableRanges = new List<(DateTime, DateTime)>();
+
+            DateTime currentDate = initialDate;
+            while (currentDate <= endDate)
+            {
+                bool isAvailable = IsDateAvailable(currentDate, daysToStay, allReservations);
+                if (isAvailable)
+                {
+                    DateTime rangeEndDate = currentDate.AddDays(daysToStay - 1);
+                    availableRanges.Add((currentDate, rangeEndDate));
+                }
+
+                currentDate = currentDate.AddDays(1);
+            }
+
+            return availableRanges;
+        }
+
+        public bool IsDateAvailable(DateTime date, int daysToStay, List<AccommodationReservation> reservations)
+        {
+            foreach (var reservation in reservations)
+            {
+                if (date >= reservation.InitialDate && date <= reservation.EndDate)
+                {
+                    return false;  
+                }
+
+                for (int i = 1; i < daysToStay; i++)
+                {
+                    DateTime currentDate = date.AddDays(i);
+                    if (currentDate >= reservation.InitialDate && currentDate <= reservation.EndDate)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 }

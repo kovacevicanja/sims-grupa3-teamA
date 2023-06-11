@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style x:Key="DarkStyle" TargetType="Window">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="../Resources/Images/GuideImages/darksea.jpg" />
+            </Setter.Value>
+        </Setter>
+
+        <Style.Resources>
+            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Background" Value="DeepSkyBlue" />
+                <Setter Property="Foreground" Value="GhostWhite" />
+                <Setter Property="BorderBrush" Value="Black" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="GhostWhite" />
+            </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="Black" />
+            </Style>
+
+            <Style TargetType="Rectangle">
+                <Setter Property="Stroke" Value="Aquamarine" />
+            </Style>
+
+            <Style TargetType="Border">
+                <Setter Property="BorderBrush" Value="Aquamarine" />
+            </Style>
+        </Style.Resources>
+
+
+    </Style>
+
+</ResourceDictionary>

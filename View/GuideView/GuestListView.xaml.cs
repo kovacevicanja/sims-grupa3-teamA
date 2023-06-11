@@ -31,7 +31,9 @@ namespace BookingProject.View.GuideView
         public GuestListView(TourTimeInstance chosenTour, KeyPoint chosenKeyPoint)
         {
             InitializeComponent();
-            this.DataContext = new GuestListViewModel(chosenTour, chosenKeyPoint);
+            GuestListViewModel ViewModel = new GuestListViewModel(chosenTour, chosenKeyPoint);
+            this.DataContext = ViewModel;
+            GuestDataGrid.ItemsSource = ViewModel._guests;
         }
 
     }

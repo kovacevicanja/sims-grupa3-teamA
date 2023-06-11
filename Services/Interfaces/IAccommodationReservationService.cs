@@ -44,6 +44,6 @@ namespace BookingProject.Services.Interfaces
         int GetMostBusyMonth(List<AccommodationReservation> reservations, int year);
         List<DateTime> FindDatesThatAreNotAvailable(Accommodation selectedAccommodation);
         int CountReservationsForSpecificLocation(int locationId);
-
+        bool IsLocationVisited(Location location);
     }
 }

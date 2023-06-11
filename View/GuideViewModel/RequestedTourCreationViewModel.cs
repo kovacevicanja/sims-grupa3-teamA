@@ -16,6 +16,7 @@ using System.Windows.Threading;
 using System.Windows;
 using BookingProject.Domain;
 using BookingProject.Controllers;
+using BookingProject.Localization;
 
 namespace BookingProject.View.GuideViewModel
 {
@@ -137,6 +138,7 @@ namespace BookingProject.View.GuideViewModel
             if (IsValid == false) { return; }
             Tour tour = new Tour();
             tour.Name = TourName;
+            tour.ComplexTourRequestId = ChosenRequest.ComplexTourRequestId;
             tour.Description = Description;
             tour.MaxGuests = ChosenRequest.GuestsNumber;
             tour.DurationInHours = Duration;
@@ -168,6 +170,7 @@ namespace BookingProject.View.GuideViewModel
         {
             TourRequestController.GetById(ChosenRequest.Id).Status = Domain.Enums.TourRequestStatus.ACCEPTED;
             TourRequestController.GetById(ChosenRequest.Id).GuideId = UserController.GetLoggedUser().Id;
+            TourRequestController.GetById(ChosenRequest.Id).SetDate = tour.StartingTime[0].StartingDateTime;
             TourRequestController.SaveTourRequest();
             TourRequestController.SendNotification(ChosenRequest.Guest, tour);
         }
@@ -233,19 +236,44 @@ namespace BookingProject.View.GuideViewModel
             {
                 if (columnName == "TourName")
                 {
-                    if (string.IsNullOrEmpty(TourName))
-                        return "You must enter a name!";
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US"))
+                    {
+                        if (string.IsNullOrEmpty(TourName))
+                            return "You must enter a name!";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(TourName))
+                            return "Morate uneti ime!";
+
+                    }
 
                 }
                 else if (columnName == "Description")
                 {
-                    if (string.IsNullOrEmpty(Description))
-                        return "You must enter a description!";
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US"))
+                    {
+                        if (string.IsNullOrEmpty(Description))
+                            return "You must enter a description!";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(Description))
+                            return "Morate uneti opis!";
+                    }
                 }
                 else if (columnName == "Duration")
                 {
-                    if (!ValidDuration())
-                        return "You must enter a number!";
+                    if ((TranslationSource.Instance.CurrentCulture.Name).Equals("en-US"))
+                    {
+                        if (!ValidDuration())
+                            return "You must enter a number!";
+                    }
+                    else
+                    {
+                        if (!ValidDuration())
+                            return "Morate uneti broj!";
+                    }
                 }
                 return null;
             }

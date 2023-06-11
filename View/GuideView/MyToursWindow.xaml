@@ -6,9 +6,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ns="clr-namespace:BookingProject.Localization"
         xmlns:local="clr-namespace:BookingProject.View.GuideView"
         mc:Ignorable="d"
-        Title="MyToursWindow" Height="515" Width="1105">
+        Title="MyToursWindow" Height="515" Width="1105"
+    Style="{DynamicResource MyWindowStyle}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Create">
             <i:InvokeCommandAction Command="{Binding CreateCommand}" />
@@ -26,7 +28,7 @@
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
     </Window.InputBindings>
 
-    <Grid>
+    <Grid Margin="0,0,0,-6">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -65,12 +67,12 @@
                     </TransformGroup>
                 </DataGrid.RenderTransform>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Tour name" Width="70" Binding="{Binding Tour.Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="City" Width="70" Binding="{Binding Tour.Location.City}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Country" Width="70" Binding="{Binding Tour.Location.Country}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Description" Width="170" Binding="{Binding Tour.Description}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tour duration" Width="85" Binding="{Binding Tour.DurationInHours}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Key points" Width="120">
+                    <DataGridTextColumn Header="{ns:Loc TourName}" Width="70" Binding="{Binding Tour.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc City}" Width="70" Binding="{Binding Tour.Location.City}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc Country}" Width="70" Binding="{Binding Tour.Location.Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc Description}" Width="170" Binding="{Binding Tour.Description}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc TourDuration}" Width="85" Binding="{Binding Tour.DurationInHours}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="{ns:Loc KeyPoints}" Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ItemsControl ItemsSource="{Binding Tour.KeyPoints}">
@@ -83,10 +85,10 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Language" Width="65" Binding="{Binding Tour.Language}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Starting time" Width="155" Binding="{Binding TourTime.StartingDateTime}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Number of possible guests" Width="155" Binding="{Binding Tour.MaxGuests}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Images" Width="*">
+                    <DataGridTextColumn Header="{ns:Loc Language}" Width="65" Binding="{Binding Tour.Language}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc StartingTime}" Width="155" Binding="{Binding TourTime.StartingDateTime}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="{ns:Loc PossibleGuests}" Width="155" Binding="{Binding Tour.MaxGuests}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="{ns:Loc Images}" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ItemsControl ItemsSource="{Binding Tour.Images}">
@@ -104,13 +106,11 @@
 
         </Grid>
 
-        <WrapPanel Grid.Row="2" Margin="20,41,5,-85">
-            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" VerticalAlignment="Top" Command="{Binding CreateCommand}" Content="Create New Report &#xa;            (N)" Height="46"/>
-            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelTourCommand}" Content="Cancel Selected Tour &#xa;               (C)" Height="46"/>
-            <Button Width="332" Margin="10,10,10,0" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="Close &#xa; (Esc)" Height="46"/>
-        </WrapPanel>
-        <Label Content="My Tours" FontWeight="Bold" FontSize="26"  Margin="10,0,816,0"/>
-        <Label Content="Options" FontWeight="Bold" FontSize="26"  Margin="30,308,816,-19" Grid.Row="1" Grid.RowSpan="2"/>
+        <Label Content="{ns:Loc MyTours}" FontWeight="Bold" FontSize="26"  Margin="10,0,816,0"/>
+        <Label Content="{ns:Loc Options}" FontWeight="Bold" FontSize="26"  Margin="30,308,816,-19" Grid.Row="1" Grid.RowSpan="2"/>
+        <Button Width="332" Margin="745,53,28,-77" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelCommand}" Content="{ns:Loc Close}" Height="46" Grid.Row="2"/>
+        <Button Width="332" Margin="386,53,387,-77" FontWeight="Bold" FontSize="15" IsDefault="True" Command="{Binding CancelTourCommand}" Height="46" Content="{ns:Loc CancelSelectedTour}" Grid.Row="2" RenderTransformOrigin="0.494,0.218"/>
+        <Button Width="332" FontWeight="Bold" FontSize="15" IsDefault="True"  Command="{Binding CreateCommand}" Content="{ns:Loc CreateNewReport}" Height="46" Margin="30,53,743,-77" Grid.Row="2" />
     </Grid>
 </Window>
 
