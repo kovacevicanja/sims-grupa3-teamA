@@ -20,6 +20,9 @@ namespace BookingProject.View.GuideViewModel
 
 
         public TourStartingTimeController StartingDateController { get; set; }
+        public TourTimeInstanceController TimeInstanceController { get; set; }
+
+ 
 
         public DateConversion DateConversion { get; set; }
         public RelayCommand CancelCommand { get; }
@@ -31,6 +34,7 @@ namespace BookingProject.View.GuideViewModel
         {
 
             StartingDateController = new TourStartingTimeController();
+            TimeInstanceController = new TourTimeInstanceController();
             ChosenRequest = request;
             CancelCommand = new RelayCommand(CancelButton_Click, CanExecute);
             CreateCommand = new RelayCommand(Button_Click_Kreiraj, CanExecute);
@@ -112,7 +116,7 @@ namespace BookingProject.View.GuideViewModel
             {
                 return false;
             }
-            if(ChosenRequest.StartDate <= DateConversion.StringToDateTour(StartingDate)  && DateConversion.StringToDateTour(StartingDate) <= ChosenRequest.EndDate)
+            if((ChosenRequest.StartDate <= DateConversion.StringToDateTour(StartingDate))  && (DateConversion.StringToDateTour(StartingDate) <= ChosenRequest.EndDate) && IsGuideFree())
             {
                 return true;
             }
@@ -120,6 +124,17 @@ namespace BookingProject.View.GuideViewModel
             {
                 return false;
             }
+        }
+        public bool IsGuideFree()
+        {
+            foreach(TourTimeInstance instance in TimeInstanceController.GetAll())
+            {
+                if(instance.TourTime.StartingDateTime.Day== DateConversion.StringToDateTour(StartingDate).Day)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         public bool ValidateTime()
         {

@@ -22,7 +22,10 @@ namespace BookingProject.View.GuideViewModel
     public class AllTourRequestsViewModel: INotifyPropertyChanged, IDataErrorInfo
     {
         public TourRequestController _tourRequestController;
+        public UserController _userController;
         public ObservableCollection<TourRequest> TourRequests { get; set; }
+
+        public TourController _tourController { get; set; }
 
         public string City { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
@@ -42,6 +45,8 @@ namespace BookingProject.View.GuideViewModel
         public AllTourRequestsViewModel()
         {
             _tourRequestController = new TourRequestController();
+            _userController = new UserController();
+            _tourController = new TourController();
             TourRequests = new ObservableCollection<TourRequest>(FilterRequests(_tourRequestController.GetAll()));
 
             CancelCommand = new RelayCommand(Button_Cancel, CanExecute);
@@ -110,13 +115,29 @@ namespace BookingProject.View.GuideViewModel
             _tourRequestController.ShowAll(TourRequests, true);
 
         }
+
+        private bool IsComplexPart()
+        {
+            foreach(Tour tour in _tourController.GetAll())
+            {
+                if((tour.ComplexTourRequestId==ChosenRequest.ComplexTourRequestId) && (tour.GuideId==_userController.GetLoggedUser().Id))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void Button_Click_Pick(object param)
         {
             if (ChosenRequest == null)
             {
                 return;
             }
-
+            if (IsComplexPart())
+            {
+                return;
+            }
             RequestedTourCreation creation = new RequestedTourCreation(ChosenRequest);
             creation.Show();
             CloseWindow();

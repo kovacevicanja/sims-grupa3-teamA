@@ -138,6 +138,7 @@ namespace BookingProject.View.GuideViewModel
             if (IsValid == false) { return; }
             Tour tour = new Tour();
             tour.Name = TourName;
+            tour.ComplexTourRequestId = ChosenRequest.ComplexTourRequestId;
             tour.Description = Description;
             tour.MaxGuests = ChosenRequest.GuestsNumber;
             tour.DurationInHours = Duration;
@@ -169,6 +170,7 @@ namespace BookingProject.View.GuideViewModel
         {
             TourRequestController.GetById(ChosenRequest.Id).Status = Domain.Enums.TourRequestStatus.ACCEPTED;
             TourRequestController.GetById(ChosenRequest.Id).GuideId = UserController.GetLoggedUser().Id;
+            TourRequestController.GetById(ChosenRequest.Id).SetDate = tour.StartingTime[0].StartingDateTime;
             TourRequestController.SaveTourRequest();
             TourRequestController.SendNotification(ChosenRequest.Guest, tour);
         }
