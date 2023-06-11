@@ -354,6 +354,7 @@
     <Compile Include="View\CustomMessageBoxes\OwnerCustomMessageBox.cs" />
     <Compile Include="View\CustomMessageBoxes\OwnerNotificationCustomBox.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\AllForumsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ProfileViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ReservationsViewModel.cs" />

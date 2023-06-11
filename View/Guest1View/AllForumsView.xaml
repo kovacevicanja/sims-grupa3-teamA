@@ -87,22 +87,24 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>
                                             <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="300" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Foreground="DarkGreen" Grid.Row="0" Grid.Column="0" FontSize="20" Text="{Binding Location}" FontWeight="Bold" />
-
-                                        <StackPanel Grid.Row="1" Grid.Column="0">
-                                            <TextBlock Foreground="DarkGreen" FontSize="15" Text="{Binding Comment1}" />
-                                            <TextBlock Foreground="DarkGreen" FontSize="15"  Text="{Binding Comment2}" />
+                                       
+                                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                            <TextBlock Foreground="DarkGreen" Grid.Row="0" Grid.Column="0" FontSize="20" Text="{Binding Location.Country}" FontWeight="Bold" />
+                                            <TextBlock Foreground="DarkGreen" Grid.Row="0" Grid.Column="0" FontSize="20" Text="{Binding Location.City}" FontWeight="Bold" />
                                         </StackPanel>
-                                        <StackPanel HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1">
-                                            <TextBox Foreground="DarkGreen" FontSize="15" Width="200" x:Name="TextBoxComment" Margin="5 0 50 0"/>
-                                            <Button Padding="3" FontSize="12" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" Margin="25 5 0 0" BorderBrush="DarkGreen" Width="120" Content="Leave comment" Click="LeaveComment_Click" />
-                                        </StackPanel>
+                                        <TextBlock Foreground="DarkGreen" Grid.Row="1" Grid.Column="0" FontSize="20" Text="{Binding User.Username}" FontWeight="Bold" />
+                                        <TextBlock Foreground="DarkGreen" Grid.Row="2" Grid.Column="0" FontSize="20" Text="{Binding Status}" FontWeight="Bold" />
+                                        <TextBlock Foreground="DarkGreen" Grid.Row="3" Grid.Column="0" FontSize="20" Text="{Binding IsHelpful}" FontWeight="Bold" />
+                                        
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -111,7 +113,11 @@
 
                     </ListView>
 
+
                     <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 200 0">
+                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150" IsDefault="True" Margin="15" Click="Button_Click_Tutorial" Command="{Binding CloseForumCommand}">Close forum</Button>
+                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150" IsDefault="True" Margin="15" Click="Button_Click_Tutorial" Command="{Binding ShowCommentsCommand}">Show all comments</Button>
+
                         <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="150" IsDefault="True" Margin="15" Click="Button_Click_Tutorial">View tutorial</Button>
                         <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="90" IsDefault="True" Margin="15 15 30 15" Click="Button_Click_Homepage">Homepage</Button>
                     </WrapPanel>
