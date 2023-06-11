@@ -77,7 +77,7 @@ namespace BookingProject.View.OwnersViewModel
             {
                 Forum.IsUseful = true;
                 Forum.Comments.Add(forumComment);
-                ForumController.Update(Forum);
+                ForumController.UpdateForum(Forum);
             }
 
            
