@@ -1,4 +1,5 @@
-﻿1|Forum1|2|true|OPENED|1
-2|Forum2|7|false|CLOSED|1
-3|Forum4|5|false|OPENED|1
-4|Forum3|8|true|OPENED|1
+1|Forum1|2|True|OPENED|2
+2|Forum2|7|True|CLOSED|1
+3|Forum4|5|False|OPENED|2
+4|Forum3|8|True|CLOSED|1
+5|FORUM|1|False|OPENED|1

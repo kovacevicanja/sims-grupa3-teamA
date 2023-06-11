@@ -110,10 +110,6 @@
                         <Label Grid.Row="3" Grid.Column="0" Height="30" FontSize="18" FontWeight="Bold" Foreground="DarkGreen">Additional comment</Label>
 
 
-                        <TextBox Grid.Row="3" Grid.Column="1" Margin="5" 
-                     Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged}"
-                     Height="25" TextWrapping="Wrap"></TextBox>
-
                         <ComboBox Width="300" Height="25" ItemsSource="{Binding Path=CountryComboBox}" Grid.Row="1" Grid.Column="1"  Margin="5" 
                  SelectedItem="{Binding Path=State, UpdateSourceTrigger=PropertyChanged}">
                             <i:Interaction.Triggers>
@@ -124,15 +120,16 @@
                         </ComboBox>
                         <ComboBox  Grid.Row="2" Grid.Column="1" Width="300" Height="25" Margin="5" IsEnabled="{Binding CityComboboxEnabled, UpdateSourceTrigger=PropertyChanged}"
                                    ItemsSource="{Binding Path=CityCollection}" SelectedItem="{Binding Path=City, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
-
+                        <TextBox Grid.Row="3" Grid.Column="1" Width="300" Text="{Binding Path=Comment}" Height="25">
+                            
+                        </TextBox>
 
                         <WrapPanel Grid.Row="7" Grid.ColumnSpan="3" HorizontalAlignment="Right" Orientation="Horizontal" Width="500" >
                             <Button IsDefault="True" Margin="10" Command="{Binding OpenForumCommand}"
                                      Padding="5" FontSize="15" Width="100" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" RenderTransformOrigin="-1.517,0.558">Open forum</Button>
                             <Button IsDefault="True" Margin="10" Command="{Binding AllForumsCommand}"
                                      Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen">See all forums</Button>
-                            <Button Content="View tutorial" Command="{Binding ViewTutorialCommand}" Margin="10"
-                                     Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen"></Button>
+                           
                             <Button Content="Homepage" Command="{Binding HomePageCommand}" Margin="10"
                                      Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen"></Button>
                         </WrapPanel>

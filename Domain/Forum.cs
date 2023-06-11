@@ -21,6 +21,7 @@ namespace BookingProject.Domain
         public Forum() {
             Location = new Location();
             Comments = new List<ForumComment>();
+            User = new User();
         }
 
         public void FromCSV(string[] values)

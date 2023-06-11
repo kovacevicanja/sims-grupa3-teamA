@@ -366,7 +366,6 @@
     <Compile Include="View\CustomMessageBoxes\OwnerCustomMessageBox.cs" />
     <Compile Include="View\CustomMessageBoxes\OwnerNotificationCustomBox.cs" />
     <Compile Include="View\Guest1ViewModel\AccommodationRequestsViewModel.cs" />
-    <Compile Include="View\Guest1ViewModel\AllForumsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\FindAvailableDatesForAccommodationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ProfileViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\Guest1ReservationsViewModel.cs" />
@@ -379,6 +378,8 @@
     <Compile Include="View\Guest1ViewModel\RecommendationRenovationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\RescheduleAccommodationReservationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\ReservationAccommodationViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\ShowAllComentsViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\ShowAllForumsViewModel.cs" />
     <Compile Include="View\Guest1View\AccommodationOwnerReview.xaml.cs">
       <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
     </Compile>
@@ -387,9 +388,6 @@
     <Compile Include="View\Guest1ViewModel\AccommodationOwnerReviewViewModel.cs" />
     <Compile Include="View\Guest1View\AccommodationRequestsView.xaml.cs">
       <DependentUpon>AccommodationRequestsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Guest1View\AllForumsView.xaml.cs">
-      <DependentUpon>AllForumsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest1View\Guest1HomepageView.xaml.cs">
       <DependentUpon>Guest1HomepageView.xaml</DependentUpon>
@@ -415,6 +413,12 @@
     <Compile Include="View\Guest1View\RecommendationRenovationView.xaml.cs">
       <DependentUpon>RecommendationRenovationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Guest1View\ShowAllComentsView.xaml.cs">
+      <DependentUpon>ShowAllComentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\ShowAllForumsView.xaml.cs">
+      <DependentUpon>ShowAllForumsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Guest1View\Tutorials\AccommodationOwnerReviewTutorialView.xaml.cs">
       <DependentUpon>AccommodationOwnerReviewTutorialView.xaml</DependentUpon>
     </Compile>
@@ -423,9 +427,6 @@
     </Compile>
     <Compile Include="View\Guest1View\Tutorials\BookAccommodationTutorialView.xaml.cs">
       <DependentUpon>BookAccommodationTutorialView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Guest1View\Tutorials\ForumTutorialsView.xaml.cs">
-      <DependentUpon>ForumTutorialsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest1View\Tutorials\ImagesAndMoreTutorialView.xaml.cs">
       <DependentUpon>ImagesAndMoreTutorialView.xaml</DependentUpon>
@@ -772,10 +773,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Guest1View\AllForumsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Guest1View\Guest1HomepageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -808,6 +805,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Guest1View\ShowAllComentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\ShowAllForumsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Guest1View\Tutorials\AccommodationOwnerReviewTutorialView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -817,10 +822,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest1View\Tutorials\BookAccommodationTutorialView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Guest1View\Tutorials\ForumTutorialsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

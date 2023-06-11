@@ -39,6 +39,22 @@ namespace BookingProject.Controllers
         {
             _forumService.Save(forums);
         }
+
+        public void UpdateForum(Forum forum)
+		{
+            _forumService.UpdateForum(forum);
+		}
+
+        public List<ForumComment> GetCommentsForForum(Forum forum)
+		{
+            return _forumService.GetCommentsForForum(forum);
+
+        }
+
+        public void SetVeryHelpful(Forum forum)
+		{
+            _forumService.SetVeryHelpful(forum);
+		}
         
     }
 }

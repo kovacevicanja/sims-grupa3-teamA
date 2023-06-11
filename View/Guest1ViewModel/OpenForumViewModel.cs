@@ -1,5 +1,7 @@
 ﻿using BookingProject.Commands;
 using BookingProject.Controller;
+using BookingProject.Controllers;
+using BookingProject.Domain;
 using BookingProject.Model;
 using BookingProject.View.Guest1View;
 using BookingProject.View.Guest1View.Tutorials;
@@ -19,39 +21,58 @@ namespace BookingProject.View.Guest1ViewModel
 	public class OpenForumViewModel : INotifyPropertyChanged
 	{
         public AccommodationLocationController _accommodationLocationController;
+        public UserController _userController;
+        public ForumCommentController _forumCommentController;
+        public ForumController _forumController;
+        public AccommodationReservationController accommodationReservationController;
         public ObservableCollection<string> CityCollection { get; set; }
 		public ObservableCollection<string> CountryComboBox { get; set; }
         public RelayCommand FillCityCommand { get; }
         public RelayCommand HomePageCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
-        public RelayCommand LogOutCommand { get; }
+        public RelayCommand LogoutCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
         public RelayCommand MyProfileCommand { get; }
         public RelayCommand OpenForumCommand { get; }
         public RelayCommand AllForumsCommand { get; }
-        public RelayCommand ViewTutorialCommand { get; }
         public RelayCommand CreateForumCommand { get; }
         public RelayCommand QuickSearchCommand { get; }
         public string City { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
         public OpenForumViewModel()
 		{
+            _forumController = new ForumController();
+            _forumCommentController = new ForumCommentController();
             _accommodationLocationController = new AccommodationLocationController();
+            _userController = new UserController();
+            accommodationReservationController = new AccommodationReservationController();
             CityCollection = new ObservableCollection<string>();
 			CountryComboBox = new ObservableCollection<string>();
             FillCityCommand = new RelayCommand(FindCities, CanExecute);
             HomePageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
-            LogOutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
+            LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
             MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
             OpenForumCommand = new RelayCommand(Button_Click_OpenForum, CanExecute);
             AllForumsCommand = new RelayCommand(Button_Click_AllForums, CanExecute);
-            ViewTutorialCommand = new RelayCommand(Button_Click_Tutorial, CanExecute);
             CreateForumCommand = new RelayCommand(Button_Click_CreateForum, CanExecute);
             QuickSearchCommand = new RelayCommand(Button_Click_Quick_Search, CanExecute);
             FindAllStates();
 		}
+        public string _comment;
+        public string Comment
+        {
+            get => _comment;
+            set
+            {
+                if (_comment != value)
+                {
+                    _comment = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         private bool _cityComboBoxEnabled;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -167,23 +188,32 @@ namespace BookingProject.View.Guest1ViewModel
         }
         private void Button_Click_OpenForum(object param)
 		{
-            MessageBox.Show("You have successfully open forum!");
-            var allForums = new AllForumsView();
+            Forum newForum = new Forum();
+            newForum.Location.Country = State;
+            newForum.Location.City = City;
+            newForum.Location.Id = _accommodationLocationController.GetIdByCountryAndCity(State, City);
+            newForum.User.Id = _userController.GetLoggedUser().Id;
+            newForum.Name = "FORUM";
+            ForumComment newComment = new ForumComment();
+            newComment.Text = Comment;
+            newComment.IsOwners = false;
+            newComment.IsGuests = true;
+            newComment.User.Id = _userController.GetLoggedUser().Id;
+            newComment.NumberOfReports = 0;
+            newComment.Forum = newForum;
+            newComment.IsInvalid = accommodationReservationController.IsLocationVisited(newForum.Location);
+            newForum.Comments.Add(newComment);
+            newForum.Status = "OPENED";
+            newForum.IsUseful = false;
+            _forumController.Create(newForum);
+            _forumCommentController.Create(newComment);
+        }
+        private void Button_Click_AllForums(object param)
+		{
+            var allForums = new ShowAllForumsView();
             allForums.Show();
             CloseWindow();
 		}
-        private void Button_Click_AllForums(object param)
-		{
-            var allForums = new AllForumsView();
-            allForums.Show();
-            CloseWindow();
-        }
-        private void Button_Click_Tutorial(object param)
-		{
-            var tutorial = new ForumTutorialsView();
-            tutorial.Show();
-            CloseWindow();
-        }
         private void Button_Click_CreateForum(object param)
         {
             var forum = new OpenForumView();

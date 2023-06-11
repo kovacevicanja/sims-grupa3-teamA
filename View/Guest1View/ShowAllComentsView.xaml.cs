@@ -1,8 +1,7 @@
-﻿using BookingProject.View.Guest1View.Tutorials;
+﻿using BookingProject.Domain;
 using BookingProject.View.Guest1ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +16,14 @@ using System.Windows.Shapes;
 
 namespace BookingProject.View.Guest1View
 {
-	public partial class AllForumsView : Window
+	public partial class ShowAllComentsView : Window
 	{
-		public AllForumsView()
+		private Forum SelectedForum;
+		public ShowAllComentsView(Forum selectedForum)
 		{
+			SelectedForum = selectedForum;
 			InitializeComponent();
-			this.DataContext = new AllForumsViewModel();
+			this.DataContext = new ShowAllComentsViewModel(SelectedForum);
 		}
 	}
 }
