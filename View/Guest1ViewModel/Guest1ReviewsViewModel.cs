@@ -17,19 +17,23 @@ namespace BookingProject.View.Guest1ViewModel
         public ObservableCollection<GuestGrade> Grades { get; set; }
         public GuestGradeController GuestGradeController { get; set; }
         public RelayCommand MyReviewsCommand { get; }
-        public RelayCommand HomepageCommand { get; }
+        public RelayCommand HomePageCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
-        public RelayCommand LogoutCommand { get; }
+        public RelayCommand LogOutCommand { get; }
         public RelayCommand MyProfileCommand { get; }
+        public RelayCommand CreateForumCommand { get; }
+        public RelayCommand QuickSearchCommand { get; }
         public Guest1ReviewsViewModel()
         {
             GuestGradeController = new GuestGradeController();
             Grades = new ObservableCollection<GuestGrade>(GuestGradeController.GetSeeableGrades());
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
-            HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
+            HomePageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
-            LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
+            LogOutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
+            CreateForumCommand = new RelayCommand(Button_Click_CreateForum, CanExecute);
+            QuickSearchCommand = new RelayCommand(Button_Click_Quick_Search, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
         private void CloseWindow()
@@ -71,6 +75,19 @@ namespace BookingProject.View.Guest1ViewModel
         {
             var profile = new Guest1ProfileView();
             profile.Show();
+            CloseWindow();
+        }
+        private void Button_Click_CreateForum(object param)
+        {
+            var forum = new OpenForumView();
+            forum.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_Quick_Search(object param)
+        {
+            var quickS = new QuickSearchView();
+            quickS.Show();
             CloseWindow();
         }
     }

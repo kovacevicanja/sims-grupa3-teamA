@@ -31,6 +31,8 @@ namespace BookingProject.View.Guest1ViewModel
         public RelayCommand MyReservationsCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
         public RelayCommand MyProfileCommand { get; }
+        public RelayCommand CreateForumCommand { get; }
+        public RelayCommand QuickSearchCommand { get; }
 
         public FindAvailableDatesForAccommodationViewModel(List<(DateTime, DateTime)> ranges, Accommodation selectedAccommodation)
         {
@@ -45,6 +47,8 @@ namespace BookingProject.View.Guest1ViewModel
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
             MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
+            CreateForumCommand = new RelayCommand(Button_Click_CreateForum, CanExecute);
+            QuickSearchCommand = new RelayCommand(Button_Click_Quick_Search, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
         private void CloseWindow()
@@ -104,6 +108,9 @@ namespace BookingProject.View.Guest1ViewModel
                 }
                 accommodationReservationController.BookAccommodation(selectedDates.StartDate, selectedDates.EndDate, _selectedAccommodation);
                 MessageBox.Show("Successfully reserved accommodation!");
+                var homepage = new Guest1HomepageView();
+                homepage.Show();
+                CloseWindow();
             }
 
         }
@@ -138,6 +145,19 @@ namespace BookingProject.View.Guest1ViewModel
         {
             var profile = new Guest1ProfileView();
             profile.Show();
+            CloseWindow();
+        }
+        private void Button_Click_CreateForum(object param)
+        {
+            var forum = new OpenForumView();
+            forum.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_Quick_Search(object param)
+        {
+            var quickS = new QuickSearchView();
+            quickS.Show();
             CloseWindow();
         }
     }

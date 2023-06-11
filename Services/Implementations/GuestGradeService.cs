@@ -93,7 +93,7 @@ namespace BookingProject.Services.Implementations
                     }
                 }
             }
-            return _seeableGrades;
+            return _seeableGrades.Distinct().ToList();
         }
     }
 }

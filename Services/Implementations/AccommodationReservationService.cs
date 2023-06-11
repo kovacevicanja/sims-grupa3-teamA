@@ -20,12 +20,14 @@ namespace BookingProject.Services.Implementations
     public class AccommodationReservationService : IAccommodationReservationService, ISubject
     {
         private IAccommodationReservationRepository _accommodationReservationRepository;
+        private IUserService _userService;
         private List<IObserver> observers;
         public AccommodationReservationService() {
         }
         public void Initialize()
         {
             _accommodationReservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+            _userService = Injector.CreateInstance<IUserService>();
             observers = new List<IObserver>();
 
         }
@@ -366,6 +368,17 @@ namespace BookingProject.Services.Implementations
             }
             return nonAvailableDates;
         }
-        
+        public bool IsLocationVisited(Location location)
+        {
+
+            foreach (var reservation in _accommodationReservationRepository.GetAll())
+            {
+                if (reservation.Accommodation.Location.Id == location.Id && reservation.Guest.Id == _userService.GetLoggedUser().Id && reservation.InitialDate <= DateTime.Now)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

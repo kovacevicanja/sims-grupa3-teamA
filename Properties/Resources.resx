@@ -162,6 +162,12 @@
   <data name="CloseE" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="COMPLEX" xml:space="preserve">
+    <value>The system will not allow you to input a date when you are busy, also if a request is a part of a complex tour it will not allow you to input a date that is already used in that complex tour.</value>
+  </data>
+  <data name="COMPLEX2" xml:space="preserve">
+    <value />
+  </data>
   <data name="Core" xml:space="preserve">
     <value>Core options:</value>
   </data>

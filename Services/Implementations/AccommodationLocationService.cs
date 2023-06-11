@@ -47,5 +47,16 @@ namespace BookingProject.Services.Implementations
         {
             _locationRepository.Delete(acc);
         }
+        public int GetIdByCountryAndCity(String state, String city)
+		{
+            foreach (var location in _locationRepository.GetAll())
+            {
+                if (location.City.Equals(city) && location.Country.Equals(state))
+                {
+                    return location.Id;
+                }
+            }
+            return -1;
+        }
     }
 }

@@ -19,11 +19,13 @@ namespace BookingProject.View.Guest1ViewModel
         public AccommodationReservation SelectedReservation;
         public RelayCommand SendRequestCommand { get; }
         public RelayCommand SeeRequestsCommand { get; }
-        public RelayCommand HomepageCommand { get; }
+        public RelayCommand HomePageCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
-        public RelayCommand LogoutCommand { get; }
+        public RelayCommand LogOutCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
         public RelayCommand MyProfileCommand { get; }
+        public RelayCommand CreateForumCommand { get; }
+        public RelayCommand QuickSearchCommand { get; }
         public RescheduleAccommodationReservationViewModel(AccommodationReservation selectedReservation)
         {
             RequestAccommodationReservationController = new RequestAccommodationReservationController();
@@ -33,11 +35,13 @@ namespace BookingProject.View.Guest1ViewModel
             NewEndDate = DateTime.Now;
             SendRequestCommand = new RelayCommand(Button_Click_Send_Request, CanExecute);
             SeeRequestsCommand = new RelayCommand(Button_Click_See_Requests, CanExecute);
-            HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
+            HomePageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
-            LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
+            LogOutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
             MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
+            CreateForumCommand = new RelayCommand(Button_Click_CreateForum, CanExecute);
+            QuickSearchCommand = new RelayCommand(Button_Click_Quick_Search, CanExecute);
         }
         private bool CanExecute(object param) { return true; }
         private void CloseWindow()
@@ -112,6 +116,9 @@ namespace BookingProject.View.Guest1ViewModel
             {
                 RequestAccommodationReservationController.SendRequest(SelectedReservation, Comment, NewInitialDate, NewEndDate);
                 MessageBox.Show("Successfully rescheduled reservation!");
+                var reservations = new Guest1Reservations();
+                reservations.Show();
+                CloseWindow();
             }
         }
         private void Button_Click_See_Requests(object param)
@@ -152,6 +159,19 @@ namespace BookingProject.View.Guest1ViewModel
         {
             var profile = new Guest1ProfileView();
             profile.Show();
+            CloseWindow();
+        }
+        private void Button_Click_CreateForum(object param)
+        {
+            var forum = new OpenForumView();
+            forum.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_Quick_Search(object param)
+        {
+            var quickS = new QuickSearchView();
+            quickS.Show();
             CloseWindow();
         }
     }

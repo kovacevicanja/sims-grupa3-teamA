@@ -2,6 +2,7 @@
 using BookingProject.Controller;
 using BookingProject.Model;
 using BookingProject.View.Guest1View;
+using BookingProject.View.Guest1View.Tutorials;
 using OisisiProjekat.Observer;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace BookingProject.View.Guest1ViewModel
 {
@@ -25,11 +28,15 @@ namespace BookingProject.View.Guest1ViewModel
         public RelayCommand CancelCommand { get; }
         public RelayCommand RescheduleCommand { get; }
         public RelayCommand SeeRequestsCommand { get; }
-        public RelayCommand HomepageCommand { get; }
+        public RelayCommand HomePageCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
-        public RelayCommand LogoutCommand { get; }
+        public RelayCommand LogOutCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
         public RelayCommand MyProfileCommand { get; }
+        public RelayCommand RescheduleTutorialCommand { get; }
+        public RelayCommand ReviewTutorialCommand { get; }
+        public RelayCommand CreateForumCommand { get; }
+        public RelayCommand QuickSearchCommand { get; }
 
         public Guest1ReservationsViewModel(Window window)
         {
@@ -42,11 +49,15 @@ namespace BookingProject.View.Guest1ViewModel
             CancelCommand = new RelayCommand(Button_Click_Cancel, CanIfSelected);
             RescheduleCommand = new RelayCommand(Button_Click_Reschedule, CanIfSelected);
             SeeRequestsCommand = new RelayCommand(Button_Click_See_Requests, CanExecute);
-            HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
+            HomePageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
-            LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
+            LogOutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
             MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
+            RescheduleTutorialCommand = new RelayCommand(Button_Click_RescheduleTutorial, CanExecute);
+            ReviewTutorialCommand = new RelayCommand(Button_Click_ReviewTutorial, CanExecute);
+            CreateForumCommand = new RelayCommand(Button_Click_CreateForum, CanExecute);
+            QuickSearchCommand = new RelayCommand(Button_Click_Quick_Search, CanExecute);
 
         }
         private bool CanExecute(object param) { return true; }
@@ -70,12 +81,12 @@ namespace BookingProject.View.Guest1ViewModel
             {
                 AccommodationOwnerReview aor = new AccommodationOwnerReview(SelectedReservation);
                 aor.Show();
+                CloseWindow();
             }
             else
             {
                 MessageBox.Show("You don't have permission to review this accommodation and owner!");
             }
-            CloseWindow();
         }
 
         private void Button_Click_Cancel(object param)
@@ -154,6 +165,30 @@ namespace BookingProject.View.Guest1ViewModel
         {
             var profile = new Guest1ProfileView();
             profile.Show();
+            CloseWindow();
+        }
+        public void Button_Click_ReviewTutorial(object param) {
+            var tutorial = new AccommodationOwnerReviewTutorialView();
+            tutorial.Show();
+            CloseWindow();
+        }
+        public void Button_Click_RescheduleTutorial(object param)
+        {
+            var tutorial = new RescheduleCancelReservationTutorialView();
+            tutorial.Show();
+            CloseWindow();
+        }
+        private void Button_Click_CreateForum(object param)
+        {
+            var forum = new OpenForumView();
+            forum.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_Quick_Search(object param)
+        {
+            var quickS = new QuickSearchView();
+            quickS.Show();
             CloseWindow();
         }
     }

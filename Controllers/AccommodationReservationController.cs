@@ -211,5 +211,9 @@ namespace BookingProject.Controller
         {
             return _accommodationReservationService.CountReservationsForSpecificLocation(locationId);
         }
+        public bool IsLocationVisited(Location location)
+		{
+            return _accommodationReservationService.IsLocationVisited(location);
+		}
     }
 }

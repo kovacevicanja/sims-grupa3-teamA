@@ -42,5 +42,11 @@ namespace BookingProject.Controller
         {
             _locationService.Delete(l);
         }
+        public int GetIdByCountryAndCity(String state, String city)
+		{
+            return _locationService.GetIdByCountryAndCity(state, city);
+
+        }
+
     }
 }

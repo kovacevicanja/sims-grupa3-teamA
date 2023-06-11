@@ -26,11 +26,13 @@ namespace BookingProject.View.Guest1ViewModel
 
         public RelayCommand BookCommand { get; }
         public RelayCommand CloseCommand { get; }
-        public RelayCommand HomepageCommand { get; }
+        public RelayCommand HomePageCommand { get; }
         public RelayCommand MyReservationsCommand { get; }
-        public RelayCommand LogoutCommand { get; }
+        public RelayCommand LogOutCommand { get; }
         public RelayCommand MyReviewsCommand { get; }
         public RelayCommand MyProfileCommand { get; }
+        public RelayCommand CreateForumCommand { get; }
+        public RelayCommand QuickSearchCommand { get; }
 
         public ReservationAccommodationViewModel(Accommodation selectedAccommodation)
         {
@@ -44,11 +46,13 @@ namespace BookingProject.View.Guest1ViewModel
             EndDate = DateTime.Now;
             BookCommand = new RelayCommand(Button_Click_Book, CanExecute);
             CloseCommand = new RelayCommand(Button_Click_Close, CanExecute);
-            HomepageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
+            HomePageCommand = new RelayCommand(Button_Click_Homepage, CanExecute);
             MyReservationsCommand = new RelayCommand(Button_Click_MyReservations, CanExecute);
-            LogoutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
+            LogOutCommand = new RelayCommand(Button_Click_Logout, CanExecute);
             MyReviewsCommand = new RelayCommand(Button_Click_MyReviews, CanExecute);
             MyProfileCommand = new RelayCommand(Button_Click_MyProfile, CanExecute);
+            CreateForumCommand = new RelayCommand(Button_Click_CreateForum, CanExecute);
+            QuickSearchCommand = new RelayCommand(Button_Click_Quick_Search, CanExecute);
         }
 
         private bool CanExecute(object param) { return true; }
@@ -140,7 +144,9 @@ namespace BookingProject.View.Guest1ViewModel
                 }
                 accommodationReservationController.BookAccommodation(InitialDate, EndDate, _selectedAccommodation);
                 MessageBox.Show("Successfully reserved this accommodation!");
-
+                var homepage = new Guest1HomepageView();
+                homepage.Show();
+                CloseWindow();
             }
             else
             {
@@ -188,6 +194,19 @@ namespace BookingProject.View.Guest1ViewModel
         {
             var profile = new Guest1ProfileView();
             profile.Show();
+            CloseWindow();
+        }
+        private void Button_Click_CreateForum(object param)
+        {
+            var forum = new OpenForumView();
+            forum.Show();
+            CloseWindow();
+        }
+
+        private void Button_Click_Quick_Search(object param)
+        {
+            var quickS = new QuickSearchView();
+            quickS.Show();
             CloseWindow();
         }
     }

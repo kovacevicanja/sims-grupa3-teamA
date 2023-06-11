@@ -1,0 +1,207 @@
+﻿<Window x:Class="BookingProject.View.Guest1View.QuickSearchView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingProject.View.Guest1View" xmlns:val="clr-namespace:BookingProject.Validation"
+        mc:Ignorable="d"
+        Title="QuickSearchView" Height="720" Width="1280">
+    <DockPanel LastChildFill="True">
+        <Grid Background="Honeydew">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="80*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Button Command="{Binding HomePageCommand}" Background="Honeydew">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" >
+                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/homepage.png"/>
+                            <TextBlock Text="Homepage" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding MyReservationsCommand}" Background="Honeydew">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/bedroom.png"/>
+                            <TextBlock Text="My reservations" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding MyReviewsCommand}" Background="Honeydew">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/reviews.png"/>
+                            <TextBlock Text="My reviews" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding CreateForumCommand}" Background="Honeydew">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image  Width="40" Height="40" Margin="0" Source="/View/ImagesGuest1/createforum.png"/>
+                            <TextBlock Text="Create forum" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding QuickSearchCommand}" Background="Honeydew">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image  Width="30" Height="30" Margin="0" Source="/View/ImagesGuest1/quicksearch.png"/>
+                            <TextBlock Text="Quick search" Margin="5,5,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding MyProfileCommand}" Background="Honeydew" Height="400">
+                    <Button.Content>
+                        <StackPanel Height="400" Background="Honeydew" Orientation="Vertical">
+                            <Image  Width="100" Height="80" Margin="50 280 50 0" Source="/Resources/Images/Guest1Images/myprofile.jpg"/>
+                            <TextBlock Text="My profile" Margin="80 10 70 0" FontSize="20" Foreground="DarkGreen" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding LogoutCommand}" Background="Honeydew" VerticalAlignment="Bottom">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Logout" Margin="5,10,0,0" FontWeight="Bold" Foreground="DarkGreen" FontSize="20" Padding="5"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Label Height="150"></Label>
+            </StackPanel>
+            <Border Grid.Column="1" Background="White">
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Resources/Images/Guest1Images/background1.jpg" />
+                    </Grid.Background>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="350"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Label Width="160" FontSize="17" FontWeight="SemiBold" Foreground="DarkGreen">Number of guests:</Label>
+                        <Label Width="210" FontSize="17" FontWeight="SemiBold" Foreground="DarkGreen">Number of days to stay:</Label>
+                        <Label Width="150" FontSize="17" FontWeight="SemiBold" Foreground="DarkGreen">Initial date:</Label>
+                        <Label Width="150" FontSize="17" FontWeight="SemiBold" Foreground="DarkGreen">End date:</Label>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row = "1" Orientation="Horizontal" >
+                        <TextBox Width="150" Height="25" Margin="5" x:Name="numGuests">
+                            <TextBox.Text>
+                                    <Binding Path="NumberOfGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                        <Binding.ValidationRules>
+                                            <val:SearchAccommodationValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            <Validation.ErrorTemplate>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border BorderBrush="Red" BorderThickness="1"></Border>
+                                        <AdornedElementPlaceholder x:Name="textBox"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Validation.ErrorTemplate>
+                        </TextBox>
+                        <TextBox Width="180" Height="25" Margin="5" x:Name="txtNumber">
+                            <TextBox.Text>
+                                <Binding Path="DaysToStay" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <val:SearchAccommodationValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                            <Validation.ErrorTemplate>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border BorderBrush="Red" BorderThickness="1"></Border>
+                                        <AdornedElementPlaceholder x:Name="textBox"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Validation.ErrorTemplate>
+                        </TextBox>
+                        <DatePicker Grid.Row="0" Grid.Column="1" SelectedDate="{Binding Path=InitialDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
+                     Height="25" Margin="20 5 10 5" Width="150" ></DatePicker>
+                        <DatePicker Grid.Row="0" Grid.Column="1" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
+                     Height="25" Margin="0 5 10 5" Width="150"></DatePicker>
+                        <Button Content="Search" IsCancel="True" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="20, 30, 20, 5"
+                    Padding="5" FontSize="15" Height="30" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew"
+               Command="{Binding SearchCommand}"/>
+                        <Button Content="Cancel search" IsDefault="True" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5, 30, 20, 10"
+                    Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew"
+               Command="{Binding CancelSearchCommand}"/>
+                    </StackPanel>
+
+                    <Grid Grid.Row="2" Margin="5,20,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <ListView x:Name="accommodationListView" SelectedItem="{Binding selectedAccommodation}" ItemsSource="{Binding Path=Accommodations}" Margin="130,0,151,24">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Images[0].Url}" Width="150" Height="150" Grid.Column="0"/>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Margin="0 20 0 0" Text="{Binding AccommodationName}" FontWeight="Bold" FontSize="25" Foreground="DarkGreen"/>
+                                            <TextBlock Foreground="DarkGreen" Margin=" 0 0 3 0"><Run Text="{Binding Location.City}"/><Run Text=", "/><Run Text="{Binding Location.Country}"/></TextBlock>
+                                            <TextBlock Foreground="DarkGreen" Margin="0 0 3 0" Text="{Binding Type}" FontSize="12"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </Grid>
+
+                    <WrapPanel Grid.Row="3" HorizontalAlignment="Right" Height="100" Margin="0 0 135 0">
+                        <Button Width="120" IsDefault="True" Margin="20 0 20 0" Height="40"
+                     Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen"
+                    Command="{Binding BookCommand}">Book</Button>
+                        <Button Width="120" IsDefault="True" Margin="20 0 20 0" Height="40"
+                     Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen"
+                                Command="{Binding ViewTutorialCommand}">View tutorial</Button>
+                        <Button Width="120" IsDefault="True" Margin="20 0 20 0" Height="40"
+                     Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen"
+                     Command="{Binding HomepageCommand}">Homepage</Button>
+                    </WrapPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </DockPanel>
+</Window>
