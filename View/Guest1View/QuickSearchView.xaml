@@ -97,53 +97,17 @@
                     <StackPanel Grid.Row = "1" Orientation="Horizontal" >
                         <TextBox Width="150" Height="25" Margin="5" x:Name="numGuests">
                             <TextBox.Text>
-                                    <Binding Path="NumberOfGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
-                                        <Binding.ValidationRules>
-                                            <val:SearchAccommodationValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
-                                        </Binding.ValidationRules>
-                                    </Binding>
+                                <Binding Path="NumberOfGuests" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                </Binding>
                                 </TextBox.Text>
-                            <Validation.ErrorTemplate>
-                                <ControlTemplate>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <Border BorderBrush="Red" BorderThickness="1"></Border>
-                                        <AdornedElementPlaceholder x:Name="textBox"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
-                                    </Grid>
-                                </ControlTemplate>
-                            </Validation.ErrorTemplate>
+                            
                         </TextBox>
                         <TextBox Width="180" Height="25" Margin="5" x:Name="txtNumber">
                             <TextBox.Text>
                                 <Binding Path="DaysToStay" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
-                                    <Binding.ValidationRules>
-                                        <val:SearchAccommodationValidationRule ValidatesOnTargetUpdated="True" ValidationStep="RawProposedValue"/>
-                                    </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
-                            <Validation.ErrorTemplate>
-                                <ControlTemplate>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <Border BorderBrush="Red" BorderThickness="1"></Border>
-                                        <AdornedElementPlaceholder x:Name="textBox"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" HorizontalAlignment="Right" Margin="2"/>
-                                    </Grid>
-                                </ControlTemplate>
-                            </Validation.ErrorTemplate>
+                            
                         </TextBox>
                         <DatePicker Grid.Row="0" Grid.Column="1" SelectedDate="{Binding Path=InitialDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}" RenderTransformOrigin="0.493,4.276"
                      Height="25" Margin="20 5 10 5" Width="150" ></DatePicker>

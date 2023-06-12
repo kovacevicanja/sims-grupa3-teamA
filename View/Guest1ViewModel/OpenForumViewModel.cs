@@ -194,10 +194,12 @@ namespace BookingProject.View.Guest1ViewModel
             newForum.Location.Id = _accommodationLocationController.GetIdByCountryAndCity(State, City);
             newForum.User.Id = _userController.GetLoggedUser().Id;
             newForum.Name = "FORUM";
+            newForum.DisplayUseful = "";
             ForumComment newComment = new ForumComment();
             newComment.Text = Comment;
             newComment.IsOwners = false;
             newComment.IsGuests = true;
+            newComment.DisplayVisited = "";
             newComment.User.Id = _userController.GetLoggedUser().Id;
             newComment.NumberOfReports = 0;
             newComment.Forum = newForum;
@@ -207,6 +209,7 @@ namespace BookingProject.View.Guest1ViewModel
             newForum.IsUseful = false;
             _forumController.Create(newForum);
             _forumCommentController.Create(newComment);
+            MessageBox.Show("You have successfully open forum!");
         }
         private void Button_Click_AllForums(object param)
 		{

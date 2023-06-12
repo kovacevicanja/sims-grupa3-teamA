@@ -112,7 +112,8 @@ namespace BookingProject.Services.Implementations
             reservation.DaysToStay = (endDate - initialDate).Days;
             reservation.Guest.Id = Injector.CreateInstance<IUserService>().GetLoggedUser().Id;
             reservation.IsCancelled = false;
-            Injector.CreateInstance<IAccommodationReservationService>().GetAll().Add(reservation);
+            _accommodationReservationRepository.Create(reservation);
+
         }
 
         public bool PermissionToRate(AccommodationReservation accommodationReservation)

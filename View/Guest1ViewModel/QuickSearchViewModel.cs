@@ -41,6 +41,8 @@ namespace BookingProject.View.Guest1ViewModel
             _accommodationController = new AccommodationController();
             _accommodationDateController = new AccommodationDateController();
             FilteredAccommodations = new ObservableCollection<Accommodation>();
+            InitialDate = DateTime.Now;
+            EndDate = DateTime.Now;
             List<Accommodation> accommodations = new List<Accommodation>(_accommodationController.GetAll());
             List<Accommodation> sortedAccommodations = accommodations.OrderByDescending(a => a.Owner.IsSuper).ToList();
             Accommodations = new ObservableCollection<Accommodation>(sortedAccommodations);
@@ -149,7 +151,7 @@ namespace BookingProject.View.Guest1ViewModel
         private void Button_Click_Search(object param)
         {
             List<AccommodationDTO> accommodationDTOs = new List<AccommodationDTO>();
-            if(InitialDate == null && EndDate == null)
+            if(InitialDate.Date == DateTime.Now.Date  && EndDate.Date == DateTime.Now.Date)
 			{
                 foreach(Accommodation accommodation in Accommodations)
 				{
@@ -170,12 +172,14 @@ namespace BookingProject.View.Guest1ViewModel
                     }
 				}
                 var suggestions = new QuickSearchSuggestionsView(accommodationDTOs);
+                suggestions.Show();
+                CloseWindow();
 			}
 			else
 			{
                 foreach (Accommodation accommodation in Accommodations)
                 {
-                    if (_accommodationController.CheckGuestsNumber(accommodation, int.Parse(NumberOfGuests)) && _accommodationController.AccommodationIsAvailable(accommodation, int.Parse(DaysToStay)))
+                    if (_accommodationController.CheckGuestsNumber(accommodation, int.Parse(NumberOfGuests)) && _accommodationController.AccommodationIsAvailableInRange(accommodation, int.Parse(DaysToStay), InitialDate, EndDate))
                     {
                         AccommodationDTO dto = new AccommodationDTO();
                         dto.accommodation = accommodation;
@@ -193,6 +197,8 @@ namespace BookingProject.View.Guest1ViewModel
                     }
                 }
                 var suggestions = new QuickSearchSuggestionsView(accommodationDTOs);
+                suggestions.Show();
+                CloseWindow();
             }
         }
 

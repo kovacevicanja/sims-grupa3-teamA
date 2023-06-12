@@ -31,5 +31,6 @@ namespace BookingProject.Services.Interfaces
         bool AccommodationIsAvailable(Accommodation accommodation, int daysToStay);
         bool CheckGuestsNumber(Accommodation accommodation, int numberOfGuests);
         void Delete(Accommodation acc);
+        bool AccommodationIsAvailableInRange(Accommodation accommodation, int daysToStay, DateTime initialDate, DateTime endDate);
     }
 }

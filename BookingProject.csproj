@@ -380,6 +380,7 @@
     <Compile Include="View\Guest1ViewModel\ReservationAccommodationViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\ShowAllComentsViewModel.cs" />
     <Compile Include="View\Guest1ViewModel\ShowAllForumsViewModel.cs" />
+    <Compile Include="View\Guest1ViewModel\ShowSuggestionsDatesViewModel.cs" />
     <Compile Include="View\Guest1View\AccommodationOwnerReview.xaml.cs">
       <DependentUpon>AccommodationOwnerReview.xaml</DependentUpon>
     </Compile>
@@ -418,6 +419,9 @@
     </Compile>
     <Compile Include="View\Guest1View\ShowAllForumsView.xaml.cs">
       <DependentUpon>ShowAllForumsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Guest1View\ShowSuggestionsDatesView.xaml.cs">
+      <DependentUpon>ShowSuggestionsDatesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Guest1View\Tutorials\AccommodationOwnerReviewTutorialView.xaml.cs">
       <DependentUpon>AccommodationOwnerReviewTutorialView.xaml</DependentUpon>
@@ -810,6 +814,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Guest1View\ShowAllForumsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Guest1View\ShowSuggestionsDatesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
