@@ -71,10 +71,10 @@ namespace BookingProject.View.Guest1ViewModel
 				if (window.GetType() == typeof(ShowAllForumsView)) { window.Close(); }
 			}
 		}
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         private void Button_Click_Homepage(object param)
         {
             var Guest1Homepage = new Guest1HomepageView();
@@ -130,14 +130,27 @@ namespace BookingProject.View.Guest1ViewModel
             CloseWindow();
         }
 
+        private string _status;
+
+        public string Status
+        {
+            get { return _status; }
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnPropertyChanged(nameof(Status));
+                }
+            }
+        }
+
         private void Button_Click_CloseForum(object param)
 		{
             SelectedForum.Status = "CLOSED";
             _forumController.UpdateForum(SelectedForum);
             MessageBox.Show("You have successfully close forum!");
         }
-
-
 
         private void Button_Click_ShowComments(object param)
 		{

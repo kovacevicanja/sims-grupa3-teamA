@@ -54,11 +54,11 @@ namespace BookingProject.View.Guest2ViewModel
                     {
                         if (tr.Status == Domain.Enums.TourRequestStatus.PENDING)
                         {
-                            tr.DisplaySetDate = "Guide not accepted the tour yet.";
+                            tr.DisplaySetDate = "Guide not accepted the tour request yet.";
                         }
                         else if (tr.Status == Domain.Enums.TourRequestStatus.INVALID)
                         {
-                            tr.DisplaySetDate = "The tour is not accepted.";
+                            tr.DisplaySetDate = "The tour request is not accepted.";
                         }
                     }
                     else

@@ -86,7 +86,7 @@
                             <DataGridTextColumn Header="State"  Width="*" Binding="{Binding Location.Country}"></DataGridTextColumn>
                             <DataGridTextColumn Header="City" Width="*"  Binding="{Binding Location.City}"></DataGridTextColumn>
                             <DataGridTextColumn Header="User" Width="*" Binding="{Binding User.Username}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Is helpful" Width="*"  Binding="{Binding DisplayUseful}"></DataGridTextColumn>
                         </DataGrid.Columns>
 
