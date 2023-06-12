@@ -79,7 +79,7 @@
                         <Label Margin="300 10 30 0" Height="80" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="DarkGreen">Our suggestions</Label>
                         <Image  Width="50" Height="50" Margin="10 0 10 10" Source="/Resources/Images/Guest1Images/renovation4.png"/>
                     </StackPanel>
-                    <ListView SelectionMode="Single" ItemsSource="{Binding DTOs}" Height="461" Width="754">
+                    <ListView SelectionMode="Single" SelectedItem="{Binding SelectedDTO}" ItemsSource="{Binding DTOs}" Height="461" Width="754">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -88,7 +88,7 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Grid.Column="1" Orientation="Vertical">
-                                        <TextBlock FontWeight="Bold" FontSize="25" Foreground="DarkGreen" Margin="10 10 5 10"><Run Text="{Binding Accommodation.AccommodationName}" /></TextBlock>
+                                        <TextBlock FontWeight="Bold" FontSize="25" Foreground="DarkGreen" Margin="10 10 5 10"><Run Text="{Binding accommodation.AccommodationName}" /></TextBlock>
                                        
                                     </StackPanel>
                                 </Grid>
@@ -98,7 +98,7 @@
                     </ListView>
 
                     <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="100" IsDefault="True" Margin="20 15 15 15" Command="{Binding BookCommand}">Book</Button>
+                        <Button Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Width="200" IsDefault="True" Margin="20 15 15 15" Command="{Binding ViewAvailableDatesCommand}">View available dates</Button>
                     </WrapPanel>
                 </StackPanel>
 

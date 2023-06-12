@@ -17,6 +17,7 @@ namespace BookingProject.Domain
         public bool IsUseful { get; set; }
         public string Status { get; set; }
         public User User { get; set; }
+        public string DisplayUseful { get; set; }
 
         public Forum() {
             Location = new Location();
@@ -32,6 +33,7 @@ namespace BookingProject.Domain
             IsUseful = bool.Parse(values[3]);
             Status = values[4];
             User.Id = int.Parse(values[5]);
+            DisplayUseful = values[6];
         }
 
         public string[] ToCSV()
@@ -43,7 +45,8 @@ namespace BookingProject.Domain
                 Location.Id.ToString(),
                 IsUseful.ToString(),
                 Status.ToString(),
-                User.Id.ToString()
+                User.Id.ToString(),
+                DisplayUseful
             };
             return csvValues;
         }

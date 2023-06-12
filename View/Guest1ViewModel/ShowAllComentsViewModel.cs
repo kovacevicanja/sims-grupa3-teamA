@@ -51,7 +51,24 @@ namespace BookingProject.View.Guest1ViewModel
             _forumCommentController = new ForumCommentController();
             accommodationReservationController = new AccommodationReservationController();
             Comments = new ObservableCollection<ForumComment>(_forumController.GetCommentsForForum(SelectedForum));
+            SetDisplayVisited(Comments);
 		}
+
+        public void SetDisplayVisited(ObservableCollection<ForumComment> comments)
+        {
+            foreach (var comment in comments)
+            {
+                if (comment.IsInvalid)
+                {
+                    comment.DisplayVisited = "NO";
+                }
+                else
+                {
+                    comment.DisplayVisited = "YES";
+                }
+            }
+        }
+
         public string _comment;
         public string NewComment
         {
@@ -134,16 +151,25 @@ namespace BookingProject.View.Guest1ViewModel
 
         private void Button_Click_LeaveComment(object param)
 		{
-            ForumComment newForumComment = new ForumComment();
-            newForumComment.Text = NewComment;
-            newForumComment.Forum = SelectedForum;
-            newForumComment.User = _userController.GetLoggedUser();
-            newForumComment.NumberOfReports = 0;
-            newForumComment.IsOwners = false;
-            newForumComment.IsGuests = true;
-            newForumComment.IsInvalid = accommodationReservationController.IsLocationVisited(SelectedForum.Location);
-            _forumCommentController.Create(newForumComment);
-            _forumController.SetVeryHelpful(SelectedForum);
+            if (SelectedForum.Status.Equals("CLOSED")){
+                MessageBox.Show("You can't leave comment on a closed forum!");
+            }
+            else {
+                ForumComment newForumComment = new ForumComment();
+                newForumComment.Text = NewComment;
+                newForumComment.Forum = SelectedForum;
+                newForumComment.User = _userController.GetLoggedUser();
+                newForumComment.NumberOfReports = 0;
+                newForumComment.IsOwners = false;
+                newForumComment.IsGuests = true;
+                newForumComment.DisplayVisited = "";
+                newForumComment.IsInvalid = accommodationReservationController.IsLocationVisited(SelectedForum.Location);
+                _forumCommentController.Create(newForumComment);
+                _forumController.SetVeryHelpful(SelectedForum);
+            }
+            var allForums = new ShowAllForumsView();
+            allForums.Show();
+            CloseWindow();
         }
 
     }

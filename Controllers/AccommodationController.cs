@@ -137,5 +137,9 @@ namespace BookingProject.Controller
 		{
             return _accommodationService.CheckGuestsNumber(accommodation, numberOfGuests);
 		}
+        public bool AccommodationIsAvailableInRange(Accommodation accommodation, int daysToStay, DateTime initialDate, DateTime endDate)
+        {
+            return _accommodationService.AccommodationIsAvailableInRange(accommodation, daysToStay, initialDate, endDate);
+        }
     }
 }

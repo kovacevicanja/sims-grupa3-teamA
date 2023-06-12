@@ -144,7 +144,7 @@ namespace BookingProject.Services.Implementations
 
         public bool AccommodationIsAvailable(Accommodation accommodation, int daysToStay)
 		{
-            if(_accommodationDateService.FindAvailableDatesQuick(accommodation, daysToStay) != null)
+            if(_accommodationDateService.FindAvailableDatesQuick(accommodation, daysToStay).Count != 0)
 			{
                 return true;
 			}
@@ -153,6 +153,19 @@ namespace BookingProject.Services.Implementations
                 return false;
 			}
 		}
+
+        public bool AccommodationIsAvailableInRange(Accommodation accommodation, int daysToStay, DateTime initialDate, DateTime endDate)
+		{
+            if (_accommodationDateService.FindAvailableDatesQuickRanges(accommodation, daysToStay, initialDate, endDate).Count != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
 
     }
 }

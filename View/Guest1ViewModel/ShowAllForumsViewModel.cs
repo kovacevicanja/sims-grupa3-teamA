@@ -45,6 +45,22 @@ namespace BookingProject.View.Guest1ViewModel
 			QuickSearchCommand = new RelayCommand(Button_Click_Quick_Search, CanExecute);
             CloseForumCommand = new RelayCommand(Button_Click_CloseForum, CanExecute);
             ShowCommentsCommand = new RelayCommand(Button_Click_ShowComments, CanExecute);
+            SetDisplayUseful(Forums);
+		}
+
+        public void SetDisplayUseful(ObservableCollection<Forum> forums)
+		{
+            foreach(var forum in forums)
+			{
+				if (forum.IsUseful)
+				{
+                    forum.DisplayUseful = "YES";
+				}
+				else
+				{
+                    forum.DisplayUseful = "NO";
+				}
+			}
 		}
 
 		private bool CanExecute(object param) { return true; }
@@ -118,6 +134,7 @@ namespace BookingProject.View.Guest1ViewModel
 		{
             SelectedForum.Status = "CLOSED";
             _forumController.UpdateForum(SelectedForum);
+            MessageBox.Show("You have successfully close forum!");
         }
 
 

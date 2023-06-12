@@ -1,11 +1,11 @@
-﻿<Window x:Class="BookingProject.View.Guest1View.ShowAllComentsView"
+﻿<Window x:Class="BookingProject.View.Guest1View.ShowSuggestionsDatesView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingProject.View.Guest1View"
         mc:Ignorable="d"
-        Title="ShowAllComentsView" Height="720" Width="1280">
+        Title="ShowSuggestionsDatesView" Height="720" Width="1280">
     <DockPanel LastChildFill="True">
         <Grid Background="Honeydew">
             <Grid.ColumnDefinitions>
@@ -72,58 +72,35 @@
             </StackPanel>
             <Border Grid.Column="1">
                 <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Resources/Images/Guest1Images/background7.jpg"/>
+                    </Grid.Background>
                     <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="170"/>
-                </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,20,10,5" HorizontalAlignment="Center">
-                        <Label FontWeight="Bold" FontSize="22" Content="Forum comments"></Label>
-                </StackPanel>
-                <Grid Grid.Row="1">
-                    <ListView Height="300" Width="550"  SelectionMode="Single" SelectedItem="{Binding SelectedComment}" ItemsSource="{Binding Comments}" Margin="10" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="200" />
-                                        <ColumnDefinition Width="80" />
-                                    </Grid.ColumnDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="300"></RowDefinition>
+                        <RowDefinition Height="200"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
+                        <ColumnDefinition Width="500"></ColumnDefinition>
+                        <ColumnDefinition Width="200"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" >
+                        <Label Height="80" FontSize="25" FontWeight="Bold" Foreground="DarkGreen" Content="Available dates" Margin="200 50 0 0"/>
+                        <Image  Width="50" Height="40" Margin="10 80 10 70" Source="/Resources/Images/Guest1Images/calendar1.png"/>
+                    </StackPanel>
+                    <DataGrid HorizontalAlignment="Left" Margin="183,10,0,190" Grid.ColumnSpan="2" ItemsSource="{Binding Ranges}" AutoGenerateColumns="False" CanUserAddRows="False" Width="647" Height="300" SelectionMode="Single" SelectedItem="{Binding selectedDates, Mode=TwoWay}" Grid.RowSpan="2" Grid.Column="1" Grid.Row="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Start Date" Binding="{Binding InitialDate, StringFormat={}{0:dd/MM/yyyy}}" Width="*" />
+                            <DataGridTextColumn Header="End Date" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
 
-                                    <TextBlock Grid.Row="0" Grid.Column="0" FontSize="20" Text="{Binding Forum.Location.Country}" FontWeight="Bold" />
-                                    <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" Text="{Binding Forum.Location.City}" FontWeight="Bold" />
 
-                                    <StackPanel Grid.Row="1" Grid.Column="0">
-                                        <TextBlock FontSize="15" Text="{Binding Text}" TextWrapping="Wrap"/>
-                                    </StackPanel>
-
-                                    <TextBlock Grid.Row="2" Grid.Column="0" FontSize="15" Text="User: " />
-                                    <TextBlock Grid.Row="2" Grid.Column="1" FontSize="15" Text="{Binding User.Username}" />
-
-                                    <TextBlock Grid.Row="3" Grid.Column="0" FontSize="15" Text="Reports: " />
-                                    <TextBlock Grid.Row="3" Grid.Column="1" FontSize="15" Text="{Binding NumberOfReports}" />
-
-                                    <TextBlock Grid.Row="4" Grid.Column="0" FontSize="15" Text="Visited: " />
-                                        <TextBlock Grid.Row="4" Grid.Column="1" FontSize="15" Text="{Binding DisplayVisited}" />
-
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <Button Width="100" Padding="5" FontSize="15" Foreground="DarkGreen" FontWeight="Bold" Background="Honeydew" BorderBrush="DarkGreen" Grid.Column="2" Margin="144,133,-216,37" Command="{Binding BookCommand}" Content="Book" Grid.Row="2"/>
+                    
                 </Grid>
-                <StackPanel Orientation="Vertical" Grid.Row="2"  Margin="130,0,130,0" HorizontalAlignment="Center">
-                    <Label Content="Add comment" Height="29"  FontSize="15"></Label>
-                    <TextBox FontSize="15"  TextWrapping="Wrap"  Text="{Binding NewComment}" HorizontalAlignment="Left" Width="350" Height="90"/>
-                    <Button Padding="3" FontSize="12" FontWeight="Bold"  Content="Leave comment" Command="{Binding LeaveCommentCommand}" HorizontalAlignment="Left" Margin="0,3,0,0"/>
-                </StackPanel>
-                </Grid>
+
             </Border>
         </Grid>
     </DockPanel>

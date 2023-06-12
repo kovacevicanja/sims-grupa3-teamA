@@ -38,6 +38,7 @@ namespace BookingProject.Repositories.Implementations
 
         public void Save(List<Forum> forums)
         {
+            ForumUserBind();
             _serializer.ToCSV(FilePath, forums);
         }
         public void SaveForum()

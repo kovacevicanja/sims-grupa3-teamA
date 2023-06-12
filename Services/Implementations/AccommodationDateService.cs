@@ -141,7 +141,7 @@ namespace BookingProject.Services.Implementations
         {
             List<AccommodationReservation> allReservations = new List<AccommodationReservation>(GetReservationsForAccommodation(accommodation));
             List<AccommodationReservation> sortedReservations = allReservations.OrderBy(r => r.InitialDate).ToList();
-            List<AccommodationReservation> filteredReservations = sortedReservations.Where(r => r.InitialDate > DateTime.Today).ToList();
+            List<AccommodationReservation> filteredReservations = sortedReservations.Where(r => r.InitialDate > DateTime.Today || r.EndDate > DateTime.Today).ToList();
             return filteredReservations;
         }
 
@@ -158,7 +158,7 @@ namespace BookingProject.Services.Implementations
 
                 if ((nextStartDate - currentEndDate).Days >= daysToStay)
                 {
-                    freeDateRanges.Add((currentEndDate.AddDays(1), nextStartDate.AddDays(-1)));
+                    freeDateRanges.Add((currentEndDate.AddDays(1), currentEndDate.AddDays(daysToStay)));
                     count++;
 
                     if (count == 3)
@@ -166,6 +166,13 @@ namespace BookingProject.Services.Implementations
                 }
             }
 
+            if(allReservations.Count == 0)
+			{
+                DateTime today = DateTime.Now.AddHours(0).AddMinutes(0).AddSeconds(0);
+                freeDateRanges.Add((today.AddDays(1), today.AddDays(daysToStay)));
+                freeDateRanges.Add((today.AddDays(daysToStay+1), today.AddDays(daysToStay*2+1)));
+                freeDateRanges.Add((today.AddDays(daysToStay*2+2), today.AddDays(daysToStay*3+2)));
+            }
 
             return freeDateRanges;
         }
@@ -183,7 +190,10 @@ namespace BookingProject.Services.Implementations
                 if (isAvailable)
                 {
                     DateTime rangeEndDate = currentDate.AddDays(daysToStay - 1);
-                    availableRanges.Add((currentDate, rangeEndDate));
+                    if (rangeEndDate <= endDate)
+                    {
+                        availableRanges.Add((currentDate, rangeEndDate));
+                    }
                 }
 
                 currentDate = currentDate.AddDays(1);
