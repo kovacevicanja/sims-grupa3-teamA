@@ -1,4 +1,5 @@
 ﻿using BookingProject.Domain;
+using BookingProject.Model;
 using BookingProject.Model.Images;
 using System;
 using System.Collections.Generic;
@@ -19,5 +20,6 @@ namespace BookingProject.Services.Interfaces
         void UpdateForum(Forum forum);
         List<ForumComment> GetCommentsForForum(Forum forum);
         void SetVeryHelpful(Forum forum);
+        void Update(Forum forum);
     }
 }

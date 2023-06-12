@@ -1,6 +1,8 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
+using BookingProject.Model;
 using BookingProject.Model.Images;
+using BookingProject.Repositories.Implementations;
 using BookingProject.Repositories.Intefaces;
 using BookingProject.Services.Interfaces;
 using System;
@@ -94,6 +96,17 @@ namespace BookingProject.Services.Implementations
             {
                 UpdateForum(forum);
             }
+        }
+
+
+        public void Update(Forum forum)
+        {
+            Forum oldForum = GetById(forum.Id);
+            if (oldForum == null)
+            {
+                return;
+            }
+            oldForum.IsUseful = forum.IsUseful;
         }
 
     }

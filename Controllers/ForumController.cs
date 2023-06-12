@@ -1,6 +1,7 @@
 ﻿using BookingProject.DependencyInjection;
 using BookingProject.Domain;
 using BookingProject.Model.Images;
+using BookingProject.Services.Implementations;
 using BookingProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -56,5 +57,10 @@ namespace BookingProject.Controllers
             _forumService.SetVeryHelpful(forum);
 		}
         
+        public void Update(Forum forum)
+        {
+            _forumService.Update(forum);
+        }
+
     }
 }

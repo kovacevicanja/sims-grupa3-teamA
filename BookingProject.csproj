@@ -1707,6 +1707,8 @@
     <Resource Include="Resources\Images\Guest1Images\booking.png" />
     <Resource Include="Resources\Images\GuideImages\darksea.jpg" />
     <Resource Include="Resources\Images\GuideImages\lightsea.jpg" />
+    <Resource Include="Resources\Images\OwnerImages\medal.jpg" />
+    <Resource Include="Resources\Images\OwnerImages\medal.png" />
     <Content Include="Resources\TutorialsGuest1\brzaPretraga.mp4" />
     <Content Include="Resources\TutorialsGuest1\dodatneInfoSlike.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

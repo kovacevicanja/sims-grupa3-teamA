@@ -244,7 +244,6 @@ namespace BookingProject.View.Guest2ViewModel
                         ComplexTourRequest.Guest.Id = GuestId;
                         _complexTourRequestController.Create(ComplexTourRequest);
                         NavigationService.GoBack();
-                        //ovo videti da nije bolje da se otvori odmah na profil
                     }
                     City = "";
                     Country = "";
